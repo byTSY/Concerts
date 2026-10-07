@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Concerts à Paris</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎟️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-top">
+      <h1>Concerts à Paris</h1>
+      <p class="updated" id="updated"></p>
+    </div>
+    <section class="fresh" aria-labelledby="fresh-title">
+      <h2 id="fresh-title" class="fresh-title"></h2>
+      <div class="stubs" id="stubs" tabindex="0" aria-label="Annonces de la semaine"></div>
+    </section>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Vues">
+    <button role="tab" aria-selected="true" data-view="calendar">Calendrier</button>
+    <button role="tab" aria-selected="false" data-view="list">Liste</button>
+    <button role="tab" aria-selected="false" data-view="artists">Mes artistes</button>
+    <button role="tab" aria-selected="false" data-view="venues">Salles</button>
+  </nav>
+
+  <div class="filters" id="filters">
+    <label class="chip chip-known"><input type="checkbox" data-kind="known" checked> Vos artistes</label>
+    <label class="chip chip-discovery"><input type="checkbox" data-kind="discovery" checked> Découvertes</label>
+    <label class="chip chip-all"><input type="checkbox" id="all-concerts"> Tous les concerts</label>
+    <label class="chip"><input type="checkbox" id="fav-only"> Vos salles uniquement</label>
+    <span class="venue-filter" id="venue-filter" hidden></span>
+    <input type="search" id="search" placeholder="Artiste, salle…" aria-label="Rechercher">
+  </div>
+
+  <main>
+    <section id="view-calendar" class="view"><div id="calendar"></div></section>
+    <section id="view-list" class="view" hidden><div id="list"></div></section>
+    <section id="view-artists" class="view" hidden><div id="artists"></div></section>
+    <section id="view-venues" class="view" hidden><div id="venues"></div></section>
+  </main>
+
+  <dialog id="ticket" aria-labelledby="ticket-title">
+    <div class="ticket">
+      <div class="ticket-stub" id="ticket-stub"></div>
+      <div class="ticket-body" id="ticket-body"></div>
+      <button class="ticket-close" id="ticket-close" aria-label="Fermer">×</button>
+    </div>
+  </dialog>
+
+  <script src="vendor/fullcalendar.min.js"></script>
+  <script src="vendor/fullcalendar-fr.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

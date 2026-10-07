@@ -1,0 +1,45 @@
+name: Mise à jour hebdomadaire
+
+on:
+  schedule:
+    - cron: "0 5 * * 1"   # lundi 5h UTC (6h ou 7h à Paris selon la saison)
+  workflow_dispatch:       # bouton « Run workflow » pour lancer à la main
+
+permissions:
+  contents: write
+
+concurrency:
+  group: weekly-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Traitement
+        env:
+          TICKETMASTER_API_KEY: ${{ secrets.TICKETMASTER_API_KEY }}
+          BANDSINTOWN_APP_ID: ${{ secrets.BANDSINTOWN_APP_ID }}
+        run: python -m src.main
+
+      - name: Enregistrer les données
+        run: |
+          git config user.name "concerts-bot"
+          git config user.email "concerts-bot@users.noreply.github.com"
+          git add data site/data
+          if git diff --cached --quiet; then
+            echo "Aucun changement"
+          else
+            git commit -m "Mise à jour du $(date -u +%Y-%m-%d)"
+            git push
+          fi

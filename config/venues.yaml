@@ -1,0 +1,33 @@
+# Salles favorites : mises en avant dans le site et bonus de proximité pour les découvertes.
+# "aliases" couvre les variantes de nom selon les billetteries (accents et casse ignorés).
+# "agenda_url" (optionnel) : page programme de la salle. Si la page publie des données
+# structurées schema.org (Event), le script en extrait les concerts. Laisser vide sinon.
+
+favorites:
+  - name: Olympia
+    aliases: ["olympia bruno coquatrix", "l'olympia"]
+    agenda_url: ""
+  - name: La Cigale
+    aliases: ["cigale"]
+    agenda_url: ""
+  - name: La Bellevilloise
+    aliases: ["bellevilloise"]
+    agenda_url: ""
+  - name: Élysée Montmartre
+    aliases: ["elysee montmartre"]
+    agenda_url: ""
+  - name: Le Trianon
+    aliases: ["trianon"]
+    agenda_url: ""
+  - name: La Boule Noire
+    aliases: ["boule noire"]
+    agenda_url: ""
+  - name: Hasard Ludique
+    aliases: ["le hasard ludique"]
+    agenda_url: ""
+  - name: New Morning
+    aliases: ["new morning"]
+    agenda_url: ""
+
+# Salles à ignorer complètement (stades, arenas, etc.), même logique d'alias
+excluded: []

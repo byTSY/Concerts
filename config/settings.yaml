@@ -1,0 +1,32 @@
+# Identifiant du profil Deezer (doit rester public)
+deezer_user_id: 1836006062
+
+# Inclure les titres des playlists que vous avez créées (poids faible dans le score)
+include_own_playlists: true
+
+# Zone couverte : centre de Paris et rayon en km (inclut la petite couronne proche)
+zone:
+  lat: 48.8566
+  lon: 2.3522
+  radius_km: 12
+
+# Horizon de recherche des concerts, en mois
+horizon_months: 12
+
+# Points d'affinité par artiste
+scoring:
+  favorite_artist: 5     # artiste en favori
+  liked_album: 2         # par album liké
+  liked_track: 1         # par titre liké
+  playlist_track: 0.25   # par titre présent dans une de vos playlists
+  tier1_min: 5           # score minimal pour le niveau 1
+  tier2_min: 2           # score minimal pour le niveau 2
+
+# Bandsintown est interrogé artiste par artiste : on limite aux mieux notés
+bandsintown_max_artists: 400
+
+discovery:
+  min_score: 0.25            # proximité minimale (0 à 1) pour afficher une découverte
+  max_new_lookups: 200       # artistes inconnus analysés par semaine (le cache cumule d'une semaine à l'autre)
+  related_refresh_days: 90   # fréquence de rafraîchissement des artistes similaires
+  favorite_venue_bonus: 0.1  # bonus de proximité dans vos salles favorites
