@@ -28,6 +28,26 @@ def kind_of(ev):
     return "other"
 
 
+def _combine(prevs):
+    """Historique d'un concert qui réunit plusieurs fiches de la base (fusion entre sources) :
+    la plus ancienne apparition et la plus ancienne entrée dans votre liste, sinon une fiche
+    hors liste ferait passer le concert pour « nouveau dans votre liste »."""
+    if not prevs:
+        return None
+    # Identifiant : la fiche la plus ancienne, de préférence celle déjà dans votre liste
+    out = dict(min(prevs, key=lambda c: (c["first_seen"], c.get("list_since") is None, c["id"])))
+    first = min(c["first_seen"] for c in prevs)
+    out["first_seen"] = first
+    out["baseline"] = any(c["baseline"] for c in prevs if c["first_seen"] == first)
+    listed = [c for c in prevs if c.get("list_since")]
+    if listed:
+        since = min(c["list_since"] for c in listed)
+        out["list_since"] = since
+        out["list_baseline"] = any(c.get("list_baseline") for c in listed if c["list_since"] == since)
+    out["source_keys"] = sorted({k for c in prevs for k in c.get("source_keys", [])})
+    return out
+
+
 def update(events):
     """Attribue id, first_seen et badge à chaque concert, puis enregistre la base."""
     today = today_iso()
@@ -40,7 +60,7 @@ def update(events):
     records, used = [], set()
     for ev in events:
         known_ids = {by_key[k] for k in ev.get("source_keys", []) if k in by_key}
-        prev = min((previous[i] for i in known_ids), key=lambda c: c["first_seen"], default=None)
+        prev = _combine([previous[i] for i in known_ids])
         cid = prev["id"] if prev and prev["id"] not in used else ev["id"]
         while cid in used:  # collision improbable entre deux concerts distincts
             cid += "x"

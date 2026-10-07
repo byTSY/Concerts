@@ -1137,6 +1137,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/peter-cincotti-billet/idmanif/663779/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/espace-carpeaux-2200/peter-cincotti-3342557.html"
    }
   ],
   "artists": [
@@ -2713,6 +2717,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/blood-red-shoes-billet/idmanif/652232/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/blood-red-shoes-3260006.html"
    }
   ],
   "artists": [
@@ -3926,7 +3934,7 @@
   "venue_favorite": false,
   "address": "ILE SEGUIN",
   "city": "Boulogne Billancourt",
-  "price": null,
+  "price": "25-48 €",
   "on_sale": "2026-05-04T08:00:00Z",
   "status": "onsale",
   "genre": "Jazz",
@@ -3935,6 +3943,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/bireli-lagrene-billet/idmanif/658137/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/auditorium-6495/bireli-lagrene-3265649.html"
    }
   ],
   "artists": [
@@ -5245,6 +5257,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/adrien-soleiman-presente-bellejazzclub-billet/idmanif/656218/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/adrien-soleiman-3260011.html"
    }
   ],
   "artists": [
@@ -5286,6 +5302,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/samara-joy-billet/idmanif/658132/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/auditorium-6495/samara-joy-3265651.html"
    }
   ],
   "artists": [
@@ -6110,6 +6130,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/the-meltdown-billet/idmanif/652197/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/the-meltdown-3260015.html"
    }
   ],
   "artists": [
@@ -6453,6 +6477,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/asaf-avidan-orchestra-billet/idmanif/656875/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-seine-6496/asaf-avidan-3300216.html"
    }
   ],
   "artists": [
@@ -6468,41 +6496,6 @@
     "name": "Asaf Avidan",
     "tier": 1,
     "via": "artiste",
-    "link": "https://www.deezer.com/artist/403152"
-   }
-  ]
- },
- {
-  "id": "bd76cc0d7324",
-  "title": "Asaf Avidan",
-  "date": "2026-11-18",
-  "time": "20:00",
-  "venue": "Grande Seine - La Seine musicale",
-  "venue_favorite": false,
-  "address": null,
-  "city": null,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Folk, Pop / Rock",
-  "image": null,
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/grande-seine-6496/asaf-avidan-3300216.html"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "kind": "known",
-  "first_seen": "2026-10-07",
-  "badge": null,
-  "tier": 1,
-  "matched": [
-   {
-    "name": "Asaf Avidan",
-    "tier": 1,
-    "via": "titre",
     "link": "https://www.deezer.com/artist/403152"
    }
   ]
@@ -6636,7 +6629,7 @@
   }
  },
  {
-  "id": "cecfe5e7f1ad",
+  "id": "8a9b7dd479a0",
   "title": "ASAF AVIDAN & ORCHESTRA - ASAF AVIDAN",
   "date": "2026-11-19",
   "time": "20:00",
@@ -6653,6 +6646,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/asaf-avidan-orchestra-billet/idmanif/656875/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-seine-6496/asaf-avidan-3300216.html"
    }
   ],
   "artists": [
@@ -6668,41 +6665,6 @@
     "name": "Asaf Avidan",
     "tier": 1,
     "via": "artiste",
-    "link": "https://www.deezer.com/artist/403152"
-   }
-  ]
- },
- {
-  "id": "8a9b7dd479a0",
-  "title": "Asaf Avidan",
-  "date": "2026-11-19",
-  "time": "20:00",
-  "venue": "Grande Seine - La Seine musicale",
-  "venue_favorite": false,
-  "address": null,
-  "city": null,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Folk, Pop / Rock",
-  "image": null,
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/grande-seine-6496/asaf-avidan-3300216.html"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "kind": "known",
-  "first_seen": "2026-10-07",
-  "badge": null,
-  "tier": 1,
-  "matched": [
-   {
-    "name": "Asaf Avidan",
-    "tier": 1,
-    "via": "titre",
     "link": "https://www.deezer.com/artist/403152"
    }
   ]
@@ -7821,7 +7783,7 @@
   "venue_favorite": false,
   "address": "ILE SEGUIN",
   "city": "Boulogne Billancourt",
-  "price": null,
+  "price": "35-68 €",
   "on_sale": "2026-05-04T08:00:00Z",
   "status": "onsale",
   "genre": "Jazz",
@@ -7830,6 +7792,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/youn-sun-nah-2026-billet/idmanif/658133/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/auditorium-6495/youn-sun-nah-3300232.html"
    }
   ],
   "artists": [
@@ -7888,7 +7854,7 @@
   ]
  },
  {
-  "id": "f50ab4cac5f6",
+  "id": "56f39af1fef4",
   "title": "INDOCHINE",
   "date": "2026-11-26",
   "time": "20:00",
@@ -7905,6 +7871,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/indochine-billet/idmanif/665892/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-seine-6496/indochine-3300218.html"
    }
   ],
   "artists": [
@@ -7920,41 +7890,6 @@
     "name": "Indochine",
     "tier": 3,
     "via": "artiste",
-    "link": "https://www.deezer.com/artist/47"
-   }
-  ]
- },
- {
-  "id": "56f39af1fef4",
-  "title": "Indochine",
-  "date": "2026-11-26",
-  "time": "20:00",
-  "venue": "Grande Seine - La Seine musicale",
-  "venue_favorite": false,
-  "address": null,
-  "city": null,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Rock, Pop / Rock",
-  "image": null,
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/grande-seine-6496/indochine-3300218.html"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "kind": "known",
-  "first_seen": "2026-10-07",
-  "badge": null,
-  "tier": 3,
-  "matched": [
-   {
-    "name": "Indochine",
-    "tier": 3,
-    "via": "titre",
     "link": "https://www.deezer.com/artist/47"
    }
   ]
@@ -8154,6 +8089,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/indochine-billet/idmanif/665892/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-seine-6496/indochine-3300218.html"
    }
   ],
   "artists": [
@@ -8169,41 +8108,6 @@
     "name": "Indochine",
     "tier": 3,
     "via": "artiste",
-    "link": "https://www.deezer.com/artist/47"
-   }
-  ]
- },
- {
-  "id": "f5e8c07195d2",
-  "title": "Indochine",
-  "date": "2026-11-27",
-  "time": "20:00",
-  "venue": "Grande Seine - La Seine musicale",
-  "venue_favorite": false,
-  "address": null,
-  "city": null,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Rock, Pop / Rock",
-  "image": null,
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/grande-seine-6496/indochine-3300218.html"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "kind": "known",
-  "first_seen": "2026-10-07",
-  "badge": null,
-  "tier": 3,
-  "matched": [
-   {
-    "name": "Indochine",
-    "tier": 3,
-    "via": "titre",
     "link": "https://www.deezer.com/artist/47"
    }
   ]
@@ -8380,7 +8284,7 @@
   }
  },
  {
-  "id": "ea7659d9ea19",
+  "id": "431dd2a32d86",
   "title": "INDOCHINE",
   "date": "2026-11-28",
   "time": "20:00",
@@ -8397,6 +8301,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/indochine-billet/idmanif/665892/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-seine-6496/indochine-3300218.html"
    }
   ],
   "artists": [
@@ -8412,41 +8320,6 @@
     "name": "Indochine",
     "tier": 3,
     "via": "artiste",
-    "link": "https://www.deezer.com/artist/47"
-   }
-  ]
- },
- {
-  "id": "431dd2a32d86",
-  "title": "Indochine",
-  "date": "2026-11-28",
-  "time": "20:00",
-  "venue": "Grande Seine - La Seine musicale",
-  "venue_favorite": false,
-  "address": null,
-  "city": null,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Rock, Pop / Rock",
-  "image": null,
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/grande-seine-6496/indochine-3300218.html"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "kind": "known",
-  "first_seen": "2026-10-07",
-  "badge": null,
-  "tier": 3,
-  "matched": [
-   {
-    "name": "Indochine",
-    "tier": 3,
-    "via": "titre",
     "link": "https://www.deezer.com/artist/47"
    }
   ]
@@ -9167,6 +9040,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/morrissey-billet/idmanif/656895/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-seine-6496/morrissey-3300220.html"
    }
   ],
   "artists": [
@@ -9742,6 +9619,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/the-sheepdogs-billet/idmanif/643854/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/the-sheepdogs-3127595.html"
    }
   ],
   "artists": [
@@ -10978,6 +10859,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/veronique-sanson-billet/idmanif/655764/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-seine-6496/veronique-sanson-3300221.html"
    }
   ],
   "artists": [
@@ -11103,6 +10988,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/veronique-sanson-billet/idmanif/655764/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-seine-6496/veronique-sanson-3300221.html"
    }
   ],
   "artists": [
@@ -12694,7 +12583,7 @@
   ]
  },
  {
-  "id": "f23f62576b61",
+  "id": "f23f62576b61x",
   "title": "MICHEL JONASZ - MICHEL JONASZ & JEAN-YVES D'ANGELO PIANO",
   "date": "2027-01-30",
   "time": "20:00",
@@ -12825,7 +12714,7 @@
   }
  },
  {
-  "id": "6b67a8bfdd00",
+  "id": "c063e3509c73",
   "title": "MICHEL JONASZ - MICHEL JONASZ & JEAN-YVES D'ANGELO PIANO",
   "date": "2027-01-31",
   "time": "18:00",
@@ -12850,7 +12739,7 @@
   "description": null,
   "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null,
+  "badge": "liste",
   "discovery": {
    "score": 0.73,
    "artist": "Michel Jonasz",
@@ -13126,6 +13015,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/tramhaus-leroy-se-meurt-billet/idmanif/669025/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/tramhaus-3312258.html"
    }
   ],
   "artists": [
@@ -15119,6 +15012,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/prestation-la-roux-billet/idmanif/673749/idseance/4428939"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/la-roux-3361900.html"
    }
   ],
   "artists": [
@@ -18396,6 +18293,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/jain-billet/idmanif/672191/idseance/4413647"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/jain-3361906.html"
    }
   ],
   "artists": [
@@ -18437,6 +18338,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/jain-billet/idmanif/672191/idseance/4413648"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/jain-3361906.html"
    }
   ],
   "artists": [
@@ -18478,6 +18383,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/jain-billet/idmanif/672191/idseance/4413649"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/jain-3361906.html"
    }
   ],
   "artists": [
@@ -18558,6 +18467,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/jain-billet/idmanif/672191/idseance/4413650"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/jain-3361906.html"
    }
   ],
   "artists": [
@@ -19028,6 +18941,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/allah-las-billet/idmanif/674317/idseance/4432488"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/allah-las-3361907.html"
    }
   ],
   "artists": [
@@ -19102,7 +19019,7 @@
   "venue_favorite": false,
   "address": "2 BIS AVENUE FRANKLIN ROOSEVELT",
   "city": "Paris",
-  "price": null,
+  "price": "44,5 €",
   "on_sale": "2026-06-02T07:00:00Z",
   "status": "onsale",
   "genre": "Chanson Francaise",
@@ -19111,6 +19028,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/arthur-h-billet/idmanif/659999/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-du-rond-point-3085/arthur-h-3259621.html"
    }
   ],
   "artists": [
@@ -19143,7 +19064,7 @@
   "venue_favorite": false,
   "address": "2 BIS AVENUE FRANKLIN ROOSEVELT",
   "city": "Paris",
-  "price": null,
+  "price": "44,5 €",
   "on_sale": "2026-06-02T07:00:00Z",
   "status": "onsale",
   "genre": "Chanson Francaise",
@@ -19152,6 +19073,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/arthur-h-billet/idmanif/659999/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-du-rond-point-3085/arthur-h-3259621.html"
    }
   ],
   "artists": [

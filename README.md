@@ -91,6 +91,12 @@ vers la fiche sont conservés ; une fiche à plusieurs dates donne un concert pa
 n'est affiché que pour les places vendues par offi.fr (c. 20 % des concerts).
 
 Un même concert vu par plusieurs sources n'apparaît qu'une fois, avec un lien par source.
+Deux fiches sont fusionnées quand elles ont la même date, le même artiste ou le même titre, et
+une même salle. Les libellés de salle diffèrent souvent d'une source à l'autre (« LE TRABENDO
+(Parc de la Villette) » et « Le Trabendo », « SUPERSONIC » et « Supersonic Club ») : ils sont
+considérés comme une même salle quand l'un contient l'autre ou qu'ils partagent un mot
+distinctif (les mots comme salle, théâtre, église ou saint ne comptent pas). Deux fiches dont
+les horaires diffèrent de plus d'une heure restent séparées.
 
 ## Nouveautés et base des concerts
 
@@ -147,8 +153,9 @@ la couverture s'élargit donc au fil des semaines.
   autre artiste quand il forme tout un segment du titre (« Sing and swing », « Barbara et
   moi »). À l'inverse, un artiste cité avec son prénom dans le titre (« Christophe Chassol »
   pour « Chassol ») n'est pas reconnu.
-- Doublons : quand deux sources écrivent différemment le nom d'une salle (« SUPERSONIC » et
-  « Supersonic Club »), un même concert peut apparaître deux fois dans « Tous les concerts ».
+- Doublons : une salle désignée de deux façons sans mot commun (« Le Dôme de Paris » et
+  « Palais des Sports ») ou un concert titré différemment par deux sources sans artiste
+  reconnu peut encore apparaître deux fois dans « Tous les concerts ».
 - Couverture : les concerts vendus uniquement par Fnac Spectacles, See Tickets, Dice ou
   Shotgun n'apparaissent que si la salle est configurée avec une `agenda_url` lisible.
 - Les sites de salles changent de structure sans prévenir : une salle qui ne renvoie plus

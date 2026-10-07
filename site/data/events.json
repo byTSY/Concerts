@@ -1976,11 +1976,15 @@
   "price": "Gratuit",
   "on_sale": null,
   "status": null,
-  "genre": null,
+  "genre": "Punk, Pop / Rock",
   "links": [
    {
     "source": "Que faire à Paris",
     "url": "https://www.paris.fr/evenements/pisse-guner-kunier-dona-casque-116014"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/supersonic-6333/pisse-guner-kunier-dona-casque-3353050.html"
    }
   ],
   "artists": [],
@@ -2311,28 +2315,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/le-trabendo-3288/lucy-bedroque-3351925.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "b7ecf256eb15",
-  "title": "Pisse - Güner Künier - Dona Casque",
-  "date": "2026-10-07",
-  "time": "20:00",
-  "venue": "Supersonic Club",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Punk, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/supersonic-6333/pisse-guner-kunier-dona-casque-3353050.html"
    }
   ],
   "artists": [],
@@ -4892,6 +4874,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/spiritbox-billet/idmanif/651279/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-seine-6496/spiritbox-3189782.html"
    }
   ],
   "artists": [
@@ -5550,28 +5536,6 @@
   ]
  },
  {
-  "id": "ed0eb9d8e150",
-  "title": "Spiritbox",
-  "date": "2026-10-09",
-  "time": "20:00",
-  "venue": "Grande Seine - La Seine musicale",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Metal, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/grande-seine-6496/spiritbox-3189782.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "2134c701ab6a",
   "title": "New York Philharmonic et Gustavo Dudamel (1)",
   "date": "2026-10-09",
@@ -5893,7 +5857,7 @@
   "badge": null
  },
  {
-  "id": "44ba40cc299e",
+  "id": "691b483f3143",
   "title": "Paname Swing +3",
   "date": "2026-10-09",
   "time": "20:00",
@@ -6435,7 +6399,7 @@
   }
  },
  {
-  "id": "691b483f3143",
+  "id": "691b483f3143x",
   "title": "Paname Swing + 3 \"Lalo\"",
   "date": "2026-10-09",
   "time": "21:00",
@@ -7519,28 +7483,6 @@
   "badge": null
  },
  {
-  "id": "c1d497026d8d",
-  "title": "400e anniversaire de la naissance de Louis Couperin",
-  "date": "2026-10-10",
-  "time": "19:30",
-  "venue": "Église Saint-Gervais",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Baroque, Classique",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/eglise-saint-gervais-2130/400e-anniversaire-de-la-naissance-de-louis-couperin-3341604.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "ee004e3fd241",
   "title": "Alexandra Ridout et Fabrice Tarel 4tet",
   "date": "2026-10-10",
@@ -7781,13 +7723,13 @@
   "badge": null
  },
  {
-  "id": "93359f11327c",
+  "id": "075d1a9dbd30",
   "title": "GOSPEL RIVER",
   "date": "2026-10-10",
   "time": "20:00",
   "venue": "EGLISE LUTHERIENNE DE LA TRINITE",
   "venue_favorite": false,
-  "price": null,
+  "price": "16,5-22,5 €",
   "on_sale": "2026-09-17T11:23:26Z",
   "status": "onsale",
   "genre": "Religious",
@@ -7795,6 +7737,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/gospel-river-billet/idmanif/666647/idseance/4377857"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/temple-de-la-trinite-2074/gospel-river-3299038.html"
    }
   ],
   "artists": [],
@@ -7953,11 +7899,15 @@
   "price": "Gratuit",
   "on_sale": null,
   "status": null,
-  "genre": null,
+  "genre": "Pop / Rock",
   "links": [
    {
     "source": "Que faire à Paris",
     "url": "https://www.paris.fr/evenements/night-swimming-buenos-vampiros-hors-service-116545"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/supersonic-6333/night-swimming-buenos-vampiros-hors-service-3353051.html"
    }
   ],
   "artists": [],
@@ -8068,28 +8018,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/cafe-de-la-danse-1598/allie-sherlock-3265663.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "075d1a9dbd30",
-  "title": "Gospel River",
-  "date": "2026-10-10",
-  "time": "20:00",
-  "venue": "Temple de la Trinité",
-  "venue_favorite": false,
-  "price": "16,5-22,5 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Église, Gospel",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/temple-de-la-trinite-2074/gospel-river-3299038.html"
    }
   ],
   "artists": [],
@@ -8244,28 +8172,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/la-halle-aux-oliviers-5469/diez-cuerdas-3353684.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "a5fd3a1a2e3a",
-  "title": "Night Swimming - Buenos Vampiros - Hors Service",
-  "date": "2026-10-10",
-  "time": "20:00",
-  "venue": "Supersonic Club",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/supersonic-6333/night-swimming-buenos-vampiros-hors-service-3353051.html"
    }
   ],
   "artists": [],
@@ -8509,11 +8415,15 @@
   "price": "Gratuit",
   "on_sale": null,
   "status": null,
-  "genre": null,
+  "genre": "Baroque, Classique",
   "links": [
    {
     "source": "Que faire à Paris",
     "url": "https://openagenda.com/fr/jerusalem/events/90951841_lheure-dorgue-de-saint-gervais-3513291"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/eglise-saint-gervais-2130/400e-anniversaire-de-la-naissance-de-louis-couperin-3341604.html"
    }
   ],
   "artists": [],
@@ -12923,6 +12833,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/peter-cincotti-billet/idmanif/663779/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/espace-carpeaux-2200/peter-cincotti-3342557.html"
    }
   ],
   "artists": [
@@ -12945,28 +12859,6 @@
     "Gregory Porter"
    ]
   }
- },
- {
-  "id": "1b1d9fe6eee9",
-  "title": "Peter Cincotti",
-  "date": "2026-10-13",
-  "time": "20:45",
-  "venue": "Espace Carpeaux",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Jazz / Blues",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/espace-carpeaux-2200/peter-cincotti-3342557.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
  },
  {
   "id": "11b06681c82c",
@@ -15160,7 +15052,7 @@
   "time": "19:30",
   "venue": "LA DIVINE COMEDIE - SALLE 1",
   "venue_favorite": false,
-  "price": null,
+  "price": "20-25 €",
   "on_sale": "2026-07-21T14:26:03Z",
   "status": "onsale",
   "genre": "Chanson Francaise",
@@ -15168,6 +15060,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/franck-rapp-et-bijoux-sinda-billet/idmanif/666293/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-divine-comedie-6819/franck-rapp-et-bijoux-sinda-3312204.html"
    }
   ],
   "artists": [],
@@ -15236,28 +15132,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/petit-bain-5136/king-woman-cockstar-the-sex-messaih-3358346.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "7da37e5760c7",
-  "title": "Franck Rapp et Bijoux Sinda",
-  "date": "2026-10-15",
-  "time": "19:30",
-  "venue": "La Divine Comédie",
-  "venue_favorite": false,
-  "price": "20-25 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/la-divine-comedie-6819/franck-rapp-et-bijoux-sinda-3312204.html"
    }
   ],
   "artists": [],
@@ -15621,7 +15495,7 @@
   }
  },
  {
-  "id": "2da1ad387d26",
+  "id": "085dfdd4a1e0",
   "title": "STARJUNK 95",
   "date": "2026-10-15",
   "time": "20:00",
@@ -15635,6 +15509,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/starjunk-95-billet/idmanif/664566/idseance/4365701"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/starjunk-95-3312240.html"
    }
   ],
   "artists": [
@@ -15659,6 +15537,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/lara-fabian-billet/idmanif/653006/idseance/4322006"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-seine-6496/lara-fabian-3300215.html"
    }
   ],
   "artists": [
@@ -15678,11 +15560,15 @@
   "price": "Gratuit",
   "on_sale": null,
   "status": null,
-  "genre": null,
+  "genre": "Pop / Rock",
   "links": [
    {
     "source": "Que faire à Paris",
     "url": "https://www.paris.fr/evenements/my-son-the-doctor-dalton-cafe-bizarre-116231"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/supersonic-6333/my-son-the-doctor-dalton-cafe-bizarre-3353055.html"
    }
   ],
   "artists": [],
@@ -15823,28 +15709,6 @@
   "badge": null
  },
  {
-  "id": "085dfdd4a1e0",
-  "title": "Starjunk 95",
-  "date": "2026-10-15",
-  "time": "20:00",
-  "venue": "Le Trabendo",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Électro",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/le-trabendo-3288/starjunk-95-3312240.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "3e41bc06f06d",
   "title": "Le chevalier de Saint-George",
   "date": "2026-10-15",
@@ -15859,28 +15723,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/opera-royal-4068/le-chevalier-de-saint-george-3265831.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "86f34c5faf53",
-  "title": "Lara Fabian",
-  "date": "2026-10-15",
-  "time": "20:00",
-  "venue": "Grande Seine - La Seine musicale",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Chanson française, Chanson",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/grande-seine-6496/lara-fabian-3300215.html"
    }
   ],
   "artists": [],
@@ -15925,28 +15767,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/le-bal-blomet-6509/hommage-a-wayne-shorter-3351850.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "ea4c430da9d7",
-  "title": "My Son the Doctor - Dalton - Café Bizarre",
-  "date": "2026-10-15",
-  "time": "20:00",
-  "venue": "Supersonic Club",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/supersonic-6333/my-son-the-doctor-dalton-cafe-bizarre-3353055.html"
    }
   ],
   "artists": [],
@@ -17560,7 +17380,7 @@
   ]
  },
  {
-  "id": "37e694d45247",
+  "id": "07a335971936",
   "title": "BAYOU",
   "date": "2026-10-16",
   "time": "20:00",
@@ -17574,6 +17394,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/bayou-billet/idmanif/656939/idseance/4319094"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/bayou-3259999.html"
    }
   ],
   "artists": [],
@@ -17582,7 +17406,7 @@
   "badge": null
  },
  {
-  "id": "d42fa0294734",
+  "id": "d31996b393b8",
   "title": "LARA FABIAN",
   "date": "2026-10-16",
   "time": "20:00",
@@ -17596,6 +17420,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/lara-fabian-billet/idmanif/653006/idseance/4297664"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-seine-6496/lara-fabian-3300215.html"
    }
   ],
   "artists": [
@@ -17606,7 +17434,7 @@
   "badge": null
  },
  {
-  "id": "379484794766",
+  "id": "1b9acf38d710",
   "title": "Sego • Alien Chicks",
   "date": "2026-10-16",
   "time": "20:00",
@@ -17615,11 +17443,15 @@
   "price": "Gratuit",
   "on_sale": null,
   "status": null,
-  "genre": null,
+  "genre": "Punk, Pop / Rock",
   "links": [
    {
     "source": "Que faire à Paris",
     "url": "https://www.paris.fr/evenements/sego-alien-chicks-112426"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/supersonic-6333/sego-alien-chicks-3353056.html"
    }
   ],
   "artists": [],
@@ -17664,28 +17496,6 @@
    {
     "source": "Que faire à Paris",
     "url": "https://www.arcal-lyrique.fr/agenda/"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "d31996b393b8",
-  "title": "Lara Fabian",
-  "date": "2026-10-16",
-  "time": "20:00",
-  "venue": "Grande Seine - La Seine musicale",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Chanson française, Chanson",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/grande-seine-6496/lara-fabian-3300215.html"
    }
   ],
   "artists": [],
@@ -17760,28 +17570,6 @@
   "badge": null
  },
  {
-  "id": "07a335971936",
-  "title": "Bayou",
-  "date": "2026-10-16",
-  "time": "20:00",
-  "venue": "Le Trabendo",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Pop, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/le-trabendo-3288/bayou-3259999.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "65149615f952",
   "title": "Ravel : Concerto pour la main gauche",
   "date": "2026-10-16",
@@ -17826,7 +17614,7 @@
   "badge": null
  },
  {
-  "id": "c74f34f79ab2",
+  "id": "e2165fb778e8",
   "title": "Hommage à David Bowie",
   "date": "2026-10-16",
   "time": "20:00",
@@ -17884,28 +17672,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/studio-de-lermitage-3207/dalal-barnoussi-3331797.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "1b9acf38d710",
-  "title": "Sego - Alien Chicks",
-  "date": "2026-10-16",
-  "time": "20:00",
-  "venue": "Supersonic Club",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Punk, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/supersonic-6333/sego-alien-chicks-3353056.html"
    }
   ],
   "artists": [],
@@ -18551,7 +18317,7 @@
   }
  },
  {
-  "id": "e2165fb778e8",
+  "id": "e2165fb778e8x",
   "title": "YelloWorld - Tribute to David Bowie",
   "date": "2026-10-16",
   "time": "21:00",
@@ -19880,7 +19646,7 @@
   "badge": null
  },
  {
-  "id": "bcfcb2337080",
+  "id": "bcfcb2337080x",
   "title": "TRIBUTE TO NAÂMAN",
   "date": "2026-10-17",
   "time": "20:00",
@@ -19916,6 +19682,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/lara-fabian-billet/idmanif/653006/idseance/4297665"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-seine-6496/lara-fabian-3300215.html"
    }
   ],
   "artists": [
@@ -19926,7 +19696,7 @@
   "badge": null
  },
  {
-  "id": "bdbf2847b6ef",
+  "id": "483a0e652dec",
   "title": "Club Brat",
   "date": "2026-10-17",
   "time": "20:00",
@@ -19935,33 +19705,15 @@
   "price": "Gratuit",
   "on_sale": null,
   "status": null,
-  "genre": null,
+  "genre": "Punk, Pop / Rock",
   "links": [
    {
     "source": "Que faire à Paris",
     "url": "https://www.paris.fr/evenements/club-brat-114865"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "a6eab3b75fc5",
-  "title": "Lara Fabian",
-  "date": "2026-10-17",
-  "time": "20:00",
-  "venue": "Grande Seine - La Seine musicale",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Chanson française, Chanson",
-  "links": [
+   },
    {
     "source": "Offi",
-    "url": "https://www.offi.fr/concerts/grande-seine-6496/lara-fabian-3300215.html"
+    "url": "https://www.offi.fr/concerts/supersonic-6333/club-brat-3353057.html"
    }
   ],
   "artists": [],
@@ -20058,7 +19810,7 @@
   "badge": null
  },
  {
-  "id": "35332a04cf29",
+  "id": "bcfcb2337080",
   "title": "Hommage à Naâman",
   "date": "2026-10-17",
   "time": "20:00",
@@ -20160,28 +19912,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/archives-nationales-3615/couleurs-hispaniques-3349683.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "483a0e652dec",
-  "title": "Club Brat",
-  "date": "2026-10-17",
-  "time": "20:00",
-  "venue": "Supersonic Club",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Punk, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/supersonic-6333/club-brat-3353057.html"
    }
   ],
   "artists": [],
@@ -21100,7 +20830,7 @@
   "badge": null
  },
  {
-  "id": "f4cf8c89bf72",
+  "id": "cf784a9b89eb",
   "title": "BALÁZS HAVASI - HAVASI 2026",
   "date": "2026-10-18",
   "time": "15:00",
@@ -21118,6 +20848,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/balazs-havasi-billet/idmanif/668748/idseance/4389440"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/auditorium-6495/havasi-3356889.html"
    }
   ],
   "artists": [
@@ -21142,28 +20876,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/grande-salle-6005/haendel-riccardo-primo-3224502.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "cf784a9b89eb",
-  "title": "Havasi",
-  "date": "2026-10-18",
-  "time": "15:00",
-  "venue": "Auditorium Patrick Devedjian - La Seine musicale",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Piano, Contemporain / Expérimental",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/auditorium-6495/havasi-3356889.html"
    }
   ],
   "artists": [],
@@ -21979,7 +21691,7 @@
   "badge": null
  },
  {
-  "id": "33804558df12",
+  "id": "1622b4854618",
   "title": "KONSTANTINOS ARGIROS",
   "date": "2026-10-18",
   "time": "19:00",
@@ -21993,6 +21705,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/konstantinos-argiros-billet/idmanif/668756/idseance/4389449"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-seine-6496/konstantinos-argiros-3356890.html"
    }
   ],
   "artists": [
@@ -22017,28 +21733,6 @@
    {
     "source": "Que faire à Paris",
     "url": "https://www.sondelaterre.fr/event/pierre-manetti-new-quartet/"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "1622b4854618",
-  "title": "Konstantinos Argiros",
-  "date": "2026-10-18",
-  "time": "19:00",
-  "venue": "Grande Seine - La Seine musicale",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Monde / Traditionnel",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/grande-seine-6496/konstantinos-argiros-3356890.html"
    }
   ],
   "artists": [],
@@ -23034,11 +22728,15 @@
   "price": "Gratuit",
   "on_sale": null,
   "status": null,
-  "genre": null,
+  "genre": "Pop / Rock",
   "links": [
    {
     "source": "Que faire à Paris",
     "url": "https://www.paris.fr/evenements/the-homesick-group-ensemble-114463"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/supersonic-6333/the-homesick-group-ensemble-3353059.html"
    }
   ],
   "artists": [],
@@ -23109,28 +22807,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/new-morning-2842/keyon-harrold-3358371.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "db15bbbc9625",
-  "title": "The Homesick - Group-ensemble",
-  "date": "2026-10-19",
-  "time": "20:00",
-  "venue": "Supersonic Club",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/supersonic-6333/the-homesick-group-ensemble-3353059.html"
    }
   ],
   "artists": [],
@@ -24062,13 +23738,13 @@
   "badge": null
  },
  {
-  "id": "b752858a0b32",
+  "id": "0e0b94b562e0",
   "title": "GILSONS",
   "date": "2026-10-20",
   "time": "20:30",
   "venue": "SEINE MUSICALE - AUDITORIUM P.DEVEDJIAN",
   "venue_favorite": false,
-  "price": null,
+  "price": "35-65 €",
   "on_sale": "2026-05-04T08:00:00Z",
   "status": "onsale",
   "genre": "Jazz",
@@ -24076,6 +23752,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/gilsons-billet/idmanif/658135/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/auditorium-6495/gilsons-3265645.html"
    }
   ],
   "artists": [
@@ -24122,28 +23802,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/cathedrale-notre-dame-2852/bach-et-mendelssohn-le-romantisme-a-lecole-du-baroque-3316438.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "0e0b94b562e0",
-  "title": "Gilsons",
-  "date": "2026-10-20",
-  "time": "20:30",
-  "venue": "Auditorium Patrick Devedjian - La Seine musicale",
-  "venue_favorite": false,
-  "price": "35-65 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Samba, Monde / Traditionnel",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/auditorium-6495/gilsons-3265645.html"
    }
   ],
   "artists": [],
@@ -27308,7 +26966,7 @@
   }
  },
  {
-  "id": "1fa0e96bfa01",
+  "id": "08517cccc79b",
   "title": "UPGRADE BRANDI CARLILE",
   "date": "2026-10-23",
   "time": "20:00",
@@ -27342,6 +27000,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/brandi-carlile-billet/idmanif/639288/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-seine-6496/brandi-carlile-3101037.html"
    }
   ],
   "artists": [
@@ -27436,28 +27098,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/le-rex-3071/cine-concert-babylon-3135720.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "08517cccc79b",
-  "title": "Brandi Carlile",
-  "date": "2026-10-23",
-  "time": "20:00",
-  "venue": "Grande Seine - La Seine musicale",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Pop, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/grande-seine-6496/brandi-carlile-3101037.html"
    }
   ],
   "artists": [],
@@ -28655,6 +28295,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/blood-red-shoes-billet/idmanif/652232/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/blood-red-shoes-3260006.html"
    }
   ],
   "artists": [
@@ -29015,7 +28659,7 @@
   "time": "20:00",
   "venue": "EGLISE LUTHERIENNE DE LA TRINITE",
   "venue_favorite": false,
-  "price": null,
+  "price": "16,5-22,5 €",
   "on_sale": "2026-09-17T11:23:26Z",
   "status": "onsale",
   "genre": "Religious",
@@ -29023,6 +28667,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/gospel-river-billet/idmanif/666647/idseance/4377858"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/temple-de-la-trinite-2074/gospel-river-3299039.html"
    }
   ],
   "artists": [],
@@ -29184,50 +28832,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/maison-de-radio-france-2674/arielle-beck-3244637.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "e315bd9f7e5f",
-  "title": "Blood Red Shoes",
-  "date": "2026-10-24",
-  "time": "20:00",
-  "venue": "Le Trabendo",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Rock, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/le-trabendo-3288/blood-red-shoes-3260006.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "5942e39351c6",
-  "title": "Gospel River",
-  "date": "2026-10-24",
-  "time": "20:00",
-  "venue": "Temple de la Trinité",
-  "venue_favorite": false,
-  "price": "16,5-22,5 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Église, Gospel",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/temple-de-la-trinite-2074/gospel-river-3299039.html"
    }
   ],
   "artists": [],
@@ -31797,6 +31401,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/the-boo-radleys-billet/idmanif/656644/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/the-boo-radleys-3260007.html"
    }
   ],
   "artists": [
@@ -31843,28 +31451,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/le-bataclan-1526/fredz-3174967.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "5f142d764099",
-  "title": "The Boo Radleys",
-  "date": "2026-10-27",
-  "time": "20:00",
-  "venue": "Le Trabendo",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/le-trabendo-3288/the-boo-radleys-3260007.html"
    }
   ],
   "artists": [],
@@ -32650,7 +32236,7 @@
   "badge": null
  },
  {
-  "id": "a4d1b1ce4fa9",
+  "id": "4017bba130c5",
   "title": "MATT HANSEN",
   "date": "2026-10-28",
   "time": "20:00",
@@ -32664,6 +32250,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/matt-hansen-billet/idmanif/660075/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/matt-hansen-3260008.html"
    }
   ],
   "artists": [
@@ -32688,28 +32278,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/la-maroquinerie-2748/cardinals-3215140.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "4017bba130c5",
-  "title": "Matt Hansen",
-  "date": "2026-10-28",
-  "time": "20:00",
-  "venue": "Le Trabendo",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Pop, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/le-trabendo-3288/matt-hansen-3260008.html"
    }
   ],
   "artists": [],
@@ -32942,7 +32510,7 @@
   "badge": null
  },
  {
-  "id": "e9f6390c168d",
+  "id": "390f08ed6e57",
   "title": "THE WATCH PLAYS GENESIS",
   "date": "2026-10-29",
   "time": "19:00",
@@ -33252,7 +32820,7 @@
   "badge": null
  },
  {
-  "id": "382a9d73b0e3",
+  "id": "b7ded781f9b0",
   "title": "FRANCE GALL & MICHEL BERGER, L’HOMMAGE",
   "date": "2026-10-29",
   "time": "20:00",
@@ -33426,7 +32994,7 @@
   "badge": null
  },
  {
-  "id": "b7ded781f9b0",
+  "id": "b7ded781f9b0x",
   "title": "Hommage à France Gall et Michel Berger",
   "date": "2026-10-29",
   "time": "20:00",
@@ -33470,7 +33038,7 @@
   "badge": null
  },
  {
-  "id": "390f08ed6e57",
+  "id": "390f08ed6e57x",
   "title": "The Watch joue Genesis",
   "date": "2026-10-29",
   "time": "20:00",
@@ -34572,7 +34140,7 @@
   "badge": null
  },
  {
-  "id": "7ed239ee2be7",
+  "id": "6778c22aef1f",
   "title": "Stars Manga",
   "date": "2026-10-30",
   "time": "20:00",
@@ -34638,7 +34206,7 @@
   "badge": null
  },
  {
-  "id": "6778c22aef1f",
+  "id": "6778c22aef1fx",
   "title": "STARS MANGA LE CONCERT LIVE SYMPHONIQUE",
   "date": "2026-10-30",
   "time": "20:30",
@@ -35333,7 +34901,7 @@
   "time": "19:30",
   "venue": "LA DIVINE COMEDIE - SALLE 1",
   "venue_favorite": false,
-  "price": null,
+  "price": "12-19 €",
   "on_sale": "2026-09-18T07:10:02Z",
   "status": "onsale",
   "genre": "World",
@@ -35341,6 +34909,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/trio-donzella-billet/idmanif/672807/idseance/4422881"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-divine-comedie-6819/trio-donzella-3353017.html"
    }
   ],
   "artists": [],
@@ -35497,28 +35069,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/jass-club-paris-7628/lea-ciechelski-3349672.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "792b29b72c2a",
-  "title": "Trio Donzella",
-  "date": "2026-10-31",
-  "time": "19:30",
-  "venue": "La Divine Comédie",
-  "venue_favorite": false,
-  "price": "12-19 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Chanson française, Chanson",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/la-divine-comedie-6819/trio-donzella-3353017.html"
    }
   ],
   "artists": [],
@@ -35788,6 +35338,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/hier-aujourd-hui-demain-khaled-billet/idmanif/664899/idseance/4366878"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/palais-des-sports-2911/khaled-3306353.html"
    }
   ],
   "artists": [
@@ -35878,28 +35432,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/la-maroquinerie-2748/mietze-conte-3305004.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "824b51ed1a38",
-  "title": "Khaled",
-  "date": "2026-10-31",
-  "time": "20:00",
-  "venue": "Le Dôme de Paris - Palais des Sports",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Oriental, Monde / Traditionnel",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/palais-des-sports-2911/khaled-3306353.html"
    }
   ],
   "artists": [],
@@ -36882,7 +36414,7 @@
   "badge": null
  },
  {
-  "id": "ebdc955561a0",
+  "id": "ebdc955561a0x",
   "title": "DAVINA MICHELLE",
   "date": "2026-11-02",
   "time": "19:30",
@@ -36910,7 +36442,7 @@
   "badge": null
  },
  {
-  "id": "0c619205c249",
+  "id": "ebdc955561a0",
   "title": "Davina Michelle à La Boule Noire pour un concert parisien exceptionnel",
   "date": "2026-11-02",
   "time": "19:30",
@@ -37000,7 +36532,7 @@
   "badge": null
  },
  {
-  "id": "9cbfc56c9d89",
+  "id": "dc5526f2599a",
   "title": "THE WORLD OF HANS ZIMMER",
   "date": "2026-11-02",
   "time": "20:00",
@@ -37130,7 +36662,7 @@
   "badge": null
  },
  {
-  "id": "dc5526f2599a",
+  "id": "dc5526f2599ax",
   "title": "The World of Hans Zimmer - A New Dimension",
   "date": "2026-11-02",
   "time": "20:00",
@@ -38756,7 +38288,7 @@
   "venue_favorite": false,
   "address": "ILE SEGUIN",
   "city": "Boulogne Billancourt",
-  "price": null,
+  "price": "25-48 €",
   "on_sale": "2026-05-04T08:00:00Z",
   "status": "onsale",
   "genre": "Jazz",
@@ -38765,6 +38297,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/bireli-lagrene-billet/idmanif/658137/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/auditorium-6495/bireli-lagrene-3265649.html"
    }
   ],
   "artists": [
@@ -38803,28 +38339,6 @@
    {
     "source": "Que faire à Paris",
     "url": "https://lemelville.fr/?p=6054"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "60cd524994de",
-  "title": "Biréli Lagrène",
-  "date": "2026-11-04",
-  "time": "20:30",
-  "venue": "Auditorium Patrick Devedjian - La Seine musicale",
-  "venue_favorite": false,
-  "price": "25-48 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Jazz / Blues",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/auditorium-6495/bireli-lagrene-3265649.html"
    }
   ],
   "artists": [],
@@ -39080,7 +38594,7 @@
   }
  },
  {
-  "id": "793120dedef4",
+  "id": "5f4010c508fa",
   "title": "Ghostly Kisses",
   "date": "2026-11-05",
   "time": "19:30",
@@ -39094,6 +38608,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/ghostly-kisses-billet/idmanif/658650/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/ghostly-kisses-3260010.html"
    }
   ],
   "artists": [
@@ -39140,28 +38658,6 @@
    {
     "source": "Que faire à Paris",
     "url": "https://www.paris.fr/evenements/minino-garay-friends-125009"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "5f4010c508fa",
-  "title": "Ghostly Kisses",
-  "date": "2026-11-05",
-  "time": "19:30",
-  "venue": "Le Trabendo",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Pop, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/le-trabendo-3288/ghostly-kisses-3260010.html"
    }
   ],
   "artists": [],
@@ -39489,7 +38985,7 @@
   "time": "20:00",
   "venue": "DOME DE PARIS",
   "venue_favorite": false,
-  "price": null,
+  "price": "25-72 €",
   "on_sale": "2025-12-03T15:26:28Z",
   "status": "onsale",
   "genre": "Pop",
@@ -39497,6 +38993,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/balavoine-ma-bataille-billet/idmanif/643377/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/palais-des-sports-2911/balavoine-ma-bataille-3174503.html"
    }
   ],
   "artists": [],
@@ -39553,28 +39053,6 @@
   "badge": null
  },
  {
-  "id": "95135b92bd7d",
-  "title": "Balavoine, ma bataille",
-  "date": "2026-11-05",
-  "time": "20:00",
-  "venue": "Le Dôme de Paris - Palais des Sports",
-  "venue_favorite": false,
-  "price": "25-72 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Chanson française, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/palais-des-sports-2911/balavoine-ma-bataille-3174503.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "1480d73c3f5f",
   "title": "Coltrane 100",
   "date": "2026-11-05",
@@ -39611,6 +39089,28 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/eglise-du-dome-st-louis-des-invalides-1440/de-bach-a-ravel-le-style-janoska-3308690.html"
+   }
+  ],
+  "artists": [],
+  "kind": "other",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "cd29cc10b811",
+  "title": "Bandit Bandit",
+  "date": "2026-11-05",
+  "time": "20:00",
+  "venue": "Le Trianon",
+  "venue_favorite": true,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Rock, Pop / Rock",
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/bandit-bandit-3126583.html"
    }
   ],
   "artists": [],
@@ -39699,28 +39199,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/espace-bertin-poiree-2198/voix-du-japon-et-melodie-francaise-heritage-de-vaucaire-et-legrand-3361828.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "cd29cc10b811",
-  "title": "Bandit Bandit",
-  "date": "2026-11-05",
-  "time": "20:00",
-  "venue": "Le Trianon",
-  "venue_favorite": true,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Rock, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/bandit-bandit-3126583.html"
    }
   ],
   "artists": [],
@@ -39834,13 +39312,13 @@
   }
  },
  {
-  "id": "425a18df1f91",
+  "id": "397503c5b30c",
   "title": "TAKE 6 - 2026",
   "date": "2026-11-05",
   "time": "20:30",
   "venue": "SEINE MUSICALE - AUDITORIUM P.DEVEDJIAN",
   "venue_favorite": false,
-  "price": null,
+  "price": "35-65 €",
   "on_sale": "2026-05-04T08:00:00Z",
   "status": "onsale",
   "genre": "Jazz",
@@ -39848,6 +39326,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/take-6-2026-billet/idmanif/658134/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/auditorium-6495/take-6-3265650.html"
    }
   ],
   "artists": [
@@ -39938,28 +39420,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/eglise-saint-germain-des-pres-2127/quatuor-classik-ensemble-david-braccini-et-vicens-prats-3341519.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "397503c5b30c",
-  "title": "Take 6",
-  "date": "2026-11-05",
-  "time": "20:30",
-  "venue": "Auditorium Patrick Devedjian - La Seine musicale",
-  "venue_favorite": false,
-  "price": "35-65 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Jazz / Blues",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/auditorium-6495/take-6-3265650.html"
    }
   ],
   "artists": [],
@@ -41599,7 +41059,7 @@
   "time": "20:00",
   "venue": "EGLISE LUTHERIENNE DE LA TRINITE",
   "venue_favorite": false,
-  "price": null,
+  "price": "16,5-22,5 €",
   "on_sale": "2026-09-17T11:23:26Z",
   "status": "onsale",
   "genre": "Religious",
@@ -41607,6 +41067,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/gospel-river-billet/idmanif/666647/idseance/4377859"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/temple-de-la-trinite-2074/gospel-river-3299040.html"
    }
   ],
   "artists": [],
@@ -41789,28 +41253,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/maison-de-radio-france-2674/bach-messe-breve-3316386.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "7f77a0343b88",
-  "title": "Gospel River",
-  "date": "2026-11-07",
-  "time": "20:00",
-  "venue": "Temple de la Trinité",
-  "venue_favorite": false,
-  "price": "16,5-22,5 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Église, Gospel",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/temple-de-la-trinite-2074/gospel-river-3299040.html"
    }
   ],
   "artists": [],
@@ -42687,11 +42129,15 @@
   "price": "De 22,50 à 105 euros. Infos Groupes et CE : Haracom – Tél : 03.21.26.52.94",
   "on_sale": null,
   "status": null,
-  "genre": null,
+  "genre": "Chanson française, Pop / Rock",
   "links": [
    {
     "source": "Que faire à Paris",
     "url": "https://www.heritagegoldman.fr/"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/palais-des-sports-2911/lheritage-goldman-laventure-continue-3126509.html"
    }
   ],
   "artists": [],
@@ -42714,28 +42160,6 @@
    {
     "source": "Que faire à Paris",
     "url": "https://www.sondelaterre.fr/event/the-wild-cards-reshuffle-jazz-aces/"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "b24b580a675d",
-  "title": "L'Héritage Goldman : l'aventure continue",
-  "date": "2026-11-08",
-  "time": "18:00",
-  "venue": "Le Dôme de Paris - Palais des Sports",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Chanson française, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/palais-des-sports-2911/lheritage-goldman-laventure-continue-3126509.html"
    }
   ],
   "artists": [],
@@ -44327,6 +43751,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/adrien-soleiman-presente-bellejazzclub-billet/idmanif/656218/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/adrien-soleiman-3260011.html"
    }
   ],
   "artists": [
@@ -44439,28 +43867,6 @@
   "badge": null
  },
  {
-  "id": "bcdabfa879e3",
-  "title": "Adrien Soleiman",
-  "date": "2026-11-10",
-  "time": "20:00",
-  "venue": "Le Trabendo",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Jazz / Blues",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/le-trabendo-3288/adrien-soleiman-3260011.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "f682700555f2",
   "title": "Orchestre Hélios et Glen Rouxel",
   "date": "2026-11-10",
@@ -44544,6 +43950,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/samara-joy-billet/idmanif/658132/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/auditorium-6495/samara-joy-3265651.html"
    }
   ],
   "artists": [
@@ -44565,28 +43975,6 @@
     "Diana Krall"
    ]
   }
- },
- {
-  "id": "aab9f188967d",
-  "title": "Samara Joy",
-  "date": "2026-11-10",
-  "time": "20:30",
-  "venue": "Auditorium Patrick Devedjian - La Seine musicale",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Jazz vocal, Jazz / Blues",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/auditorium-6495/samara-joy-3265651.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
  },
  {
   "id": "aa8ffd10cb54",
@@ -45015,7 +44403,7 @@
   "badge": null
  },
  {
-  "id": "f8291f071448",
+  "id": "f9935e93defbx",
   "title": "BELINDA DAVIDS-TRIBUTE WHITNEY HOUSTON - BELINDA DAVIDS",
   "date": "2026-11-11",
   "time": "20:30",
@@ -45039,7 +44427,7 @@
   "badge": null
  },
  {
-  "id": "487055f6b2d8",
+  "id": "f9935e93defb",
   "title": "Concert de Belinda Davids : « A Tribute to Whitney Houston »",
   "date": "2026-11-11",
   "time": "20:30",
@@ -45105,7 +44493,7 @@
   "badge": null
  },
  {
-  "id": "f9935e93defb",
+  "id": "f9935e93defbxx",
   "title": "Hommage à Whitney Houston",
   "date": "2026-11-11",
   "time": "20:30",
@@ -49922,6 +49310,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/the-meltdown-billet/idmanif/652197/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/the-meltdown-3260015.html"
    }
   ],
   "artists": [
@@ -49959,28 +49351,6 @@
    {
     "source": "Que faire à Paris",
     "url": "https://www.paris.fr/evenements/shaki-tavi-124633"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "5d2a434edc5d",
-  "title": "The Meltdown",
-  "date": "2026-11-17",
-  "time": "19:00",
-  "venue": "Le Trabendo",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Soul, Musiques urbaines",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/le-trabendo-3288/the-meltdown-3260015.html"
    }
   ],
   "artists": [],
@@ -50554,7 +49924,7 @@
   "badge": null
  },
  {
-  "id": "66a4f94e2b68",
+  "id": "f97bf1620d46",
   "title": "« Ici Demain Festival », la création contemporaine au FGO-Barbara",
   "date": "2026-11-18",
   "time": null,
@@ -50576,7 +49946,7 @@
   "badge": null
  },
  {
-  "id": "f97bf1620d46",
+  "id": "f97bf1620d46x",
   "title": "Ici Demain festival, 7ème édition à FGO-Barbara !",
   "date": "2026-11-18",
   "time": null,
@@ -50832,7 +50202,7 @@
   "badge": null
  },
  {
-  "id": "ba84ee60420a",
+  "id": "465c83a39d74",
   "title": "HOWLIN' JAWS",
   "date": "2026-11-18",
   "time": "19:30",
@@ -50846,6 +50216,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/howlin-jaws-billet/idmanif/655887/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/howlin-jaws-3260016.html"
    }
   ],
   "artists": [],
@@ -50890,28 +50264,6 @@
    {
     "source": "Que faire à Paris",
     "url": "https://shotgun.live/fr/events/ici-demain-festival-7"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "465c83a39d74",
-  "title": "Howlin' Jaws",
-  "date": "2026-11-18",
-  "time": "19:30",
-  "venue": "Le Trabendo",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Rock, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/le-trabendo-3288/howlin-jaws-3260016.html"
    }
   ],
   "artists": [],
@@ -51077,6 +50429,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/asaf-avidan-orchestra-billet/idmanif/656875/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-seine-6496/asaf-avidan-3300216.html"
    }
   ],
   "artists": [
@@ -51161,41 +50517,6 @@
   "kind": "other",
   "first_seen": "2026-10-07",
   "badge": null
- },
- {
-  "id": "bd76cc0d7324",
-  "title": "Asaf Avidan",
-  "date": "2026-11-18",
-  "time": "20:00",
-  "venue": "Grande Seine - La Seine musicale",
-  "venue_favorite": false,
-  "address": null,
-  "city": null,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Folk, Pop / Rock",
-  "image": null,
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/grande-seine-6496/asaf-avidan-3300216.html"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "kind": "known",
-  "first_seen": "2026-10-07",
-  "badge": null,
-  "tier": 1,
-  "matched": [
-   {
-    "name": "Asaf Avidan",
-    "tier": 1,
-    "via": "titre",
-    "link": "https://www.deezer.com/artist/403152"
-   }
-  ]
  },
  {
   "id": "a4adf9892e69",
@@ -51802,7 +51123,7 @@
   "badge": null
  },
  {
-  "id": "cecfe5e7f1ad",
+  "id": "8a9b7dd479a0",
   "title": "ASAF AVIDAN & ORCHESTRA - ASAF AVIDAN",
   "date": "2026-11-19",
   "time": "20:00",
@@ -51819,6 +51140,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/asaf-avidan-orchestra-billet/idmanif/656875/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-seine-6496/asaf-avidan-3300216.html"
    }
   ],
   "artists": [
@@ -51881,41 +51206,6 @@
   "kind": "other",
   "first_seen": "2026-10-07",
   "badge": null
- },
- {
-  "id": "8a9b7dd479a0",
-  "title": "Asaf Avidan",
-  "date": "2026-11-19",
-  "time": "20:00",
-  "venue": "Grande Seine - La Seine musicale",
-  "venue_favorite": false,
-  "address": null,
-  "city": null,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Folk, Pop / Rock",
-  "image": null,
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/grande-seine-6496/asaf-avidan-3300216.html"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "kind": "known",
-  "first_seen": "2026-10-07",
-  "badge": null,
-  "tier": 1,
-  "matched": [
-   {
-    "name": "Asaf Avidan",
-    "tier": 1,
-    "via": "titre",
-    "link": "https://www.deezer.com/artist/403152"
-   }
-  ]
  },
  {
   "id": "4703685e1bc2",
@@ -54189,6 +53479,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/gallowstreet-billet/idmanif/657592/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/gallowstreet-3260018.html"
    }
   ],
   "artists": [],
@@ -54299,28 +53593,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/amphitheatre-6007/rivages-3225785.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "aa7e99d9ab0e",
-  "title": "Gallowstreet",
-  "date": "2026-11-21",
-  "time": "20:00",
-  "venue": "Le Trabendo",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Rap, Musiques urbaines",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/le-trabendo-3288/gallowstreet-3260018.html"
    }
   ],
   "artists": [],
@@ -57025,7 +56297,7 @@
   "venue_favorite": false,
   "address": "ILE SEGUIN",
   "city": "Boulogne Billancourt",
-  "price": null,
+  "price": "35-68 €",
   "on_sale": "2026-05-04T08:00:00Z",
   "status": "onsale",
   "genre": "Jazz",
@@ -57034,6 +56306,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/youn-sun-nah-2026-billet/idmanif/658133/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/auditorium-6495/youn-sun-nah-3300232.html"
    }
   ],
   "artists": [
@@ -57055,28 +56331,6 @@
     "Diana Krall"
    ]
   }
- },
- {
-  "id": "b58a5be0c954",
-  "title": "Youn Sun Nah",
-  "date": "2026-11-25",
-  "time": "20:30",
-  "venue": "Auditorium Patrick Devedjian - La Seine musicale",
-  "venue_favorite": false,
-  "price": "35-68 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Jazz / Blues",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/auditorium-6495/youn-sun-nah-3300232.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
  },
  {
   "id": "590ba6889f9c",
@@ -57488,7 +56742,7 @@
   "badge": null
  },
  {
-  "id": "0a9d515efcff",
+  "id": "2bc1a1e6a894",
   "title": "THE MUSIC OF QUEEN",
   "date": "2026-11-26",
   "time": "20:00",
@@ -57512,7 +56766,7 @@
   "badge": null
  },
  {
-  "id": "f50ab4cac5f6",
+  "id": "56f39af1fef4",
   "title": "INDOCHINE",
   "date": "2026-11-26",
   "time": "20:00",
@@ -57529,6 +56783,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/indochine-billet/idmanif/665892/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-seine-6496/indochine-3300218.html"
    }
   ],
   "artists": [
@@ -57571,7 +56829,7 @@
   "badge": null
  },
  {
-  "id": "2bc1a1e6a894",
+  "id": "2bc1a1e6a894x",
   "title": "The Music of Queen",
   "date": "2026-11-26",
   "time": "20:00",
@@ -57657,41 +56915,6 @@
   "kind": "other",
   "first_seen": "2026-10-07",
   "badge": null
- },
- {
-  "id": "56f39af1fef4",
-  "title": "Indochine",
-  "date": "2026-11-26",
-  "time": "20:00",
-  "venue": "Grande Seine - La Seine musicale",
-  "venue_favorite": false,
-  "address": null,
-  "city": null,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Rock, Pop / Rock",
-  "image": null,
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/grande-seine-6496/indochine-3300218.html"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "kind": "known",
-  "first_seen": "2026-10-07",
-  "badge": null,
-  "tier": 3,
-  "matched": [
-   {
-    "name": "Indochine",
-    "tier": 3,
-    "via": "titre",
-    "link": "https://www.deezer.com/artist/47"
-   }
-  ]
  },
  {
   "id": "1daf3602db0c",
@@ -58552,6 +57775,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/indochine-billet/idmanif/665892/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-seine-6496/indochine-3300218.html"
    }
   ],
   "artists": [
@@ -58592,41 +57819,6 @@
   "kind": "other",
   "first_seen": "2026-10-07",
   "badge": null
- },
- {
-  "id": "f5e8c07195d2",
-  "title": "Indochine",
-  "date": "2026-11-27",
-  "time": "20:00",
-  "venue": "Grande Seine - La Seine musicale",
-  "venue_favorite": false,
-  "address": null,
-  "city": null,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Rock, Pop / Rock",
-  "image": null,
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/grande-seine-6496/indochine-3300218.html"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "kind": "known",
-  "first_seen": "2026-10-07",
-  "badge": null,
-  "tier": 3,
-  "matched": [
-   {
-    "name": "Indochine",
-    "tier": 3,
-    "via": "titre",
-    "link": "https://www.deezer.com/artist/47"
-   }
-  ]
  },
  {
   "id": "a97dd5cb606a",
@@ -59461,33 +58653,15 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/kid-kapichi-billet/idmanif/654689/idtier/18864121"
-   }
-  ],
-  "artists": [
-   "Kid Kapichi"
-  ],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "f34121cb46d0",
-  "title": "Kid Kapichi",
-  "date": "2026-11-28",
-  "time": "19:30",
-  "venue": "Le Trabendo",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Punk, Pop / Rock",
-  "links": [
+   },
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/le-trabendo-3288/kid-kapichi-3260021.html"
    }
   ],
-  "artists": [],
+  "artists": [
+   "Kid Kapichi"
+  ],
   "kind": "other",
   "first_seen": "2026-10-07",
   "badge": null
@@ -59784,13 +58958,13 @@
   }
  },
  {
-  "id": "6f0245d0f22d",
+  "id": "351923552e4b",
   "title": "THE WORLD OF QUEEN",
   "date": "2026-11-28",
   "time": "20:00",
   "venue": "DOME DE PARIS",
   "venue_favorite": false,
-  "price": null,
+  "price": "45-58 €",
   "on_sale": "2025-04-08T08:48:04Z",
   "status": "onsale",
   "genre": "Rock",
@@ -59798,6 +58972,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/the-world-of-queen-billet/idmanif/619357/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/palais-des-sports-2911/the-world-of-queen-3032521.html"
    }
   ],
   "artists": [],
@@ -59806,7 +58984,7 @@
   "badge": null
  },
  {
-  "id": "ea7659d9ea19",
+  "id": "431dd2a32d86",
   "title": "INDOCHINE",
   "date": "2026-11-28",
   "time": "20:00",
@@ -59823,6 +59001,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/indochine-billet/idmanif/665892/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-seine-6496/indochine-3300218.html"
    }
   ],
   "artists": [
@@ -59883,63 +59065,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/le-son-de-la-terre-7249/spank-3303752.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "431dd2a32d86",
-  "title": "Indochine",
-  "date": "2026-11-28",
-  "time": "20:00",
-  "venue": "Grande Seine - La Seine musicale",
-  "venue_favorite": false,
-  "address": null,
-  "city": null,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Rock, Pop / Rock",
-  "image": null,
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/grande-seine-6496/indochine-3300218.html"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "kind": "known",
-  "first_seen": "2026-10-07",
-  "badge": null,
-  "tier": 3,
-  "matched": [
-   {
-    "name": "Indochine",
-    "tier": 3,
-    "via": "titre",
-    "link": "https://www.deezer.com/artist/47"
-   }
-  ]
- },
- {
-  "id": "351923552e4b",
-  "title": "The World of Queen",
-  "date": "2026-11-28",
-  "time": "20:00",
-  "venue": "Le Dôme de Paris - Palais des Sports",
-  "venue_favorite": false,
-  "price": "45-58 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/palais-des-sports-2911/the-world-of-queen-3032521.html"
    }
   ],
   "artists": [],
@@ -61799,7 +60924,7 @@
   "badge": null
  },
  {
-  "id": "a1d932c12675",
+  "id": "0b5563e269c3",
   "title": "TIFFANY DAY",
   "date": "2026-12-01",
   "time": "20:00",
@@ -61813,6 +60938,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/tiffany-day-billet/idmanif/665125/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/tiffany-day-3312256.html"
    }
   ],
   "artists": [
@@ -61881,28 +61010,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/theatre-a-chatillon-3252/cine-concert-lincroyable-femme-des-neiges-3301009.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "0b5563e269c3",
-  "title": "Tiffany Day",
-  "date": "2026-12-01",
-  "time": "20:00",
-  "venue": "Le Trabendo",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Pop, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/le-trabendo-3288/tiffany-day-3312256.html"
    }
   ],
   "artists": [],
@@ -62141,7 +61248,7 @@
   "badge": null
  },
  {
-  "id": "a9d9002fbab3",
+  "id": "2e3a11d4ac72",
   "title": "ANDEOL",
   "date": "2026-12-02",
   "time": "19:30",
@@ -62155,25 +61262,7 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/andeol-billet/idmanif/657845/idseance/4324292"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "2e3a11d4ac72",
-  "title": "Andéol",
-  "date": "2026-12-02",
-  "time": "19:30",
-  "venue": "Le Trabendo",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Pop, Pop / Rock",
-  "links": [
+   },
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/le-trabendo-3288/andeol-3260022.html"
@@ -63053,6 +62142,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/morrissey-billet/idmanif/656895/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-seine-6496/morrissey-3300220.html"
    }
   ],
   "artists": [
@@ -63179,28 +62272,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/le-trabendo-3288/gurriers-3251036.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "72b2481479e7",
-  "title": "Morrissey",
-  "date": "2026-12-03",
-  "time": "20:00",
-  "venue": "Grande Seine - La Seine musicale",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Pop, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/grande-seine-6496/morrissey-3300220.html"
    }
   ],
   "artists": [],
@@ -65127,6 +64198,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/jeanneto-billet/idmanif/657928/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/jeanneto-3260023.html"
    }
   ],
   "artists": [],
@@ -65221,28 +64296,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/eglise-de-la-madeleine-2031/orchestre-helios-et-glen-rouxel-3174096.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "bab2301c90b0",
-  "title": "JeanneTo",
-  "date": "2026-12-05",
-  "time": "20:00",
-  "venue": "Le Trabendo",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Pop, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/le-trabendo-3288/jeanneto-3260023.html"
    }
   ],
   "artists": [],
@@ -66405,7 +65458,7 @@
   "badge": null
  },
  {
-  "id": "5f4ed7733a99",
+  "id": "8c48d2b00709",
   "title": "THE DIRE STRAITS EXPERIENCE",
   "date": "2026-12-07",
   "time": "20:00",
@@ -66433,7 +65486,7 @@
   "badge": null
  },
  {
-  "id": "8c48d2b00709",
+  "id": "8c48d2b00709x",
   "title": "The Dire Straits Experience le lundi 7 décembre à Paris !",
   "date": "2026-12-07",
   "time": "20:00",
@@ -67142,6 +66195,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/the-sheepdogs-billet/idmanif/643854/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/the-sheepdogs-3127595.html"
    }
   ],
   "artists": [
@@ -67164,28 +66221,6 @@
     "Tito & Tarantula"
    ]
   }
- },
- {
-  "id": "d7f6bdcde267",
-  "title": "The Sheepdogs",
-  "date": "2026-12-09",
-  "time": "19:00",
-  "venue": "Le Trabendo",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Rock, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/le-trabendo-3288/the-sheepdogs-3127595.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
  },
  {
   "id": "fea96c0fb9c3",
@@ -69314,13 +68349,13 @@
   ]
  },
  {
-  "id": "95cccbedc2d4",
+  "id": "7e876abd1511",
   "title": "GOSPEL RIVER",
   "date": "2026-12-12",
   "time": "20:00",
   "venue": "EGLISE LUTHERIENNE DE LA TRINITE",
   "venue_favorite": false,
-  "price": null,
+  "price": "16,5-22,5 €",
   "on_sale": "2026-09-17T11:23:26Z",
   "status": "onsale",
   "genre": "Religious",
@@ -69328,6 +68363,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/gospel-river-billet/idmanif/666647/idseance/4377860"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/temple-de-la-trinite-2074/gospel-river-3299041.html"
    }
   ],
   "artists": [],
@@ -69582,28 +68621,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/cafe-de-la-danse-1598/artdeco-3265675.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "7e876abd1511",
-  "title": "Gospel River",
-  "date": "2026-12-12",
-  "time": "20:00",
-  "venue": "Temple de la Trinité",
-  "venue_favorite": false,
-  "price": "16,5-22,5 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Église, Gospel",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/temple-de-la-trinite-2074/gospel-river-3299041.html"
    }
   ],
   "artists": [],
@@ -71730,6 +70747,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/veronique-sanson-billet/idmanif/655764/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-seine-6496/veronique-sanson-3300221.html"
    }
   ],
   "artists": [
@@ -71874,28 +70895,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/cafe-de-la-danse-1598/meimuna-3265676.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "7315aab41096",
-  "title": "Véronique Sanson",
-  "date": "2026-12-16",
-  "time": "20:00",
-  "venue": "Grande Seine - La Seine musicale",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Chanson française, Chanson",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/grande-seine-6496/veronique-sanson-3300221.html"
    }
   ],
   "artists": [],
@@ -72287,6 +71286,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/veronique-sanson-billet/idmanif/655764/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-seine-6496/veronique-sanson-3300221.html"
    }
   ],
   "artists": [
@@ -72387,28 +71390,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/grande-salle-6005/orchestre-de-paris-et-alan-gilbert-3225923.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "5961aa9cc3d4",
-  "title": "Véronique Sanson",
-  "date": "2026-12-17",
-  "time": "20:00",
-  "venue": "Grande Seine - La Seine musicale",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Chanson française, Chanson",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/grande-seine-6496/veronique-sanson-3300221.html"
    }
   ],
   "artists": [],
@@ -73104,6 +72085,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/k-pop-forever-billet/idmanif/643735/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-seine-6496/k-pop-forever-3300222.html"
    }
   ],
   "artists": [
@@ -73282,28 +72267,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/auditorium-6495/jeunes-talents-de-la-promotion-bartok-3299086.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "c8230dd205e0",
-  "title": "K-Pop Forever !",
-  "date": "2026-12-18",
-  "time": "20:00",
-  "venue": "Grande Seine - La Seine musicale",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Kpop, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/grande-seine-6496/k-pop-forever-3300222.html"
    }
   ],
   "artists": [],
@@ -73896,7 +72859,7 @@
   "time": "20:00",
   "venue": "EGLISE LUTHERIENNE DE LA TRINITE",
   "venue_favorite": false,
-  "price": null,
+  "price": "16,5-22,5 €",
   "on_sale": "2026-09-17T11:23:26Z",
   "status": "onsale",
   "genre": "Religious",
@@ -73904,6 +72867,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/gospel-river-billet/idmanif/666647/idseance/4377861"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/temple-de-la-trinite-2074/gospel-river-3299042.html"
    }
   ],
   "artists": [],
@@ -74059,28 +73026,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/grande-salle-6005/cine-concert-les-demoiselles-de-rochefort-3225928.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "fe473583decd",
-  "title": "Gospel River",
-  "date": "2026-12-19",
-  "time": "20:00",
-  "venue": "Temple de la Trinité",
-  "venue_favorite": false,
-  "price": "16,5-22,5 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Église, Gospel",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/temple-de-la-trinite-2074/gospel-river-3299042.html"
    }
   ],
   "artists": [],
@@ -78067,7 +77012,7 @@
   "time": "20:30",
   "venue": "LA SEINE MUSICALE - GRANDE SEINE",
   "venue_favorite": false,
-  "price": null,
+  "price": "39-99 €",
   "on_sale": "2026-05-04T08:00:00Z",
   "status": "onsale",
   "genre": "World",
@@ -78075,25 +77020,7 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/hollywood-symphonic-billet/idmanif/658286/idtier/18864121"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "a0a4f180801b",
-  "title": "Hollywood Symphonic",
-  "date": "2027-01-08",
-  "time": "20:30",
-  "venue": "Grande Seine - La Seine musicale",
-  "venue_favorite": false,
-  "price": "39-99 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Musique symphonique, Contemporain / Expérimental",
-  "links": [
+   },
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/grande-seine-6496/hollywood-symphonic-3300214.html"
@@ -80313,6 +79240,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/gilla-band-billet/idmanif/660472/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/gilla-band-3260024.html"
    }
   ],
   "artists": [],
@@ -80335,28 +79266,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/theatre-des-champs-elysees-1756/rossini-le-barbier-de-seville-3219872.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "b60cbb120721",
-  "title": "Gilla Band",
-  "date": "2027-01-20",
-  "time": "19:30",
-  "venue": "Le Trabendo",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Rock, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/le-trabendo-3288/gilla-band-3260024.html"
    }
   ],
   "artists": [],
@@ -80706,7 +79615,7 @@
   "badge": null
  },
  {
-  "id": "8c5d39038c3c",
+  "id": "8f4b6b905d37",
   "title": "bROTHERS iN bAND - DIRE STRAITS TRIBUTE - BROTHERS IN BAND",
   "date": "2027-01-21",
   "time": "20:30",
@@ -80728,7 +79637,7 @@
   "badge": null
  },
  {
-  "id": "8f4b6b905d37",
+  "id": "8f4b6b905d37x",
   "title": "Hommage à The Dire Straits",
   "date": "2027-01-21",
   "time": "20:30",
@@ -80764,33 +79673,15 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/wage-war-billet/idmanif/660171/idtier/18864121"
-   }
-  ],
-  "artists": [
-   "Wage War"
-  ],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "b5f5e624b629",
-  "title": "Wage War",
-  "date": "2027-01-22",
-  "time": "19:00",
-  "venue": "Le Trabendo",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Metal, Pop / Rock",
-  "links": [
+   },
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/le-trabendo-3288/wage-war-3260025.html"
    }
   ],
-  "artists": [],
+  "artists": [
+   "Wage War"
+  ],
   "kind": "other",
   "first_seen": "2026-10-07",
   "badge": null
@@ -81049,7 +79940,7 @@
   "badge": null
  },
  {
-  "id": "b5f361772aa7",
+  "id": "fc310fa113f2",
   "title": "LOGICALTRAMP - THE SPIRIT OF SUPERTRAMP - LOGICALTRAMP",
   "date": "2027-01-22",
   "time": "20:30",
@@ -81073,7 +79964,7 @@
   "badge": null
  },
  {
-  "id": "fc310fa113f2",
+  "id": "fc310fa113f2x",
   "title": "Logicaltramp - The Spirit of Supertramp",
   "date": "2027-01-22",
   "time": "20:30",
@@ -81563,7 +80454,7 @@
   "badge": null
  },
  {
-  "id": "5c2878200736",
+  "id": "f781230e3c2fx",
   "title": "LENOISE - A TRIBUTE TO NEIL YOUNG - LENOISE",
   "date": "2027-01-23",
   "time": "20:30",
@@ -81587,7 +80478,7 @@
   "badge": null
  },
  {
-  "id": "f781230e3c2f",
+  "id": "f781230e3c2fxx",
   "title": "LENOISE, Tribute to Neil Young",
   "date": "2027-01-23",
   "time": "20:30",
@@ -81609,7 +80500,7 @@
   "badge": null
  },
  {
-  "id": "405deec22ed8",
+  "id": "f781230e3c2f",
   "title": "Hommage à Neil Young",
   "date": "2027-01-23",
   "time": "20:30",
@@ -82405,7 +81296,7 @@
   "badge": null
  },
  {
-  "id": "d8845066b944",
+  "id": "d8845066b944x",
   "title": "ONE NIGHT OF QUEEN",
   "date": "2027-01-26",
   "time": "20:30",
@@ -82433,7 +81324,7 @@
   "badge": null
  },
  {
-  "id": "3189a901a980",
+  "id": "d8845066b944",
   "title": "One night of Queen - Wembley 86",
   "date": "2027-01-26",
   "time": "20:30",
@@ -83606,7 +82497,7 @@
   "badge": null
  },
  {
-  "id": "f23f62576b61",
+  "id": "f23f62576b61x",
   "title": "MICHEL JONASZ - MICHEL JONASZ & JEAN-YVES D'ANGELO PIANO",
   "date": "2027-01-30",
   "time": "20:00",
@@ -83765,7 +82656,7 @@
   }
  },
  {
-  "id": "fc319122ab7a",
+  "id": "a9825511edca",
   "title": "THE DEPECHE MODE EXPERIENCE",
   "date": "2027-01-30",
   "time": "20:00",
@@ -83779,6 +82670,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/the-depeche-mode-experience-billet/idmanif/650632/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-seine-6496/the-depeche-mode-experience-3304944.html"
    }
   ],
   "artists": [],
@@ -83809,7 +82704,7 @@
   "badge": null
  },
  {
-  "id": "dfc8b9c810d2",
+  "id": "f23f62576b61",
   "title": "Michel Jonasz et Jean-Yves d'Angelo",
   "date": "2027-01-30",
   "time": "20:00",
@@ -83823,28 +82718,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/les-folies-bergere-2331/michel-jonasz-et-jean-yves-dangelo-3174485.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "a9825511edca",
-  "title": "The Depeche Mode Experience",
-  "date": "2027-01-30",
-  "time": "20:00",
-  "venue": "Grande Seine - La Seine musicale",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Électro pop, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/grande-seine-6496/the-depeche-mode-experience-3304944.html"
    }
   ],
   "artists": [],
@@ -84037,7 +82910,7 @@
   "badge": null
  },
  {
-  "id": "6b67a8bfdd00",
+  "id": "c063e3509c73",
   "title": "MICHEL JONASZ - MICHEL JONASZ & JEAN-YVES D'ANGELO PIANO",
   "date": "2027-01-31",
   "time": "18:00",
@@ -84062,7 +82935,7 @@
   "description": null,
   "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null,
+  "badge": "liste",
   "discovery": {
    "score": 0.73,
    "artist": "Michel Jonasz",
@@ -84100,7 +82973,7 @@
   "badge": null
  },
  {
-  "id": "c063e3509c73",
+  "id": "c063e3509c73x",
   "title": "Michel Jonasz et Jean-Yves d'Angelo",
   "date": "2027-01-31",
   "time": "18:00",
@@ -84391,7 +83264,7 @@
   "badge": null
  },
  {
-  "id": "352c03e6812d",
+  "id": "351cfa1e4f4d",
   "title": "CATCH YOUR BREATH",
   "date": "2027-02-02",
   "time": "19:00",
@@ -84405,33 +83278,15 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/catch-your-breath-billet/idmanif/660530/idtier/18864121"
-   }
-  ],
-  "artists": [
-   "Catch Your Breath"
-  ],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "351cfa1e4f4d",
-  "title": "Catch Your Breath",
-  "date": "2027-02-02",
-  "time": "19:30",
-  "venue": "Le Trabendo",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Rock, Pop / Rock",
-  "links": [
+   },
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/le-trabendo-3288/catch-your-breath-3260026.html"
    }
   ],
-  "artists": [],
+  "artists": [
+   "Catch Your Breath"
+  ],
   "kind": "other",
   "first_seen": "2026-10-07",
   "badge": null
@@ -84805,33 +83660,15 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/whitechapel-billet/idmanif/652367/idtier/18864121"
-   }
-  ],
-  "artists": [
-   "Whitechapel"
-  ],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "e0e5985ce915",
-  "title": "Whitechapel",
-  "date": "2027-02-03",
-  "time": "18:00",
-  "venue": "Le Trabendo",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Metal, Pop / Rock",
-  "links": [
+   },
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/le-trabendo-3288/whitechapel-3260027.html"
    }
   ],
-  "artists": [],
+  "artists": [
+   "Whitechapel"
+  ],
   "kind": "other",
   "first_seen": "2026-10-07",
   "badge": null
@@ -85206,6 +84043,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/tramhaus-leroy-se-meurt-billet/idmanif/669025/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/tramhaus-3312258.html"
    }
   ],
   "artists": [
@@ -85228,28 +84069,6 @@
     "BIG SPECIAL"
    ]
   }
- },
- {
-  "id": "34f2af673b42",
-  "title": "Tramhaus",
-  "date": "2027-02-04",
-  "time": "19:00",
-  "venue": "Le Trabendo",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Rock, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/le-trabendo-3288/tramhaus-3312258.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
  },
  {
   "id": "1ebc73b752b2",
@@ -85476,7 +84295,7 @@
   "badge": null
  },
  {
-  "id": "f04f881b2fea",
+  "id": "f04f881b2feax",
   "title": "LES MUSIQUES DE J.WILLIAMS ET H.ZIMMER - LES MUSIQUES DE JOHN WILLIAMS ET HANS ZIMMER",
   "date": "2027-02-04",
   "time": "20:30",
@@ -85498,7 +84317,7 @@
   "badge": null
  },
  {
-  "id": "3641f2c9244d",
+  "id": "f04f881b2fea",
   "title": "Les musiques de John Williams & Hans Zimmer",
   "date": "2027-02-04",
   "time": "20:30",
@@ -86507,6 +85326,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/melrose-avenue-billet/idmanif/662165/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/melrose-avenue-3312259.html"
    }
   ],
   "artists": [
@@ -86531,28 +85354,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/salle-des-concerts-6006/purcell-songs-and-catches-3229967.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "41a40aac235b",
-  "title": "Melrose Avenue",
-  "date": "2027-02-09",
-  "time": "20:00",
-  "venue": "Le Trabendo",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Metal, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/le-trabendo-3288/melrose-avenue-3312259.html"
    }
   ],
   "artists": [],
@@ -87589,33 +86390,15 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/gilbert-montagne-billet/idmanif/653842/idtier/18864121"
-   }
-  ],
-  "artists": [
-   "Gilbert Montagné"
-  ],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "3651c9ace577",
-  "title": "Gilbert Montagné",
-  "date": "2027-02-14",
-  "time": "20:00",
-  "venue": "Le Dôme de Paris - Palais des Sports",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Chanson française, Chanson",
-  "links": [
+   },
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/palais-des-sports-2911/gilbert-montagne-3254723.html"
    }
   ],
-  "artists": [],
+  "artists": [
+   "Gilbert Montagné"
+  ],
   "kind": "other",
   "first_seen": "2026-10-07",
   "badge": null
@@ -87841,7 +86624,7 @@
   "badge": null
  },
  {
-  "id": "be0ad0654b82",
+  "id": "647e4bc2cb81",
   "title": "Escape the Internet",
   "date": "2027-02-16",
   "time": "19:30",
@@ -87928,13 +86711,13 @@
   ]
  },
  {
-  "id": "eef1a6203acd",
+  "id": "58427d70a034",
   "title": "ORIGINES SYMPHONIC",
   "date": "2027-02-16",
   "time": "20:00",
   "venue": "ATHENEE THEATRE LOUIS-JOUVET - Gde Salle",
   "venue_favorite": false,
-  "price": null,
+  "price": "18-42 €",
   "on_sale": "2026-07-01T11:00:17Z",
   "status": "onsale",
   "genre": "Jazz",
@@ -87942,6 +86725,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/origines-symphonic-billet/idmanif/665938/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/athenee-theatre-louis-jouvet-1486/origines-symphonic-3316173.html"
    }
   ],
   "artists": [],
@@ -88042,7 +86829,7 @@
   }
  },
  {
-  "id": "647e4bc2cb81",
+  "id": "647e4bc2cb81x",
   "title": "Escape The Internet II - BERNTH",
   "date": "2027-02-16",
   "time": "20:00",
@@ -88128,28 +86915,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/theatre-ranelagh-3057/cine-concert-buster-keaton-3308706.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "58427d70a034",
-  "title": "Origines Symphonic",
-  "date": "2027-02-16",
-  "time": "20:00",
-  "venue": "Athénée Théâtre Louis-Jouvet",
-  "venue_favorite": false,
-  "price": "18-42 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Jazz / Blues",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/athenee-theatre-louis-jouvet-1486/origines-symphonic-3316173.html"
    }
   ],
   "artists": [],
@@ -88527,7 +87292,7 @@
   "time": "20:00",
   "venue": "DOME DE PARIS",
   "venue_favorite": false,
-  "price": null,
+  "price": "55-75 €",
   "on_sale": "2026-01-23T11:00:00Z",
   "status": "onsale",
   "genre": "Chanson Francaise",
@@ -88535,33 +87300,15 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/rfm-party-80-billet/idmanif/648006/idtier/18864121"
-   }
-  ],
-  "artists": [
-   "RFM Party 80"
-  ],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "75b388782935",
-  "title": "RFM Party 80",
-  "date": "2027-02-18",
-  "time": "20:00",
-  "venue": "Le Dôme de Paris - Palais des Sports",
-  "venue_favorite": false,
-  "price": "55-75 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Pop / Rock",
-  "links": [
+   },
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/palais-des-sports-2911/rfm-party-80-3254725.html"
    }
   ],
-  "artists": [],
+  "artists": [
+   "RFM Party 80"
+  ],
   "kind": "other",
   "first_seen": "2026-10-07",
   "badge": null
@@ -88753,6 +87500,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/l5-on-stage-billet/idmanif/653198/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/palais-des-sports-2911/l5-3254726.html"
    }
   ],
   "artists": [
@@ -88830,28 +87581,6 @@
    {
     "source": "Que faire à Paris",
     "url": "https://www.sondelaterre.fr/event/spank-7/"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "bd1981bd647e",
-  "title": "L5",
-  "date": "2027-02-19",
-  "time": "20:00",
-  "venue": "Le Dôme de Paris - Palais des Sports",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Pop, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/palais-des-sports-2911/l5-3254726.html"
    }
   ],
   "artists": [],
@@ -89170,7 +87899,7 @@
   "time": "20:00",
   "venue": "DOME DE PARIS",
   "venue_favorite": false,
-  "price": null,
+  "price": "40-75 €",
   "on_sale": "2026-03-09T09:59:16Z",
   "status": "onsale",
   "genre": "Chanson Francaise",
@@ -89178,25 +87907,7 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/worlds-apart-billet/idmanif/652112/idtier/18864121"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "eb7dbc75fac9",
-  "title": "Worlds Apart",
-  "date": "2027-02-20",
-  "time": "20:00",
-  "venue": "Le Dôme de Paris - Palais des Sports",
-  "venue_favorite": false,
-  "price": "40-75 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Pop, Pop / Rock",
-  "links": [
+   },
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/palais-des-sports-2911/worlds-apart-3254727.html"
@@ -90344,6 +89055,28 @@
   }
  },
  {
+  "id": "a3a2f0f0b067",
+  "title": "Myra",
+  "date": "2027-02-25",
+  "time": "20:00",
+  "venue": "Le Trianon",
+  "venue_favorite": true,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/myra-3361896.html"
+   }
+  ],
+  "artists": [],
+  "kind": "other",
+  "first_seen": "2026-10-07",
+  "badge": "annonce"
+ },
+ {
   "id": "72a3561f7d59",
   "title": "Sonic Live in Concert",
   "date": "2027-02-25",
@@ -90408,28 +89141,6 @@
   "kind": "other",
   "first_seen": "2026-10-07",
   "badge": null
- },
- {
-  "id": "a3a2f0f0b067",
-  "title": "Myra",
-  "date": "2027-02-25",
-  "time": "20:00",
-  "venue": "Le Trianon",
-  "venue_favorite": true,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/myra-3361896.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": "annonce"
  },
  {
   "id": "e3dbac6800d4",
@@ -91895,6 +90606,28 @@
   "kind": "other",
   "first_seen": "2026-10-07",
   "badge": null
+ },
+ {
+  "id": "7e22e540a0a4",
+  "title": "Cult of Luna - Bruit ≤ - Youth Code",
+  "date": "2027-03-03",
+  "time": "19:15",
+  "venue": "Le Trianon",
+  "venue_favorite": true,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/cult-of-luna-bruit-youth-code-3361899.html"
+   }
+  ],
+  "artists": [],
+  "kind": "other",
+  "first_seen": "2026-10-07",
+  "badge": "annonce"
  },
  {
   "id": "b205c8f7c5c5",
@@ -93791,6 +92524,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/prestation-la-roux-billet/idmanif/673749/idseance/4428939"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/la-roux-3361900.html"
    }
   ],
   "artists": [
@@ -95521,7 +94258,7 @@
   }
  },
  {
-  "id": "71c3a152fe5c",
+  "id": "6ec5086cc8f7",
   "title": "TURNOVER",
   "date": "2027-03-13",
   "time": "20:00",
@@ -95535,6 +94272,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/turnover-billet/idmanif/663449/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/turnover-3312264.html"
    }
   ],
   "artists": [
@@ -95609,28 +94350,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/grande-salle-6005/bach-passion-selon-saint-matthieu-3230046.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "6ec5086cc8f7",
-  "title": "Turnover",
-  "date": "2027-03-13",
-  "time": "20:00",
-  "venue": "Le Trabendo",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Rock, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/le-trabendo-3288/turnover-3312264.html"
    }
   ],
   "artists": [],
@@ -96858,7 +95577,7 @@
   }
  },
  {
-  "id": "97c9b5495a71",
+  "id": "0237d062000e",
   "title": "TONIQUE & MAN",
   "date": "2027-03-18",
   "time": "20:00",
@@ -96872,6 +95591,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/tonique-man-billet/idmanif/668975/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/tonique-man-3260028.html"
    }
   ],
   "artists": [],
@@ -96894,28 +95617,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/grande-salle-6005/orchestre-de-paris-et-klaus-makela-3230051.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "0237d062000e",
-  "title": "Tonique & Man",
-  "date": "2027-03-18",
-  "time": "20:00",
-  "venue": "Le Trabendo",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Pop, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/le-trabendo-3288/tonique-man-3260028.html"
    }
   ],
   "artists": [],
@@ -97075,28 +95776,6 @@
   "badge": null
  },
  {
-  "id": "1e5ca7c77f6b",
-  "title": "Pony Pony Run Run",
-  "date": "2027-03-19",
-  "time": "19:30",
-  "venue": "Le Trianon",
-  "venue_favorite": true,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Pop, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/pony-pony-run-run-3255706.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "4d7bf8b813de",
   "title": "Elephanz",
   "date": "2027-03-19",
@@ -97130,6 +95809,28 @@
     "link": "https://www.deezer.com/artist/280550"
    }
   ]
+ },
+ {
+  "id": "1e5ca7c77f6b",
+  "title": "Pony Pony Run Run",
+  "date": "2027-03-19",
+  "time": "19:30",
+  "venue": "Le Trianon",
+  "venue_favorite": true,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop, Pop / Rock",
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/pony-pony-run-run-3255706.html"
+   }
+  ],
+  "artists": [],
+  "kind": "other",
+  "first_seen": "2026-10-07",
+  "badge": null
  },
  {
   "id": "c9ae86943ef4",
@@ -97709,6 +96410,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/the-pineapple-thief-billet/idmanif/671601/idseance/4406833"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/the-pineapple-thief-3361901.html"
    }
   ],
   "artists": [
@@ -98231,6 +96936,28 @@
   "badge": null
  },
  {
+  "id": "c18b2ed13e35",
+  "title": "François Staal",
+  "date": "2027-03-21",
+  "time": "18:00",
+  "venue": "Le Trianon",
+  "venue_favorite": true,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/francois-staal-3361902.html"
+   }
+  ],
+  "artists": [],
+  "kind": "other",
+  "first_seen": "2026-10-07",
+  "badge": "annonce"
+ },
+ {
   "id": "ab73c655624e",
   "title": "MAGIC SYSTEM",
   "date": "2027-03-21",
@@ -98510,7 +97237,7 @@
   "badge": null
  },
  {
-  "id": "e9804ee7b2bc",
+  "id": "639c4156d70d",
   "title": "DEA MATRONA",
   "date": "2027-03-22",
   "time": "19:30",
@@ -98524,6 +97251,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/dea-matrona-billet/idmanif/663466/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/dea-matrona-3312265.html"
    }
   ],
   "artists": [
@@ -98548,28 +97279,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/theatre-des-champs-elysees-1756/bach-passion-selon-saint-jean-3219901.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "639c4156d70d",
-  "title": "Dea Matrona",
-  "date": "2027-03-22",
-  "time": "19:30",
-  "venue": "Le Trabendo",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Rock, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/le-trabendo-3288/dea-matrona-3312265.html"
    }
   ],
   "artists": [],
@@ -99809,33 +98518,15 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/ice-nine-kills-billet/idmanif/662253/idtier/18864121"
-   }
-  ],
-  "artists": [
-   "Ice Nine Kills"
-  ],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "9112b54c450e",
-  "title": "Ice Nine Kills",
-  "date": "2027-03-26",
-  "time": "19:30",
-  "venue": "Grande Seine - La Seine musicale",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Pop / Rock",
-  "links": [
+   },
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/grande-seine-6496/ice-nine-kills-3300202.html"
    }
   ],
-  "artists": [],
+  "artists": [
+   "Ice Nine Kills"
+  ],
   "kind": "other",
   "first_seen": "2026-10-07",
   "badge": null
@@ -102040,7 +100731,7 @@
   "badge": null
  },
  {
-  "id": "fb10d27ca8b9",
+  "id": "0df18f4902a2",
   "title": "BUFFALO TRAFFIC JAM",
   "date": "2027-04-06",
   "time": "20:00",
@@ -102054,6 +100745,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/buffalo-traffic-jam-billet/idmanif/665398/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/buffalo-traffic-jam-3312267.html"
    }
   ],
   "artists": [
@@ -102078,28 +100773,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/salle-des-concerts-6006/au-revoir-klaus-3234885.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "0df18f4902a2",
-  "title": "Buffalo Traffic Jam",
-  "date": "2027-04-06",
-  "time": "20:00",
-  "venue": "Le Trabendo",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Folk, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/le-trabendo-3288/buffalo-traffic-jam-3312267.html"
    }
   ],
   "artists": [],
@@ -102431,6 +101104,28 @@
   "kind": "other",
   "first_seen": "2026-10-07",
   "badge": null
+ },
+ {
+  "id": "9536391003e7",
+  "title": "Pistons",
+  "date": "2027-04-08",
+  "time": "20:00",
+  "venue": "Le Trianon",
+  "venue_favorite": true,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/pistons-3361903.html"
+   }
+  ],
+  "artists": [],
+  "kind": "other",
+  "first_seen": "2026-10-07",
+  "badge": "annonce"
  },
  {
   "id": "9ff85fcaaefe",
@@ -103941,7 +102636,7 @@
   ]
  },
  {
-  "id": "64ef8d489cdb",
+  "id": "64ef8d489cdbxx",
   "title": "JOHN WILLIAMS - LA CELEBRATION HOMMAGE - JOHN WILLIAMS - ODYSSÉES SYMPHONIQUES",
   "date": "2027-04-16",
   "time": "20:00",
@@ -104416,6 +103111,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/ariane-bonzini-billet/idmanif/671260/idseance/4403044"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/ariane-bonzini-3361905.html"
    }
   ],
   "artists": [],
@@ -104424,7 +103123,7 @@
   "badge": null
  },
  {
-  "id": "53cc4729161f",
+  "id": "85fc39312c03",
   "title": "TRIBUTE PHIL COLLINS GENESIS",
   "date": "2027-04-19",
   "time": "20:00",
@@ -104514,7 +103213,7 @@
   "badge": null
  },
  {
-  "id": "85fc39312c03",
+  "id": "85fc39312c03x",
   "title": "Hommage à Genesis et Phil Collins",
   "date": "2027-04-19",
   "time": "20:00",
@@ -107900,6 +106599,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/jain-billet/idmanif/672191/idseance/4413647"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/jain-3361906.html"
    }
   ],
   "artists": [
@@ -108029,6 +106732,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/jain-billet/idmanif/672191/idseance/4413648"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/jain-3361906.html"
    }
   ],
   "artists": [
@@ -108442,6 +107149,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/jain-billet/idmanif/672191/idseance/4413649"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/jain-3361906.html"
    }
   ],
   "artists": [
@@ -108740,6 +107451,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/jain-billet/idmanif/672191/idseance/4413650"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/jain-3361906.html"
    }
   ],
   "artists": [
@@ -109363,33 +108078,15 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/benabar-billet/idmanif/652121/idtier/18864121"
-   }
-  ],
-  "artists": [
-   "Benabar"
-  ],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "1d462a8abea9",
-  "title": "Bénabar",
-  "date": "2027-05-20",
-  "time": "20:00",
-  "venue": "Le Dôme de Paris - Palais des Sports",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Chanson française, Chanson",
-  "links": [
+   },
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/palais-des-sports-2911/benabar-3254728.html"
    }
   ],
-  "artists": [],
+  "artists": [
+   "Benabar"
+  ],
   "kind": "other",
   "first_seen": "2026-10-07",
   "badge": null
@@ -111070,6 +109767,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/allah-las-billet/idmanif/674317/idseance/4432488"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/allah-las-3361907.html"
    }
   ],
   "artists": [
@@ -111700,6 +110401,28 @@
   "kind": "other",
   "first_seen": "2026-10-07",
   "badge": null
+ },
+ {
+  "id": "cdf90cf639dc",
+  "title": "Lou ! Sonata",
+  "date": "2027-05-29",
+  "time": "20:00",
+  "venue": "Le Trianon",
+  "venue_favorite": true,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/lou-sonata-3361908.html"
+   }
+  ],
+  "artists": [],
+  "kind": "other",
+  "first_seen": "2026-10-07",
+  "badge": "annonce"
  },
  {
   "id": "40064cbbe0b8",
@@ -112470,7 +111193,7 @@
   "venue_favorite": false,
   "address": "2 BIS AVENUE FRANKLIN ROOSEVELT",
   "city": "Paris",
-  "price": null,
+  "price": "44,5 €",
   "on_sale": "2026-06-02T07:00:00Z",
   "status": "onsale",
   "genre": "Chanson Francaise",
@@ -112479,6 +111202,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/arthur-h-billet/idmanif/659999/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-du-rond-point-3085/arthur-h-3259621.html"
    }
   ],
   "artists": [
@@ -112501,28 +111228,6 @@
     "Brigitte Fontaine"
    ]
   }
- },
- {
-  "id": "083ea8324362",
-  "title": "Arthur H",
-  "date": "2027-06-03",
-  "time": "20:30",
-  "venue": "Théâtre du Rond-Point",
-  "venue_favorite": false,
-  "price": "44,5 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Chanson française, Chanson",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/theatre-du-rond-point-3085/arthur-h-3259621.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
  },
  {
   "id": "132449af8b9d",
@@ -112621,7 +111326,7 @@
   "venue_favorite": false,
   "address": "2 BIS AVENUE FRANKLIN ROOSEVELT",
   "city": "Paris",
-  "price": null,
+  "price": "44,5 €",
   "on_sale": "2026-06-02T07:00:00Z",
   "status": "onsale",
   "genre": "Chanson Francaise",
@@ -112630,6 +111335,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/arthur-h-billet/idmanif/659999/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-du-rond-point-3085/arthur-h-3259621.html"
    }
   ],
   "artists": [
@@ -112673,28 +111382,6 @@
   "artists": [
    "Ludwig Van Beethoven"
   ],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "1afed12f09f3",
-  "title": "Arthur H",
-  "date": "2027-06-04",
-  "time": "20:30",
-  "venue": "Théâtre du Rond-Point",
-  "venue_favorite": false,
-  "price": "44,5 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Chanson française, Chanson",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/theatre-du-rond-point-3085/arthur-h-3259621.html"
-   }
-  ],
-  "artists": [],
   "kind": "other",
   "first_seen": "2026-10-07",
   "badge": null
@@ -113052,7 +111739,7 @@
   "badge": null
  },
  {
-  "id": "2b9f0dcdb7e4",
+  "id": "eea958754427",
   "title": "ALFREDO RODRIGUEZ & PEDRITO MARTINEZ",
   "date": "2027-06-06",
   "time": "18:00",
@@ -113076,7 +111763,7 @@
   "badge": null
  },
  {
-  "id": "eea958754427",
+  "id": "eea958754427x",
   "title": "Alfredo Rodriguez et Pedrito Martinez",
   "date": "2027-06-06",
   "time": "18:00",
@@ -113104,7 +111791,7 @@
   "time": "20:00",
   "venue": "PALAIS GARNIER / OPERA GARNIER",
   "venue_favorite": false,
-  "price": null,
+  "price": "124,5-144,5 €",
   "on_sale": "2026-05-27T04:00:00Z",
   "status": "onsale",
   "genre": "Classical",
@@ -113112,33 +111799,15 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/recital-diana-damrau-billet/idmanif/659102/idtier/18864121"
-   }
-  ],
-  "artists": [
-   "Diana Damrau"
-  ],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "4eae738d2261",
-  "title": "Diana Damrau",
-  "date": "2027-06-06",
-  "time": "20:00",
-  "venue": "Opéra Garnier",
-  "venue_favorite": false,
-  "price": "124,5-144,5 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Lyrique, Classique",
-  "links": [
+   },
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/opera-de-paris-palais-garnier-2879/diana-damrau-3241876.html"
    }
   ],
-  "artists": [],
+  "artists": [
+   "Diana Damrau"
+  ],
   "kind": "other",
   "first_seen": "2026-10-07",
   "badge": null
@@ -113463,7 +112132,7 @@
   "time": "20:30",
   "venue": "TH DU ROND POINT-SALLE RENAUD BARRAULT",
   "venue_favorite": false,
-  "price": null,
+  "price": "44,5 €",
   "on_sale": "2026-06-02T07:00:00Z",
   "status": "onsale",
   "genre": "Rock",
@@ -113471,25 +112140,7 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/birds-on-a-wire-billet/idmanif/660020/idtier/18864121"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "bbf7bf366cd7",
-  "title": "Birds on a Wire",
-  "date": "2027-06-09",
-  "time": "20:30",
-  "venue": "Théâtre du Rond-Point",
-  "venue_favorite": false,
-  "price": "44,5 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Chanson",
-  "links": [
+   },
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/theatre-du-rond-point-3085/birds-on-a-wire-3259638.html"
@@ -113630,13 +112281,13 @@
   "badge": null
  },
  {
-  "id": "37e88d079b46",
+  "id": "1e55b01a509a",
   "title": "BIRDS ON A WIRE",
   "date": "2027-06-10",
   "time": "20:30",
   "venue": "TH DU ROND POINT-SALLE RENAUD BARRAULT",
   "venue_favorite": false,
-  "price": null,
+  "price": "44,5 €",
   "on_sale": "2026-06-02T07:00:00Z",
   "status": "onsale",
   "genre": "Rock",
@@ -113644,25 +112295,7 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/birds-on-a-wire-billet/idmanif/660020/idtier/18864121"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "1e55b01a509a",
-  "title": "Birds on a Wire",
-  "date": "2027-06-10",
-  "time": "20:30",
-  "venue": "Théâtre du Rond-Point",
-  "venue_favorite": false,
-  "price": "44,5 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Chanson",
-  "links": [
+   },
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/theatre-du-rond-point-3085/birds-on-a-wire-3259638.html"
@@ -113826,13 +112459,13 @@
   "badge": null
  },
  {
-  "id": "c7600e2d2a27",
+  "id": "798461ad433a",
   "title": "BIRDS ON A WIRE",
   "date": "2027-06-11",
   "time": "20:30",
   "venue": "TH DU ROND POINT-SALLE RENAUD BARRAULT",
   "venue_favorite": false,
-  "price": null,
+  "price": "44,5 €",
   "on_sale": "2026-06-02T07:00:00Z",
   "status": "onsale",
   "genre": "Rock",
@@ -113840,6 +112473,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/birds-on-a-wire-billet/idmanif/660020/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-du-rond-point-3085/birds-on-a-wire-3259638.html"
    }
   ],
   "artists": [],
@@ -113867,28 +112504,6 @@
   "artists": [
    "Ludwig Van Beethoven"
   ],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "798461ad433a",
-  "title": "Birds on a Wire",
-  "date": "2027-06-11",
-  "time": "20:30",
-  "venue": "Théâtre du Rond-Point",
-  "venue_favorite": false,
-  "price": "44,5 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Chanson",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/theatre-du-rond-point-3085/birds-on-a-wire-3259638.html"
-   }
-  ],
-  "artists": [],
   "kind": "other",
   "first_seen": "2026-10-07",
   "badge": null
@@ -113966,7 +112581,7 @@
   "time": "19:30",
   "venue": "TH DU ROND POINT-SALLE RENAUD BARRAULT",
   "venue_favorite": false,
-  "price": null,
+  "price": "44,5 €",
   "on_sale": "2026-06-02T07:00:00Z",
   "status": "onsale",
   "genre": "Rock",
@@ -113974,25 +112589,7 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/birds-on-a-wire-billet/idmanif/660020/idtier/18864121"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "b4c87edb8969",
-  "title": "Birds on a Wire",
-  "date": "2027-06-12",
-  "time": "19:30",
-  "venue": "Théâtre du Rond-Point",
-  "venue_favorite": false,
-  "price": "44,5 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Chanson",
-  "links": [
+   },
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/theatre-du-rond-point-3085/birds-on-a-wire-3259638.html"
@@ -114045,7 +112642,7 @@
   ]
  },
  {
-  "id": "7e3d1ec15748",
+  "id": "6b51f4cf336e",
   "title": "LES ANNEES 80, LA TOURNEE",
   "date": "2027-06-12",
   "time": "20:00",
@@ -114059,6 +112656,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/les-annees-80-la-tournee-billet/idmanif/648176/idseance/4259722"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/palais-des-sports-2911/les-annees-80-la-tournee-3174504.html"
    }
   ],
   "artists": [
@@ -114083,28 +112684,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/maison-de-radio-france-2674/les-clefs-de-lorchestre-de-jean-francois-zygel-3333119.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "6b51f4cf336e",
-  "title": "Les années 80, la tournée",
-  "date": "2027-06-12",
-  "time": "20:00",
-  "venue": "Le Dôme de Paris - Palais des Sports",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Chanson française, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/palais-des-sports-2911/les-annees-80-la-tournee-3174504.html"
    }
   ],
   "artists": [],
@@ -114251,7 +112830,7 @@
   "time": "17:00",
   "venue": "TH DU ROND POINT-SALLE RENAUD BARRAULT",
   "venue_favorite": false,
-  "price": null,
+  "price": "44,5 €",
   "on_sale": "2026-06-02T07:00:00Z",
   "status": "onsale",
   "genre": "Rock",
@@ -114259,25 +112838,7 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/birds-on-a-wire-billet/idmanif/660020/idtier/18864121"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "fa1d668256fd",
-  "title": "Birds on a Wire",
-  "date": "2027-06-13",
-  "time": "17:00",
-  "venue": "Théâtre du Rond-Point",
-  "venue_favorite": false,
-  "price": "44,5 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Chanson",
-  "links": [
+   },
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/theatre-du-rond-point-3085/birds-on-a-wire-3259638.html"
@@ -114289,7 +112850,7 @@
   "badge": null
  },
  {
-  "id": "be00b24e09da",
+  "id": "369c210e3e69",
   "title": "MOZART A PARIS",
   "date": "2027-06-13",
   "time": "18:00",
@@ -114303,6 +112864,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/mozart-a-paris-billet/idmanif/660563/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/auditorium-6495/mozart-a-paris-3304452.html"
    }
   ],
   "artists": [
@@ -114327,28 +112892,6 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/salle-gaveau-3136/bach-concertos-brandebourgeois-3260111.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "369c210e3e69",
-  "title": "Mozart à Paris",
-  "date": "2027-06-13",
-  "time": "18:00",
-  "venue": "Auditorium Patrick Devedjian - La Seine musicale",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Musique symphonique, Classique",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/auditorium-6495/mozart-a-paris-3304452.html"
    }
   ],
   "artists": [],
@@ -114617,7 +113160,7 @@
   "time": "20:30",
   "venue": "TH DU ROND POINT-SALLE RENAUD BARRAULT",
   "venue_favorite": false,
-  "price": null,
+  "price": "44,5 €",
   "on_sale": "2026-06-02T07:00:00Z",
   "status": "onsale",
   "genre": "Rock",
@@ -114625,25 +113168,7 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/birds-on-a-wire-billet/idmanif/660020/idtier/18864121"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "c42c47476cc8",
-  "title": "Birds on a Wire",
-  "date": "2027-06-15",
-  "time": "20:30",
-  "venue": "Théâtre du Rond-Point",
-  "venue_favorite": false,
-  "price": "44,5 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Chanson",
-  "links": [
+   },
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/theatre-du-rond-point-3085/birds-on-a-wire-3259638.html"
@@ -114771,13 +113296,13 @@
   "badge": null
  },
  {
-  "id": "775f5d61f26c",
+  "id": "5ee14bdae224",
   "title": "BIRDS ON A WIRE",
   "date": "2027-06-16",
   "time": "20:30",
   "venue": "TH DU ROND POINT-SALLE RENAUD BARRAULT",
   "venue_favorite": false,
-  "price": null,
+  "price": "44,5 €",
   "on_sale": "2026-06-02T07:00:00Z",
   "status": "onsale",
   "genre": "Rock",
@@ -114785,25 +113310,7 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/birds-on-a-wire-billet/idmanif/660020/idtier/18864121"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "5ee14bdae224",
-  "title": "Birds on a Wire",
-  "date": "2027-06-16",
-  "time": "20:30",
-  "venue": "Théâtre du Rond-Point",
-  "venue_favorite": false,
-  "price": "44,5 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Chanson",
-  "links": [
+   },
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/theatre-du-rond-point-3085/birds-on-a-wire-3259639.html"
@@ -114925,13 +113432,13 @@
   "badge": null
  },
  {
-  "id": "c733c1159bf9",
+  "id": "942ba5ae3f79",
   "title": "BIRDS ON A WIRE",
   "date": "2027-06-17",
   "time": "20:30",
   "venue": "TH DU ROND POINT-SALLE RENAUD BARRAULT",
   "venue_favorite": false,
-  "price": null,
+  "price": "44,5 €",
   "on_sale": "2026-06-02T07:00:00Z",
   "status": "onsale",
   "genre": "Rock",
@@ -114939,25 +113446,7 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/birds-on-a-wire-billet/idmanif/660020/idtier/18864121"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "942ba5ae3f79",
-  "title": "Birds on a Wire",
-  "date": "2027-06-17",
-  "time": "20:30",
-  "venue": "Théâtre du Rond-Point",
-  "venue_favorite": false,
-  "price": "44,5 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Chanson",
-  "links": [
+   },
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/theatre-du-rond-point-3085/birds-on-a-wire-3259639.html"
@@ -115063,7 +113552,7 @@
   "time": "20:30",
   "venue": "TH DU ROND POINT-SALLE RENAUD BARRAULT",
   "venue_favorite": false,
-  "price": null,
+  "price": "44,5 €",
   "on_sale": "2026-06-02T07:00:00Z",
   "status": "onsale",
   "genre": "Rock",
@@ -115071,25 +113560,7 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/birds-on-a-wire-billet/idmanif/660020/idtier/18864121"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "e29b618bc80e",
-  "title": "Birds on a Wire",
-  "date": "2027-06-18",
-  "time": "20:30",
-  "venue": "Théâtre du Rond-Point",
-  "venue_favorite": false,
-  "price": "44,5 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Chanson",
-  "links": [
+   },
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/theatre-du-rond-point-3085/birds-on-a-wire-3259639.html"
@@ -115195,7 +113666,7 @@
   "time": "19:30",
   "venue": "TH DU ROND POINT-SALLE RENAUD BARRAULT",
   "venue_favorite": false,
-  "price": null,
+  "price": "44,5 €",
   "on_sale": "2026-06-02T07:00:00Z",
   "status": "onsale",
   "genre": "Rock",
@@ -115203,25 +113674,7 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/birds-on-a-wire-billet/idmanif/660020/idtier/18864121"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "db99f117df07",
-  "title": "Birds on a Wire",
-  "date": "2027-06-19",
-  "time": "19:30",
-  "venue": "Théâtre du Rond-Point",
-  "venue_favorite": false,
-  "price": "44,5 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Chanson",
-  "links": [
+   },
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/theatre-du-rond-point-3085/birds-on-a-wire-3259639.html"
@@ -115337,6 +113790,10 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/alexis-ffrench-billet/idmanif/672952/idseance/4425219"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/alexis-ffrench-3361909.html"
    }
   ],
   "artists": [
@@ -115921,28 +114378,6 @@
   "badge": null
  },
  {
-  "id": "9e7263ee42ea",
-  "title": "Bal Balkans",
-  "date": "2027-06-26",
-  "time": "19:00",
-  "venue": "Le Studio - Philharmonie de Paris",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Monde / Traditionnel",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/le-studio-7027/bal-balkans-3240787.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "37ba00dc37aa",
   "title": "Bal Balkans",
   "date": "2027-06-26",
@@ -115952,11 +114387,15 @@
   "price": "Gratuit",
   "on_sale": null,
   "status": null,
-  "genre": null,
+  "genre": "Monde / Traditionnel",
   "links": [
    {
     "source": "Que faire à Paris",
     "url": "https://philharmoniedeparis.fr/fr/activite/bal/29502-bal-balkans?itemId=146186"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-studio-7027/bal-balkans-3240787.html"
    }
   ],
   "artists": [],
@@ -116553,10 +114992,6 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/ronan-keating-billet/idmanif/673011/idseance/4425345"
-   },
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/salle-pleyel-3159/ronan-keating-3358243.html"
    }
   ],
   "artists": [
@@ -116608,28 +115043,6 @@
   "artists": [
    "Eisbrecher"
   ],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "dd5af1c3ea65",
-  "title": "Trinix",
-  "date": "2027-09-17",
-  "time": "20:00",
-  "venue": "Olympia",
-  "venue_favorite": true,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/lolympia-2874/trinix-3361832.html"
-   }
-  ],
-  "artists": [],
   "kind": "other",
   "first_seen": "2026-10-07",
   "badge": null
@@ -116688,37 +115101,11 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/mari-froes-billet/idmanif/660447/idtier/18864121"
-   },
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/le-zenith-3401/mari-froes-3255833.html"
    }
   ],
   "artists": [
    "Mari Froes"
   ],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "d2830d072700",
-  "title": "Trinix",
-  "date": "2027-09-18",
-  "time": "20:00",
-  "venue": "Olympia",
-  "venue_favorite": true,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/lolympia-2874/trinix-3361832.html"
-   }
-  ],
-  "artists": [],
   "kind": "other",
   "first_seen": "2026-10-07",
   "badge": null
@@ -116730,7 +115117,7 @@
   "time": "17:00",
   "venue": "SALLE PLEYEL",
   "venue_favorite": false,
-  "price": "49-69 €",
+  "price": null,
   "on_sale": "2026-06-22T08:00:00Z",
   "status": "onsale",
   "genre": "Chanson Francaise",
@@ -116738,10 +115125,6 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/catherine-lara-billet/idmanif/664528/idseance/4365633"
-   },
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/salle-pleyel-3159/catherine-lara-3307297.html"
    }
   ],
   "artists": [
@@ -116766,50 +115149,6 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/dans-le-choeur-de-celine-billet/idmanif/665083/idtier/18864121"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "28e3f5d75524",
-  "title": "Agnes Obel",
-  "date": "2027-09-23",
-  "time": "20:00",
-  "venue": "Olympia",
-  "venue_favorite": true,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Pop, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/lolympia-2874/agnes-obel-3356844.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "3bb41edbbb37",
-  "title": "Dans le chœur de Céline",
-  "date": "2027-09-23",
-  "time": "20:00",
-  "venue": "Salle Pleyel",
-  "venue_favorite": false,
-  "price": "49-69 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Pop, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/salle-pleyel-3159/dans-le-choeur-de-celine-3336723.html"
    }
   ],
   "artists": [],
@@ -116862,72 +115201,6 @@
   "badge": null
  },
  {
-  "id": "4bfcc88d14d4",
-  "title": "Agnes Obel",
-  "date": "2027-09-24",
-  "time": "20:00",
-  "venue": "Olympia",
-  "venue_favorite": true,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Pop, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/lolympia-2874/agnes-obel-3356844.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "7c2240791eaf",
-  "title": "Dans le chœur de Céline",
-  "date": "2027-09-24",
-  "time": "20:00",
-  "venue": "Salle Pleyel",
-  "venue_favorite": false,
-  "price": "49-69 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Pop, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/salle-pleyel-3159/dans-le-choeur-de-celine-3336723.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "3e5b5370c048",
-  "title": "I Gotta Feeling, la tournée des années 2000",
-  "date": "2027-09-24",
-  "time": "20:00",
-  "venue": "Le Dôme de Paris - Palais des Sports",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/palais-des-sports-2911/i-gotta-feeling-la-tournee-des-annees-2000-3254729.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "883a66f06563",
   "title": "SALUT LES COPAINS",
   "date": "2027-09-25",
@@ -116972,28 +115245,6 @@
   "badge": null
  },
  {
-  "id": "6167cde329e0",
-  "title": "Dans le chœur de Céline",
-  "date": "2027-09-25",
-  "time": "15:00",
-  "venue": "Salle Pleyel",
-  "venue_favorite": false,
-  "price": "49-69 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Pop, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/salle-pleyel-3159/dans-le-choeur-de-celine-3336723.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "ffa4d1c49215",
   "title": "YCARE",
   "date": "2027-09-25",
@@ -117008,10 +115259,6 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/ycare-billet/idmanif/671517/idseance/4405782"
-   },
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/lolympia-2874/ycare-3361835.html"
    }
   ],
   "artists": [
@@ -117085,28 +115332,6 @@
   }
  },
  {
-  "id": "bf7fb0a3e9b2",
-  "title": "I Gotta Feeling, la tournée des années 2000",
-  "date": "2027-09-25",
-  "time": "20:00",
-  "venue": "Le Dôme de Paris - Palais des Sports",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/palais-des-sports-2911/i-gotta-feeling-la-tournee-des-annees-2000-3254729.html"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "2320e2aeaebe",
   "title": "DANS LE CHOEUR DE CELINE",
   "date": "2027-09-26",
@@ -117121,28 +115346,6 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/dans-le-choeur-de-celine-billet/idmanif/665083/idtier/18864121"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "43ae82918dc1",
-  "title": "Dans le chœur de Céline",
-  "date": "2027-09-26",
-  "time": "15:00",
-  "venue": "Salle Pleyel",
-  "venue_favorite": false,
-  "price": "49-69 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Pop, Pop / Rock",
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/salle-pleyel-3159/dans-le-choeur-de-celine-3336723.html"
    }
   ],
   "artists": [],

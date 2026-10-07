@@ -148,14 +148,92 @@ def _identity(ev):
     return "n" + norm(first)[:24]
 
 
+def _identities(group):
+    """Ce qui reconnaît le concert d'une salle à l'autre : artistes rapprochés, premier artiste,
+    titre complet (pas tronqué : « Kiosque en fête au square X » et « ... au square Y » diffèrent)."""
+    out = set()
+    for ev in group:
+        out |= {"a" + m["id"] for m in ev.get("matched") or []}
+        if ev.get("artists"):
+            out.add("n" + norm(ev["artists"][0]))
+        out.add("n" + norm(ev.get("title") or ""))
+    out.discard("n")
+    return out
+
+
+# Mots trop courants pour rapprocher deux salles (« Église Saint-Sulpice » et « Église Saint-Eustache »)
+VENUE_STOP = {"salle", "grande", "petite", "petit", "grand", "paris", "theatre", "eglise", "saint", "sainte",
+              "temple", "club", "cafe", "studio", "maison", "espace", "centre", "musique", "musiques", "music",
+              "auditorium", "cathedrale", "basilique", "chapelle", "conservatoire", "square", "jardin", "parc",
+              "place", "scene", "live", "bar", "cave", "caveau", "jazz", "arena", "hall", "palais", "opera",
+              "institut", "musee", "fondation", "philharmonie", "cite", "pavillon", "kiosque", "bibliotheque",
+              "municipal", "municipale"}
+
+
+def _venue_words(key):
+    return {w for w in key.split() if len(w) >= 4 and w not in VENUE_STOP}
+
+
+def _same_venue(a, b):
+    """Deux libellés d'une même salle : identiques, l'un contenu dans l'autre, ou un mot distinctif commun."""
+    if a == b or (a and b and (f" {a} " in f" {b} " or f" {b} " in f" {a} ")):
+        return True
+    return bool(_venue_words(a) & _venue_words(b))
+
+
+def _minutes(group):
+    out = set()
+    for ev in group:
+        t = ev.get("time") or ""
+        if len(t) >= 5 and t[:5] != "00:00":
+            out.add(int(t[:2]) * 60 + int(t[3:5]))
+    return out
+
+
+def _close_times(a, b):
+    ta, tb = _minutes(a), _minutes(b)
+    return not ta or not tb or any(abs(x - y) <= 60 for x in ta for y in tb)
+
+
 def dedupe(events):
-    """Fusionne un même concert vu par plusieurs sources."""
+    """Fusionne un même concert vu par plusieurs sources.
+
+    1. Même date, même salle (libellé normalisé), même artiste ou titre.
+    2. Puis, le même jour, les groupes qui partagent un artiste ou un titre et dont les
+       salles sont deux libellés d'un même lieu (« SUPERSONIC » et « Supersonic Club »),
+       sauf si leurs horaires diffèrent de plus d'une heure.
+    """
     groups = defaultdict(list)
     for ev in events:
         groups[(ev["date"], ev["venue_key"], _identity(ev))].append(ev)
 
+    keys = list(groups)
+    parent = {k: k for k in keys}
+
+    def find(k):
+        while parent[k] != k:
+            parent[k] = parent[parent[k]]
+            k = parent[k]
+        return k
+
+    by_date = defaultdict(list)
+    for k in keys:
+        by_date[k[0]].append((k, _identities(groups[k])))
+    for items in by_date.values():
+        for i, (ka, ida) in enumerate(items):
+            for kb, idb in items[i + 1:]:
+                if (ka[1] != kb[1] and ida & idb and _same_venue(ka[1], kb[1])
+                        and _close_times(groups[ka], groups[kb])):
+                    parent[find(kb)] = find(ka)
+
+    clusters = defaultdict(list)
+    for k in keys:
+        clusters[find(k)].append(k)
+
     merged = []
-    for key, group in groups.items():
+    for root, members in clusters.items():
+        group = [ev for k in members for ev in groups[k]]
+        key = min(members)
         group.sort(key=_priority)
         base = dict(group[0])
         links, artists, seen_urls = [], [], set()

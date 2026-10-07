@@ -1,7 +1,7 @@
 [
  {
   "name": "Olympia",
-  "total": 137,
+  "total": 133,
   "known": 15,
   "discovery": 38,
   "favorite": true
@@ -43,7 +43,7 @@
  },
  {
   "name": "Le Trianon",
-  "total": 67,
+  "total": 71,
   "known": 6,
   "discovery": 17,
   "favorite": true
@@ -154,13 +154,6 @@
   "favorite": true
  },
  {
-  "name": "Grande Seine - La Seine musicale",
-  "total": 23,
-  "known": 5,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "STADE DE FRANCE",
   "total": 5,
   "known": 5,
@@ -224,13 +217,6 @@
   "favorite": false
  },
  {
-  "name": "Le Trabendo",
-  "total": 40,
-  "known": 2,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "LE BACKSTAGE BY THE MILL",
   "total": 36,
   "known": 0,
@@ -254,6 +240,13 @@
  {
   "name": "Le Zénith Paris – La Villette",
   "total": 17,
+  "known": 2,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Le Trabendo",
+  "total": 15,
   "known": 2,
   "discovery": 0,
   "favorite": false
@@ -498,7 +491,7 @@
  },
  {
   "name": "Auditorium Patrick Devedjian - La Seine musicale",
-  "total": 65,
+  "total": 58,
   "known": 0,
   "discovery": 0,
   "favorite": false
@@ -602,13 +595,6 @@
   "favorite": false
  },
  {
-  "name": "Salle Pleyel",
-  "total": 23,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "Café de la Danse",
   "total": 22,
   "known": 0,
@@ -645,6 +631,13 @@
  },
  {
   "name": "Palais des Congrès de Paris",
+  "total": 19,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Salle Pleyel",
   "total": 19,
   "known": 0,
   "discovery": 0,
@@ -701,13 +694,6 @@
  },
  {
   "name": "Le Bal Blomet",
-  "total": 14,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Le Dôme de Paris - Palais des Sports",
   "total": 14,
   "known": 0,
   "discovery": 0,
@@ -791,13 +777,6 @@
   "favorite": false
  },
  {
-  "name": "Théâtre du Rond-Point",
-  "total": 12,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "Alhambra",
   "total": 11,
   "known": 0,
@@ -820,13 +799,6 @@
  },
  {
   "name": "Grand Salon du Musée de l'Armée - Musée de l'Armée",
-  "total": 11,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Le Studio - Philharmonie de Paris",
   "total": 11,
   "known": 0,
   "discovery": 0,
@@ -868,13 +840,6 @@
   "favorite": false
  },
  {
-  "name": "Athénée Théâtre Louis-Jouvet",
-  "total": 10,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "CATHEDRALE AMERICAINE",
   "total": 10,
   "known": 0,
@@ -889,8 +854,15 @@
   "favorite": false
  },
  {
-  "name": "Supersonic Club",
+  "name": "Le Studio - Philharmonie de Paris",
   "total": 10,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Athénée Théâtre Louis-Jouvet",
+  "total": 9,
   "known": 0,
   "discovery": 0,
   "favorite": false
@@ -967,13 +939,6 @@
  },
  {
   "name": "Les Rendez-Vous d'Ailleurs",
-  "total": 8,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Opéra Garnier",
   "total": 8,
   "known": 0,
   "discovery": 0,
@@ -1058,6 +1023,13 @@
  },
  {
   "name": "Médiathèque Marguerite Yourcenar",
+  "total": 7,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Opéra Garnier",
   "total": 7,
   "known": 0,
   "discovery": 0,
@@ -1239,6 +1211,13 @@
   "favorite": false
  },
  {
+  "name": "Grande Seine - La Seine musicale",
+  "total": 5,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
   "name": "LE BADABOUM",
   "total": 5,
   "known": 0,
@@ -1310,13 +1289,6 @@
  },
  {
   "name": "TGP - Théâtre Gérard Philipe",
-  "total": 5,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Temple de la Trinité",
   "total": 5,
   "known": 0,
   "discovery": 0,
@@ -1436,6 +1408,13 @@
  },
  {
   "name": "Salle Erard",
+  "total": 4,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Supersonic Club",
   "total": 4,
   "known": 0,
   "discovery": 0,
@@ -1855,13 +1834,6 @@
   "favorite": false
  },
  {
-  "name": "Espace Carpeaux",
-  "total": 2,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "GRAND REX",
   "total": 2,
   "known": 0,
@@ -1925,13 +1897,6 @@
   "favorite": false
  },
  {
-  "name": "La Divine Comédie",
-  "total": 2,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "La Gaîté Lyrique",
   "total": 2,
   "known": 0,
@@ -1954,6 +1919,13 @@
  },
  {
   "name": "Le CENTQUATRE-PARIS (104)",
+  "total": 2,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Le Dôme de Paris - Palais des Sports",
   "total": 2,
   "known": 0,
   "discovery": 0,
@@ -2584,6 +2556,13 @@
  },
  {
   "name": "Espace Bertin-Poirée",
+  "total": 1,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Espace Carpeaux",
   "total": 1,
   "known": 0,
   "discovery": 0,
@@ -3627,13 +3606,6 @@
  },
  {
   "name": "Église Saint-Germain-l'Auxerrois",
-  "total": 1,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Église Saint-Gervais",
   "total": 1,
   "known": 0,
   "discovery": 0,
