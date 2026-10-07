@@ -13,7 +13,8 @@
 #   "Russ": 3
 #   "Indochine": 1
 
-hidden: []
+hidden:
+  - "test"
 
 levels:
   "Russ": 3
