@@ -23,7 +23,9 @@ def _reverse_index(artists, related_cache, refresh_days):
     return weight, names
 
 
-def score_events(events, artists, settings):
+def score_events(events, artists, settings, hidden_keys=frozenset()):
+    """artists : votre liste sans les artistes masqués ; hidden_keys : leurs noms normalisés,
+    pour ne pas les proposer en découverte."""
     cfg = settings["discovery"]
     search_cache, related_cache = deezer.load_caches()
     log("Découvertes : lecture des artistes similaires de votre liste")
@@ -41,7 +43,7 @@ def score_events(events, artists, settings):
                 continue
             found = deezer.search_artist(name, search_cache)
             lookups += 0 if cached else 1
-            if not found:
+            if not found or norm(name) in hidden_keys or norm(found["name"]) in hidden_keys:
                 continue
 
             # Artiste déjà dans votre liste sous un autre libellé : c'est un concert connu

@@ -10,7 +10,7 @@ KEEP_OTHER = ("id", "title", "date", "time", "venue", "venue_favorite", "price",
               "links", "artists")
 
 
-def build(events, artists, source_status, initial=False):
+def build(events, artists, source_status, initial=False, hidden=frozenset()):
     """events : concerts déjà passés par history.update (id stable, kind, first_seen, badge)."""
     today = today_iso()
     out, venues = [], defaultdict(lambda: {"total": 0, "known": 0, "discovery": 0, "favorite": False})
@@ -42,7 +42,8 @@ def build(events, artists, source_status, initial=False):
     save_json(SITE_DATA / "venues.json", venue_list)
 
     site_artists = sorted(
-        ({k: a.get(k) for k in ("name", "link", "picture", "score", "tier", "first_seen", "still_liked", "sources")}
+        ({**{k: a.get(k) for k in ("name", "link", "picture", "score", "tier", "first_seen", "still_liked", "sources")},
+          "hidden": a["id"] in hidden}
          for a in artists.values()),
         key=lambda a: (-a["score"], a["name"].lower()))
     save_json(SITE_DATA / "artists.json", site_artists)

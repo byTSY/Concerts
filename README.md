@@ -68,6 +68,23 @@ Access sur le projet (gratuit jusqu'à 50 utilisateurs).
 des billetteries couvertes, renseignez `agenda_url` avec sa page programme : si la page
 publie des données schema.org, ses concerts sont lus directement.
 
+`config/hidden_artists.yaml` : artistes que vous ne voulez pas voir en concert. Leurs concerts
+sortent de « Vos artistes » et des découvertes, et ils ne servent plus à calculer les
+découvertes ; ils restent visibles dans « Tous les concerts » et dans l'onglet Mes artistes,
+signalés « Masqué ». Un nom par ligne, tel qu'affiché dans Mes artistes (accents et majuscules
+ignorés) ; un artiste hors de votre liste peut aussi y figurer pour ne plus être proposé en
+découverte. Pour démasquer, supprimez la ligne.
+
+```yaml
+hidden:
+  - Michel
+  - Indochine
+```
+
+Modification depuis le site GitHub : ouvrez le fichier dans le dépôt, cliquez sur l'icône
+crayon (Edit this file), ajoutez le nom, puis **Commit changes**. L'effet est visible au
+prochain traitement (lundi), ou tout de suite en relançant le traitement depuis l'onglet Actions.
+
 `config/settings.yaml` : identifiant Deezer, rayon autour de Paris, pondérations du score
 d'affinité, seuil des découvertes.
 

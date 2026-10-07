@@ -1,0 +1,13 @@
+# Artistes masqués : leurs concerts ne figurent plus dans « Vos artistes » ni dans les
+# découvertes, et ils ne servent plus à calculer les découvertes. Ils restent visibles dans
+# « Tous les concerts » et dans l'onglet Mes artistes, signalés « Masqué ».
+#
+# Un nom par ligne, tel qu'il apparaît dans l'onglet Mes artistes ou sur Deezer
+# (accents et majuscules ignorés). Pour démasquer un artiste, supprimez sa ligne.
+#
+# Exemple :
+# hidden:
+#   - Michel
+#   - Indochine
+
+hidden: []
