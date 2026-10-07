@@ -144,8 +144,8 @@
    "picture": "https://cdn-images.dzcdn.net/images/artist/70d0eb7c7f6a101c0229b2c572ad341c/250x250-000000-80-0-0.jpg",
    "fans": 227378,
    "close_to": [
-    "Tones and I",
-    "Olly Alexander (Years & Years)",
+    "Tones And I",
+    "Olly Alexander",
     "Dua Lipa",
     "Clean Bandit"
    ]
@@ -622,7 +622,7 @@
    "fans": 1351,
    "close_to": [
     "Moussa",
-    "BLOWSOM"
+    "Blowsom"
    ]
   }
  },
@@ -1177,6 +1177,160 @@
   ]
  },
  {
+  "id": "872d8795bb61",
+  "title": "Moliy",
+  "date": "2026-10-10",
+  "time": "20:00",
+  "venue": "Les Étoiles",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop, Musiques urbaines",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/les-etoiles-2298/moliy-3314806.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 1.0,
+   "artist": "Moliy",
+   "link": "https://www.deezer.com/artist/82018452",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/7a62065cd47110d8e7cab634bcdee9ec/250x250-000000-80-0-0.jpg",
+   "fans": 9705,
+   "close_to": [
+    "Burna Boy",
+    "Mr Eazi",
+    "Juls",
+    "Darkoo"
+   ]
+  }
+ },
+ {
+  "id": "41ab4582c82c",
+  "title": "DJ Cinéma Quartier Latin",
+  "date": "2026-10-10",
+  "time": "20:00",
+  "venue": "PopUp!",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Électro",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-pop-up-du-label-5926/dj-cinema-quartier-latin-3353072.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 1.0,
+   "artist": "Dj Cinéma Quartier Latin",
+   "link": "https://www.deezer.com/artist/115477742",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/a200b68cd1a348caa4c64013007db1af/250x250-000000-80-0-0.jpg",
+   "fans": 507,
+   "close_to": [
+    "Harrison BDP",
+    "Demuja",
+    "Leo Pol",
+    "Herr Krank"
+   ]
+  }
+ },
+ {
+  "id": "a37e8ea9ea2a",
+  "title": "Camélia Jordana",
+  "date": "2026-10-10",
+  "time": "20:00",
+  "venue": "Institut du monde arabe (IMA)",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/institut-du-monde-arabe-2504/camelia-jordana-3353116.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 1.0,
+   "artist": "Camélia Jordana",
+   "link": "https://www.deezer.com/artist/352336",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/6915ff9fbc0e1ad6d0454349a78014ff/250x250-000000-80-0-0.jpg",
+   "fans": 264528,
+   "close_to": [
+    "Christine and the Queens",
+    "Angèle",
+    "-M-",
+    "Tim Dup"
+   ]
+  }
+ },
+ {
+  "id": "e1ff3e1607bf",
+  "title": "Khalil Epi",
+  "date": "2026-10-10",
+  "time": "20:30",
+  "venue": "La Ferme du Buisson",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": "6-24,5 €",
+  "on_sale": null,
+  "status": null,
+  "genre": "Monde / Traditionnel",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-ferme-du-buisson-2316/khalil-epi-3300231.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.3,
+   "artist": "Khalil Epi",
+   "link": "https://www.deezer.com/artist/109948702",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/05c3770d634c7bcb71271587aec75d6f/250x250-000000-80-0-0.jpg",
+   "fans": 284,
+   "close_to": [
+    "Shkoon",
+    "Hadi Zeidan"
+   ]
+  }
+ },
+ {
   "id": "7451b2816048",
   "title": "THOMAS FERSEN",
   "date": "2026-10-10",
@@ -1212,6 +1366,42 @@
    "close_to": [
     "Philippe Katerine",
     "Brigitte Fontaine"
+   ]
+  }
+ },
+ {
+  "id": "0a1bedec4719",
+  "title": "Alba Obert, Ghali Hadefi et Aurélien Robert",
+  "date": "2026-10-11",
+  "time": "15:00",
+  "venue": "38 RIV - Jazz Club & Bar",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Jazz manouche, Jazz / Blues",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/cave-du-38-riv-4381/alba-obert-ghali-hadefi-et-aurelien-robert-3342454.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.33,
+   "artist": "Ghali hadefi",
+   "link": "https://www.deezer.com/artist/6958901",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/0dc3650ea614d189884a4017467f4e4f/250x250-000000-80-0-0.jpg",
+   "fans": 24,
+   "close_to": [
+    "Art Blakey"
    ]
   }
  },
@@ -1428,7 +1618,7 @@
    "close_to": [
     "The Police",
     "The Stranglers",
-    "Tears for Fears",
+    "Tears For Fears",
     "Talking Heads"
    ]
   }
@@ -1555,6 +1745,86 @@
   ]
  },
  {
+  "id": "d56feb2a457a",
+  "title": "Lucas et Arthur Jussen",
+  "date": "2026-10-12",
+  "time": "20:00",
+  "venue": "Théâtre des Champs-Élysées",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": "26,5-70 €",
+  "on_sale": null,
+  "status": null,
+  "genre": "Piano, Classique",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-des-champs-elysees-1756/lucas-et-arthur-jussen-3227126.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.53,
+   "artist": "Lucas",
+   "link": "https://www.deezer.com/artist/74248",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/dfc010a40b035fd85f4089fccb25a5cc/250x250-000000-80-0-0.jpg",
+   "fans": 4721,
+   "close_to": [
+    "IAM",
+    "Akhenaton"
+   ]
+  }
+ },
+ {
+  "id": "9556e49210ea",
+  "title": "IL EST VILAINE",
+  "date": "2026-10-13",
+  "time": "19:30",
+  "venue": "La Maroquinerie",
+  "venue_favorite": false,
+  "address": "23, RUE BOYER",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2026-01-15T09:00:00Z",
+  "status": "onsale",
+  "genre": "Rock",
+  "image": "https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/il-est-vilaine-billet/idmanif/647035/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-maroquinerie-2748/il-est-vilaine-3304993.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.73,
+   "artist": "Il Est Vilaine",
+   "link": "https://www.deezer.com/artist/5826729",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/60c37d23a27590cf0a34705f708b171a/250x250-000000-80-0-0.jpg",
+   "fans": 3103,
+   "close_to": [
+    "Agar Agar",
+    "Slove",
+    "Modeselektor",
+    "CHLOE (Thévenin)"
+   ]
+  }
+ },
+ {
   "id": "0c8d87b49215",
   "title": "James Blake",
   "date": "2026-10-13",
@@ -1588,6 +1858,45 @@
     "link": "https://www.deezer.com/artist/812409"
    }
   ]
+ },
+ {
+  "id": "a82bdbf7f5d7",
+  "title": "Gershwin : Un Américain à Paris",
+  "date": "2026-10-13",
+  "time": "20:00",
+  "venue": "Grande salle Pierre Boulez - Philharmonie de Paris",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Musique symphonique, Classique",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-salle-6005/gershwin-un-americain-a-paris-3224497.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.83,
+   "artist": "Gershwin",
+   "link": "https://www.deezer.com/artist/1152837",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/19d84d3527318376db27244f503069c3/250x250-000000-80-0-0.jpg",
+   "fans": 3324,
+   "close_to": [
+    "Wynton Marsalis",
+    "Miles Davis",
+    "Chet Baker",
+    "Oscar Peterson Trio"
+   ]
+  }
  },
  {
   "id": "8ca0a260cb16",
@@ -1666,6 +1975,42 @@
   }
  },
  {
+  "id": "70123c3e0ddc",
+  "title": "Levi Harvey 4tet - Pierre Tereygeol - Mark Priore",
+  "date": "2026-10-13",
+  "time": "20:00",
+  "venue": "Duc des Lombards",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Jazz / Blues",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/duc-des-lombards-2009/levi-harvey-4tet-pierre-tereygeol-mark-priore-3356860.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.33,
+   "artist": "Mark Priore",
+   "link": "https://www.deezer.com/artist/76534222",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/355abef8a7f814dc241170adb545e70a/250x250-000000-80-0-0.jpg",
+   "fans": 228,
+   "close_to": [
+    "Wynton Marsalis"
+   ]
+  }
+ },
+ {
   "id": "6994c4c32262",
   "title": "Avishai Cohen trio",
   "date": "2026-10-13",
@@ -1740,7 +2085,7 @@
    "close_to": [
     "Tony Bennett",
     "Norah Jones",
-    "Jeff Goldblum & the Mildred Snitzer Orchestra",
+    "Jeff Goldblum & The Mildred Snitzer Orchestra",
     "Gregory Porter"
    ]
   }
@@ -1956,6 +2301,84 @@
   }
  },
  {
+  "id": "5952029ee5d1",
+  "title": "Marr Not Meeger - Potager - The Initiativ",
+  "date": "2026-10-14",
+  "time": "20:00",
+  "venue": "Péniche Antipode",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/peniche-antipode-2979/marr-not-meeger-potager-the-initiativ-3358361.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.93,
+   "artist": "The Initiativ",
+   "link": "https://www.deezer.com/artist/219853205",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/81f894c384a1f00f8311b9eaa10a1e91/250x250-000000-80-0-0.jpg",
+   "fans": 426,
+   "close_to": [
+    "MGMT",
+    "The Last Shadow Puppets",
+    "Fontaines D.C.",
+    "The Strokes"
+   ]
+  }
+ },
+ {
+  "id": "6f98717c184f",
+  "title": "Franck Ferrand invite Gershwin",
+  "date": "2026-10-14",
+  "time": "20:30",
+  "venue": "Salle Gaveau",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": "16,5 €",
+  "on_sale": null,
+  "status": null,
+  "genre": "Classique",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/salle-gaveau-3136/franck-ferrand-invite-gershwin-3264557.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.83,
+   "artist": "Gershwin",
+   "link": "https://www.deezer.com/artist/1152837",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/19d84d3527318376db27244f503069c3/250x250-000000-80-0-0.jpg",
+   "fans": 3324,
+   "close_to": [
+    "Wynton Marsalis",
+    "Miles Davis",
+    "Chet Baker",
+    "Oscar Peterson Trio"
+   ]
+  }
+ },
+ {
   "id": "c032ecb0e725",
   "title": "THOMAS FERSEN",
   "date": "2026-10-14",
@@ -2161,6 +2584,45 @@
   }
  },
  {
+  "id": "cc29fc2ea3b6",
+  "title": "The Initiativ - Laces - Coal Noir",
+  "date": "2026-10-15",
+  "time": "20:00",
+  "venue": "PopUp!",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-pop-up-du-label-5926/the-initiativ-laces-coal-noir-3358336.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.93,
+   "artist": "The Initiativ",
+   "link": "https://www.deezer.com/artist/219853205",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/81f894c384a1f00f8311b9eaa10a1e91/250x250-000000-80-0-0.jpg",
+   "fans": 426,
+   "close_to": [
+    "MGMT",
+    "The Last Shadow Puppets",
+    "Fontaines D.C.",
+    "The Strokes"
+   ]
+  }
+ },
+ {
   "id": "cb31ef1a8889",
   "title": "THOMAS FERSEN",
   "date": "2026-10-15",
@@ -2281,6 +2743,45 @@
   }
  },
  {
+  "id": "d79265136259",
+  "title": "Alastair Lane",
+  "date": "2026-10-16",
+  "time": "19:30",
+  "venue": "Badaboum",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/badaboum-3169/alastair-lane-3358661.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 1.0,
+   "artist": "Alastair Lane",
+   "link": "https://www.deezer.com/artist/61577602",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/ff423257dfae491f7b2f2e57ddc3ae0a/250x250-000000-80-0-0.jpg",
+   "fans": 1020,
+   "close_to": [
+    "Terrence Parker",
+    "Dam Swindle",
+    "Bomel",
+    "Folamour"
+   ]
+  }
+ },
+ {
   "id": "052b06d77766",
   "title": "FKJ",
   "date": "2026-10-16",
@@ -2313,6 +2814,80 @@
     "name": "FKJ",
     "tier": 2,
     "via": "artiste",
+    "link": "https://www.deezer.com/artist/4738512"
+   }
+  ]
+ },
+ {
+  "id": "2ab13a1fbab5",
+  "title": "Gradur",
+  "date": "2026-10-16",
+  "time": "20:00",
+  "venue": "Accor Arena",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Rap, Musiques urbaines",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/palais-omnisports-de-paris-bercy-2913/gradur-3169198.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.8,
+   "artist": "Gradur",
+   "link": "https://www.deezer.com/artist/5876247",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/bcdc5604c1e8a8c3f212be3082b980c3/250x250-000000-80-0-0.jpg",
+   "fans": 1440389,
+   "close_to": [
+    "Niska",
+    "Lacrim",
+    "Rim'K",
+    "La Fouine"
+   ]
+  }
+ },
+ {
+  "id": "27e68f565c8d",
+  "title": "FKJ",
+  "date": "2026-10-16",
+  "time": "20:00",
+  "venue": "Salle Pleyel",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Musiques urbaines",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/salle-pleyel-3159/fkj-3259646.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "known",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "tier": 2,
+  "matched": [
+   {
+    "name": "FKJ",
+    "tier": 2,
+    "via": "deezer",
     "link": "https://www.deezer.com/artist/4738512"
    }
   ]
@@ -2355,6 +2930,159 @@
   }
  },
  {
+  "id": "59952bf5ac77",
+  "title": "Honne",
+  "date": "2026-10-16",
+  "time": "20:00",
+  "venue": "Café de la Danse",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop, Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/cafe-de-la-danse-1598/honne-3356892.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 1.0,
+   "artist": "HONNE",
+   "link": "https://www.deezer.com/artist/6306824",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/97a23d2c994606377d797b3d854354d7/250x250-000000-80-0-0.jpg",
+   "fans": 34327,
+   "close_to": [
+    "Rhye",
+    "LEISURE",
+    "BENEE",
+    "hard life"
+   ]
+  }
+ },
+ {
+  "id": "5b44470a6ef5",
+  "title": "Gershwin : Porgy and Bess",
+  "date": "2026-10-16",
+  "time": "20:00",
+  "venue": "Le Bal Blomet",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Opéra (en version de concert), Classique",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-bal-blomet-6509/gershwin-porgy-and-bess-3358310.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.83,
+   "artist": "Gershwin",
+   "link": "https://www.deezer.com/artist/1152837",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/19d84d3527318376db27244f503069c3/250x250-000000-80-0-0.jpg",
+   "fans": 3324,
+   "close_to": [
+    "Wynton Marsalis",
+    "Miles Davis",
+    "Chet Baker",
+    "Oscar Peterson Trio"
+   ]
+  }
+ },
+ {
+  "id": "30de1f28aee6",
+  "title": "Almost Rose - Simone's Carpet - Tess Victoire",
+  "date": "2026-10-16",
+  "time": "20:00",
+  "venue": "PopUp!",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-pop-up-du-label-5926/almost-rose-simones-carpet-tess-victoire-3358337.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.83,
+   "artist": "Simone's Carpet",
+   "link": "https://www.deezer.com/artist/183308827",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/91cf2718f7a6af976c4da5ba1e954735/250x250-000000-80-0-0.jpg",
+   "fans": 387,
+   "close_to": [
+    "Goodvibes Sound",
+    "Keep Dancing Inc",
+    "Please",
+    "Evergreen"
+   ]
+  }
+ },
+ {
+  "id": "90dd19f3459e",
+  "title": "Tiwiza - Kimia - Seksion Maloya",
+  "date": "2026-10-16",
+  "time": "20:00",
+  "venue": "Centre Paris Anim' Jacques Bravo",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/centre-paris-anim-jacques-bravo-7160/tiwiza-kimia-seksion-maloya-3361755.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.33,
+   "artist": "Kimia",
+   "link": "https://www.deezer.com/artist/288757991",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/2d7424ccc469dde80aa6fc24c421f724/250x250-000000-80-0-0.jpg",
+   "fans": 214,
+   "close_to": [
+    "My First Time"
+   ]
+  }
+ },
+ {
   "id": "c83881559fa5",
   "title": "THOMAS FERSEN",
   "date": "2026-10-16",
@@ -2390,6 +3118,49 @@
    "close_to": [
     "Philippe Katerine",
     "Brigitte Fontaine"
+   ]
+  }
+ },
+ {
+  "id": "390db9a5bfa7",
+  "title": "THE BUTTSHAKERS",
+  "date": "2026-10-17",
+  "time": "19:30",
+  "venue": "La Maroquinerie",
+  "venue_favorite": false,
+  "address": "23, RUE BOYER",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2026-03-17T17:00:00Z",
+  "status": "onsale",
+  "genre": "R&B",
+  "image": "https://s1.ticketm.net/dam/c/48b/2352e3b5-8496-496b-97a3-e605177e848b_105851_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/the-buttshakers-billet/idmanif/653071/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-maroquinerie-2748/the-buttshakers-3304994.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.63,
+   "artist": "The Buttshakers",
+   "link": "https://www.deezer.com/artist/398665",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/a8c31872c75a7152bc74fc1cb03cd17a/250x250-000000-80-0-0.jpg",
+   "fans": 6279,
+   "close_to": [
+    "Lee Fields & The Expressions",
+    "Sharon Jones & The Dap-Kings",
+    "Izo FitzRoy",
+    "Curtis Harding"
    ]
   }
  },
@@ -2517,6 +3288,47 @@
   }
  },
  {
+  "id": "bf99cfbec30e",
+  "title": "Dutch Criminal Record + Hotel Mira en concert (côté Records)",
+  "date": "2026-10-17",
+  "time": "21:00",
+  "venue": "Supersonic Records",
+  "venue_favorite": false,
+  "address": "9 Rue Biscornet",
+  "city": "Paris",
+  "price": "Billet : 15.97 EUR",
+  "on_sale": null,
+  "status": null,
+  "genre": "Rock, Pop / Rock",
+  "image": "https://cdn.paris.fr/qfapv4/2026/06/18/huge-b400d1fbf3ed6f7245eaf770ac43f35e.jpeg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://link.dice.fm/za46295e9910"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/supersonic-records-7545/dutch-criminal-record-hotel-mira-3358331.html"
+   }
+  ],
+  "artists": [],
+  "description": "Le groupe Dutch Criminal Record revient avec un nouveau son mêlant sa tradition surf rock à des éléments shoegaze plus puissants, et en compagnie des Canadiens Hotel Mira !",
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.3,
+   "artist": "Hotel Mira",
+   "link": "https://www.deezer.com/artist/14486137",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/19e0b44def0ec31bde3fb8b743052403/250x250-000000-80-0-0.jpg",
+   "fans": 725,
+   "close_to": [
+    "Carter Vail",
+    "Saint Motel"
+   ]
+  }
+ },
+ {
   "id": "7021b6a64160",
   "title": "Vision",
   "date": "2026-10-18",
@@ -2635,7 +3447,7 @@
    "fans": 49276,
    "close_to": [
     "Smoke DZA",
-    "Mike Will Made-It",
+    "Mike WiLL Made-It",
     "Meek Mill",
     "Joyner Lucas"
    ]
@@ -3041,7 +3853,7 @@
   "tier": 3,
   "matched": [
    {
-    "name": "PJ MORTON",
+    "name": "PJ Morton",
     "tier": 3,
     "via": "artiste",
     "link": "https://www.deezer.com/artist/393335"
@@ -3366,10 +4178,10 @@
    "picture": "https://cdn-images.dzcdn.net/images/artist/244407df886ac5ca9083a2da61d92b58/250x250-000000-80-0-0.jpg",
    "fans": 804,
    "close_to": [
-    "amaarae",
     "Qendresa",
     "FKA twigs",
-    "Durand Bernarr"
+    "Durand Bernarr",
+    "Amaarae"
    ]
   }
  },
@@ -3413,7 +4225,7 @@
    "close_to": [
     "SCH",
     "Lefa",
-    "ICO",
+    "Ico",
     "S.Pri Noir"
    ]
   }
@@ -3611,7 +4423,7 @@
   "tier": 3,
   "matched": [
    {
-    "name": "Keros-n",
+    "name": "Keros-N",
     "tier": 3,
     "via": "titre",
     "link": "https://www.deezer.com/artist/4334621"
@@ -4077,7 +4889,7 @@
    "picture": "https://cdn-images.dzcdn.net/images/artist/0552f9223da8ad3f5195bdb4e99c48b4/250x250-000000-80-0-0.jpg",
    "fans": 24325,
    "close_to": [
-    "Willow",
+    "WILLOW",
     "Sudan Archives",
     "Fcukers",
     "FKA twigs"
@@ -4248,7 +5060,7 @@
    "fans": 1288457,
    "close_to": [
     "a-ha",
-    "Tears for Fears",
+    "Tears For Fears",
     "Eurythmics",
     "Depeche Mode"
    ]
@@ -4902,8 +5714,8 @@
    "fans": 115181,
    "close_to": [
     "The Black Keys",
-    "Queens of the Stone Age",
-    "Band Of Skulls"
+    "Queens Of The Stone Age",
+    "Band of Skulls"
    ]
   }
  },
@@ -5203,7 +6015,7 @@
    "close_to": [
     "Naive New Beaters",
     "Electric Guest",
-    "BLOW",
+    "Blow",
     "Milky Chance"
    ]
   }
@@ -5454,7 +6266,7 @@
    "fans": 1279,
    "close_to": [
     "Tony Bennett",
-    "Jeff Goldblum & the Mildred Snitzer Orchestra"
+    "Jeff Goldblum & The Mildred Snitzer Orchestra"
    ]
   }
  },
@@ -6075,7 +6887,7 @@
    "close_to": [
     "Post Malone",
     "Lil Nas X",
-    "XXXTentacion",
+    "XXXTENTACION",
     "Tyla Yaweh"
    ]
   }
@@ -6241,7 +7053,7 @@
    "close_to": [
     "Post Malone",
     "Lil Nas X",
-    "XXXTentacion",
+    "XXXTENTACION",
     "Tyla Yaweh"
    ]
   }
@@ -6379,7 +7191,7 @@
    "fans": 1662447,
    "close_to": [
     "Zara Larsson",
-    "Olly Alexander (Years & Years)",
+    "Olly Alexander",
     "Miley Cyrus",
     "Dua Lipa"
    ]
@@ -6590,7 +7402,7 @@
     "Voyou",
     "Flea",
     "Laure Briard",
-    "Ezéchiel Pailhès"
+    "Ezechiel Pailhes"
    ]
   }
  },
@@ -6669,7 +7481,7 @@
    "fans": 23105,
    "close_to": [
     "Tony Bennett",
-    "Jeff Goldblum & the Mildred Snitzer Orchestra",
+    "Jeff Goldblum & The Mildred Snitzer Orchestra",
     "Diana Krall"
    ]
   }
@@ -6953,7 +7765,7 @@
   "tier": 1,
   "matched": [
    {
-    "name": "Omah lay",
+    "name": "Omah Lay",
     "tier": 1,
     "via": "titre",
     "link": "https://www.deezer.com/artist/56094992"
@@ -7152,7 +7964,7 @@
    "close_to": [
     "Fred again..",
     "Daniel Avery",
-    "Kh",
+    "KH",
     "DJ Seinfeld"
    ]
   }
@@ -7196,7 +8008,7 @@
    "fans": 2294,
    "close_to": [
     "Deki Alem",
-    "Miel de Montagne",
+    "Miel De Montagne",
     "La Femme",
     "Kids Return"
    ]
@@ -7237,7 +8049,7 @@
     "Domo Genesis",
     "Curren$y",
     "Westside Gunn",
-    "Mavi"
+    "MAVI"
    ]
   }
  },
@@ -7394,7 +8206,7 @@
     "Olivia Dean",
     "Joy Crookes",
     "Joesef",
-    "Céleste"
+    "Celeste"
    ]
   }
  },
@@ -7440,10 +8252,10 @@
    "picture": "https://cdn-images.dzcdn.net/images/artist/42a2ef16887e2cd54b07b848fdfd9619/250x250-000000-80-0-0.jpg",
    "fans": 339775,
    "close_to": [
-    "Tones and I",
+    "Tones And I",
     "Rag'n'Bone Man",
     "Puggy",
-    "Lilly Wood And The Prick"
+    "Lilly Wood and the Prick"
    ]
   }
  },
@@ -7573,7 +8385,7 @@
    "close_to": [
     "Christine and the Queens",
     "Puggy",
-    "Lilly Wood And The Prick",
+    "Lilly Wood and the Prick",
     "Izïa"
    ]
   }
@@ -7769,8 +8581,8 @@
    "fans": 1582,
    "close_to": [
     "Olivia Dean",
-    "Raye",
     "Rachel Chinouriri",
+    "RAYE",
     "Lola Young"
    ]
   }
@@ -7947,7 +8759,7 @@
    "close_to": [
     "Christine and the Queens",
     "Puggy",
-    "Lilly Wood And The Prick",
+    "Lilly Wood and the Prick",
     "Izïa"
    ]
   }
@@ -8154,7 +8966,7 @@
    "close_to": [
     "Christine and the Queens",
     "Puggy",
-    "Lilly Wood And The Prick",
+    "Lilly Wood and the Prick",
     "Izïa"
    ]
   }
@@ -8235,7 +9047,7 @@
    "fans": 1180,
    "close_to": [
     "Alfa Mist",
-    "Badbadnotgood"
+    "BADBADNOTGOOD"
    ]
   }
  },
@@ -8402,7 +9214,7 @@
    "fans": 1180,
    "close_to": [
     "Alfa Mist",
-    "Badbadnotgood"
+    "BADBADNOTGOOD"
    ]
   }
  },
@@ -8823,7 +9635,7 @@
    "fans": 30362,
    "close_to": [
     "Wolf Alice",
-    "Young the Giant"
+    "Young The Giant"
    ]
   }
  },
@@ -8988,7 +9800,7 @@
   "tier": 3,
   "matched": [
    {
-    "name": "Lolo Zouai",
+    "name": "Lolo Zouaï",
     "tier": 3,
     "via": "artiste",
     "link": "https://www.deezer.com/artist/12624185"
@@ -9498,7 +10310,7 @@
     "Red Hot Chili Peppers",
     "Weezer",
     "The Smashing Pumpkins",
-    "Queens of the Stone Age"
+    "Queens Of The Stone Age"
    ]
   }
  },
@@ -9581,7 +10393,7 @@
    "close_to": [
     "Royel Otis",
     "Master Peace",
-    "Foster the People",
+    "Foster The People",
     "hard life"
    ]
   }
@@ -9915,7 +10727,7 @@
   "tier": 3,
   "matched": [
    {
-    "name": "Lilly Wood And The Prick",
+    "name": "Lilly Wood and the Prick",
     "tier": 3,
     "via": "artiste",
     "link": "https://www.deezer.com/artist/307677"
@@ -10212,7 +11024,7 @@
   "tier": 3,
   "matched": [
    {
-    "name": "Lilly Wood And The Prick",
+    "name": "Lilly Wood and the Prick",
     "tier": 3,
     "via": "artiste",
     "link": "https://www.deezer.com/artist/307677"
@@ -10340,7 +11152,7 @@
    "close_to": [
     "Ibeyi",
     "The Dø",
-    "FM LAETI",
+    "Fm Laeti",
     "Benjamin Clementine"
    ]
   }
@@ -10775,7 +11587,7 @@
    "close_to": [
     "Ibeyi",
     "The Dø",
-    "FM LAETI",
+    "Fm Laeti",
     "Benjamin Clementine"
    ]
   }
@@ -11327,7 +12139,7 @@
    "close_to": [
     "Puggy",
     "Owlle",
-    "Lilly Wood And The Prick",
+    "Lilly Wood and the Prick",
     "Elephanz"
    ]
   }
@@ -11416,8 +12228,8 @@
    "fans": 43021,
    "close_to": [
     "The Black Keys",
-    "Queens of the Stone Age",
-    "Band Of Skulls"
+    "Queens Of The Stone Age",
+    "Band of Skulls"
    ]
   }
  },
@@ -11537,7 +12349,7 @@
    "close_to": [
     "Ibeyi",
     "The Dø",
-    "FM LAETI",
+    "Fm Laeti",
     "Benjamin Clementine"
    ]
   }
@@ -12411,7 +13223,7 @@
     "Mathame",
     "Kevin de Vries",
     "Innellea",
-    "Artbat"
+    "Agents Of Time"
    ]
   }
  },
@@ -12564,7 +13376,7 @@
   "tier": 3,
   "matched": [
    {
-    "name": "Rémi",
+    "name": "Remi",
     "tier": 3,
     "via": "titre",
     "link": "https://www.deezer.com/artist/259994"
@@ -13701,6 +14513,45 @@
    "close_to": [
     "GIMS",
     "Franglish"
+   ]
+  }
+ },
+ {
+  "id": "fa4d99e68950",
+  "title": "Bach / Gershwin / Piazzolla",
+  "date": "2026-12-19",
+  "time": "20:00",
+  "venue": "Maison de la Radio et de la Musique",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Chanson",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/maison-de-radio-france-2674/bach-gershwin-piazzolla-3316489.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.83,
+   "artist": "Gershwin",
+   "link": "https://www.deezer.com/artist/1152837",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/19d84d3527318376db27244f503069c3/250x250-000000-80-0-0.jpg",
+   "fans": 3324,
+   "close_to": [
+    "Wynton Marsalis",
+    "Miles Davis",
+    "Chet Baker",
+    "Oscar Peterson Trio"
    ]
   }
  },
@@ -14901,6 +15752,45 @@
   ]
  },
  {
+  "id": "bf14a6bf461c",
+  "title": "Gershwin : Porgy and Bess",
+  "date": "2027-01-24",
+  "time": "16:30",
+  "venue": "Auditorium Patrick Devedjian - La Seine musicale",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Opéra (en version de concert), Classique",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/auditorium-6495/gershwin-porgy-and-bess-3304942.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.83,
+   "artist": "Gershwin",
+   "link": "https://www.deezer.com/artist/1152837",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/19d84d3527318376db27244f503069c3/250x250-000000-80-0-0.jpg",
+   "fans": 3324,
+   "close_to": [
+    "Wynton Marsalis",
+    "Miles Davis",
+    "Chet Baker",
+    "Oscar Peterson Trio"
+   ]
+  }
+ },
+ {
   "id": "1a6c90d38233",
   "title": "ISAIAH RASHAD",
   "date": "2027-01-24",
@@ -15386,7 +16276,7 @@
    "close_to": [
     "Royel Otis",
     "Master Peace",
-    "Young the Giant",
+    "Young The Giant",
     "Saint Motel"
    ]
   }
@@ -15464,8 +16354,47 @@
    "close_to": [
     "Ibeyi",
     "The Dø",
-    "FM LAETI",
+    "Fm Laeti",
     "Benjamin Clementine"
+   ]
+  }
+ },
+ {
+  "id": "7b232bfa170e",
+  "title": "Gershwin : Porgy and Bess",
+  "date": "2027-01-31",
+  "time": "16:30",
+  "venue": "Auditorium Patrick Devedjian - La Seine musicale",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Opéra (en version de concert), Classique",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/auditorium-6495/gershwin-porgy-and-bess-3304943.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.83,
+   "artist": "Gershwin",
+   "link": "https://www.deezer.com/artist/1152837",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/19d84d3527318376db27244f503069c3/250x250-000000-80-0-0.jpg",
+   "fans": 3324,
+   "close_to": [
+    "Wynton Marsalis",
+    "Miles Davis",
+    "Chet Baker",
+    "Oscar Peterson Trio"
    ]
   }
  },
@@ -16655,7 +17584,7 @@
    "fans": 26913,
    "close_to": [
     "The Good, The Bad & The Queen",
-    "TV on the Radio",
+    "TV On The Radio",
     "Arcade Fire"
    ]
   }
@@ -16748,7 +17677,7 @@
     "ZZ Top",
     "AC/DC",
     "Led Zeppelin",
-    "KISS"
+    "Kiss"
    ]
   }
  },
@@ -17042,7 +17971,7 @@
    "picture": "https://cdn-images.dzcdn.net/images/artist/200982268dcabae98644b1601a90a948/250x250-000000-80-0-0.jpg",
    "fans": 20634,
    "close_to": [
-    "Empire of the Sun",
+    "Empire Of The Sun",
     "Dom Dolla"
    ]
   }
@@ -20139,7 +21068,7 @@
   "tier": 3,
   "matched": [
    {
-    "name": "KALEO",
+    "name": "Kaleo",
     "tier": 3,
     "via": "artiste",
     "link": "https://www.deezer.com/artist/1138351"
@@ -20513,7 +21442,7 @@
    "fans": 771925,
    "close_to": [
     "New Order",
-    "Tears for Fears",
+    "Tears For Fears",
     "Soft Cell",
     "Genesis"
    ]
@@ -21023,7 +21952,7 @@
   "description": null,
   "kind": "known",
   "first_seen": "2026-10-07",
-  "badge": null,
+  "badge": "liste",
   "tier": 3,
   "matched": [
    {
@@ -21334,7 +22263,7 @@
    "close_to": [
     "Videoclub",
     "Clio",
-    "BLOWSOM"
+    "Blowsom"
    ]
   }
  },
@@ -21662,7 +22591,7 @@
    "close_to": [
     "Ibeyi",
     "The Dø",
-    "FM LAETI",
+    "Fm Laeti",
     "Benjamin Clementine"
    ]
   }
@@ -22041,7 +22970,7 @@
    "close_to": [
     "Voyou",
     "Requin Chagrin",
-    "Ezéchiel Pailhès"
+    "Ezechiel Pailhes"
    ]
   }
  },
@@ -22682,7 +23611,7 @@
    "close_to": [
     "Alabama Shakes",
     "Woods",
-    "Dope Lemon"
+    "DOPE LEMON"
    ]
   }
  },
@@ -22898,7 +23827,7 @@
    "close_to": [
     "Christine and the Queens",
     "Asaf Avidan",
-    "Lilly Wood And The Prick",
+    "Lilly Wood and the Prick",
     "Kimberose"
    ]
   }
@@ -23191,7 +24120,7 @@
    "picture": "https://cdn-images.dzcdn.net/images/artist/5b0aab23f8d2856951a92f3a9faf70e3/250x250-000000-80-0-0.jpg",
    "fans": 3415709,
    "close_to": [
-    "J Balvin",
+    "J. Balvin",
     "Nicky Jam"
    ]
   }
@@ -23313,7 +24242,7 @@
    "fans": 42977,
    "close_to": [
     "The Dø",
-    "Ezéchiel Pailhès"
+    "Ezechiel Pailhes"
    ]
   }
  },

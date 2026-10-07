@@ -59,7 +59,7 @@
   "name": "La Maroquinerie",
   "total": 109,
   "known": 3,
-  "discovery": 17,
+  "discovery": 19,
   "favorite": false
  },
  {
@@ -175,6 +175,20 @@
   "favorite": false
  },
  {
+  "name": "Grande salle Pierre Boulez - Philharmonie de Paris",
+  "total": 162,
+  "known": 2,
+  "discovery": 2,
+  "favorite": false
+ },
+ {
+  "name": "PopUp!",
+  "total": 11,
+  "known": 0,
+  "discovery": 4,
+  "favorite": false
+ },
+ {
   "name": "LES FOLIES BERGERE",
   "total": 9,
   "known": 1,
@@ -193,13 +207,6 @@
   "total": 4,
   "known": 0,
   "discovery": 4,
-  "favorite": false
- },
- {
-  "name": "Grande salle Pierre Boulez - Philharmonie de Paris",
-  "total": 162,
-  "known": 2,
-  "discovery": 1,
   "favorite": false
  },
  {
@@ -224,6 +231,13 @@
   "favorite": false
  },
  {
+  "name": "Accor Arena",
+  "total": 13,
+  "known": 2,
+  "discovery": 1,
+  "favorite": false
+ },
+ {
   "name": "SEINE MUSICALE - AUDITORIUM P.DEVEDJIAN",
   "total": 13,
   "known": 0,
@@ -238,8 +252,29 @@
   "favorite": false
  },
  {
+  "name": "Salle Gaveau",
+  "total": 66,
+  "known": 1,
+  "discovery": 1,
+  "favorite": false
+ },
+ {
+  "name": "Auditorium Patrick Devedjian - La Seine musicale",
+  "total": 58,
+  "known": 0,
+  "discovery": 2,
+  "favorite": false
+ },
+ {
   "name": "LE BACKSTAGE BY THE MILL",
   "total": 36,
+  "known": 0,
+  "discovery": 2,
+  "favorite": false
+ },
+ {
+  "name": "Duc des Lombards",
+  "total": 22,
   "known": 0,
   "discovery": 2,
   "favorite": false
@@ -270,13 +305,6 @@
   "total": 14,
   "known": 0,
   "discovery": 2,
-  "favorite": false
- },
- {
-  "name": "Accor Arena",
-  "total": 13,
-  "known": 2,
-  "discovery": 0,
   "favorite": false
  },
  {
@@ -350,15 +378,29 @@
   "favorite": false
  },
  {
-  "name": "Salle Gaveau",
-  "total": 66,
-  "known": 1,
-  "discovery": 0,
+  "name": "Maison de la Radio et de la Musique",
+  "total": 129,
+  "known": 0,
+  "discovery": 1,
+  "favorite": false
+ },
+ {
+  "name": "Théâtre des Champs-Élysées",
+  "total": 100,
+  "known": 0,
+  "discovery": 1,
   "favorite": false
  },
  {
   "name": "Sunside",
   "total": 38,
+  "known": 0,
+  "discovery": 1,
+  "favorite": false
+ },
+ {
+  "name": "38 RIV - Jazz Club & Bar",
+  "total": 32,
   "known": 0,
   "discovery": 1,
   "favorite": false
@@ -399,10 +441,17 @@
   "favorite": false
  },
  {
-  "name": "Duc des Lombards",
+  "name": "Café de la Danse",
   "total": 22,
   "known": 0,
   "discovery": 1,
+  "favorite": false
+ },
+ {
+  "name": "Salle Pleyel",
+  "total": 19,
+  "known": 1,
+  "discovery": 0,
   "favorite": false
  },
  {
@@ -420,14 +469,28 @@
   "favorite": false
  },
  {
-  "name": "L'Européen",
-  "total": 11,
+  "name": "Le Bal Blomet",
+  "total": 14,
   "known": 0,
   "discovery": 1,
   "favorite": false
  },
  {
-  "name": "PopUp!",
+  "name": "Péniche Antipode",
+  "total": 14,
+  "known": 0,
+  "discovery": 1,
+  "favorite": false
+ },
+ {
+  "name": "Supersonic Records",
+  "total": 14,
+  "known": 0,
+  "discovery": 1,
+  "favorite": false
+ },
+ {
+  "name": "L'Européen",
   "total": 11,
   "known": 0,
   "discovery": 1,
@@ -455,6 +518,13 @@
   "favorite": false
  },
  {
+  "name": "Badaboum",
+  "total": 6,
+  "known": 0,
+  "discovery": 1,
+  "favorite": false
+ },
+ {
   "name": "Espace Michel-Simon",
   "total": 6,
   "known": 0,
@@ -476,8 +546,29 @@
   "favorite": false
  },
  {
+  "name": "La Ferme du Buisson",
+  "total": 5,
+  "known": 0,
+  "discovery": 1,
+  "favorite": false
+ },
+ {
+  "name": "Les Étoiles",
+  "total": 5,
+  "known": 0,
+  "discovery": 1,
+  "favorite": false
+ },
+ {
   "name": "Théâtre 71",
   "total": 5,
+  "known": 0,
+  "discovery": 1,
+  "favorite": false
+ },
+ {
+  "name": "Centre Paris Anim' Jacques Bravo",
+  "total": 4,
   "known": 0,
   "discovery": 1,
   "favorite": false
@@ -525,6 +616,13 @@
   "favorite": false
  },
  {
+  "name": "Institut du monde arabe (IMA)",
+  "total": 2,
+  "known": 0,
+  "discovery": 1,
+  "favorite": false
+ },
+ {
   "name": "L'Onde",
   "total": 2,
   "known": 1,
@@ -567,20 +665,6 @@
   "favorite": false
  },
  {
-  "name": "Maison de la Radio et de la Musique",
-  "total": 129,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Théâtre des Champs-Élysées",
-  "total": 100,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "Église Saint-Julien-le-Pauvre",
   "total": 97,
   "known": 0,
@@ -604,13 +688,6 @@
  {
   "name": "38Riv Jazz Club",
   "total": 68,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Auditorium Patrick Devedjian - La Seine musicale",
-  "total": 58,
   "known": 0,
   "discovery": 0,
   "favorite": false
@@ -658,13 +735,6 @@
   "favorite": false
  },
  {
-  "name": "38 RIV - Jazz Club & Bar",
-  "total": 32,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "Sainte-Chapelle - Palais de la Cité",
   "total": 32,
   "known": 0,
@@ -707,13 +777,6 @@
   "favorite": false
  },
  {
-  "name": "Café de la Danse",
-  "total": 22,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "PETIT BAIN",
   "total": 21,
   "known": 0,
@@ -736,13 +799,6 @@
  },
  {
   "name": "Palais des Congrès de Paris",
-  "total": 19,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Salle Pleyel",
   "total": 19,
   "known": 0,
   "discovery": 0,
@@ -784,13 +840,6 @@
   "favorite": false
  },
  {
-  "name": "Le Bal Blomet",
-  "total": 14,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "Opéra royal - Château de Versailles",
   "total": 14,
   "known": 0,
@@ -798,21 +847,7 @@
   "favorite": false
  },
  {
-  "name": "Péniche Antipode",
-  "total": 14,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "Studio de l'Ermitage",
-  "total": 14,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Supersonic Records",
   "total": 14,
   "known": 0,
   "discovery": 0,
@@ -1148,13 +1183,6 @@
   "favorite": false
  },
  {
-  "name": "Badaboum",
-  "total": 6,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "Centre Mandapa",
   "total": 6,
   "known": 0,
@@ -1274,13 +1302,6 @@
   "favorite": false
  },
  {
-  "name": "La Ferme du Buisson",
-  "total": 5,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "La Scala Paris",
   "total": 5,
   "known": 0,
@@ -1303,13 +1324,6 @@
  },
  {
   "name": "Les Disquaires",
-  "total": 5,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Les Étoiles",
   "total": 5,
   "known": 0,
   "discovery": 0,
@@ -1353,13 +1367,6 @@
  {
   "name": "Église Saint-Éloi",
   "total": 5,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Centre Paris Anim' Jacques Bravo",
-  "total": 4,
   "known": 0,
   "discovery": 0,
   "favorite": false
@@ -1863,13 +1870,6 @@
  },
  {
   "name": "Gymnase du Collège Buffon",
-  "total": 2,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Institut du monde arabe (IMA)",
   "total": 2,
   "known": 0,
   "discovery": 0,

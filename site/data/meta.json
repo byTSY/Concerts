@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-07T16:20+00:00",
+ "generated_at": "2026-10-07T17:02+00:00",
  "sources": {
   "Ticketmaster": "1665 événements",
   "Bandsintown": "ignorée (identifiant absent)",
@@ -11,10 +11,10 @@
   "artists": 2958,
   "new_artists": 2960,
   "concerts": 4669,
-  "known": 187,
-  "discovery": 382,
+  "known": 188,
+  "discovery": 405,
   "new_announcements": 26,
-  "new_in_list": 0
+  "new_in_list": 25
  },
  "initial": false
 }
