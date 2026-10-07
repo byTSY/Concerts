@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Concerts à Paris</title>
+  <meta name="apple-mobile-web-app-title" content="Concerts">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎟️</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +15,12 @@
   <header class="masthead">
     <div class="masthead-top">
       <h1>Concerts à Paris</h1>
-      <p class="updated" id="updated"></p>
+      <p class="updated"><span id="updated"></span>
+        <button type="button" class="link-btn refresh-btn" id="refresh">Actualiser</button></p>
+      <div class="session-alert" id="session-alert" hidden>
+        Votre connexion a expiré ou le réseau est indisponible : les données n'ont pas pu être chargées.
+        <button type="button" class="btn" id="relogin">Se reconnecter</button>
+      </div>
     </div>
     <section class="fresh" aria-labelledby="fresh-title">
       <h2 id="fresh-title" class="fresh-title"></h2>

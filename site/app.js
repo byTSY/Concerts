@@ -4,7 +4,7 @@ const state = {
   events: [], artists: [], venues: [], meta: {},
   kinds: new Set(["known", "discovery"]), all: false, favOnly: false, style: "", venue: null, q: "",
   view: "calendar", calendar: null,
-  hidden: new Set(), levels: new Map(), profile: new Map(), apiError: null,
+  hidden: new Set(), levels: new Map(), profile: new Map(), apiError: null, loadFailed: false,
   byArtistSort: (() => { try { return localStorage.getItem("byArtistSort") || "date"; } catch { return "date"; } })(),
 };
 
@@ -20,11 +20,34 @@ const normName = (s) => String(s ?? "").replace(/['’‘`´]/g, " ").normalize(
   .toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, " ").replace(/\s+/g, " ").trim().replace(/^the /, "");
 const isHidden = (name) => state.hidden.has(normName(name));
 
+// Données publiées. Une connexion Cloudflare Access expirée renvoie vers la page de connexion :
+// la requête échoue ou est redirigée, on le signale au lieu d'afficher une page vide.
 async function loadJSON(name, fallback) {
   try {
     const r = await fetch(`data/${name}.json`, { cache: "no-store" });
-    return r.ok ? await r.json() : fallback;
-  } catch { return fallback; }
+    if (r.redirected || !r.ok) throw new Error(`HTTP ${r.status}`);
+    return await r.json();
+  } catch {
+    state.loadFailed = true;
+    return fallback;
+  }
+}
+
+// Retour sur l'application (raccourci d'écran d'accueil, onglet resté ouvert) : si de nouvelles
+// données ont été publiées depuis l'ouverture, on recharge la page ; sinon on resynchronise les préférences.
+async function checkForUpdate() {
+  try {
+    const r = await fetch("data/meta.json", { cache: "no-store" });
+    if (r.redirected || !r.ok) throw new Error();
+    const meta = await r.json();
+    if (meta.generated_at && meta.generated_at !== state.meta.generated_at) { location.reload(); return; }
+    await loadPrefs();
+    applyPrefs();
+    renderMasthead();
+    render();
+  } catch {
+    $("#session-alert").hidden = false;
+  }
 }
 
 function headline(ev) {
@@ -228,7 +251,7 @@ function renderMasthead() {
   const m = state.meta;
   if (m.generated_at) {
     const d = new Date(m.generated_at);
-    $("#updated").textContent = `Mis à jour le ${fmt({ weekday: "long", day: "numeric", month: "long" }).format(d)}, ${m.counts?.artists ?? 0} artistes suivis`;
+    $("#updated").textContent = `Mis à jour le ${fmt({ weekday: "long", day: "numeric", month: "long" }).format(d)} à ${fmt({ hour: "2-digit", minute: "2-digit" }).format(d)}, ${m.counts?.artists ?? 0} artistes suivis`;
   }
   // Bandeau : nouveautés de votre liste (vos artistes et découvertes) uniquement
   const fresh = state.events.filter((e) => e.badge && e.kind !== "other");
@@ -567,6 +590,10 @@ function bind() {
     if (sel) setLevel(sel.dataset.level, sel.value ? Number(sel.value) : null);
   });
   $("#fav-only").addEventListener("change", (e) => { state.favOnly = e.target.checked; render(); });
+  $("#refresh").addEventListener("click", () => location.reload());
+  $("#relogin").addEventListener("click", () => location.reload());
+  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") checkForUpdate(); });
+  window.addEventListener("pageshow", (e) => { if (e.persisted) checkForUpdate(); });  // page restaurée depuis le cache (iOS)
   $("#style-filter").addEventListener("change", (e) => { state.style = e.target.value; render(); });
   let t;
   $("#search").addEventListener("input", (e) => { clearTimeout(t); t = setTimeout(() => { state.q = e.target.value; render(); }, 150); });
@@ -600,5 +627,6 @@ function bind() {
   bind();
   renderMasthead();
   switchView("calendar");
-  if (!state.meta.generated_at) $("#calendar").insertAdjacentHTML("beforebegin", emptyMessage());
+  if (state.loadFailed) $("#session-alert").hidden = false;
+  else if (!state.meta.generated_at) $("#calendar").insertAdjacentHTML("beforebegin", emptyMessage());
 })();

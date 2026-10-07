@@ -279,3 +279,10 @@ dialog::backdrop { background: rgba(20, 24, 56, .55); }
 @keyframes cal-in-next { from { opacity: .3; transform: translateX(24px); } to { opacity: 1; transform: none; } }
 @keyframes cal-in-prev { from { opacity: .3; transform: translateX(-24px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .cal-slide-next, .cal-slide-prev { animation: none; } }
+
+/* Actualisation et connexion expirée */
+.refresh-btn { display: inline; margin: 0 0 0 8px; font-size: .9rem; }
+.session-alert { margin: 12px 0 0; padding: 12px 14px; border-radius: 8px; background: var(--yellow); color: #1e2350;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: .92rem; }
+.session-alert[hidden] { display: none; }
+.session-alert .btn { cursor: pointer; border: 0; font: inherit; font-weight: 600; }
