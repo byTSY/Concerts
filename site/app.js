@@ -4,7 +4,7 @@ const state = {
   events: [], artists: [], venues: [], meta: {},
   kinds: new Set(["known", "discovery"]), all: false, favOnly: false, style: "", venue: null, q: "",
   view: "calendar", calendar: null,
-  hidden: new Set(), levels: new Map(), profile: new Map(), apiError: null, loadFailed: false,
+  hidden: new Set(), levels: new Map(), starred: new Map(), profile: new Map(), apiError: null, loadFailed: false,
   byArtistSort: (() => { try { return localStorage.getItem("byArtistSort") || "date"; } catch { return "date"; } })(),
 };
 
@@ -119,6 +119,60 @@ function applyPrefs() {
 function setPrefs(data) {
   state.hidden = new Set((data.hidden || []).map(normName));
   state.levels = new Map(Object.entries(data.levels || {}).map(([n, t]) => [normName(n), Number(t)]));
+  state.starred = new Map(Object.entries(data.starred || {}));
+}
+
+/* Concerts mis de côté (« Intéressés ») ------------------------------------------ */
+
+const isStarred = (id) => state.starred.has(id);
+const starLabel = (ev) => `${ev.date}${ev.time ? " " + ev.time : ""} · ${headline(ev)} · ${ev.venue}`;
+
+function starButton(ev, long = false) {
+  const on = isStarred(ev.id);
+  const text = long ? (on ? "★ Dans mes concerts intéressés" : "☆ Mettre de côté") : (on ? "★" : "☆");
+  const title = on ? "Retirer de mes concerts intéressés" : "Mettre de côté dans mes concerts intéressés";
+  return `<button type="button" class="${long ? "btn btn-star" : "star-toggle"}${on ? " on" : ""}" data-star="${esc(ev.id)}" aria-pressed="${on}" title="${title}" aria-label="${title}">${text}</button>`;
+}
+
+// Mise à jour immédiate de l'affichage, puis enregistrement ; retour en arrière si l'enregistrement échoue
+async function toggleStar(id) {
+  const ev = state.events.find((e) => e.id === id);
+  const label = ev ? starLabel(ev) : state.starred.get(id) || id;
+  const star = !isStarred(id);
+  star ? state.starred.set(id, label) : state.starred.delete(id);
+  refreshStars(id);
+  try {
+    const r = await fetch("api/prefs", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(star ? { action: "star", id, label } : { action: "unstar", id }),
+    });
+    const data = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(data.error || `HTTP ${r.status}`);
+    setPrefs(data);
+    state.apiError = null;
+    toast(star ? "Ajouté à vos concerts intéressés" : "Retiré de vos concerts intéressés");
+  } catch (e) {
+    star ? state.starred.delete(id) : state.starred.set(id, label);
+    alert(`L'enregistrement a échoué : ${e.message}.\n\nCette fonction ne marche que sur le site publié.`);
+  }
+  refreshStars(id);
+}
+
+function refreshStars(id) {
+  const ev = state.events.find((e) => e.id === id);
+  if (ev && $("#ticket").open) {
+    const btn = $("#ticket-body [data-star]");
+    if (btn) btn.outerHTML = starButton(ev, true);
+  }
+  updateStarCount();
+  if (state.view !== "calendar") render();
+  else if (state.calendar) renderCalendar();
+}
+
+function updateStarCount() {
+  const n = state.starred.size;
+  $("#star-count").textContent = n ? ` (${n})` : "";
 }
 
 async function loadPrefs() {
@@ -289,7 +343,7 @@ function renderMasthead() {
 function renderCalendar() {
   const events = filtered().map((ev) => ({
     id: ev.id,
-    title: `${headline(ev)} (${ev.venue})`,
+    title: `${isStarred(ev.id) ? "★ " : ""}${headline(ev)} (${ev.venue})`,
     start: ev.time ? `${ev.date}T${ev.time}` : ev.date,
     allDay: !ev.time,
     classNames: [eventClass(ev)],
@@ -371,7 +425,7 @@ function renderList() {
         <td><span class="cell-name">${esc(headline(ev))}</span>${sub ? `<span class="cell-sub">${esc(sub)}</span>` : ""}</td>
         <td>${esc(ev.venue)}${ev.venue_favorite ? ` <span class="tag tag-fav">Favorite</span>` : ""}</td>
         <td class="hide-mobile">${esc(ev.price || "")}</td>
-        <td>${[kindTag(ev), badgeTag(ev)].filter(Boolean).join(" ")}</td>
+        <td>${starButton(ev)} ${[kindTag(ev), badgeTag(ev)].filter(Boolean).join(" ")}</td>
       </tr>`;
     }
     html += `</tbody></table></div></div>`;
@@ -438,6 +492,43 @@ function renderByArtist() {
     </tr>`;
   }
   $("#byartist").innerHTML = html + `</tbody></table></div>`;
+}
+
+/* Intéressés ------------------------------------------------------------------- */
+
+function renderStarred() {
+  const items = [...state.starred].map(([id, label]) => ({ id, label, ev: state.events.find((e) => e.id === id) }));
+  const upcoming = items.filter((i) => i.ev)
+    .sort((a, b) => a.ev.date.localeCompare(b.ev.date) || (a.ev.time || "").localeCompare(b.ev.time || ""));
+  const gone = items.filter((i) => !i.ev);
+  if (!items.length) {
+    $("#starred").innerHTML = `<div class="empty"><strong>Aucun concert mis de côté.</strong><br>
+      Ouvrez un concert et cliquez sur « ☆ Mettre de côté », ou sur l'étoile dans la liste : vous le retrouverez ici pour acheter vos places.</div>`;
+    return;
+  }
+  let html = `<p class="count-line">${upcoming.length} concert${upcoming.length > 1 ? "s" : ""} mis de côté, du plus proche au plus lointain.</p>`;
+  if (upcoming.length) {
+    html += `<div class="table-wrap"><table class="events"><thead><tr><th>Date</th><th>Concert</th><th>Salle</th><th class="hide-mobile">Prix</th><th>Billets</th><th></th></tr></thead><tbody>`;
+    for (const { ev } of upcoming) {
+      const sale = onSaleInfo(ev);
+      const status = statusLabel(ev.status);
+      const links = (ev.links || []).map((l) => `<a class="buy-link" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.source)}</a>`).join(" ");
+      html += `<tr class="clickable" data-id="${ev.id}" tabindex="0">
+        <td class="cell-date">${esc(fmtShort.format(parseDay(ev.date)))}${ev.time ? `<span class="cell-sub">${esc(ev.time)}</span>` : ""}</td>
+        <td><span class="cell-name">${esc(headline(ev))}</span>${headline(ev) !== ev.title ? `<span class="cell-sub">${esc(ev.title)}</span>` : ""}</td>
+        <td>${esc(ev.venue)}</td>
+        <td class="hide-mobile">${esc(ev.price || "")}</td>
+        <td>${status ? `<span class="cell-sub"><strong>${esc(status)}</strong></span>` : ""}${sale ? `<span class="stub-sale">${esc(sale.replace("Mise en vente le ", "En vente le "))}</span>` : ""}<span class="buy-links">${links}</span></td>
+        <td>${starButton(ev)}</td>
+      </tr>`;
+    }
+    html += `</tbody></table></div>`;
+  }
+  if (gone.length) {
+    html += `<h2 class="month-title">Passés ou retirés des billetteries</h2><ul class="gone-list">` +
+      gone.map((i) => `<li>${esc(i.label)} <button type="button" class="link-btn" data-star="${esc(i.id)}">Retirer</button></li>`).join("") + `</ul>`;
+  }
+  $("#starred").innerHTML = html;
 }
 
 /* Mes artistes --------------------------------------------------------------- */
@@ -542,7 +633,7 @@ function openTicket(id) {
     ${ev.price || ev.genre ? `<div class="ticket-section"><h3>Informations</h3><p>${[ev.price ? `Prix : ${esc(ev.price)}` : "", ev.genre ? `Genre : ${esc(ev.genre)}` : ""].filter(Boolean).join("<br>")}</p></div>` : ""}
     ${ev.description ? `<div class="ticket-section"><p>${esc(ev.description)}</p></div>` : ""}
     ${ev.image ? `<img class="ticket-image" src="${esc(ev.image)}" alt="" loading="lazy">` : ""}
-    <div class="ticket-links">${links}${listen}</div>
+    <div class="ticket-links">${starButton(ev, true)}${links}${listen}</div>
     ${hideButtons ? `<div class="ticket-hide">${hideButtons}</div>` : ""}`;
   dlg.showModal();
 }
@@ -561,6 +652,7 @@ function render() {
   if (state.view === "calendar") renderCalendar();
   if (state.view === "list") renderList();
   if (state.view === "byartist") renderByArtist();
+  if (state.view === "starred") renderStarred();
   if (state.view === "artists") renderArtists();
   if (state.view === "venues") renderVenues();
 }
@@ -609,6 +701,8 @@ function bind() {
   $("#search").addEventListener("input", (e) => { clearTimeout(t); t = setTimeout(() => { state.q = e.target.value; render(); }, 150); });
 
   document.body.addEventListener("click", (e) => {
+    const star = e.target.closest("[data-star]");
+    if (star) { e.stopPropagation(); toggleStar(star.dataset.star); return; }
     const hide = e.target.closest("[data-hide]");
     if (hide) { e.stopPropagation(); setHidden(hide.dataset.hide, hide.dataset.hideAction !== "unhide"); return; }
     const row = e.target.closest("[data-id]");
@@ -634,6 +728,7 @@ function bind() {
   await loadPrefs();
   applyPrefs();
   fillStyles();
+  updateStarCount();
   bind();
   renderMasthead();
   switchView("calendar");

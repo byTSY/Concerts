@@ -1,9 +1,11 @@
-// Préférences sur vos artistes : lecture et modification de config/artist_prefs.yaml dans le dépôt GitHub.
+// Vos préférences : lecture et modification de config/artist_prefs.yaml dans le dépôt GitHub.
 //
-// GET  /api/prefs                                   -> { hidden: ["Russ", ...], levels: { "Russ": 3, ... } }
-// POST /api/prefs { name, action: "hide" }          -> masque l'artiste
-// POST /api/prefs { name, action: "unhide" }        -> ne le masque plus
-// POST /api/prefs { name, action: "level", level }  -> impose le niveau 1, 2 ou 3 ; level null : niveau calculé
+// GET  /api/prefs  -> { hidden: ["Russ", ...], levels: { "Russ": 3, ... }, starred: { "<id>": "libellé", ... } }
+// POST /api/prefs { name, action: "hide" }           -> masque l'artiste
+// POST /api/prefs { name, action: "unhide" }         -> ne le masque plus
+// POST /api/prefs { name, action: "level", level }   -> impose le niveau 1, 2 ou 3 ; level null : niveau calculé
+// POST /api/prefs { id, label, action: "star" }      -> met un concert de côté (« Intéressés »)
+// POST /api/prefs { id, action: "unstar" }           -> le retire
 // Chaque POST renvoie les préférences à jour.
 //
 // Variables d'environnement du projet Cloudflare Pages :
@@ -42,15 +44,18 @@ function unquote(s) {
 }
 
 // Lecture du sous-ensemble YAML écrit par serialize() (et tolérante aux saisies à la main) :
-// commentaires d'en-tête, « hidden: » suivi de « - nom », « levels: » suivi de « nom: niveau »
+// commentaires d'en-tête, « hidden: » suivi de « - nom », « levels: » suivi de « nom: niveau »,
+// « starred: » suivi de « identifiant: libellé »
+const SECTIONS = /^(hidden|levels|starred)\s*:\s*(.*)$/;
+
 export function parse(text) {
   const lines = String(text || "").split(/\r?\n/);
-  const first = lines.findIndex((l) => /^(hidden|levels)\s*:/.test(l));
+  const first = lines.findIndex((l) => SECTIONS.test(l));
   const header = (first < 0 ? lines : lines.slice(0, first)).join("\n").replace(/\s+$/, "");
-  const hidden = [], levels = {};
+  const hidden = [], levels = {}, starred = {};
   let section = null;
   for (const l of first < 0 ? [] : lines.slice(first)) {
-    const top = l.match(/^(hidden|levels)\s*:\s*(.*)$/);
+    const top = l.match(SECTIONS);
     if (top) {
       section = top[1];
       const inline = top[2].replace(/\s+#.*$/, "").trim();
@@ -66,36 +71,56 @@ export function parse(text) {
     } else if (section === "levels") {
       const m = l.match(/^\s+("(?:[^"\\]|\\.)*"|'[^']*'|[^:#]+?)\s*:\s*([123])\s*(#.*)?$/);
       if (m && unquote(m[1])) levels[unquote(m[1])] = Number(m[2]);
+    } else if (section === "starred") {
+      const m = l.match(/^\s+("[^"]*"|[a-z0-9]+)\s*:\s*(.*?)\s*$/);
+      if (m && unquote(m[1])) starred[unquote(m[1])] = unquote(m[2] || "");
     }
   }
-  return { header, hidden, levels };
+  return { header, hidden, levels, starred };
 }
 
-export function serialize({ header, hidden, levels }) {
-  // Chaînes entre guillemets doubles (JSON), valides en YAML quel que soit le nom
+export function serialize({ header, hidden, levels, starred = {} }) {
+  // Chaînes entre guillemets doubles (JSON), valides en YAML quel que soit le texte
   const q = (s) => JSON.stringify(s);
-  const names = Object.keys(levels);
+  const map = (name, obj, fmt) => {
+    const keys = Object.keys(obj);
+    return keys.length ? `${name}:\n` + keys.map((k) => `  ${q(k)}: ${fmt(obj[k])}`).join("\n") : `${name}: {}`;
+  };
   const parts = [
     hidden.length ? "hidden:\n" + hidden.map((n) => `  - ${q(n)}`).join("\n") : "hidden: []",
-    names.length ? "levels:\n" + names.map((n) => `  ${q(n)}: ${levels[n]}`).join("\n") : "levels: {}",
+    map("levels", levels, (v) => v),
+    map("starred", starred, q),
   ];
   return (header ? header + "\n\n" : "") + parts.join("\n\n") + "\n";
 }
 
 // Applique une action ; renvoie null si rien ne change
-export function apply(prefs, name, action, level) {
+export function apply(prefs, { action, name = "", level = null, id = "", label = "" }) {
+  const next = { header: prefs.header, hidden: [...prefs.hidden], levels: { ...prefs.levels }, starred: { ...prefs.starred } };
+  if (action === "star") {
+    if (id in next.starred) return null;  // déjà mis de côté
+    next.starred[id] = label;
+    return next;
+  }
+  if (action === "unstar") {
+    if (!(id in next.starred)) return null;
+    delete next.starred[id];
+    return next;
+  }
   const key = norm(name);
   // Déjà dans l'état demandé : on n'écrit rien (et on garde la graphie déjà enregistrée)
   const knownHidden = prefs.hidden.find((n) => norm(n) === key);
   const knownLevel = Object.entries(prefs.levels).find(([n]) => norm(n) === key);
   if (action === "hide" && knownHidden) return null;
   if (action === "level" && level && knownLevel && knownLevel[1] === level) return null;
-  const hidden = prefs.hidden.filter((n) => norm(n) !== key);
-  const levels = Object.fromEntries(Object.entries(prefs.levels).filter(([n]) => norm(n) !== key));
-  if (action === "hide") hidden.push(name);
-  if (action === "level" && level) levels[knownLevel ? knownLevel[0] : name] = level;
-  const next = { header: prefs.header, hidden: action === "hide" || action === "unhide" ? hidden : prefs.hidden,
-                 levels: action === "level" ? levels : prefs.levels };
+  if (action === "hide" || action === "unhide") {
+    next.hidden = prefs.hidden.filter((n) => norm(n) !== key);
+    if (action === "hide") next.hidden.push(name);
+  }
+  if (action === "level") {
+    next.levels = Object.fromEntries(Object.entries(prefs.levels).filter(([n]) => norm(n) !== key));
+    if (level) next.levels[knownLevel ? knownLevel[0] : name] = level;
+  }
   return serialize(next) === serialize(prefs) ? null : next;
 }
 
@@ -134,7 +159,7 @@ function github(env) {
   };
 }
 
-const view = ({ hidden, levels }) => ({ hidden, levels });
+const view = ({ hidden, levels, starred }) => ({ hidden, levels, starred });
 
 export async function onRequestGet({ env }) {
   if (!env.GITHUB_TOKEN) return json({ error: "GITHUB_TOKEN non configuré dans Cloudflare" }, 503);
@@ -153,11 +178,19 @@ export async function onRequestPost({ request, env }) {
   }
   let payload;
   try { payload = await request.json(); } catch { return json({ error: "JSON invalide" }, 400); }
-  const name = String(payload?.name ?? "").trim().slice(0, 200);
-  const action = ["hide", "unhide", "level"].includes(payload?.action) ? payload.action : null;
-  const level = [1, 2, 3].includes(payload?.level) ? payload.level : null;
-  if (!name || !norm(name)) return json({ error: "nom d'artiste manquant" }, 400);
+  const action = ["hide", "unhide", "level", "star", "unstar"].includes(payload?.action) ? payload.action : null;
   if (!action) return json({ error: "action inconnue" }, 400);
+  const req = {
+    action,
+    name: String(payload?.name ?? "").trim().slice(0, 200),
+    level: [1, 2, 3].includes(payload?.level) ? payload.level : null,
+    id: String(payload?.id ?? "").trim(),
+    label: String(payload?.label ?? "").replace(/\s+/g, " ").trim().slice(0, 200),
+  };
+  const concert = action === "star" || action === "unstar";
+  if (concert && !/^[a-z0-9]{6,40}$/.test(req.id)) return json({ error: "identifiant de concert invalide" }, 400);
+  if (!concert && !norm(req.name)) return json({ error: "nom d'artiste manquant" }, 400);
+  const { name, level, id, label } = req;
 
   const gh = github(env);
   // Deux tentatives : si le fichier a changé entre la lecture et l'écriture (HTTP 409), on relit
@@ -165,10 +198,15 @@ export async function onRequestPost({ request, env }) {
     let current;
     try { current = await gh.read(); } catch (e) { return json({ error: e.message }, 502); }
     const prefs = parse(current.text);
-    const next = apply(prefs, name, action, level);
+    const next = apply(prefs, req);
     if (!next) return json({ ...view(prefs), changed: false });
-    const message = action === "hide" ? `Masquer ${name}` : action === "unhide" ? `Ne plus masquer ${name}`
-      : level ? `Niveau ${level} pour ${name}` : `Niveau calculé pour ${name}`;
+    const message = {
+      hide: `Masquer ${name}`,
+      unhide: `Ne plus masquer ${name}`,
+      level: level ? `Niveau ${level} pour ${name}` : `Niveau calculé pour ${name}`,
+      star: `Intéressé : ${label || id}`,
+      unstar: `Plus intéressé : ${prefs.starred[id] || id}`,
+    }[action];
     const r = await gh.write(serialize(next), current.sha, `${message} (depuis le site)`);
     if (r.ok) return json({ ...view(next), changed: true });
     if (r.status !== 409 && r.status !== 422) {

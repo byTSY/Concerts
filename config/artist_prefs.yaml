@@ -5,6 +5,8 @@
 # hidden : artistes masqués. Leurs concerts sortent de « Vos artistes » et des découvertes,
 #   et ils ne servent plus à calculer les découvertes. Ils restent dans « Tous les concerts ».
 # levels : niveau imposé (1, 2 ou 3) à la place du niveau calculé à partir de vos likes.
+# starred : concerts mis de côté (onglet ★ Intéressés), identifiant du concert et libellé
+#   lisible ; à gérer depuis le site plutôt qu'ici.
 #
 # Exemple :
 # hidden:

@@ -32,6 +32,7 @@
     <button role="tab" aria-selected="true" data-view="calendar">Calendrier</button>
     <button role="tab" aria-selected="false" data-view="list">Liste</button>
     <button role="tab" aria-selected="false" data-view="byartist">Par artiste</button>
+    <button role="tab" aria-selected="false" data-view="starred">★ Intéressés<span id="star-count"></span></button>
     <button role="tab" aria-selected="false" data-view="artists">Mes artistes</button>
     <button role="tab" aria-selected="false" data-view="venues">Salles</button>
   </nav>
@@ -68,6 +69,7 @@
       </div>
       <div id="byartist"></div>
     </section>
+    <section id="view-starred" class="view" hidden><div id="starred"></div></section>
     <section id="view-artists" class="view" hidden><div id="artists"></div></section>
     <section id="view-venues" class="view" hidden><div id="venues"></div></section>
   </main>

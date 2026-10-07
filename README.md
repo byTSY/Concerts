@@ -71,7 +71,8 @@ Access sur le projet (gratuit jusqu'à 50 utilisateurs).
 des billetteries couvertes, renseignez `agenda_url` avec sa page programme : si la page
 publie des données schema.org, ses concerts sont lus directement.
 
-`config/artist_prefs.yaml` : vos préférences sur les artistes, modifiables depuis le site.
+`config/artist_prefs.yaml` : vos préférences, modifiables depuis le site (artistes masqués,
+niveaux imposés, concerts mis de côté).
 
 - **Masquer un artiste** que vous ne voulez pas voir en concert : ses concerts sortent de
   « Vos artistes » et des découvertes, et il ne sert plus à calculer les découvertes ; ses
@@ -125,7 +126,13 @@ message d'erreur.
 - **Par artiste** : vos artistes qui ont au moins un concert à venir, avec la date et la salle
   du prochain et les dates suivantes. Tri par date du prochain concert, par nom, ou par date
   d'ajout sur Deezer (le like le plus récent : artiste, album, titre ou ajout en playlist).
-- **Mes artistes** : toute votre liste, avec niveau, détail du score et préférences.
+- **★ Intéressés** : les concerts mis de côté pour acheter les places plus tard (étoile dans
+  la liste ou « ☆ Mettre de côté » sur la fiche d'un concert), du plus proche au plus lointain,
+  avec la date de mise en vente quand elle est connue et un lien par billetterie. La liste est
+  enregistrée dans `config/artist_prefs.yaml` (section `starred`), donc commune à tous vos
+  appareils ; les concerts passés y sont signalés et peuvent être retirés.
+- **Mes artistes** : toute votre liste, classée par niveau puis par score, avec le détail du
+  score et les préférences (masquer, niveau imposé).
 - **Salles** : vos salles favorites et celles où passent des artistes pour vous.
 
 **Styles.** Les genres des sources (Ticketmaster en anglais, L'Officiel des spectacles en
