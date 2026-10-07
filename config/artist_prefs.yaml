@@ -15,7 +15,8 @@
 #   "Russ": 3
 #   "Indochine": 1
 
-hidden: []
+hidden:
+  - "GIMS"
 
 levels:
   "Russ": 3
