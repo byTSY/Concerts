@@ -15,4 +15,5 @@
 
 hidden: []
 
-levels: {}
+levels:
+  "Russ": 3
