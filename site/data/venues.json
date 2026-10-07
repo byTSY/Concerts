@@ -7,31 +7,31 @@
   "favorite": true
  },
  {
-  "name": "ACCOR ARENA",
-  "total": 95,
-  "known": 41,
-  "discovery": 12,
+  "name": "ZENITH PARIS - LA VILLETTE",
+  "total": 112,
+  "known": 18,
+  "discovery": 31,
   "favorite": false
  },
  {
-  "name": "ZENITH PARIS - LA VILLETTE",
-  "total": 112,
-  "known": 20,
-  "discovery": 31,
+  "name": "ACCOR ARENA",
+  "total": 95,
+  "known": 34,
+  "discovery": 13,
   "favorite": false
  },
  {
   "name": "SALLE PLEYEL",
   "total": 70,
-  "known": 16,
+  "known": 12,
   "discovery": 19,
   "favorite": false
  },
  {
   "name": "La Cigale",
-  "total": 113,
-  "known": 14,
-  "discovery": 20,
+  "total": 121,
+  "known": 8,
+  "discovery": 21,
   "favorite": true
  },
  {
@@ -43,59 +43,31 @@
  },
  {
   "name": "Le Trianon",
-  "total": 65,
+  "total": 67,
   "known": 6,
   "discovery": 17,
   "favorite": true
  },
  {
   "name": "La Maroquinerie",
-  "total": 107,
-  "known": 4,
+  "total": 108,
+  "known": 2,
   "discovery": 15,
-  "favorite": false
- },
- {
-  "name": "Le Grand Rex",
-  "total": 59,
-  "known": 11,
-  "discovery": 5,
   "favorite": false
  },
  {
   "name": "Le Bataclan",
   "total": 57,
-  "known": 6,
-  "discovery": 10,
+  "known": 4,
+  "discovery": 11,
   "favorite": false
  },
  {
   "name": "ALHAMBRA",
   "total": 42,
-  "known": 5,
+  "known": 4,
   "discovery": 10,
   "favorite": false
- },
- {
-  "name": "LA SEINE MUSICALE - GRANDE SEINE",
-  "total": 25,
-  "known": 8,
-  "discovery": 5,
-  "favorite": false
- },
- {
-  "name": "Le Baiser Salé",
-  "total": 77,
-  "known": 11,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "New Morning",
-  "total": 55,
-  "known": 8,
-  "discovery": 2,
-  "favorite": true
  },
  {
   "name": "PLENITUDE ARENA",
@@ -105,10 +77,17 @@
   "favorite": false
  },
  {
-  "name": "Église Saint-Éphrem",
-  "total": 70,
-  "known": 9,
-  "discovery": 0,
+  "name": "LA SEINE MUSICALE - GRANDE SEINE",
+  "total": 25,
+  "known": 5,
+  "discovery": 5,
+  "favorite": false
+ },
+ {
+  "name": "Le Grand Rex",
+  "total": 61,
+  "known": 4,
+  "discovery": 5,
   "favorite": false
  },
  {
@@ -121,8 +100,8 @@
  {
   "name": "ADIDAS ARENA",
   "total": 16,
-  "known": 4,
-  "discovery": 5,
+  "known": 3,
+  "discovery": 6,
   "favorite": false
  },
  {
@@ -133,45 +112,17 @@
   "favorite": false
  },
  {
-  "name": "Théâtre Essaïon",
-  "total": 11,
-  "known": 9,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "38Riv Jazz Club",
-  "total": 66,
-  "known": 8,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "CASINO DE PARIS",
   "total": 33,
-  "known": 4,
+  "known": 3,
   "discovery": 4,
   "favorite": false
  },
  {
   "name": "LES ETOILES",
   "total": 31,
-  "known": 1,
+  "known": 0,
   "discovery": 7,
-  "favorite": false
- },
- {
-  "name": "Grande salle Pierre Boulez - Philharmonie de Paris",
-  "total": 161,
-  "known": 7,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Grande Seine - La Seine musicale",
-  "total": 23,
-  "known": 7,
-  "discovery": 0,
   "favorite": false
  },
  {
@@ -182,27 +133,6 @@
   "favorite": false
  },
  {
-  "name": "Salle Gaveau",
-  "total": 66,
-  "known": 6,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "SUPERSONIC",
-  "total": 56,
-  "known": 6,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "La Boule Noire",
-  "total": 27,
-  "known": 3,
-  "discovery": 3,
-  "favorite": true
- },
- {
   "name": "LA GAITE LYRIQUE",
   "total": 10,
   "known": 4,
@@ -210,43 +140,22 @@
   "favorite": false
  },
  {
-  "name": "LES FOLIES BERGERE",
-  "total": 9,
-  "known": 5,
-  "discovery": 1,
-  "favorite": false
- },
- {
-  "name": "POPUP!",
-  "total": 9,
+  "name": "New Morning",
+  "total": 55,
   "known": 3,
+  "discovery": 2,
+  "favorite": true
+ },
+ {
+  "name": "La Boule Noire",
+  "total": 28,
+  "known": 2,
   "discovery": 3,
-  "favorite": false
+  "favorite": true
  },
  {
-  "name": "Théâtre des Champs-Élysées",
-  "total": 100,
-  "known": 5,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Salle des concerts - Cité de la Musique-Philharmonie",
-  "total": 62,
-  "known": 5,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Le Son de la Terre",
-  "total": 44,
-  "known": 5,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Caveau de la Huchette",
-  "total": 25,
+  "name": "Grande Seine - La Seine musicale",
+  "total": 23,
   "known": 5,
   "discovery": 0,
   "favorite": false
@@ -259,45 +168,17 @@
   "favorite": false
  },
  {
-  "name": "Salle Cortot",
-  "total": 44,
-  "known": 4,
-  "discovery": 0,
+  "name": "LES FOLIES BERGERE",
+  "total": 9,
+  "known": 1,
+  "discovery": 3,
   "favorite": false
  },
  {
-  "name": "SALLE GAVEAU",
-  "total": 24,
-  "known": 4,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "DOME DE PARIS",
-  "total": 23,
-  "known": 4,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Sunset",
-  "total": 18,
-  "known": 4,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Alhambra",
-  "total": 10,
-  "known": 4,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "BOBINO",
-  "total": 7,
-  "known": 4,
-  "discovery": 0,
+  "name": "POPUP!",
+  "total": 9,
+  "known": 1,
+  "discovery": 3,
   "favorite": false
  },
  {
@@ -308,29 +189,15 @@
   "favorite": false
  },
  {
-  "name": "Église de la Madeleine",
-  "total": 57,
+  "name": "Salle des concerts - Cité de la Musique-Philharmonie",
+  "total": 62,
   "known": 3,
   "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Sunside",
-  "total": 38,
-  "known": 3,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "LE BACKSTAGE BY THE MILL",
-  "total": 36,
-  "known": 1,
-  "discovery": 2,
   "favorite": false
  },
  {
   "name": "Théâtre du Châtelet",
-  "total": 24,
+  "total": 23,
   "known": 3,
   "discovery": 0,
   "favorite": false
@@ -350,24 +217,24 @@
   "favorite": false
  },
  {
-  "name": "Musée de la Vie romantique",
-  "total": 3,
-  "known": 3,
+  "name": "Grande salle Pierre Boulez - Philharmonie de Paris",
+  "total": 162,
+  "known": 2,
   "discovery": 0,
   "favorite": false
  },
  {
   "name": "Le Trabendo",
-  "total": 39,
+  "total": 40,
   "known": 2,
   "discovery": 0,
   "favorite": false
  },
  {
-  "name": "38 RIV - Jazz Club & Bar",
-  "total": 32,
-  "known": 2,
-  "discovery": 0,
+  "name": "LE BACKSTAGE BY THE MILL",
+  "total": 36,
+  "known": 0,
+  "discovery": 2,
   "favorite": false
  },
  {
@@ -378,17 +245,10 @@
   "favorite": true
  },
  {
-  "name": "Salle Pleyel",
-  "total": 20,
-  "known": 2,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "CAFE DE LA DANSE",
   "total": 18,
-  "known": 1,
-  "discovery": 1,
+  "known": 0,
+  "discovery": 2,
   "favorite": false
  },
  {
@@ -399,15 +259,8 @@
   "favorite": false
  },
  {
-  "name": "Cathédrale Saint-Louis-des-Invalides - Hôtel national des Invalides",
-  "total": 14,
-  "known": 2,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Le Dôme de Paris - Palais des Sports",
-  "total": 14,
+  "name": "Accor Arena",
+  "total": 13,
   "known": 2,
   "discovery": 0,
   "favorite": false
@@ -420,24 +273,10 @@
   "favorite": true
  },
  {
-  "name": "Accor Arena",
-  "total": 12,
-  "known": 2,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "TH DU ROND POINT-SALLE RENAUD BARRAULT",
   "total": 12,
   "known": 0,
   "discovery": 2,
-  "favorite": false
- },
- {
-  "name": "Le Pavillon de la Sirène",
-  "total": 10,
-  "known": 2,
-  "discovery": 0,
   "favorite": false
  },
  {
@@ -469,13 +308,6 @@
   "favorite": false
  },
  {
-  "name": "La Scala Paris",
-  "total": 5,
-  "known": 2,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "Stade de France",
   "total": 5,
   "known": 2,
@@ -483,29 +315,8 @@
   "favorite": false
  },
  {
-  "name": "L'ARCHIPEL",
-  "total": 4,
-  "known": 1,
-  "discovery": 1,
-  "favorite": false
- },
- {
-  "name": "Centre Evénementiel et Culturel",
-  "total": 3,
-  "known": 1,
-  "discovery": 1,
-  "favorite": false
- },
- {
-  "name": "Théâtre de Suresnes Jean Vilar",
-  "total": 3,
-  "known": 2,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Maison de la Radio et de la Musique",
-  "total": 129,
+  "name": "Salle Gaveau",
+  "total": 66,
   "known": 1,
   "discovery": 0,
   "favorite": false
@@ -532,24 +343,17 @@
   "favorite": false
  },
  {
-  "name": "Cathédrale Notre-Dame de Paris",
-  "total": 28,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Chapelle royale - Château de Versailles",
-  "total": 27,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "LA MACHINE DU MOULIN ROUGE",
   "total": 27,
   "known": 1,
   "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "SALLE GAVEAU",
+  "total": 24,
+  "known": 0,
+  "discovery": 1,
   "favorite": false
  },
  {
@@ -560,50 +364,8 @@
   "favorite": false
  },
  {
-  "name": "Café de la Danse",
-  "total": 22,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Le Solo",
-  "total": 20,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Palais des Congrès de Paris",
-  "total": 18,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Café Laurent",
-  "total": 16,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Opéra royal - Château de Versailles",
+  "name": "Cathédrale Saint-Louis-des-Invalides - Hôtel national des Invalides",
   "total": 14,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "PALAIS DES CONGRES DE PARIS",
-  "total": 13,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "PopUp!",
-  "total": 12,
   "known": 1,
   "discovery": 0,
   "favorite": false
@@ -616,20 +378,6 @@
   "favorite": false
  },
  {
-  "name": "Théâtre de Saint-Quentin-en-Yvelines",
-  "total": 11,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Athénée Théâtre Louis-Jouvet",
-  "total": 10,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "LE 13E ART",
   "total": 10,
   "known": 0,
@@ -637,50 +385,8 @@
   "favorite": false
  },
  {
-  "name": "Supersonic Club",
-  "total": 10,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "La Dame de Canton",
-  "total": 9,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "Les Trois Baudets",
   "total": 8,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Église Saint-Philippe-du-Roule",
-  "total": 7,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "360 Paris Music Factory",
-  "total": 6,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Espace Michel-Simon",
-  "total": 6,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Le Point Fort d'Aubervilliers",
-  "total": 6,
   "known": 1,
   "discovery": 0,
   "favorite": false
@@ -693,24 +399,10 @@
   "favorite": false
  },
  {
-  "name": "Théâtre de la Bastille",
-  "total": 6,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Fondation de l'Allemagne – Maison Heinrich Heine - Cité Internationale Universitaire de Paris",
-  "total": 5,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "FGO-Barbara",
+  "name": "L'ARCHIPEL",
   "total": 4,
-  "known": 1,
-  "discovery": 0,
+  "known": 0,
+  "discovery": 1,
   "favorite": false
  },
  {
@@ -721,49 +413,14 @@
   "favorite": false
  },
  {
-  "name": "Eglise Saint-Vincent de Paul",
+  "name": "Centre Evénementiel et Culturel",
   "total": 3,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Gaîté Lyrique",
-  "total": 3,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Église Sainte-Élisabeth-de-Hongrie",
-  "total": 3,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Gymnase du Collège Buffon",
-  "total": 2,
-  "known": 1,
-  "discovery": 0,
+  "known": 0,
+  "discovery": 1,
   "favorite": false
  },
  {
   "name": "L'Onde",
-  "total": 2,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Les Folies Bergère",
-  "total": 2,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Seine Musicale",
   "total": 2,
   "known": 1,
   "discovery": 0,
@@ -777,28 +434,7 @@
   "favorite": false
  },
  {
-  "name": "Bibliothèque Louise Michel",
-  "total": 1,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "Bibliothèque Mohammed Arkoun",
-  "total": 1,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Conservatoire",
-  "total": 1,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Conservatoire à rayonnement régional de Boulogne-Billancourt",
   "total": 1,
   "known": 1,
   "discovery": 0,
@@ -812,20 +448,6 @@
   "favorite": false
  },
  {
-  "name": "Le Dôme de Paris",
-  "total": 1,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Parc Sainte-Périne",
-  "total": 1,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "THEATRE EDOUARD VII",
   "total": 1,
   "known": 1,
@@ -833,22 +455,43 @@
   "favorite": false
  },
  {
-  "name": "Temple",
-  "total": 1,
-  "known": 1,
+  "name": "Maison de la Radio et de la Musique",
+  "total": 129,
+  "known": 0,
   "discovery": 0,
   "favorite": false
  },
  {
-  "name": "Église réformée de l'Étoile",
-  "total": 1,
-  "known": 1,
+  "name": "Théâtre des Champs-Élysées",
+  "total": 100,
+  "known": 0,
   "discovery": 0,
   "favorite": false
  },
  {
   "name": "Église Saint-Julien-le-Pauvre",
-  "total": 92,
+  "total": 97,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Le Baiser Salé",
+  "total": 77,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Église Saint-Éphrem",
+  "total": 71,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "38Riv Jazz Club",
+  "total": 66,
   "known": 0,
   "discovery": 0,
   "favorite": false
@@ -856,6 +499,20 @@
  {
   "name": "Auditorium Patrick Devedjian - La Seine musicale",
   "total": 65,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Église de la Madeleine",
+  "total": 57,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "SUPERSONIC",
+  "total": 56,
   "known": 0,
   "discovery": 0,
   "favorite": false
@@ -875,6 +532,34 @@
   "favorite": false
  },
  {
+  "name": "Le Son de la Terre",
+  "total": 46,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Salle Cortot",
+  "total": 44,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Sunside",
+  "total": 38,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "38 RIV - Jazz Club & Bar",
+  "total": 32,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
   "name": "Sainte-Chapelle - Palais de la Cité",
   "total": 32,
   "known": 0,
@@ -882,8 +567,50 @@
   "favorite": false
  },
  {
+  "name": "Cathédrale Notre-Dame de Paris",
+  "total": 29,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Chapelle royale - Château de Versailles",
+  "total": 27,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Caveau de la Huchette",
+  "total": 25,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
   "name": "Jass Club Paris",
   "total": 24,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "DOME DE PARIS",
+  "total": 23,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Salle Pleyel",
+  "total": 23,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Café de la Danse",
+  "total": 22,
   "known": 0,
   "discovery": 0,
   "favorite": false
@@ -910,8 +637,36 @@
   "favorite": false
  },
  {
+  "name": "Le Solo",
+  "total": 20,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Palais des Congrès de Paris",
+  "total": 19,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Sunset",
+  "total": 18,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
   "name": "Théâtre des Bouffes du Nord",
   "total": 17,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Café Laurent",
+  "total": 16,
   "known": 0,
   "discovery": 0,
   "favorite": false
@@ -946,6 +701,20 @@
  },
  {
   "name": "Le Bal Blomet",
+  "total": 14,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Le Dôme de Paris - Palais des Sports",
+  "total": 14,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Opéra royal - Château de Versailles",
   "total": 14,
   "known": 0,
   "discovery": 0,
@@ -1001,7 +770,21 @@
   "favorite": false
  },
  {
+  "name": "PALAIS DES CONGRES DE PARIS",
+  "total": 13,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
   "name": "Musée d'Orsay",
+  "total": 12,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Théâtre Essaïon",
   "total": 12,
   "known": 0,
   "discovery": 0,
@@ -1010,6 +793,13 @@
  {
   "name": "Théâtre du Rond-Point",
   "total": 12,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Alhambra",
+  "total": 11,
   "known": 0,
   "discovery": 0,
   "favorite": false
@@ -1050,7 +840,21 @@
   "favorite": false
  },
  {
+  "name": "PopUp!",
+  "total": 11,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
   "name": "Studio Raspail",
+  "total": 11,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Théâtre de Saint-Quentin-en-Yvelines",
   "total": 11,
   "known": 0,
   "discovery": 0,
@@ -1064,7 +868,28 @@
   "favorite": false
  },
  {
+  "name": "Athénée Théâtre Louis-Jouvet",
+  "total": 10,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
   "name": "CATHEDRALE AMERICAINE",
+  "total": 10,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Le Pavillon de la Sirène",
+  "total": 10,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Supersonic Club",
   "total": 10,
   "known": 0,
   "discovery": 0,
@@ -1079,6 +904,13 @@
  },
  {
   "name": "ECUJE",
+  "total": 9,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "La Dame de Canton",
   "total": 9,
   "known": 0,
   "discovery": 0,
@@ -1107,6 +939,13 @@
  },
  {
   "name": "Théâtre Mandapa",
+  "total": 9,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Théâtre de la Gaîté-Montparnasse",
   "total": 9,
   "known": 0,
   "discovery": 0,
@@ -1155,13 +994,6 @@
   "favorite": false
  },
  {
-  "name": "Théâtre de la Gaîté-Montparnasse",
-  "total": 8,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "Théâtre des Champs-Elysées",
   "total": 8,
   "known": 0,
@@ -1184,6 +1016,13 @@
  },
  {
   "name": "Atelier du Plateau",
+  "total": 7,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "BOBINO",
   "total": 7,
   "known": 0,
   "discovery": 0,
@@ -1246,6 +1085,20 @@
   "favorite": false
  },
  {
+  "name": "Église Saint-Philippe-du-Roule",
+  "total": 7,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "360 Paris Music Factory",
+  "total": 6,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
   "name": "38Riv",
   "total": 6,
   "known": 0,
@@ -1261,6 +1114,13 @@
  },
  {
   "name": "Centre Mandapa",
+  "total": 6,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Espace Michel-Simon",
   "total": 6,
   "known": 0,
   "discovery": 0,
@@ -1288,6 +1148,13 @@
   "favorite": false
  },
  {
+  "name": "Le Point Fort d'Aubervilliers",
+  "total": 6,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
   "name": "Le Triton",
   "total": 6,
   "known": 0,
@@ -1296,6 +1163,13 @@
  },
  {
   "name": "Musée de la Musique - Cité de la Musique-Philharmonie",
+  "total": 6,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Théâtre de la Bastille",
   "total": 6,
   "known": 0,
   "discovery": 0,
@@ -1351,6 +1225,20 @@
   "favorite": false
  },
  {
+  "name": "FGO-Barbara",
+  "total": 5,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Fondation de l'Allemagne – Maison Heinrich Heine - Cité Internationale Universitaire de Paris",
+  "total": 5,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
   "name": "LE BADABOUM",
   "total": 5,
   "known": 0,
@@ -1359,6 +1247,13 @@
  },
  {
   "name": "La Ferme du Buisson",
+  "total": 5,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "La Scala Paris",
   "total": 5,
   "known": 0,
   "discovery": 0,
@@ -1380,6 +1275,13 @@
  },
  {
   "name": "Les Disquaires",
+  "total": 5,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Les Folies Bergère",
   "total": 5,
   "known": 0,
   "discovery": 0,
@@ -1561,6 +1463,13 @@
   "favorite": false
  },
  {
+  "name": "Théâtre de la Tour Eiffel",
+  "total": 4,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
   "name": "Théâtre des 2 Rives",
   "total": 4,
   "known": 0,
@@ -1645,6 +1554,20 @@
   "favorite": false
  },
  {
+  "name": "Eglise Saint-Vincent de Paul",
+  "total": 3,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Gaîté Lyrique",
+  "total": 3,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
   "name": "L'Institut du Monde Arabe",
   "total": 3,
   "known": 0,
@@ -1674,6 +1597,13 @@
  },
  {
   "name": "Mines Paris – PSL",
+  "total": 3,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Musée de la Vie romantique",
   "total": 3,
   "known": 0,
   "discovery": 0,
@@ -1786,6 +1716,27 @@
  },
  {
   "name": "Théâtre Victor-Hugo",
+  "total": 3,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Théâtre de Suresnes Jean Vilar",
+  "total": 3,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Zénith Paris La Villette",
+  "total": 3,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Église Sainte-Élisabeth-de-Hongrie",
   "total": 3,
   "known": 0,
   "discovery": 0,
@@ -1911,7 +1862,21 @@
   "favorite": false
  },
  {
+  "name": "GRAND REX",
+  "total": 2,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
   "name": "Goethe Institut",
+  "total": 2,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Gymnase du Collège Buffon",
   "total": 2,
   "known": 0,
   "discovery": 0,
@@ -2079,6 +2044,13 @@
   "favorite": false
  },
  {
+  "name": "Seine Musicale",
+  "total": 2,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
   "name": "Square Courteline",
   "total": 2,
   "known": 0,
@@ -2128,6 +2100,13 @@
   "favorite": false
  },
  {
+  "name": "Théâtre de Sartrouville et des Yvelines - CDN",
+  "total": 2,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
   "name": "Théâtre de la Cité Internationale - Cité Internationale Universitaire de Paris",
   "total": 2,
   "known": 0,
@@ -2136,13 +2115,6 @@
  },
  {
   "name": "Théâtre de la Concorde",
-  "total": 2,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Théâtre de la Tour Eiffel",
   "total": 2,
   "known": 0,
   "discovery": 0,
@@ -2345,6 +2317,13 @@
   "favorite": false
  },
  {
+  "name": "Bibliothèque Louise Michel",
+  "total": 1,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
   "name": "Bibliothèque Marguerite Audoux",
   "total": 1,
   "known": 0,
@@ -2499,6 +2478,13 @@
   "favorite": false
  },
  {
+  "name": "Conservatoire",
+  "total": 1,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
   "name": "Conservatoire Municipal Darius Milhaud",
   "total": 1,
   "known": 0,
@@ -2542,6 +2528,13 @@
  },
  {
   "name": "Conservatoire slave de musique",
+  "total": 1,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Conservatoire à rayonnement régional de Boulogne-Billancourt",
   "total": 1,
   "known": 0,
   "discovery": 0,
@@ -2654,13 +2647,6 @@
  },
  {
   "name": "Fondation des États-Unis - Cité Internationale Universitaire de Paris",
-  "total": 1,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "GRAND REX",
   "total": 1,
   "known": 0,
   "discovery": 0,
@@ -2926,6 +2912,13 @@
   "favorite": false
  },
  {
+  "name": "Le Dôme de Paris",
+  "total": 1,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
   "name": "Le Plan",
   "total": 1,
   "known": 0,
@@ -3088,6 +3081,13 @@
  },
  {
   "name": "Parc Montsouris",
+  "total": 1,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Parc Sainte-Périne",
   "total": 1,
   "known": 0,
   "discovery": 0,
@@ -3381,6 +3381,13 @@
   "favorite": false
  },
  {
+  "name": "Temple",
+  "total": 1,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
   "name": "Temple Protestant",
   "total": 1,
   "known": 0,
@@ -3445,13 +3452,6 @@
  },
  {
   "name": "Théâtre de Gennevilliers (T2G)",
-  "total": 1,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Théâtre de Sartrouville et des Yvelines - CDN",
   "total": 1,
   "known": 0,
   "discovery": 0,
@@ -3529,13 +3529,6 @@
  },
  {
   "name": "Zèbre de Belleville",
-  "total": 1,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Zénith Paris La Villette",
   "total": 1,
   "known": 0,
   "discovery": 0,
@@ -3746,6 +3739,13 @@
  },
  {
   "name": "Église réformée d'Auteuil",
+  "total": 1,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Église réformée de l'Étoile",
   "total": 1,
   "known": 0,
   "discovery": 0,

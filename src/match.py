@@ -1,11 +1,46 @@
 """Salles, dédoublonnage entre sources et rapprochement avec votre liste d'artistes."""
 import hashlib
+import re
 from collections import defaultdict
 
 from .util import norm, norm_venue, today_iso
 
 SOURCE_PRIORITY = {"Ticketmaster": 0, "Bandsintown": 2, "Que faire à Paris": 3, "Offi": 4}
 MIN_TITLE_KEY = 4  # longueur minimale d'un nom pour un rapprochement sur le titre seul
+
+# Rapprochement sur le titre seul (sources sans programmation détaillée) :
+# - les hommages et reprises ne comptent pas (c'est la musique de l'artiste, pas l'artiste) ;
+# - un nom d'un seul mot significatif doit former à lui seul un segment du titre
+#   (« Niska », « Avishai Cohen trio »), pas une partie d'un nom plus long (« Michel Alibo ») ;
+# - un nom de plusieurs mots est accepté n'importe où dans le titre.
+TRIBUTE_RE = re.compile(
+    r"\b(tribute|hommage|homage|the music of|the world of|musiques? de|experience|plays|joue|jouent|chante|chantent|"
+    r"raconte|celebre|revisite|songbook|show|legacy|heritage|story|symphonique|symphonic|symphonie|films?|"
+    r"candlelight|loves?|spirit of)\b")
+SEGMENT_RE = re.compile(
+    r"\s[-–—:|/]\s|\s{2,}|[:+,&•|/()\[\]]|\s(?:et|and|x|feat|ft|with|avec|invite|invitent|presente)\s", re.I)
+GENERIC = {"trio", "quartet", "quartette", "quintet", "quintette", "sextet", "septet", "octet", "duo", "band",
+           "live", "orchestra", "orchestral", "en", "concert", "tour", "tournee", "acoustique", "acoustic",
+           "unplugged", "solo", "friends", "showcase", "release", "party", "nouvel", "album", "club", "dj", "set"}
+
+
+def significant_words(key):
+    return [w for w in key.split() if len(w) >= 3]
+
+
+def title_segments(title):
+    """Segments normalisés du titre, débarrassés des mots génériques et des années.
+
+    Chaque segment est aussi proposé sans ses nombres (« Oasis Live '27 » donne « oasis »),
+    sans les perdre pour les noms qui en contiennent (« French 79 »).
+    """
+    out = set()
+    for seg in SEGMENT_RE.split(title or ""):
+        words = [w for w in norm(seg).split() if w not in GENERIC and not re.fullmatch(r"(19|20)\d\d", w)]
+        for variant in (words, [w for w in words if not w.isdigit()]):
+            if variant:
+                out.add(" ".join(variant))
+    return out
 
 
 class VenueMatcher:
@@ -70,13 +105,22 @@ class ArtistIndex:
         return self.by_key.get(norm(name))
 
     def in_title(self, title):
-        words = norm(title).split()
+        normed = norm(title)
+        if TRIBUTE_RE.search(normed):
+            return []
+        words = normed.split()
+        segments = None
         found = {}
         for n in range(1, 6):
             for i in range(len(words) - n + 1):
                 key = " ".join(words[i:i + n])
-                if len(key) >= MIN_TITLE_KEY and key in self.by_key:
-                    found[key] = self.by_key[key]
+                if len(key) < MIN_TITLE_KEY or key not in self.by_key:
+                    continue
+                if len(significant_words(key)) < 2:
+                    segments = segments if segments is not None else title_segments(title)
+                    if key not in segments:
+                        continue
+                found[key] = self.by_key[key]
         return list(found.values())
 
 

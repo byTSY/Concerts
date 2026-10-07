@@ -121,7 +121,15 @@ nouvelle annonce. Pour repartir d'une base initiale, supprimez `data/concerts.js
 liké, 1 par titre liké, 0,25 par titre présent dans vos playlists. Niveau 1 à partir de 5
 points, niveau 2 à partir de 2, niveau 3 en dessous. Un concert est retenu quand le nom d'un
 de vos artistes figure dans la programmation, ou, pour les sources sans programmation
-détaillée, dans le titre (repéré « à vérifier » sur la fiche).
+détaillée (Que faire à Paris, L'Officiel des spectacles), dans le titre, repéré « à vérifier »
+sur la fiche. Le rapprochement sur le titre suit trois règles :
+
+- un hommage ou une reprise ne compte pas (« Tribute to David Bowie », « The Music of Queen »,
+  « X joue Christophe », « The Dire Straits Experience ») ;
+- un nom d'un seul mot doit former à lui seul un segment du titre, une fois retirés les mots
+  comme trio, live band ou en concert : « NISKA » et « Avishai Cohen trio » sont retenus,
+  « Michel Alibo » ne l'est pas pour l'artiste « Michel » ;
+- un nom de plusieurs mots est retenu n'importe où dans le titre.
 
 **Découvertes.** Pour chaque artiste inconnu programmé à Paris, le script compare ses
 « artistes similaires » Deezer à votre liste, et regarde aussi si vos artistes favoris le citent
@@ -135,8 +143,10 @@ la couverture s'élargit donc au fil des semaines.
 
 ## Limites connues
 
-- Homonymes : un nom court ou courant (« Air », « Justice ») peut rattacher un concert d'un
-  autre artiste. Les rapprochements sur le titre seul exigent au moins 4 caractères.
+- Homonymes : un nom courant (« Swing », « Barbara ») peut encore rattacher un concert d'un
+  autre artiste quand il forme tout un segment du titre (« Sing and swing », « Barbara et
+  moi »). À l'inverse, un artiste cité avec son prénom dans le titre (« Christophe Chassol »
+  pour « Chassol ») n'est pas reconnu.
 - Doublons : quand deux sources écrivent différemment le nom d'une salle (« SUPERSONIC » et
   « Supersonic Club »), un même concert peut apparaître deux fois dans « Tous les concerts ».
 - Couverture : les concerts vendus uniquement par Fnac Spectacles, See Tickets, Dice ou

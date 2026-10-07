@@ -116,7 +116,7 @@ def _get(n):
 def fetch(settings, first_page=1):
     horizon = (date.today() + timedelta(days=31 * settings["horizon_months"])).isoformat()
     events, seen = [], set()
-    last, n, failed, skipped = None, first_page, 0, 0
+    last, n, failed, skipped, repeated, prev_ids = None, first_page, 0, 0, 0, None
     while n <= (last or MAX_PAGES):
         if n > first_page:
             time.sleep(PAUSE)
@@ -132,12 +132,25 @@ def fetch(settings, first_page=1):
         failed = 0
         if last is None:
             last = min(_last_page(page), MAX_PAGES)
-        blocks = BLOCK_RE.split(page)[1:]
-        if not blocks:
+        fiches = [_parse(b) for b in BLOCK_RE.split(page)[1:]]
+        if not fiches:
             break
+        # Page identique à la précédente : le serveur a renvoyé une page déjà lue, ce qui
+        # ferait perdre en silence c. 15 fiches (constaté le 7 octobre 2026). On la redemande.
+        ids = [f["id"] for f in fiches]
+        for attempt in range(RETRIES):
+            if ids != prev_ids:
+                break
+            time.sleep(10 * (attempt + 1))
+            page = _get(n) or ""
+            fiches = [_parse(b) for b in BLOCK_RE.split(page)[1:]] or fiches
+            ids = [f["id"] for f in fiches]
+        if ids == prev_ids:
+            repeated += 1
+            log(f"  Offi : page {n} identique à la précédente après {RETRIES} essais")
+        prev_ids = ids
         firsts = []
-        for block in blocks:
-            fiche = _parse(block)
+        for fiche in fiches:
             if fiche["dates"]:
                 firsts.append(fiche["dates"][0][0])
             for day, hour in fiche["dates"]:
@@ -162,5 +175,7 @@ def fetch(settings, first_page=1):
             break
         n += 1
     pages = (min(n, last) if last else n) - first_page + 1
-    log(f"  Offi : {len(events)} concerts sur {pages} pages" + (f", dont {skipped} ignorées" if skipped else ""))
+    notes = [f"{skipped} ignorées" if skipped else "", f"{repeated} répétées" if repeated else ""]
+    notes = ", ".join(x for x in notes if x)
+    log(f"  Offi : {len(events)} concerts sur {pages} pages" + (f", dont {notes}" if notes else ""))
     return events

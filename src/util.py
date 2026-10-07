@@ -31,7 +31,9 @@ def norm(text):
     """Nom comparable : sans accents, minuscules, ponctuation retirée, 'the' initial retiré."""
     if not text:
         return ""
-    s = unicodedata.normalize("NFKD", str(text)).encode("ascii", "ignore").decode()
+    # Apostrophes en espace avant la translittération, sinon « d’une » devient « dune »
+    s = re.sub(r"['’‘`´]", " ", str(text))
+    s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode()
     s = s.lower().replace("&", " and ")
     s = re.sub(r"[^a-z0-9]+", " ", s)
     s = re.sub(r"\s+", " ", s).strip()
