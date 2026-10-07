@@ -18,24 +18,6 @@
   "hidden": false
  },
  {
-  "name": "Various Artists",
-  "link": "https://www.deezer.com/artist/5080",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/6d6503360e6cc202c9a1ed8617f3296b/250x250-000000-80-0-0.jpg",
-  "score": 54.25,
-  "tier": 1,
-  "tier_auto": 1,
-  "first_seen": "2026-10-07",
-  "added": "2026-07-07",
-  "still_liked": true,
-  "sources": {
-   "favorite": false,
-   "albums": 27,
-   "tracks": 0,
-   "playlists": 1
-  },
-  "hidden": false
- },
- {
   "name": "Franc Moody",
   "link": "https://www.deezer.com/artist/10508215",
   "picture": "https://cdn-images.dzcdn.net/images/artist/f7721125205ddfe515eed3fec1041b3b/250x250-000000-80-0-0.jpg",
@@ -9212,24 +9194,6 @@
    "albums": 0,
    "tracks": 3,
    "playlists": 4
-  },
-  "hidden": false
- },
- {
-  "name": "Various Artists",
-  "link": "https://www.deezer.com/artist/108420982",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/d41d8cd98f00b204e9800998ecf8427e/250x250-000000-80-0-0.jpg",
-  "score": 4.0,
-  "tier": 2,
-  "tier_auto": 2,
-  "first_seen": "2026-10-07",
-  "added": "2021-02-01",
-  "still_liked": true,
-  "sources": {
-   "favorite": false,
-   "albums": 2,
-   "tracks": 0,
-   "playlists": 0
   },
   "hidden": false
  },

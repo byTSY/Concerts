@@ -3533,25 +3533,6 @@
   "last_seen": "2026-10-07",
   "still_liked": true
  },
- "5080": {
-  "id": "5080",
-  "name": "Various Artists",
-  "key": "various artists",
-  "link": "https://www.deezer.com/artist/5080",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/6d6503360e6cc202c9a1ed8617f3296b/250x250-000000-80-0-0.jpg",
-  "score": 54.25,
-  "tier": 1,
-  "sources": {
-   "favorite": false,
-   "albums": 27,
-   "tracks": 0,
-   "playlists": 1
-  },
-  "first_seen": "2026-10-07",
-  "added": "2026-07-07",
-  "last_seen": "2026-10-07",
-  "still_liked": true
- },
  "194650687": {
   "id": "194650687",
   "name": "Nahokimama",
@@ -5069,25 +5050,6 @@
   },
   "first_seen": "2026-10-07",
   "added": "2023-09-17",
-  "last_seen": "2026-10-07",
-  "still_liked": true
- },
- "108420982": {
-  "id": "108420982",
-  "name": "Various Artists",
-  "key": "various artists",
-  "link": "https://www.deezer.com/artist/108420982",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/d41d8cd98f00b204e9800998ecf8427e/250x250-000000-80-0-0.jpg",
-  "score": 4.0,
-  "tier": 2,
-  "sources": {
-   "favorite": false,
-   "albums": 2,
-   "tracks": 0,
-   "playlists": 0
-  },
-  "first_seen": "2026-10-07",
-  "added": "2021-02-01",
   "last_seen": "2026-10-07",
   "still_liked": true
  },

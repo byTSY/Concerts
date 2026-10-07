@@ -7,6 +7,8 @@ from .util import ARTICLES, CACHE, DATA, get_json, load_json, log, norm, save_js
 
 API = "https://api.deezer.com"
 PAUSE = 0.12  # Deezer tolère c. 50 requêtes par 5 secondes
+# Artistes génériques des compilations : pas de vrais artistes, à ne pas suivre
+IGNORED = {"various artists", "artistes divers", "multi interpretes", "verschiedene interpreten"}
 
 
 def _call(url, params=None):
@@ -56,7 +58,7 @@ def refresh_artists(settings):
             added[aid] = ts
 
     def remember(artist):
-        if artist and artist.get("id"):
+        if artist and artist.get("id") and norm(artist.get("name")) not in IGNORED:
             aid = str(artist["id"])
             meta.setdefault(aid, {"name": artist.get("name", ""), "link": artist.get("link"),
                                   "picture": artist.get("picture_medium")})
@@ -130,7 +132,7 @@ def refresh_artists(settings):
 
     # Les artistes retirés de vos favoris restent dans la liste, signalés comme tels
     for aid, old in previous.items():
-        if aid not in result:
+        if aid not in result and norm(old.get("name")) not in IGNORED:
             old["still_liked"] = False
             result[aid] = old
 

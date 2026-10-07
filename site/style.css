@@ -286,3 +286,4 @@ dialog::backdrop { background: rgba(20, 24, 56, .55); }
   display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: .92rem; }
 .session-alert[hidden] { display: none; }
 .session-alert .btn { cursor: pointer; border: 0; font: inherit; font-weight: 600; }
+.prefs-warning { margin: 0 0 12px; padding: 10px 14px; border-radius: 8px; background: var(--yellow); color: #1e2350; font-size: .9rem; }

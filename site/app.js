@@ -170,8 +170,13 @@ function setHidden(name, hide) {
 }
 
 function setLevel(name, level) {
+  const key = normName(name);
+  const upcoming = state.events.filter((ev) => (ev.matched0 || []).some((m) => normName(m.name) === key)).length;
+  const effect = upcoming
+    ? `${upcoming} concert${upcoming > 1 ? "s" : ""} à venir mis à jour`
+    : "aucun concert à venir pour l'instant, le niveau s'appliquera aux prochains";
   savePref({ name, action: "level", level },
-    level ? `${name} : niveau ${level}` : `${name} : niveau calculé à partir de vos likes`);
+    `${name} : ${level ? `niveau ${level} imposé` : "niveau calculé à partir de vos likes"} (${effect})`);
 }
 
 function toast(text) {
@@ -179,7 +184,7 @@ function toast(text) {
   el.textContent = text;
   el.hidden = false;
   clearTimeout(toast.t);
-  toast.t = setTimeout(() => { el.hidden = true; }, 4000);
+  toast.t = setTimeout(() => { el.hidden = true; }, 6000);
 }
 
 /* Styles ------------------------------------------------------------------------ */
@@ -439,10 +444,15 @@ function renderByArtist() {
 
 function renderArtists() {
   const q = fold(state.q.trim());
-  const list = state.artists.filter((a) => !q || fold(a.name).includes(q));
+  // Par niveau effectif (imposé ou calculé), puis par score : un artiste passé au niveau 3 descend
+  const list = state.artists.filter((a) => !q || fold(a.name).includes(q))
+    .sort((a, b) => a.tier - b.tier || b.score - a.score || a.name.localeCompare(b.name, "fr"));
   if (!state.artists.length) { $("#artists").innerHTML = emptyMessage(); return; }
   const tiers = [1, 2, 3].map((t) => state.artists.filter((a) => a.tier === t && a.still_liked !== false).length);
-  let html = `<p class="count-line">${state.artists.length} artistes : ${tiers[0]} en niveau 1, ${tiers[1]} en niveau 2, ${tiers[2]} en niveau 3.</p>
+  const sync = state.apiError
+    ? `<p class="prefs-warning">Vos préférences (niveaux imposés, artistes masqués) n'ont pas pu être lues : ${esc(state.apiError)}. Les niveaux affichés sont ceux du dernier traitement. Rechargez la page ; si le message persiste, la clé GitHub est peut-être expirée dans Cloudflare.</p>`
+    : "";
+  let html = `${sync}<p class="count-line">${state.artists.length} artistes : ${tiers[0]} en niveau 1, ${tiers[1]} en niveau 2, ${tiers[2]} en niveau 3. Classés par niveau, puis par score.</p>
     <div class="table-wrap"><table><thead><tr><th>Artiste</th><th>Niveau</th><th class="num">Score</th><th class="hide-mobile">Détail</th><th class="hide-mobile">Ajouté le</th></tr></thead><tbody>`;
   for (const a of list.slice(0, 1500)) {
     const s = a.sources || {};
@@ -451,7 +461,7 @@ function renderArtists() {
     html += `<tr>
       <td>${a.picture ? `<img class="artist-thumb" src="${esc(a.picture)}" alt="" loading="lazy">` : ""}<a href="${esc(a.link)}" target="_blank" rel="noopener" class="cell-name">${esc(a.name)}</a>${a.still_liked === false ? `<span class="cell-sub">Retiré de vos favoris</span>` : ""}${isHidden(a.name) ? `<span class="cell-sub">Masqué : concerts visibles seulement dans « Tous les concerts »</span>` : ""}
         <button type="button" class="link-btn" data-hide="${esc(a.name)}" data-hide-action="${isHidden(a.name) ? "unhide" : "hide"}">${isHidden(a.name) ? "Ne plus masquer" : "Masquer"}</button></td>
-      <td><span class="tag tag-known tier-${a.tier}">Niveau ${a.tier}</span>
+      <td><span class="tag tag-known tier-${a.tier}">Niveau ${a.tier}${state.levels.has(normName(a.name)) ? " · imposé" : ""}</span>
         <select class="tier-select" data-level="${esc(a.name)}" aria-label="Niveau de ${esc(a.name)}">
           <option value="">Calculé (${a.tier_auto ?? a.tier0})</option>
           ${[1, 2, 3].map((t) => `<option value="${t}"${state.levels.get(normName(a.name)) === t ? " selected" : ""}>Imposé : ${t}</option>`).join("")}
