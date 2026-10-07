@@ -41,5 +41,7 @@ jobs:
             echo "Aucun changement"
           else
             git commit -m "Mise à jour du $(date -u +%Y-%m-%d)"
+            # Un artiste a pu être masqué depuis le site pendant le traitement
+            git pull --rebase
             git push
           fi

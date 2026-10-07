@@ -4,6 +4,7 @@ const state = {
   events: [], artists: [], venues: [], meta: {},
   kinds: new Set(["known", "discovery"]), all: false, favOnly: false, venue: null, q: "",
   view: "calendar", calendar: null,
+  hidden: new Set(), apiError: null,
 };
 
 const $ = (sel) => document.querySelector(sel);
@@ -13,6 +14,10 @@ const parseDay = (iso) => new Date(iso + "T12:00:00");
 const fmt = (opts) => new Intl.DateTimeFormat("fr-FR", opts);
 const fmtShort = fmt({ weekday: "short", day: "numeric", month: "short" });
 const fmtMonth = fmt({ month: "long", year: "numeric" });
+// Même normalisation que src/util.py (norm) et functions/api/hidden.js
+const normName = (s) => String(s ?? "").replace(/['’‘`´]/g, " ").normalize("NFKD").replace(/[^\x00-\x7f]/g, "")
+  .toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, " ").replace(/\s+/g, " ").trim().replace(/^the /, "");
+const isHidden = (name) => state.hidden.has(normName(name));
 
 async function loadJSON(name, fallback) {
   try {
@@ -56,6 +61,77 @@ function onSaleInfo(ev) {
 function statusLabel(status) {
   const s = String(status || "").toLowerCase();
   return { offsale: "Hors vente ou complet", rescheduled: "Date modifiée", postponed: "Reporté", sold_out: "Complet", soldout: "Complet" }[s] || null;
+}
+
+/* Artistes masqués ------------------------------------------------------------ */
+
+// Recalcule la catégorie affichée de chaque concert selon la liste des artistes masqués :
+// un concert dont tous les artistes rapprochés sont masqués passe dans « Tous les concerts ».
+function applyHidden() {
+  for (const ev of state.events) {
+    ev.kind0 ??= ev.kind;
+    ev.matched0 ??= ev.matched;
+    ev.tier0 ??= ev.tier;
+    ev.kind = ev.kind0;
+    if (ev.kind0 === "known") {
+      ev.matched = (ev.matched0 || []).filter((m) => !isHidden(m.name));
+      if (!ev.matched.length) ev.kind = "other";
+      else ev.tier = Math.min(...ev.matched.map((m) => m.tier));
+    } else if (ev.kind0 === "discovery" && isHidden(ev.discovery?.artist)) {
+      ev.kind = "other";
+    }
+  }
+}
+
+async function loadHidden() {
+  try {
+    const r = await fetch("api/hidden", { cache: "no-store" });
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.error || `HTTP ${r.status}`);
+    state.hidden = new Set(data.hidden.map(normName));
+  } catch (e) {
+    // Site ouvert en local ou fonction Cloudflare non configurée : liste du dernier traitement
+    state.apiError = e.message;
+    state.hidden = new Set(state.artists.filter((a) => a.hidden).map((a) => normName(a.name)));
+  }
+}
+
+async function setHidden(name, hide) {
+  const question = hide
+    ? `Ne plus recommander ${name} ?
+
+Ses concerts sortiront de « Vos artistes » et des découvertes (ils resteront dans « Tous les concerts »). Vous pourrez annuler depuis l'onglet Mes artistes.`
+    : `Recommander à nouveau ${name} ?`;
+  if (!confirm(question)) return;
+  try {
+    const r = await fetch("api/hidden", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ name, action: hide ? "hide" : "unhide" }),
+    });
+    const data = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(data.error || `HTTP ${r.status}`);
+    state.hidden = new Set(data.hidden.map(normName));
+    state.apiError = null;
+  } catch (e) {
+    alert(`L'enregistrement a échoué : ${e.message}.
+
+Le bouton ne fonctionne que sur le site publié, une fois la clé GitHub ajoutée dans Cloudflare.`);
+    return;
+  }
+  applyHidden();
+  if ($("#ticket").open) $("#ticket").close();
+  renderMasthead();
+  render();
+  toast(hide ? `${name} ne sera plus recommandé` : `${name} est de nouveau recommandé`);
+}
+
+function toast(text) {
+  const el = $("#toast");
+  el.textContent = text;
+  el.hidden = false;
+  clearTimeout(toast.t);
+  toast.t = setTimeout(() => { el.hidden = true; }, 4000);
 }
 
 /* Filtres ------------------------------------------------------------------ */
@@ -197,7 +273,8 @@ function renderArtists() {
     const detail = [s.favorite ? "favori" : "", s.albums ? `${s.albums} album${s.albums > 1 ? "s" : ""}` : "",
       s.tracks ? `${s.tracks} titre${s.tracks > 1 ? "s" : ""}` : "", s.playlists ? `${s.playlists} en playlist` : ""].filter(Boolean).join(", ");
     html += `<tr>
-      <td>${a.picture ? `<img class="artist-thumb" src="${esc(a.picture)}" alt="" loading="lazy">` : ""}<a href="${esc(a.link)}" target="_blank" rel="noopener" class="cell-name">${esc(a.name)}</a>${a.still_liked === false ? `<span class="cell-sub">Retiré de vos favoris</span>` : ""}${a.hidden ? `<span class="cell-sub">Masqué : concerts visibles seulement dans « Tous les concerts »</span>` : ""}</td>
+      <td>${a.picture ? `<img class="artist-thumb" src="${esc(a.picture)}" alt="" loading="lazy">` : ""}<a href="${esc(a.link)}" target="_blank" rel="noopener" class="cell-name">${esc(a.name)}</a>${a.still_liked === false ? `<span class="cell-sub">Retiré de vos favoris</span>` : ""}${isHidden(a.name) ? `<span class="cell-sub">Masqué : concerts visibles seulement dans « Tous les concerts »</span>` : ""}
+        <button type="button" class="link-btn" data-hide="${esc(a.name)}" data-hide-action="${isHidden(a.name) ? "unhide" : "hide"}">${isHidden(a.name) ? "Ne plus masquer" : "Masquer"}</button></td>
       <td><span class="tag tag-known tier-${a.tier}">Niveau ${a.tier}</span></td>
       <td class="num">${a.score}</td>
       <td class="hide-mobile">${esc(detail)}</td>
@@ -256,6 +333,8 @@ function openTicket(id) {
       <p>Proche de ${esc(dc.close_to.join(", "))}. Proximité ${Math.round(dc.score * 100)} %${dc.fans ? `, ${dc.fans.toLocaleString("fr-FR")} fans sur Deezer` : ""}.</p></div>`;
   }
   const others = (ev.artists || []).filter((a) => fold(a) !== fold(headline(ev)));
+  const hideable = ev.kind === "known" ? ev.matched.map((m) => m.name) : ev.kind === "discovery" ? [ev.discovery.artist] : [];
+  const hideButtons = hideable.map((n) => `<button type="button" class="btn btn-quiet" data-hide="${esc(n)}" data-hide-action="hide">Ne plus recommander ${esc(n)}</button>`).join("");
   const links = (ev.links || []).map((l) => `<a class="btn" href="${esc(l.url)}" target="_blank" rel="noopener">Voir sur ${esc(l.source)}</a>`).join("");
   const listen = ev.kind === "discovery" && ev.discovery?.link
     ? `<a class="btn btn-secondary" href="${esc(ev.discovery.link)}" target="_blank" rel="noopener">Écouter sur Deezer</a>` : "";
@@ -273,7 +352,8 @@ function openTicket(id) {
     ${ev.price || ev.genre ? `<div class="ticket-section"><h3>Informations</h3><p>${[ev.price ? `Prix : ${esc(ev.price)}` : "", ev.genre ? `Genre : ${esc(ev.genre)}` : ""].filter(Boolean).join("<br>")}</p></div>` : ""}
     ${ev.description ? `<div class="ticket-section"><p>${esc(ev.description)}</p></div>` : ""}
     ${ev.image ? `<img class="ticket-image" src="${esc(ev.image)}" alt="" loading="lazy">` : ""}
-    <div class="ticket-links">${links}${listen}</div>`;
+    <div class="ticket-links">${links}${listen}</div>
+    ${hideButtons ? `<div class="ticket-hide">${hideButtons}</div>` : ""}`;
   dlg.showModal();
 }
 
@@ -321,6 +401,8 @@ function bind() {
   $("#search").addEventListener("input", (e) => { clearTimeout(t); t = setTimeout(() => { state.q = e.target.value; render(); }, 150); });
 
   document.body.addEventListener("click", (e) => {
+    const hide = e.target.closest("[data-hide]");
+    if (hide) { e.stopPropagation(); setHidden(hide.dataset.hide, hide.dataset.hideAction !== "unhide"); return; }
     const row = e.target.closest("[data-id]");
     if (row && !e.target.closest("a")) { openTicket(row.dataset.id); return; }
     const venue = e.target.closest("[data-venue]");
@@ -340,6 +422,8 @@ function bind() {
     loadJSON("events", []), loadJSON("artists", []), loadJSON("venues", []), loadJSON("meta", {}),
   ]);
   Object.assign(state, { events: events || [], artists: artists || [], venues: venues || [], meta: meta || {} });
+  await loadHidden();
+  applyHidden();
   bind();
   renderMasthead();
   switchView("calendar");

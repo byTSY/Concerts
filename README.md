@@ -54,7 +54,10 @@ Le traitement relance ensuite seul chaque lundi à 5h UTC.
 1. Créez un compte sur https://dash.cloudflare.com.
 2. Section Workers & Pages : créez une application Pages reliée à votre compte GitHub et
    choisissez le dépôt `concerts-paris` (l'intitulé exact des menus peut varier).
-3. Commande de build : laisser vide. Répertoire de sortie : `site`.
+3. Commande de build : laisser vide. Répertoire de sortie (**Build output directory**) :
+   `site`. Sans ce réglage, Cloudflare publie tout le dépôt et l'adresse du site renvoie
+   « introuvable » (le site se retrouve sous `/site/`). Le réglage se modifie après coup dans
+   Settings > Build > Build configuration, puis Deployments > **Retry deployment**.
 4. Cloudflare republie le site à chaque mise à jour du dépôt, donc chaque lundi.
 
 L'adresse obtenue (`concerts-paris-xxx.pages.dev`) n'est référencée nulle part, mais reste
@@ -81,9 +84,31 @@ hidden:
   - Indochine
 ```
 
-Modification depuis le site GitHub : ouvrez le fichier dans le dépôt, cliquez sur l'icône
-crayon (Edit this file), ajoutez le nom, puis **Commit changes**. L'effet est visible au
-prochain traitement (lundi), ou tout de suite en relançant le traitement depuis l'onglet Actions.
+**Depuis le site** (une fois le réglage ci-dessous fait) : ouvrez un concert, cliquez sur
+« Ne plus recommander … » et confirmez. L'artiste est ajouté au fichier et disparaît aussitôt de
+vos artistes et des découvertes, sur tous vos appareils. Pour annuler : onglet Mes artistes,
+« Ne plus masquer ». Le calcul des découvertes en tient compte au traitement suivant (lundi).
+
+**Depuis GitHub** : ouvrez le fichier dans le dépôt, cliquez sur l'icône crayon (Edit this
+file), ajoutez le nom, puis **Commit changes**.
+
+### Réglage du bouton « Ne plus recommander » (une seule fois)
+
+Le site appelle une fonction Cloudflare (`functions/api/hidden.js`) qui modifie
+`config/hidden_artists.yaml` dans le dépôt. Il lui faut une clé GitHub :
+
+1. Sur GitHub : photo de profil > **Settings > Developer settings > Personal access tokens >
+   Fine-grained tokens > Generate new token**. Nom : `concerts-site` ; expiration : au choix
+   (à renouveler à échéance) ; **Repository access** : *Only select repositories*, `Concerts` ;
+   **Permissions > Repository permissions > Contents** : *Read and write*. Générez et copiez la clé.
+2. Sur Cloudflare : projet Pages `concerts` > **Settings > Variables and Secrets > Add** ;
+   type *Secret*, nom `GITHUB_TOKEN`, valeur : la clé. Enregistrez, puis redéployez (onglet
+   Deployments > dernier déploiement > **Retry deployment**).
+3. Protégez le site avec **Cloudflare Access** (projet Pages > Settings > *Access policy*,
+   ou Zero Trust > Access > Applications) en n'autorisant que votre adresse e-mail. Sans cette
+   protection, quiconque connaît l'adresse du site pourrait masquer des artistes.
+
+Sans clé, le site fonctionne normalement ; seul le bouton affiche un message d'erreur.
 
 `config/settings.yaml` : identifiant Deezer, rayon autour de Paris, pondérations du score
 d'affinité, seuil des découvertes.

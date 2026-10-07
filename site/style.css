@@ -246,3 +246,12 @@ dialog::backdrop { background: rgba(20, 24, 56, .55); }
   dialog[open] .ticket { animation: tear-in .22s ease-out; }
   @keyframes tear-in { from { transform: translateY(14px) rotate(-1deg); opacity: 0; } to { transform: none; opacity: 1; } }
 }
+
+/* Artistes masqués */
+.ticket-hide { margin-top: 18px; padding-top: 14px; border-top: 1px dashed var(--rule); display: flex; flex-wrap: wrap; gap: 8px; }
+.btn-quiet { background: none; color: var(--ink-soft); border: 1.5px solid var(--rule); cursor: pointer; font: inherit; font-size: .88rem; }
+.btn-quiet:hover { color: var(--ink); border-color: var(--ink); }
+.link-btn { display: block; margin-top: 2px; padding: 0; background: none; border: 0; color: var(--ink-soft); font: inherit; font-size: .8rem; text-decoration: underline; cursor: pointer; }
+.link-btn:hover { color: var(--ink); }
+.toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 50; max-width: calc(100vw - 32px);
+  background: var(--ink); color: var(--paper); padding: 10px 16px; border-radius: 6px; font-size: .92rem; box-shadow: 0 4px 16px rgb(0 0 0 / .25); }
