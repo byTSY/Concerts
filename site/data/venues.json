@@ -3,7 +3,7 @@
   "name": "Olympia",
   "total": 133,
   "known": 15,
-  "discovery": 38,
+  "discovery": 47,
   "favorite": true
  },
  {
@@ -21,6 +21,13 @@
   "favorite": false
  },
  {
+  "name": "La Cigale",
+  "total": 121,
+  "known": 8,
+  "discovery": 36,
+  "favorite": true
+ },
+ {
   "name": "SALLE PLEYEL",
   "total": 70,
   "known": 12,
@@ -28,38 +35,38 @@
   "favorite": false
  },
  {
-  "name": "La Cigale",
-  "total": 121,
-  "known": 8,
-  "discovery": 21,
-  "favorite": true
- },
- {
-  "name": "Élysée Montmartre",
-  "total": 60,
-  "known": 13,
-  "discovery": 12,
+  "name": "New Morning",
+  "total": 55,
+  "known": 3,
+  "discovery": 27,
   "favorite": true
  },
  {
   "name": "Le Trianon",
   "total": 71,
   "known": 6,
-  "discovery": 17,
+  "discovery": 23,
+  "favorite": true
+ },
+ {
+  "name": "Élysée Montmartre",
+  "total": 60,
+  "known": 13,
+  "discovery": 16,
   "favorite": true
  },
  {
   "name": "La Maroquinerie",
-  "total": 108,
-  "known": 2,
-  "discovery": 15,
+  "total": 109,
+  "known": 3,
+  "discovery": 17,
   "favorite": false
  },
  {
   "name": "Le Bataclan",
   "total": 57,
   "known": 4,
-  "discovery": 11,
+  "discovery": 12,
   "favorite": false
  },
  {
@@ -133,6 +140,20 @@
   "favorite": false
  },
  {
+  "name": "La Boule Noire",
+  "total": 28,
+  "known": 2,
+  "discovery": 4,
+  "favorite": true
+ },
+ {
+  "name": "La Bellevilloise",
+  "total": 23,
+  "known": 1,
+  "discovery": 5,
+  "favorite": true
+ },
+ {
   "name": "LA GAITE LYRIQUE",
   "total": 10,
   "known": 4,
@@ -140,17 +161,10 @@
   "favorite": false
  },
  {
-  "name": "New Morning",
-  "total": 55,
-  "known": 3,
-  "discovery": 2,
-  "favorite": true
- },
- {
-  "name": "La Boule Noire",
-  "total": 28,
-  "known": 2,
-  "discovery": 3,
+  "name": "Hasard Ludique",
+  "total": 13,
+  "known": 0,
+  "discovery": 5,
   "favorite": true
  },
  {
@@ -182,10 +196,24 @@
   "favorite": false
  },
  {
+  "name": "Grande salle Pierre Boulez - Philharmonie de Paris",
+  "total": 162,
+  "known": 2,
+  "discovery": 1,
+  "favorite": false
+ },
+ {
   "name": "Salle des concerts - Cité de la Musique-Philharmonie",
   "total": 62,
   "known": 3,
   "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Petit Bain",
+  "total": 23,
+  "known": 1,
+  "discovery": 2,
   "favorite": false
  },
  {
@@ -210,25 +238,11 @@
   "favorite": false
  },
  {
-  "name": "Grande salle Pierre Boulez - Philharmonie de Paris",
-  "total": 162,
-  "known": 2,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "LE BACKSTAGE BY THE MILL",
   "total": 36,
   "known": 0,
   "discovery": 2,
   "favorite": false
- },
- {
-  "name": "La Bellevilloise",
-  "total": 23,
-  "known": 1,
-  "discovery": 1,
-  "favorite": true
  },
  {
   "name": "CAFE DE LA DANSE",
@@ -252,6 +266,13 @@
   "favorite": false
  },
  {
+  "name": "La Place",
+  "total": 14,
+  "known": 0,
+  "discovery": 2,
+  "favorite": false
+ },
+ {
   "name": "Accor Arena",
   "total": 13,
   "known": 2,
@@ -259,17 +280,24 @@
   "favorite": false
  },
  {
-  "name": "Hasard Ludique",
-  "total": 13,
-  "known": 0,
-  "discovery": 2,
-  "favorite": true
- },
- {
   "name": "TH DU ROND POINT-SALLE RENAUD BARRAULT",
   "total": 12,
   "known": 0,
   "discovery": 2,
+  "favorite": false
+ },
+ {
+  "name": "Alhambra",
+  "total": 11,
+  "known": 0,
+  "discovery": 2,
+  "favorite": false
+ },
+ {
+  "name": "Les Trois Baudets",
+  "total": 8,
+  "known": 1,
+  "discovery": 1,
   "favorite": false
  },
  {
@@ -301,6 +329,13 @@
   "favorite": false
  },
  {
+  "name": "Les Folies Bergère",
+  "total": 5,
+  "known": 0,
+  "discovery": 2,
+  "favorite": false
+ },
+ {
   "name": "Stade de France",
   "total": 5,
   "known": 2,
@@ -308,10 +343,24 @@
   "favorite": false
  },
  {
+  "name": "Théâtre des Bergeries",
+  "total": 4,
+  "known": 0,
+  "discovery": 2,
+  "favorite": false
+ },
+ {
   "name": "Salle Gaveau",
   "total": 66,
   "known": 1,
   "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Sunside",
+  "total": 38,
+  "known": 0,
+  "discovery": 1,
   "favorite": false
  },
  {
@@ -350,10 +399,17 @@
   "favorite": false
  },
  {
-  "name": "Petit Bain",
-  "total": 23,
-  "known": 1,
-  "discovery": 0,
+  "name": "Duc des Lombards",
+  "total": 22,
+  "known": 0,
+  "discovery": 1,
+  "favorite": false
+ },
+ {
+  "name": "Théâtre de la Ville – Les Abbesses",
+  "total": 16,
+  "known": 0,
+  "discovery": 1,
   "favorite": false
  },
  {
@@ -371,6 +427,13 @@
   "favorite": false
  },
  {
+  "name": "PopUp!",
+  "total": 11,
+  "known": 0,
+  "discovery": 1,
+  "favorite": false
+ },
+ {
   "name": "LE 13E ART",
   "total": 10,
   "known": 0,
@@ -378,10 +441,24 @@
   "favorite": false
  },
  {
-  "name": "Les Trois Baudets",
+  "name": "Théâtre du Casino",
   "total": 8,
-  "known": 1,
-  "discovery": 0,
+  "known": 0,
+  "discovery": 1,
+  "favorite": false
+ },
+ {
+  "name": "Les Gémeaux",
+  "total": 7,
+  "known": 0,
+  "discovery": 1,
+  "favorite": false
+ },
+ {
+  "name": "Espace Michel-Simon",
+  "total": 6,
+  "known": 0,
+  "discovery": 1,
   "favorite": false
  },
  {
@@ -392,7 +469,35 @@
   "favorite": false
  },
  {
+  "name": "Espace 1789",
+  "total": 5,
+  "known": 0,
+  "discovery": 1,
+  "favorite": false
+ },
+ {
+  "name": "Théâtre 71",
+  "total": 5,
+  "known": 0,
+  "discovery": 1,
+  "favorite": false
+ },
+ {
   "name": "L'ARCHIPEL",
+  "total": 4,
+  "known": 0,
+  "discovery": 1,
+  "favorite": false
+ },
+ {
+  "name": "Le Point Éphémère",
+  "total": 4,
+  "known": 0,
+  "discovery": 1,
+  "favorite": false
+ },
+ {
+  "name": "Théâtre des 2 Rives",
   "total": 4,
   "known": 0,
   "discovery": 1,
@@ -407,6 +512,13 @@
  },
  {
   "name": "Centre Evénementiel et Culturel",
+  "total": 3,
+  "known": 0,
+  "discovery": 1,
+  "favorite": false
+ },
+ {
+  "name": "Théâtre Antoine Watteau",
   "total": 3,
   "known": 0,
   "discovery": 1,
@@ -431,6 +543,13 @@
   "total": 1,
   "known": 1,
   "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "L'Odéon - Scène Jean-Roger-Caussimon",
+  "total": 1,
+  "known": 0,
+  "discovery": 1,
   "favorite": false
  },
  {
@@ -484,7 +603,7 @@
  },
  {
   "name": "38Riv Jazz Club",
-  "total": 66,
+  "total": 68,
   "known": 0,
   "discovery": 0,
   "favorite": false
@@ -505,7 +624,7 @@
  },
  {
   "name": "SUPERSONIC",
-  "total": 56,
+  "total": 55,
   "known": 0,
   "discovery": 0,
   "favorite": false
@@ -534,13 +653,6 @@
  {
   "name": "Salle Cortot",
   "total": 44,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Sunside",
-  "total": 38,
   "known": 0,
   "discovery": 0,
   "favorite": false
@@ -596,13 +708,6 @@
  },
  {
   "name": "Café de la Danse",
-  "total": 22,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Duc des Lombards",
   "total": 22,
   "known": 0,
   "discovery": 0,
@@ -665,13 +770,6 @@
   "favorite": false
  },
  {
-  "name": "Théâtre de la Ville – Les Abbesses",
-  "total": 16,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "Église Saint-Louis-en-l'Île",
   "total": 16,
   "known": 0,
@@ -681,13 +779,6 @@
  {
   "name": "THEATRE LE METROPOLE",
   "total": 15,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "La Place",
-  "total": 14,
   "known": 0,
   "discovery": 0,
   "favorite": false
@@ -763,6 +854,13 @@
   "favorite": false
  },
  {
+  "name": "Espace Georges-Bernanos",
+  "total": 12,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
   "name": "Musée d'Orsay",
   "total": 12,
   "known": 0,
@@ -772,13 +870,6 @@
  {
   "name": "Théâtre Essaïon",
   "total": 12,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Alhambra",
-  "total": 11,
   "known": 0,
   "discovery": 0,
   "favorite": false
@@ -806,13 +897,6 @@
  },
  {
   "name": "Maison de la musique de Nanterre",
-  "total": 11,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "PopUp!",
   "total": 11,
   "known": 0,
   "discovery": 0,
@@ -966,7 +1050,7 @@
   "favorite": false
  },
  {
-  "name": "Théâtre du Casino",
+  "name": "Église Saint-Philippe-du-Roule",
   "total": 8,
   "known": 0,
   "discovery": 0,
@@ -1002,13 +1086,6 @@
  },
  {
   "name": "EGLISE SAINT GERMAIN DES PRES",
-  "total": 7,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Les Gémeaux",
   "total": 7,
   "known": 0,
   "discovery": 0,
@@ -1057,13 +1134,6 @@
   "favorite": false
  },
  {
-  "name": "Église Saint-Philippe-du-Roule",
-  "total": 7,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "360 Paris Music Factory",
   "total": 6,
   "known": 0,
@@ -1086,13 +1156,6 @@
  },
  {
   "name": "Centre Mandapa",
-  "total": 6,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Espace Michel-Simon",
   "total": 6,
   "known": 0,
   "discovery": 0,
@@ -1183,20 +1246,6 @@
   "favorite": false
  },
  {
-  "name": "Espace 1789",
-  "total": 5,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Espace Georges-Bernanos",
-  "total": 5,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "FGO-Barbara",
   "total": 5,
   "known": 0,
@@ -1260,13 +1309,6 @@
   "favorite": false
  },
  {
-  "name": "Les Folies Bergère",
-  "total": 5,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "Les Étoiles",
   "total": 5,
   "known": 0,
@@ -1289,13 +1331,6 @@
  },
  {
   "name": "TGP - Théâtre Gérard Philipe",
-  "total": 5,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Théâtre 71",
   "total": 5,
   "known": 0,
   "discovery": 0,
@@ -1359,13 +1394,6 @@
  },
  {
   "name": "Le Chaplin - Saint-Lambert",
-  "total": 4,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Le Point Éphémère",
   "total": 4,
   "known": 0,
   "discovery": 0,
@@ -1443,20 +1471,6 @@
  },
  {
   "name": "Théâtre de la Tour Eiffel",
-  "total": 4,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Théâtre des 2 Rives",
-  "total": 4,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Théâtre des Bergeries",
   "total": 4,
   "known": 0,
   "discovery": 0,
@@ -1638,13 +1652,6 @@
   "favorite": false
  },
  {
-  "name": "Théâtre Antoine Watteau",
-  "total": 3,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "Théâtre Claude Lévi-Strauss - Musée du Quai Branly – Jacques Chirac",
   "total": 3,
   "known": 0,
@@ -1723,6 +1730,13 @@
  },
  {
   "name": "Église de La Madeleine",
+  "total": 3,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Église luthérienne du Bon-Secours",
   "total": 3,
   "known": 0,
   "discovery": 0,
@@ -2149,7 +2163,7 @@
   "favorite": false
  },
  {
-  "name": "Église luthérienne du Bon-Secours",
+  "name": "Église réformée d'Auteuil",
   "total": 2,
   "known": 0,
   "discovery": 0,
@@ -2660,6 +2674,13 @@
   "favorite": false
  },
  {
+  "name": "Hôtel de la Marine",
+  "total": 1,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
   "name": "Institut des Cultures d'Islam (ICI)",
   "total": 1,
   "known": 0,
@@ -2752,13 +2773,6 @@
  },
  {
   "name": "L'Azimut - Théâtre La Piscine",
-  "total": 1,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "L'Odéon - Scène Jean-Roger-Caussimon",
   "total": 1,
   "known": 0,
   "discovery": 0,
@@ -3682,6 +3696,13 @@
   "favorite": false
  },
  {
+  "name": "Église Saint-Serge",
+  "total": 1,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
   "name": "Église Saint-Thomas-d'Aquin",
   "total": 1,
   "known": 0,
@@ -3696,6 +3717,20 @@
   "favorite": false
  },
  {
+  "name": "Église Sainte-Marie-des-Batignolles",
+  "total": 1,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Église américaine",
+  "total": 1,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
   "name": "Église espagnole",
   "total": 1,
   "known": 0,
@@ -3704,13 +3739,6 @@
  },
  {
   "name": "Église protestante allemande",
-  "total": 1,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Église réformée d'Auteuil",
   "total": 1,
   "known": 0,
   "discovery": 0,

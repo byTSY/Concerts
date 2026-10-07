@@ -255,3 +255,27 @@ dialog::backdrop { background: rgba(20, 24, 56, .55); }
 .link-btn:hover { color: var(--ink); }
 .toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 50; max-width: calc(100vw - 32px);
   background: var(--ink); color: var(--paper); padding: 10px 16px; border-radius: 6px; font-size: .92rem; box-shadow: 0 4px 16px rgb(0 0 0 / .25); }
+
+/* Par artiste */
+.sort-bar { display: flex; align-items: center; gap: 10px; margin: 4px 0 14px; font-size: .92rem; color: var(--ink-soft); }
+.sort-bar select { font: inherit; color: var(--ink); background: var(--paper-2); border: 1.5px solid var(--rule); border-radius: 99px; padding: 5px 12px; }
+.tier-select { display: block; margin-top: 4px; font: inherit; font-size: .78rem; color: var(--ink-soft); background: var(--paper-2);
+  border: 1px solid var(--rule); border-radius: 4px; padding: 1px 4px; }
+.style-filter { font: inherit; font-size: .92rem; color: var(--ink); background: var(--paper-2); border: 1.5px solid var(--rule);
+  border-radius: 99px; padding: 6px 12px; max-width: 100%; }
+
+/* Changement de mois en bas du calendrier, et balayage */
+.cal-bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 16px 0 4px; }
+.cal-bottom button { font: inherit; font-weight: 600; color: var(--ink); background: var(--paper-2); border: 1.5px solid var(--rule);
+  border-radius: 99px; padding: 10px 18px; min-height: 44px; cursor: pointer; }
+.cal-bottom button:hover { border-color: var(--ink); }
+.cal-bottom .arrow { font-size: 1.5rem; line-height: 1; vertical-align: -2px; }
+.cal-bottom-title { font-weight: 700; text-align: center; text-transform: capitalize; }
+.cal-hint { display: none; margin: 4px 0 0; font-size: .8rem; color: var(--ink-soft); text-align: center; }
+@media (hover: none) and (pointer: coarse) { .cal-hint { display: block; } }
+#calendar { touch-action: pan-y; scroll-margin-top: 64px; }  /* sous les onglets fixes */
+.cal-slide-next { animation: cal-in-next .22s ease-out; }
+.cal-slide-prev { animation: cal-in-prev .22s ease-out; }
+@keyframes cal-in-next { from { opacity: .3; transform: translateX(24px); } to { opacity: 1; transform: none; } }
+@keyframes cal-in-prev { from { opacity: .3; transform: translateX(-24px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .cal-slide-next, .cal-slide-prev { animation: none; } }

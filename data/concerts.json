@@ -1730,11 +1730,11 @@
      "url": "https://www.offi.fr/concerts/duc-des-lombards-2009/kassa-overall-3356854.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3356854-2026-10-07T19:30"
@@ -1802,11 +1802,11 @@
      "url": "https://www.offi.fr/concerts/petit-bain-5136/lsd-the-search-for-god-3303777.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3303777-2026-10-07T19:30"
@@ -1826,11 +1826,11 @@
      "url": "https://www.offi.fr/concerts/la-maroquinerie-2748/vanille-3100845.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3100845-2026-10-07T19:30"
@@ -2042,11 +2042,11 @@
      "url": "https://www.offi.fr/concerts/la-cigale-1805/zed-3308762.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3308762-2026-10-07T20:00"
@@ -2590,11 +2590,11 @@
      "url": "https://www.offi.fr/concerts/le-pop-up-du-label-5926/kuleeangee-3353069.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3353069-2026-10-07T20:30"
@@ -3696,11 +3696,11 @@
      "url": "https://www.offi.fr/concerts/la-maroquinerie-2748/diskay-3304986.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3304986-2026-10-08T19:30",
@@ -3774,11 +3774,11 @@
      "url": "https://www.offi.fr/concerts/la-place-6526/arma-jackson-celyane-low-jay-3353074.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3353074-2026-10-08T19:30"
@@ -3918,11 +3918,11 @@
      "url": "https://www.offi.fr/concerts/le-point-ephemere-3018/guadal-tejaz-3348422.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3348422-2026-10-08T20:00"
@@ -4134,11 +4134,11 @@
      "url": "https://www.offi.fr/concerts/les-trois-baudets-3783/blandine-3348356.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3348356-2026-10-08T20:00"
@@ -5250,11 +5250,11 @@
      "url": "https://www.offi.fr/concerts/petit-bain-5136/54-ultra-3304351.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3304351-2026-10-09T19:00"
@@ -5804,6 +5804,31 @@
    ]
   },
   {
+   "id": "44ba40cc299e",
+   "title": "Paname Swing +3",
+   "date": "2026-10-09",
+   "time": "20:00",
+   "venue": "Le Son de la Terre",
+   "genre": "Jazz / Blues",
+   "price": null,
+   "links": [
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/le-son-de-la-terre-7249/paname-swing-3-3353060.html"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-07",
+   "baseline": true,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-07",
+   "source_keys": [
+    "Offi:3353060-2026-10-09T20:00",
+    "Que faire à Paris:116972"
+   ]
+  },
+  {
    "id": "4bf96f213f82",
    "title": "JILL SCOTT",
    "date": "2026-10-09",
@@ -5950,31 +5975,6 @@
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3348357-2026-10-09T20:00"
-   ]
-  },
-  {
-   "id": "691b483f3143",
-   "title": "Paname Swing +3",
-   "date": "2026-10-09",
-   "time": "20:00",
-   "venue": "Le Son de la Terre",
-   "genre": "Jazz / Blues",
-   "price": null,
-   "links": [
-    {
-     "source": "Offi",
-     "url": "https://www.offi.fr/concerts/le-son-de-la-terre-7249/paname-swing-3-3353060.html"
-    }
-   ],
-   "kind": "other",
-   "first_seen": "2026-10-07",
-   "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
-   "last_seen": "2026-10-07",
-   "source_keys": [
-    "Offi:3353060-2026-10-09T20:00",
-    "Que faire à Paris:116972"
    ]
   },
   {
@@ -6925,11 +6925,11 @@
      "url": "https://www.offi.fr/concerts/sunside-3225/carlton-rara-3338462.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3338462-2026-10-09T21:30"
@@ -7775,11 +7775,11 @@
      "url": "https://www.offi.fr/concerts/la-boule-noire-1566/marina-p-the-radiators-3353091.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3353091-2026-10-10T19:30"
@@ -7900,11 +7900,11 @@
      "url": "https://www.offi.fr/concerts/la-place-6526/a2h-angie-chilla-jade-le-juiice-3353077.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3353077-2026-10-10T19:30"
@@ -13235,11 +13235,11 @@
      "url": "https://www.offi.fr/concerts/le-hasard-ludique-6987/who-parked-the-car-iman-le-parc-3353178.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3353178-2026-10-13T20:00"
@@ -13259,11 +13259,11 @@
      "url": "https://www.offi.fr/concerts/new-morning-2842/lakecia-benjamin-3315184.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3315184-2026-10-13T20:00"
@@ -15628,11 +15628,11 @@
      "url": "https://www.offi.fr/concerts/new-morning-2842/azymuth-3315186.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3315186-2026-10-15T19:00"
@@ -17790,11 +17790,11 @@
      "url": "https://www.offi.fr/concerts/lodeon-scene-jean-roger-caussimon-2864/zoufris-maracas-nuria-rovira-salat-3361754.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3361754-2026-10-16T19:00"
@@ -18530,11 +18530,11 @@
      "url": "https://www.offi.fr/concerts/new-morning-2842/jeru-the-damaja-3315187.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3315187-2026-10-16T20:00"
@@ -18762,6 +18762,31 @@
    ]
   },
   {
+   "id": "c74f34f79ab2",
+   "title": "Hommage à David Bowie",
+   "date": "2026-10-16",
+   "time": "20:00",
+   "venue": "Le Son de la Terre",
+   "genre": "Pop / Rock",
+   "price": null,
+   "links": [
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/le-son-de-la-terre-7249/hommage-a-david-bowie-3303741.html"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-07",
+   "baseline": true,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-07",
+   "source_keys": [
+    "Offi:3303741-2026-10-16T20:00",
+    "Que faire à Paris:105957"
+   ]
+  },
+  {
    "id": "d31996b393b8",
    "title": "LARA FABIAN",
    "date": "2026-10-16",
@@ -18812,31 +18837,6 @@
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3358446-2026-10-16T20:00"
-   ]
-  },
-  {
-   "id": "e2165fb778e8",
-   "title": "Hommage à David Bowie",
-   "date": "2026-10-16",
-   "time": "20:00",
-   "venue": "Le Son de la Terre",
-   "genre": "Pop / Rock",
-   "price": null,
-   "links": [
-    {
-     "source": "Offi",
-     "url": "https://www.offi.fr/concerts/le-son-de-la-terre-7249/hommage-a-david-bowie-3303741.html"
-    }
-   ],
-   "kind": "other",
-   "first_seen": "2026-10-07",
-   "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
-   "last_seen": "2026-10-07",
-   "source_keys": [
-    "Offi:3303741-2026-10-16T20:00",
-    "Que faire à Paris:105957"
    ]
   },
   {
@@ -20484,6 +20484,31 @@
    ]
   },
   {
+   "id": "35332a04cf29",
+   "title": "Hommage à Naâman",
+   "date": "2026-10-17",
+   "time": "20:00",
+   "venue": "Salle Pleyel",
+   "genre": "Reggae, Monde / Traditionnel",
+   "price": null,
+   "links": [
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/salle-pleyel-3159/hommage-a-naaman-3307284.html"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-07",
+   "baseline": true,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-07",
+   "source_keys": [
+    "Offi:3307284-2026-10-17T20:00",
+    "Ticketmaster:ZkyMmBwZ1A7uK0y"
+   ]
+  },
+  {
    "id": "37239ba7ae03",
    "title": "Piano Man",
    "date": "2026-10-17",
@@ -20860,31 +20885,6 @@
    ]
   },
   {
-   "id": "bcfcb2337080",
-   "title": "Hommage à Naâman",
-   "date": "2026-10-17",
-   "time": "20:00",
-   "venue": "Salle Pleyel",
-   "genre": "Reggae, Monde / Traditionnel",
-   "price": null,
-   "links": [
-    {
-     "source": "Offi",
-     "url": "https://www.offi.fr/concerts/salle-pleyel-3159/hommage-a-naaman-3307284.html"
-    }
-   ],
-   "kind": "other",
-   "first_seen": "2026-10-07",
-   "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
-   "last_seen": "2026-10-07",
-   "source_keys": [
-    "Offi:3307284-2026-10-17T20:00",
-    "Ticketmaster:ZkyMmBwZ1A7uK0y"
-   ]
-  },
-  {
    "id": "bcfcb2337080x",
    "title": "TRIBUTE TO NAÂMAN",
    "date": "2026-10-17",
@@ -21048,11 +21048,11 @@
      "url": "https://www.offi.fr/concerts/new-morning-2842/goldford-3315189.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3315189-2026-10-17T20:00"
@@ -23922,11 +23922,11 @@
      "url": "https://www.offi.fr/concerts/new-morning-2842/keyon-harrold-3358371.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3315190-2026-10-19T20:00",
@@ -24221,11 +24221,11 @@
      "url": "https://www.offi.fr/concerts/elysee-montmartre-2168/bamby-3312781.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3312781-2026-10-20T19:30"
@@ -24624,11 +24624,11 @@
      "url": "https://www.offi.fr/concerts/le-club-5468/panicbaby-3306695.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3306695-2026-10-20T20:00",
@@ -25807,11 +25807,11 @@
      "url": "https://www.offi.fr/concerts/le-hasard-ludique-6987/hyd-3358404.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3358404-2026-10-21T20:00"
@@ -27173,11 +27173,11 @@
      "url": "https://www.offi.fr/concerts/le-hasard-ludique-6987/yard-3358405.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3358405-2026-10-22T20:00"
@@ -27245,11 +27245,11 @@
      "url": "https://www.offi.fr/concerts/new-morning-2842/mica-millar-3315193.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3315193-2026-10-22T20:30"
@@ -28322,11 +28322,11 @@
      "url": "https://www.offi.fr/concerts/new-morning-2842/dub-pistols-3315195.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3315195-2026-10-23T20:00"
@@ -30210,11 +30210,11 @@
      "url": "https://www.offi.fr/concerts/new-morning-2842/galliano-3315197.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3315197-2026-10-24T20:00"
@@ -31219,6 +31219,30 @@
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3307250-2026-10-25T17:00"
+   ]
+  },
+  {
+   "id": "7ae2cf9031b3",
+   "title": "Alan Starovoitov et Mariia Esaulova",
+   "date": "2026-10-25",
+   "time": "17:30",
+   "venue": "Église américaine",
+   "genre": null,
+   "price": null,
+   "links": [
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/eglise-americaine-2028/alan-starovoitov-et-mariia-esaulova-3361926.html"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-07",
+   "baseline": false,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-07",
+   "source_keys": [
+    "Offi:3361926-2026-10-25T17:30"
    ]
   },
   {
@@ -33174,11 +33198,11 @@
      "url": "https://www.offi.fr/concerts/elysee-montmartre-2168/son-lux-3255873.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3255873-2026-10-28T18:30"
@@ -34496,16 +34520,16 @@
   },
   {
    "id": "b7ded781f9b0",
-   "title": "FRANCE GALL & MICHEL BERGER, L’HOMMAGE",
+   "title": "Hommage à France Gall et Michel Berger",
    "date": "2026-10-29",
    "time": "20:00",
-   "venue": "LES FOLIES BERGERE",
-   "genre": "Chanson Francaise",
-   "price": null,
+   "venue": "Les Folies Bergère",
+   "genre": "Chanson française, Chanson",
+   "price": "49 €",
    "links": [
     {
-     "source": "Ticketmaster",
-     "url": "https://www.ticketmaster.fr/fr/manifestation/france-gall-michel-berger-l-hommage-billet/idmanif/642949/idtier/18864121"
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/les-folies-bergere-2331/hommage-a-france-gall-et-michel-berger-3174484.html"
     }
    ],
    "kind": "other",
@@ -34521,16 +34545,16 @@
   },
   {
    "id": "b7ded781f9b0x",
-   "title": "Hommage à France Gall et Michel Berger",
+   "title": "FRANCE GALL & MICHEL BERGER, L’HOMMAGE",
    "date": "2026-10-29",
    "time": "20:00",
-   "venue": "Les Folies Bergère",
-   "genre": "Chanson française, Chanson",
-   "price": "49 €",
+   "venue": "LES FOLIES BERGERE",
+   "genre": "Chanson Francaise",
+   "price": null,
    "links": [
     {
-     "source": "Offi",
-     "url": "https://www.offi.fr/concerts/les-folies-bergere-2331/hommage-a-france-gall-et-michel-berger-3174484.html"
+     "source": "Ticketmaster",
+     "url": "https://www.ticketmaster.fr/fr/manifestation/france-gall-michel-berger-l-hommage-billet/idmanif/642949/idtier/18864121"
     }
    ],
    "kind": "other",
@@ -35475,11 +35499,11 @@
      "url": "https://www.offi.fr/concerts/theatre-trianon-3299/marcus-gad-3172881.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3172881-2026-10-30T20:00",
@@ -35511,31 +35535,6 @@
    ]
   },
   {
-   "id": "6778c22aef1f",
-   "title": "Stars Manga",
-   "date": "2026-10-30",
-   "time": "20:00",
-   "venue": "Palais des Congrès de Paris",
-   "genre": "Ciné concert, Contemporain / Expérimental",
-   "price": "49-99 €",
-   "links": [
-    {
-     "source": "Offi",
-     "url": "https://www.offi.fr/concerts/palais-des-congres-2908/stars-manga-3184454.html"
-    }
-   ],
-   "kind": "other",
-   "first_seen": "2026-10-07",
-   "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
-   "last_seen": "2026-10-07",
-   "source_keys": [
-    "Offi:3184454-2026-10-30T20:00",
-    "Ticketmaster:rZ7SnyZ1A7AgJA"
-   ]
-  },
-  {
    "id": "74eee0465942",
    "title": "LOUKEMAN",
    "date": "2026-10-30",
@@ -35557,6 +35556,31 @@
    "last_seen": "2026-10-07",
    "source_keys": [
     "Ticketmaster:ZkyMmBwZ1A7uZQZ"
+   ]
+  },
+  {
+   "id": "7ed239ee2be7",
+   "title": "Stars Manga",
+   "date": "2026-10-30",
+   "time": "20:00",
+   "venue": "Palais des Congrès de Paris",
+   "genre": "Ciné concert, Contemporain / Expérimental",
+   "price": "49-99 €",
+   "links": [
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/palais-des-congres-2908/stars-manga-3184454.html"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-07",
+   "baseline": true,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-07",
+   "source_keys": [
+    "Offi:3184454-2026-10-30T20:00",
+    "Ticketmaster:rZ7SnyZ1A7AgJA"
    ]
   },
   {
@@ -35703,11 +35727,11 @@
      "url": "https://www.offi.fr/concerts/new-morning-2842/ga-20-3315201.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3315201-2026-10-30T20:00"
@@ -36052,7 +36076,7 @@
   },
   {
    "id": "968bb14a4dd2",
-   "title": "Concert - La Répéthèque de Muddy Cotton",
+   "title": "Concert : La Répéthèque de Muddy Cotton",
    "date": "2026-10-31",
    "time": "16:00",
    "venue": "Médiathèque Hélène Berr",
@@ -36096,6 +36120,30 @@
    "last_seen": "2026-10-07",
    "source_keys": [
     "Que faire à Paris:125325"
+   ]
+  },
+  {
+   "id": "a4b78e35a77e",
+   "title": "Christian Wachter",
+   "date": "2026-10-31",
+   "time": "16:00",
+   "venue": "Église Saint-Philippe-du-Roule",
+   "genre": null,
+   "price": null,
+   "links": [
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/eglise-st-philippe-du-roule-5728/christian-wachter-3361928.html"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-07",
+   "baseline": false,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-07",
+   "source_keys": [
+    "Offi:3361928-2026-10-31T16:00"
    ]
   },
   {
@@ -37361,6 +37409,30 @@
    ]
   },
   {
+   "id": "2e58a052ead6",
+   "title": "Quintette à cordes",
+   "date": "2026-11-01",
+   "time": "15:30",
+   "venue": "Église Sainte-Marie-des-Batignolles",
+   "genre": null,
+   "price": null,
+   "links": [
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/eglise-sainte-marie-des-batignolles-2114/quintette-a-cordes-3361929.html"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-07",
+   "baseline": false,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-07",
+   "source_keys": [
+    "Offi:3361929-2026-11-01T15:30"
+   ]
+  },
+  {
    "id": "40602c29ff2b",
    "title": "\"Poesia dell’evocare\" - ENRICO DAMIANO VALLONE",
    "date": "2026-11-01",
@@ -38024,31 +38096,7 @@
    ]
   },
   {
-   "id": "b8ef152c8694",
-   "title": "Spyair",
-   "date": "2026-11-02",
-   "time": "19:30",
-   "venue": "Le Cabaret Sauvage",
-   "genre": "Rock, Pop / Rock",
-   "price": null,
-   "links": [
-    {
-     "source": "Offi",
-     "url": "https://www.offi.fr/concerts/le-cabaret-sauvage-1591/spyair-3300183.html"
-    }
-   ],
-   "kind": "other",
-   "first_seen": "2026-10-07",
-   "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
-   "last_seen": "2026-10-07",
-   "source_keys": [
-    "Offi:3300183-2026-11-02T19:30"
-   ]
-  },
-  {
-   "id": "ebdc955561a0",
+   "id": "0c619205c249",
    "title": "Davina Michelle à La Boule Noire pour un concert parisien exceptionnel",
    "date": "2026-11-02",
    "time": "19:30",
@@ -38071,6 +38119,30 @@
     "Offi:3189769-2026-11-02T19:30",
     "Que faire à Paris:124672",
     "Ticketmaster:ZkyMmBwZ1A716F6"
+   ]
+  },
+  {
+   "id": "b8ef152c8694",
+   "title": "Spyair",
+   "date": "2026-11-02",
+   "time": "19:30",
+   "venue": "Le Cabaret Sauvage",
+   "genre": "Rock, Pop / Rock",
+   "price": null,
+   "links": [
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/le-cabaret-sauvage-1591/spyair-3300183.html"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-07",
+   "baseline": true,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-07",
+   "source_keys": [
+    "Offi:3300183-2026-11-02T19:30"
    ]
   },
   {
@@ -38228,11 +38300,11 @@
      "url": "https://www.offi.fr/concerts/new-morning-2842/nils-landgren-funk-unit-3315202.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3315202-2026-11-02T20:00"
@@ -38336,24 +38408,16 @@
   },
   {
    "id": "dc5526f2599a",
-   "title": "THE WORLD OF HANS ZIMMER",
+   "title": "The World of Hans Zimmer - A New Dimension",
    "date": "2026-11-02",
    "time": "20:00",
-   "venue": "ACCOR ARENA",
-   "genre": "Music",
-   "price": null,
+   "venue": "Accor Arena",
+   "genre": null,
+   "price": "Dès 71,50 euros.",
    "links": [
     {
-     "source": "Ticketmaster",
-     "url": "https://www.ticketmaster.fr/fr/manifestation/the-world-of-hans-zimmer-billet/idmanif/617296/idtier/18864121"
-    },
-    {
-     "source": "Ticketmaster",
-     "url": "https://www.ticketmaster.fr/fr/manifestation/package-the-world-of-hans-zimmer-billet/idmanif/618331/idtier/18864121"
-    },
-    {
-     "source": "Offi",
-     "url": "https://www.offi.fr/concerts/palais-omnisports-de-paris-bercy-2913/the-world-of-hans-zimmer-2953715.html"
+     "source": "Que faire à Paris",
+     "url": "https://www.gdp.fr/fr/catalogue/the-world-of-hans-zimmer-paris-2026-11-02"
     }
    ],
    "kind": "other",
@@ -38372,16 +38436,24 @@
   },
   {
    "id": "dc5526f2599ax",
-   "title": "The World of Hans Zimmer - A New Dimension",
+   "title": "THE WORLD OF HANS ZIMMER",
    "date": "2026-11-02",
    "time": "20:00",
-   "venue": "Accor Arena",
-   "genre": null,
-   "price": "Dès 71,50 euros.",
+   "venue": "ACCOR ARENA",
+   "genre": "Music",
+   "price": null,
    "links": [
     {
-     "source": "Que faire à Paris",
-     "url": "https://www.gdp.fr/fr/catalogue/the-world-of-hans-zimmer-paris-2026-11-02"
+     "source": "Ticketmaster",
+     "url": "https://www.ticketmaster.fr/fr/manifestation/the-world-of-hans-zimmer-billet/idmanif/617296/idtier/18864121"
+    },
+    {
+     "source": "Ticketmaster",
+     "url": "https://www.ticketmaster.fr/fr/manifestation/package-the-world-of-hans-zimmer-billet/idmanif/618331/idtier/18864121"
+    },
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/palais-omnisports-de-paris-bercy-2913/the-world-of-hans-zimmer-2953715.html"
     }
    ],
    "kind": "other",
@@ -39327,6 +39399,30 @@
    ]
   },
   {
+   "id": "eb505c2768b5",
+   "title": "François Cornu",
+   "date": "2026-11-04",
+   "time": "12:45",
+   "venue": "Espace Georges-Bernanos",
+   "genre": null,
+   "price": null,
+   "links": [
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/espace-georges-bernanos-2234/francois-cornu-3361918.html"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-07",
+   "baseline": false,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-07",
+   "source_keys": [
+    "Offi:3361918-2026-11-04T12:45"
+   ]
+  },
+  {
    "id": "11f4eb0bcbdd",
    "title": "Ensemble royal de Paris",
    "date": "2026-11-04",
@@ -40205,11 +40301,11 @@
      "url": "https://www.offi.fr/concerts/le-club-5468/tokyo-tea-room-3307197.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3307197-2026-11-05T19:30"
@@ -40457,6 +40553,30 @@
    ]
   },
   {
+   "id": "6026450f3b94",
+   "title": "Concert Animalia : Les oiseaux enchantés - l'Hôtel de la Marine",
+   "date": "2026-11-05",
+   "time": "20:00",
+   "venue": "Hôtel de la Marine",
+   "genre": null,
+   "price": "Adultes 9 € Gratuit pour les moins de 18 ans",
+   "links": [
+    {
+     "source": "Que faire à Paris",
+     "url": "https://www.hotel-de-la-marine.paris/agenda/animalia/cycle-de-concerts-animalia.-les-animaux-en-musique/concert-animalia-les-oiseaux-enchantes"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-07",
+   "baseline": false,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-07",
+   "source_keys": [
+    "Que faire à Paris:125597"
+   ]
+  },
+  {
    "id": "6a70b4889c9d",
    "title": "De Bach à Ravel... Le style Janoska",
    "date": "2026-11-05",
@@ -40648,11 +40768,11 @@
      "url": "https://www.offi.fr/concerts/new-morning-2842/tyreek-mcdole-3315205.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3315205-2026-11-05T20:00"
@@ -41147,11 +41267,11 @@
      "url": "https://www.offi.fr/concerts/la-cigale-1805/daoud-3126601.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3126601-2026-11-06T20:00",
@@ -41930,6 +42050,30 @@
    "last_seen": "2026-10-07",
    "source_keys": [
     "Que faire à Paris:115103"
+   ]
+  },
+  {
+   "id": "a010e1a66797",
+   "title": "Lisa Cat-Berro, Good Days Bad Days au 38Riv Jazz Club",
+   "date": "2026-11-06",
+   "time": "21:30",
+   "venue": "38Riv Jazz Club",
+   "genre": null,
+   "price": "Tarif en ligne : 25€ à 30€ Tarif sur place : 28€ à 33€",
+   "links": [
+    {
+     "source": "Que faire à Paris",
+     "url": "https://38riv.com/concerts/lisa-cat-berro"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-07",
+   "baseline": false,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-07",
+   "source_keys": [
+    "Que faire à Paris:125552"
    ]
   },
   {
@@ -44900,6 +45044,30 @@
    ]
   },
   {
+   "id": "db5d79311dce",
+   "title": "Lucie Chabard",
+   "date": "2026-11-10",
+   "time": "19:30",
+   "venue": "Église luthérienne du Bon-Secours",
+   "genre": null,
+   "price": null,
+   "links": [
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/eglise-lutherienne-du-bon-secours-2044/lucie-chabard-3361917.html"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-07",
+   "baseline": false,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-07",
+   "source_keys": [
+    "Offi:3361917-2026-11-10T19:30"
+   ]
+  },
+  {
    "id": "f584718eabe5",
    "title": "Le Monde au Grand Rex",
    "date": "2026-11-10",
@@ -45318,11 +45486,11 @@
      "url": "https://www.offi.fr/concerts/new-morning-2842/steve-coleman-the-five-elements-3315234.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3315234-2026-11-10T20:00"
@@ -45533,6 +45701,30 @@
    "last_seen": "2026-10-07",
    "source_keys": [
     "Que faire à Paris:125240"
+   ]
+  },
+  {
+   "id": "2484ebb93e6f",
+   "title": "Julie Anna Zappalà",
+   "date": "2026-11-11",
+   "time": "12:45",
+   "venue": "Espace Georges-Bernanos",
+   "genre": null,
+   "price": null,
+   "links": [
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/espace-georges-bernanos-2234/julie-anna-zappala-3361919.html"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-07",
+   "baseline": false,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-07",
+   "source_keys": [
+    "Offi:3361919-2026-11-11T12:45"
    ]
   },
   {
@@ -45916,6 +46108,32 @@
    ]
   },
   {
+   "id": "487055f6b2d8",
+   "title": "Concert de Belinda Davids : « A Tribute to Whitney Houston »",
+   "date": "2026-11-11",
+   "time": "20:30",
+   "venue": "GRAND REX",
+   "genre": null,
+   "price": "Carré Or : 108 € / < 25 ans : 54 € Cat. 1 : 88 € / < 25 ans : 44 € Cat. 2 : 69 € / < 25 ans : 34.50 € Cat. 3: 55 € / < 25 ans : 27.50 € € Infos, Groupes et C.E : Haracom Tél : 03.21.26.52.94 Billetterie : https://www.ticketmaster.fr/fr/manifestation/belinda-davids-billet/idmanif/636774/idtier/28239479",
+   "links": [
+    {
+     "source": "Que faire à Paris",
+     "url": "https://www.leconcertextraordinaire.com/en-tournee/belinda-davids-concerts"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-07",
+   "baseline": true,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-07",
+   "source_keys": [
+    "Offi:3100990-2026-11-11T20:30",
+    "Que faire à Paris:35994",
+    "Ticketmaster:rZ7SnyZ1A7Ag0o"
+   ]
+  },
+  {
    "id": "4ede781b1bf5",
    "title": "Ella Lewis",
    "date": "2026-11-11",
@@ -45989,42 +46207,16 @@
   },
   {
    "id": "f9935e93defb",
-   "title": "Concert de Belinda Davids : « A Tribute to Whitney Houston »",
-   "date": "2026-11-11",
-   "time": "20:30",
-   "venue": "GRAND REX",
-   "genre": null,
-   "price": "Carré Or : 108 € / < 25 ans : 54 € Cat. 1 : 88 € / < 25 ans : 44 € Cat. 2 : 69 € / < 25 ans : 34.50 € Cat. 3: 55 € / < 25 ans : 27.50 € € Infos, Groupes et C.E : Haracom Tél : 03.21.26.52.94 Billetterie : https://www.ticketmaster.fr/fr/manifestation/belinda-davids-billet/idmanif/636774/idtier/28239479",
-   "links": [
-    {
-     "source": "Que faire à Paris",
-     "url": "https://www.leconcertextraordinaire.com/en-tournee/belinda-davids-concerts"
-    }
-   ],
-   "kind": "other",
-   "first_seen": "2026-10-07",
-   "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
-   "last_seen": "2026-10-07",
-   "source_keys": [
-    "Offi:3100990-2026-11-11T20:30",
-    "Que faire à Paris:35994",
-    "Ticketmaster:rZ7SnyZ1A7Ag0o"
-   ]
-  },
-  {
-   "id": "f9935e93defbx",
-   "title": "BELINDA DAVIDS-TRIBUTE WHITNEY HOUSTON - BELINDA DAVIDS",
+   "title": "Hommage à Whitney Houston",
    "date": "2026-11-11",
    "time": "20:30",
    "venue": "Le Grand Rex",
-   "genre": "Pop",
-   "price": null,
+   "genre": "RnB, Musiques urbaines",
+   "price": "55-108 €",
    "links": [
     {
-     "source": "Ticketmaster",
-     "url": "https://www.ticketmaster.fr/fr/manifestation/belinda-davids-tribute-whitney-houston-billet/idmanif/636774/idseance/4175911"
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/le-rex-3071/hommage-a-whitney-houston-3100990.html"
     }
    ],
    "kind": "other",
@@ -46041,16 +46233,16 @@
   },
   {
    "id": "f9935e93defbxx",
-   "title": "Hommage à Whitney Houston",
+   "title": "BELINDA DAVIDS-TRIBUTE WHITNEY HOUSTON - BELINDA DAVIDS",
    "date": "2026-11-11",
    "time": "20:30",
    "venue": "Le Grand Rex",
-   "genre": "RnB, Musiques urbaines",
-   "price": "55-108 €",
+   "genre": "Pop",
+   "price": null,
    "links": [
     {
-     "source": "Offi",
-     "url": "https://www.offi.fr/concerts/le-rex-3071/hommage-a-whitney-houston-3100990.html"
+     "source": "Ticketmaster",
+     "url": "https://www.ticketmaster.fr/fr/manifestation/belinda-davids-tribute-whitney-houston-billet/idmanif/636774/idseance/4175911"
     }
    ],
    "kind": "other",
@@ -47720,11 +47912,11 @@
      "url": "https://www.offi.fr/concerts/new-morning-2842/myles-sanko-3315235.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3315235-2026-11-13T20:00"
@@ -48258,11 +48450,11 @@
      "url": "https://www.offi.fr/concerts/new-morning-2842/leee-john-3315236.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3315236-2026-11-14T19:00"
@@ -48479,11 +48671,11 @@
      "url": "https://www.offi.fr/concerts/la-cigale-1805/mike-et-rike-manu-et-guizmo-hk-et-vanupie-3126602.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3126602-2026-11-14T20:00"
@@ -48584,11 +48776,11 @@
      "url": "https://www.offi.fr/concerts/lolympia-2874/overmono-3254635.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3254635-2026-11-14T20:00",
@@ -48989,11 +49181,11 @@
      "url": "https://www.offi.fr/concerts/la-scene-watteau-3170/jeanne-cherhal-3299030.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3299030-2026-11-14T20:30"
@@ -50933,11 +51125,11 @@
      "url": "https://www.offi.fr/concerts/le-club-5468/feeble-little-horse-3307199.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3307199-2026-11-17T19:30"
@@ -51226,11 +51418,11 @@
      "url": "https://www.offi.fr/concerts/lolympia-2874/syd-matters-3126556.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3126556-2026-11-17T20:00",
@@ -51436,6 +51628,31 @@
   },
   {
    "id": "f97bf1620d46",
+   "title": "Ici Demain festival, 7ème édition à FGO-Barbara !",
+   "date": "2026-11-18",
+   "time": null,
+   "venue": "FGO-Barbara",
+   "genre": null,
+   "price": null,
+   "links": [
+    {
+     "source": "Que faire à Paris",
+     "url": "https://shotgun.live/events/ici-demain-festival-7"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-07",
+   "baseline": true,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-07",
+   "source_keys": [
+    "Que faire à Paris:125104",
+    "Que faire à Paris:125173"
+   ]
+  },
+  {
+   "id": "f97bf1620d46x",
    "title": "« Ici Demain Festival », la création contemporaine au FGO-Barbara",
    "date": "2026-11-18",
    "time": null,
@@ -51460,28 +51677,27 @@
    ]
   },
   {
-   "id": "f97bf1620d46x",
-   "title": "Ici Demain festival, 7ème édition à FGO-Barbara !",
+   "id": "7d115bb46714",
+   "title": "Katian Darisio et Jeanne Hourez",
    "date": "2026-11-18",
-   "time": null,
-   "venue": "FGO-Barbara",
+   "time": "12:45",
+   "venue": "Espace Georges-Bernanos",
    "genre": null,
    "price": null,
    "links": [
     {
-     "source": "Que faire à Paris",
-     "url": "https://shotgun.live/events/ici-demain-festival-7"
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/espace-georges-bernanos-2234/katian-darisio-et-jeanne-hourez-3361920.html"
     }
    ],
    "kind": "other",
    "first_seen": "2026-10-07",
-   "baseline": true,
+   "baseline": false,
    "list_since": null,
    "list_baseline": false,
    "last_seen": "2026-10-07",
    "source_keys": [
-    "Que faire à Paris:125104",
-    "Que faire à Paris:125173"
+    "Offi:3361920-2026-11-18T12:45"
    ]
   },
   {
@@ -51575,11 +51791,11 @@
      "url": "https://www.offi.fr/concerts/le-bataclan-1526/a2h-3304415.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3304415-2026-11-18T19:00"
@@ -51752,11 +51968,11 @@
      "url": "https://www.offi.fr/concerts/new-morning-2842/louis-matute-3315276.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3315276-2026-11-18T20:00",
@@ -52883,11 +53099,11 @@
      "url": "https://www.offi.fr/concerts/alhambra-3584/sam-wilkes-et-sam-gendel-3312760.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3312760-2026-11-19T20:00"
@@ -55118,11 +55334,11 @@
      "url": "https://www.offi.fr/concerts/grande-salle-6005/mc-solaar-et-youssoupha-3225784.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3225784-2026-11-21T20:00"
@@ -55607,6 +55823,30 @@
    "last_seen": "2026-10-07",
    "source_keys": [
     "Ticketmaster:ZkyMmBwZ1A780fA"
+   ]
+  },
+  {
+   "id": "7ce4dc0b6b5b",
+   "title": "Une mélodie pour Clara",
+   "date": "2026-11-22",
+   "time": "17:00",
+   "venue": "Église réformée d'Auteuil",
+   "genre": null,
+   "price": null,
+   "links": [
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/eglise-reformee-dauteuil-2070/une-melodie-pour-clara-3361927.html"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-07",
+   "baseline": false,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-07",
+   "source_keys": [
+    "Offi:3361927-2026-11-22T17:00"
    ]
   },
   {
@@ -56353,11 +56593,11 @@
      "url": "https://www.offi.fr/concerts/theatre-trianon-3299/ferdi-3172882.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3172882-2026-11-23T20:00",
@@ -56797,11 +57037,11 @@
      "url": "https://www.offi.fr/concerts/new-morning-2842/little-odetta-the-zac-schulze-gang-3315282.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3315282-2026-11-24T20:00"
@@ -57137,6 +57377,30 @@
    "last_seen": "2026-10-07",
    "source_keys": [
     "Que faire à Paris:125470"
+   ]
+  },
+  {
+   "id": "c75175c68baa",
+   "title": "Mia Malesia et Marie-Elisabeth Seager",
+   "date": "2026-11-25",
+   "time": "12:45",
+   "venue": "Espace Georges-Bernanos",
+   "genre": null,
+   "price": null,
+   "links": [
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/espace-georges-bernanos-2234/mia-malesia-et-marie-elisabeth-seager-3361921.html"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-07",
+   "baseline": false,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-07",
+   "source_keys": [
+    "Offi:3361921-2026-11-25T12:45"
    ]
   },
   {
@@ -58125,11 +58389,11 @@
      "url": "https://www.offi.fr/concerts/new-morning-2842/mt-jones-3315290.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3315290-2026-11-26T20:00"
@@ -58161,16 +58425,16 @@
   },
   {
    "id": "2bc1a1e6a894",
-   "title": "THE MUSIC OF QUEEN",
+   "title": "The Music of Queen",
    "date": "2026-11-26",
    "time": "20:00",
-   "venue": "SALLE PLEYEL",
-   "genre": "Rock",
-   "price": null,
+   "venue": "Salle Pleyel",
+   "genre": "Rock, Pop / Rock",
+   "price": "55-88 €",
    "links": [
     {
-     "source": "Ticketmaster",
-     "url": "https://www.ticketmaster.fr/fr/manifestation/the-music-of-queen-billet/idmanif/648438/idtier/18864121"
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/salle-pleyel-3159/the-music-of-queen-3221623.html"
     }
    ],
    "kind": "other",
@@ -58186,16 +58450,16 @@
   },
   {
    "id": "2bc1a1e6a894x",
-   "title": "The Music of Queen",
+   "title": "THE MUSIC OF QUEEN",
    "date": "2026-11-26",
    "time": "20:00",
-   "venue": "Salle Pleyel",
-   "genre": "Rock, Pop / Rock",
-   "price": "55-88 €",
+   "venue": "SALLE PLEYEL",
+   "genre": "Rock",
+   "price": null,
    "links": [
     {
-     "source": "Offi",
-     "url": "https://www.offi.fr/concerts/salle-pleyel-3159/the-music-of-queen-3221623.html"
+     "source": "Ticketmaster",
+     "url": "https://www.ticketmaster.fr/fr/manifestation/the-music-of-queen-billet/idmanif/648438/idtier/18864121"
     }
    ],
    "kind": "other",
@@ -60078,11 +60342,11 @@
      "url": "https://www.offi.fr/concerts/elysee-montmartre-2168/spider-zed-3174948.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3174948-2026-11-28T19:30",
@@ -60507,11 +60771,11 @@
      "url": "https://www.offi.fr/concerts/la-cigale-1805/nous-etions-une-armee-3126603.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3126603-2026-11-28T20:00",
@@ -62087,6 +62351,30 @@
    ]
   },
   {
+   "id": "894ed6495692",
+   "title": "3 nights with Julia Perminova, concert au 38Riv Jazz Club",
+   "date": "2026-11-30",
+   "time": "21:30",
+   "venue": "38Riv Jazz Club",
+   "genre": null,
+   "price": "Tarif en ligne : 21€ à 24€ Tarif sur place : 24€ à 27€",
+   "links": [
+    {
+     "source": "Que faire à Paris",
+     "url": "https://38riv.com/concerts?search=3%20nights%20with%20Julia%20Perminova"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-07",
+   "baseline": false,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-07",
+   "source_keys": [
+    "Que faire à Paris:125241"
+   ]
+  },
+  {
    "id": "227e8e405934",
    "title": "PAPA ROACH",
    "date": "2026-12-01",
@@ -62389,11 +62677,11 @@
      "url": "https://www.offi.fr/concerts/theatre-71-3268/melissa-laveaux-3265899.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3265899-2026-12-01T20:00"
@@ -62421,6 +62709,30 @@
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3299066-2026-12-01T20:45"
+   ]
+  },
+  {
+   "id": "1fc77315bfc0",
+   "title": "Florian Cousin et Kanae Endo",
+   "date": "2026-12-02",
+   "time": "12:45",
+   "venue": "Espace Georges-Bernanos",
+   "genre": null,
+   "price": null,
+   "links": [
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/espace-georges-bernanos-2234/florian-cousin-et-kanae-endo-3361922.html"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-07",
+   "baseline": false,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-07",
+   "source_keys": [
+    "Offi:3361922-2026-12-02T12:45"
    ]
   },
   {
@@ -62726,11 +63038,11 @@
      "url": "https://www.offi.fr/concerts/new-morning-2842/kat-eaton-3315291.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3315291-2026-12-02T20:00"
@@ -63356,11 +63668,11 @@
      "url": "https://www.offi.fr/concerts/new-morning-2842/jontavious-willis-3315312.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3315312-2026-12-03T20:00"
@@ -64820,6 +65132,30 @@
    ]
   },
   {
+   "id": "e176886cab4f",
+   "title": "Thierry Bloas-Saintmarc",
+   "date": "2026-12-04",
+   "time": "20:30",
+   "venue": "Église Saint-Serge",
+   "genre": null,
+   "price": null,
+   "links": [
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/eglise-saint-serge-7247/thierry-bloas-saintmarc-3361916.html"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-07",
+   "baseline": false,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-07",
+   "source_keys": [
+    "Offi:3361916-2026-12-04T20:30"
+   ]
+  },
+  {
    "id": "f9ac0d14cf86",
    "title": "Anna Fedorova",
    "date": "2026-12-04",
@@ -65891,11 +66227,11 @@
      "url": "https://www.offi.fr/concerts/theatre-des-bergeries-1543/melissa-laveaux-3316171.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3316171-2026-12-05T20:30"
@@ -66776,11 +67112,11 @@
      "url": "https://www.offi.fr/concerts/le-club-5468/marco-castello-3307201.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3307201-2026-12-07T19:30"
@@ -66913,20 +67249,16 @@
   },
   {
    "id": "8c48d2b00709",
-   "title": "THE DIRE STRAITS EXPERIENCE",
+   "title": "The Dire Straits Experience le lundi 7 décembre à Paris !",
    "date": "2026-12-07",
    "time": "20:00",
-   "venue": "ZENITH PARIS - LA VILLETTE",
-   "genre": "Rock",
-   "price": null,
+   "venue": "Zénith Paris La Villette",
+   "genre": null,
+   "price": "à partir de 52€",
    "links": [
     {
-     "source": "Ticketmaster",
-     "url": "https://www.ticketmaster.fr/fr/manifestation/the-dire-straits-experience-billet/idmanif/645359/idtier/18864121"
-    },
-    {
-     "source": "Offi",
-     "url": "https://www.offi.fr/concerts/le-zenith-3401/the-dire-straits-experience-3140928.html"
+     "source": "Que faire à Paris",
+     "url": "https://www.gdp.fr/fr/catalogue/the-dire-straits-experience-paris-2026-12-07"
     }
    ],
    "kind": "other",
@@ -66943,16 +67275,20 @@
   },
   {
    "id": "8c48d2b00709x",
-   "title": "The Dire Straits Experience le lundi 7 décembre à Paris !",
+   "title": "THE DIRE STRAITS EXPERIENCE",
    "date": "2026-12-07",
    "time": "20:00",
-   "venue": "Zénith Paris La Villette",
-   "genre": null,
-   "price": "à partir de 52€",
+   "venue": "ZENITH PARIS - LA VILLETTE",
+   "genre": "Rock",
+   "price": null,
    "links": [
     {
-     "source": "Que faire à Paris",
-     "url": "https://www.gdp.fr/fr/catalogue/the-dire-straits-experience-paris-2026-12-07"
+     "source": "Ticketmaster",
+     "url": "https://www.ticketmaster.fr/fr/manifestation/the-dire-straits-experience-billet/idmanif/645359/idtier/18864121"
+    },
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/le-zenith-3401/the-dire-straits-experience-3140928.html"
     }
    ],
    "kind": "other",
@@ -67433,11 +67769,11 @@
      "url": "https://www.offi.fr/concerts/la-cigale-1805/glk-3172223.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3172223-2026-12-08T20:00"
@@ -67585,6 +67921,30 @@
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3316443-2026-12-08T20:30"
+   ]
+  },
+  {
+   "id": "8d4d6836aabe",
+   "title": "François Pineau-Benois",
+   "date": "2026-12-09",
+   "time": "12:45",
+   "venue": "Espace Georges-Bernanos",
+   "genre": null,
+   "price": null,
+   "links": [
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/espace-georges-bernanos-2234/francois-pineau-benois-3361923.html"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-07",
+   "baseline": false,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-07",
+   "source_keys": [
+    "Offi:3361923-2026-12-09T12:45"
    ]
   },
   {
@@ -68938,11 +69298,11 @@
      "url": "https://www.offi.fr/concerts/la-cigale-1805/java-et-winston-mcanuff-3254701.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3254701-2026-12-11T20:00"
@@ -69188,11 +69548,11 @@
      "url": "https://www.offi.fr/concerts/alhambra-3584/tahiti-80-maxwell-farrington-le-superhomard-3312766.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3312766-2026-12-11T20:00"
@@ -69852,11 +70212,11 @@
      "url": "https://www.offi.fr/concerts/new-morning-2842/bilal-3316188.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3316188-2026-12-12T20:00"
@@ -71351,11 +71711,11 @@
      "url": "https://www.offi.fr/concerts/la-cigale-1805/ladaniva-3254702.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3254702-2026-12-15T20:00",
@@ -71750,6 +72110,30 @@
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3316444-2026-12-15T20:30"
+   ]
+  },
+  {
+   "id": "4b191bad2a11",
+   "title": "Giuliana De Siato et Annarosa Partipilo",
+   "date": "2026-12-16",
+   "time": "12:45",
+   "venue": "Espace Georges-Bernanos",
+   "genre": null,
+   "price": null,
+   "links": [
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/espace-georges-bernanos-2234/giuliana-de-siato-et-annarosa-partipilo-3361924.html"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-07",
+   "baseline": false,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-07",
+   "source_keys": [
+    "Offi:3361924-2026-12-16T12:45"
    ]
   },
   {
@@ -72955,11 +73339,11 @@
      "url": "https://www.offi.fr/concerts/new-morning-2842/the-puppini-sisters-3316189.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3316189-2026-12-17T20:30"
@@ -74982,11 +75366,11 @@
      "url": "https://www.offi.fr/concerts/theatre-de-la-ville-les-abbesses-3377/tosca-3308745.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3308745-2026-12-21T20:00"
@@ -78735,6 +79119,10 @@
     {
      "source": "Que faire à Paris",
      "url": "https://www.festivalpremiermouvement.com/fr/concerts/2027/d2d99ef5-2fe9-45ed-a2c0-71504f923d80"
+    },
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/eglise-saint-etienne-du-mont-2119/bach-et-nous-raconte-par-agnes-jaoui-3361930.html"
     }
    ],
    "kind": "other",
@@ -78744,6 +79132,7 @@
    "list_baseline": false,
    "last_seen": "2026-10-07",
    "source_keys": [
+    "Offi:3361930-2027-01-09T21:00",
     "Que faire à Paris:125073"
    ]
   },
@@ -79035,11 +79424,11 @@
      "url": "https://www.offi.fr/concerts/la-cigale-1805/jersey-3361859.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3361859-2027-01-12T20:00"
@@ -79938,11 +80327,11 @@
      "url": "https://www.offi.fr/concerts/elysee-montmartre-2168/pact-3255883.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3255883-2027-01-16T20:00",
@@ -80607,11 +80996,11 @@
      "url": "https://www.offi.fr/concerts/la-cigale-1805/leon-phal-3308767.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3308767-2027-01-19T20:00",
@@ -80839,11 +81228,11 @@
      "url": "https://www.offi.fr/concerts/new-morning-2842/jean-jacques-milteau-3316190.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3316190-2027-01-20T20:30"
@@ -81106,16 +81495,16 @@
   },
   {
    "id": "8f4b6b905d37",
-   "title": "bROTHERS iN bAND - DIRE STRAITS TRIBUTE - BROTHERS IN BAND",
+   "title": "Hommage à The Dire Straits",
    "date": "2027-01-21",
    "time": "20:30",
    "venue": "La Cigale",
-   "genre": "Pop",
+   "genre": "Pop / Rock",
    "price": null,
    "links": [
     {
-     "source": "Ticketmaster",
-     "url": "https://www.ticketmaster.fr/fr/manifestation/brothers-in-band-dire-straits-tribute-billet/idmanif/664452/idseance/4365470"
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/la-cigale-1805/hommage-a-the-dire-straits-3299015.html"
     }
    ],
    "kind": "other",
@@ -81131,16 +81520,16 @@
   },
   {
    "id": "8f4b6b905d37x",
-   "title": "Hommage à The Dire Straits",
+   "title": "bROTHERS iN bAND - DIRE STRAITS TRIBUTE - BROTHERS IN BAND",
    "date": "2027-01-21",
    "time": "20:30",
    "venue": "La Cigale",
-   "genre": "Pop / Rock",
+   "genre": "Pop",
    "price": null,
    "links": [
     {
-     "source": "Offi",
-     "url": "https://www.offi.fr/concerts/la-cigale-1805/hommage-a-the-dire-straits-3299015.html"
+     "source": "Ticketmaster",
+     "url": "https://www.ticketmaster.fr/fr/manifestation/brothers-in-band-dire-straits-tribute-billet/idmanif/664452/idseance/4365470"
     }
    ],
    "kind": "other",
@@ -81512,16 +81901,20 @@
   },
   {
    "id": "fc310fa113f2",
-   "title": "LOGICALTRAMP - THE SPIRIT OF SUPERTRAMP - LOGICALTRAMP",
+   "title": "Logicaltramp - The Spirit of Supertramp",
    "date": "2027-01-22",
    "time": "20:30",
    "venue": "La Cigale",
-   "genre": "Pop",
-   "price": null,
+   "genre": "Pop / Rock",
+   "price": "TARIFS : Carré Or : 95 € - Cat.1 : 65 € - Cat.2 : 45 € - VR 25 € <-25 ans : carré Or : 47.50 € - Cat.1 : 32.50 € - Cat. 2 : 22.50 € Infos, groupes et CE : Haracom : 03.21.26.52.94",
    "links": [
     {
-     "source": "Ticketmaster",
-     "url": "https://www.ticketmaster.fr/fr/manifestation/logicaltramp-the-spirit-of-supertramp-billet/idmanif/664460/idseance/4365654"
+     "source": "Que faire à Paris",
+     "url": "https://www.ticketmaster.fr/fr/manifestation/logicaltramp-billet/idmanif/664460"
+    },
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/la-cigale-1805/logicaltramp-the-spirit-of-supertramp-3298998.html"
     }
    ],
    "kind": "other",
@@ -81538,20 +81931,16 @@
   },
   {
    "id": "fc310fa113f2x",
-   "title": "Logicaltramp - The Spirit of Supertramp",
+   "title": "LOGICALTRAMP - THE SPIRIT OF SUPERTRAMP - LOGICALTRAMP",
    "date": "2027-01-22",
    "time": "20:30",
    "venue": "La Cigale",
-   "genre": "Pop / Rock",
-   "price": "TARIFS : Carré Or : 95 € - Cat.1 : 65 € - Cat.2 : 45 € - VR 25 € <-25 ans : carré Or : 47.50 € - Cat.1 : 32.50 € - Cat. 2 : 22.50 € Infos, groupes et CE : Haracom : 03.21.26.52.94",
+   "genre": "Pop",
+   "price": null,
    "links": [
     {
-     "source": "Que faire à Paris",
-     "url": "https://www.ticketmaster.fr/fr/manifestation/logicaltramp-billet/idmanif/664460"
-    },
-    {
-     "source": "Offi",
-     "url": "https://www.offi.fr/concerts/la-cigale-1805/logicaltramp-the-spirit-of-supertramp-3298998.html"
+     "source": "Ticketmaster",
+     "url": "https://www.ticketmaster.fr/fr/manifestation/logicaltramp-the-spirit-of-supertramp-billet/idmanif/664460/idseance/4365654"
     }
    ],
    "kind": "other",
@@ -81986,6 +82375,32 @@
    ]
   },
   {
+   "id": "405deec22ed8",
+   "title": "Hommage à Neil Young",
+   "date": "2027-01-23",
+   "time": "20:30",
+   "venue": "La Cigale",
+   "genre": "Pop / Rock",
+   "price": null,
+   "links": [
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/la-cigale-1805/hommage-a-neil-young-3299001.html"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-07",
+   "baseline": true,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-07",
+   "source_keys": [
+    "Offi:3299001-2027-01-23T20:30",
+    "Que faire à Paris:60868",
+    "Ticketmaster:ZkyMmBwZ1A7uP_O"
+   ]
+  },
+  {
    "id": "678d2c3dc290",
    "title": "Umlaut Big Band joue Melba Liston",
    "date": "2027-01-23",
@@ -82059,42 +82474,16 @@
   },
   {
    "id": "f781230e3c2f",
-   "title": "Hommage à Neil Young",
+   "title": "LENOISE, Tribute to Neil Young",
    "date": "2027-01-23",
    "time": "20:30",
    "venue": "La Cigale",
-   "genre": "Pop / Rock",
-   "price": null,
+   "genre": null,
+   "price": "Infos Groupes et C.E : Haracom Tél : 03.21.26.52.94 Tarifs : Carré Or : 96€ - Cat.1 : 76€ - Cat.2 : 59 € - Cat. 3 : 45€",
    "links": [
     {
-     "source": "Offi",
-     "url": "https://www.offi.fr/concerts/la-cigale-1805/hommage-a-neil-young-3299001.html"
-    }
-   ],
-   "kind": "other",
-   "first_seen": "2026-10-07",
-   "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
-   "last_seen": "2026-10-07",
-   "source_keys": [
-    "Offi:3299001-2027-01-23T20:30",
-    "Que faire à Paris:60868",
-    "Ticketmaster:ZkyMmBwZ1A7uP_O"
-   ]
-  },
-  {
-   "id": "f781230e3c2fx",
-   "title": "LENOISE - A TRIBUTE TO NEIL YOUNG - LENOISE",
-   "date": "2027-01-23",
-   "time": "20:30",
-   "venue": "La Cigale",
-   "genre": "Pop",
-   "price": null,
-   "links": [
-    {
-     "source": "Ticketmaster",
-     "url": "https://www.ticketmaster.fr/fr/manifestation/lenoise-a-tribute-to-neil-young-billet/idmanif/664544/idseance/4365660"
+     "source": "Que faire à Paris",
+     "url": "https://www.ticketmaster.fr/fr/manifestation/lenoise-billet/idmanif/582480"
     }
    ],
    "kind": "other",
@@ -82111,16 +82500,16 @@
   },
   {
    "id": "f781230e3c2fxx",
-   "title": "LENOISE, Tribute to Neil Young",
+   "title": "LENOISE - A TRIBUTE TO NEIL YOUNG - LENOISE",
    "date": "2027-01-23",
    "time": "20:30",
    "venue": "La Cigale",
-   "genre": null,
-   "price": "Infos Groupes et C.E : Haracom Tél : 03.21.26.52.94 Tarifs : Carré Or : 96€ - Cat.1 : 76€ - Cat.2 : 59 € - Cat. 3 : 45€",
+   "genre": "Pop",
+   "price": null,
    "links": [
     {
-     "source": "Que faire à Paris",
-     "url": "https://www.ticketmaster.fr/fr/manifestation/lenoise-billet/idmanif/582480"
+     "source": "Ticketmaster",
+     "url": "https://www.ticketmaster.fr/fr/manifestation/lenoise-a-tribute-to-neil-young-billet/idmanif/664544/idseance/4365660"
     }
    ],
    "kind": "other",
@@ -82677,11 +83066,11 @@
      "url": "https://www.offi.fr/concerts/la-cigale-1805/pi-ja-ma-3172229.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3172229-2027-01-26T20:00"
@@ -82842,7 +83231,7 @@
    ]
   },
   {
-   "id": "d8845066b944",
+   "id": "3189a901a980",
    "title": "One night of Queen - Wembley 86",
    "date": "2027-01-26",
    "time": "20:30",
@@ -83007,11 +83396,11 @@
      "url": "https://www.offi.fr/concerts/new-morning-2842/jerron-paxton-3316191.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3316191-2027-01-27T20:00"
@@ -84121,7 +84510,7 @@
    "links": [
     {
      "source": "Ticketmaster",
-     "url": "https://www.ticketmaster.fr/fr/manifestation/the-depeche-mode-experience-billet/idmanif/650632/idtier/18864121"
+     "url": "https://www.ticketmaster.fr/fr/manifestation/the-depeche-mode-experience-billet/idmanif/650632/idseance/4279796"
     },
     {
      "source": "Offi",
@@ -84217,7 +84606,7 @@
    ]
   },
   {
-   "id": "f23f62576b61",
+   "id": "dfc8b9c810d2",
    "title": "Michel Jonasz et Jean-Yves d'Angelo",
    "date": "2027-01-30",
    "time": "20:00",
@@ -84230,11 +84619,11 @@
      "url": "https://www.offi.fr/concerts/les-folies-bergere-2331/michel-jonasz-et-jean-yves-dangelo-3174485.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3174485-2027-01-30T20:00",
@@ -84333,11 +84722,11 @@
      "url": "https://www.offi.fr/concerts/theatre-des-deux-rives-1995/melissa-laveaux-3341580.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3341580-2027-01-30T20:30"
@@ -84466,6 +84855,31 @@
   },
   {
    "id": "c063e3509c73",
+   "title": "Michel Jonasz et Jean-Yves d'Angelo",
+   "date": "2027-01-31",
+   "time": "18:00",
+   "venue": "Les Folies Bergère",
+   "genre": "Chanson française, Chanson",
+   "price": null,
+   "links": [
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/les-folies-bergere-2331/michel-jonasz-et-jean-yves-dangelo-3174485.html"
+    }
+   ],
+   "kind": "discovery",
+   "first_seen": "2026-10-07",
+   "baseline": true,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
+   "last_seen": "2026-10-07",
+   "source_keys": [
+    "Offi:3174485-2027-01-31T18:00",
+    "Ticketmaster:ZkyMmBwZ1A7F0bv"
+   ]
+  },
+  {
+   "id": "c063e3509c73x",
    "title": "MICHEL JONASZ - MICHEL JONASZ & JEAN-YVES D'ANGELO PIANO",
    "date": "2027-01-31",
    "time": "18:00",
@@ -84482,32 +84896,7 @@
    "first_seen": "2026-10-07",
    "baseline": true,
    "list_since": "2026-10-07",
-   "list_baseline": false,
-   "last_seen": "2026-10-07",
-   "source_keys": [
-    "Offi:3174485-2027-01-31T18:00",
-    "Ticketmaster:ZkyMmBwZ1A7F0bv"
-   ]
-  },
-  {
-   "id": "c063e3509c73x",
-   "title": "Michel Jonasz et Jean-Yves d'Angelo",
-   "date": "2027-01-31",
-   "time": "18:00",
-   "venue": "Les Folies Bergère",
-   "genre": "Chanson française, Chanson",
-   "price": null,
-   "links": [
-    {
-     "source": "Offi",
-     "url": "https://www.offi.fr/concerts/les-folies-bergere-2331/michel-jonasz-et-jean-yves-dangelo-3174485.html"
-    }
-   ],
-   "kind": "other",
-   "first_seen": "2026-10-07",
-   "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3174485-2027-01-31T18:00",
@@ -85756,31 +86145,7 @@
    ]
   },
   {
-   "id": "4d6c5ba4ba7d",
-   "title": "Boulevard des Airs",
-   "date": "2027-02-04",
-   "time": "20:30",
-   "venue": "Théâtre du Casino",
-   "genre": "Pop / Rock",
-   "price": "63 €",
-   "links": [
-    {
-     "source": "Offi",
-     "url": "https://www.offi.fr/concerts/theatre-du-casino-1637/boulevard-des-airs-3312220.html"
-    }
-   ],
-   "kind": "other",
-   "first_seen": "2026-10-07",
-   "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
-   "last_seen": "2026-10-07",
-   "source_keys": [
-    "Offi:3312220-2027-02-04T20:30"
-   ]
-  },
-  {
-   "id": "f04f881b2fea",
+   "id": "3641f2c9244d",
    "title": "Les musiques de John Williams & Hans Zimmer",
    "date": "2027-02-04",
    "time": "20:30",
@@ -85802,6 +86167,30 @@
    "source_keys": [
     "Offi:3225878-2027-02-04T20:30",
     "Ticketmaster:ZkyMmBwZ1A7Ga8e"
+   ]
+  },
+  {
+   "id": "4d6c5ba4ba7d",
+   "title": "Boulevard des Airs",
+   "date": "2027-02-04",
+   "time": "20:30",
+   "venue": "Théâtre du Casino",
+   "genre": "Pop / Rock",
+   "price": "63 €",
+   "links": [
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/theatre-du-casino-1637/boulevard-des-airs-3312220.html"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-07",
+   "baseline": true,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-07",
+   "source_keys": [
+    "Offi:3312220-2027-02-04T20:30"
    ]
   },
   {
@@ -88019,7 +88408,7 @@
    ]
   },
   {
-   "id": "647e4bc2cb81",
+   "id": "be0ad0654b82",
    "title": "Escape the Internet",
    "date": "2027-02-16",
    "time": "19:30",
@@ -88650,11 +89039,11 @@
      "url": "https://www.offi.fr/concerts/lolympia-2874/madeinparis-3254650.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3254650-2027-02-18T20:00"
@@ -90359,10 +90748,10 @@
      "url": "https://www.offi.fr/concerts/theatre-trianon-3299/myra-3361896.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": false,
-   "list_since": null,
+   "list_since": "2026-10-07",
    "list_baseline": false,
    "last_seen": "2026-10-07",
    "source_keys": [
@@ -90420,6 +90809,30 @@
    "last_seen": "2026-10-07",
    "source_keys": [
     "Ticketmaster:ZkyMmBwZ1A7Ceb0"
+   ]
+  },
+  {
+   "id": "fee7fccdaad5",
+   "title": "GWENDOLINE",
+   "date": "2027-02-25",
+   "time": "20:00",
+   "venue": "La Maroquinerie",
+   "genre": "Rock",
+   "price": null,
+   "links": [
+    {
+     "source": "Ticketmaster",
+     "url": "https://www.ticketmaster.fr/fr/manifestation/gwendoline-billet/idmanif/674304/idseance/4432448"
+    }
+   ],
+   "kind": "known",
+   "first_seen": "2026-10-07",
+   "baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": false,
+   "last_seen": "2026-10-07",
+   "source_keys": [
+    "Ticketmaster:ZkyMmBwZ1A78woF"
    ]
   },
   {
@@ -91104,10 +91517,10 @@
      "url": "https://www.offi.fr/concerts/theatre-trianon-3299/dynamite-shakers-3361897.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": false,
-   "list_since": null,
+   "list_since": "2026-10-07",
    "list_baseline": false,
    "last_seen": "2026-10-07",
    "source_keys": [
@@ -91176,11 +91589,11 @@
      "url": "https://www.offi.fr/concerts/theatre-du-casino-1637/pony-pony-run-run-3316176.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3316176-2027-02-27T20:30"
@@ -91691,11 +92104,11 @@
      "url": "https://www.offi.fr/concerts/lolympia-2874/eva-3360148.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3360148-2027-03-02T20:00"
@@ -92041,11 +92454,11 @@
      "url": "https://www.offi.fr/concerts/la-cigale-1805/trentemoller-3254709.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3254709-2027-03-03T20:00",
@@ -92474,11 +92887,11 @@
      "url": "https://www.offi.fr/concerts/la-cigale-1805/palace-3361870.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3361870-2027-03-05T19:30",
@@ -96082,11 +96495,11 @@
      "url": "https://www.offi.fr/concerts/new-morning-2842/pokey-lafarge-3316194.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3316194-2027-03-16T19:00"
@@ -96852,11 +97265,11 @@
      "url": "https://www.offi.fr/concerts/la-cigale-1805/asfar-shamsi-3254713.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3254713-2027-03-18T20:00",
@@ -96954,11 +97367,11 @@
      "url": "https://www.offi.fr/concerts/theatre-trianon-3299/pony-pony-run-run-3255706.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3255706-2027-03-19T19:30"
@@ -97262,11 +97675,11 @@
      "url": "https://www.offi.fr/concerts/espace-1789-2188/pr2b-3319690.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3319690-2027-03-19T20:00"
@@ -97985,11 +98398,11 @@
      "url": "https://www.offi.fr/concerts/espace-michel-simon-2800/pi-ja-ma-3353026.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3353026-2027-03-20T20:30"
@@ -100640,11 +101053,11 @@
      "url": "https://www.offi.fr/concerts/lolympia-2874/bertrand-belin-3169725.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3169725-2027-03-30T20:00"
@@ -100760,11 +101173,11 @@
      "url": "https://www.offi.fr/concerts/lolympia-2874/bertrand-belin-3169726.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3169726-2027-03-31T20:00"
@@ -102178,10 +102591,10 @@
      "url": "https://www.offi.fr/concerts/theatre-trianon-3299/pistons-3361903.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": false,
-   "list_since": null,
+   "list_since": "2026-10-07",
    "list_baseline": false,
    "last_seen": "2026-10-07",
    "source_keys": [
@@ -103649,11 +104062,11 @@
      "url": "https://www.offi.fr/concerts/lolympia-2874/zuukou-mayzie-3254654.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3254654-2027-04-15T20:00",
@@ -103661,7 +104074,7 @@
    ]
   },
   {
-   "id": "64ef8d489cdbx",
+   "id": "64ef8d489cdb",
    "title": "John Williams : odyssées symphoniques",
    "date": "2027-04-16",
    "time": "20:00",
@@ -104051,11 +104464,11 @@
      "url": "https://www.offi.fr/concerts/lolympia-2874/tindersticks-3254656.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3254656-2027-04-18T20:00"
@@ -104188,16 +104601,16 @@
   },
   {
    "id": "85fc39312c03",
-   "title": "TRIBUTE PHIL COLLINS GENESIS",
+   "title": "Hommage à Genesis et Phil Collins",
    "date": "2027-04-19",
    "time": "20:00",
-   "venue": "SALLE PLEYEL",
-   "genre": "Pop",
-   "price": null,
+   "venue": "Salle Pleyel",
+   "genre": "Pop / Rock",
+   "price": "39-85 €",
    "links": [
     {
-     "source": "Ticketmaster",
-     "url": "https://www.ticketmaster.fr/fr/manifestation/tribute-phil-collins-genesis-billet/idmanif/664381/idtier/18864121"
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/salle-pleyel-3159/hommage-a-genesis-et-phil-collins-3307296.html"
     }
    ],
    "kind": "other",
@@ -104213,16 +104626,16 @@
   },
   {
    "id": "85fc39312c03x",
-   "title": "Hommage à Genesis et Phil Collins",
+   "title": "TRIBUTE PHIL COLLINS GENESIS",
    "date": "2027-04-19",
    "time": "20:00",
-   "venue": "Salle Pleyel",
-   "genre": "Pop / Rock",
-   "price": "39-85 €",
+   "venue": "SALLE PLEYEL",
+   "genre": "Pop",
+   "price": null,
    "links": [
     {
-     "source": "Offi",
-     "url": "https://www.offi.fr/concerts/salle-pleyel-3159/hommage-a-genesis-et-phil-collins-3307296.html"
+     "source": "Ticketmaster",
+     "url": "https://www.ticketmaster.fr/fr/manifestation/tribute-phil-collins-genesis-billet/idmanif/664381/idtier/18864121"
     }
    ],
    "kind": "other",
@@ -104793,11 +105206,11 @@
      "url": "https://www.offi.fr/concerts/la-cigale-1805/nouvelle-vague-3254717.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3254717-2027-04-22T20:00"
@@ -105390,11 +105803,11 @@
      "url": "https://www.offi.fr/concerts/new-morning-2842/elba-ramalho-3316196.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3316196-2027-04-24T19:00"
@@ -106131,10 +106544,10 @@
      "url": "https://www.offi.fr/concerts/la-cigale-1805/emile-londonien-3361886.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": false,
-   "list_since": null,
+   "list_since": "2026-10-07",
    "list_baseline": false,
    "last_seen": "2026-10-07",
    "source_keys": [
@@ -106982,11 +107395,11 @@
      "url": "https://www.offi.fr/concerts/les-gemeaux-2384/louis-matute-3312757.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3312757-2027-05-04T20:30"
@@ -107756,11 +108169,11 @@
      "url": "https://www.offi.fr/concerts/lolympia-2874/gildaa-3259671.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3259671-2027-05-13T20:00"
@@ -109421,11 +109834,11 @@
      "url": "https://www.offi.fr/concerts/theatre-des-bergeries-1543/arthur-h-3316183.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
-   "list_baseline": false,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
    "last_seen": "2026-10-07",
    "source_keys": [
     "Offi:3316183-2027-05-21T20:30"
@@ -112848,16 +113261,16 @@
   },
   {
    "id": "eea958754427",
-   "title": "ALFREDO RODRIGUEZ & PEDRITO MARTINEZ",
+   "title": "Alfredo Rodriguez et Pedrito Martinez",
    "date": "2027-06-06",
    "time": "18:00",
-   "venue": "SALLE GAVEAU",
-   "genre": "Jazz",
-   "price": null,
+   "venue": "Salle Gaveau",
+   "genre": "Latino, Jazz / Blues",
+   "price": "15-80 €",
    "links": [
     {
-     "source": "Ticketmaster",
-     "url": "https://www.ticketmaster.fr/fr/manifestation/alfredo-rodriguez-pedrito-martinez-billet/idmanif/661171/idtier/18864121"
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/salle-gaveau-3136/alfredo-rodriguez-et-pedrito-martinez-3260109.html"
     }
    ],
    "kind": "other",
@@ -112873,16 +113286,16 @@
   },
   {
    "id": "eea958754427x",
-   "title": "Alfredo Rodriguez et Pedrito Martinez",
+   "title": "ALFREDO RODRIGUEZ & PEDRITO MARTINEZ",
    "date": "2027-06-06",
    "time": "18:00",
-   "venue": "Salle Gaveau",
-   "genre": "Latino, Jazz / Blues",
-   "price": "15-80 €",
+   "venue": "SALLE GAVEAU",
+   "genre": "Jazz",
+   "price": null,
    "links": [
     {
-     "source": "Offi",
-     "url": "https://www.offi.fr/concerts/salle-gaveau-3136/alfredo-rodriguez-et-pedrito-martinez-3260109.html"
+     "source": "Ticketmaster",
+     "url": "https://www.ticketmaster.fr/fr/manifestation/alfredo-rodriguez-pedrito-martinez-billet/idmanif/661171/idtier/18864121"
     }
    ],
    "kind": "other",
@@ -116180,6 +116593,10 @@
     {
      "source": "Ticketmaster",
      "url": "https://www.ticketmaster.fr/fr/manifestation/ronan-keating-billet/idmanif/673011/idseance/4425345"
+    },
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/salle-pleyel-3159/ronan-keating-3358243.html"
     }
    ],
    "kind": "other",

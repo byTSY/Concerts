@@ -2,9 +2,10 @@
 
 const state = {
   events: [], artists: [], venues: [], meta: {},
-  kinds: new Set(["known", "discovery"]), all: false, favOnly: false, venue: null, q: "",
+  kinds: new Set(["known", "discovery"]), all: false, favOnly: false, style: "", venue: null, q: "",
   view: "calendar", calendar: null,
-  hidden: new Set(), apiError: null,
+  hidden: new Set(), levels: new Map(), profile: new Map(), apiError: null,
+  byArtistSort: (() => { try { return localStorage.getItem("byArtistSort") || "date"; } catch { return "date"; } })(),
 };
 
 const $ = (sel) => document.querySelector(sel);
@@ -14,7 +15,7 @@ const parseDay = (iso) => new Date(iso + "T12:00:00");
 const fmt = (opts) => new Intl.DateTimeFormat("fr-FR", opts);
 const fmtShort = fmt({ weekday: "short", day: "numeric", month: "short" });
 const fmtMonth = fmt({ month: "long", year: "numeric" });
-// Même normalisation que src/util.py (norm) et functions/api/hidden.js
+// Même normalisation que src/util.py (norm) et functions/api/prefs.js
 const normName = (s) => String(s ?? "").replace(/['’‘`´]/g, " ").normalize("NFKD").replace(/[^\x00-\x7f]/g, "")
   .toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, " ").replace(/\s+/g, " ").trim().replace(/^the /, "");
 const isHidden = (name) => state.hidden.has(normName(name));
@@ -63,18 +64,27 @@ function statusLabel(status) {
   return { offsale: "Hors vente ou complet", rescheduled: "Date modifiée", postponed: "Reporté", sold_out: "Complet", soldout: "Complet" }[s] || null;
 }
 
-/* Artistes masqués ------------------------------------------------------------ */
+/* Préférences : artistes masqués et niveaux imposés --------------------------- */
 
-// Recalcule la catégorie affichée de chaque concert selon la liste des artistes masqués :
-// un concert dont tous les artistes rapprochés sont masqués passe dans « Tous les concerts ».
-function applyHidden() {
+// Niveau affiché d'un artiste : niveau imposé, sinon niveau calculé au dernier traitement
+function tierOf(name, fallback) {
+  const key = normName(name);
+  return state.levels.get(key) ?? state.profile.get(key)?.tier_auto ?? fallback;
+}
+
+// Recalcule l'affichage selon vos préférences : un concert dont tous les artistes rapprochés
+// sont masqués passe dans « Tous les concerts » ; les niveaux imposés remplacent les niveaux calculés.
+function applyPrefs() {
+  for (const a of state.artists) {
+    a.tier0 ??= a.tier;
+    a.tier = state.levels.get(normName(a.name)) ?? a.tier_auto ?? a.tier0;
+  }
   for (const ev of state.events) {
     ev.kind0 ??= ev.kind;
     ev.matched0 ??= ev.matched;
-    ev.tier0 ??= ev.tier;
     ev.kind = ev.kind0;
     if (ev.kind0 === "known") {
-      ev.matched = (ev.matched0 || []).filter((m) => !isHidden(m.name));
+      ev.matched = (ev.matched0 || []).filter((m) => !isHidden(m.name)).map((m) => ({ ...m, tier: tierOf(m.name, m.tier) }));
       if (!ev.matched.length) ev.kind = "other";
       else ev.tier = Math.min(...ev.matched.map((m) => m.tier));
     } else if (ev.kind0 === "discovery" && isHidden(ev.discovery?.artist)) {
@@ -83,47 +93,62 @@ function applyHidden() {
   }
 }
 
-async function loadHidden() {
+function setPrefs(data) {
+  state.hidden = new Set((data.hidden || []).map(normName));
+  state.levels = new Map(Object.entries(data.levels || {}).map(([n, t]) => [normName(n), Number(t)]));
+}
+
+async function loadPrefs() {
   try {
-    const r = await fetch("api/hidden", { cache: "no-store" });
+    const r = await fetch("api/prefs", { cache: "no-store" });
     const data = await r.json();
     if (!r.ok) throw new Error(data.error || `HTTP ${r.status}`);
-    state.hidden = new Set(data.hidden.map(normName));
+    setPrefs(data);
   } catch (e) {
-    // Site ouvert en local ou fonction Cloudflare non configurée : liste du dernier traitement
+    // Site ouvert en local ou fonction Cloudflare non configurée : préférences du dernier traitement
     state.apiError = e.message;
-    state.hidden = new Set(state.artists.filter((a) => a.hidden).map((a) => normName(a.name)));
+    setPrefs({
+      hidden: state.artists.filter((a) => a.hidden).map((a) => a.name),
+      levels: Object.fromEntries(state.artists.filter((a) => a.tier_auto && a.tier !== a.tier_auto).map((a) => [a.name, a.tier])),
+    });
   }
 }
 
-async function setHidden(name, hide) {
-  const question = hide
-    ? `Ne plus recommander ${name} ?
-
-Ses concerts sortiront de « Vos artistes » et des découvertes (ils resteront dans « Tous les concerts »). Vous pourrez annuler depuis l'onglet Mes artistes.`
-    : `Recommander à nouveau ${name} ?`;
-  if (!confirm(question)) return;
+async function savePref(body, done) {
   try {
-    const r = await fetch("api/hidden", {
+    const r = await fetch("api/prefs", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ name, action: hide ? "hide" : "unhide" }),
+      body: JSON.stringify(body),
     });
     const data = await r.json().catch(() => ({}));
     if (!r.ok) throw new Error(data.error || `HTTP ${r.status}`);
-    state.hidden = new Set(data.hidden.map(normName));
+    setPrefs(data);
     state.apiError = null;
   } catch (e) {
-    alert(`L'enregistrement a échoué : ${e.message}.
-
-Le bouton ne fonctionne que sur le site publié, une fois la clé GitHub ajoutée dans Cloudflare.`);
+    alert(`L'enregistrement a échoué : ${e.message}.\n\nCette fonction ne marche que sur le site publié, une fois la clé GitHub ajoutée dans Cloudflare.`);
+    render();  // remet les menus dans leur état réel
     return;
   }
-  applyHidden();
+  applyPrefs();
   if ($("#ticket").open) $("#ticket").close();
   renderMasthead();
   render();
-  toast(hide ? `${name} ne sera plus recommandé` : `${name} est de nouveau recommandé`);
+  toast(done);
+}
+
+function setHidden(name, hide) {
+  const question = hide
+    ? `Ne plus recommander ${name} ?\n\nSes concerts sortiront de « Vos artistes » et des découvertes (ils resteront dans « Tous les concerts »). Vous pourrez annuler depuis l'onglet Mes artistes.`
+    : `Recommander à nouveau ${name} ?`;
+  if (!confirm(question)) return;
+  savePref({ name, action: hide ? "hide" : "unhide" },
+    hide ? `${name} ne sera plus recommandé` : `${name} est de nouveau recommandé`);
+}
+
+function setLevel(name, level) {
+  savePref({ name, action: "level", level },
+    level ? `${name} : niveau ${level}` : `${name} : niveau calculé à partir de vos likes`);
 }
 
 function toast(text) {
@@ -134,12 +159,45 @@ function toast(text) {
   toast.t = setTimeout(() => { el.hidden = true; }, 4000);
 }
 
+/* Styles ------------------------------------------------------------------------ */
+
+// Familles de styles, à partir des genres hétérogènes des sources (normalisés sans accents)
+const STYLES = [
+  ["jazz", "Jazz, blues, soul", /jazz|blues|soul|funk|gospel|swing|manouche/],
+  ["rap", "Rap, R&B", /\brap\b|hip hop|urbain|\br b\b|\brnb\b/],
+  ["pop", "Pop, rock, folk", /\bpop\b|rock|punk|folk|alternative|indie|country|variete internationale/],
+  ["electro", "Électro", /electro|\bdance\b|techno|house/],
+  ["metal", "Metal", /metal|hardcore/],
+  ["chanson", "Chanson française", /chanson|variete francaise|french/],
+  ["monde", "Musiques du monde", /monde|world|oriental|reggae|bresil|latin|salsa|samba|afri|flamenco|klezmer|indienne|andalouse|caribeen|traditionnel/],
+  ["classique", "Classique, opéra", /classi|symphoni|chambre|baroque|lyrique|opera|sacree|religious|orgue|romantique|piano|violon|eglise|contemporain|medieval|noel|bougie/],
+  ["autre", "Ciné-concerts, humour, jeune public", /cine|film|jeux video|comedy|theatre|children/],
+];
+
+function stylesOf(ev) {
+  if (!ev.styles) {
+    const g = normName(ev.genre || "");
+    ev.styles = STYLES.filter(([, , re]) => re.test(g)).map(([key]) => key);
+    if (!ev.styles.length) ev.styles = ["none"];
+  }
+  return ev.styles;
+}
+
+const styleOk = (ev) => !state.style || stylesOf(ev).includes(state.style);
+
+function fillStyles() {
+  const count = (key) => state.events.filter((ev) => stylesOf(ev).includes(key)).length;
+  $("#style-filter").innerHTML = `<option value="">Tous les styles</option>` +
+    [...STYLES, ["none", "Style non renseigné"]].map(([key, label]) => `<option value="${key}">${esc(label)} (${count(key)})</option>`).join("");
+}
+
 /* Filtres ------------------------------------------------------------------ */
 
 function filtered() {
   const q = fold(state.q.trim());
   return state.events.filter((ev) => {
     if (!state.all && !state.kinds.has(ev.kind)) return false;
+    if (!styleOk(ev)) return false;
     if (state.favOnly && !ev.venue_favorite) return false;
     if (state.venue && ev.venue !== state.venue) return false;
     if (q) {
@@ -220,12 +278,46 @@ function renderCalendar() {
       eventTimeFormat: { hour: "2-digit", minute: "2-digit", meridiem: false },
       noEventsContent: "Aucun concert sur cette période avec les filtres actuels",
       eventClick: (info) => openTicket(info.event.id),
+      datesSet: (info) => { $("#cal-bottom-title").textContent = info.view.title; },
       events: [],
     });
     state.calendar.render();
   }
   state.calendar.removeAllEvents();
   state.calendar.addEventSource(events);
+}
+
+// Changement de mois depuis le bas de page ou par balayage : on revient en haut du calendrier
+function moveMonth(step) {
+  if (!state.calendar) return;
+  step > 0 ? state.calendar.next() : state.calendar.prev();
+  const cal = $("#calendar");
+  cal.classList.remove("cal-slide-next", "cal-slide-prev");
+  void cal.offsetWidth;  // relance l'animation
+  cal.classList.add(step > 0 ? "cal-slide-next" : "cal-slide-prev");
+  // Après le rendu du nouveau mois (sinon le changement de hauteur interrompt le défilement)
+  setTimeout(() => {
+    if (cal.getBoundingClientRect().top < 0) {
+      const smooth = !matchMedia("(prefers-reduced-motion: reduce)").matches;
+      cal.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "start" });
+    }
+  }, 50);
+}
+
+function bindSwipe(el) {
+  let start = null;
+  el.addEventListener("touchstart", (e) => {
+    if (e.touches.length !== 1) { start = null; return; }
+    start = { x: e.touches[0].clientX, y: e.touches[0].clientY, t: Date.now() };
+  }, { passive: true });
+  el.addEventListener("touchend", (e) => {
+    if (!start) return;
+    const dx = e.changedTouches[0].clientX - start.x;
+    const dy = e.changedTouches[0].clientY - start.y;
+    // Geste horizontal net et rapide ; un défilement vertical ne change pas de mois
+    if (Math.abs(dx) > 60 && Math.abs(dx) > 1.5 * Math.abs(dy) && Date.now() - start.t < 800) moveMonth(dx < 0 ? 1 : -1);
+    start = null;
+  }, { passive: true });
 }
 
 /* Liste ---------------------------------------------------------------------- */
@@ -259,6 +351,67 @@ function renderList() {
   $("#list").innerHTML = html;
 }
 
+/* Par artiste ------------------------------------------------------------------ */
+
+const SORTS = {
+  date: (a, b) => a.next.date.localeCompare(b.next.date) || (a.next.time || "").localeCompare(b.next.time || "") || a.name.localeCompare(b.name, "fr"),
+  name: (a, b) => a.name.localeCompare(b.name, "fr", { sensitivity: "base" }),
+  added: (a, b) => (b.added || "").localeCompare(a.added || "") || SORTS.date(a, b),
+};
+
+// Vos artistes (hors masqués) qui ont au moins un concert à venir, avec leur prochaine date
+function artistRows() {
+  const profile = new Map(state.artists.map((a) => [normName(a.name), a]));
+  const rows = new Map();
+  for (const ev of state.events) {
+    if (ev.kind !== "known" || !styleOk(ev)) continue;
+    for (const m of ev.matched) {
+      const key = normName(m.name);
+      if (!rows.has(key)) {
+        const p = profile.get(key) || {};
+        rows.set(key, { name: m.name, tier: m.tier, link: m.link || p.link, picture: p.picture, added: p.added, events: [] });
+      }
+      rows.get(key).events.push(ev);
+    }
+  }
+  const q = fold(state.q.trim());
+  return [...rows.values()]
+    .filter((r) => !q || fold(r.name).includes(q))
+    .map((r) => {
+      r.events.sort((a, b) => a.date.localeCompare(b.date) || (a.time || "").localeCompare(b.time || ""));
+      r.next = r.events[0];
+      return r;
+    })
+    .sort(SORTS[state.byArtistSort] || SORTS.date);
+}
+
+function renderByArtist() {
+  $("#byartist-sort").value = state.byArtistSort;
+  const rows = artistRows();
+  if (!state.events.length) { $("#byartist").innerHTML = emptyMessage(); return; }
+  if (!rows.length) { $("#byartist").innerHTML = `<div class="empty">Aucun de vos artistes ne correspond à la recherche.</div>`; return; }
+  const fmtAdded = fmt({ day: "numeric", month: "short", year: "numeric" });
+  let html = `<p class="count-line">${rows.length} de vos artistes ont au moins un concert à venir.</p>
+    <div class="table-wrap"><table class="events"><thead><tr><th>Artiste</th><th>Prochain concert</th><th>Salle</th><th class="hide-mobile">Autres dates</th><th class="hide-mobile">Ajouté sur Deezer</th></tr></thead><tbody>`;
+  for (const r of rows) {
+    const ev = r.next;
+    const later = r.events.slice(1);
+    const laterText = later.length
+      ? later.slice(0, 3).map((e) => fmtShort.format(parseDay(e.date))).join(", ") + (later.length > 3 ? ` et ${later.length - 3} de plus` : "")
+      : "";
+    const badge = r.events.find((e) => e.badge);
+    html += `<tr class="clickable" data-id="${ev.id}" tabindex="0">
+      <td>${r.picture ? `<img class="artist-thumb" src="${esc(r.picture)}" alt="" loading="lazy">` : ""}<span class="cell-name">${esc(r.name)}</span>
+        <span class="cell-sub"><span class="tag tag-known tier-${r.tier}">Niveau ${r.tier}</span>${badge ? ` ${badgeTag(badge)}` : ""}</span></td>
+      <td class="cell-date">${esc(fmtShort.format(parseDay(ev.date)))}${ev.time ? `<span class="cell-sub">${esc(ev.time)}</span>` : ""}</td>
+      <td>${esc(ev.venue)}${ev.venue_favorite ? ` <span class="tag tag-fav">Favorite</span>` : ""}</td>
+      <td class="hide-mobile">${later.length ? `<span class="cell-name">${later.length}</span><span class="cell-sub">${esc(laterText)}</span>` : ""}</td>
+      <td class="hide-mobile cell-date">${r.added ? esc(fmtAdded.format(parseDay(r.added))) : ""}</td>
+    </tr>`;
+  }
+  $("#byartist").innerHTML = html + `</tbody></table></div>`;
+}
+
 /* Mes artistes --------------------------------------------------------------- */
 
 function renderArtists() {
@@ -275,7 +428,11 @@ function renderArtists() {
     html += `<tr>
       <td>${a.picture ? `<img class="artist-thumb" src="${esc(a.picture)}" alt="" loading="lazy">` : ""}<a href="${esc(a.link)}" target="_blank" rel="noopener" class="cell-name">${esc(a.name)}</a>${a.still_liked === false ? `<span class="cell-sub">Retiré de vos favoris</span>` : ""}${isHidden(a.name) ? `<span class="cell-sub">Masqué : concerts visibles seulement dans « Tous les concerts »</span>` : ""}
         <button type="button" class="link-btn" data-hide="${esc(a.name)}" data-hide-action="${isHidden(a.name) ? "unhide" : "hide"}">${isHidden(a.name) ? "Ne plus masquer" : "Masquer"}</button></td>
-      <td><span class="tag tag-known tier-${a.tier}">Niveau ${a.tier}</span></td>
+      <td><span class="tag tag-known tier-${a.tier}">Niveau ${a.tier}</span>
+        <select class="tier-select" data-level="${esc(a.name)}" aria-label="Niveau de ${esc(a.name)}">
+          <option value="">Calculé (${a.tier_auto ?? a.tier0})</option>
+          ${[1, 2, 3].map((t) => `<option value="${t}"${state.levels.get(normName(a.name)) === t ? " selected" : ""}>Imposé : ${t}</option>`).join("")}
+        </select></td>
       <td class="num">${a.score}</td>
       <td class="hide-mobile">${esc(detail)}</td>
       <td class="hide-mobile cell-date">${a.first_seen ? esc(fmt({ day: "numeric", month: "short", year: "numeric" }).format(parseDay(a.first_seen))) : ""}</td>
@@ -370,6 +527,7 @@ function emptyMessage() {
 function render() {
   if (state.view === "calendar") renderCalendar();
   if (state.view === "list") renderList();
+  if (state.view === "byartist") renderByArtist();
   if (state.view === "artists") renderArtists();
   if (state.view === "venues") renderVenues();
 }
@@ -380,6 +538,7 @@ function switchView(view) {
   document.querySelectorAll(".view").forEach((s) => (s.hidden = s.id !== `view-${view}`));
   const eventFilters = view === "calendar" || view === "list";
   document.querySelectorAll("#filters .chip, #venue-filter").forEach((el) => (el.style.display = eventFilters ? "" : "none"));
+  $("#style-filter").style.display = eventFilters || view === "byartist" ? "" : "none";
   if (!state.venue) $("#venue-filter").hidden = true;
   render();
   if (view === "calendar" && state.calendar) state.calendar.updateSize();
@@ -396,7 +555,19 @@ function bind() {
     document.querySelectorAll("[data-kind]").forEach((cb) => { cb.disabled = state.all; });
     render();
   });
+  document.querySelectorAll("[data-cal]").forEach((b) => b.addEventListener("click", () => moveMonth(b.dataset.cal === "next" ? 1 : -1)));
+  bindSwipe($("#calendar"));
+  $("#byartist-sort").addEventListener("change", (e) => {
+    state.byArtistSort = e.target.value;
+    try { localStorage.setItem("byArtistSort", state.byArtistSort); } catch { /* stockage indisponible */ }
+    render();
+  });
+  document.body.addEventListener("change", (e) => {
+    const sel = e.target.closest(".tier-select");
+    if (sel) setLevel(sel.dataset.level, sel.value ? Number(sel.value) : null);
+  });
   $("#fav-only").addEventListener("change", (e) => { state.favOnly = e.target.checked; render(); });
+  $("#style-filter").addEventListener("change", (e) => { state.style = e.target.value; render(); });
   let t;
   $("#search").addEventListener("input", (e) => { clearTimeout(t); t = setTimeout(() => { state.q = e.target.value; render(); }, 150); });
 
@@ -422,8 +593,10 @@ function bind() {
     loadJSON("events", []), loadJSON("artists", []), loadJSON("venues", []), loadJSON("meta", {}),
   ]);
   Object.assign(state, { events: events || [], artists: artists || [], venues: venues || [], meta: meta || {} });
-  await loadHidden();
-  applyHidden();
+  state.profile = new Map(state.artists.map((a) => [normName(a.name), a]));
+  await loadPrefs();
+  applyPrefs();
+  fillStyles();
   bind();
   renderMasthead();
   switchView("calendar");

@@ -24,6 +24,24 @@ GENERIC = {"trio", "quartet", "quartette", "quintet", "quintette", "sextet", "se
            "unplugged", "solo", "friends", "showcase", "release", "party", "nouvel", "album", "club", "dj", "set"}
 
 
+def title_names(title):
+    """Noms d'artistes plausibles tirés d'un titre (sources sans programmation détaillée) :
+    « Guinga et Yamandu Costa » donne « Guinga » et « Yamandu Costa », « Avishai Cohen trio »
+    donne « Avishai Cohen trio » puis « Avishai Cohen ». Rien pour un hommage ou une reprise."""
+    if TRIBUTE_RE.search(norm(title)):
+        return []
+    out = []
+    for seg in SEGMENT_RE.split(title or ""):
+        words = (seg or "").split()
+        # Segment complet d'abord (« Lowdown Brass Band »), puis sans mots génériques ni nombres
+        clean = [w for w in words if norm(w) not in GENERIC and not norm(w).isdigit()]
+        for name in (" ".join(words), " ".join(clean)):
+            name = name.strip(" -–—.!?'’")
+            if len(norm(name)) >= 3 and name not in out:
+                out.append(name)
+    return out
+
+
 def significant_words(key):
     return [w for w in key.split() if len(w) >= 3]
 

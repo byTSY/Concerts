@@ -71,31 +71,38 @@ Access sur le projet (gratuit jusqu'à 50 utilisateurs).
 des billetteries couvertes, renseignez `agenda_url` avec sa page programme : si la page
 publie des données schema.org, ses concerts sont lus directement.
 
-`config/hidden_artists.yaml` : artistes que vous ne voulez pas voir en concert. Leurs concerts
-sortent de « Vos artistes » et des découvertes, et ils ne servent plus à calculer les
-découvertes ; ils restent visibles dans « Tous les concerts » et dans l'onglet Mes artistes,
-signalés « Masqué ». Un nom par ligne, tel qu'affiché dans Mes artistes (accents et majuscules
-ignorés) ; un artiste hors de votre liste peut aussi y figurer pour ne plus être proposé en
-découverte. Pour démasquer, supprimez la ligne.
+`config/artist_prefs.yaml` : vos préférences sur les artistes, modifiables depuis le site.
+
+- **Masquer un artiste** que vous ne voulez pas voir en concert : ses concerts sortent de
+  « Vos artistes » et des découvertes, et il ne sert plus à calculer les découvertes ; ses
+  concerts restent dans « Tous les concerts ». Un artiste hors de votre liste peut aussi être
+  masqué, pour ne plus être proposé en découverte.
+- **Imposer un niveau** (1, 2 ou 3) à la place du niveau calculé à partir de vos likes, par
+  exemple pour un artiste beaucoup écouté autrefois et moins aujourd'hui. Le niveau imposé
+  compte aussi dans le calcul des découvertes.
 
 ```yaml
 hidden:
-  - Michel
-  - Indochine
+  - "Michel"
+levels:
+  "Russ": 3
+  "Indochine": 1
 ```
 
-**Depuis le site** (une fois le réglage ci-dessous fait) : ouvrez un concert, cliquez sur
-« Ne plus recommander … » et confirmez. L'artiste est ajouté au fichier et disparaît aussitôt de
-vos artistes et des découvertes, sur tous vos appareils. Pour annuler : onglet Mes artistes,
-« Ne plus masquer ». Le calcul des découvertes en tient compte au traitement suivant (lundi).
+**Depuis le site** (une fois le réglage ci-dessous fait) : sur la fiche d'un concert,
+« Ne plus recommander … » ; dans l'onglet Mes artistes, « Masquer » / « Ne plus masquer » et le
+menu de niveau (« Calculé » pour revenir au niveau issu de vos likes). Le changement est
+enregistré dans le fichier et visible aussitôt, sur tous vos appareils ; le calcul des
+découvertes en tient compte au traitement suivant (lundi).
 
 **Depuis GitHub** : ouvrez le fichier dans le dépôt, cliquez sur l'icône crayon (Edit this
-file), ajoutez le nom, puis **Commit changes**.
+file), modifiez, puis **Commit changes**. Noms tels qu'affichés dans Mes artistes (accents et
+majuscules ignorés).
 
-### Réglage du bouton « Ne plus recommander » (une seule fois)
+### Réglage des préférences depuis le site (une seule fois)
 
-Le site appelle une fonction Cloudflare (`functions/api/hidden.js`) qui modifie
-`config/hidden_artists.yaml` dans le dépôt. Il lui faut une clé GitHub :
+Le site appelle une fonction Cloudflare (`functions/api/prefs.js`) qui modifie
+`config/artist_prefs.yaml` dans le dépôt. Il lui faut une clé GitHub :
 
 1. Sur GitHub : photo de profil > **Settings > Developer settings > Personal access tokens >
    Fine-grained tokens > Generate new token**. Nom : `concerts-site` ; expiration : au choix
@@ -106,9 +113,26 @@ Le site appelle une fonction Cloudflare (`functions/api/hidden.js`) qui modifie
    Deployments > dernier déploiement > **Retry deployment**).
 3. Protégez le site avec **Cloudflare Access** (projet Pages > Settings > *Access policy*,
    ou Zero Trust > Access > Applications) en n'autorisant que votre adresse e-mail. Sans cette
-   protection, quiconque connaît l'adresse du site pourrait masquer des artistes.
+   protection, quiconque connaît l'adresse du site pourrait modifier vos préférences.
 
-Sans clé, le site fonctionne normalement ; seul le bouton affiche un message d'erreur.
+Sans clé, le site fonctionne normalement ; seuls les boutons de préférences affichent un
+message d'erreur.
+
+## Le site
+
+- **Calendrier** et **Liste** : vos artistes et les découvertes, ou tous les concerts.
+  Filtres : vos salles, style, recherche.
+- **Par artiste** : vos artistes qui ont au moins un concert à venir, avec la date et la salle
+  du prochain et les dates suivantes. Tri par date du prochain concert, par nom, ou par date
+  d'ajout sur Deezer (le like le plus récent : artiste, album, titre ou ajout en playlist).
+- **Mes artistes** : toute votre liste, avec niveau, détail du score et préférences.
+- **Salles** : vos salles favorites et celles où passent des artistes pour vous.
+
+**Styles.** Les genres des sources (Ticketmaster en anglais, L'Officiel des spectacles en
+français, rien pour Que faire à Paris) sont regroupés en familles : jazz, blues, soul ; rap,
+R&B ; pop, rock, folk ; électro ; metal ; chanson française ; musiques du monde ; classique,
+opéra ; ciné-concerts, humour, jeune public. Un concert peut relever de plusieurs familles ;
+c. 20 % n'ont pas de genre renseigné (« Style non renseigné »).
 
 `config/settings.yaml` : identifiant Deezer, rayon autour de Paris, pondérations du score
 d'affinité, seuil des découvertes.
@@ -179,9 +203,11 @@ sur la fiche. Le rapprochement sur le titre suit trois règles :
   « Michel Alibo » ne l'est pas pour l'artiste « Michel » ;
 - un nom de plusieurs mots est retenu n'importe où dans le titre.
 
-**Découvertes.** Pour chaque artiste inconnu programmé à Paris, le script compare ses
+**Découvertes.** Pour chaque artiste inconnu programmé à Paris (artistes fournis par la
+source ou, pour L'Officiel des spectacles, nom tiré du titre de la fiche : « Guinga et Yamandu
+Costa » donne deux artistes, un hommage n'en donne aucun), le script compare ses
 « artistes similaires » Deezer à votre liste, et regarde aussi si vos artistes favoris le citent
-parmi leurs similaires. La fiche indique de qui il est proche. Le script analyse 200 nouveaux
+parmi leurs similaires. La fiche indique de qui il est proche. Le script analyse 400 nouveaux
 artistes par semaine au plus, en commençant par vos salles favorites ; le cache s'accumule,
 la couverture s'élargit donc au fil des semaines.
 

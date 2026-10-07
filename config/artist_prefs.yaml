@@ -1,0 +1,18 @@
+# Préférences sur vos artistes. Modifiables depuis le site (fiche d'un concert, onglet Mes
+# artistes) ou à la main ici. Noms tels qu'affichés dans Mes artistes (accents et majuscules
+# ignorés).
+#
+# hidden : artistes masqués. Leurs concerts sortent de « Vos artistes » et des découvertes,
+#   et ils ne servent plus à calculer les découvertes. Ils restent dans « Tous les concerts ».
+# levels : niveau imposé (1, 2 ou 3) à la place du niveau calculé à partir de vos likes.
+#
+# Exemple :
+# hidden:
+#   - "Michel"
+# levels:
+#   "Russ": 3
+#   "Indochine": 1
+
+hidden: []
+
+levels: {}

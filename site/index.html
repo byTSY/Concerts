@@ -25,6 +25,7 @@
   <nav class="tabs" role="tablist" aria-label="Vues">
     <button role="tab" aria-selected="true" data-view="calendar">Calendrier</button>
     <button role="tab" aria-selected="false" data-view="list">Liste</button>
+    <button role="tab" aria-selected="false" data-view="byartist">Par artiste</button>
     <button role="tab" aria-selected="false" data-view="artists">Mes artistes</button>
     <button role="tab" aria-selected="false" data-view="venues">Salles</button>
   </nav>
@@ -34,13 +35,33 @@
     <label class="chip chip-discovery"><input type="checkbox" data-kind="discovery" checked> Découvertes</label>
     <label class="chip chip-all"><input type="checkbox" id="all-concerts"> Tous les concerts</label>
     <label class="chip"><input type="checkbox" id="fav-only"> Vos salles uniquement</label>
+    <select id="style-filter" class="style-filter" aria-label="Style"></select>
     <span class="venue-filter" id="venue-filter" hidden></span>
     <input type="search" id="search" placeholder="Artiste, salle…" aria-label="Rechercher">
   </div>
 
   <main>
-    <section id="view-calendar" class="view"><div id="calendar"></div></section>
+    <section id="view-calendar" class="view">
+      <div id="calendar"></div>
+      <nav class="cal-bottom" aria-label="Changer de mois">
+        <button type="button" data-cal="prev" aria-label="Mois précédent"><span class="arrow">‹</span> <span class="hide-mobile">Mois précédent</span></button>
+        <span class="cal-bottom-title" id="cal-bottom-title"></span>
+        <button type="button" data-cal="next" aria-label="Mois suivant"><span class="hide-mobile">Mois suivant</span> <span class="arrow">›</span></button>
+      </nav>
+      <p class="cal-hint">Astuce : balayez le calendrier vers la gauche ou la droite pour changer de mois.</p>
+    </section>
     <section id="view-list" class="view" hidden><div id="list"></div></section>
+    <section id="view-byartist" class="view" hidden>
+      <div class="sort-bar">
+        <label for="byartist-sort">Trier par</label>
+        <select id="byartist-sort">
+          <option value="date">Date du prochain concert</option>
+          <option value="name">Artiste (A-Z)</option>
+          <option value="added">Ajoutés récemment sur Deezer</option>
+        </select>
+      </div>
+      <div id="byartist"></div>
+    </section>
     <section id="view-artists" class="view" hidden><div id="artists"></div></section>
     <section id="view-venues" class="view" hidden><div id="venues"></div></section>
   </main>

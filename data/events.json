@@ -1,5 +1,44 @@
 [
  {
+  "id": "b0bc1cfdee90",
+  "title": "Vanille",
+  "date": "2026-10-07",
+  "time": "19:30",
+  "venue": "La Maroquinerie",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Chanson française, Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-maroquinerie-2748/vanille-3100845.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.7,
+   "artist": "Vanille",
+   "link": "https://www.deezer.com/artist/68318",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/757388b2ebc44fdb98761f539141b4f7/250x250-000000-80-0-0.jpg",
+   "fans": 5617,
+   "close_to": [
+    "Alice et Moi",
+    "Tim Dup",
+    "Matild",
+    "Laurie Darmon"
+   ]
+  }
+ },
+ {
   "id": "ed859c75ec27",
   "title": "Tiana Major9",
   "date": "2026-10-07",
@@ -33,6 +72,84 @@
     "link": "https://www.deezer.com/artist/12047884"
    }
   ]
+ },
+ {
+  "id": "54e99d73afff",
+  "title": "Kassa Overall",
+  "date": "2026-10-07",
+  "time": "19:30",
+  "venue": "Duc des Lombards",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Jazz / Blues",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/duc-des-lombards-2009/kassa-overall-3356854.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 1.0,
+   "artist": "Kassa Overall",
+   "link": "https://www.deezer.com/artist/5205364",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/6fe7279cc9c669f84b7ff0e5fd7879d8/250x250-000000-80-0-0.jpg",
+   "fans": 1094,
+   "close_to": [
+    "Alfa Mist",
+    "Theo Croker",
+    "Moses Yoofee Trio",
+    "Nubiyan Twist"
+   ]
+  }
+ },
+ {
+  "id": "7a47aadc2331",
+  "title": "LSD & The Search for God",
+  "date": "2026-10-07",
+  "time": "19:30",
+  "venue": "Petit Bain",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/petit-bain-5136/lsd-the-search-for-god-3303777.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.4,
+   "artist": "LSD",
+   "link": "https://www.deezer.com/artist/14720447",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/70d0eb7c7f6a101c0229b2c572ad341c/250x250-000000-80-0-0.jpg",
+   "fans": 227378,
+   "close_to": [
+    "Tones and I",
+    "Olly Alexander (Years & Years)",
+    "Dua Lipa",
+    "Clean Bandit"
+   ]
+  }
  },
  {
   "id": "7469792076eb",
@@ -77,6 +194,82 @@
   }
  },
  {
+  "id": "24654148f8f1",
+  "title": "Zed",
+  "date": "2026-10-07",
+  "time": "20:00",
+  "venue": "La Cigale",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Rap, Musiques urbaines",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-cigale-1805/zed-3308762.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.97,
+   "artist": "Zed",
+   "link": "https://www.deezer.com/artist/2957",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/dbebf5dee266c21c327ead6c0d56f3fa/250x250-000000-80-0-0.jpg",
+   "fans": 232724,
+   "close_to": [
+    "Ziak",
+    "Kerchak",
+    "Gambi"
+   ]
+  }
+ },
+ {
+  "id": "0ee91ccddd96",
+  "title": "KuleeAngee",
+  "date": "2026-10-07",
+  "time": "20:30",
+  "venue": "PopUp!",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-pop-up-du-label-5926/kuleeangee-3353069.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.3,
+   "artist": "KuleeAngee",
+   "link": "https://www.deezer.com/artist/284620321",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/3bd681609899aadd5b1c4b1e6a60475e/250x250-000000-80-0-0.jpg",
+   "fans": 134,
+   "close_to": [
+    "Getdown Services",
+    "Faux Real",
+    "Fat Dog"
+   ]
+  }
+ },
+ {
   "id": "16f4af0e986d",
   "title": "THOMAS FERSEN",
   "date": "2026-10-07",
@@ -112,6 +305,88 @@
    "close_to": [
     "Philippe Katerine",
     "Brigitte Fontaine"
+   ]
+  }
+ },
+ {
+  "id": "61cde9126e09",
+  "title": "DISKAY",
+  "date": "2026-10-08",
+  "time": "19:30",
+  "venue": "La Maroquinerie",
+  "venue_favorite": false,
+  "address": "23, RUE BOYER",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2026-06-05T10:00:00Z",
+  "status": "onsale",
+  "genre": "Dance/Electronic",
+  "image": "https://s1.ticketm.net/dam/c/df8/81eadad8-4449-412e-a2b1-3d8bbb78edf8_106181_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/diskay-billet/idmanif/662259/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-maroquinerie-2748/diskay-3304986.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.73,
+   "artist": "Diskay",
+   "link": "https://www.deezer.com/artist/10043984",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/3548ee2e7081696a9458002e92d01fa1/250x250-000000-80-0-0.jpg",
+   "fans": 3783,
+   "close_to": [
+    "French 79",
+    "Zimmer",
+    "Napkey",
+    "Les Gordon"
+   ]
+  }
+ },
+ {
+  "id": "8f891dc7d480",
+  "title": "Arma Jackson - Celyane - Low Jay",
+  "date": "2026-10-08",
+  "time": "19:30",
+  "venue": "La Place",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "RnB, Musiques urbaines",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-place-6526/arma-jackson-celyane-low-jay-3353074.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 1.0,
+   "artist": "Arma Jackson",
+   "link": "https://www.deezer.com/artist/7029261",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/f29a0fccac8f4f3580862781cf414339/250x250-000000-80-0-0.jpg",
+   "fans": 39462,
+   "close_to": [
+    "Josman",
+    "Luidji",
+    "Juice",
+    "Dinos"
    ]
   }
  },
@@ -315,6 +590,82 @@
   ]
  },
  {
+  "id": "7e16781bdcc8",
+  "title": "Blandine",
+  "date": "2026-10-08",
+  "time": "20:00",
+  "venue": "Les Trois Baudets",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Chanson française, Chanson",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/les-trois-baudets-3783/blandine-3348356.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.3,
+   "artist": "Blandine",
+   "link": "https://www.deezer.com/artist/1584851",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/45dc6ae3e5b43065bcf8af4b6dcd7efe/250x250-000000-80-0-0.jpg",
+   "fans": 1351,
+   "close_to": [
+    "Moussa",
+    "BLOWSOM"
+   ]
+  }
+ },
+ {
+  "id": "18bd75000ca7",
+  "title": "Guadal Tejaz",
+  "date": "2026-10-08",
+  "time": "20:00",
+  "venue": "Le Point Éphémère",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Rock, Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-point-ephemere-3018/guadal-tejaz-3348422.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.97,
+   "artist": "Guadal Tejaz",
+   "link": "https://www.deezer.com/artist/108177692",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/b2438ef3eb4aa24fbf10dfcd3303aa15/250x250-000000-80-0-0.jpg",
+   "fans": 796,
+   "close_to": [
+    "Viagra Boys",
+    "Snapped Ankles",
+    "IDLES",
+    "shame"
+   ]
+  }
+ },
+ {
   "id": "290d653bef67",
   "title": "THOMAS FERSEN",
   "date": "2026-10-08",
@@ -350,6 +701,45 @@
    "close_to": [
     "Philippe Katerine",
     "Brigitte Fontaine"
+   ]
+  }
+ },
+ {
+  "id": "e451b3eba883",
+  "title": "54 Ultra",
+  "date": "2026-10-09",
+  "time": "19:00",
+  "venue": "Petit Bain",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Rock, Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/petit-bain-5136/54-ultra-3304351.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.73,
+   "artist": "54 Ultra",
+   "link": "https://www.deezer.com/artist/99342912",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/1983dc5f5feacb51ed68c236dee58d92/250x250-000000-80-0-0.jpg",
+   "fans": 1875,
+   "close_to": [
+    "Mk.gee",
+    "Men I Trust",
+    "strongboi",
+    "Blood Orange"
    ]
   }
  },
@@ -627,6 +1017,121 @@
    "close_to": [
     "Philippe Katerine",
     "Brigitte Fontaine"
+   ]
+  }
+ },
+ {
+  "id": "bdf6baf7b23e",
+  "title": "Carlton Rara",
+  "date": "2026-10-09",
+  "time": "21:30",
+  "venue": "Sunside",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Jazz / Blues",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/sunside-3225/carlton-rara-3338462.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.3,
+   "artist": "Carlton Rara",
+   "link": "https://www.deezer.com/artist/184756",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/422e91916368c6f27bb3205820f343dc/250x250-000000-80-0-0.jpg",
+   "fans": 2604,
+   "close_to": [
+    "David Walters",
+    "Calypso Rose"
+   ]
+  }
+ },
+ {
+  "id": "a3aa9b4a7749",
+  "title": "A2H - Angie - Chilla - Jäde - Le Juiice",
+  "date": "2026-10-10",
+  "time": "19:30",
+  "venue": "La Place",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Rap, Musiques urbaines",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-place-6526/a2h-angie-chilla-jade-le-juiice-3353077.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 1.0,
+   "artist": "A2H",
+   "link": "https://www.deezer.com/artist/827326",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/e941f50d891ee2612a162cef3a01c342/250x250-000000-80-0-0.jpg",
+   "fans": 129464,
+   "close_to": [
+    "Roméo Elvis",
+    "Nekfeu",
+    "Lefa",
+    "Georgio"
+   ]
+  }
+ },
+ {
+  "id": "02c0f8f05926",
+  "title": "Marina P & The Radiators",
+  "date": "2026-10-10",
+  "time": "19:30",
+  "venue": "La Boule Noire",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-boule-noire-1566/marina-p-the-radiators-3353091.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.83,
+   "artist": "Marina P",
+   "link": "https://www.deezer.com/artist/4243025",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/11609f35eb4c108f3a436b3ecc6e82db/250x250-000000-80-0-0.jpg",
+   "fans": 8033,
+   "close_to": [
+    "Atili",
+    "Joe Yorke",
+    "Pupajim",
+    "Chalart58"
    ]
   }
  },
@@ -1085,6 +1590,82 @@
   ]
  },
  {
+  "id": "8ca0a260cb16",
+  "title": "Lakecia Benjamin",
+  "date": "2026-10-13",
+  "time": "20:00",
+  "venue": "New Morning",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Jazz / Blues",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/new-morning-2842/lakecia-benjamin-3315184.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.5,
+   "artist": "Lakecia Benjamin",
+   "link": "https://www.deezer.com/artist/1854381",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/78507abce01d3ca5b44fabde1bafd42a/250x250-000000-80-0-0.jpg",
+   "fans": 1388,
+   "close_to": [
+    "Theo Croker",
+    "Nate Smith",
+    "Julian Lage"
+   ]
+  }
+ },
+ {
+  "id": "8c7771db1903",
+  "title": "Who Parked the Car - Imán Le Parc",
+  "date": "2026-10-13",
+  "time": "20:00",
+  "venue": "Hasard Ludique",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Musiques urbaines",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-hasard-ludique-6987/who-parked-the-car-iman-le-parc-3353178.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.6,
+   "artist": "Who Parked The Car",
+   "link": "https://www.deezer.com/artist/148036592",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/7ac149c961733fa109766e5a9e858466/250x250-000000-80-0-0.jpg",
+   "fans": 512,
+   "close_to": [
+    "Louis Cole",
+    "Cory Wong",
+    "Greg Spero"
+   ]
+  }
+ },
+ {
   "id": "6994c4c32262",
   "title": "Avishai Cohen trio",
   "date": "2026-10-13",
@@ -1414,6 +1995,43 @@
   }
  },
  {
+  "id": "85c9b6bd3839",
+  "title": "Azymuth",
+  "date": "2026-10-15",
+  "time": "19:00",
+  "venue": "New Morning",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Samba, Jazz / Blues",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/new-morning-2842/azymuth-3315186.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.3,
+   "artist": "Azymuth",
+   "link": "https://www.deezer.com/artist/10073",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/c5359b8dfcd36c9276f1246eb752efbc/250x250-000000-80-0-0.jpg",
+   "fans": 8908,
+   "close_to": [
+    "Marcos Valle",
+    "Banda Black Rio"
+   ]
+  }
+ },
+ {
   "id": "f2076c1cd861",
   "title": "GHINZU",
   "date": "2026-10-15",
@@ -1627,6 +2245,42 @@
   }
  },
  {
+  "id": "ed498705e70f",
+  "title": "Zoufris Maracas - Núria Rovira Salat",
+  "date": "2026-10-16",
+  "time": "19:00",
+  "venue": "L'Odéon - Scène Jean-Roger-Caussimon",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/lodeon-scene-jean-roger-caussimon-2864/zoufris-maracas-nuria-rovira-salat-3361754.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.33,
+   "artist": "Zoufris Maracas",
+   "link": "https://www.deezer.com/artist/1376678",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/352ec449deb09edba7cbcb1257c10f3b/250x250-000000-80-0-0.jpg",
+   "fans": 106033,
+   "close_to": [
+    "Manu Chao"
+   ]
+  }
+ },
+ {
   "id": "052b06d77766",
   "title": "FKJ",
   "date": "2026-10-16",
@@ -1662,6 +2316,43 @@
     "link": "https://www.deezer.com/artist/4738512"
    }
   ]
+ },
+ {
+  "id": "7afbc80efb4d",
+  "title": "Jeru the Damaja",
+  "date": "2026-10-16",
+  "time": "20:00",
+  "venue": "New Morning",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Rap, Musiques urbaines",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/new-morning-2842/jeru-the-damaja-3315187.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.3,
+   "artist": "Jeru the Damaja",
+   "link": "https://www.deezer.com/artist/4977",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/0d561e6dab7761edf81f32ffd3dd2edf/250x250-000000-80-0-0.jpg",
+   "fans": 22945,
+   "close_to": [
+    "Pete Rock",
+    "Gang Starr"
+   ]
+  }
  },
  {
   "id": "c83881559fa5",
@@ -1744,6 +2435,45 @@
     "Miles Kane",
     "Master Peace",
     "The Strokes"
+   ]
+  }
+ },
+ {
+  "id": "f592f3cd9e6a",
+  "title": "GoldFord",
+  "date": "2026-10-17",
+  "time": "20:00",
+  "venue": "New Morning",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop, Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/new-morning-2842/goldford-3315189.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.6,
+   "artist": "GoldFord",
+   "link": "https://www.deezer.com/artist/4861553",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/4aaba9f80448772dfa4c5fee7657387d/250x250-000000-80-0-0.jpg",
+   "fans": 2755,
+   "close_to": [
+    "Olivia Dean",
+    "Maya Delilah",
+    "Matt Corby",
+    "Katie Tupper"
    ]
   }
  },
@@ -2037,6 +2767,46 @@
   }
  },
  {
+  "id": "ae614bb80580",
+  "title": "Keyon Harrold",
+  "date": "2026-10-19",
+  "time": "20:00",
+  "venue": "New Morning",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Jazz / Blues",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/new-morning-2842/keyon-harrold-3315190.html"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/new-morning-2842/keyon-harrold-3358371.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.3,
+   "artist": "Keyon Harrold",
+   "link": "https://www.deezer.com/artist/4541890",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/85bc574e101ba51fd02b6177414589f4/250x250-000000-80-0-0.jpg",
+   "fans": 926,
+   "close_to": [
+    "Theo Croker"
+   ]
+  }
+ },
+ {
   "id": "653fca3c950c",
   "title": "JAY PARK",
   "date": "2026-10-20",
@@ -2078,6 +2848,43 @@
   ]
  },
  {
+  "id": "cbff7a05b096",
+  "title": "Bamby",
+  "date": "2026-10-20",
+  "time": "19:30",
+  "venue": "Élysée Montmartre",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Monde / Traditionnel",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/elysee-montmartre-2168/bamby-3312781.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.53,
+   "artist": "Bamby",
+   "link": "https://www.deezer.com/artist/5771489",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/ea24046ae454df1ba69300605e40d1df/250x250-000000-80-0-0.jpg",
+   "fans": 62553,
+   "close_to": [
+    "Kalash",
+    "Jahyanai"
+   ]
+  }
+ },
+ {
   "id": "0b41db49717c",
   "title": "47TER",
   "date": "2026-10-20",
@@ -2116,6 +2923,46 @@
    "fans": 311550,
    "close_to": [
     "Orelsan"
+   ]
+  }
+ },
+ {
+  "id": "bc34f48d9011",
+  "title": "PANICBABY",
+  "date": "2026-10-20",
+  "time": "20:00",
+  "venue": "La Bellevilloise",
+  "venue_favorite": true,
+  "address": "19-21, RUE BOYER",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2026-06-12T08:00:00Z",
+  "status": "onsale",
+  "genre": "Rock",
+  "image": "https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/panicbaby-billet/idmanif/662523/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-club-5468/panicbaby-3306695.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.3,
+   "artist": "panicbaby",
+   "link": "https://www.deezer.com/artist/286279061",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/47645db090ef2b0321f364b6927629a4/250x250-000000-80-0-0.jpg",
+   "fans": 2275,
+   "close_to": [
+    "Billie Eilish"
    ]
   }
  },
@@ -2336,6 +3183,43 @@
     "link": "https://www.deezer.com/artist/362326"
    }
   ]
+ },
+ {
+  "id": "5bf6135f9812",
+  "title": "HYD",
+  "date": "2026-10-21",
+  "time": "20:00",
+  "venue": "Hasard Ludique",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Électro pop, Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-hasard-ludique-6987/hyd-3358404.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.3,
+   "artist": "Hyd",
+   "link": "https://www.deezer.com/artist/148510212",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/0398e8f5d949f514a5186df0bfaf75aa/250x250-000000-80-0-0.jpg",
+   "fans": 808,
+   "close_to": [
+    "Oklou",
+    "FKA twigs"
+   ]
+  }
  },
  {
   "id": "9584bd452184",
@@ -2618,6 +3502,84 @@
   ]
  },
  {
+  "id": "f8ff5dac4927",
+  "title": "Yard",
+  "date": "2026-10-22",
+  "time": "20:00",
+  "venue": "Hasard Ludique",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-hasard-ludique-6987/yard-3358405.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.5,
+   "artist": "YARD",
+   "link": "https://www.deezer.com/artist/215564",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/eb9db8f733fc0c7e1faa406595dff2e8/250x250-000000-80-0-0.jpg",
+   "fans": 438,
+   "close_to": [
+    "Fat Dog",
+    "English Teacher",
+    "BIG SPECIAL",
+    "Adult DVD"
+   ]
+  }
+ },
+ {
+  "id": "7020f9254be0",
+  "title": "Mica Millar",
+  "date": "2026-10-22",
+  "time": "20:30",
+  "venue": "New Morning",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Jazz vocal, Jazz / Blues",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/new-morning-2842/mica-millar-3315193.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.6,
+   "artist": "Mica Millar",
+   "link": "https://www.deezer.com/artist/5831886",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/537436c5c414916c1d4fbb3ddcc4a612/250x250-000000-80-0-0.jpg",
+   "fans": 1066,
+   "close_to": [
+    "Mamas Gun",
+    "Leon Bridges",
+    "José James",
+    "Jalen Ngonda"
+   ]
+  }
+ },
+ {
   "id": "97d2b6555465",
   "title": "KEROS-N",
   "date": "2026-10-23",
@@ -2696,6 +3658,44 @@
    "close_to": [
     "Royel Otis",
     "Cmat"
+   ]
+  }
+ },
+ {
+  "id": "83b858cc040a",
+  "title": "Dub Pistols",
+  "date": "2026-10-23",
+  "time": "20:00",
+  "venue": "New Morning",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Punk, Musiques urbaines",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/new-morning-2842/dub-pistols-3315195.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 1.0,
+   "artist": "Dub Pistols",
+   "link": "https://www.deezer.com/artist/13418",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/37ea94d7c34312cd27ff067dec13f1fc/250x250-000000-80-0-0.jpg",
+   "fans": 16448,
+   "close_to": [
+    "Chinese Man",
+    "Atili",
+    "Fat Freddy's Drop"
    ]
   }
  },
@@ -2874,6 +3874,43 @@
     "link": "https://www.deezer.com/artist/1590752"
    }
   ]
+ },
+ {
+  "id": "c5c359cad887",
+  "title": "Galliano",
+  "date": "2026-10-24",
+  "time": "20:00",
+  "venue": "New Morning",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Jazz / Blues",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/new-morning-2842/galliano-3315197.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.3,
+   "artist": "Galliano",
+   "link": "https://www.deezer.com/artist/6333",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/a750ce43e0e001f2a7af618044958860/250x250-000000-80-0-0.jpg",
+   "fans": 3750,
+   "close_to": [
+    "STR4TA",
+    "Brooklyn Funk Essentials"
+   ]
+  }
  },
  {
   "id": "c48f18a1f7a6",
@@ -3089,6 +4126,45 @@
     "Olivia Dean",
     "Joy Crookes",
     "Leon Bridges"
+   ]
+  }
+ },
+ {
+  "id": "ae3c47ae9907",
+  "title": "Son Lux",
+  "date": "2026-10-28",
+  "time": "18:30",
+  "venue": "Élysée Montmartre",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Rock, Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/elysee-montmartre-2168/son-lux-3255873.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 1.0,
+   "artist": "Son Lux",
+   "link": "https://www.deezer.com/artist/1256645",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/450fa8ffeee24e3d6d0ae71b4d26a773/250x250-000000-80-0-0.jpg",
+   "fans": 50227,
+   "close_to": [
+    "alt-J",
+    "Otzeki",
+    "Chet Faker",
+    "Chromatics"
    ]
   }
  },
@@ -3341,6 +4417,46 @@
   ]
  },
  {
+  "id": "3fec4cad2559",
+  "title": "MARCUS GAD",
+  "date": "2026-10-30",
+  "time": "20:00",
+  "venue": "Le Trianon",
+  "venue_favorite": true,
+  "address": "80 BOULEVARD ROCHECHOUART",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2026-01-09T11:00:00Z",
+  "status": "onsale",
+  "genre": "Reggae",
+  "image": "https://s1.ticketm.net/dam/c/27e/458d1b62-6e4f-4ffd-8941-9ed303d8e27e_106041_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/marcus-gad-billet/idmanif/646741/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/marcus-gad-3172881.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.3,
+   "artist": "Marcus Gad",
+   "link": "https://www.deezer.com/artist/9782148",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/32ed4f101fbdfd540e2ee7eb24302b89/250x250-000000-80-0-0.jpg",
+   "fans": 20315,
+   "close_to": [
+    "Alborosie"
+   ]
+  }
+ },
+ {
   "id": "0fa459582a07",
   "title": "CLAWFINGER",
   "date": "2026-10-30",
@@ -3422,6 +4538,44 @@
     "link": "https://www.deezer.com/artist/104154"
    }
   ]
+ },
+ {
+  "id": "ed4e4d7db926",
+  "title": "GA-20",
+  "date": "2026-10-30",
+  "time": "20:00",
+  "venue": "New Morning",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Blues, Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/new-morning-2842/ga-20-3315201.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.5,
+   "artist": "GA-20",
+   "link": "https://www.deezer.com/artist/54639442",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/94dd714819d13200f43ef66f6eb4adf9/250x250-000000-80-0-0.jpg",
+   "fans": 1868,
+   "close_to": [
+    "Buddy Guy",
+    "Junior Wells",
+    "Eric Bibb"
+   ]
+  }
  },
  {
   "id": "1fd5bfcc1fca",
@@ -3626,6 +4780,45 @@
    "fans": 10044,
    "close_to": [
     "Moussa"
+   ]
+  }
+ },
+ {
+  "id": "58b915e360fa",
+  "title": "Nils Landgren Funk Unit",
+  "date": "2026-11-02",
+  "time": "20:00",
+  "venue": "New Morning",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Funk, Musiques urbaines",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/new-morning-2842/nils-landgren-funk-unit-3315202.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.8,
+   "artist": "Nils Landgren Funk Unit",
+   "link": "https://www.deezer.com/artist/7763",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/2faf34c21f6f336a114e70bd3b22e0bc/250x250-000000-80-0-0.jpg",
+   "fans": 7151,
+   "close_to": [
+    "The Meters",
+    "Cory Wong",
+    "Cory Henry",
+    "Brooklyn Funk Essentials"
    ]
   }
  },
@@ -4016,6 +5209,44 @@
   }
  },
  {
+  "id": "21bf08a30e8b",
+  "title": "Tokyo Tea Room",
+  "date": "2026-11-05",
+  "time": "19:30",
+  "venue": "La Bellevilloise",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-club-5468/tokyo-tea-room-3307197.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.5,
+   "artist": "Tokyo Tea Room",
+   "link": "https://www.deezer.com/artist/10888470",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/4c7a5f8e3e9e932f91a268862d8b93fe/250x250-000000-80-0-0.jpg",
+   "fans": 2063,
+   "close_to": [
+    "Men I Trust",
+    "strongboi",
+    "Yellow Days"
+   ]
+  }
+ },
+ {
   "id": "07a0a6719d35",
   "title": "J.COLE : THE FALL-OFF TOUR - J.COLE",
   "date": "2026-11-05",
@@ -4191,6 +5422,43 @@
   }
  },
  {
+  "id": "98039ef3d762",
+  "title": "Tyreek McDole",
+  "date": "2026-11-05",
+  "time": "20:00",
+  "venue": "New Morning",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Jazz / Blues",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/new-morning-2842/tyreek-mcdole-3315205.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.5,
+   "artist": "Tyreek McDole",
+   "link": "https://www.deezer.com/artist/233248761",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/eb24da6eed049f98433505b6d862d4cb/250x250-000000-80-0-0.jpg",
+   "fans": 1279,
+   "close_to": [
+    "Tony Bennett",
+    "Jeff Goldblum & the Mildred Snitzer Orchestra"
+   ]
+  }
+ },
+ {
   "id": "7e96fe1458bd",
   "title": "JULIEN CLERC",
   "date": "2026-11-05",
@@ -4226,6 +5494,48 @@
    "close_to": [
     "Christophe",
     "Eddy Mitchell"
+   ]
+  }
+ },
+ {
+  "id": "e49d335f1d36",
+  "title": "DAOUD",
+  "date": "2026-11-06",
+  "time": "19:00",
+  "venue": "La Cigale",
+  "venue_favorite": true,
+  "address": "120, BOULEVARD ROCHECHOUART",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2025-11-20T11:00:00Z",
+  "status": "onsale",
+  "genre": "Hip-Hop/Rap",
+  "image": "https://s1.ticketm.net/dam/c/80b/f3cd8d24-c3ae-4fa0-b4bc-1ba99f9b380b_106091_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/daoud-billet/idmanif/641799/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-cigale-1805/daoud-3126601.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.73,
+   "artist": "daoud",
+   "link": "https://www.deezer.com/artist/388407",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/a35c1f894dfa3dc5efa0dae9be739b47/250x250-000000-80-0-0.jpg",
+   "fans": 4360,
+   "close_to": [
+    "Alfa Mist",
+    "Theo Croker",
+    "Nate Smith"
    ]
   }
  },
@@ -5285,6 +6595,42 @@
   }
  },
  {
+  "id": "d54f1c40dda7",
+  "title": "Steve Coleman & The Five Elements",
+  "date": "2026-11-10",
+  "time": "20:00",
+  "venue": "New Morning",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Jazz / Blues",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/new-morning-2842/steve-coleman-the-five-elements-3315234.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.43,
+   "artist": "Steve Coleman",
+   "link": "https://www.deezer.com/artist/15711",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/b2f7fbf40e6b20426f65dd46804a527a/250x250-000000-80-0-0.jpg",
+   "fans": 4459,
+   "close_to": [
+    "Art Blakey"
+   ]
+  }
+ },
+ {
   "id": "ae29a8911c06",
   "title": "SAMARA JOY",
   "date": "2026-11-10",
@@ -5615,6 +6961,45 @@
   ]
  },
  {
+  "id": "eb4f8be260fc",
+  "title": "Myles Sanko",
+  "date": "2026-11-13",
+  "time": "20:00",
+  "venue": "New Morning",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Jazz / Blues",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/new-morning-2842/myles-sanko-3315235.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 1.0,
+   "artist": "Myles Sanko",
+   "link": "https://www.deezer.com/artist/4634892",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/f6333a1f77f1e4d1a009c747f8def8be/250x250-000000-80-0-0.jpg",
+   "fans": 3986,
+   "close_to": [
+    "Vulfpeck",
+    "Raphael Saadiq",
+    "Lee Fields & The Expressions",
+    "Durand Jones & The Indications"
+   ]
+  }
+ },
+ {
   "id": "a616302a54f8",
   "title": "NOONZY",
   "date": "2026-11-13",
@@ -5691,6 +7076,88 @@
   ]
  },
  {
+  "id": "6cc3f68af9eb",
+  "title": "Leee John",
+  "date": "2026-11-14",
+  "time": "19:00",
+  "venue": "New Morning",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Soul, Musiques urbaines",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/new-morning-2842/leee-john-3315236.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.73,
+   "artist": "Leee John",
+   "link": "https://www.deezer.com/artist/123729",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/7f1a10eb714dc65154f1327cd7c8edeb/250x250-000000-80-0-0.jpg",
+   "fans": 668,
+   "close_to": [
+    "Chic",
+    "Soul II Soul",
+    "Loleatta Holloway",
+    "First Choice"
+   ]
+  }
+ },
+ {
+  "id": "3cc00d5f9fb7",
+  "title": "OVERMONO",
+  "date": "2026-11-14",
+  "time": "20:00",
+  "venue": "Olympia",
+  "venue_favorite": true,
+  "address": "28, BVD DES CAPUCINES",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2026-05-21T08:00:00Z",
+  "status": "onsale",
+  "genre": "Dance/Electronic",
+  "image": "https://s1.ticketm.net/dam/c/df8/81eadad8-4449-412e-a2b1-3d8bbb78edf8_106181_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/overmono-billet/idmanif/659367/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/lolympia-2874/overmono-3254635.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 1.0,
+   "artist": "Overmono",
+   "link": "https://www.deezer.com/artist/11820537",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/1b456c0ec0b7d1240092b1896f1e9d5d/250x250-000000-80-0-0.jpg",
+   "fans": 8152,
+   "close_to": [
+    "Fred again..",
+    "Daniel Avery",
+    "Kh",
+    "DJ Seinfeld"
+   ]
+  }
+ },
+ {
   "id": "3c4592bd94dd",
   "title": "MARLON MAGNEE",
   "date": "2026-11-14",
@@ -5732,6 +7199,81 @@
     "Miel de Montagne",
     "La Femme",
     "Kids Return"
+   ]
+  }
+ },
+ {
+  "id": "17868e9efbcb",
+  "title": "Mike et Riké, Manu et Guizmo, HK et Vanupié",
+  "date": "2026-11-14",
+  "time": "20:00",
+  "venue": "La Cigale",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Reggae, Monde / Traditionnel",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-cigale-1805/mike-et-rike-manu-et-guizmo-hk-et-vanupie-3126602.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 1.0,
+   "artist": "Mike",
+   "link": "https://www.deezer.com/artist/142759",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/70b7966cf77ca17ec547ebb3da761cb6/250x250-000000-80-0-0.jpg",
+   "fans": 6200,
+   "close_to": [
+    "Domo Genesis",
+    "Curren$y",
+    "Westside Gunn",
+    "Mavi"
+   ]
+  }
+ },
+ {
+  "id": "8dbcb61d43fc",
+  "title": "Jeanne Cherhal",
+  "date": "2026-11-14",
+  "time": "20:30",
+  "venue": "Théâtre Antoine Watteau",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": "25,5-39 €",
+  "on_sale": null,
+  "status": null,
+  "genre": "Chanson française, Chanson",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-scene-watteau-3170/jeanne-cherhal-3299030.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.33,
+   "artist": "Jeanne Cherhal",
+   "link": "https://www.deezer.com/artist/1308",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/12eb1d0e23c6701d584b48c93c71e3a2/250x250-000000-80-0-0.jpg",
+   "fans": 91191,
+   "close_to": [
+    "-M-"
    ]
   }
  },
@@ -6157,6 +7699,42 @@
   }
  },
  {
+  "id": "07d1bb17d34f",
+  "title": "Feeble Little Horse",
+  "date": "2026-11-17",
+  "time": "19:30",
+  "venue": "La Bellevilloise",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-club-5468/feeble-little-horse-3307199.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.43,
+   "artist": "feeble little horse",
+   "link": "https://www.deezer.com/artist/130682022",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/bd614305e29cf62c75a195032eb463b3/250x250-000000-80-0-0.jpg",
+   "fans": 2205,
+   "close_to": [
+    "Genesis Owusu"
+   ]
+  }
+ },
+ {
   "id": "eaf5b68efe13",
   "title": "ZINADELPHIA",
   "date": "2026-11-17",
@@ -6194,6 +7772,48 @@
     "Raye",
     "Rachel Chinouriri",
     "Lola Young"
+   ]
+  }
+ },
+ {
+  "id": "d2a066bb27e9",
+  "title": "SYD MATTERS",
+  "date": "2026-11-17",
+  "time": "20:00",
+  "venue": "Olympia",
+  "venue_favorite": true,
+  "address": "28, BVD DES CAPUCINES",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2025-11-18T10:00:00Z",
+  "status": "onsale",
+  "genre": "Rock",
+  "image": "https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/syd-matters-billet/idmanif/640770/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/lolympia-2874/syd-matters-3126556.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.4,
+   "artist": "Syd Matters",
+   "link": "https://www.deezer.com/artist/1655",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/4686ccb2926e5469f8db4e6b1ebcfbfd/250x250-000000-80-0-0.jpg",
+   "fans": 42422,
+   "close_to": [
+    "The National",
+    "Other Lives",
+    "Fink"
    ]
   }
  },
@@ -6372,6 +7992,86 @@
     "link": "https://www.deezer.com/artist/1408"
    }
   ]
+ },
+ {
+  "id": "05177c746dff",
+  "title": "A2H",
+  "date": "2026-11-18",
+  "time": "19:00",
+  "venue": "Le Bataclan",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Rap, Musiques urbaines",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-bataclan-1526/a2h-3304415.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 1.0,
+   "artist": "A2H",
+   "link": "https://www.deezer.com/artist/827326",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/e941f50d891ee2612a162cef3a01c342/250x250-000000-80-0-0.jpg",
+   "fans": 129464,
+   "close_to": [
+    "Roméo Elvis",
+    "Nekfeu",
+    "Lefa",
+    "Georgio"
+   ]
+  }
+ },
+ {
+  "id": "6bdb2f3333a4",
+  "title": "LOUIS MATUTE",
+  "date": "2026-11-18",
+  "time": "19:30",
+  "venue": "New Morning",
+  "venue_favorite": true,
+  "address": "7-9, RUE DES PETITES ECURIES",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2026-03-27T11:37:11Z",
+  "status": "onsale",
+  "genre": "Jazz",
+  "image": "https://s1.ticketm.net/dam/c/bea/03d47f66-d37b-4aca-aa17-0135be64dbea_105801_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/louis-matute-billet/idmanif/654614/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/new-morning-2842/louis-matute-3315276.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.4,
+   "artist": "Louis Matute",
+   "link": "https://www.deezer.com/artist/14254545",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/77eb41b859582e119e9edded26b06410/250x250-000000-80-0-0.jpg",
+   "fans": 1273,
+   "close_to": [
+    "Avishai Cohen",
+    "Julian Lage"
+   ]
+  }
  },
  {
   "id": "53fd6d511e5c",
@@ -6668,6 +8368,43 @@
     "link": "https://www.deezer.com/artist/403152"
    }
   ]
+ },
+ {
+  "id": "a1ebe45a1713",
+  "title": "Sam Wilkes et Sam Gendel",
+  "date": "2026-11-19",
+  "time": "20:00",
+  "venue": "Alhambra",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Jazz / Blues",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/alhambra-3584/sam-wilkes-et-sam-gendel-3312760.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.43,
+   "artist": "Sam Gendel",
+   "link": "https://www.deezer.com/artist/6975217",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/6b314389e4b554dfa6b91c98dfdb8c43/250x250-000000-80-0-0.jpg",
+   "fans": 1180,
+   "close_to": [
+    "Alfa Mist",
+    "Badbadnotgood"
+   ]
+  }
  },
  {
   "id": "a6033cb3af52",
@@ -7091,6 +8828,43 @@
   }
  },
  {
+  "id": "f514129488bd",
+  "title": "MC Solaar et Youssoupha",
+  "date": "2026-11-21",
+  "time": "20:00",
+  "venue": "Grande salle Pierre Boulez - Philharmonie de Paris",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Rap, Musiques urbaines",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-salle-6005/mc-solaar-et-youssoupha-3225784.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.53,
+   "artist": "MC Solaar",
+   "link": "https://www.deezer.com/artist/63",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/eb6e0984cbeb0ee73371502692da226f/250x250-000000-80-0-0.jpg",
+   "fans": 304763,
+   "close_to": [
+    "IAM",
+    "Akhenaton"
+   ]
+  }
+ },
+ {
   "id": "75cca0b6f827",
   "title": "ACCEPT 50th Anniversary Tour 2026",
   "date": "2026-11-22",
@@ -7257,6 +9031,49 @@
   ]
  },
  {
+  "id": "61a9a09d1331",
+  "title": "FERDI",
+  "date": "2026-11-23",
+  "time": "20:00",
+  "venue": "Le Trianon",
+  "venue_favorite": true,
+  "address": "80 BOULEVARD ROCHECHOUART",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2026-01-28T17:00:00Z",
+  "status": "onsale",
+  "genre": "Jazz",
+  "image": "https://s1.ticketm.net/dam/c/bea/03d47f66-d37b-4aca-aa17-0135be64dbea_105801_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/ferdi-billet/idmanif/648450/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/ferdi-3172882.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 1.0,
+   "artist": "Ferdi",
+   "link": "https://www.deezer.com/artist/191201537",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/d703f7e0a2d05f0539532f214455976b/250x250-000000-80-0-0.jpg",
+   "fans": 4949,
+   "close_to": [
+    "Ric Wilson",
+    "NEIL FRANCES",
+    "Jafunk",
+    "Astels"
+   ]
+  }
+ },
+ {
   "id": "ec6dab5f56fe",
   "title": "Genesis Owusu",
   "date": "2026-11-24",
@@ -7419,6 +9236,45 @@
     "Sharon Jones & The Dap-Kings",
     "Curtis Harding",
     "Ben L'Oncle Soul"
+   ]
+  }
+ },
+ {
+  "id": "22bafb4bf2b2",
+  "title": "Little Odetta - The Zac Schulze Gang",
+  "date": "2026-11-24",
+  "time": "20:00",
+  "venue": "New Morning",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Blues, Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/new-morning-2842/little-odetta-the-zac-schulze-gang-3315282.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.97,
+   "artist": "The Zac Schulze Gang",
+   "link": "https://www.deezer.com/artist/152873242",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/2a71cb94154a33d0e312acb682bd707b/250x250-000000-80-0-0.jpg",
+   "fans": 388,
+   "close_to": [
+    "ZZ Top",
+    "The Rolling Stones",
+    "Tito & Tarantula",
+    "Deep Purple"
    ]
   }
  },
@@ -7895,6 +9751,45 @@
   ]
  },
  {
+  "id": "21ff9bebf9cc",
+  "title": "MT Jones",
+  "date": "2026-11-26",
+  "time": "20:00",
+  "venue": "New Morning",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Soul, Musiques urbaines",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/new-morning-2842/mt-jones-3315290.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 1.0,
+   "artist": "MT Jones",
+   "link": "https://www.deezer.com/artist/188722057",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/05639ffa5045d6686a53b46b1a3c2fa0/250x250-000000-80-0-0.jpg",
+   "fans": 848,
+   "close_to": [
+    "Young Gun Silver Fox",
+    "Durand Jones & The Indications",
+    "Mayer Hawthorne",
+    "Say She She"
+   ]
+  }
+ },
+ {
   "id": "8bac07d28949",
   "title": "Concert Colette Magny",
   "date": "2026-11-27",
@@ -8113,6 +10008,49 @@
   ]
  },
  {
+  "id": "3c3be8ef8b50",
+  "title": "SPIDER ZED",
+  "date": "2026-11-28",
+  "time": "19:30",
+  "venue": "Élysée Montmartre",
+  "venue_favorite": true,
+  "address": "72, boulevard Rochechouart",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2026-01-14T10:00:00Z",
+  "status": "onsale",
+  "genre": "Hip-Hop/Rap",
+  "image": "https://s1.ticketm.net/dam/c/80b/f3cd8d24-c3ae-4fa0-b4bc-1ba99f9b380b_106091_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/spider-zed-billet/idmanif/647075/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/elysee-montmartre-2168/spider-zed-3174948.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 1.0,
+   "artist": "Spider ZED",
+   "link": "https://www.deezer.com/artist/10471481",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/85e0c4c2d413843d7b27fafb367cec62/250x250-000000-80-0-0.jpg",
+   "fans": 63587,
+   "close_to": [
+    "Roméo Elvis",
+    "Orelsan",
+    "Georgio",
+    "Michel"
+   ]
+  }
+ },
+ {
   "id": "1654555dd775",
   "title": "BENNY SINGS",
   "date": "2026-11-28",
@@ -8195,6 +10133,48 @@
     "ISHA",
     "Caballero & JeanJass",
     "Primero"
+   ]
+  }
+ },
+ {
+  "id": "eb9f21e642ed",
+  "title": "NOUS ETIONS UNE ARMEE",
+  "date": "2026-11-28",
+  "time": "20:00",
+  "venue": "La Cigale",
+  "venue_favorite": true,
+  "address": "120, BOULEVARD ROCHECHOUART",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2025-11-21T11:00:00Z",
+  "status": "onsale",
+  "genre": "Rock",
+  "image": "https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/nous-etions-une-armee-billet/idmanif/641508/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-cigale-1805/nous-etions-une-armee-3126603.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.63,
+   "artist": "nous étions une armée",
+   "link": "https://www.deezer.com/artist/66251942",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/de4cc8e6973e0d9e46e22aa3e85b646c/250x250-000000-80-0-0.jpg",
+   "fans": 4018,
+   "close_to": [
+    "Feu! Chatterton",
+    "Requin Chagrin",
+    "Clio"
    ]
   }
  },
@@ -8762,6 +10742,45 @@
   ]
  },
  {
+  "id": "db7d672ad72b",
+  "title": "Mélissa Laveaux",
+  "date": "2026-12-01",
+  "time": "20:00",
+  "venue": "Théâtre 71",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": "34,5 €",
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-71-3268/melissa-laveaux-3265899.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.5,
+   "artist": "Melissa Laveaux",
+   "link": "https://www.deezer.com/artist/155338",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/6c972c5342ba08942ae26dd26ece0f33/250x250-000000-80-0-0.jpg",
+   "fans": 47252,
+   "close_to": [
+    "Ibeyi",
+    "The Dø",
+    "FM LAETI",
+    "Benjamin Clementine"
+   ]
+  }
+ },
+ {
   "id": "98eaae49d6fe",
   "title": "TANK AND THE BANGAS",
   "date": "2026-12-02",
@@ -8848,6 +10867,44 @@
     "Tiana Major9",
     "Ari Lennox",
     "Snoh Aalegra"
+   ]
+  }
+ },
+ {
+  "id": "2ce328ea7885",
+  "title": "Kat Eaton",
+  "date": "2026-12-02",
+  "time": "20:00",
+  "venue": "New Morning",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Soul, Musiques urbaines",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/new-morning-2842/kat-eaton-3315291.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.4,
+   "artist": "Kat Eaton",
+   "link": "https://www.deezer.com/artist/5887613",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/6832dc201eede3f05ab5c9b747035a9a/250x250-000000-80-0-0.jpg",
+   "fans": 954,
+   "close_to": [
+    "Yola",
+    "José James",
+    "Izo FitzRoy"
    ]
   }
  },
@@ -9064,6 +11121,45 @@
     "New Order",
     "Talking Heads",
     "Depeche Mode"
+   ]
+  }
+ },
+ {
+  "id": "46970c55bce1",
+  "title": "Jontavious Willis",
+  "date": "2026-12-03",
+  "time": "20:00",
+  "venue": "New Morning",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Blues, Jazz / Blues",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/new-morning-2842/jontavious-willis-3315312.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.93,
+   "artist": "Jontavious Willis",
+   "link": "https://www.deezer.com/artist/12555734",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/100972c5bf3b7de20e10f63d3cdda769/250x250-000000-80-0-0.jpg",
+   "fans": 452,
+   "close_to": [
+    "Sonny Terry",
+    "Muddy Waters",
+    "Buddy Guy",
+    "Junior Wells"
    ]
   }
  },
@@ -9408,6 +11504,45 @@
   ]
  },
  {
+  "id": "d09b22e8d6f7",
+  "title": "Mélissa Laveaux",
+  "date": "2026-12-05",
+  "time": "20:30",
+  "venue": "Théâtre des Bergeries",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": "11-19 €",
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-des-bergeries-1543/melissa-laveaux-3316171.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.5,
+   "artist": "Melissa Laveaux",
+   "link": "https://www.deezer.com/artist/155338",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/6c972c5342ba08942ae26dd26ece0f33/250x250-000000-80-0-0.jpg",
+   "fans": 47252,
+   "close_to": [
+    "Ibeyi",
+    "The Dø",
+    "FM LAETI",
+    "Benjamin Clementine"
+   ]
+  }
+ },
+ {
   "id": "93956cefa36c",
   "title": "Jeff Mills et Kety Fusco",
   "date": "2026-12-06",
@@ -9478,6 +11613,42 @@
     "link": "https://www.deezer.com/artist/116732182"
    }
   ]
+ },
+ {
+  "id": "a894426defed",
+  "title": "Marco Castello",
+  "date": "2026-12-07",
+  "time": "19:30",
+  "venue": "La Bellevilloise",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-club-5468/marco-castello-3307201.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.3,
+   "artist": "Marco Castello",
+   "link": "https://www.deezer.com/artist/12196866",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/709f21637707d3978d21c9cdfbb1c349/250x250-000000-80-0-0.jpg",
+   "fans": 2133,
+   "close_to": [
+    "Colapesce"
+   ]
+  }
  },
  {
   "id": "7853c5152412",
@@ -9600,6 +11771,44 @@
     "link": "https://www.deezer.com/artist/3325"
    }
   ]
+ },
+ {
+  "id": "657068bcfe49",
+  "title": "GLK",
+  "date": "2026-12-08",
+  "time": "20:00",
+  "venue": "La Cigale",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Rap, Musiques urbaines",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-cigale-1805/glk-3172223.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.4,
+   "artist": "GLK",
+   "link": "https://www.deezer.com/artist/1600816",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/241e49e1b75efe3c419da61285f42f43/250x250-000000-80-0-0.jpg",
+   "fans": 481894,
+   "close_to": [
+    "Timal",
+    "Rim'K",
+    "DTF"
+   ]
+  }
  },
  {
   "id": "2b2975f00333",
@@ -10049,6 +12258,84 @@
   ]
  },
  {
+  "id": "5c72e0dcbf2e",
+  "title": "Java et Winston McAnuff",
+  "date": "2026-12-11",
+  "time": "20:00",
+  "venue": "La Cigale",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Reggae, Monde / Traditionnel",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-cigale-1805/java-et-winston-mcanuff-3254701.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 1.0,
+   "artist": "Winston Mcanuff",
+   "link": "https://www.deezer.com/artist/55291",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/e10582b5d5303861e39c499ed6a4da06/250x250-000000-80-0-0.jpg",
+   "fans": 24612,
+   "close_to": [
+    "Lee \"Scratch\" Perry",
+    "Toots & The Maytals",
+    "Israel Vibration",
+    "Alpha Blondy"
+   ]
+  }
+ },
+ {
+  "id": "f8e599d18746",
+  "title": "Tahiti 80 - Maxwell Farrington & Le SuperHomard",
+  "date": "2026-12-11",
+  "time": "20:00",
+  "venue": "Alhambra",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/alhambra-3584/tahiti-80-maxwell-farrington-le-superhomard-3312766.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 1.0,
+   "artist": "Tahiti 80",
+   "link": "https://www.deezer.com/artist/1791",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/5b935039dda6bf285bb2dd6eea2af300/250x250-000000-80-0-0.jpg",
+   "fans": 15437,
+   "close_to": [
+    "Phoenix",
+    "Naive New Beaters",
+    "Electric Guest",
+    "Django Django"
+   ]
+  }
+ },
+ {
   "id": "87344625de19",
   "title": "Clash Électro : de Vivaldi à Daft Punk",
   "date": "2026-12-11",
@@ -10209,6 +12496,45 @@
     "link": "https://www.deezer.com/artist/259467"
    }
   ]
+ },
+ {
+  "id": "a2914180dab9",
+  "title": "Bilal",
+  "date": "2026-12-12",
+  "time": "20:00",
+  "venue": "New Morning",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "RnB, Musiques urbaines",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/new-morning-2842/bilal-3316188.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.73,
+   "artist": "Bilal",
+   "link": "https://www.deezer.com/artist/4988",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/f926d3f769ffc484f2d0109b46c879a0/250x250-000000-80-0-0.jpg",
+   "fans": 16934,
+   "close_to": [
+    "Raphael Saadiq",
+    "Jill Scott",
+    "Davina",
+    "D'Angelo"
+   ]
+  }
  },
  {
   "id": "7ca9da6a5950",
@@ -10410,6 +12736,46 @@
     "Népal",
     "Laylow",
     "Jazzy Bazz"
+   ]
+  }
+ },
+ {
+  "id": "b6ae404162e3",
+  "title": "LADANIVA",
+  "date": "2026-12-15",
+  "time": "19:30",
+  "venue": "La Cigale",
+  "venue_favorite": true,
+  "address": "120, BOULEVARD ROCHECHOUART",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2026-04-03T10:00:00Z",
+  "status": "onsale",
+  "genre": "World",
+  "image": "https://s1.ticketm.net/dam/c/548/5fefbd1c-973b-4b0e-9b2e-d78e4ce37548_106111_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/ladaniva-billet/idmanif/654808/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-cigale-1805/ladaniva-3254702.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.3,
+   "artist": "Ladaniva",
+   "link": "https://www.deezer.com/artist/88142012",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/1762b29d1ec2c7f09f6c7e5f4bd4c33b/250x250-000000-80-0-0.jpg",
+   "fans": 12734,
+   "close_to": [
+    "David Walters"
    ]
   }
  },
@@ -11134,6 +13500,45 @@
   }
  },
  {
+  "id": "c24889320bf6",
+  "title": "The Puppini Sisters",
+  "date": "2026-12-17",
+  "time": "20:30",
+  "venue": "New Morning",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Jazz / Blues",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/new-morning-2842/the-puppini-sisters-3316189.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.9,
+   "artist": "The Puppini Sisters",
+   "link": "https://www.deezer.com/artist/8471",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/23128ce412139a753d6adf2d2b76416e/250x250-000000-80-0-0.jpg",
+   "fans": 24831,
+   "close_to": [
+    "Tony Bennett",
+    "Ray Charles",
+    "Gregory Porter",
+    "Jamie Cullum"
+   ]
+  }
+ },
+ {
   "id": "689baa226be8",
   "title": "ORELSAN",
   "date": "2026-12-18",
@@ -11339,6 +13744,44 @@
     "link": "https://www.deezer.com/artist/259467"
    }
   ]
+ },
+ {
+  "id": "2a24b2e4ef62",
+  "title": "Tosca",
+  "date": "2026-12-21",
+  "time": "20:00",
+  "venue": "Théâtre de la Ville – Les Abbesses",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": "7-28,5 €",
+  "on_sale": null,
+  "status": null,
+  "genre": "Monde / Traditionnel",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-de-la-ville-les-abbesses-3377/tosca-3308745.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.53,
+   "artist": "Tosca",
+   "link": "https://www.deezer.com/artist/2044",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/a9281696de150b6d7f058634d0b2d865/250x250-000000-80-0-0.jpg",
+   "fans": 29893,
+   "close_to": [
+    "St Germain",
+    "The Dining Rooms",
+    "Nightmares On Wax"
+   ]
+  }
  },
  {
   "id": "3675f2aaea61",
@@ -12058,6 +14501,43 @@
   }
  },
  {
+  "id": "41f07eaa6a85",
+  "title": "Jersey",
+  "date": "2027-01-12",
+  "time": "20:00",
+  "venue": "La Cigale",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-cigale-1805/jersey-3361859.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.53,
+   "artist": "Jersey",
+   "link": "https://www.deezer.com/artist/489669",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/7a89111893df9037fab46ad5d82b6a27/250x250-000000-80-0-0.jpg",
+   "fans": 3274,
+   "close_to": [
+    "Fred again..",
+    "Panteros666"
+   ]
+  }
+ },
+ {
   "id": "5a2bd521b97f",
   "title": "SOULEYMANE DIAMANKA",
   "date": "2027-01-16",
@@ -12093,6 +14573,48 @@
    "close_to": [
     "Gaël Faye",
     "Tim Dup"
+   ]
+  }
+ },
+ {
+  "id": "4a6964da6455",
+  "title": "PACT",
+  "date": "2027-01-16",
+  "time": "20:00",
+  "venue": "Élysée Montmartre",
+  "venue_favorite": true,
+  "address": "72, boulevard Rochechouart",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2026-06-02T10:00:00Z",
+  "status": "onsale",
+  "genre": "Dance/Electronic",
+  "image": "https://s1.ticketm.net/dam/c/df8/81eadad8-4449-412e-a2b1-3d8bbb78edf8_106181_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/pact-billet/idmanif/660525/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/elysee-montmartre-2168/pact-3255883.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.5,
+   "artist": "PACT",
+   "link": "https://www.deezer.com/artist/386400751",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/7b933497f8c3ac9906a16aabb5d9c5ef/250x250-000000-80-0-0.jpg",
+   "fans": 276,
+   "close_to": [
+    "Sascha Braemer",
+    "Worakls",
+    "Rodriguez Jr."
    ]
   }
  },
@@ -12142,6 +14664,46 @@
   }
  },
  {
+  "id": "999f1ce52fc8",
+  "title": "LEON PHAL",
+  "date": "2027-01-19",
+  "time": "20:30",
+  "venue": "La Cigale",
+  "venue_favorite": true,
+  "address": "120, BOULEVARD ROCHECHOUART",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2026-06-19T09:00:00Z",
+  "status": "onsale",
+  "genre": "Jazz",
+  "image": "https://s1.ticketm.net/dam/c/bea/03d47f66-d37b-4aca-aa17-0135be64dbea_105801_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/leon-phal-billet/idmanif/664626/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-cigale-1805/leon-phal-3308767.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.3,
+   "artist": "Léon Phal",
+   "link": "https://www.deezer.com/artist/14960533",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/f93a62752c2de2d2eba3f4790bab8b38/250x250-000000-80-0-0.jpg",
+   "fans": 3203,
+   "close_to": [
+    "Theo Croker"
+   ]
+  }
+ },
+ {
   "id": "63fb073bae7c",
   "title": "TIA GORDON",
   "date": "2027-01-20",
@@ -12179,6 +14741,45 @@
     "Mereba",
     "Jordan Ward",
     "Cleo Sol"
+   ]
+  }
+ },
+ {
+  "id": "ecfc79d3db28",
+  "title": "Jean-Jacques Milteau",
+  "date": "2027-01-20",
+  "time": "20:30",
+  "venue": "New Morning",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Blues, Jazz / Blues",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/new-morning-2842/jean-jacques-milteau-3316190.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 1.0,
+   "artist": "Jean-Jacques Milteau",
+   "link": "https://www.deezer.com/artist/71632",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/fc599a01d658cd5693fde6398aa0fa40/250x250-000000-80-0-0.jpg",
+   "fans": 11067,
+   "close_to": [
+    "Robert Cray",
+    "B.B. King",
+    "Muddy Waters",
+    "Lucky Peterson"
    ]
   }
  },
@@ -12378,6 +14979,45 @@
   ]
  },
  {
+  "id": "28663d6af11e",
+  "title": "Pi Ja Ma",
+  "date": "2027-01-26",
+  "time": "20:00",
+  "venue": "La Cigale",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop, Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-cigale-1805/pi-ja-ma-3172229.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 1.0,
+   "artist": "Pi Ja Ma",
+   "link": "https://www.deezer.com/artist/10339096",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/56e90c9c30247e647e7514c71ecc4318/250x250-000000-80-0-0.jpg",
+   "fans": 8918,
+   "close_to": [
+    "Voyou",
+    "Pépite",
+    "Requin Chagrin",
+    "Odezenne"
+   ]
+  }
+ },
+ {
   "id": "ea5e84fe45fa",
   "title": "EDITORS",
   "date": "2027-01-27",
@@ -12456,6 +15096,44 @@
     "link": "https://www.deezer.com/artist/161626612"
    }
   ]
+ },
+ {
+  "id": "633421ad31bf",
+  "title": "Jerron Paxton",
+  "date": "2027-01-27",
+  "time": "20:00",
+  "venue": "New Morning",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Blues, Jazz / Blues",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/new-morning-2842/jerron-paxton-3316191.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.63,
+   "artist": "Jerron Paxton",
+   "link": "https://www.deezer.com/artist/7138841",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/7c9a96a9a9c5609d3ba3522a111c4f82/250x250-000000-80-0-0.jpg",
+   "fans": 222,
+   "close_to": [
+    "Sonny Terry",
+    "Otis Taylor",
+    "Junior Wells"
+   ]
+  }
  },
  {
   "id": "b0cc86a9ddfc",
@@ -12714,7 +15392,85 @@
   }
  },
  {
-  "id": "c063e3509c73",
+  "id": "dfc8b9c810d2",
+  "title": "Michel Jonasz et Jean-Yves d'Angelo",
+  "date": "2027-01-30",
+  "time": "20:00",
+  "venue": "Les Folies Bergère",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Chanson française, Chanson",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/les-folies-bergere-2331/michel-jonasz-et-jean-yves-dangelo-3174485.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.73,
+   "artist": "Michel Jonasz",
+   "link": "https://www.deezer.com/artist/7685",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/b4f8fc95a173055247de9f10a862f7d7/250x250-000000-80-0-0.jpg",
+   "fans": 189964,
+   "close_to": [
+    "Christophe",
+    "Eddy Mitchell",
+    "Claude Nougaro",
+    "Barbara"
+   ]
+  }
+ },
+ {
+  "id": "993a12f5f07a",
+  "title": "Mélissa Laveaux",
+  "date": "2027-01-30",
+  "time": "20:30",
+  "venue": "Théâtre des 2 Rives",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": "22,5-35,5 €",
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-des-deux-rives-1995/melissa-laveaux-3341580.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.5,
+   "artist": "Melissa Laveaux",
+   "link": "https://www.deezer.com/artist/155338",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/6c972c5342ba08942ae26dd26ece0f33/250x250-000000-80-0-0.jpg",
+   "fans": 47252,
+   "close_to": [
+    "Ibeyi",
+    "The Dø",
+    "FM LAETI",
+    "Benjamin Clementine"
+   ]
+  }
+ },
+ {
+  "id": "c063e3509c73x",
   "title": "MICHEL JONASZ - MICHEL JONASZ & JEAN-YVES D'ANGELO PIANO",
   "date": "2027-01-31",
   "time": "18:00",
@@ -12739,7 +15495,46 @@
   "description": null,
   "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": "liste",
+  "badge": null,
+  "discovery": {
+   "score": 0.73,
+   "artist": "Michel Jonasz",
+   "link": "https://www.deezer.com/artist/7685",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/b4f8fc95a173055247de9f10a862f7d7/250x250-000000-80-0-0.jpg",
+   "fans": 189964,
+   "close_to": [
+    "Christophe",
+    "Eddy Mitchell",
+    "Claude Nougaro",
+    "Barbara"
+   ]
+  }
+ },
+ {
+  "id": "c063e3509c73",
+  "title": "Michel Jonasz et Jean-Yves d'Angelo",
+  "date": "2027-01-31",
+  "time": "18:00",
+  "venue": "Les Folies Bergère",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Chanson française, Chanson",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/les-folies-bergere-2331/michel-jonasz-et-jean-yves-dangelo-3174485.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
   "discovery": {
    "score": 0.73,
    "artist": "Michel Jonasz",
@@ -13866,6 +16661,45 @@
   }
  },
  {
+  "id": "5954fcea2870",
+  "title": "MadeInParis",
+  "date": "2027-02-18",
+  "time": "20:00",
+  "venue": "Olympia",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Rap, Musiques urbaines",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/lolympia-2874/madeinparis-3254650.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 1.0,
+   "artist": "MadeInParis",
+   "link": "https://www.deezer.com/artist/13142337",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/1d666db251ef170a7784904b9ee0d613/250x250-000000-80-0-0.jpg",
+   "fans": 73357,
+   "close_to": [
+    "Josman",
+    "Luidji",
+    "Laylow",
+    "Dinos"
+   ]
+  }
+ },
+ {
   "id": "f21eb006d758",
   "title": "PRESTATION RUSH",
   "date": "2027-02-19",
@@ -14300,6 +17134,41 @@
   }
  },
  {
+  "id": "fee7fccdaad5",
+  "title": "GWENDOLINE",
+  "date": "2027-02-25",
+  "time": "20:00",
+  "venue": "La Maroquinerie",
+  "venue_favorite": false,
+  "address": "23, RUE BOYER",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2026-10-07T15:00:00Z",
+  "status": "onsale",
+  "genre": "Rock",
+  "image": "https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/gwendoline-billet/idmanif/674304/idseance/4432448"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "known",
+  "first_seen": "2026-10-07",
+  "badge": "annonce",
+  "tier": 3,
+  "matched": [
+   {
+    "name": "Gwendoline",
+    "tier": 3,
+    "via": "titre",
+    "link": "https://www.deezer.com/artist/110894842"
+   }
+  ]
+ },
+ {
   "id": "bfdec37dddc2",
   "title": "GAËTAN ROUSSEL",
   "date": "2027-02-25",
@@ -14341,6 +17210,43 @@
     "-M-",
     "Julien Doré",
     "Clara Luciani"
+   ]
+  }
+ },
+ {
+  "id": "a3a2f0f0b067",
+  "title": "Myra",
+  "date": "2027-02-25",
+  "time": "20:00",
+  "venue": "Le Trianon",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/myra-3361896.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "annonce",
+  "discovery": {
+   "score": 0.4,
+   "artist": "Myra",
+   "link": "https://www.deezer.com/artist/182425",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/92757da6fddfc64e1bfc58a103b38d62/250x250-000000-80-0-0.jpg",
+   "fans": 10991,
+   "close_to": [
+    "Moussa",
+    "Lous and The Yakuza"
    ]
   }
  },
@@ -14458,6 +17364,84 @@
     "link": "https://www.deezer.com/artist/75289"
    }
   ]
+ },
+ {
+  "id": "b316655ff294",
+  "title": "Dynamite Shakers",
+  "date": "2027-02-27",
+  "time": "20:00",
+  "venue": "Le Trianon",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/dynamite-shakers-3361897.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "annonce",
+  "discovery": {
+   "score": 0.97,
+   "artist": "Dynamite Shakers",
+   "link": "https://www.deezer.com/artist/157314032",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/13bbb931abdb73f0ed039aae82483318/250x250-000000-80-0-0.jpg",
+   "fans": 7470,
+   "close_to": [
+    "The Black Keys",
+    "Miles Kane",
+    "Kasabian",
+    "Interpol"
+   ]
+  }
+ },
+ {
+  "id": "2bc987a79fb5",
+  "title": "Pony Pony Run Run",
+  "date": "2027-02-27",
+  "time": "20:30",
+  "venue": "Théâtre du Casino",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": "46,5 €",
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-du-casino-1637/pony-pony-run-run-3316176.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 1.0,
+   "artist": "Pony Pony Run Run",
+   "link": "https://www.deezer.com/artist/259609",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/50ba7acc12d18d22a0f76d8e82af64d2/250x250-000000-80-0-0.jpg",
+   "fans": 146324,
+   "close_to": [
+    "Phoenix",
+    "Naive New Beaters",
+    "The Ting Tings",
+    "Willy Moon"
+   ]
+  }
  },
  {
   "id": "929a53531606",
@@ -14582,6 +17566,42 @@
   }
  },
  {
+  "id": "3bdb70bfef99",
+  "title": "Eva",
+  "date": "2027-03-02",
+  "time": "20:00",
+  "venue": "Olympia",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop, Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/lolympia-2874/eva-3360148.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.43,
+   "artist": "Eva",
+   "link": "https://www.deezer.com/artist/53345732",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/e4e712275eb3559231374288530d2625/250x250-000000-80-0-0.jpg",
+   "fans": 732901,
+   "close_to": [
+    "GIMS"
+   ]
+  }
+ },
+ {
   "id": "bb6f5418da02",
   "title": "IZIA",
   "date": "2027-03-03",
@@ -14621,6 +17641,49 @@
     "link": "https://www.deezer.com/artist/197711"
    }
   ]
+ },
+ {
+  "id": "862a862e1dc3",
+  "title": "Trentemøller",
+  "date": "2027-03-03",
+  "time": "20:00",
+  "venue": "La Cigale",
+  "venue_favorite": true,
+  "address": "120, BOULEVARD ROCHECHOUART",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2026-04-24T08:00:00Z",
+  "status": "onsale",
+  "genre": "Dance/Electronic",
+  "image": "https://s1.ticketm.net/dam/c/df8/81eadad8-4449-412e-a2b1-3d8bbb78edf8_106181_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/trentem-ller-billet/idmanif/657578/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-cigale-1805/trentemoller-3254709.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 1.0,
+   "artist": "Trentemøller",
+   "link": "https://www.deezer.com/artist/5210",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/96c0a3a92147cc0a5fc38e4733d64f68/250x250-000000-80-0-0.jpg",
+   "fans": 102740,
+   "close_to": [
+    "Daniel Avery",
+    "Röyksopp",
+    "Rone",
+    "Modeselektor"
+   ]
+  }
  },
  {
   "id": "c28809ef41a0",
@@ -14703,6 +17766,49 @@
    "close_to": [
     "Christophe",
     "Claude Nougaro"
+   ]
+  }
+ },
+ {
+  "id": "9d18bc55ec24",
+  "title": "PALACE",
+  "date": "2027-03-05",
+  "time": "19:30",
+  "venue": "La Cigale",
+  "venue_favorite": true,
+  "address": "120, BOULEVARD ROCHECHOUART",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2026-10-02T08:00:00Z",
+  "status": "onsale",
+  "genre": "Rock",
+  "image": "https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/palace-billet/idmanif/671869/idseance/4410956"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-cigale-1805/palace-3361870.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 1.0,
+   "artist": "Palace",
+   "link": "https://www.deezer.com/artist/181127",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/4542a45ddffc891b0832b0d723b85af3/250x250-000000-80-0-0.jpg",
+   "fans": 12827,
+   "close_to": [
+    "Sun Room",
+    "Royel Otis",
+    "Yumi Zouma",
+    "Yellow Days"
    ]
   }
  },
@@ -15510,6 +18616,44 @@
   }
  },
  {
+  "id": "6702f4687ae5",
+  "title": "Pokey LaFarge",
+  "date": "2027-03-16",
+  "time": "19:00",
+  "venue": "New Morning",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Blues, Jazz / Blues",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/new-morning-2842/pokey-lafarge-3316194.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.63,
+   "artist": "Pokey Lafarge",
+   "link": "https://www.deezer.com/artist/422233",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/91da3fedaba6ac98d75ada1638aee4c2/250x250-000000-80-0-0.jpg",
+   "fans": 8873,
+   "close_to": [
+    "Alabama Shakes",
+    "Tom Waits",
+    "Nancy Sinatra"
+   ]
+  }
+ },
+ {
   "id": "031b4158f1d6",
   "title": "ROBERT EN CHARLEBOISSCOPE 2",
   "date": "2027-03-16",
@@ -15639,6 +18783,46 @@
   }
  },
  {
+  "id": "ce86b23146c8",
+  "title": "ASFAR SHAMSI",
+  "date": "2027-03-18",
+  "time": "20:00",
+  "venue": "La Cigale",
+  "venue_favorite": true,
+  "address": "120, BOULEVARD ROCHECHOUART",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2026-02-25T11:00:00Z",
+  "status": "onsale",
+  "genre": "Hip-Hop/Rap",
+  "image": "https://s1.ticketm.net/dam/c/80b/f3cd8d24-c3ae-4fa0-b4bc-1ba99f9b380b_106091_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/asfar-shamsi-billet/idmanif/651105/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-cigale-1805/asfar-shamsi-3254713.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.3,
+   "artist": "Asfar Shamsi",
+   "link": "https://www.deezer.com/artist/202233817",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/6b3b5733964b5b0e61d72af2c2e5d86c/250x250-000000-80-0-0.jpg",
+   "fans": 8550,
+   "close_to": [
+    "Moussa"
+   ]
+  }
+ },
+ {
   "id": "ced2d187f052",
   "title": "HATIK",
   "date": "2027-03-18",
@@ -15757,6 +18941,45 @@
   ]
  },
  {
+  "id": "1e5ca7c77f6b",
+  "title": "Pony Pony Run Run",
+  "date": "2027-03-19",
+  "time": "19:30",
+  "venue": "Le Trianon",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop, Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/pony-pony-run-run-3255706.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 1.0,
+   "artist": "Pony Pony Run Run",
+   "link": "https://www.deezer.com/artist/259609",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/50ba7acc12d18d22a0f76d8e82af64d2/250x250-000000-80-0-0.jpg",
+   "fans": 146324,
+   "close_to": [
+    "Phoenix",
+    "Naive New Beaters",
+    "The Ting Tings",
+    "Willy Moon"
+   ]
+  }
+ },
+ {
   "id": "c9ae86943ef4",
   "title": "JOHNNY MAFIA - JOHNNY MAFIA   guest",
   "date": "2027-03-19",
@@ -15842,6 +19065,45 @@
     "Guts",
     "Chinese Man",
     "Wax Tailor"
+   ]
+  }
+ },
+ {
+  "id": "f64649247b23",
+  "title": "P.R2B",
+  "date": "2027-03-19",
+  "time": "20:00",
+  "venue": "Espace 1789",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": "15,5-20 €",
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop, Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/espace-1789-2188/pr2b-3319690.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.97,
+   "artist": "P.R2B",
+   "link": "https://www.deezer.com/artist/13909493",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/33ffd46d10f1dcac9e273807eb85ff46/250x250-000000-80-0-0.jpg",
+   "fans": 9953,
+   "close_to": [
+    "Voyou",
+    "Tim Dup",
+    "Requin Chagrin",
+    "Clio"
    ]
   }
  },
@@ -16012,6 +19274,45 @@
     "Guts",
     "Chinese Man",
     "Wax Tailor"
+   ]
+  }
+ },
+ {
+  "id": "6573409f7516",
+  "title": "Pi Ja Ma",
+  "date": "2027-03-20",
+  "time": "20:30",
+  "venue": "Espace Michel-Simon",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": "19 €",
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop, Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/espace-michel-simon-2800/pi-ja-ma-3353026.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 1.0,
+   "artist": "Pi Ja Ma",
+   "link": "https://www.deezer.com/artist/10339096",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/56e90c9c30247e647e7514c71ecc4318/250x250-000000-80-0-0.jpg",
+   "fans": 8918,
+   "close_to": [
+    "Voyou",
+    "Pépite",
+    "Requin Chagrin",
+    "Odezenne"
    ]
   }
  },
@@ -16694,6 +19995,43 @@
   ]
  },
  {
+  "id": "fb7760409768",
+  "title": "Bertrand Belin",
+  "date": "2027-03-30",
+  "time": "20:00",
+  "venue": "Olympia",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Chanson française, Chanson",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/lolympia-2874/bertrand-belin-3169725.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.87,
+   "artist": "Bertrand Belin",
+   "link": "https://www.deezer.com/artist/55209",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/75ee99c71173076a801ca9eb6461ef1e/250x250-000000-80-0-0.jpg",
+   "fans": 70513,
+   "close_to": [
+    "Feu! Chatterton",
+    "Brigitte Fontaine"
+   ]
+  }
+ },
+ {
   "id": "57cd543d45e9",
   "title": "TEDDY SWIMS",
   "date": "2027-03-31",
@@ -16729,6 +20067,43 @@
     "link": "https://www.deezer.com/artist/64927672"
    }
   ]
+ },
+ {
+  "id": "8671502d5b3a",
+  "title": "Bertrand Belin",
+  "date": "2027-03-31",
+  "time": "20:00",
+  "venue": "Olympia",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Chanson française, Chanson",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/lolympia-2874/bertrand-belin-3169726.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.87,
+   "artist": "Bertrand Belin",
+   "link": "https://www.deezer.com/artist/55209",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/75ee99c71173076a801ca9eb6461ef1e/250x250-000000-80-0-0.jpg",
+   "fans": 70513,
+   "close_to": [
+    "Feu! Chatterton",
+    "Brigitte Fontaine"
+   ]
+  }
  },
  {
   "id": "eabbe77f2d91",
@@ -16976,6 +20351,43 @@
    "fans": 2020477,
    "close_to": [
     "Angèle"
+   ]
+  }
+ },
+ {
+  "id": "9536391003e7",
+  "title": "Pistons",
+  "date": "2027-04-08",
+  "time": "20:00",
+  "venue": "Le Trianon",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/pistons-3361903.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "annonce",
+  "discovery": {
+   "score": 0.3,
+   "artist": "Pistons",
+   "link": "https://www.deezer.com/artist/1625356",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/17f372832609c251d8f881538fa6e13c/250x250-000000-80-0-0.jpg",
+   "fans": 921,
+   "close_to": [
+    "Worakls",
+    "S+C+A+R+R"
    ]
   }
  },
@@ -17469,6 +20881,49 @@
   }
  },
  {
+  "id": "ee79806408c7",
+  "title": "ZUUKOU MAYZIE",
+  "date": "2027-04-15",
+  "time": "20:00",
+  "venue": "Olympia",
+  "venue_favorite": true,
+  "address": "28, BVD DES CAPUCINES",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2026-04-24T10:00:00Z",
+  "status": "onsale",
+  "genre": "Hip-Hop/Rap",
+  "image": "https://s1.ticketm.net/dam/c/80b/f3cd8d24-c3ae-4fa0-b4bc-1ba99f9b380b_106091_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/zuukou-mayzie-billet/idmanif/657326/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/lolympia-2874/zuukou-mayzie-3254654.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.83,
+   "artist": "Zuukou mayzie",
+   "link": "https://www.deezer.com/artist/11721245",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/dc23c89a2bc92e217b3548a1ac70a046/250x250-000000-80-0-0.jpg",
+   "fans": 65620,
+   "close_to": [
+    "Caballero & JeanJass",
+    "WIT.",
+    "Jazzy Bazz",
+    "EDGE"
+   ]
+  }
+ },
+ {
   "id": "b53167a759fb",
   "title": "Jazzy Bazz",
   "date": "2027-04-15",
@@ -17545,7 +21000,7 @@
   ]
  },
  {
-  "id": "64ef8d489cdbx",
+  "id": "64ef8d489cdb",
   "title": "John Williams : odyssées symphoniques",
   "date": "2027-04-16",
   "time": "20:00",
@@ -17625,6 +21080,44 @@
   }
  },
  {
+  "id": "be36313d3a84",
+  "title": "Tindersticks",
+  "date": "2027-04-18",
+  "time": "20:00",
+  "venue": "Olympia",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/lolympia-2874/tindersticks-3254656.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.97,
+   "artist": "Tindersticks",
+   "link": "https://www.deezer.com/artist/1296",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/25a8e1cb9ee48c9ef2206b49eb6d1a38/250x250-000000-80-0-0.jpg",
+   "fans": 37273,
+   "close_to": [
+    "Damon Albarn",
+    "Other Lives",
+    "Michelle Gurevich"
+   ]
+  }
+ },
+ {
   "id": "f613ad925ee6",
   "title": "ROVER",
   "date": "2027-04-20",
@@ -17666,6 +21159,44 @@
     "Asaf Avidan",
     "The Dø",
     "Michelle Gurevich"
+   ]
+  }
+ },
+ {
+  "id": "aa2bd5d1875b",
+  "title": "Nouvelle Vague",
+  "date": "2027-04-22",
+  "time": "20:00",
+  "venue": "La Cigale",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Bossa nova, Monde / Traditionnel",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-cigale-1805/nouvelle-vague-3254717.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.5,
+   "artist": "Nouvelle Vague",
+   "link": "https://www.deezer.com/artist/1387",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/e5632a779c57b226753356cec9133fdc/250x250-000000-80-0-0.jpg",
+   "fans": 66675,
+   "close_to": [
+    "Pomplamoose",
+    "Philippe Cohen Solal",
+    "Lou Doillon"
    ]
   }
  },
@@ -17804,6 +21335,43 @@
     "Videoclub",
     "Clio",
     "BLOWSOM"
+   ]
+  }
+ },
+ {
+  "id": "cd17524da56f",
+  "title": "Elba Ramalho",
+  "date": "2027-04-24",
+  "time": "19:00",
+  "venue": "New Morning",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Musique brésilienne, Monde / Traditionnel",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/new-morning-2842/elba-ramalho-3316196.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.4,
+   "artist": "Elba Ramalho",
+   "link": "https://www.deezer.com/artist/15853",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/ae048e35cfef6eb57309438563f501b5/250x250-000000-80-0-0.jpg",
+   "fans": 486346,
+   "close_to": [
+    "Gal Costa",
+    "Gilberto Gil"
    ]
   }
  },
@@ -18016,6 +21584,43 @@
     "link": "https://www.deezer.com/artist/10188214"
    }
   ]
+ },
+ {
+  "id": "30e13ee12f2b",
+  "title": "Emile Londonien",
+  "date": "2027-04-28",
+  "time": "19:00",
+  "venue": "La Cigale",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-cigale-1805/emile-londonien-3361886.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "annonce",
+  "discovery": {
+   "score": 0.53,
+   "artist": "Emile Londonien",
+   "link": "https://www.deezer.com/artist/122395922",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/8aaf0f5d4551a4cae6ac1fc7609e493e/250x250-000000-80-0-0.jpg",
+   "fans": 2730,
+   "close_to": [
+    "Alfa Mist",
+    "Nate Smith"
+   ]
+  }
  },
  {
   "id": "dfaaff0b3edc",
@@ -18276,6 +21881,43 @@
   }
  },
  {
+  "id": "74932928e521",
+  "title": "Louis Matute",
+  "date": "2027-05-04",
+  "time": "20:30",
+  "venue": "Les Gémeaux",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": "31,5 €",
+  "on_sale": null,
+  "status": null,
+  "genre": "Jazz / Blues",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/les-gemeaux-2384/louis-matute-3312757.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.3,
+   "artist": "Louis Matute",
+   "link": "https://www.deezer.com/artist/14254545",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/77eb41b859582e119e9edded26b06410/250x250-000000-80-0-0.jpg",
+   "fans": 1273,
+   "close_to": [
+    "Avishai Cohen",
+    "Julian Lage"
+   ]
+  }
+ },
+ {
   "id": "83b362caeede",
   "title": "JAIN",
   "date": "2027-05-12",
@@ -18362,6 +22004,44 @@
     "Therapie TAXI",
     "Puggy",
     "Pomme"
+   ]
+  }
+ },
+ {
+  "id": "022efd08bd88",
+  "title": "Gildaa",
+  "date": "2027-05-13",
+  "time": "20:00",
+  "venue": "Olympia",
+  "venue_favorite": true,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Chanson française, Chanson",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/lolympia-2874/gildaa-3259671.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 0.63,
+   "artist": "Gildaa",
+   "link": "https://www.deezer.com/artist/284968791",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/7ba7d159dbb4c583041a2052fae48594/250x250-000000-80-0-0.jpg",
+   "fans": 2777,
+   "close_to": [
+    "Voyou",
+    "Requin Chagrin",
+    "Ezéchiel Pailhès"
    ]
   }
  },
@@ -18666,6 +22346,45 @@
     "Pink Floyd",
     "Electric Light Orchestra",
     "The Who"
+   ]
+  }
+ },
+ {
+  "id": "5bf5adea5641",
+  "title": "Arthur H",
+  "date": "2027-05-21",
+  "time": "20:30",
+  "venue": "Théâtre des Bergeries",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": "13,5-24,5 €",
+  "on_sale": null,
+  "status": null,
+  "genre": "Chanson française, Chanson",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-des-bergeries-1543/arthur-h-3316183.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": null,
+  "discovery": {
+   "score": 1.0,
+   "artist": "Arthur H",
+   "link": "https://www.deezer.com/artist/1501",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/2988e85da8a2302eea1f0d86cca46008/250x250-000000-80-0-0.jpg",
+   "fans": 121287,
+   "close_to": [
+    "Philippe Katerine",
+    "Feu! Chatterton",
+    "-M-",
+    "Brigitte Fontaine"
    ]
   }
  },

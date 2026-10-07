@@ -1,7 +1,7 @@
 """Extraction des favoris Deezer, score d'affinité par artiste, artistes similaires."""
 import time
 from collections import defaultdict
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 
 from .util import ARTICLES, CACHE, DATA, get_json, load_json, log, norm, save_json, today_iso
 
@@ -48,6 +48,12 @@ def refresh_artists(settings):
 
     counts = defaultdict(lambda: {"favorite": False, "albums": 0, "tracks": 0, "playlists": 0})
     meta = {}
+    added = {}  # date du like le plus récent (favori, album, titre ou ajout en playlist), horodatage Deezer
+
+    def note_added(aid, item):
+        ts = item.get("time_add")
+        if aid and isinstance(ts, (int, float)) and ts > added.get(aid, 0):
+            added[aid] = ts
 
     def remember(artist):
         if artist and artist.get("id"):
@@ -62,6 +68,7 @@ def refresh_artists(settings):
     favs = _paginate(f"/user/{uid}/artists")
     for a in favs:
         aid = remember(a)
+        note_added(aid, a)
         if aid:
             counts[aid]["favorite"] = True
     log(f"  {len(favs)} artistes favoris")
@@ -69,6 +76,7 @@ def refresh_artists(settings):
     albums = _paginate(f"/user/{uid}/albums")
     for al in albums:
         aid = remember(al.get("artist"))
+        note_added(aid, al)
         if aid:
             counts[aid]["albums"] += 1
     log(f"  {len(albums)} albums likés")
@@ -76,6 +84,7 @@ def refresh_artists(settings):
     tracks = _paginate(f"/user/{uid}/tracks")
     for t in tracks:
         aid = remember(t.get("artist"))
+        note_added(aid, t)
         if aid:
             counts[aid]["tracks"] += 1
     log(f"  {len(tracks)} titres likés")
@@ -88,6 +97,7 @@ def refresh_artists(settings):
         for p in own:
             for t in _paginate(f"/playlist/{p['id']}/tracks"):
                 aid = remember(t.get("artist"))
+                note_added(aid, t)
                 if aid:
                     counts[aid]["playlists"] += 1
                     n += 1
@@ -112,6 +122,8 @@ def refresh_artists(settings):
             "tier": tier,
             "sources": c,
             "first_seen": old.get("first_seen", today),
+            "added": (datetime.fromtimestamp(added[aid], timezone.utc).date().isoformat()
+                      if aid in added else old.get("added")),
             "last_seen": today,
             "still_liked": True,
         }

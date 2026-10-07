@@ -42,7 +42,8 @@ def build(events, artists, source_status, initial=False, hidden=frozenset()):
     save_json(SITE_DATA / "venues.json", venue_list)
 
     site_artists = sorted(
-        ({**{k: a.get(k) for k in ("name", "link", "picture", "score", "tier", "first_seen", "still_liked", "sources")},
+        ({**{k: a.get(k) for k in ("name", "link", "picture", "score", "tier", "tier_auto", "first_seen", "added", "still_liked",
+                                "sources")},
           "hidden": a["id"] in hidden}
          for a in artists.values()),
         key=lambda a: (-a["score"], a["name"].lower()))

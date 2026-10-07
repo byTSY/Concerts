@@ -4770,5 +4770,2313 @@
   "picture": "https://cdn-images.dzcdn.net/images/artist/a47b7cdb0e7f2fa6189199e121354fd1/250x250-000000-80-0-0.jpg",
   "fans": 4150
  },
- "mania the abba tribute": null
+ "mania the abba tribute": null,
+ "romsii": {
+  "id": "118643972",
+  "name": "Romsii",
+  "link": "https://www.deezer.com/artist/118643972",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/0e7c5a0717be54ff9076c586beca5ae5/250x250-000000-80-0-0.jpg",
+  "fans": 17808
+ },
+ "zed": {
+  "id": "2957",
+  "name": "Zed",
+  "link": "https://www.deezer.com/artist/2957",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/dbebf5dee266c21c327ead6c0d56f3fa/250x250-000000-80-0-0.jpg",
+  "fans": 232724
+ },
+ "michel alibo": {
+  "id": "163995",
+  "name": "Michel ALibo",
+  "link": "https://www.deezer.com/artist/163995",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/e490ba379d6f97aa7c269888b26469b0/250x250-000000-80-0-0.jpg",
+  "fans": 406
+ },
+ "violett pi": {
+  "id": "1411722",
+  "name": "VioleTT Pi",
+  "link": "https://www.deezer.com/artist/1411722",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/8f15115dc0784e0868d46cee7bcba721/250x250-000000-80-0-0.jpg",
+  "fans": 1480
+ },
+ "alphonse bisaillon": {
+  "id": "107321572",
+  "name": "Alphonse Bisaillon",
+  "link": "https://www.deezer.com/artist/107321572",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/9bdf319ee3dfcb957a11fc661ba72e66/250x250-000000-80-0-0.jpg",
+  "fans": 453
+ },
+ "nana quinn": {
+  "id": "319943771",
+  "name": "Nana Quinn",
+  "link": "https://www.deezer.com/artist/319943771",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/2bcf61b6d395d083cff90703e15259fe/250x250-000000-80-0-0.jpg",
+  "fans": 21
+ },
+ "djan": {
+  "id": "4702038",
+  "name": "Djan",
+  "link": "https://www.deezer.com/artist/4702038",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/d65681c80184fd654d2043258f77b110/250x250-000000-80-0-0.jpg",
+  "fans": 9
+ },
+ "guinga": {
+  "id": "95747",
+  "name": "Guinga",
+  "link": "https://www.deezer.com/artist/95747",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/f2c96a186c40e98397f46ab8276d8007/250x250-000000-80-0-0.jpg",
+  "fans": 5640
+ },
+ "yamandu costa": {
+  "id": "126379",
+  "name": "Yamandu Costa",
+  "link": "https://www.deezer.com/artist/126379",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/5da0ffe8482fb7c5430b05381759efaf/250x250-000000-80-0-0.jpg",
+  "fans": 37423
+ },
+ "bill callahan": {
+  "id": "17327",
+  "name": "Bill Callahan",
+  "link": "https://www.deezer.com/artist/17327",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/a82835d9240b957a31525ceee218ae9b/250x250-000000-80-0-0.jpg",
+  "fans": 31454
+ },
+ "anastasia konstantinidou": {
+  "id": "130213622",
+  "name": "Anastasia Konstantinidou",
+  "link": "https://www.deezer.com/artist/130213622",
+  "picture": "https://cdn-images.dzcdn.net/images/artist//250x250-000000-80-0-0.jpg",
+  "fans": 0
+ },
+ "pierre andrin": {
+  "id": "107269532",
+  "name": "Pierre Andrin",
+  "link": "https://www.deezer.com/artist/107269532",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/88c4a6e0f4c22a361bbc1794167970fe/250x250-000000-80-0-0.jpg",
+  "fans": 0
+ },
+ "lynx irl": {
+  "id": "276384011",
+  "name": " lynx irl",
+  "link": "https://www.deezer.com/artist/276384011",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/ee940fb1678af0087dff105ef44b7d64/250x250-000000-80-0-0.jpg",
+  "fans": 979
+ },
+ "panchiko": {
+  "id": "86640422",
+  "name": "Panchiko",
+  "link": "https://www.deezer.com/artist/86640422",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/fd457104147efc84c2d5e5dd1f3d1063/250x250-000000-80-0-0.jpg",
+  "fans": 17133
+ },
+ "tracy de sa": {
+  "id": "12212602",
+  "name": "Tracy De Sá",
+  "link": "https://www.deezer.com/artist/12212602",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/c72a184b07dfa40d391a9552856df277/250x250-000000-80-0-0.jpg",
+  "fans": 2405
+ },
+ "arch club": null,
+ "arch": null,
+ "marina p": {
+  "id": "4243025",
+  "name": "Marina P",
+  "link": "https://www.deezer.com/artist/4243025",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/11609f35eb4c108f3a436b3ecc6e82db/250x250-000000-80-0-0.jpg",
+  "fans": 8033
+ },
+ "radiators": {
+  "id": "78175",
+  "name": "The Radiators",
+  "link": "https://www.deezer.com/artist/78175",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/c760bb231e03de0e8103842d4a66e0e1/250x250-000000-80-0-0.jpg",
+  "fans": 632
+ },
+ "diez cuerdas": {
+  "id": "155516672",
+  "name": "Diez Cuerdas",
+  "link": "https://www.deezer.com/artist/155516672",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/0aa139f273c160636e9a9c488fd96239/250x250-000000-80-0-0.jpg",
+  "fans": 9
+ },
+ "bu nasser": null,
+ "jazz brunch": {
+  "id": "415239",
+  "name": "Jazz Brunch",
+  "link": "https://www.deezer.com/artist/415239",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/9a2477480aaa86ec7a6ea5d800583c3e/250x250-000000-80-0-0.jpg",
+  "fans": 5
+ },
+ "agathe francopoulo": {
+  "id": "154217562",
+  "name": "Agathe Francopoulo",
+  "link": "https://www.deezer.com/artist/154217562",
+  "picture": "https://cdn-images.dzcdn.net/images/artist//250x250-000000-80-0-0.jpg",
+  "fans": 1
+ },
+ "ben wild": null,
+ "campesino": {
+  "id": "10912476",
+  "name": "Campesino",
+  "link": "https://www.deezer.com/artist/10912476",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/ea896723673980c1933df2b361a48518/250x250-000000-80-0-0.jpg",
+  "fans": 1996
+ },
+ "petite sur": null,
+ "invincibles ensemble": {
+  "id": "307349781",
+  "name": "Invincibles Ensemble",
+  "link": "https://www.deezer.com/artist/307349781",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/19fe8a1fbd1e6f2eb1d5fcda0526d1da/250x250-000000-80-0-0.jpg",
+  "fans": 48
+ },
+ "noor": {
+  "id": "166240247",
+  "name": "Noor",
+  "link": "https://www.deezer.com/artist/166240247",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/9c49aa3468045c315acb043a3359f5ad/250x250-000000-80-0-0.jpg",
+  "fans": 5084
+ },
+ "treaks": {
+  "id": "85781452",
+  "name": "Treaks",
+  "link": "https://www.deezer.com/artist/85781452",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/6e26fe504d2d113becdcc81edb54c016/250x250-000000-80-0-0.jpg",
+  "fans": 1240
+ },
+ "lakecia benjamin": {
+  "id": "1854381",
+  "name": "Lakecia Benjamin",
+  "link": "https://www.deezer.com/artist/1854381",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/78507abce01d3ca5b44fabde1bafd42a/250x250-000000-80-0-0.jpg",
+  "fans": 1388
+ },
+ "who parked the car": {
+  "id": "148036592",
+  "name": "Who Parked The Car",
+  "link": "https://www.deezer.com/artist/148036592",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/7ac149c961733fa109766e5a9e858466/250x250-000000-80-0-0.jpg",
+  "fans": 512
+ },
+ "iman le parc": {
+  "id": "140101342",
+  "name": "Imàn Le Parc",
+  "link": "https://www.deezer.com/artist/140101342",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/3a74fb0db91f7283135c10c1af9350bd/250x250-000000-80-0-0.jpg",
+  "fans": 60
+ },
+ "lyre le temps": {
+  "id": "76908",
+  "name": "Lyre le temps",
+  "link": "https://www.deezer.com/artist/76908",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/10aa70f1b77592318af02120551cb550/250x250-000000-80-0-0.jpg",
+  "fans": 27385
+ },
+ "hulvey": {
+  "id": "52387242",
+  "name": "Hulvey",
+  "link": "https://www.deezer.com/artist/52387242",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/13ad957ccc7692bfef88aaa71bf89ecd/250x250-000000-80-0-0.jpg",
+  "fans": 28691
+ },
+ "milla leika": {
+  "id": "151864122",
+  "name": "Milla Leika",
+  "link": "https://www.deezer.com/artist/151864122",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/4a90ddd0bbf7a96de03e77062ff24147/250x250-000000-80-0-0.jpg",
+  "fans": 182
+ },
+ "paul pesty": {
+  "id": "217037695",
+  "name": "Paul Pesty",
+  "link": "https://www.deezer.com/artist/217037695",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/a1727ed219895127175fdca3181457c8/250x250-000000-80-0-0.jpg",
+  "fans": 30
+ },
+ "azymuth": {
+  "id": "10073",
+  "name": "Azymuth",
+  "link": "https://www.deezer.com/artist/10073",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/c5359b8dfcd36c9276f1246eb752efbc/250x250-000000-80-0-0.jpg",
+  "fans": 8908
+ },
+ "poitou": {
+  "id": "6506231",
+  "name": "Poitou",
+  "link": "https://www.deezer.com/artist/6506231",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/ec7243a5bc230026ecb8bd0eca10f0f2/250x250-000000-80-0-0.jpg",
+  "fans": 1
+ },
+ "pumpkin": {
+  "id": "124837",
+  "name": "Pumpkin",
+  "link": "https://www.deezer.com/artist/124837",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/e01d66456440ae2c036a663431bcbec5/250x250-000000-80-0-0.jpg",
+  "fans": 4847
+ },
+ "casa larose": {
+  "id": "333682371",
+  "name": "Casa Larose",
+  "link": "https://www.deezer.com/artist/333682371",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/889b9491d1ff326cf326022fdb8bbc0c/250x250-000000-80-0-0.jpg",
+  "fans": 0
+ },
+ "jared benjamin": {
+  "id": "5200416",
+  "name": "Jared Benjamin",
+  "link": "https://www.deezer.com/artist/5200416",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/25a20421adedcc7468b12467b7b7daa0/250x250-000000-80-0-0.jpg",
+  "fans": 5875
+ },
+ "jeru the damaja": {
+  "id": "4977",
+  "name": "Jeru the Damaja",
+  "link": "https://www.deezer.com/artist/4977",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/0d561e6dab7761edf81f32ffd3dd2edf/250x250-000000-80-0-0.jpg",
+  "fans": 22945
+ },
+ "saligo": {
+  "id": "5826064",
+  "name": "Saligo",
+  "link": "https://www.deezer.com/artist/5826064",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/60491b96f5046732d9abe0576204e7c3/250x250-000000-80-0-0.jpg",
+  "fans": 114
+ },
+ "lost": {
+  "id": "12440570",
+  "name": "Lost",
+  "link": "https://www.deezer.com/artist/12440570",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/3a9afba71b79d6db0027367de3812b2c/250x250-000000-80-0-0.jpg",
+  "fans": 977
+ },
+ "goldford": {
+  "id": "4861553",
+  "name": "GoldFord",
+  "link": "https://www.deezer.com/artist/4861553",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/4aaba9f80448772dfa4c5fee7657387d/250x250-000000-80-0-0.jpg",
+  "fans": 2755
+ },
+ "fabio franzone 4tet": null,
+ "gilliam sayad": null,
+ "benzie": {
+  "id": "3552851",
+  "name": "Benziê",
+  "link": "https://www.deezer.com/artist/3552851",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/ab395cd164df88aeb28b3489798329e7/250x250-000000-80-0-0.jpg",
+  "fans": 2346
+ },
+ "fleur": {
+  "id": "72499202",
+  "name": "Flëur",
+  "link": "https://www.deezer.com/artist/72499202",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/aa1fef0cd4505d262064b6c5f60163d3/250x250-000000-80-0-0.jpg",
+  "fans": 8751
+ },
+ "bleue": {
+  "id": "299760421",
+  "name": "Bleue",
+  "link": "https://www.deezer.com/artist/299760421",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/aecbd4e09f10936b6f621e9ae75b5e85/250x250-000000-80-0-0.jpg",
+  "fans": 707
+ },
+ "keyon harrold": {
+  "id": "4541890",
+  "name": "Keyon Harrold",
+  "link": "https://www.deezer.com/artist/4541890",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/85bc574e101ba51fd02b6177414589f4/250x250-000000-80-0-0.jpg",
+  "fans": 926
+ },
+ "panicbaby": {
+  "id": "286279061",
+  "name": "panicbaby",
+  "link": "https://www.deezer.com/artist/286279061",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/47645db090ef2b0321f364b6927629a4/250x250-000000-80-0-0.jpg",
+  "fans": 2275
+ },
+ "bamby": {
+  "id": "5771489",
+  "name": "Bamby",
+  "link": "https://www.deezer.com/artist/5771489",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/ea24046ae454df1ba69300605e40d1df/250x250-000000-80-0-0.jpg",
+  "fans": 62553
+ },
+ "romance": {
+  "id": "360649",
+  "name": "Romance",
+  "link": "https://www.deezer.com/artist/360649",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/5029b07e9adf9886083bfd3b2abe5d3e/250x250-000000-80-0-0.jpg",
+  "fans": 4719
+ },
+ "leila duclos": {
+  "id": "164671957",
+  "name": "Leïla Duclos",
+  "link": "https://www.deezer.com/artist/164671957",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/c099bd483c6803efcb492c59a9ac2714/250x250-000000-80-0-0.jpg",
+  "fans": 142
+ },
+ "des rocs": {
+  "id": "14177137",
+  "name": "Des Rocs",
+  "link": "https://www.deezer.com/artist/14177137",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/59b9819b661b4886b250ea601f35c959/250x250-000000-80-0-0.jpg",
+  "fans": 9184
+ },
+ "hyd": {
+  "id": "148510212",
+  "name": "Hyd",
+  "link": "https://www.deezer.com/artist/148510212",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/0398e8f5d949f514a5186df0bfaf75aa/250x250-000000-80-0-0.jpg",
+  "fans": 808
+ },
+ "yard": {
+  "id": "215564",
+  "name": "YARD",
+  "link": "https://www.deezer.com/artist/215564",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/eb9db8f733fc0c7e1faa406595dff2e8/250x250-000000-80-0-0.jpg",
+  "fans": 438
+ },
+ "mica millar": {
+  "id": "5831886",
+  "name": "Mica Millar",
+  "link": "https://www.deezer.com/artist/5831886",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/537436c5c414916c1d4fbb3ddcc4a612/250x250-000000-80-0-0.jpg",
+  "fans": 1066
+ },
+ "la p tite fumee": {
+  "id": "12472838",
+  "name": "La P'tite Fumée",
+  "link": "https://www.deezer.com/artist/12472838",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/2f1556828e967f1cbbf8ee60d90a9d58/250x250-000000-80-0-0.jpg",
+  "fans": 40461
+ },
+ "dub pistols": {
+  "id": "13418",
+  "name": "Dub Pistols",
+  "link": "https://www.deezer.com/artist/13418",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/37ea94d7c34312cd27ff067dec13f1fc/250x250-000000-80-0-0.jpg",
+  "fans": 16448
+ },
+ "galliano": {
+  "id": "6333",
+  "name": "Galliano",
+  "link": "https://www.deezer.com/artist/6333",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/a750ce43e0e001f2a7af618044958860/250x250-000000-80-0-0.jpg",
+  "fans": 3750
+ },
+ "babylone": {
+  "id": "4553622",
+  "name": "Babylone",
+  "link": "https://www.deezer.com/artist/4553622",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/42d092302bef13b4e36cdc4909b76c27/250x250-000000-80-0-0.jpg",
+  "fans": 43221
+ },
+ "dan whitlam": {
+  "id": "151512642",
+  "name": "Dan Whitlam",
+  "link": "https://www.deezer.com/artist/151512642",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/891b25aa802dbc5cab5a449c4dd63a42/250x250-000000-80-0-0.jpg",
+  "fans": 565
+ },
+ "elijah fox": {
+  "id": "12476956",
+  "name": "Elijah Fox",
+  "link": "https://www.deezer.com/artist/12476956",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/31285e76db83b741e053021ae5006d07/250x250-000000-80-0-0.jpg",
+  "fans": 1632
+ },
+ "messthetics": {
+  "id": "14023749",
+  "name": "The Messthetics",
+  "link": "https://www.deezer.com/artist/14023749",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/15cc61c46491dc3a65ab386b2da08d02/250x250-000000-80-0-0.jpg",
+  "fans": 709
+ },
+ "james brandon lewis": {
+  "id": "1128246",
+  "name": "James Brandon Lewis",
+  "link": "https://www.deezer.com/artist/1128246",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/3922308cf104f2edfb254992970d016b/250x250-000000-80-0-0.jpg",
+  "fans": 880
+ },
+ "son lux": {
+  "id": "1256645",
+  "name": "Son Lux",
+  "link": "https://www.deezer.com/artist/1256645",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/450fa8ffeee24e3d6d0ae71b4d26a773/250x250-000000-80-0-0.jpg",
+  "fans": 50227
+ },
+ "shrizz n maze": {
+  "id": "174861487",
+  "name": "SHRIZZ N MAZE",
+  "link": "https://www.deezer.com/artist/174861487",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/2907ed7710d0f2522c59cafe088e3358/250x250-000000-80-0-0.jpg",
+  "fans": 115
+ },
+ "marcus gad": {
+  "id": "9782148",
+  "name": "Marcus Gad",
+  "link": "https://www.deezer.com/artist/9782148",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/32ed4f101fbdfd540e2ee7eb24302b89/250x250-000000-80-0-0.jpg",
+  "fans": 20315
+ },
+ "ga 20": {
+  "id": "54639442",
+  "name": "GA-20",
+  "link": "https://www.deezer.com/artist/54639442",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/94dd714819d13200f43ef66f6eb4adf9/250x250-000000-80-0-0.jpg",
+  "fans": 1868
+ },
+ "ebony": {
+  "id": "130363512",
+  "name": "Ebony",
+  "link": "https://www.deezer.com/artist/130363512",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/9cfe1657469b675da7224f2089e966fc/250x250-000000-80-0-0.jpg",
+  "fans": 36860
+ },
+ "nils landgren funk unit": {
+  "id": "7763",
+  "name": "Nils Landgren Funk Unit",
+  "link": "https://www.deezer.com/artist/7763",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/2faf34c21f6f336a114e70bd3b22e0bc/250x250-000000-80-0-0.jpg",
+  "fans": 7151
+ },
+ "kurt rosenwinkel": {
+  "id": "8444",
+  "name": "Kurt Rosenwinkel",
+  "link": "https://www.deezer.com/artist/8444",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/9817ed573494773fc68f4b9948f65001/250x250-000000-80-0-0.jpg",
+  "fans": 7213
+ },
+ "la kadrilla": {
+  "id": "49349822",
+  "name": "La Kadrilla",
+  "link": "https://www.deezer.com/artist/49349822",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/4561debe53b4c9a8b54a5bbbb15e496d/250x250-000000-80-0-0.jpg",
+  "fans": 91392
+ },
+ "isaiah collier": {
+  "id": "92820742",
+  "name": "Isaiah Collier",
+  "link": "https://www.deezer.com/artist/92820742",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/6e49602853cc0548f957e02a0cc4b0ba/250x250-000000-80-0-0.jpg",
+  "fans": 398
+ },
+ "tokyo tea room": {
+  "id": "10888470",
+  "name": "Tokyo Tea Room",
+  "link": "https://www.deezer.com/artist/10888470",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/4c7a5f8e3e9e932f91a268862d8b93fe/250x250-000000-80-0-0.jpg",
+  "fans": 2063
+ },
+ "tyreek mcdole": {
+  "id": "233248761",
+  "name": "Tyreek McDole",
+  "link": "https://www.deezer.com/artist/233248761",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/eb24da6eed049f98433505b6d862d4cb/250x250-000000-80-0-0.jpg",
+  "fans": 1279
+ },
+ "bandit bandit": {
+  "id": "63803772",
+  "name": "Bandit Bandit",
+  "link": "https://www.deezer.com/artist/63803772",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/9e5fd1fdca7b41af3fd023fbe720badf/250x250-000000-80-0-0.jpg",
+  "fans": 5757
+ },
+ "daoud": {
+  "id": "388407",
+  "name": "daoud",
+  "link": "https://www.deezer.com/artist/388407",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/a35c1f894dfa3dc5efa0dae9be739b47/250x250-000000-80-0-0.jpg",
+  "fans": 4360
+ },
+ "waiv": {
+  "id": "87107512",
+  "name": "Waïv",
+  "link": "https://www.deezer.com/artist/87107512",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/1c681ea9556df07ae78181a6d2e7a5cf/250x250-000000-80-0-0.jpg",
+  "fans": 24242
+ },
+ "zinee": {
+  "id": "84898762",
+  "name": "Zinee",
+  "link": "https://www.deezer.com/artist/84898762",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/a12cafce4442748b8952a191278130da/250x250-000000-80-0-0.jpg",
+  "fans": 9593
+ },
+ "steve coleman": {
+  "id": "15711",
+  "name": "Steve Coleman",
+  "link": "https://www.deezer.com/artist/15711",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/b2f7fbf40e6b20426f65dd46804a527a/250x250-000000-80-0-0.jpg",
+  "fans": 4459
+ },
+ "five elements": {
+  "id": "441904",
+  "name": "Five Elements",
+  "link": "https://www.deezer.com/artist/441904",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/aadbfe3b74ceee3053bea86ebd77245f/250x250-000000-80-0-0.jpg",
+  "fans": 51
+ },
+ "kybba": {
+  "id": "10957698",
+  "name": "Kybba",
+  "link": "https://www.deezer.com/artist/10957698",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/908ebe17acd993d1eddf19297c7dea25/250x250-000000-80-0-0.jpg",
+  "fans": 21449
+ },
+ "lucas seb": {
+  "id": "49845262",
+  "name": "Lucas Seb",
+  "link": "https://www.deezer.com/artist/49845262",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/d0dc4bbc0e7959cb86b72347a674d269/250x250-000000-80-0-0.jpg",
+  "fans": 7644
+ },
+ "myles sanko": {
+  "id": "4634892",
+  "name": "Myles Sanko",
+  "link": "https://www.deezer.com/artist/4634892",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/f6333a1f77f1e4d1a009c747f8def8be/250x250-000000-80-0-0.jpg",
+  "fans": 3986
+ },
+ "overmono": {
+  "id": "11820537",
+  "name": "Overmono",
+  "link": "https://www.deezer.com/artist/11820537",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/1b456c0ec0b7d1240092b1896f1e9d5d/250x250-000000-80-0-0.jpg",
+  "fans": 8152
+ },
+ "leee john": {
+  "id": "123729",
+  "name": "Leee John",
+  "link": "https://www.deezer.com/artist/123729",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/7f1a10eb714dc65154f1327cd7c8edeb/250x250-000000-80-0-0.jpg",
+  "fans": 668
+ },
+ "mike": {
+  "id": "142759",
+  "name": "Mike",
+  "link": "https://www.deezer.com/artist/142759",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/70b7966cf77ca17ec547ebb3da761cb6/250x250-000000-80-0-0.jpg",
+  "fans": 6200
+ },
+ "rike": {
+  "id": "14599",
+  "name": "Riké",
+  "link": "https://www.deezer.com/artist/14599",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/3889363ef45113c0869ba1b0ef787c34/250x250-000000-80-0-0.jpg",
+  "fans": 9470
+ },
+ "manu": {
+  "id": "152627",
+  "name": "Manu",
+  "link": "https://www.deezer.com/artist/152627",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/3bb04156c44bc6543b7ab6d7ddc131a2/250x250-000000-80-0-0.jpg",
+  "fans": 8170
+ },
+ "guizmo": {
+  "id": "162815",
+  "name": "Guizmo",
+  "link": "https://www.deezer.com/artist/162815",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/c2f9fa469d1d13eaa30c0fa41c3910c6/250x250-000000-80-0-0.jpg",
+  "fans": 705854
+ },
+ "rymden": {
+  "id": "52209952",
+  "name": "Rymden",
+  "link": "https://www.deezer.com/artist/52209952",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/e0e6cfb39efcf9d1ced56472695fabb2/250x250-000000-80-0-0.jpg",
+  "fans": 1380
+ },
+ "le maroc a l olympia": null,
+ "syd matters": {
+  "id": "1655",
+  "name": "Syd Matters",
+  "link": "https://www.deezer.com/artist/1655",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/4686ccb2926e5469f8db4e6b1ebcfbfd/250x250-000000-80-0-0.jpg",
+  "fans": 42422
+ },
+ "feeble little horse": {
+  "id": "130682022",
+  "name": "feeble little horse",
+  "link": "https://www.deezer.com/artist/130682022",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/bd614305e29cf62c75a195032eb463b3/250x250-000000-80-0-0.jpg",
+  "fans": 2205
+ },
+ "louis matute": {
+  "id": "14254545",
+  "name": "Louis Matute",
+  "link": "https://www.deezer.com/artist/14254545",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/77eb41b859582e119e9edded26b06410/250x250-000000-80-0-0.jpg",
+  "fans": 1273
+ },
+ "numah": {
+  "id": "108033202",
+  "name": "Numah",
+  "link": "https://www.deezer.com/artist/108033202",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/9eebb4991882a680e8b7d4ca4628a193/250x250-000000-80-0-0.jpg",
+  "fans": 636
+ },
+ "joyce moreno": {
+  "id": "413673",
+  "name": "Joyce Moreno",
+  "link": "https://www.deezer.com/artist/413673",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/606c035c4ae8bf884c0aeb05b8f45f53/250x250-000000-80-0-0.jpg",
+  "fans": 2993
+ },
+ "lou sonata": null,
+ "jason miles": {
+  "id": "211299",
+  "name": "Jason Miles",
+  "link": "https://www.deezer.com/artist/211299",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/1b41f41343fa86d74b872f1d33a83068/250x250-000000-80-0-0.jpg",
+  "fans": 226
+ },
+ "emma": {
+  "id": "239467321",
+  "name": "Emma",
+  "link": "https://www.deezer.com/artist/239467321",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/22e0702494c13e56d981c3147d950dd0/250x250-000000-80-0-0.jpg",
+  "fans": 1151
+ },
+ "slift": {
+  "id": "12325928",
+  "name": "SLIFT",
+  "link": "https://www.deezer.com/artist/12325928",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/a32aec665e0fd2ce12542858a9f2513f/250x250-000000-80-0-0.jpg",
+  "fans": 10303
+ },
+ "chico chico": {
+  "id": "447836",
+  "name": "Chico Chico",
+  "link": "https://www.deezer.com/artist/447836",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/9396afd82982b4915859fb7e0e4c9fb9/250x250-000000-80-0-0.jpg",
+  "fans": 15096
+ },
+ "lagui": {
+  "id": "353796462",
+  "name": "Lagui",
+  "link": "https://www.deezer.com/artist/353796462",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/5e754a07d3bc918c40fadae938918f82/250x250-000000-80-0-0.jpg",
+  "fans": 74470
+ },
+ "ferdi": {
+  "id": "191201537",
+  "name": "Ferdi",
+  "link": "https://www.deezer.com/artist/191201537",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/d703f7e0a2d05f0539532f214455976b/250x250-000000-80-0-0.jpg",
+  "fans": 4949
+ },
+ "jose gonzalez": {
+  "id": "1169",
+  "name": "José González",
+  "link": "https://www.deezer.com/artist/1169",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/89efba96bd7a25b879f35bd5ac3003bd/250x250-000000-80-0-0.jpg",
+  "fans": 120572
+ },
+ "little odetta": {
+  "id": "152022202",
+  "name": "Little Odetta",
+  "link": "https://www.deezer.com/artist/152022202",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/b71d77611025b83a1ae200ff127153d0/250x250-000000-80-0-0.jpg",
+  "fans": 573
+ },
+ "zac schulze gang": {
+  "id": "152873242",
+  "name": "The Zac Schulze Gang",
+  "link": "https://www.deezer.com/artist/152873242",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/2a71cb94154a33d0e312acb682bd707b/250x250-000000-80-0-0.jpg",
+  "fans": 388
+ },
+ "ginton": {
+  "id": "11170838",
+  "name": "Ginton",
+  "link": "https://www.deezer.com/artist/11170838",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/d68d4109bfb5869ca67fe5588b0e7383/250x250-000000-80-0-0.jpg",
+  "fans": 1097
+ },
+ "karpatt": {
+  "id": "3965",
+  "name": "Karpatt",
+  "link": "https://www.deezer.com/artist/3965",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/b0bea10c84dfaf96f61b778302eb9d40/250x250-000000-80-0-0.jpg",
+  "fans": 24612
+ },
+ "mt jones": {
+  "id": "188722057",
+  "name": "MT Jones",
+  "link": "https://www.deezer.com/artist/188722057",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/05639ffa5045d6686a53b46b1a3c2fa0/250x250-000000-80-0-0.jpg",
+  "fans": 848
+ },
+ "cielbleu": {
+  "id": "146321412",
+  "name": "cielbleu",
+  "link": "https://www.deezer.com/artist/146321412",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/96302ee80d600299e4801dca21f2ba22/250x250-000000-80-0-0.jpg",
+  "fans": 13236
+ },
+ "esdeekid": {
+  "id": "271613792",
+  "name": "EsDeeKid",
+  "link": "https://www.deezer.com/artist/271613792",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/afad4388b6359c9d3fef0110d01efcd3/250x250-000000-80-0-0.jpg",
+  "fans": 34337
+ },
+ "horsegiirl": {
+  "id": "159503852",
+  "name": "horsegiirL",
+  "link": "https://www.deezer.com/artist/159503852",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/ed47549dacf1e4a7e72a36e6dd7413cb/250x250-000000-80-0-0.jpg",
+  "fans": 5514
+ },
+ "spider zed": {
+  "id": "10471481",
+  "name": "Spider ZED",
+  "link": "https://www.deezer.com/artist/10471481",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/85e0c4c2d413843d7b27fafb367cec62/250x250-000000-80-0-0.jpg",
+  "fans": 63587
+ },
+ "nous etions une armee": {
+  "id": "66251942",
+  "name": "nous étions une armée",
+  "link": "https://www.deezer.com/artist/66251942",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/de4cc8e6973e0d9e46e22aa3e85b646c/250x250-000000-80-0-0.jpg",
+  "fans": 4018
+ },
+ "senyss": {
+  "id": "11278134",
+  "name": "Senyss",
+  "link": "https://www.deezer.com/artist/11278134",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/d72715a7aa862e913e8c6d185ed83437/250x250-000000-80-0-0.jpg",
+  "fans": 5225
+ },
+ "mauvaise bouche": {
+  "id": "85953442",
+  "name": "Mauvaise Bouche",
+  "link": "https://www.deezer.com/artist/85953442",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/defe120c9e5b048a8dd116dcd3b12b53/250x250-000000-80-0-0.jpg",
+  "fans": 6236
+ },
+ "kat eaton": {
+  "id": "5887613",
+  "name": "Kat Eaton",
+  "link": "https://www.deezer.com/artist/5887613",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/6832dc201eede3f05ab5c9b747035a9a/250x250-000000-80-0-0.jpg",
+  "fans": 954
+ },
+ "jontavious willis": {
+  "id": "12555734",
+  "name": "Jontavious Willis",
+  "link": "https://www.deezer.com/artist/12555734",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/100972c5bf3b7de20e10f63d3cdda769/250x250-000000-80-0-0.jpg",
+  "fans": 452
+ },
+ "bonbon vodou": {
+  "id": "10531705",
+  "name": "Bonbon Vodou",
+  "link": "https://www.deezer.com/artist/10531705",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/2e22e48477a6daaa4974d058c8600c97/250x250-000000-80-0-0.jpg",
+  "fans": 3626
+ },
+ "dede saint prix": {
+  "id": "78544",
+  "name": "Dédé Saint-Prix",
+  "link": "https://www.deezer.com/artist/78544",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/ab27734d2d110fea33ebe87de498c188/250x250-000000-80-0-0.jpg",
+  "fans": 2757
+ },
+ "cigarillos en el shtruddle": {
+  "id": "11703927",
+  "name": "Cigarillos en el Shtruddle",
+  "link": "https://www.deezer.com/artist/11703927",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/09812040a8936eb1b1ce023468ef31fa/250x250-000000-80-0-0.jpg",
+  "fans": 55
+ },
+ "cigarillos el shtruddle": null,
+ "marco castello": {
+  "id": "12196866",
+  "name": "Marco Castello",
+  "link": "https://www.deezer.com/artist/12196866",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/709f21637707d3978d21c9cdfbb1c349/250x250-000000-80-0-0.jpg",
+  "fans": 2133
+ },
+ "glk": {
+  "id": "1600816",
+  "name": "GLK",
+  "link": "https://www.deezer.com/artist/1600816",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/241e49e1b75efe3c419da61285f42f43/250x250-000000-80-0-0.jpg",
+  "fans": 481894
+ },
+ "antoine karacostas 4tet": null,
+ "wamen": {
+  "id": "182945357",
+  "name": "Wamen",
+  "link": "https://www.deezer.com/artist/182945357",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/fb46ea0b72b9890dae45a0878bb4e088/250x250-000000-80-0-0.jpg",
+  "fans": 18133
+ },
+ "jwles": {
+  "id": "13715731",
+  "name": "Jwles",
+  "link": "https://www.deezer.com/artist/13715731",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/9e1c1624261d73813221985fbc018b2e/250x250-000000-80-0-0.jpg",
+  "fans": 12182
+ },
+ "java": {
+  "id": "3221",
+  "name": "Java",
+  "link": "https://www.deezer.com/artist/3221",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/98f38a4ea46e01b4040e98b152191e5f/250x250-000000-80-0-0.jpg",
+  "fans": 57205
+ },
+ "winston mcanuff": {
+  "id": "55291",
+  "name": "Winston Mcanuff",
+  "link": "https://www.deezer.com/artist/55291",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/e10582b5d5303861e39c499ed6a4da06/250x250-000000-80-0-0.jpg",
+  "fans": 24612
+ },
+ "sheng": {
+  "id": "1242216",
+  "name": "Sheng",
+  "link": "https://www.deezer.com/artist/1242216",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/ec4459dd14c8263f1951e50f1a392061/250x250-000000-80-0-0.jpg",
+  "fans": 6142
+ },
+ "bilal": {
+  "id": "4988",
+  "name": "Bilal",
+  "link": "https://www.deezer.com/artist/4988",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/f926d3f769ffc484f2d0109b46c879a0/250x250-000000-80-0-0.jpg",
+  "fans": 16934
+ },
+ "ladaniva": {
+  "id": "88142012",
+  "name": "Ladaniva",
+  "link": "https://www.deezer.com/artist/88142012",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/1762b29d1ec2c7f09f6c7e5f4bd4c33b/250x250-000000-80-0-0.jpg",
+  "fans": 12734
+ },
+ "sam sauvage": {
+  "id": "101969182",
+  "name": "Sam Sauvage",
+  "link": "https://www.deezer.com/artist/101969182",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/7cb36f7665295df07ab9407bf49b7843/250x250-000000-80-0-0.jpg",
+  "fans": 29956
+ },
+ "puppini sisters": {
+  "id": "8471",
+  "name": "The Puppini Sisters",
+  "link": "https://www.deezer.com/artist/8471",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/23128ce412139a753d6adf2d2b76416e/250x250-000000-80-0-0.jpg",
+  "fans": 24831
+ },
+ "dakeez": {
+  "id": "53565962",
+  "name": "DAKEEZ",
+  "link": "https://www.deezer.com/artist/53565962",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/7c89b56cdc152b16bd36dfb8af361e02/250x250-000000-80-0-0.jpg",
+  "fans": 13863
+ },
+ "mous k": {
+  "id": "14478663",
+  "name": "Mous-K",
+  "link": "https://www.deezer.com/artist/14478663",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/ad22731bd85a417d15db9f1498bcb99a/250x250-000000-80-0-0.jpg",
+  "fans": 168662
+ },
+ "jersey": {
+  "id": "489669",
+  "name": "Jersey",
+  "link": "https://www.deezer.com/artist/489669",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/7a89111893df9037fab46ad5d82b6a27/250x250-000000-80-0-0.jpg",
+  "fans": 3274
+ },
+ "heaven sam": {
+  "id": "109354612",
+  "name": "Heaven Sam",
+  "link": "https://www.deezer.com/artist/109354612",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/c54e69ef88bd96c1f1c9d8f3841d3dfa/250x250-000000-80-0-0.jpg",
+  "fans": 485
+ },
+ "dinaa": {
+  "id": "230105055",
+  "name": "Dinaa",
+  "link": "https://www.deezer.com/artist/230105055",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/ac0620b5f223c15ce6e05b4878481c49/250x250-000000-80-0-0.jpg",
+  "fans": 16457
+ },
+ "pact": {
+  "id": "386400751",
+  "name": "PACT",
+  "link": "https://www.deezer.com/artist/386400751",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/7b933497f8c3ac9906a16aabb5d9c5ef/250x250-000000-80-0-0.jpg",
+  "fans": 276
+ },
+ "dma": {
+  "id": "371958821",
+  "name": "DMA",
+  "link": "https://www.deezer.com/artist/371958821",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/744b7d4a93ac9fb8bb9249e54a9b6395/250x250-000000-80-0-0.jpg",
+  "fans": 504
+ },
+ "leon phal": {
+  "id": "14960533",
+  "name": "Léon Phal",
+  "link": "https://www.deezer.com/artist/14960533",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/f93a62752c2de2d2eba3f4790bab8b38/250x250-000000-80-0-0.jpg",
+  "fans": 3203
+ },
+ "jean jacques milteau": {
+  "id": "71632",
+  "name": "Jean-Jacques Milteau",
+  "link": "https://www.deezer.com/artist/71632",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/fc599a01d658cd5693fde6398aa0fa40/250x250-000000-80-0-0.jpg",
+  "fans": 11067
+ },
+ "othmane": {
+  "id": "1196222",
+  "name": "Othmane",
+  "link": "https://www.deezer.com/artist/1196222",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/7a2574c23a7b0e4f89ba41e4bfa437d7/250x250-000000-80-0-0.jpg",
+  "fans": 40
+ },
+ "jerron paxton": {
+  "id": "7138841",
+  "name": "Jerron Paxton",
+  "link": "https://www.deezer.com/artist/7138841",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/7c9a96a9a9c5609d3ba3522a111c4f82/250x250-000000-80-0-0.jpg",
+  "fans": 222
+ },
+ "nils petter molvr": {
+  "id": "76613",
+  "name": "Nils Petter Molvær",
+  "link": "https://www.deezer.com/artist/76613",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/5ff26c6f936ef047793006102ed0878a/250x250-000000-80-0-0.jpg",
+  "fans": 8138
+ },
+ "resolve": {
+  "id": "109187",
+  "name": "Resolve",
+  "link": "https://www.deezer.com/artist/109187",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/32a34a6de385fcfeedfa999a5808d785/250x250-000000-80-0-0.jpg",
+  "fans": 6858
+ },
+ "la la brooks": {
+  "id": "522501",
+  "name": "La La Brooks",
+  "link": "https://www.deezer.com/artist/522501",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/7decd1e5a0021b2fffd2fa4a60f37b18/250x250-000000-80-0-0.jpg",
+  "fans": 65
+ },
+ "8ruki": {
+  "id": "14954881",
+  "name": "8ruki",
+  "link": "https://www.deezer.com/artist/14954881",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/67d612f7723f475dee55ec86479080ee/250x250-000000-80-0-0.jpg",
+  "fans": 40135
+ },
+ "madeinparis": {
+  "id": "13142337",
+  "name": "MadeInParis",
+  "link": "https://www.deezer.com/artist/13142337",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/1d666db251ef170a7784904b9ee0d613/250x250-000000-80-0-0.jpg",
+  "fans": 73357
+ },
+ "outlander": {
+  "id": "1107139",
+  "name": "Outlander",
+  "link": "https://www.deezer.com/artist/1107139",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/97624a1bb8664465594a99b5815135ab/250x250-000000-80-0-0.jpg",
+  "fans": 1104
+ },
+ "echoes through the highlands": null,
+ "sheryfa luna": {
+  "id": "17143",
+  "name": "Sheryfa Luna",
+  "link": "https://www.deezer.com/artist/17143",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/1da4c3a58a34ac8727c081f8eb6ab402/250x250-000000-80-0-0.jpg",
+  "fans": 196936
+ },
+ "typhee": {
+  "id": "213769577",
+  "name": "Typhee",
+  "link": "https://www.deezer.com/artist/213769577",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/6142bb10211ed59909065d8cffdec8a4/250x250-000000-80-0-0.jpg",
+  "fans": 17331
+ },
+ "myra": {
+  "id": "182425",
+  "name": "Myra",
+  "link": "https://www.deezer.com/artist/182425",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/92757da6fddfc64e1bfc58a103b38d62/250x250-000000-80-0-0.jpg",
+  "fans": 10991
+ },
+ "lacuna coil": {
+  "id": "2219",
+  "name": "Lacuna Coil",
+  "link": "https://www.deezer.com/artist/2219",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/3158d5ac13c152c61fb25d64073a970d/250x250-000000-80-0-0.jpg",
+  "fans": 222083
+ },
+ "omnium gatherum": {
+  "id": "65405",
+  "name": "Omnium Gatherum",
+  "link": "https://www.deezer.com/artist/65405",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/310823b70f34c87da5de674bdb6f8c3d/250x250-000000-80-0-0.jpg",
+  "fans": 16246
+ },
+ "dynamite shakers": {
+  "id": "157314032",
+  "name": "Dynamite Shakers",
+  "link": "https://www.deezer.com/artist/157314032",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/13bbb931abdb73f0ed039aae82483318/250x250-000000-80-0-0.jpg",
+  "fans": 7470
+ },
+ "michka assayas": null,
+ "cristina branco": {
+  "id": "4684",
+  "name": "Cristina Branco",
+  "link": "https://www.deezer.com/artist/4684",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/86b75ef73ccdad635dd80e81a1ec2e05/250x250-000000-80-0-0.jpg",
+  "fans": 6674
+ },
+ "eva": {
+  "id": "53345732",
+  "name": "Eva",
+  "link": "https://www.deezer.com/artist/53345732",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/e4e712275eb3559231374288530d2625/250x250-000000-80-0-0.jpg",
+  "fans": 732901
+ },
+ "trentemller": {
+  "id": "5210",
+  "name": "Trentemøller",
+  "link": "https://www.deezer.com/artist/5210",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/96c0a3a92147cc0a5fc38e4733d64f68/250x250-000000-80-0-0.jpg",
+  "fans": 102740
+ },
+ "cult of luna": {
+  "id": "7273",
+  "name": "Cult of Luna",
+  "link": "https://www.deezer.com/artist/7273",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/8aa0c438dc7da0b8b90330d313aa4e61/250x250-000000-80-0-0.jpg",
+  "fans": 28956
+ },
+ "bruit": {
+  "id": "191842857",
+  "name": "Bruit ≤",
+  "link": "https://www.deezer.com/artist/191842857",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/721bbb5b7b4b34cbf0633bd4c24b7f5e/250x250-000000-80-0-0.jpg",
+  "fans": 1373
+ },
+ "youth code": {
+  "id": "5216755",
+  "name": "Youth Code",
+  "link": "https://www.deezer.com/artist/5216755",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/156fcd09b1d9f3d7ac0c209f372012c3/250x250-000000-80-0-0.jpg",
+  "fans": 2412
+ },
+ "palace": {
+  "id": "181127",
+  "name": "Palace",
+  "link": "https://www.deezer.com/artist/181127",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/4542a45ddffc891b0832b0d723b85af3/250x250-000000-80-0-0.jpg",
+  "fans": 12827
+ },
+ "loa mercury": {
+  "id": "200470917",
+  "name": "Loa Mercury",
+  "link": "https://www.deezer.com/artist/200470917",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/d5a0e216c4aa9678d8c134ae3a85f120/250x250-000000-80-0-0.jpg",
+  "fans": 1185
+ },
+ "eivr": {
+  "id": "572019",
+  "name": "eivør",
+  "link": "https://www.deezer.com/artist/572019",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/524aba21dfc90eea82a42421dab77e97/250x250-000000-80-0-0.jpg",
+  "fans": 39385
+ },
+ "pedro abrunhosa": {
+  "id": "183216",
+  "name": "Pedro Abrunhosa",
+  "link": "https://www.deezer.com/artist/183216",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/7e49ffc8383ed35472fc2d2dc7449d49/250x250-000000-80-0-0.jpg",
+  "fans": 45803
+ },
+ "blanco white": {
+  "id": "9208946",
+  "name": "Blanco White",
+  "link": "https://www.deezer.com/artist/9208946",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/b1c294b748dea1f7b4632b17caf9ac39/250x250-000000-80-0-0.jpg",
+  "fans": 9581
+ },
+ "pokey lafarge": {
+  "id": "422233",
+  "name": "Pokey Lafarge",
+  "link": "https://www.deezer.com/artist/422233",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/91da3fedaba6ac98d75ada1638aee4c2/250x250-000000-80-0-0.jpg",
+  "fans": 8873
+ },
+ "la rue ketanou": {
+  "id": "1227",
+  "name": "La Rue Kétanou",
+  "link": "https://www.deezer.com/artist/1227",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/7acb1574d24875ebfd65fa367dab6b16/250x250-000000-80-0-0.jpg",
+  "fans": 427730
+ },
+ "chloe": {
+  "id": "5398364",
+  "name": "Chlöe",
+  "link": "https://www.deezer.com/artist/5398364",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/270dae35be17062261e65815642144a2/250x250-000000-80-0-0.jpg",
+  "fans": 72825
+ },
+ "asfar shamsi": {
+  "id": "202233817",
+  "name": "Asfar Shamsi",
+  "link": "https://www.deezer.com/artist/202233817",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/6b3b5733964b5b0e61d72af2c2e5d86c/250x250-000000-80-0-0.jpg",
+  "fans": 8550
+ },
+ "madam": {
+  "id": "113749",
+  "name": "MADAM",
+  "link": "https://www.deezer.com/artist/113749",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/d4020061e1c5cdc8c13fe18022f181a4/250x250-000000-80-0-0.jpg",
+  "fans": 5578
+ },
+ "pony pony run run": {
+  "id": "259609",
+  "name": "Pony Pony Run Run",
+  "link": "https://www.deezer.com/artist/259609",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/50ba7acc12d18d22a0f76d8e82af64d2/250x250-000000-80-0-0.jpg",
+  "fans": 146324
+ },
+ "colours in the street": {
+  "id": "1704856",
+  "name": "Colours in the Street",
+  "link": "https://www.deezer.com/artist/1704856",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/0836d8d65d46179ddc5230ab866fe75b/250x250-000000-80-0-0.jpg",
+  "fans": 14510
+ },
+ "francois staal": {
+  "id": "375778",
+  "name": "François Staal",
+  "link": "https://www.deezer.com/artist/375778",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/b409380fad33d414c4e08f44b06b76bf/250x250-000000-80-0-0.jpg",
+  "fans": 316
+ },
+ "st graal": {
+  "id": "13311053",
+  "name": "St Graal",
+  "link": "https://www.deezer.com/artist/13311053",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/6b8d9d3f2c325cfa53cc782b406199f5/250x250-000000-80-0-0.jpg",
+  "fans": 17495
+ },
+ "colonel reyel": {
+  "id": "378392",
+  "name": "Colonel Reyel",
+  "link": "https://www.deezer.com/artist/378392",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/470ef89ead1613bacc5ad6c1a396abe4/250x250-000000-80-0-0.jpg",
+  "fans": 691160
+ },
+ "bertrand belin": {
+  "id": "55209",
+  "name": "Bertrand Belin",
+  "link": "https://www.deezer.com/artist/55209",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/75ee99c71173076a801ca9eb6461ef1e/250x250-000000-80-0-0.jpg",
+  "fans": 70513
+ },
+ "loic nottet": {
+  "id": "7631240",
+  "name": "Loïc Nottet",
+  "link": "https://www.deezer.com/artist/7631240",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/15e661d3b57657f6522fd9cf1a4eb5ff/250x250-000000-80-0-0.jpg",
+  "fans": 213897
+ },
+ "oria": {
+  "id": "266429332",
+  "name": "Oria",
+  "link": "https://www.deezer.com/artist/266429332",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/11e787eacd11a05c9598248f86679b67/250x250-000000-80-0-0.jpg",
+  "fans": 12574
+ },
+ "enola cox": {
+  "id": "224184205",
+  "name": "Enola Cox",
+  "link": "https://www.deezer.com/artist/224184205",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/8fbcebd97b52ce70c4853a521dcbf047/250x250-000000-80-0-0.jpg",
+  "fans": 5764
+ },
+ "p l l": {
+  "id": "12075606",
+  "name": "P.L.L",
+  "link": "https://www.deezer.com/artist/12075606",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/c2b59dc21e5d2ac5d23d0059c04d301e/250x250-000000-80-0-0.jpg",
+  "fans": 44573
+ },
+ "lecya": {
+  "id": "266142832",
+  "name": "Lécya",
+  "link": "https://www.deezer.com/artist/266142832",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/c057dfac44fff110da7e6c7744790852/250x250-000000-80-0-0.jpg",
+  "fans": 4168
+ },
+ "aaron parks": {
+  "id": "242181",
+  "name": "Aaron Parks",
+  "link": "https://www.deezer.com/artist/242181",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/7ce1cf1a03efb72a9bb4ab66e8007698/250x250-000000-80-0-0.jpg",
+  "fans": 8078
+ },
+ "pistons": {
+  "id": "1625356",
+  "name": "Pistons",
+  "link": "https://www.deezer.com/artist/1625356",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/17f372832609c251d8f881538fa6e13c/250x250-000000-80-0-0.jpg",
+  "fans": 921
+ },
+ "zuukou mayzie": {
+  "id": "11721245",
+  "name": "Zuukou mayzie",
+  "link": "https://www.deezer.com/artist/11721245",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/dc23c89a2bc92e217b3548a1ac70a046/250x250-000000-80-0-0.jpg",
+  "fans": 65620
+ },
+ "lushe": {
+  "id": "264878232",
+  "name": "Lushe",
+  "link": "https://www.deezer.com/artist/264878232",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/bf5af942812250298fe3340eb4391e1e/250x250-000000-80-0-0.jpg",
+  "fans": 26178
+ },
+ "duo jatekok": {
+  "id": "8358526",
+  "name": "Duo Jatekok",
+  "link": "https://www.deezer.com/artist/8358526",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/51377f38ca6bbdd27192db64cbfa86f0/250x250-000000-80-0-0.jpg",
+  "fans": 765
+ },
+ "jatekok": null,
+ "tindersticks": {
+  "id": "1296",
+  "name": "Tindersticks",
+  "link": "https://www.deezer.com/artist/1296",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/25a8e1cb9ee48c9ef2206b49eb6d1a38/250x250-000000-80-0-0.jpg",
+  "fans": 37273
+ },
+ "ariane bonzini": {
+  "id": "83778252",
+  "name": "Ariane Bonzini",
+  "link": "https://www.deezer.com/artist/83778252",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/d24918752090b9c1b13ddfcb7425674f/250x250-000000-80-0-0.jpg",
+  "fans": 6229
+ },
+ "juste shani": {
+  "id": "55643122",
+  "name": "Juste Shani",
+  "link": "https://www.deezer.com/artist/55643122",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/b01e9ffc8dbbc32d550c4d2881494eef/250x250-000000-80-0-0.jpg",
+  "fans": 22756
+ },
+ "nouvelle vague": {
+  "id": "1387",
+  "name": "Nouvelle Vague",
+  "link": "https://www.deezer.com/artist/1387",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/e5632a779c57b226753356cec9133fdc/250x250-000000-80-0-0.jpg",
+  "fans": 66675
+ },
+ "elba ramalho": {
+  "id": "15853",
+  "name": "Elba Ramalho",
+  "link": "https://www.deezer.com/artist/15853",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/ae048e35cfef6eb57309438563f501b5/250x250-000000-80-0-0.jpg",
+  "fans": 486346
+ },
+ "faudel": {
+  "id": "4989",
+  "name": "Faudel",
+  "link": "https://www.deezer.com/artist/4989",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/f462a3f18c721ebad4af2fee13a0a4d8/250x250-000000-80-0-0.jpg",
+  "fans": 80578
+ },
+ "emile londonien": {
+  "id": "122395922",
+  "name": "Emile Londonien",
+  "link": "https://www.deezer.com/artist/122395922",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/8aaf0f5d4551a4cae6ac1fc7609e493e/250x250-000000-80-0-0.jpg",
+  "fans": 2730
+ },
+ "il cello": {
+  "id": "317830701",
+  "name": "Il Cello",
+  "link": "https://www.deezer.com/artist/317830701",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/295c26a4a144d46657d57155df1fdf70/250x250-000000-80-0-0.jpg",
+  "fans": 4463
+ },
+ "severin": {
+  "id": "259567",
+  "name": "Séverin",
+  "link": "https://www.deezer.com/artist/259567",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/0244fddde28b02ba357f097de7f5dc09/250x250-000000-80-0-0.jpg",
+  "fans": 4616
+ },
+ "gildaa": {
+  "id": "284968791",
+  "name": "Gildaa",
+  "link": "https://www.deezer.com/artist/284968791",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/7ba7d159dbb4c583041a2052fae48594/250x250-000000-80-0-0.jpg",
+  "fans": 2777
+ },
+ "ana carla maza": {
+  "id": "14533611",
+  "name": "Ana Carla Maza",
+  "link": "https://www.deezer.com/artist/14533611",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/bafbfc2f57eb5bbdcabad9c0ca4709ca/250x250-000000-80-0-0.jpg",
+  "fans": 7067
+ },
+ "stanislas": {
+  "id": "17208",
+  "name": "Stanislas",
+  "link": "https://www.deezer.com/artist/17208",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/5269875a30679cc52f1a17f2c77752cb/250x250-000000-80-0-0.jpg",
+  "fans": 19923
+ },
+ "gregoire jokic": {
+  "id": "5840275",
+  "name": "Grégoire Jokic",
+  "link": "https://www.deezer.com/artist/5840275",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/7be478b6a35f1f7eb286a06c1cd25bf9/250x250-000000-80-0-0.jpg",
+  "fans": 1466
+ },
+ "mundus": {
+  "id": "5311023",
+  "name": "Mundus",
+  "link": "https://www.deezer.com/artist/5311023",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/a1e9297b0f512cbb2d48dc4b125c72e8/250x250-000000-80-0-0.jpg",
+  "fans": 69
+ },
+ "pisse": {
+  "id": "10448540",
+  "name": "Pisse",
+  "link": "https://www.deezer.com/artist/10448540",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/25ff0ba193c335575d7d03f641e9edec/250x250-000000-80-0-0.jpg",
+  "fans": 5949
+ },
+ "guner kunier": {
+  "id": "102881462",
+  "name": "Güner Künier",
+  "link": "https://www.deezer.com/artist/102881462",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/c68c6ab00a52ca01384444f7444b211a/250x250-000000-80-0-0.jpg",
+  "fans": 370
+ },
+ "dona casque": {
+  "id": "317016041",
+  "name": "Dona Casque",
+  "link": "https://www.deezer.com/artist/317016041",
+  "picture": "https://cdn-images.dzcdn.net/images/artist//250x250-000000-80-0-0.jpg",
+  "fans": 27
+ },
+ "les funambules": {
+  "id": "8872658",
+  "name": "Les Funambules",
+  "link": "https://www.deezer.com/artist/8872658",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/467768505257b442c3bd4c6f4feee0f8/250x250-000000-80-0-0.jpg",
+  "fans": 692
+ },
+ "ensemble royal de paris": null,
+ "quinteto libertad": null,
+ "qais saadi": {
+  "id": "7361728",
+  "name": "Qaïs Saadi",
+  "link": "https://www.deezer.com/artist/7361728",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/f2f345901b9f33d3599e556981abfcf5/250x250-000000-80-0-0.jpg",
+  "fans": 34
+ },
+ "elio di tanna": {
+  "id": "52350532",
+  "name": "Elio Di Tanna",
+  "link": "https://www.deezer.com/artist/52350532",
+  "picture": "https://cdn-images.dzcdn.net/images/artist//250x250-000000-80-0-0.jpg",
+  "fans": 5
+ },
+ "quatuor kairi": null,
+ "vanille": {
+  "id": "68318",
+  "name": "Vanille",
+  "link": "https://www.deezer.com/artist/68318",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/757388b2ebc44fdb98761f539141b4f7/250x250-000000-80-0-0.jpg",
+  "fans": 5617
+ },
+ "les gars de passage": null,
+ "la plume": {
+  "id": "337645391",
+  "name": "La Plume",
+  "link": "https://www.deezer.com/artist/337645391",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/66af168931fa7c78d878f29fe54c2699/250x250-000000-80-0-0.jpg",
+  "fans": 89
+ },
+ "les oiseaux de passage": {
+  "id": "6013738",
+  "name": "Les Oiseaux de Passage",
+  "link": "https://www.deezer.com/artist/6013738",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/b5a11369fdc76a2f9228c1ccd516374e/250x250-000000-80-0-0.jpg",
+  "fans": 601
+ },
+ "kiss facility": {
+  "id": "208415517",
+  "name": "Kiss Facility",
+  "link": "https://www.deezer.com/artist/208415517",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/1d4f2f5add54f951c3cb1cda5f8a3511/250x250-000000-80-0-0.jpg",
+  "fans": 1555
+ },
+ "charlotte isenmann": {
+  "id": "270956272",
+  "name": "CHARLOTTE ISENMANN",
+  "link": "https://www.deezer.com/artist/270956272",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/9c146aca00fb3803a17fca1cd2527b2a/250x250-000000-80-0-0.jpg",
+  "fans": 26
+ },
+ "leili anvar": {
+  "id": "86547042",
+  "name": "Leili Anvar",
+  "link": "https://www.deezer.com/artist/86547042",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/c2f18203f370cb1e00139e63b8fef970/250x250-000000-80-0-0.jpg",
+  "fans": 194
+ },
+ "arshid azarine": {
+  "id": "4553900",
+  "name": "Arshid Azarine",
+  "link": "https://www.deezer.com/artist/4553900",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/e6b5004dc6e8c5f76586a0f4a068ca8c/250x250-000000-80-0-0.jpg",
+  "fans": 573
+ },
+ "kassa overall": {
+  "id": "5205364",
+  "name": "Kassa Overall",
+  "link": "https://www.deezer.com/artist/5205364",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/6fe7279cc9c669f84b7ff0e5fd7879d8/250x250-000000-80-0-0.jpg",
+  "fans": 1094
+ },
+ "lsd": {
+  "id": "14720447",
+  "name": "LSD",
+  "link": "https://www.deezer.com/artist/14720447",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/70d0eb7c7f6a101c0229b2c572ad341c/250x250-000000-80-0-0.jpg",
+  "fans": 227378
+ },
+ "search for god": null,
+ "cecil l recchia duo": null,
+ "cecil l recchia": {
+  "id": "9072888",
+  "name": "Cecil L. Recchia",
+  "link": "https://www.deezer.com/artist/9072888",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/be21954e551b052c59fe628f178ed26d/250x250-000000-80-0-0.jpg",
+  "fans": 298
+ },
+ "orchestre de paris": {
+  "id": "370357",
+  "name": "Orchestre de Paris",
+  "link": "https://www.deezer.com/artist/370357",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/116595601e7e70500646e4103e9508f3/250x250-000000-80-0-0.jpg",
+  "fans": 32716
+ },
+ "esa pekka salonen": {
+  "id": "73651",
+  "name": "Esa-Pekka Salonen",
+  "link": "https://www.deezer.com/artist/73651",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/805b9ef4c5579a7cfbdb5c07c0801e27/250x250-000000-80-0-0.jpg",
+  "fans": 22492
+ },
+ "evening hymn": {
+  "id": "11380666",
+  "name": "Evening Hymn",
+  "link": "https://www.deezer.com/artist/11380666",
+  "picture": "https://cdn-images.dzcdn.net/images/artist//250x250-000000-80-0-0.jpg",
+  "fans": 0
+ },
+ "louis montemont": {
+  "id": "263672451",
+  "name": "Louis Montémont",
+  "link": "https://www.deezer.com/artist/263672451",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/ab6fcae258f1357cf1d67016cae05a38/250x250-000000-80-0-0.jpg",
+  "fans": 1677
+ },
+ "leo middea": {
+  "id": "7858674",
+  "name": "Leo Middea",
+  "link": "https://www.deezer.com/artist/7858674",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/a92c6fac3b3bfa53bd58f92ec833b5ca/250x250-000000-80-0-0.jpg",
+  "fans": 5551
+ },
+ "orchestre helios": null,
+ "glen rouxel": null,
+ "simon dalmais": {
+  "id": "1603959",
+  "name": "Simon Dalmais",
+  "link": "https://www.deezer.com/artist/1603959",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/9668511a3744d2483359e1daeaf1c935/250x250-000000-80-0-0.jpg",
+  "fans": 81
+ },
+ "lucy bedroque": {
+  "id": "257057412",
+  "name": "Lucy Bedroque",
+  "link": "https://www.deezer.com/artist/257057412",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/0c2b1d1452c91b4123796066373d32ca/250x250-000000-80-0-0.jpg",
+  "fans": 3535
+ },
+ "mathias g": {
+  "id": "122402632",
+  "name": "Mathias G",
+  "link": "https://www.deezer.com/artist/122402632",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/95a8e99d343993c1b79de4cbcc2257d9/250x250-000000-80-0-0.jpg",
+  "fans": 4
+ },
+ "anouar brahem": {
+  "id": "1401",
+  "name": "Anouar Brahem",
+  "link": "https://www.deezer.com/artist/1401",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/c71d18e16c607c138e7839faf3c7fb53/250x250-000000-80-0-0.jpg",
+  "fans": 33230
+ },
+ "trio paris classik": null,
+ "paris classik": null,
+ "bertrand cervera": {
+  "id": "6202766",
+  "name": "Bertrand Cervera",
+  "link": "https://www.deezer.com/artist/6202766",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/9ef4f10c34314be3aacd20766b8857f8/250x250-000000-80-0-0.jpg",
+  "fans": 22
+ },
+ "gabriel delmas trio": {
+  "id": "80734612",
+  "name": "Gabriel Delmas Trio",
+  "link": "https://www.deezer.com/artist/80734612",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/9a613d22a04f4322cf79878e8d1ae752/250x250-000000-80-0-0.jpg",
+  "fans": 43
+ },
+ "gabriel delmas": null,
+ "gael horellou": {
+  "id": "159760",
+  "name": "Gaël Horellou",
+  "link": "https://www.deezer.com/artist/159760",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/be57357818e3075de2e33c6f65593b01/250x250-000000-80-0-0.jpg",
+  "fans": 809
+ },
+ "estelle giordani": {
+  "id": "79299122",
+  "name": "Estelle Giordani",
+  "link": "https://www.deezer.com/artist/79299122",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/d4d56256042dc252567c0298ceb9ccb5/250x250-000000-80-0-0.jpg",
+  "fans": 59
+ },
+ "kuleeangee": {
+  "id": "284620321",
+  "name": "KuleeAngee",
+  "link": "https://www.deezer.com/artist/284620321",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/3bd681609899aadd5b1c4b1e6a60475e/250x250-000000-80-0-0.jpg",
+  "fans": 134
+ },
+ "irene amata 4tet": null,
+ "sam ghezzi band": null,
+ "sam ghezzi": {
+  "id": "284389181",
+  "name": "Sam Ghezzi",
+  "link": "https://www.deezer.com/artist/284389181",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/18ac7caa51df028d30bf008e36a2f49d/250x250-000000-80-0-0.jpg",
+  "fans": 37
+ },
+ "diskay": {
+  "id": "10043984",
+  "name": "Diskay",
+  "link": "https://www.deezer.com/artist/10043984",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/3548ee2e7081696a9458002e92d01fa1/250x250-000000-80-0-0.jpg",
+  "fans": 3783
+ },
+ "gospel dream": {
+  "id": "65449",
+  "name": "Gospel Dream",
+  "link": "https://www.deezer.com/artist/65449",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/1582686f174fc6589abc527a53ccac08/250x250-000000-80-0-0.jpg",
+  "fans": 1454
+ },
+ "panjrud ensemble": null,
+ "st ambrose high school": null,
+ "orchestre les parisiens": null,
+ "sarah nemtanu": {
+  "id": "427772",
+  "name": "Sarah Nemtanu",
+  "link": "https://www.deezer.com/artist/427772",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/98fe937c9b6cc65880d367c3727104bb/250x250-000000-80-0-0.jpg",
+  "fans": 1040
+ },
+ "jaw": {
+  "id": "436804",
+  "name": "JAW",
+  "link": "https://www.deezer.com/artist/436804",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/ae536074c3e38f19bb517c0fc33b9cd1/250x250-000000-80-0-0.jpg",
+  "fans": 5095
+ },
+ "hostium": {
+  "id": "415730792",
+  "name": "Hostium",
+  "link": "https://www.deezer.com/artist/415730792",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/3394f5d5c27f13a1e301d872d1518b86/250x250-000000-80-0-0.jpg",
+  "fans": 1
+ },
+ "alexis nutile": null,
+ "der burokrat": null,
+ "raphael collard": null,
+ "gwen cahue": {
+  "id": "59529312",
+  "name": "Gwen Cahue",
+  "link": "https://www.deezer.com/artist/59529312",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/e8634dc7866c566e54948eac6a16f6ff/250x250-000000-80-0-0.jpg",
+  "fans": 302
+ },
+ "bastien ribot 4tet": null,
+ "emma rawicz": {
+  "id": "92550532",
+  "name": "Emma Rawicz",
+  "link": "https://www.deezer.com/artist/92550532",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/34ebcaf8ee1e8a9ccdccc6d12021daa4/250x250-000000-80-0-0.jpg",
+  "fans": 362
+ },
+ "apostolos sideris 5tet": null,
+ "arma jackson": {
+  "id": "7029261",
+  "name": "Arma Jackson",
+  "link": "https://www.deezer.com/artist/7029261",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/f29a0fccac8f4f3580862781cf414339/250x250-000000-80-0-0.jpg",
+  "fans": 39462
+ },
+ "celyane": {
+  "id": "58078",
+  "name": "Celyane",
+  "link": "https://www.deezer.com/artist/58078",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/0b9c0f53730433a5652a33c28a50bbdf/250x250-000000-80-0-0.jpg",
+  "fans": 548
+ },
+ "low jay": {
+  "id": "13065911",
+  "name": "Low Jay",
+  "link": "https://www.deezer.com/artist/13065911",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/8c50931bb957e008462f188a788a1b45/250x250-000000-80-0-0.jpg",
+  "fans": 32499
+ },
+ "josh island": {
+  "id": "14083237",
+  "name": "Josh Island",
+  "link": "https://www.deezer.com/artist/14083237",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/82d7e422502e48d88ea66b90759f8e03/250x250-000000-80-0-0.jpg",
+  "fans": 68
+ },
+ "jd allen trio": null,
+ "jd allen": {
+  "id": "352811",
+  "name": "JD Allen",
+  "link": "https://www.deezer.com/artist/352811",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/c6a326bb4f068d44ac8d777a725fdb42/250x250-000000-80-0-0.jpg",
+  "fans": 296
+ },
+ "darren sheng": null,
+ "melanie dahan trio": null,
+ "melanie dahan": {
+  "id": "74000",
+  "name": "Melanie Dahan",
+  "link": "https://www.deezer.com/artist/74000",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/c7e343c06b32bdf307b1e3b6c2fec021/250x250-000000-80-0-0.jpg",
+  "fans": 398
+ },
+ "pavans": null,
+ "songs of joy": {
+  "id": "13523235",
+  "name": "Songs of Joy",
+  "link": "https://www.deezer.com/artist/13523235",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/6a2579a440db455bac8f0ea15cef6268/250x250-000000-80-0-0.jpg",
+  "fans": 1
+ },
+ "chopin": null,
+ "concerto pour piano n2": null,
+ "jody sternberg": {
+  "id": "4904914",
+  "name": "Jody Sternberg",
+  "link": "https://www.deezer.com/artist/4904914",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/a9ea67935ee9acca297ed250dff82729/250x250-000000-80-0-0.jpg",
+  "fans": 132
+ },
+ "mendelssohn": {
+  "id": "87973",
+  "name": "Mendelssohn",
+  "link": "https://www.deezer.com/artist/87973",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/c205180600aaebd33cddf1cc1cec5428/250x250-000000-80-0-0.jpg",
+  "fans": 1115
+ },
+ "eclats d une vie": null,
+ "manu le prince": {
+  "id": "147628",
+  "name": "Manu Le Prince",
+  "link": "https://www.deezer.com/artist/147628",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/9253a2a6e90537d611e45cf8dd2b13dc/250x250-000000-80-0-0.jpg",
+  "fans": 114
+ },
+ "a table": null,
+ "blandine": {
+  "id": "1584851",
+  "name": "Blandine",
+  "link": "https://www.deezer.com/artist/1584851",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/45dc6ae3e5b43065bcf8af4b6dcd7efe/250x250-000000-80-0-0.jpg",
+  "fans": 1351
+ },
+ "guadal tejaz": {
+  "id": "108177692",
+  "name": "Guadal Tejaz",
+  "link": "https://www.deezer.com/artist/108177692",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/b2438ef3eb4aa24fbf10dfcd3303aa15/250x250-000000-80-0-0.jpg",
+  "fans": 796
+ },
+ "filiz": {
+  "id": "164250837",
+  "name": "Filiz",
+  "link": "https://www.deezer.com/artist/164250837",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/b5d14dd6d684e10dd7ef4a842c9ac58b/250x250-000000-80-0-0.jpg",
+  "fans": 7335
+ },
+ "francois moysan": null,
+ "ode au cypres": null,
+ "emmanuel rossfelder": {
+  "id": "2856921",
+  "name": "Emmanuel Rossfelder",
+  "link": "https://www.deezer.com/artist/2856921",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/3e1ee70fcec1aa92a660d0b4648ac5c6/250x250-000000-80-0-0.jpg",
+  "fans": 572
+ },
+ "paul rouger": {
+  "id": "6314028",
+  "name": "Paul Rouger",
+  "link": "https://www.deezer.com/artist/6314028",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/bb1ec251c77a656cdddb5e24e37f888a/250x250-000000-80-0-0.jpg",
+  "fans": 8
+ },
+ "joia": {
+  "id": "4016308",
+  "name": "Joia",
+  "link": "https://www.deezer.com/artist/4016308",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/9a8e90776664b756e79660d12bd20aa8/250x250-000000-80-0-0.jpg",
+  "fans": 118
+ },
+ "manu codjia": {
+  "id": "153758",
+  "name": "Manu Codjia",
+  "link": "https://www.deezer.com/artist/153758",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/5e26883f4db9974ebdf23c6c26469f2d/250x250-000000-80-0-0.jpg",
+  "fans": 407
+ },
+ "michel bouvard": {
+  "id": "454825",
+  "name": "Michel Bouvard",
+  "link": "https://www.deezer.com/artist/454825",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/e9b06866f998798ffafa30fd7c677f6c/250x250-000000-80-0-0.jpg",
+  "fans": 42
+ },
+ "claudia solal": {
+  "id": "378601",
+  "name": "Claudia Solal",
+  "link": "https://www.deezer.com/artist/378601",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/07da264413cb6085f818cd98c1fb9816/250x250-000000-80-0-0.jpg",
+  "fans": 178
+ },
+ "benoit delbecq": {
+  "id": "1050463",
+  "name": "Benoit Delbecq",
+  "link": "https://www.deezer.com/artist/1050463",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/ac9edfd3f39b4ef346dad4d2f40bdb50/250x250-000000-80-0-0.jpg",
+  "fans": 273
+ },
+ "bruno angelini": {
+  "id": "372399",
+  "name": "Bruno Angelini",
+  "link": "https://www.deezer.com/artist/372399",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/431e3352501a1a3192ce6d7ae42a5cca/250x250-000000-80-0-0.jpg",
+  "fans": 157
+ },
+ "louis sclavis": {
+  "id": "14972",
+  "name": "Louis Sclavis",
+  "link": "https://www.deezer.com/artist/14972",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/e9b097697e9b36dcdcdc5e9db56f9e20/250x250-000000-80-0-0.jpg",
+  "fans": 5115
+ },
+ "chur": null,
+ "orchestre note": null,
+ "bien": {
+  "id": "10114706",
+  "name": "Bien",
+  "link": "https://www.deezer.com/artist/10114706",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/695fe9f643fa313cd719a5d67fe39719/250x250-000000-80-0-0.jpg",
+  "fans": 5068
+ },
+ "galaad moutoz orchestra": null,
+ "galaad moutoz": {
+  "id": "261458001",
+  "name": "Galaad Moutoz",
+  "link": "https://www.deezer.com/artist/261458001",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/91f7e04268a1d44829bdea9d1fd6b815/250x250-000000-80-0-0.jpg",
+  "fans": 8
+ },
+ "orchestre paris classik": null,
+ "laurent m 2": null,
+ "alime bebegue": {
+  "id": "54118882",
+  "name": "Alimé Bébégué",
+  "link": "https://www.deezer.com/artist/54118882",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/4bddc471dea17af239db326d9932608f/250x250-000000-80-0-0.jpg",
+  "fans": 35
+ },
+ "54 ultra": {
+  "id": "99342912",
+  "name": "54 Ultra",
+  "link": "https://www.deezer.com/artist/99342912",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/1983dc5f5feacb51ed68c236dee58d92/250x250-000000-80-0-0.jpg",
+  "fans": 1875
+ },
+ "ultra": {
+  "id": "6712",
+  "name": "Ultra",
+  "link": "https://www.deezer.com/artist/6712",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/9f34c6bee270e38a88d9eb6deeceec37/250x250-000000-80-0-0.jpg",
+  "fans": 1030
+ },
+ "piste noire": {
+  "id": "146393472",
+  "name": "Piste Noire",
+  "link": "https://www.deezer.com/artist/146393472",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/8291ffef52c483ac63d6efeab1d832a2/250x250-000000-80-0-0.jpg",
+  "fans": 2
+ },
+ "motsek": {
+  "id": "195284087",
+  "name": "Motsek",
+  "link": "https://www.deezer.com/artist/195284087",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/b88cf7499f9e25c2898924ae2d731060/250x250-000000-80-0-0.jpg",
+  "fans": 11
+ },
+ "fond sonore": null,
+ "philippe alegre": {
+  "id": "10123800",
+  "name": "Philippe Alègre",
+  "link": "https://www.deezer.com/artist/10123800",
+  "picture": "https://cdn-images.dzcdn.net/images/artist//250x250-000000-80-0-0.jpg",
+  "fans": 2
+ },
+ "ines de las sierras 5tet": null,
+ "aulne": {
+  "id": "128502282",
+  "name": "Aulne",
+  "link": "https://www.deezer.com/artist/128502282",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/33a4ecf1dfcb1236864dc8765a135dbc/250x250-000000-80-0-0.jpg",
+  "fans": 3
+ },
+ "perdition temple": {
+  "id": "789406",
+  "name": "Perdition Temple",
+  "link": "https://www.deezer.com/artist/789406",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/6e102e115a02cda54dfbf2afe9f317dd/250x250-000000-80-0-0.jpg",
+  "fans": 398
+ },
+ "force of darkness": {
+  "id": "6518953",
+  "name": "Force of Darkness",
+  "link": "https://www.deezer.com/artist/6518953",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/41875662c5312e6320eab8ed41669726/250x250-000000-80-0-0.jpg",
+  "fans": 31
+ },
+ "hexekration rites": {
+  "id": "333440681",
+  "name": "HEXEKRATION RITES",
+  "link": "https://www.deezer.com/artist/333440681",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/b1da1a63bc9bf5d851af349f0de49c71/250x250-000000-80-0-0.jpg",
+  "fans": 18
+ },
+ "old school funky family": {
+  "id": "11922795",
+  "name": "Old School Funky Family",
+  "link": "https://www.deezer.com/artist/11922795",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/f53c221b7e6e54c1e01921210b852670/250x250-000000-80-0-0.jpg",
+  "fans": 1339
+ },
+ "la hasba22": {
+  "id": "179187387",
+  "name": "La Hasba22",
+  "link": "https://www.deezer.com/artist/179187387",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/cfe814cc9b708f5bb2e2ede335f72925/250x250-000000-80-0-0.jpg",
+  "fans": 144783
+ },
+ "emma smith": {
+  "id": "5059648",
+  "name": "Emma Smith",
+  "link": "https://www.deezer.com/artist/5059648",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/000ec58014f3181f7f19e7c76846d304/250x250-000000-80-0-0.jpg",
+  "fans": 510
+ },
+ "remy decormeille trio": null,
+ "remy decormeille": {
+  "id": "13015971",
+  "name": "Rémy Decormeille",
+  "link": "https://www.deezer.com/artist/13015971",
+  "picture": "https://cdn-images.dzcdn.net/images/artist//250x250-000000-80-0-0.jpg",
+  "fans": 2
+ },
+ "new york philharmonic": {
+  "id": "4158096",
+  "name": "The New York Philharmonic",
+  "link": "https://www.deezer.com/artist/4158096",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/b242cb685ba9de0061e13673fce3d36e/250x250-000000-80-0-0.jpg",
+  "fans": 10
+ },
+ "gustavo dudamel": {
+  "id": "391474",
+  "name": "Gustavo Dudamel",
+  "link": "https://www.deezer.com/artist/391474",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/32a0b9d4c07e7933a9bce2413fcaf032/250x250-000000-80-0-0.jpg",
+  "fans": 59720
+ },
+ "come again": {
+  "id": "4900928",
+  "name": "Come Again",
+  "link": "https://www.deezer.com/artist/4900928",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/7cbf13a31e76494d0f316fec2ff3c435/250x250-000000-80-0-0.jpg",
+  "fans": 109
+ },
+ "bajaga i instruktori": {
+  "id": "1515109",
+  "name": "Bajaga i Instruktori",
+  "link": "https://www.deezer.com/artist/1515109",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/0377dcf1666a91d82d3a8024399a5cde/250x250-000000-80-0-0.jpg",
+  "fans": 69929
+ },
+ "flox": {
+  "id": "16178",
+  "name": "Flox",
+  "link": "https://www.deezer.com/artist/16178",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/499efdb5650545543942cc97d5d40f5e/250x250-000000-80-0-0.jpg",
+  "fans": 37578
+ },
+ "paul de robillard": null,
+ "francesco marzetti": {
+  "id": "51013712",
+  "name": "Francesco Marzetti",
+  "link": "https://www.deezer.com/artist/51013712",
+  "picture": "https://cdn-images.dzcdn.net/images/artist//250x250-000000-80-0-0.jpg",
+  "fans": 0
+ },
+ "joana martinez": null,
+ "jorge garcia herranz": {
+  "id": "5628503",
+  "name": "Jorge García Herranz",
+  "link": "https://www.deezer.com/artist/5628503",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/1ba9766276068085b1de8b34c73818d3/250x250-000000-80-0-0.jpg",
+  "fans": 1
+ },
+ "ensemble atmospheres": null,
+ "finojet": {
+  "id": "308889091",
+  "name": "FINOJET",
+  "link": "https://www.deezer.com/artist/308889091",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/2dc1884db98df08de906da2f61b6ef22/250x250-000000-80-0-0.jpg",
+  "fans": 540
+ },
+ "tom river": {
+  "id": "13697701",
+  "name": "Tom River",
+  "link": "https://www.deezer.com/artist/13697701",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/6072945c92b0f5a58e29e733db9b11ff/250x250-000000-80-0-0.jpg",
+  "fans": 82
+ },
+ "opera fuoco": {
+  "id": "5274148",
+  "name": "Opera Fuoco",
+  "link": "https://www.deezer.com/artist/5274148",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/2b15efb46394e6730355eb9167875d72/250x250-000000-80-0-0.jpg",
+  "fans": 166
+ },
+ "ensemble vocal squillo": null,
+ "paname swing": null,
+ "skeler": {
+  "id": "12787101",
+  "name": "Skeler",
+  "link": "https://www.deezer.com/artist/12787101",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/176752f26fdff3a1c723b4d3ac07bc4c/250x250-000000-80-0-0.jpg",
+  "fans": 10394
+ },
+ "hush noise": {
+  "id": "106483962",
+  "name": "Hush! Noise",
+  "link": "https://www.deezer.com/artist/106483962",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/99d195f4907cef70468fe5184d73b73d/250x250-000000-80-0-0.jpg",
+  "fans": 58
+ },
+ "azar azar": {
+  "id": "102317462",
+  "name": "AZAR AZAR",
+  "link": "https://www.deezer.com/artist/102317462",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/dae23484e40503da41a00390de368996/250x250-000000-80-0-0.jpg",
+  "fans": 35
+ },
+ "felix rockery": null,
+ "blue statik": null,
+ "kndns": {
+  "id": "114019842",
+  "name": "kndns",
+  "link": "https://www.deezer.com/artist/114019842",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/864e4cc97fc173270f85d07a78eaed21/250x250-000000-80-0-0.jpg",
+  "fans": 48
+ },
+ "sicklips": null,
+ "carte noire": null,
+ "double edition": null,
+ "raphael feuillatre": {
+  "id": "15372299",
+  "name": "Raphaël Feuillâtre",
+  "link": "https://www.deezer.com/artist/15372299",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/d74744d7ca2eef35dcf883910332ec67/250x250-000000-80-0-0.jpg",
+  "fans": 985
+ },
+ "louis arlette": {
+  "id": "5270563",
+  "name": "Louis Arlette",
+  "link": "https://www.deezer.com/artist/5270563",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/03d16c08e4e3e555c853e6514328ea0a/250x250-000000-80-0-0.jpg",
+  "fans": 2703
+ },
+ "jean paul gasparian": {
+  "id": "14082905",
+  "name": "Jean-Paul Gasparian",
+  "link": "https://www.deezer.com/artist/14082905",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/06b4428e4449495e684bbf1eddac10b9/250x250-000000-80-0-0.jpg",
+  "fans": 309
+ },
+ "souad massi": {
+  "id": "2796",
+  "name": "Souad Massi",
+  "link": "https://www.deezer.com/artist/2796",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/199cdd7715b3b0ca739fd14b61f32a43/250x250-000000-80-0-0.jpg",
+  "fans": 47485
+ },
+ "lazcar volcano": {
+  "id": "200640947",
+  "name": "Lazcar Volcano",
+  "link": "https://www.deezer.com/artist/200640947",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/dedc3dce590b438645ef305b6372ace8/250x250-000000-80-0-0.jpg",
+  "fans": 79
+ },
+ "sanseverino": {
+  "id": "1424",
+  "name": "Sanseverino",
+  "link": "https://www.deezer.com/artist/1424",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/809ebb37af6544964b83e6eb153476c4/250x250-000000-80-0-0.jpg",
+  "fans": 71808
+ },
+ "schubert vers la lumiere": null,
+ "johanna baget": {
+  "id": "85110982",
+  "name": "Johanna Baget",
+  "link": "https://www.deezer.com/artist/85110982",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/b609f40e43c67aa1d4d3657e569ef906/250x250-000000-80-0-0.jpg",
+  "fans": 685
+ },
+ "benedicte berube": {
+  "id": "165217177",
+  "name": "Bénédicte Bérubé",
+  "link": "https://www.deezer.com/artist/165217177",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/f297aca9eaa14c9e61754f0a86ccbb82/250x250-000000-80-0-0.jpg",
+  "fans": 17
+ },
+ "bruno ducret": {
+  "id": "76995232",
+  "name": "Bruno Ducret",
+  "link": "https://www.deezer.com/artist/76995232",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/ece9298e37d654819e40c6acb0e02e00/250x250-000000-80-0-0.jpg",
+  "fans": 44
+ },
+ "guillaume roy": {
+  "id": "6329256",
+  "name": "Guillaume Roy",
+  "link": "https://www.deezer.com/artist/6329256",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/212d9a7835e9ab0eac72e8a1d6858ca2/250x250-000000-80-0-0.jpg",
+  "fans": 888
+ },
+ "dominique pifarely": {
+  "id": "80960",
+  "name": "Dominique Pifarely",
+  "link": "https://www.deezer.com/artist/80960",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/7bbc3816fff683953560eaa2d5910a77/250x250-000000-80-0-0.jpg",
+  "fans": 217
+ },
+ "le salon franco britannique": null,
+ "abaji": {
+  "id": "57615",
+  "name": "Abaji",
+  "link": "https://www.deezer.com/artist/57615",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/9009ca061b1b90f58cd15aa7788d0a2b/250x250-000000-80-0-0.jpg",
+  "fans": 626
+ },
+ "orchestre paul kuentz": {
+  "id": "655323",
+  "name": "Orchestre Paul Kuentz",
+  "link": "https://www.deezer.com/artist/655323",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/763eee6159162882d642aabce0f59142/250x250-000000-80-0-0.jpg",
+  "fans": 598
+ },
+ "kourou fia": {
+  "id": "251936792",
+  "name": "KOUROU FIA",
+  "link": "https://www.deezer.com/artist/251936792",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/324338de6d960112f73c7d138884f478/250x250-000000-80-0-0.jpg",
+  "fans": 20
+ },
+ "carlton rara": {
+  "id": "184756",
+  "name": "Carlton Rara",
+  "link": "https://www.deezer.com/artist/184756",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/422e91916368c6f27bb3205820f343dc/250x250-000000-80-0-0.jpg",
+  "fans": 2604
+ },
+ "sebastian ellis": {
+  "id": "48054222",
+  "name": "Sebastian Ellis",
+  "link": "https://www.deezer.com/artist/48054222",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/8ea2dacfa56d7ebefd945b29fab20ac1/250x250-000000-80-0-0.jpg",
+  "fans": 109
+ },
+ "coopers": {
+  "id": "956897",
+  "name": "the Coopers",
+  "link": "https://www.deezer.com/artist/956897",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/9ea862fe033b5d6d558b4cf08f085959/250x250-000000-80-0-0.jpg",
+  "fans": 672
+ },
+ "jam session": {
+  "id": "57617",
+  "name": "La Jam Session",
+  "link": "https://www.deezer.com/artist/57617",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/52c6cfabafa2c14656e7f1c8832b5ac2/250x250-000000-80-0-0.jpg",
+  "fans": 557
+ },
+ "gospel river": null,
+ "night swimming": {
+  "id": "13063845",
+  "name": "Night Swimming",
+  "link": "https://www.deezer.com/artist/13063845",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/124f839edcf4b860e40bcfef3eb2a648/250x250-000000-80-0-0.jpg",
+  "fans": 165
+ },
+ "buenos vampiros": {
+  "id": "69975462",
+  "name": "Buenos Vampiros",
+  "link": "https://www.deezer.com/artist/69975462",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/5c9524ae592c08763b029b804b9f9d0d/250x250-000000-80-0-0.jpg",
+  "fans": 324
+ },
+ "hors service": {
+  "id": "8199268",
+  "name": "Hors Service",
+  "link": "https://www.deezer.com/artist/8199268",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/cb08dd72e12f0b47b5d1819411682269/250x250-000000-80-0-0.jpg",
+  "fans": 257
+ },
+ "400e anniversaire de la naissance de louis couperin": null,
+ "hypnotiks": {
+  "id": "360895932",
+  "name": "The Hypnotiks",
+  "link": "https://www.deezer.com/artist/360895932",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/d64f40a39aea02883a370d04c2151a1d/250x250-000000-80-0-0.jpg",
+  "fans": 34
+ },
+ "orchestre pasdeloup": {
+  "id": "4625407",
+  "name": "Orchestre Pasdeloup",
+  "link": "https://www.deezer.com/artist/4625407",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/4a691eaf88afb891c2d414d0a70d2c6f/250x250-000000-80-0-0.jpg",
+  "fans": 341
+ },
+ "elisa lecuyer": {
+  "id": "92519752",
+  "name": "Elisa Lécuyer",
+  "link": "https://www.deezer.com/artist/92519752",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/0ab91ce45429d801a15e4cf26ca5b1c8/250x250-000000-80-0-0.jpg",
+  "fans": 15
+ },
+ "gabrielle sandman": null,
+ "reunion de famille 3": null,
+ "reunion de famille": null,
+ "ensemble vocal de l atelier de l horloge": null,
+ "quintette a anches eko": null,
+ "a anches eko": null,
+ "remi masunaga": {
+  "id": "152825",
+  "name": "Remi Masunaga",
+  "link": "https://www.deezer.com/artist/152825",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/ec024755fac8debd05fb20586982e93d/250x250-000000-80-0-0.jpg",
+  "fans": 318
+ },
+ "michael nicoll yahgulanaas": null,
+ "ernst reijseger": {
+  "id": "1441729",
+  "name": "Ernst Reijseger",
+  "link": "https://www.deezer.com/artist/1441729",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/edec462591085322b4ae8be9e85083e3/250x250-000000-80-0-0.jpg",
+  "fans": 587
+ },
+ "duo gojo": null,
+ "gojo": {
+  "id": "10091176",
+  "name": "GoJo",
+  "link": "https://www.deezer.com/artist/10091176",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/9e79099d5476168f7a9b22cc19d5544c/250x250-000000-80-0-0.jpg",
+  "fans": 37
+ },
+ "mattner": null,
+ "quatuor classik ensemble": null,
+ "de faure a holst": null,
+ "continuites sensibles": null,
+ "james carter 4tet": null,
+ "stephane guillaume": {
+  "id": "109687",
+  "name": "Stephane Guillaume",
+  "link": "https://www.deezer.com/artist/109687",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/71eaa01518b48058a0f19ebec127b7f2/250x250-000000-80-0-0.jpg",
+  "fans": 406
+ },
+ "robert mcduffie": {
+  "id": "667163",
+  "name": "Robert McDuffie",
+  "link": "https://www.deezer.com/artist/667163",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/def5d765febdaff9313aaca8566fa923/250x250-000000-80-0-0.jpg",
+  "fans": 25
+ },
+ "orchestre national d ile de france": {
+  "id": "9895912",
+  "name": "Orchestre national d'île-de-France",
+  "link": "https://www.deezer.com/artist/9895912",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/aad86c5a7c8a1c88263afbb37f4c60c9/250x250-000000-80-0-0.jpg",
+  "fans": 1493
+ },
+ "kazumitsu ujisawa": null,
+ "christie dashiell 4tet": null,
+ "mateus asato": {
+  "id": "7629168",
+  "name": "Mateus Asato",
+  "link": "https://www.deezer.com/artist/7629168",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/7658f52aec9697b715d657117204aec5/250x250-000000-80-0-0.jpg",
+  "fans": 14336
+ },
+ "akiyo": {
+  "id": "55621",
+  "name": "Akiyo",
+  "link": "https://www.deezer.com/artist/55621",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/913a83e8e9960bcc11d3df010b194d89/250x250-000000-80-0-0.jpg",
+  "fans": 7193
+ }
 }

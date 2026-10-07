@@ -17,9 +17,22 @@ def run_source(label, status, fn, *args):
         return []
 
 
-def hide_artists(artists):
-    """Retire de votre liste les artistes de config/hidden_artists.yaml."""
-    names = (load_yaml(ROOT / "config" / "hidden_artists.yaml").get("hidden") or [])
+def apply_prefs(artists):
+    """Préférences de config/artist_prefs.yaml : niveaux imposés, puis artistes masqués retirés
+    de votre liste. Renvoie (artistes actifs, artistes masqués, noms masqués normalisés)."""
+    prefs = load_yaml(ROOT / "config" / "artist_prefs.yaml")
+    levels = {norm(n): int(t) for n, t in (prefs.get("levels") or {}).items() if n and str(t) in {"1", "2", "3"}}
+    changed = 0
+    for a in artists.values():
+        a["tier_auto"] = a.get("tier_auto", a["tier"]) if a.get("tier_forced") else a["tier"]
+        forced = levels.get(norm(a["name"]))
+        a["tier"] = forced or a["tier_auto"]
+        a["tier_forced"] = bool(forced)
+        changed += bool(forced)
+    if levels:
+        log(f"  {changed} niveaux imposés")
+
+    names = prefs.get("hidden") or []
     keys = {norm(n) for n in names if n}
     hidden = {i: a for i, a in artists.items() if norm(a["name"]) in keys}
     active = {i: a for i, a in artists.items() if i not in hidden}
@@ -35,7 +48,7 @@ def main():
     venues_cfg = load_yaml(ROOT / "config" / "venues.yaml")
 
     artists = deezer.refresh_artists(settings)
-    artists, hidden, hidden_keys = hide_artists(artists)
+    artists, hidden, hidden_keys = apply_prefs(artists)
 
     log("Sources de concerts")
     status, events = {}, []

@@ -27,6 +27,6 @@ bandsintown_max_artists: 400
 
 discovery:
   min_score: 0.25            # proximité minimale (0 à 1) pour afficher une découverte
-  max_new_lookups: 200       # artistes inconnus analysés par semaine (le cache cumule d'une semaine à l'autre)
+  max_new_lookups: 400       # artistes inconnus analysés par semaine (le cache cumule d'une semaine à l'autre)
   related_refresh_days: 90   # fréquence de rafraîchissement des artistes similaires
   favorite_venue_bonus: 0.1  # bonus de proximité dans vos salles favorites

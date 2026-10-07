@@ -7,6 +7,7 @@ Deux signaux tirés des « artistes similaires » de Deezer :
 from collections import defaultdict
 
 from . import deezer
+from .match import title_names
 from .util import log, norm
 
 TIER_WEIGHT = {1: 1.0, 2: 0.6, 3: 0.3}
@@ -31,13 +32,22 @@ def score_events(events, artists, settings, hidden_keys=frozenset()):
     log("Découvertes : lecture des artistes similaires de votre liste")
     rev_weight, rev_names = _reverse_index(artists, related_cache, cfg["related_refresh_days"])
 
-    candidates = [ev for ev in events if not ev.get("matched") and not ev.get("title_only") and ev.get("artists")]
+    # Noms à analyser : les artistes fournis par la source ; à défaut, pour L'Officiel des
+    # spectacles dont les titres sont presque toujours des noms d'artistes, le titre lui-même
+    def names_of(ev):
+        if ev.get("artists"):
+            return ev["artists"][:4]
+        if any(k.startswith("Offi:") for k in ev.get("source_keys", [])):
+            return title_names(ev.get("title"))[:4]
+        return []
+
+    candidates = [ev for ev in events if not ev.get("matched") and names_of(ev)]
     candidates.sort(key=lambda ev: (not ev.get("venue_favorite"), ev["date"]))
 
     lookups, scored = 0, 0
     for ev in candidates:
         best = None
-        for name in ev["artists"][:4]:
+        for name in names_of(ev):
             cached = norm(name) in search_cache
             if not cached and lookups >= cfg["max_new_lookups"]:
                 continue
