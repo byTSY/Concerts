@@ -5,13 +5,15 @@
 // GET /partage/<id>.json  -> informations pour le message : artiste, description, liens
 //
 // La page ne montre que le concert partagé : rien sur votre liste, vos niveaux ou vos goûts.
-// Description de l'artiste : Wikipédia (français, sinon anglais), articles de musiciens seulement.
-// Photo et lien de l'artiste : Deezer.
+// Description de l'artiste, toujours en français et centrée sur la musique :
+// - Wikidata : description courte (« groupe de rock anglais ») et genres musicaux ;
+// - Deezer : photo, lien et artistes similaires (« dans la veine de… »).
 
 const UA = "concerts-paris (https://github.com/byTSY/Concerts)";
-const MUSIC = /musi|chant|groupe|rappeu|rap |compositeu|pianist|guitarist|batteu|saxophon|trompett|dj|producteu|orchestre|ensemble|band|singer|rapper|songwriter|musician|composer|record producer|duo|trio|quartet|jazz|rock|pop|soul|funk|électro|electro|hip-hop|hip hop|chorale|choir/i;
-// Pages d'homonymie : « David Walters est un nom de personne notamment porté par… »
-const DISAMBIGUATION = /homonymie|nom de personne|notamment porté|peut désigner|est un patronyme|disambiguation|may refer to|can refer to|is the name of/i;
+const WIKIDATA = "https://www.wikidata.org/w/api.php";
+// Une fiche Wikidata liée à la musique porte un identifiant Deezer, Discogs, MusicBrainz ou
+// Spotify, ou un genre musical ; cela écarte les homonymes (nageur, politicien…)
+const MUSIC_PROPS = ["P2722", "P1953", "P434", "P1902", "P136"];
 const CACHE_DAYS = 7;
 
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -36,63 +38,141 @@ export function artistOf(ev) {
   return { name: tidy(ev.artists?.[0] || ev.title), deezer: null };
 }
 
-// Première ou deux premières phrases, c. 220 caractères au plus
-export function shorten(text, max = 220) {
-  const t = String(text || "").replace(/\s+/g, " ").replace(/\s*\([^)]*\)/g, "").trim();
-  const sentences = t.match(/[^.!?]+[.!?]+(\s|$)/g) || [t];
-  let out = "";
-  for (const s of sentences) {
-    if (out && (out + s).length > max) break;
-    out += s;
-  }
-  out = out.trim() || t;
-  return out.length > max + 40 ? out.slice(0, max).replace(/\s+\S*$/, "") + "…" : out;
-}
-
 async function getJSON(url) {
   const r = await fetch(url, { headers: { "user-agent": UA, accept: "application/json" } });
   if (!r.ok) throw new Error(`HTTP ${r.status}`);
   return r.json();
 }
 
-// Article Wikipédia d'un musicien portant ce nom : titre identique, ou « Nom (groupe) », etc.
-async function wikipedia(name, lang) {
-  const base = `https://${lang}.wikipedia.org/w/api.php`;
-  const search = await getJSON(`${base}?action=query&list=search&format=json&srlimit=5&srsearch=${encodeURIComponent(name)}`);
+const cap = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : s);
+export const listFr = (a) => (a.length > 1 ? `${a.slice(0, -1).join(", ")} et ${a.at(-1)}` : a[0] || "");
+
+// « du rock psychédélique », « de la dream pop », « de l'indie rock », « du hip-hop »
+const FEMININE_HEAD = /^(pop|soul|house|techno|musique|chanson|variete|salsa|samba|bossa|cumbia|rumba|bachata|electro|disco|dance|trap|drill|jungle|synthpop|new wave|world music)/;
+const FEMININE_TAIL = /\b(pop|soul|house|techno|wave|disco|trap|drill|dance)$/;
+export function withArticle(genre) {
+  const n = norm(genre);
+  const feminine = FEMININE_HEAD.test(n) || FEMININE_TAIL.test(n);
+  if (/^[aeiouy]/.test(n)) return `de l'${genre}`;  // le h est aspiré : « du hip-hop », « de la house »
+  return `${feminine ? "de la" : "du"} ${genre}`;
+}
+
+// Repli quand Wikidata n'a pas de description en français : métier et pays
+const OCCUPATIONS = [
+  ["Q2252262", "rappeur", "rappeuse"], ["Q488205", "auteur-compositeur-interprète", "autrice-compositrice-interprète"],
+  ["Q177220", "chanteur", "chanteuse"], ["Q130857", "DJ", "DJ"], ["Q183945", "producteur", "productrice"],
+  ["Q15981151", "musicien de jazz", "musicienne de jazz"], ["Q12800682", "saxophoniste", "saxophoniste"],
+  ["Q12377274", "trompettiste", "trompettiste"], ["Q855091", "guitariste", "guitariste"], ["Q486748", "pianiste", "pianiste"],
+  ["Q386854", "batteur", "batteuse"], ["Q584301", "bassiste", "bassiste"], ["Q36834", "compositeur", "compositrice"],
+  ["Q639669", "musicien", "musicienne"],
+];
+const COUNTRIES = {
+  Q142: ["français", "française"], Q145: ["britannique", "britannique"], Q21: ["anglais", "anglaise"], Q22: ["écossais", "écossaise"],
+  Q30: ["américain", "américaine"], Q16: ["canadien", "canadienne"], Q31: ["belge", "belge"], Q183: ["allemand", "allemande"],
+  Q408: ["australien", "australienne"], Q27: ["irlandais", "irlandaise"], Q38: ["italien", "italienne"], Q29: ["espagnol", "espagnole"],
+  Q55: ["néerlandais", "néerlandaise"], Q29999: ["néerlandais", "néerlandaise"], Q34: ["suédois", "suédoise"], Q20: ["norvégien", "norvégienne"],
+  Q35: ["danois", "danoise"], Q17: ["japonais", "japonaise"], Q155: ["brésilien", "brésilienne"], Q1033: ["nigérian", "nigériane"],
+  Q117: ["ghanéen", "ghanéenne"], Q766: ["jamaïcain", "jamaïcaine"], Q912: ["malien", "malienne"], Q1041: ["sénégalais", "sénégalaise"],
+  Q241: ["cubain", "cubaine"], Q884: ["sud-coréen", "sud-coréenne"], Q39: ["suisse", "suisse"], Q96: ["mexicain", "mexicaine"],
+  Q414: ["argentin", "argentine"], Q189: ["islandais", "islandaise"], Q33: ["finlandais", "finlandaise"], Q45: ["portugais", "portugaise"],
+  Q262: ["algérien", "algérienne"], Q1028: ["marocain", "marocaine"], Q948: ["tunisien", "tunisienne"], Q1009: ["camerounais", "camerounaise"],
+  Q1008: ["ivoirien", "ivoirienne"], Q974: ["congolais", "congolaise"], Q258: ["sud-africain", "sud-africaine"], Q664: ["néo-zélandais", "néo-zélandaise"],
+  Q801: ["israélien", "israélienne"], Q822: ["libanais", "libanaise"], Q36: ["polonais", "polonaise"], Q159: ["russe", "russe"],
+  Q212: ["ukrainien", "ukrainienne"], Q739: ["colombien", "colombienne"], Q40: ["autrichien", "autrichienne"], Q790: ["haïtien", "haïtienne"],
+};
+
+// Genres Wikidata utilisables : pas de notion qui n'est pas un genre (« composition de musique
+// instrumentale »), et le plus précis seulement (« hard rock » plutôt que « rock et hard rock »)
+const NOT_A_GENRE = /composition|instrument|chanson a texte|musique vocale|^musique$|^chanson$/;
+export function cleanGenres(labels) {
+  const ok = labels.filter((g) => g.length <= 30 && !NOT_A_GENRE.test(norm(g)));
+  const specific = ok.filter((g) => !ok.some((o) => o !== g && ` ${norm(o)} `.includes(` ${norm(g)} `)));
+  return [...new Set(specific)].slice(0, 2);
+}
+
+const claimIds = (entity, prop) => (entity?.claims?.[prop] || [])
+  .map((c) => c.mainsnak?.datavalue?.value).map((v) => (v && typeof v === "object" ? v.id : v)).filter(Boolean);
+
+function builtDescription(e) {
+  const female = claimIds(e, "P21").some((id) => id === "Q6581072" || id === "Q1052281");
+  const human = claimIds(e, "P31").includes("Q5");
+  const country = COUNTRIES[claimIds(e, human ? "P27" : "P495")[0]] || COUNTRIES[claimIds(e, "P27")[0]];
+  const occ = claimIds(e, "P106");
+  const job = human ? OCCUPATIONS.find(([id]) => occ.includes(id)) : null;
+  const who = human ? (job ? job[female ? 2 : 1] : null) : claimIds(e, "P31").includes("Q9212979") ? "duo" : "groupe";
+  if (!who) return null;
+  return country ? `${who} ${country[human && female ? 1 : 0]}` : who;
+}
+
+// Fiche Wikidata de l'artiste : description courte en français et genres musicaux
+async function wikidata(name, deezerId) {
+  const search = await getJSON(`${WIKIDATA}?action=wbsearchentities&format=json&language=fr&uselang=fr&type=item&limit=7&search=${encodeURIComponent(name)}`);
   const key = norm(name);
-  const titles = (search.query?.search || []).map((h) => h.title)
-    .filter((t) => norm(t.replace(/\s*\(.*\)$/, "")) === key);
-  for (const title of titles) {
-    const data = await getJSON(`${base}?action=query&prop=extracts|pageprops&ppprop=disambiguation&exintro=1&explaintext=1&redirects=1&format=json&titles=${encodeURIComponent(title)}`);
-    const page = Object.values(data.query?.pages || {})[0];
-    const extract = page?.extract || "";
-    const disambiguation = page?.pageprops?.disambiguation !== undefined || DISAMBIGUATION.test(extract.slice(0, 250));
-    if (extract && !disambiguation && MUSIC.test(extract.slice(0, 400))) {
-      return { text: shorten(extract), source: `https://${lang}.wikipedia.org/wiki/${encodeURIComponent(page.title.replace(/ /g, "_"))}`, lang };
-    }
+  const ids = (search.search || []).filter((h) => norm(h.label) === key || norm(h.match?.text) === key).map((h) => h.id).slice(0, 6);
+  if (!ids.length) return null;
+  const data = await getJSON(`${WIKIDATA}?action=wbgetentities&format=json&props=claims|descriptions|sitelinks&languages=fr&sitefilter=frwiki&ids=${ids.join("|")}`);
+  const list = ids.map((id) => data.entities?.[id]).filter(Boolean);
+  // L'identifiant Deezer tranche ; sinon la première fiche liée à la musique
+  const pick = (deezerId && list.find((e) => claimIds(e, "P2722").map(String).includes(String(deezerId))))
+    || list.find((e) => MUSIC_PROPS.some((p) => e.claims?.[p]?.length));
+  if (!pick) return null;
+  const genreIds = claimIds(pick, "P136").slice(0, 4);
+  let genres = [];
+  if (genreIds.length) {
+    const labels = await getJSON(`${WIKIDATA}?action=wbgetentities&format=json&props=labels&languages=fr&ids=${genreIds.join("|")}`);
+    genres = cleanGenres(genreIds.map((id) => labels.entities?.[id]?.labels?.fr?.value).filter(Boolean));
   }
-  return null;
+  const wikiTitle = pick.sitelinks?.frwiki?.title;
+  return {
+    description: pick.descriptions?.fr?.value || builtDescription(pick),
+    genres,
+    source: wikiTitle ? `https://fr.wikipedia.org/wiki/${encodeURIComponent(wikiTitle.replace(/ /g, "_"))}` : `https://www.wikidata.org/wiki/${pick.id}`,
+  };
 }
 
-// Artiste Deezer de même nom (le plus suivi) : lien et photo
-async function deezer(name) {
-  const data = await getJSON(`https://api.deezer.com/search/artist?limit=10&q=${encodeURIComponent(name)}`);
-  const key = norm(name);
-  const exact = (data.data || []).filter((a) => norm(a.name) === key).sort((a, b) => (b.nb_fan || 0) - (a.nb_fan || 0))[0];
-  return exact ? { link: exact.link, picture: exact.picture_xl || exact.picture_big || exact.picture_medium } : null;
+// Artiste Deezer (identifiant connu, sinon homonyme exact le plus suivi) : lien, photo, similaires
+async function deezer(name, knownId) {
+  let artist = null;
+  if (knownId) {
+    artist = await getJSON(`https://api.deezer.com/artist/${knownId}`);
+    if (artist?.error) artist = null;
+  }
+  if (!artist) {
+    const data = await getJSON(`https://api.deezer.com/search/artist?limit=10&q=${encodeURIComponent(name)}`);
+    artist = (data.data || []).filter((a) => norm(a.name) === norm(name)).sort((a, b) => (b.nb_fan || 0) - (a.nb_fan || 0))[0] || null;
+  }
+  if (!artist) return null;
+  const related = await getJSON(`https://api.deezer.com/artist/${artist.id}/related?limit=6`).catch(() => ({}));
+  return {
+    id: artist.id,
+    link: artist.link,
+    picture: artist.picture_xl || artist.picture_big || artist.picture_medium,
+    similar: (related.data || []).map((a) => a.name).filter((n) => norm(n) !== norm(name)).slice(0, 3),
+  };
 }
 
-// Description et liens d'un artiste, mis en cache une semaine
-async function artistInfo(name, ctx) {
-  const cacheKey = new Request(`https://partage.cache/artist/${encodeURIComponent(norm(name))}`);
+// Description, style et liens d'un artiste, mis en cache une semaine
+async function artistInfo(name, deezerLink, ctx) {
+  const cacheKey = new Request(`https://partage.cache/v2/artist/${encodeURIComponent(norm(name))}`);
   const cache = caches.default;
   const hit = await cache.match(cacheKey);
   if (hit) return hit.json();
-  const [wiki, dz] = await Promise.all([
-    wikipedia(name, "fr").then((r) => r || wikipedia(name, "en")).catch(() => null),
-    deezer(name).catch(() => null),
-  ]);
-  const info = { description: wiki?.text || null, descriptionSource: wiki?.source || null, deezer: dz?.link || null, picture: dz?.picture || null };
+  const knownId = (String(deezerLink || "").match(/artist\/(\d+)/) || [])[1];
+  const dz = await deezer(name, knownId).catch(() => null);
+  const wd = await wikidata(name, dz?.id).catch(() => null);
+  const who = cap(wd?.description || "");
+  const similar = dz?.similar || [];
+  // « Groupe de rock anglais, dans la veine de Tame Impala, Pond et Jacco Gardner. »
+  const summary = who && similar.length ? `${who}, dans la veine de ${listFr(similar)}.`
+    : who ? `${who}.` : similar.length ? `Dans la veine de ${listFr(similar)}.` : null;
+  const info = {
+    summary,
+    genres: wd?.genres || [],
+    styleText: wd?.genres?.length ? withArticle(wd.genres[0]) : null,  // un seul genre dans le message
+    source: wd?.source || null,
+    deezer: dz?.link || null,
+    picture: dz?.picture || null,
+  };
   ctx.waitUntil(cache.put(cacheKey, new Response(JSON.stringify(info), {
     headers: { "content-type": "application/json", "cache-control": `max-age=${CACHE_DAYS * 86400}` },
   })));
@@ -111,6 +191,14 @@ const STYLES = [
   ["classique", /classi|symphoni|chambre|baroque|lyrique|opera|sacree|religious|orgue|romantique|piano|violon|eglise|contemporain|medieval|noel|bougie/],
 ];
 
+// Genre lisible : « Pop, Pop / Rock » -> « Pop » ; « Église, Classique » -> « Classique »
+// (L'Officiel des spectacles donne le sous-genre puis la famille, parfois un lieu ou un instrument)
+const NOT_GENRE = /^(eglise|piano|violon|orgue|guitare|concert a la bougie|concert de noel|choix de la redaction|music|other|undefined)$/;
+export function displayGenre(genre) {
+  const parts = String(genre || "").split(",").map((s) => s.trim()).filter(Boolean);
+  return parts.find((p) => !NOT_GENRE.test(norm(p))) || null;
+}
+
 export function styleOf(ev) {
   const g = norm(ev.genre || "");
   const found = STYLES.filter(([, re]) => re.test(g)).map(([label]) => label);
@@ -119,7 +207,7 @@ export function styleOf(ev) {
 
 export async function concertInfo(ev, ctx) {
   const artist = artistOf(ev);
-  const info = await artistInfo(artist.name, ctx);
+  const info = await artistInfo(artist.name, artist.deezer, ctx);
   const q = encodeURIComponent(artist.name);
   return {
     id: ev.id,
@@ -133,9 +221,11 @@ export async function concertInfo(ev, ctx) {
     onSale: ev.on_sale || null,
     status: ev.status || null,
     style: styleOf(ev),
-    genre: ev.genre || null,
-    description: info.description,
-    descriptionSource: info.descriptionSource,
+    genre: displayGenre(ev.genre),
+    description: info.summary,
+    styleText: info.styleText,
+    genres: info.genres,
+    descriptionSource: info.source,
     picture: artist.picture || info.picture || ev.image || null,
     tickets: (ev.links || []).map((l) => ({ source: l.source, url: l.url })),
     listen: {
@@ -212,12 +302,12 @@ ${c.picture ? `<meta property="og:image" content="${esc(c.picture)}">` : ""}
         </div>
       </div>
       <div class="tags">
-        ${c.genre || c.style ? `<span class="tag">${esc(c.genre || c.style)}</span>` : ""}
+        ${(c.genres?.length ? c.genres : [c.genre || c.style].filter(Boolean)).map((g) => `<span class="tag">${esc(g)}</span>`).join("")}
         ${c.price ? `<span class="tag">${esc(c.price)}</span>` : ""}
         ${c.title && norm(c.title) !== norm(c.artist) ? `<span class="tag">${esc(c.title)}</span>` : ""}
       </div>
       ${c.description ? `<p class="about">${esc(c.description)}</p>
-      <p class="source">Source : <a href="${esc(c.descriptionSource)}" target="_blank" rel="noopener">Wikipédia</a></p>` : ""}
+      <p class="source">Sources : Wikidata et Deezer${c.descriptionSource ? ` · <a href="${esc(c.descriptionSource)}" target="_blank" rel="noopener">En savoir plus</a>` : ""}</p>` : ""}
       ${tickets ? `<h2>Places</h2><div class="row">${tickets}</div>` : ""}
       <h2>Écouter</h2>
       <div class="row">

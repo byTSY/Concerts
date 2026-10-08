@@ -267,7 +267,10 @@ const GENRE_PHRASES = [
   [/opera|lyrique/, "de l'opéra"], [/classi|symphoni|baroque|chambre/, "du classique"],
   [/monde|world|latin|afri|bresil|salsa|samba/, "de la musique du monde"],
 ];
-const genrePhrase = (ev) => GENRE_PHRASES.find(([re]) => re.test(normName(ev.genre || "")))?.[1] || null;
+// Premier terme pertinent du genre : « Jazz caribéen, Jazz / Blues » -> « jazz caribeen » (et non « blues »)
+const NOT_GENRE = /^(eglise|piano|violon|orgue|guitare|concert a la bougie|concert de noel|choix de la redaction|music|other|undefined)$/;
+const mainGenre = (ev) => String(ev.genre || "").split(",").map(normName).find((g) => g && !NOT_GENRE.test(g)) || "";
+const genrePhrase = (ev) => GENRE_PHRASES.find(([re]) => re.test(mainGenre(ev)))?.[1] || null;
 const hourText = (t) => t.replace(/^(\d+):(\d+)$/, (m, h, mn) => `${Number(h)}h${mn === "00" ? "" : mn}`);
 
 function shareArtist(ev) {
@@ -281,15 +284,17 @@ function messageText(ev, info) {
   const name = info?.artist || artist.name;
   const day = fmt({ weekday: "long", day: "numeric", month: "long" }).format(parseDay(ev.date));
   const when = `le ${day}${ev.time ? ` à ${hourText(ev.time)}` : ""}`;
-  const style = genrePhrase(ev);
-  // Première phrase de la description, pour rester court
-  const desc = info?.description ? (info.description.match(/^.+?[.!?](\s|$)/)?.[0] || info.description).trim() : "";
+  // Genre précis de Wikidata (« du rock psychédélique ») ; à défaut, celui de la billetterie
+  const style = info?.styleText || genrePhrase(ev);
+  // « Groupe de rock anglais, dans la veine de Tame Impala, Pond et Jacco Gardner. »
+  const desc = (info?.description || "").trim();
   const lines = [
     `Hey, il y a le concert ${startsWithVowel(name) ? "d'" : "de "}${name} ${when}, ${atVenue(ev.venue)}.`,
     [style ? `C'est ${style}.` : "", desc].filter(Boolean).join(" "),
     "On prend des places ?",
     "",
-    info?.listen?.deezer || artist.link || `https://www.deezer.com/search/${encodeURIComponent(name)}`,
+    // Lien vers la fiche web du concert (photo, infos, billets, écoute)
+    new URL(`partage/${ev.id}`, location.href).href,
   ];
   return lines.filter((l, i) => l || i === 3).join("\n");
 }
@@ -312,22 +317,15 @@ async function shareMessage(id) {
   if (!ev) return;
   let info = null;
   try {
-    // Description de l'artiste et lien Deezer exact, préparés par la fiche de partage (2,5 s au plus)
+    // Description et style de l'artiste, préparés par la fiche de partage (2,5 s au plus)
     const ctrl = new AbortController();
     const timer = setTimeout(() => ctrl.abort(), 2500);
     const r = await fetch(`partage/${id}.json`, { signal: ctrl.signal });
     clearTimeout(timer);
     if (r.ok) info = await r.json();
   } catch { /* message sans description */ }
+  // Le lien de la fiche est dans le texte : certaines applications ignorent un lien passé à part
   await shareOrCopy({ text: messageText(ev, info) }, "Message copié : collez-le dans WhatsApp ou Messages");
-}
-
-async function sharePage(id) {
-  const ev = state.events.find((e) => e.id === id);
-  if (!ev) return;
-  const url = new URL(`partage/${id}`, location.href).href;
-  const day = fmt({ weekday: "long", day: "numeric", month: "long" }).format(parseDay(ev.date));
-  await shareOrCopy({ title: `${shareArtist(ev).name}, ${day}`, url }, "Lien de la fiche copié");
 }
 
 function toast(text) {
@@ -731,10 +729,8 @@ function openTicket(id) {
     ${ev.description ? `<div class="ticket-section"><p>${esc(ev.description)}</p></div>` : ""}
     ${ev.image ? `<img class="ticket-image" src="${esc(ev.image)}" alt="" loading="lazy">` : ""}
     <div class="ticket-links">${starButton(ev, true)}${links}${listen}</div>
-    <div class="ticket-share"><h3>Partager</h3>
-      <button type="button" class="btn btn-quiet" data-share="message" data-share-id="${esc(ev.id)}">Par message</button>
-      <button type="button" class="btn btn-quiet" data-share="page" data-share-id="${esc(ev.id)}">Fiche web</button>
-      <a class="link-btn share-preview" href="partage/${esc(ev.id)}" target="_blank" rel="noopener">Voir la fiche</a></div>
+    <div class="ticket-share">
+      <button type="button" class="btn btn-share" data-share="${esc(ev.id)}">Partager</button></div>
     ${hideButtons ? `<div class="ticket-hide">${hideButtons}</div>` : ""}`;
   dlg.showModal();
 }
@@ -803,7 +799,7 @@ function bind() {
 
   document.body.addEventListener("click", (e) => {
     const share = e.target.closest("[data-share]");
-    if (share) { e.stopPropagation(); (share.dataset.share === "page" ? sharePage : shareMessage)(share.dataset.shareId); return; }
+    if (share) { e.stopPropagation(); shareMessage(share.dataset.share); return; }
     const star = e.target.closest("[data-star]");
     if (star) { e.stopPropagation(); toggleStar(star.dataset.star); return; }
     const hide = e.target.closest("[data-hide]");

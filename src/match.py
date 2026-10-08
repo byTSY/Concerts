@@ -6,6 +6,7 @@ from collections import defaultdict
 from .util import norm, norm_venue, today_iso
 
 SOURCE_PRIORITY = {"Ticketmaster": 0, "Bandsintown": 2, "Que faire à Paris": 3, "Offi": 4}
+GENRE_PRIORITY = {"Offi"}  # sources dont le genre remplace celui de la source principale
 MIN_TITLE_KEY = 4  # longueur minimale d'un nom pour un rapprochement sur le titre seul
 
 # Rapprochement sur le titre seul (sources sans programmation détaillée) :
@@ -260,6 +261,10 @@ def dedupe(events):
             for field in ("time", "address", "price", "on_sale", "image", "genre", "status", "description"):
                 if not base.get(field) and ev.get(field):
                     base[field] = ev[field]
+            # Genre : celui de L'Officiel des spectacles prime, plus précis que ceux de Ticketmaster
+            # (« World », « Other ») et rédigé en français
+            if ev["source"] in GENRE_PRIORITY and ev.get("genre"):
+                base["genre"] = ev["genre"]
             if ev.get("url") and ev["url"] not in seen_urls:
                 links.append({"source": ev["source"], "url": ev["url"]})
                 seen_urls.add(ev["url"])

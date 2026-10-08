@@ -306,3 +306,5 @@ dialog::backdrop { background: rgba(20, 24, 56, .55); }
 .ticket-share { margin-top: 18px; padding-top: 14px; border-top: 1px dashed var(--rule); display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .ticket-share h3 { width: 100%; margin: 0 0 2px; font-size: .9rem; color: var(--ink-soft); font-weight: 600; }
 .share-preview { display: inline; margin: 0 0 0 4px; }
+.btn-share { border: 0; cursor: pointer; font: inherit; font-weight: 600; background: var(--pink); color: #fff; }
+.btn-share::before { content: "↗ "; }

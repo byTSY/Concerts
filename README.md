@@ -135,28 +135,41 @@ message d'erreur.
   score et les préférences (masquer, niveau imposé).
 - **Salles** : vos salles favorites et celles où passent des artistes pour vous.
 
-**Partager un concert** (section « Partager » de la fiche d'un concert) :
+**Partager un concert** : bouton « Partager » sur la fiche d'un concert. Il ouvre le menu de
+partage du téléphone (WhatsApp, Messages…) avec un message prêt à envoyer, par exemple :
 
-- **Par message** : ouvre le menu de partage du téléphone (WhatsApp, Messages…) avec un texte
-  prêt à envoyer : artiste, date, salle, style, une phrase de description et le lien Deezer de
-  l'artiste. Sur ordinateur, le texte est copié dans le presse-papiers.
-- **Fiche web** : partage le lien d'une page publique `/partage/<concert>` (photo de l'artiste,
-  date, salle, prix, liens d'achat, description, Deezer, Spotify, YouTube), avec un aperçu dans
-  WhatsApp et Messages. Cette page ne montre que le concert partagé, rien de votre liste ni de
-  vos préférences.
+> Hey, il y a le concert de Temples le samedi 17 octobre à 20h, au Trianon.
+> C'est du rock psychédélique. Groupe de rock anglais, dans la veine de Pond, Future Islands et
+> King Gizzard & The Lizard Wizard.
+> On prend des places ?
+>
+> https://concerts-s2k.pages.dev/partage/…
 
-Description de l'artiste : premier paragraphe de l'article Wikipédia (français, sinon anglais),
-retenu seulement s'il s'agit d'un musicien et si le titre correspond au nom ; source citée.
-Sans article, la fiche s'en passe. Spotify et YouTube : lien de recherche sur le nom de
-l'artiste (le lien exact demanderait une clé d'accès à leurs API). Fonction :
+Sur ordinateur, le message est copié dans le presse-papiers. Le lien mène à une page publique
+`/partage/<concert>` : photo de l'artiste, date, salle, prix, genres, description, liens
+d'achat, Deezer, Spotify et YouTube, avec un aperçu dans WhatsApp et Messages. Cette page ne
+montre que le concert partagé, rien de votre liste ni de vos préférences.
+
+Description de l'artiste, en français et centrée sur la musique :
+- **Wikidata** : description courte (« groupe de rock anglais », « pionnier de la musique techno
+  de Detroit ») et genres musicaux. Parmi les homonymes, seule une fiche liée à la musique est
+  retenue (identifiant Deezer, Discogs, MusicBrainz ou Spotify, ou genre musical) ; si elle
+  porte l'identifiant Deezer de l'artiste, le rapprochement est certain. Sans description en
+  français, elle est composée à partir du métier et du pays (« chanteuse américaine »).
+- **Deezer** : photo et trois artistes similaires (« dans la veine de… »), y compris pour les
+  artistes absents de Wikidata.
+
+Spotify et YouTube : lien de recherche sur le nom de l'artiste (le lien exact demanderait une
+clé d'accès à leurs API). Résultats mis en cache une semaine. Fonction :
 `functions/partage/[[path]].js`.
 
 **Rendre les fiches accessibles à vos amis (une seule fois).** Le site étant réservé à votre
 adresse e-mail, il faut ouvrir le seul chemin `/partage/` : Zero Trust > Access >
-Applications > **Add an application** > *Self-hosted* ; nom `Concerts partage` ; destination
-`concerts-s2k.pages.dev`, chemin (*Path*) `partage` ; policy *Bypass* avec *Include* >
-*Everyone*. Cloudflare applique la règle la plus précise : `/partage/…` devient public, le
-reste du site reste protégé.
+Applications > **Create new application** > *Self-hosted* ; nom `Concerts partage` ;
+destination (saisie libre, *Switch to custom input*) `concerts-s2k.pages.dev/partage` ; policy
+*Bypass* avec *Include* > *Everyone* (à défaut : *IP ranges* `0.0.0.0/0` et `::/0`).
+Cloudflare applique la règle la plus précise : `/partage/…` devient public, le reste du site
+reste protégé.
 
 **Styles.** Les genres des sources (Ticketmaster en anglais, L'Officiel des spectacles en
 français, rien pour Que faire à Paris) sont regroupés en familles : jazz, blues, soul ; rap,
