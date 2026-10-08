@@ -612,7 +612,7 @@
   "hidden": false
  },
  {
-  "name": "Aminé",
+  "name": "Amine",
   "link": "https://www.deezer.com/artist/10792606",
   "picture": "https://cdn-images.dzcdn.net/images/artist/69eb42da46b151023f94c43d826cd0cd/250x250-000000-80-0-0.jpg",
   "score": 28.5,
@@ -1692,7 +1692,7 @@
   "hidden": false
  },
  {
-  "name": "Omah Lay",
+  "name": "Omah lay",
   "link": "https://www.deezer.com/artist/56094992",
   "picture": "https://cdn-images.dzcdn.net/images/artist/e8ce64479eb3d7fc2853f7fd694cc999/250x250-000000-80-0-0.jpg",
   "score": 15.5,
@@ -1890,7 +1890,7 @@
   "hidden": false
  },
  {
-  "name": "6LACK",
+  "name": "6lack",
   "link": "https://www.deezer.com/artist/10375188",
   "picture": "https://cdn-images.dzcdn.net/images/artist/99efcda22e449394f3362defa4aeb4bb/250x250-000000-80-0-0.jpg",
   "score": 14.5,
@@ -1926,7 +1926,7 @@
   "hidden": false
  },
  {
-  "name": "JAŸ-Z",
+  "name": "JAY Z",
   "link": "https://www.deezer.com/artist/1309",
   "picture": "https://cdn-images.dzcdn.net/images/artist/a59aabd18e84d732ce3b9f6f5c4e5f50/250x250-000000-80-0-0.jpg",
   "score": 14.5,
@@ -3492,24 +3492,6 @@
   "hidden": false
  },
  {
-  "name": "Koffee",
-  "link": "https://www.deezer.com/artist/514127",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/fa724e6edaae0359a9e8d63815ecc29d/250x250-000000-80-0-0.jpg",
-  "score": 9.75,
-  "tier": 1,
-  "tier_auto": 1,
-  "first_seen": "2026-10-07",
-  "added": "2024-07-17",
-  "still_liked": true,
-  "sources": {
-   "favorite": false,
-   "albums": 1,
-   "tracks": 6,
-   "playlists": 7
-  },
-  "hidden": false
- },
- {
   "name": "Marvin Gaye",
   "link": "https://www.deezer.com/artist/1154",
   "picture": "https://cdn-images.dzcdn.net/images/artist/149cf44d269d34d3277b97ea1b907366/250x250-000000-80-0-0.jpg",
@@ -3542,6 +3524,24 @@
    "albums": 2,
    "tracks": 3,
    "playlists": 11
+  },
+  "hidden": false
+ },
+ {
+  "name": "Original Koffee",
+  "link": "https://www.deezer.com/artist/514127",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/fa724e6edaae0359a9e8d63815ecc29d/250x250-000000-80-0-0.jpg",
+  "score": 9.75,
+  "tier": 1,
+  "tier_auto": 1,
+  "first_seen": "2026-10-07",
+  "added": "2024-07-17",
+  "still_liked": true,
+  "sources": {
+   "favorite": false,
+   "albums": 1,
+   "tracks": 6,
+   "playlists": 7
   },
   "hidden": false
  },
@@ -3600,7 +3600,7 @@
   "hidden": false
  },
  {
-  "name": "Empire Of The Sun",
+  "name": "Empire of the Sun",
   "link": "https://www.deezer.com/artist/185473",
   "picture": "https://cdn-images.dzcdn.net/images/artist/7a91845938492af3644e7152a661ca95/250x250-000000-80-0-0.jpg",
   "score": 9.25,
@@ -3780,7 +3780,7 @@
   "hidden": false
  },
  {
-  "name": "Ico",
+  "name": "ICO",
   "link": "https://www.deezer.com/artist/483582",
   "picture": "https://cdn-images.dzcdn.net/images/artist/d151d2d11fe4b0eac66f6fa9e2de34cc/250x250-000000-80-0-0.jpg",
   "score": 9.0,
@@ -3996,7 +3996,7 @@
   "hidden": false
  },
  {
-  "name": "Enny",
+  "name": "ENNY",
   "link": "https://www.deezer.com/artist/5380664",
   "picture": "https://cdn-images.dzcdn.net/images/artist/4acc88b99e195272d584f928d11fcd56/250x250-000000-80-0-0.jpg",
   "score": 8.5,
@@ -4086,7 +4086,7 @@
   "hidden": false
  },
  {
-  "name": "MoStack",
+  "name": "Mostack",
   "link": "https://www.deezer.com/artist/9482034",
   "picture": "https://cdn-images.dzcdn.net/images/artist/da7a12503a2af0c33f8d08b4c6fb46d1/250x250-000000-80-0-0.jpg",
   "score": 8.5,
@@ -4698,7 +4698,7 @@
   "hidden": false
  },
  {
-  "name": "Wizkid",
+  "name": "WizKid",
   "link": "https://www.deezer.com/artist/3933641",
   "picture": "https://cdn-images.dzcdn.net/images/artist/171332ffcaa66c2b5583d7630297be88/250x250-000000-80-0-0.jpg",
   "score": 8.0,
@@ -4932,7 +4932,7 @@
   "hidden": false
  },
  {
-  "name": "Foster The People",
+  "name": "Foster the People",
   "link": "https://www.deezer.com/artist/417037",
   "picture": "https://cdn-images.dzcdn.net/images/artist/fe79e60f3beec07d6ab8bd6b3bf033e0/250x250-000000-80-0-0.jpg",
   "score": 7.5,
@@ -5148,7 +5148,7 @@
   "hidden": false
  },
  {
-  "name": "ZHU",
+  "name": "Zhu",
   "link": "https://www.deezer.com/artist/351586",
   "picture": "https://cdn-images.dzcdn.net/images/artist/bb1b3d224ddfe58a95aa7b18140d6000/250x250-000000-80-0-0.jpg",
   "score": 7.25,
@@ -5526,7 +5526,7 @@
   "hidden": false
  },
  {
-  "name": "Blow",
+  "name": "BLOW",
   "link": "https://www.deezer.com/artist/9905864",
   "picture": "https://cdn-images.dzcdn.net/images/artist/28ee85a24ace5f915df0e13f2341d925/250x250-000000-80-0-0.jpg",
   "score": 6.75,
@@ -5814,24 +5814,6 @@
   "hidden": false
  },
  {
-  "name": "AME",
-  "link": "https://www.deezer.com/artist/9085",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/e463060de3682d01307e3e5ddaf9f941/250x250-000000-80-0-0.jpg",
-  "score": 6.25,
-  "tier": 1,
-  "tier_auto": 1,
-  "first_seen": "2026-10-07",
-  "added": "2019-08-18",
-  "still_liked": true,
-  "sources": {
-   "favorite": false,
-   "albums": 3,
-   "tracks": 0,
-   "playlists": 1
-  },
-  "hidden": false
- },
- {
   "name": "Booker T. & the M.G.'s",
   "link": "https://www.deezer.com/artist/13566",
   "picture": "https://cdn-images.dzcdn.net/images/artist/1d866303d7fd9ce5cfa97d084550510a/250x250-000000-80-0-0.jpg",
@@ -6066,7 +6048,25 @@
   "hidden": false
  },
  {
-  "name": "Andre",
+  "name": "Âme",
+  "link": "https://www.deezer.com/artist/9085",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/e463060de3682d01307e3e5ddaf9f941/250x250-000000-80-0-0.jpg",
+  "score": 6.25,
+  "tier": 1,
+  "tier_auto": 1,
+  "first_seen": "2026-10-07",
+  "added": "2019-08-18",
+  "still_liked": true,
+  "sources": {
+   "favorite": false,
+   "albums": 3,
+   "tracks": 0,
+   "playlists": 1
+  },
+  "hidden": false
+ },
+ {
+  "name": "André",
   "link": "https://www.deezer.com/artist/9626",
   "picture": "https://cdn-images.dzcdn.net/images/artist/f7c4b3443b24923fdff9da6c20b72b8e/250x250-000000-80-0-0.jpg",
   "score": 6.0,
@@ -6279,7 +6279,7 @@
    "tracks": 6,
    "playlists": 0
   },
-  "hidden": false
+  "hidden": true
  },
  {
   "name": "Girl Scout",
@@ -6552,7 +6552,7 @@
   "hidden": false
  },
  {
-  "name": "STUPEFLIP",
+  "name": "Stupeflip",
   "link": "https://www.deezer.com/artist/939",
   "picture": "https://cdn-images.dzcdn.net/images/artist/88fb42688e1aa13050951ce9200b4fff/250x250-000000-80-0-0.jpg",
   "score": 6.0,
@@ -6894,7 +6894,7 @@
   "hidden": false
  },
  {
-  "name": "Devo",
+  "name": "DEVO",
   "link": "https://www.deezer.com/artist/1494",
   "picture": "https://cdn-images.dzcdn.net/images/artist/737d33694d4e139ca0bc0e8a5e87033f/250x250-000000-80-0-0.jpg",
   "score": 5.25,
@@ -6930,24 +6930,6 @@
   "hidden": false
  },
  {
-  "name": "H.O.S.H.",
-  "link": "https://www.deezer.com/artist/150457",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/17764a5b4665a7f05aa372374ce9a575/250x250-000000-80-0-0.jpg",
-  "score": 5.25,
-  "tier": 1,
-  "tier_auto": 1,
-  "first_seen": "2026-10-07",
-  "added": "2020-01-29",
-  "still_liked": true,
-  "sources": {
-   "favorite": false,
-   "albums": 0,
-   "tracks": 5,
-   "playlists": 1
-  },
-  "hidden": false
- },
- {
   "name": "Hare Squead",
   "link": "https://www.deezer.com/artist/7567752",
   "picture": "https://cdn-images.dzcdn.net/images/artist/9aa2cb0f5d76a4a81c0ef14bc1bd084c/250x250-000000-80-0-0.jpg",
@@ -6962,6 +6944,24 @@
    "albums": 0,
    "tracks": 4,
    "playlists": 5
+  },
+  "hidden": false
+ },
+ {
+  "name": "HOSH",
+  "link": "https://www.deezer.com/artist/150457",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/17764a5b4665a7f05aa372374ce9a575/250x250-000000-80-0-0.jpg",
+  "score": 5.25,
+  "tier": 1,
+  "tier_auto": 1,
+  "first_seen": "2026-10-07",
+  "added": "2020-01-29",
+  "still_liked": true,
+  "sources": {
+   "favorite": false,
+   "albums": 0,
+   "tracks": 5,
+   "playlists": 1
   },
   "hidden": false
  },
@@ -7092,7 +7092,7 @@
   "hidden": false
  },
  {
-  "name": "SWN",
+  "name": "Swn",
   "link": "https://www.deezer.com/artist/391407",
   "picture": "https://cdn-images.dzcdn.net/images/artist/6540d04d40759dd96800d9a169fc2316/250x250-000000-80-0-0.jpg",
   "score": 5.25,
@@ -7452,7 +7452,7 @@
   "hidden": false
  },
  {
-  "name": "Mike WiLL Made-It",
+  "name": "Mike Will Made-It",
   "link": "https://www.deezer.com/artist/5147523",
   "picture": "https://cdn-images.dzcdn.net/images/artist/91e5098a8a790fd1bbc7e71fba9c122f/250x250-000000-80-0-0.jpg",
   "score": 5.0,
@@ -7526,7 +7526,7 @@
  {
   "name": "RUBII",
   "link": "https://www.deezer.com/artist/236834931",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/c697853415fd3e6aa7dff8423a7cf656/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/c614eeb81d29df73c2646bde76cde121/250x250-000000-80-0-0.jpg",
   "score": 5.0,
   "tier": 1,
   "tier_auto": 1,
@@ -7578,7 +7578,7 @@
   "hidden": false
  },
  {
-  "name": "Sonya Spence",
+  "name": "SONYA SPENCE",
   "link": "https://www.deezer.com/artist/505085",
   "picture": "https://cdn-images.dzcdn.net/images/artist/98e29b8e8e154b0c3a1e844331c54601/250x250-000000-80-0-0.jpg",
   "score": 5.0,
@@ -8100,7 +8100,7 @@
   "hidden": false
  },
  {
-  "name": "ScHoolboy Q",
+  "name": "Schoolboy Q",
   "link": "https://www.deezer.com/artist/1057597",
   "picture": "https://cdn-images.dzcdn.net/images/artist/712254b1fdbf8ee516eb25cd991b9bae/250x250-000000-80-0-0.jpg",
   "score": 4.5,
@@ -8604,7 +8604,7 @@
   "hidden": false
  },
  {
-  "name": "CHIKA",
+  "name": "Chika",
   "link": "https://www.deezer.com/artist/1311109",
   "picture": "https://cdn-images.dzcdn.net/images/artist/72aa6a7a8a0edb0b660466da1164d4db/250x250-000000-80-0-0.jpg",
   "score": 4.0,
@@ -8694,6 +8694,24 @@
   "hidden": false
  },
  {
+  "name": "HAUSER",
+  "link": "https://www.deezer.com/artist/4192810",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/db2f159a24b000d57f762eb916a3e421/250x250-000000-80-0-0.jpg",
+  "score": 4.0,
+  "tier": 2,
+  "tier_auto": 2,
+  "first_seen": "2026-10-07",
+  "added": "2021-12-24",
+  "still_liked": true,
+  "sources": {
+   "favorite": false,
+   "albums": 0,
+   "tracks": 4,
+   "playlists": 0
+  },
+  "hidden": false
+ },
+ {
   "name": "Ibeyi",
   "link": "https://www.deezer.com/artist/5962744",
   "picture": "https://cdn-images.dzcdn.net/images/artist/b52e7a341c241ca4e6a4f3c633c48b56/250x250-000000-80-0-0.jpg",
@@ -8712,7 +8730,7 @@
   "hidden": false
  },
  {
-  "name": "Jeff Goldblum & The Mildred Snitzer Orchestra",
+  "name": "Jeff Goldblum & the Mildred Snitzer Orchestra",
   "link": "https://www.deezer.com/artist/1370672",
   "picture": "https://cdn-images.dzcdn.net/images/artist/a0c9df69b46658e85118d7ab19679a12/250x250-000000-80-0-0.jpg",
   "score": 4.0,
@@ -8856,7 +8874,7 @@
   "hidden": false
  },
  {
-  "name": "Moha La Squale",
+  "name": "Moha la squale",
   "link": "https://www.deezer.com/artist/13816509",
   "picture": "https://cdn-images.dzcdn.net/images/artist/1ddfb94bbf38693aed5cadcfea8174ed/250x250-000000-80-0-0.jpg",
   "score": 4.0,
@@ -8948,7 +8966,7 @@
  {
   "name": "Paris Texas",
   "link": "https://www.deezer.com/artist/124530852",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/712a5b766c59fc9bb4ff73ccd68ef285/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/9836d2aeb9d06dbe9c00ea90eea715eb/250x250-000000-80-0-0.jpg",
   "score": 4.0,
   "tier": 2,
   "tier_auto": 2,
@@ -9002,7 +9020,7 @@
  {
   "name": "Pen of Chaos Et Le Naheulband",
   "link": "https://www.deezer.com/artist/14826381",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/35fb548cbd7a665c78dbaa5bca2a437a/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/41ef1982a3c0477605846cf089a33a37/250x250-000000-80-0-0.jpg",
   "score": 4.0,
   "tier": 2,
   "tier_auto": 2,
@@ -9054,7 +9072,7 @@
   "hidden": false
  },
  {
-  "name": "SPINALL",
+  "name": "Spinall",
   "link": "https://www.deezer.com/artist/52417942",
   "picture": "https://cdn-images.dzcdn.net/images/artist/9f0daa26c0aa5d6d5cc045d49b310986/250x250-000000-80-0-0.jpg",
   "score": 4.0,
@@ -9068,24 +9086,6 @@
    "albums": 0,
    "tracks": 2,
    "playlists": 8
-  },
-  "hidden": false
- },
- {
-  "name": "Stjepan Hauser",
-  "link": "https://www.deezer.com/artist/4192810",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/db2f159a24b000d57f762eb916a3e421/250x250-000000-80-0-0.jpg",
-  "score": 4.0,
-  "tier": 2,
-  "tier_auto": 2,
-  "first_seen": "2026-10-07",
-  "added": "2021-12-24",
-  "still_liked": true,
-  "sources": {
-   "favorite": false,
-   "albums": 0,
-   "tracks": 4,
-   "playlists": 0
   },
   "hidden": false
  },
@@ -9110,7 +9110,7 @@
  {
   "name": "Teezo Touchdown",
   "link": "https://www.deezer.com/artist/11329046",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/dd88c4bde28af8cd28669c07fa510a55/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/e7d94c5c1066f8bff26e674629f1d2e1/250x250-000000-80-0-0.jpg",
   "score": 4.0,
   "tier": 2,
   "tier_auto": 2,
@@ -9200,7 +9200,7 @@
  {
   "name": "Wale the Sage",
   "link": "https://www.deezer.com/artist/70257402",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/80d6e4669eecf39c482a13da5a185a58/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/1fc8a3d325be500aebf534fafb41e5a5/250x250-000000-80-0-0.jpg",
   "score": 4.0,
   "tier": 2,
   "tier_auto": 2,
@@ -9522,14 +9522,14 @@
   "hidden": false
  },
  {
-  "name": "Celeste",
-  "link": "https://www.deezer.com/artist/361250",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/dc70c13f6ed8e3a13f013cb60391e45c/250x250-000000-80-0-0.jpg",
+  "name": "Cory Wong",
+  "link": "https://www.deezer.com/artist/8607980",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/b42fab08607cdcc3047e534171053677/250x250-000000-80-0-0.jpg",
   "score": 3.5,
   "tier": 2,
   "tier_auto": 2,
   "first_seen": "2026-10-07",
-  "added": "2026-09-28",
+  "added": "2025-12-01",
   "still_liked": true,
   "sources": {
    "favorite": false,
@@ -9540,14 +9540,14 @@
   "hidden": false
  },
  {
-  "name": "Cory Wong",
-  "link": "https://www.deezer.com/artist/8607980",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/b42fab08607cdcc3047e534171053677/250x250-000000-80-0-0.jpg",
+  "name": "Céleste",
+  "link": "https://www.deezer.com/artist/361250",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/dc70c13f6ed8e3a13f013cb60391e45c/250x250-000000-80-0-0.jpg",
   "score": 3.5,
   "tier": 2,
   "tier_auto": 2,
   "first_seen": "2026-10-07",
-  "added": "2025-12-01",
+  "added": "2026-09-28",
   "still_liked": true,
   "sources": {
    "favorite": false,
@@ -9776,7 +9776,7 @@
  {
   "name": "Marion Black",
   "link": "https://www.deezer.com/artist/1133",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/da32b7fdb2d2c34d8bad0862db81aebd/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/47719260526f7e8b1fbd8831012a1cce/250x250-000000-80-0-0.jpg",
   "score": 3.5,
   "tier": 2,
   "tier_auto": 2,
@@ -9936,7 +9936,7 @@
   "hidden": false
  },
  {
-  "name": "Arz",
+  "name": "ARZ",
   "link": "https://www.deezer.com/artist/2708971",
   "picture": "https://cdn-images.dzcdn.net/images/artist/4e795772bda3404091fd09e678317faf/250x250-000000-80-0-0.jpg",
   "score": 3.25,
@@ -10566,7 +10566,7 @@
   "hidden": false
  },
  {
-  "name": "BiG HEATH",
+  "name": "Big Heath",
   "link": "https://www.deezer.com/artist/11165416",
   "picture": "https://cdn-images.dzcdn.net/images/artist/cd4822376c5595a3028b9dd3d8953a5b/250x250-000000-80-0-0.jpg",
   "score": 3.0,
@@ -10638,7 +10638,7 @@
   "hidden": false
  },
  {
-  "name": "Busty and The Bass",
+  "name": "Busty and the Bass",
   "link": "https://www.deezer.com/artist/7961044",
   "picture": "https://cdn-images.dzcdn.net/images/artist/22297f3e94508e3839d2bd2b5b8d912d/250x250-000000-80-0-0.jpg",
   "score": 3.0,
@@ -10712,7 +10712,7 @@
  {
   "name": "DJ Pierre",
   "link": "https://www.deezer.com/artist/66208",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/4fd03f8791aef9f10613a7c5c48c5f5b/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/9c1d1b5fc4c18dbb52c838da037d61c0/250x250-000000-80-0-0.jpg",
   "score": 3.0,
   "tier": 2,
   "tier_auto": 2,
@@ -11088,7 +11088,7 @@
   "hidden": false
  },
  {
-  "name": "Lila Iké",
+  "name": "Lila Ike",
   "link": "https://www.deezer.com/artist/10832468",
   "picture": "https://cdn-images.dzcdn.net/images/artist/b972f1ac25741f990f012c3beb488da6/250x250-000000-80-0-0.jpg",
   "score": 3.0,
@@ -11250,7 +11250,7 @@
   "hidden": false
  },
  {
-  "name": "MIST",
+  "name": "Mist",
   "link": "https://www.deezer.com/artist/197790",
   "picture": "https://cdn-images.dzcdn.net/images/artist/0477d25ee45e2d97e58fed538ce56aa8/250x250-000000-80-0-0.jpg",
   "score": 3.0,
@@ -12114,7 +12114,7 @@
   "hidden": false
  },
  {
-  "name": "Sampa the Great",
+  "name": "Sampa The Great",
   "link": "https://www.deezer.com/artist/8637156",
   "picture": "https://cdn-images.dzcdn.net/images/artist/ac7c8936542fbb1a89223ec0b3cc1081/250x250-000000-80-0-0.jpg",
   "score": 2.75,
@@ -12258,7 +12258,7 @@
   "hidden": false
  },
  {
-  "name": "6ix9ine",
+  "name": "6IX9INE",
   "link": "https://www.deezer.com/artist/13124535",
   "picture": "https://cdn-images.dzcdn.net/images/artist/3f42e5e18d7a652069a9a512afa9c771/250x250-000000-80-0-0.jpg",
   "score": 2.5,
@@ -12278,7 +12278,7 @@
  {
   "name": "Ajebo Hustlers",
   "link": "https://www.deezer.com/artist/12852519",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/00d967d0b76cc9eb802077185312d297/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/2c6eeead36699d88b540f8b26482f3f7/250x250-000000-80-0-0.jpg",
   "score": 2.5,
   "tier": 2,
   "tier_auto": 2,
@@ -12368,7 +12368,7 @@
  {
   "name": "Cordae",
   "link": "https://www.deezer.com/artist/4567404",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/a1ebf459be6732939d4bd5f67370689e/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/e3c6e438ef20b363065c764ae8b93621/250x250-000000-80-0-0.jpg",
   "score": 2.5,
   "tier": 2,
   "tier_auto": 2,
@@ -12456,7 +12456,7 @@
   "hidden": false
  },
  {
-  "name": "Fireboy DML",
+  "name": "Fireboy Dml",
   "link": "https://www.deezer.com/artist/15190997",
   "picture": "https://cdn-images.dzcdn.net/images/artist/816e7dc6e0a1520f537256ccad521921/250x250-000000-80-0-0.jpg",
   "score": 2.5,
@@ -12708,7 +12708,7 @@
   "hidden": false
  },
  {
-  "name": "Miel De Montagne",
+  "name": "Miel de Montagne",
   "link": "https://www.deezer.com/artist/13994675",
   "picture": "https://cdn-images.dzcdn.net/images/artist/5c2978a2279069c3e71435ef1fbb3192/250x250-000000-80-0-0.jpg",
   "score": 2.5,
@@ -13212,7 +13212,7 @@
   "hidden": false
  },
  {
-  "name": "Chance The Rapper",
+  "name": "Chance the Rapper",
   "link": "https://www.deezer.com/artist/4400138",
   "picture": "https://cdn-images.dzcdn.net/images/artist/9fd66f828f13b67130b01681b4758654/250x250-000000-80-0-0.jpg",
   "score": 2.25,
@@ -13896,7 +13896,7 @@
   "hidden": false
  },
  {
-  "name": "Shakka",
+  "name": "SHAKKA",
   "link": "https://www.deezer.com/artist/992824",
   "picture": "https://cdn-images.dzcdn.net/images/artist/0b06016b318f9be6807f05bb5fa86e23/250x250-000000-80-0-0.jpg",
   "score": 2.25,
@@ -13914,7 +13914,7 @@
   "hidden": false
  },
  {
-  "name": "Take A Daytrip",
+  "name": "Take a Daytrip",
   "link": "https://www.deezer.com/artist/9003140",
   "picture": "https://cdn-images.dzcdn.net/images/artist/b858c9fbc337d554556f7fef20464aee/250x250-000000-80-0-0.jpg",
   "score": 2.25,
@@ -15210,7 +15210,7 @@
   "hidden": false
  },
  {
-  "name": "J. Balvin",
+  "name": "J Balvin",
   "link": "https://www.deezer.com/artist/4860761",
   "picture": "https://cdn-images.dzcdn.net/images/artist/325eaa46bc25052d0e3d549d60cc8225/250x250-000000-80-0-0.jpg",
   "score": 2.0,
@@ -15408,7 +15408,7 @@
   "hidden": false
  },
  {
-  "name": "Kiss",
+  "name": "KISS",
   "link": "https://www.deezer.com/artist/67",
   "picture": "https://cdn-images.dzcdn.net/images/artist/d841e3ff7379c9272005e53f1c46f5b9/250x250-000000-80-0-0.jpg",
   "score": 2.0,
@@ -16128,7 +16128,25 @@
   "hidden": false
  },
  {
-  "name": "THE CARTERS",
+  "name": "Temples",
+  "link": "https://www.deezer.com/artist/1178234",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/25fa967aadd1a4ef9a63cb81d1917d1a/250x250-000000-80-0-0.jpg",
+  "score": 2.0,
+  "tier": 2,
+  "tier_auto": 2,
+  "first_seen": "2026-10-08",
+  "added": "2026-10-08",
+  "still_liked": true,
+  "sources": {
+   "favorite": false,
+   "albums": 0,
+   "tracks": 2,
+   "playlists": 0
+  },
+  "hidden": false
+ },
+ {
+  "name": "The Carters",
   "link": "https://www.deezer.com/artist/4266793",
   "picture": "https://cdn-images.dzcdn.net/images/artist/fc0a5fc81124afd669f7a3912f963576/250x250-000000-80-0-0.jpg",
   "score": 2.0,
@@ -16200,7 +16218,7 @@
   "hidden": false
  },
  {
-  "name": "Tobi",
+  "name": "TOBi",
   "link": "https://www.deezer.com/artist/499295",
   "picture": "https://cdn-images.dzcdn.net/images/artist/ed9c9d9edcbadb4bc0ba166cfa028ee2/250x250-000000-80-0-0.jpg",
   "score": 2.0,
@@ -16506,7 +16524,7 @@
   "hidden": false
  },
  {
-  "name": "Blowsom",
+  "name": "BLOWSOM",
   "link": "https://www.deezer.com/artist/10267432",
   "picture": "https://cdn-images.dzcdn.net/images/artist/54ee81ab3bd3c35050e38a0458f75848/250x250-000000-80-0-0.jpg",
   "score": 1.75,
@@ -16560,7 +16578,7 @@
   "hidden": false
  },
  {
-  "name": "chlothegod",
+  "name": "ChloTheGod",
   "link": "https://www.deezer.com/artist/13543463",
   "picture": "https://cdn-images.dzcdn.net/images/artist/c82881d9c159c902c2ac3c4407cee5b9/250x250-000000-80-0-0.jpg",
   "score": 1.75,
@@ -16668,7 +16686,7 @@
   "hidden": false
  },
  {
-  "name": "DJDS",
+  "name": "Djds",
   "link": "https://www.deezer.com/artist/8514236",
   "picture": "https://cdn-images.dzcdn.net/images/artist/04653731d294dffa13500f9c17b59f2a/250x250-000000-80-0-0.jpg",
   "score": 1.75,
@@ -16704,7 +16722,7 @@
   "hidden": false
  },
  {
-  "name": "dutchavelli",
+  "name": "Dutchavelli",
   "link": "https://www.deezer.com/artist/11350632",
   "picture": "https://cdn-images.dzcdn.net/images/artist/261796217d6fe3bdeb899f50b2573fd1/250x250-000000-80-0-0.jpg",
   "score": 1.75,
@@ -17262,7 +17280,7 @@
   "hidden": false
  },
  {
-  "name": "Lolo Zouaï",
+  "name": "Lolo Zouai",
   "link": "https://www.deezer.com/artist/12624185",
   "picture": "https://cdn-images.dzcdn.net/images/artist/8c28d84fb1e8611b5aa4b700d05e1281/250x250-000000-80-0-0.jpg",
   "score": 1.75,
@@ -18306,7 +18324,7 @@
   "hidden": false
  },
  {
-  "name": "binki",
+  "name": "Binki",
   "link": "https://www.deezer.com/artist/10417006",
   "picture": "https://cdn-images.dzcdn.net/images/artist/b9725d4f5b6cf993a789659d195f157b/250x250-000000-80-0-0.jpg",
   "score": 1.5,
@@ -18650,7 +18668,7 @@
  {
   "name": "daste.",
   "link": "https://www.deezer.com/artist/86135992",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/a9a69ba290313b41c35efd94d39bc2d2/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/6b692f033fc9c43a809a3c87c33af385/250x250-000000-80-0-0.jpg",
   "score": 1.5,
   "tier": 3,
   "tier_auto": 3,
@@ -18666,7 +18684,7 @@
   "hidden": false
  },
  {
-  "name": "Death Cab For Cutie",
+  "name": "Death Cab for Cutie",
   "link": "https://www.deezer.com/artist/383",
   "picture": "https://cdn-images.dzcdn.net/images/artist/3f44f1d9518985b54ecdaf08994ce027/250x250-000000-80-0-0.jpg",
   "score": 1.5,
@@ -19028,7 +19046,7 @@
  {
   "name": "Greek",
   "link": "https://www.deezer.com/artist/368378202",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/99bc689d916bc21879ef02d3be186b74/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/405d0def66461f515baa5ef25347c1a2/250x250-000000-80-0-0.jpg",
   "score": 1.5,
   "tier": 3,
   "tier_auto": 3,
@@ -19802,7 +19820,7 @@
  {
   "name": "Mortimer",
   "link": "https://www.deezer.com/artist/3934881",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/c929cf8dd87c32a40eeafbd951cff743/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/738a7e6e0fffff91563d590084bfefc3/250x250-000000-80-0-0.jpg",
   "score": 1.5,
   "tier": 3,
   "tier_auto": 3,
@@ -20448,7 +20466,7 @@
   "hidden": false
  },
  {
-  "name": "TEE",
+  "name": "Tee",
   "link": "https://www.deezer.com/artist/101270",
   "picture": "https://cdn-images.dzcdn.net/images/artist/d41d8cd98f00b204e9800998ecf8427e/250x250-000000-80-0-0.jpg",
   "score": 1.5,
@@ -20720,7 +20738,7 @@
  {
   "name": "Vestron Vulture",
   "link": "https://www.deezer.com/artist/66882152",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/6f825c6a8308fde3169538572ac5a00c/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/9c9801921a5d6ee04583f608fdd73443/250x250-000000-80-0-0.jpg",
   "score": 1.5,
   "tier": 3,
   "tier_auto": 3,
@@ -20846,7 +20864,7 @@
  {
   "name": "999999999",
   "link": "https://www.deezer.com/artist/5584486",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/b602a843816ed39a5dd690d117469029/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/cb5d3e1635032a39f7df8478ff8a7765/250x250-000000-80-0-0.jpg",
   "score": 1.25,
   "tier": 3,
   "tier_auto": 3,
@@ -21114,7 +21132,7 @@
   "hidden": false
  },
  {
-  "name": "Art of Tones",
+  "name": "Art Of Tones",
   "link": "https://www.deezer.com/artist/259223",
   "picture": "https://cdn-images.dzcdn.net/images/artist/6729022066030ee4d3aaf2fdba74e9f7/250x250-000000-80-0-0.jpg",
   "score": 1.25,
@@ -21204,7 +21222,7 @@
   "hidden": false
  },
  {
-  "name": "Band of Skulls",
+  "name": "Band Of Skulls",
   "link": "https://www.deezer.com/artist/254000",
   "picture": "https://cdn-images.dzcdn.net/images/artist/9de04be2c1dd69c8954c0dcb01f2722b/250x250-000000-80-0-0.jpg",
   "score": 1.25,
@@ -21564,7 +21582,7 @@
   "hidden": false
  },
  {
-  "name": "Chagrin D'amour",
+  "name": "Chagrin D'Amour",
   "link": "https://www.deezer.com/artist/15997",
   "picture": "https://cdn-images.dzcdn.net/images/artist/b3011e9a4262f14d9a7c4c402701bcd0/250x250-000000-80-0-0.jpg",
   "score": 1.25,
@@ -21582,7 +21600,7 @@
   "hidden": false
  },
  {
-  "name": "Charlotte Adigery",
+  "name": "Charlotte Adigéry",
   "link": "https://www.deezer.com/artist/8026927",
   "picture": "https://cdn-images.dzcdn.net/images/artist/879859794410e8a358340a39464d924f/250x250-000000-80-0-0.jpg",
   "score": 1.25,
@@ -21690,7 +21708,7 @@
   "hidden": false
  },
  {
-  "name": "CHRYSTAL",
+  "name": "Chrystal",
   "link": "https://www.deezer.com/artist/6462309",
   "picture": "https://cdn-images.dzcdn.net/images/artist/632f3a455e422c45c7d3ad6d1af266b6/250x250-000000-80-0-0.jpg",
   "score": 1.25,
@@ -21744,7 +21762,7 @@
   "hidden": false
  },
  {
-  "name": "COEO",
+  "name": "Coeo",
   "link": "https://www.deezer.com/artist/2232231",
   "picture": "https://cdn-images.dzcdn.net/images/artist/f6e2be06036dc27c3c49bca90a9f09f4/250x250-000000-80-0-0.jpg",
   "score": 1.25,
@@ -21818,7 +21836,7 @@
  {
   "name": "Cottonwood Firing Squad",
   "link": "https://www.deezer.com/artist/10219034",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/367a61a2cda302f9d4d8967a459bd6ac/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/6cbaee75b8b13085f2f58ac2aad1cd9a/250x250-000000-80-0-0.jpg",
   "score": 1.25,
   "tier": 3,
   "tier_auto": 3,
@@ -21924,7 +21942,7 @@
   "hidden": false
  },
  {
-  "name": "DARKSIDE",
+  "name": "Darkside",
   "link": "https://www.deezer.com/artist/62604",
   "picture": "https://cdn-images.dzcdn.net/images/artist/00f5cc077e26e9d330d2cf824db95c4a/250x250-000000-80-0-0.jpg",
   "score": 1.25,
@@ -22520,7 +22538,7 @@
  {
   "name": "Faye Meana",
   "link": "https://www.deezer.com/artist/11865621",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/571a222d5c14f885a73f01ff23beb02e/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/7fee1fde6791987ea17285b8b1358a98/250x250-000000-80-0-0.jpg",
   "score": 1.25,
   "tier": 3,
   "tier_auto": 3,
@@ -22590,7 +22608,7 @@
   "hidden": false
  },
  {
-  "name": "Fm Belfast",
+  "name": "FM Belfast",
   "link": "https://www.deezer.com/artist/390660",
   "picture": "https://cdn-images.dzcdn.net/images/artist/9131a02b01c357144a66fa118c6dd33f/250x250-000000-80-0-0.jpg",
   "score": 1.25,
@@ -22826,7 +22844,7 @@
  {
   "name": "Glasses",
   "link": "https://www.deezer.com/artist/562113",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/18f8a2825d1ec52fe01003f4080a4826/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/941a97b74c18717c5dff15b525691155/250x250-000000-80-0-0.jpg",
   "score": 1.25,
   "tier": 3,
   "tier_auto": 3,
@@ -23382,7 +23400,7 @@
   "hidden": false
  },
  {
-  "name": "JUGGLERZ",
+  "name": "Jugglerz",
   "link": "https://www.deezer.com/artist/5479121",
   "picture": "https://cdn-images.dzcdn.net/images/artist/d56f2492982df37c76ec9f882f6042e6/250x250-000000-80-0-0.jpg",
   "score": 1.25,
@@ -23418,7 +23436,7 @@
   "hidden": false
  },
  {
-  "name": "K CAMP",
+  "name": "K Camp",
   "link": "https://www.deezer.com/artist/2063721",
   "picture": "https://cdn-images.dzcdn.net/images/artist/b4a6ea1dd9c6c071a3e504f426844d55/250x250-000000-80-0-0.jpg",
   "score": 1.25,
@@ -23742,7 +23760,7 @@
   "hidden": false
  },
  {
-  "name": "Lava La Rue",
+  "name": "LAVA LA RUE",
   "link": "https://www.deezer.com/artist/12888357",
   "picture": "https://cdn-images.dzcdn.net/images/artist/3c4b4b8dc0650fac05ca6ab65c8fb7df/250x250-000000-80-0-0.jpg",
   "score": 1.25,
@@ -23870,7 +23888,7 @@
  {
   "name": "Lipka",
   "link": "https://www.deezer.com/artist/1615199",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/1c0f98e115a599a806b2e3bd6bec6cc9/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/98ce17f89ba92cd9375821b41664ffe9/250x250-000000-80-0-0.jpg",
   "score": 1.25,
   "tier": 3,
   "tier_auto": 3,
@@ -24284,7 +24302,7 @@
  {
   "name": "Miguel Enriquez",
   "link": "https://www.deezer.com/artist/157997",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/09c8e911da7da7aabad83a779abc6bdb/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/fd50560554c8ba3e1c41c65ccff4e0a4/250x250-000000-80-0-0.jpg",
   "score": 1.25,
   "tier": 3,
   "tier_auto": 3,
@@ -24480,7 +24498,7 @@
   "hidden": false
  },
  {
-  "name": "Nef The Pharaoh",
+  "name": "Nef the Pharaoh",
   "link": "https://www.deezer.com/artist/7779478",
   "picture": "https://cdn-images.dzcdn.net/images/artist/162d2723fd597a718407bcb914b37bf3/250x250-000000-80-0-0.jpg",
   "score": 1.25,
@@ -24732,7 +24750,7 @@
   "hidden": false
  },
  {
-  "name": "Ovrkast.",
+  "name": "ovrkast.",
   "link": "https://www.deezer.com/artist/13010121",
   "picture": "https://cdn-images.dzcdn.net/images/artist/fc3204f8d247a945ac8fd2508820ed3d/250x250-000000-80-0-0.jpg",
   "score": 1.25,
@@ -25076,7 +25094,7 @@
  {
   "name": "Rafael Cerato",
   "link": "https://www.deezer.com/artist/2818361",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/ec3230d80defb3152d0b7d9a360cd3fd/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/2a929adb8b5038083f87cb9b977025d6/250x250-000000-80-0-0.jpg",
   "score": 1.25,
   "tier": 3,
   "tier_auto": 3,
@@ -25146,7 +25164,7 @@
   "hidden": false
  },
  {
-  "name": "RAYE",
+  "name": "Raye",
   "link": "https://www.deezer.com/artist/805948",
   "picture": "https://cdn-images.dzcdn.net/images/artist/9e900a735869624b69df52ae1b806c70/250x250-000000-80-0-0.jpg",
   "score": 1.25,
@@ -25200,7 +25218,7 @@
   "hidden": false
  },
  {
-  "name": "ReoN",
+  "name": "Reon",
   "link": "https://www.deezer.com/artist/1018974",
   "picture": "https://cdn-images.dzcdn.net/images/artist/faf1782d8f968f207bd82740f7010295/250x250-000000-80-0-0.jpg",
   "score": 1.25,
@@ -25418,7 +25436,7 @@
  {
   "name": "Sam I",
   "link": "https://www.deezer.com/artist/97472062",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/7ee8c2be74c1c2e91c2af9900edb29b3/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/127d6dc0981cbbcdf858d7cd1bff323f/250x250-000000-80-0-0.jpg",
   "score": 1.25,
   "tier": 3,
   "tier_auto": 3,
@@ -25688,7 +25706,7 @@
  {
   "name": "Sllash & Doppe",
   "link": "https://www.deezer.com/artist/382883",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/04a5de9a2d28dbe6357367f3ca8465ad/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/bd24a7eabf66b286a02e9a74d90f36b6/250x250-000000-80-0-0.jpg",
   "score": 1.25,
   "tier": 3,
   "tier_auto": 3,
@@ -25920,7 +25938,7 @@
   "hidden": false
  },
  {
-  "name": "Tears For Fears",
+  "name": "Tears for Fears",
   "link": "https://www.deezer.com/artist/1192",
   "picture": "https://cdn-images.dzcdn.net/images/artist/4c802732227999ca78fdb5c8d76eae50/250x250-000000-80-0-0.jpg",
   "score": 1.25,
@@ -26262,7 +26280,7 @@
   "hidden": false
  },
  {
-  "name": "TRYM",
+  "name": "Trym",
   "link": "https://www.deezer.com/artist/4219770",
   "picture": "https://cdn-images.dzcdn.net/images/artist/82582ee3e21cf8566042ad93cd6a19b6/250x250-000000-80-0-0.jpg",
   "score": 1.25,
@@ -26550,7 +26568,7 @@
   "hidden": false
  },
  {
-  "name": "WILL K",
+  "name": "Will K",
   "link": "https://www.deezer.com/artist/1478859",
   "picture": "https://cdn-images.dzcdn.net/images/artist/fb4ab021a83a6b23687a1abb0fdf0230/250x250-000000-80-0-0.jpg",
   "score": 1.25,
@@ -26658,7 +26676,7 @@
   "hidden": false
  },
  {
-  "name": "XXXTENTACION",
+  "name": "XXXTentacion",
   "link": "https://www.deezer.com/artist/9822974",
   "picture": "https://cdn-images.dzcdn.net/images/artist/62e6edfaf5461eeb5b7310903229607a/250x250-000000-80-0-0.jpg",
   "score": 1.25,
@@ -26858,7 +26876,7 @@
  {
   "name": "שילה אליה",
   "link": "https://www.deezer.com/artist/149655452",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/4734335deeb9edbe5624d01c6003fb56/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/f6efec5e571c93fca013527b1371b2f0/250x250-000000-80-0-0.jpg",
   "score": 1.25,
   "tier": 3,
   "tier_auto": 3,
@@ -26928,7 +26946,7 @@
   "hidden": false
  },
  {
-  "name": "24kGoldn",
+  "name": "24kgoldn",
   "link": "https://www.deezer.com/artist/13878655",
   "picture": "https://cdn-images.dzcdn.net/images/artist/383a35d665bb42cc5d885050f8200830/250x250-000000-80-0-0.jpg",
   "score": 1.0,
@@ -26982,7 +27000,7 @@
   "hidden": false
  },
  {
-  "name": "A Boogie wit da Hoodie",
+  "name": "A Boogie Wit da Hoodie",
   "link": "https://www.deezer.com/artist/9539088",
   "picture": "https://cdn-images.dzcdn.net/images/artist/c0d9442f8edcae98adeca5cc6155a54e/250x250-000000-80-0-0.jpg",
   "score": 1.0,
@@ -28296,7 +28314,7 @@
   "hidden": false
  },
  {
-  "name": "Can",
+  "name": "CAN",
   "link": "https://www.deezer.com/artist/2344",
   "picture": "https://cdn-images.dzcdn.net/images/artist/a30cf2d7a93e0548b6b2a9722317c7ba/250x250-000000-80-0-0.jpg",
   "score": 1.0,
@@ -28440,7 +28458,7 @@
   "hidden": false
  },
  {
-  "name": "CHLOE (Thévenin)",
+  "name": "Chloé (Thévenin)",
   "link": "https://www.deezer.com/artist/154718351",
   "picture": "https://cdn-images.dzcdn.net/images/artist/a90208bedd09dfec31b8c47334bee5ef/250x250-000000-80-0-0.jpg",
   "score": 1.0,
@@ -28710,6 +28728,24 @@
   "hidden": false
  },
  {
+  "name": "Dam-Funk",
+  "link": "https://www.deezer.com/artist/361475",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/7731540209fdc4a9fa4abea1dee399dc/250x250-000000-80-0-0.jpg",
+  "score": 1.0,
+  "tier": 3,
+  "tier_auto": 3,
+  "first_seen": "2026-10-07",
+  "added": "2025-05-20",
+  "still_liked": true,
+  "sources": {
+   "favorite": false,
+   "albums": 0,
+   "tracks": 1,
+   "playlists": 0
+  },
+  "hidden": false
+ },
+ {
   "name": "Damys",
   "link": "https://www.deezer.com/artist/70025512",
   "picture": "https://cdn-images.dzcdn.net/images/artist/dfc5df69519f4a07c21ad809fe498b5d/250x250-000000-80-0-0.jpg",
@@ -28890,7 +28926,7 @@
   "hidden": false
  },
  {
-  "name": "Dead Or Alive",
+  "name": "Dead or Alive",
   "link": "https://www.deezer.com/artist/4190",
   "picture": "https://cdn-images.dzcdn.net/images/artist/c6e4752fa0fbcf0184e8bf85884278de/250x250-000000-80-0-0.jpg",
   "score": 1.0,
@@ -28962,7 +28998,7 @@
   "hidden": false
  },
  {
-  "name": "Demon",
+  "name": "DEMON",
   "link": "https://www.deezer.com/artist/7914",
   "picture": "https://cdn-images.dzcdn.net/images/artist/c7c1f4d1f1cf6bdf04a6fc54ea65ef78/250x250-000000-80-0-0.jpg",
   "score": 1.0,
@@ -29142,7 +29178,7 @@
   "hidden": false
  },
  {
-  "name": "DJ BORING",
+  "name": "DJ Boring",
   "link": "https://www.deezer.com/artist/11556733",
   "picture": "https://cdn-images.dzcdn.net/images/artist/9968539fa309c56e50bbba88ab0c4db8/250x250-000000-80-0-0.jpg",
   "score": 1.0,
@@ -29376,24 +29412,6 @@
   "hidden": false
  },
  {
-  "name": "DāM-FunK",
-  "link": "https://www.deezer.com/artist/361475",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/7731540209fdc4a9fa4abea1dee399dc/250x250-000000-80-0-0.jpg",
-  "score": 1.0,
-  "tier": 3,
-  "tier_auto": 3,
-  "first_seen": "2026-10-07",
-  "added": "2025-05-20",
-  "still_liked": true,
-  "sources": {
-   "favorite": false,
-   "albums": 0,
-   "tracks": 1,
-   "playlists": 0
-  },
-  "hidden": false
- },
- {
   "name": "Eddie Fresco",
   "link": "https://www.deezer.com/artist/12329950",
   "picture": "https://cdn-images.dzcdn.net/images/artist/6993dd3fc714d70aeb04cd0b160f4316/250x250-000000-80-0-0.jpg",
@@ -29538,7 +29556,7 @@
   "hidden": false
  },
  {
-  "name": "Ezechiel Pailhes",
+  "name": "Ezéchiel Pailhès",
   "link": "https://www.deezer.com/artist/294360",
   "picture": "https://cdn-images.dzcdn.net/images/artist/5636c10c067b82b828ed28e195206119/250x250-000000-80-0-0.jpg",
   "score": 1.0,
@@ -30492,7 +30510,7 @@
   "hidden": false
  },
  {
-  "name": "House Of Pain",
+  "name": "House of Pain",
   "link": "https://www.deezer.com/artist/2542",
   "picture": "https://cdn-images.dzcdn.net/images/artist/9f09205ae6f0bbaf6dbfa932f238db31/250x250-000000-80-0-0.jpg",
   "score": 1.0,
@@ -30708,7 +30726,7 @@
   "hidden": false
  },
  {
-  "name": "Isabella Lovestory",
+  "name": "Isabella LoveStory",
   "link": "https://www.deezer.com/artist/15212935",
   "picture": "https://cdn-images.dzcdn.net/images/artist/f676a9ad64ab311aec87f722b4c29d5d/250x250-000000-80-0-0.jpg",
   "score": 1.0,
@@ -31178,7 +31196,7 @@
  {
   "name": "Josh Butler",
   "link": "https://www.deezer.com/artist/1571696",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/65983aa98279323994087a08163e8afc/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/c1301f91666bf5207ea09f38d9d4b23f/250x250-000000-80-0-0.jpg",
   "score": 1.0,
   "tier": 3,
   "tier_auto": 3,
@@ -31320,7 +31338,7 @@
   "hidden": false
  },
  {
-  "name": "Kaleo",
+  "name": "KALEO",
   "link": "https://www.deezer.com/artist/1138351",
   "picture": "https://cdn-images.dzcdn.net/images/artist/5c0937e089e732dbab60a487f857026a/250x250-000000-80-0-0.jpg",
   "score": 1.0,
@@ -31500,7 +31518,7 @@
   "hidden": false
  },
  {
-  "name": "Kings Of Tomorrow",
+  "name": "Kings of Tomorrow",
   "link": "https://www.deezer.com/artist/10040",
   "picture": "https://cdn-images.dzcdn.net/images/artist/1a948c2fa5cd2eee19dbc4e2875ad18f/250x250-000000-80-0-0.jpg",
   "score": 1.0,
@@ -31610,7 +31628,7 @@
  {
   "name": "La Fouine",
   "link": "https://www.deezer.com/artist/12778",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/3fdc6bf496fa387618f417a20e6e2f12/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/d9347b8837fa512b438fd83cfb44a0bf/250x250-000000-80-0-0.jpg",
   "score": 1.0,
   "tier": 3,
   "tier_auto": 3,
@@ -31860,7 +31878,7 @@
   "hidden": false
  },
  {
-  "name": "Lilly Wood and the Prick",
+  "name": "Lilly Wood And The Prick",
   "link": "https://www.deezer.com/artist/307677",
   "picture": "https://cdn-images.dzcdn.net/images/artist/a614478a56ff64f29aefd5a4194410e5/250x250-000000-80-0-0.jpg",
   "score": 1.0,
@@ -32022,7 +32040,7 @@
   "hidden": false
  },
  {
-  "name": "Louisahhh!!!",
+  "name": "Louisahhh",
   "link": "https://www.deezer.com/artist/2548231",
   "picture": "https://cdn-images.dzcdn.net/images/artist/db9bea2dcc3fb39eb4d40f2aad181ee0/250x250-000000-80-0-0.jpg",
   "score": 1.0,
@@ -32204,7 +32222,7 @@
  {
   "name": "Mama Aiuto",
   "link": "https://www.deezer.com/artist/69573892",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/1cc0d13355630929ac8c3839f285bd23/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/24a047fb6af083d23e03a1a598714c52/250x250-000000-80-0-0.jpg",
   "score": 1.0,
   "tier": 3,
   "tier_auto": 3,
@@ -33014,7 +33032,7 @@
  {
   "name": "Noir & Haze",
   "link": "https://www.deezer.com/artist/1479407",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/3c5919ad899c109419fa95047c86fe57/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/09c807f3cfd2c0fc2be1d9185b86c5b8/250x250-000000-80-0-0.jpg",
   "score": 1.0,
   "tier": 3,
   "tier_auto": 3,
@@ -33410,7 +33428,7 @@
  {
   "name": "Philippe Cohen Solal",
   "link": "https://www.deezer.com/artist/872190",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/36bccc9dbca16e2be6014961170a639d/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/5e6d9abb6bd5908706a5507bc7483fb4/250x250-000000-80-0-0.jpg",
   "score": 1.0,
   "tier": 3,
   "tier_auto": 3,
@@ -33642,7 +33660,7 @@
   "hidden": false
  },
  {
-  "name": "Queens Of The Stone Age",
+  "name": "Queens of the Stone Age",
   "link": "https://www.deezer.com/artist/1177",
   "picture": "https://cdn-images.dzcdn.net/images/artist/489308e79a340dfd05d78fcd91f26a10/250x250-000000-80-0-0.jpg",
   "score": 1.0,
@@ -33758,24 +33776,6 @@
   "tier_auto": 3,
   "first_seen": "2026-10-07",
   "added": "2020-08-21",
-  "still_liked": true,
-  "sources": {
-   "favorite": false,
-   "albums": 0,
-   "tracks": 1,
-   "playlists": 0
-  },
-  "hidden": false
- },
- {
-  "name": "Remi",
-  "link": "https://www.deezer.com/artist/259994",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/c3f9b96849b1e77720a57904fb8acb4f/250x250-000000-80-0-0.jpg",
-  "score": 1.0,
-  "tier": 3,
-  "tier_auto": 3,
-  "first_seen": "2026-10-07",
-  "added": "2018-03-07",
   "still_liked": true,
   "sources": {
    "favorite": false,
@@ -34020,7 +34020,7 @@
   "hidden": false
  },
  {
-  "name": "Run DMC",
+  "name": "Run-DMC",
   "link": "https://www.deezer.com/artist/79236",
   "picture": "https://cdn-images.dzcdn.net/images/artist/19b54ef583e6e709239ad8ea020526e0/250x250-000000-80-0-0.jpg",
   "score": 1.0,
@@ -34064,6 +34064,24 @@
   "tier_auto": 3,
   "first_seen": "2026-10-07",
   "added": "2018-08-31",
+  "still_liked": true,
+  "sources": {
+   "favorite": false,
+   "albums": 0,
+   "tracks": 1,
+   "playlists": 0
+  },
+  "hidden": false
+ },
+ {
+  "name": "Rémi",
+  "link": "https://www.deezer.com/artist/259994",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/3f756473d18523da73def03efb3cd59c/250x250-000000-80-0-0.jpg",
+  "score": 1.0,
+  "tier": 3,
+  "tier_auto": 3,
+  "first_seen": "2026-10-07",
+  "added": "2018-03-07",
   "still_liked": true,
   "sources": {
    "favorite": false,
@@ -34490,7 +34508,7 @@
  {
   "name": "Softmal",
   "link": "https://www.deezer.com/artist/174791",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/7c5720aa98237ada2b827b47fe7d5bdc/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/ca8ee7f3e1139597044d5f96b52171b2/250x250-000000-80-0-0.jpg",
   "score": 1.0,
   "tier": 3,
   "tier_auto": 3,
@@ -34920,7 +34938,7 @@
   "hidden": false
  },
  {
-  "name": "Tezz",
+  "name": "TEZZ",
   "link": "https://www.deezer.com/artist/317453501",
   "picture": "https://cdn-images.dzcdn.net/images/artist/d1a85115a1dd25d05664a5c6845afae6/250x250-000000-80-0-0.jpg",
   "score": 1.0,
@@ -35316,7 +35334,7 @@
   "hidden": false
  },
  {
-  "name": "Tones And I",
+  "name": "Tones and I",
   "link": "https://www.deezer.com/artist/59070642",
   "picture": "https://cdn-images.dzcdn.net/images/artist/7b9ba9e0270547736f3eab22ed3a40de/250x250-000000-80-0-0.jpg",
   "score": 1.0,
@@ -35460,7 +35478,7 @@
   "hidden": false
  },
  {
-  "name": "VIC MENSA",
+  "name": "Vic Mensa",
   "link": "https://www.deezer.com/artist/1044777",
   "picture": "https://cdn-images.dzcdn.net/images/artist/45dc08b882808b3fa4edb0a46b60d395/250x250-000000-80-0-0.jpg",
   "score": 1.0,
@@ -35514,7 +35532,7 @@
   "hidden": false
  },
  {
-  "name": "Warner Case",
+  "name": "warner case",
   "link": "https://www.deezer.com/artist/14012481",
   "picture": "https://cdn-images.dzcdn.net/images/artist/9627b39e1fc66388756335d2187e5ff5/250x250-000000-80-0-0.jpg",
   "score": 1.0,
@@ -35586,7 +35604,7 @@
   "hidden": false
  },
  {
-  "name": "WILLOW",
+  "name": "Willow",
   "link": "https://www.deezer.com/artist/70942",
   "picture": "https://cdn-images.dzcdn.net/images/artist/a0221011989d9c58bb8173ed42d06e40/250x250-000000-80-0-0.jpg",
   "score": 1.0,
@@ -35756,6 +35774,24 @@
   "tier_auto": 3,
   "first_seen": "2026-10-07",
   "added": "2022-08-17",
+  "still_liked": true,
+  "sources": {
+   "favorite": false,
+   "albums": 0,
+   "tracks": 1,
+   "playlists": 0
+  },
+  "hidden": false
+ },
+ {
+  "name": "Zimmer90",
+  "link": "https://www.deezer.com/artist/86826052",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/fe6f6ed7c0b0f9be7bf8b929f21c1779/250x250-000000-80-0-0.jpg",
+  "score": 1.0,
+  "tier": 3,
+  "tier_auto": 3,
+  "first_seen": "2026-10-08",
+  "added": "2026-10-07",
   "still_liked": true,
   "sources": {
    "favorite": false,
@@ -36198,7 +36234,7 @@
   "hidden": false
  },
  {
-  "name": "ARTBAT",
+  "name": "Artbat",
   "link": "https://www.deezer.com/artist/8911470",
   "picture": "https://cdn-images.dzcdn.net/images/artist/79e90e0d9a7cbb33fa8bb9a4f08611a7/250x250-000000-80-0-0.jpg",
   "score": 0.5,
@@ -36288,7 +36324,7 @@
   "hidden": false
  },
  {
-  "name": "Bandokay",
+  "name": "BandoKay",
   "link": "https://www.deezer.com/artist/59949302",
   "picture": "https://cdn-images.dzcdn.net/images/artist/15dc84cd556de5e33986b27d2c7d7720/250x250-000000-80-0-0.jpg",
   "score": 0.5,
@@ -36684,7 +36720,7 @@
   "hidden": false
  },
  {
-  "name": "Deno Driz",
+  "name": "Deno",
   "link": "https://www.deezer.com/artist/49481592",
   "picture": "https://cdn-images.dzcdn.net/images/artist/1a976d00670dc4d66c0490156db77751/250x250-000000-80-0-0.jpg",
   "score": 0.5,
@@ -36828,7 +36864,7 @@
   "hidden": false
  },
  {
-  "name": "Eugy",
+  "name": "Eugy Official",
   "link": "https://www.deezer.com/artist/9109400",
   "picture": "https://cdn-images.dzcdn.net/images/artist/c60c821f38f5ba7f8f1284a4366f0513/250x250-000000-80-0-0.jpg",
   "score": 0.5,
@@ -37476,7 +37512,7 @@
   "hidden": false
  },
  {
-  "name": "MAVI",
+  "name": "Mavi",
   "link": "https://www.deezer.com/artist/10950790",
   "picture": "https://cdn-images.dzcdn.net/images/artist/1f6efd9c6fe693d333cf1db87981b06f/250x250-000000-80-0-0.jpg",
   "score": 0.5,
@@ -37514,7 +37550,7 @@
  {
   "name": "millkzy",
   "link": "https://www.deezer.com/artist/70389762",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/22716cd1b6033bc0343293d1be8873b1/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/76c8fbdae2335ee2d1278161836674b9/250x250-000000-80-0-0.jpg",
   "score": 0.5,
   "tier": 3,
   "tier_auto": 3,
@@ -37890,7 +37926,7 @@
   "hidden": false
  },
  {
-  "name": "Sampha",
+  "name": "SAMPHA",
   "link": "https://www.deezer.com/artist/525619",
   "picture": "https://cdn-images.dzcdn.net/images/artist/7b821888bd446317de720a12c2278866/250x250-000000-80-0-0.jpg",
   "score": 0.5,
@@ -38394,7 +38430,7 @@
   "hidden": false
  },
  {
-  "name": "WhoMadeWho",
+  "name": "Whomadewho",
   "link": "https://www.deezer.com/artist/1854",
   "picture": "https://cdn-images.dzcdn.net/images/artist/45dc56f1c4084e18a6d7022f7f22b034/250x250-000000-80-0-0.jpg",
   "score": 0.5,
@@ -38484,7 +38520,7 @@
   "hidden": false
  },
  {
-  "name": "$NOT",
+  "name": "$Not",
   "link": "https://www.deezer.com/artist/12019624",
   "picture": "https://cdn-images.dzcdn.net/images/artist/7cd7d6eaceead87d571335ada640f65b/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -38576,7 +38612,7 @@
  {
   "name": "9days",
   "link": "https://www.deezer.com/artist/89756782",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/5a77597720fc7cd4be2a7c059616848a/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/4a83c45de65eb870a6da858f12cc2446/250x250-000000-80-0-0.jpg",
   "score": 0.25,
   "tier": 3,
   "tier_auto": 3,
@@ -38756,7 +38792,7 @@
  {
   "name": "Afro Medusa",
   "link": "https://www.deezer.com/artist/8751",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/a00785e78ee150a0ad8dd3d9297e4c51/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/94c8d89e25d4f82c41f1ba4570b3ff54/250x250-000000-80-0-0.jpg",
   "score": 0.25,
   "tier": 3,
   "tier_auto": 3,
@@ -38970,7 +39006,7 @@
   "hidden": false
  },
  {
-  "name": "Amaarae",
+  "name": "amaarae",
   "link": "https://www.deezer.com/artist/13293643",
   "picture": "https://cdn-images.dzcdn.net/images/artist/8e7864c1e5b12ac4af2da2abd56e27ac/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -39222,7 +39258,7 @@
   "hidden": false
  },
  {
-  "name": "ARDN",
+  "name": "Ardn",
   "link": "https://www.deezer.com/artist/14183773",
   "picture": "https://cdn-images.dzcdn.net/images/artist/942a9e51a08c234f25c40a0fe0bf9750/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -39276,7 +39312,7 @@
   "hidden": false
  },
  {
-  "name": "Asaf Avidan & The Mojos",
+  "name": "Asaf Avidan & the Mojos",
   "link": "https://www.deezer.com/artist/339231",
   "picture": "https://cdn-images.dzcdn.net/images/artist/35f2729d091ce3b5ad8f51333538b3bf/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -39366,7 +39402,7 @@
   "hidden": false
  },
  {
-  "name": "AVENTURE",
+  "name": "Aventure",
   "link": "https://www.deezer.com/artist/1237634",
   "picture": "https://cdn-images.dzcdn.net/images/artist/a5c162f9caad1e99c67179b9b4475d8a/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -39510,7 +39546,7 @@
   "hidden": false
  },
  {
-  "name": "BADBADNOTGOOD",
+  "name": "Badbadnotgood",
   "link": "https://www.deezer.com/artist/1635715",
   "picture": "https://cdn-images.dzcdn.net/images/artist/a219c29272dddc050bc219e1124294e3/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -39924,7 +39960,7 @@
   "hidden": false
  },
  {
-  "name": "BigKayBeezy",
+  "name": "Bigkaybeezy",
   "link": "https://www.deezer.com/artist/62256652",
   "picture": "https://cdn-images.dzcdn.net/images/artist/5515ac02b01a263729b3552fb833b39c/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -40608,7 +40644,7 @@
   "hidden": false
  },
  {
-  "name": "CASisDEAD",
+  "name": "CASISDEAD",
   "link": "https://www.deezer.com/artist/5506801",
   "picture": "https://cdn-images.dzcdn.net/images/artist/cf384ca61140573712367198f0cf5708/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -40644,7 +40680,7 @@
   "hidden": false
  },
  {
-  "name": "CHAI",
+  "name": "Chai",
   "link": "https://www.deezer.com/artist/168935967",
   "picture": "https://cdn-images.dzcdn.net/images/artist/d41d8cd98f00b204e9800998ecf8427e/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -40664,7 +40700,7 @@
  {
   "name": "Chalart58",
   "link": "https://www.deezer.com/artist/123836",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/ffa7938438b945f7ed31756f56ce4637/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/9ce232b1e8c05f3c06f3f02540a88583/250x250-000000-80-0-0.jpg",
   "score": 0.25,
   "tier": 3,
   "tier_auto": 3,
@@ -40700,7 +40736,7 @@
  {
   "name": "Cheque",
   "link": "https://www.deezer.com/artist/51412062",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/523a89985e1cdbdab8ba8729636975e2/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/a0db260ae940d4870a73c5a735408d67/250x250-000000-80-0-0.jpg",
   "score": 0.25,
   "tier": 3,
   "tier_auto": 3,
@@ -40880,7 +40916,7 @@
  {
   "name": "CK The Spitta",
   "link": "https://www.deezer.com/artist/273305542",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/df625448f70710b9f918352937f83536/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/cd6a9184b82f005e79a94daaa695c820/250x250-000000-80-0-0.jpg",
   "score": 0.25,
   "tier": 3,
   "tier_auto": 3,
@@ -41184,7 +41220,7 @@
   "hidden": false
  },
  {
-  "name": "D'Banj",
+  "name": "D'banj",
   "link": "https://www.deezer.com/artist/303670",
   "picture": "https://cdn-images.dzcdn.net/images/artist/382070514b6b9566028357c477cfabc6/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -41256,7 +41292,7 @@
   "hidden": false
  },
  {
-  "name": "Danny Sánchez",
+  "name": "Danny Sanchez",
   "link": "https://www.deezer.com/artist/4951827",
   "picture": "https://cdn-images.dzcdn.net/images/artist/4006ed1eef48a5fdaae25bb4058b134c/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -41834,7 +41870,7 @@
  {
   "name": "Dionnysuss",
   "link": "https://www.deezer.com/artist/187635847",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/58a30c8b5f0ba64fc32ecec18a4af934/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/444365b853297a02082452410d552df8/250x250-000000-80-0-0.jpg",
   "score": 0.25,
   "tier": 3,
   "tier_auto": 3,
@@ -41976,25 +42012,7 @@
   "hidden": false
  },
  {
-  "name": "Doli 'n' Penn",
-  "link": "https://www.deezer.com/artist/69706202",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/e81d12329c53608a1b4d56c28c15c81c/250x250-000000-80-0-0.jpg",
-  "score": 0.25,
-  "tier": 3,
-  "tier_auto": 3,
-  "first_seen": "2026-10-07",
-  "added": "2026-02-22",
-  "still_liked": true,
-  "sources": {
-   "favorite": false,
-   "albums": 0,
-   "tracks": 0,
-   "playlists": 1
-  },
-  "hidden": false
- },
- {
-  "name": "DOPE LEMON",
+  "name": "Dope Lemon",
   "link": "https://www.deezer.com/artist/9962076",
   "picture": "https://cdn-images.dzcdn.net/images/artist/584d973f5aaa60f0271575db4f6fcdd9/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -42210,7 +42228,7 @@
   "hidden": false
  },
  {
-  "name": "EI8HT",
+  "name": "Ei8ht",
   "link": "https://www.deezer.com/artist/433674",
   "picture": "https://cdn-images.dzcdn.net/images/artist/f0883675373bfa681ee7c6df5a1c06f4/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -42552,7 +42570,7 @@
   "hidden": false
  },
  {
-  "name": "Faul & Wad Ad",
+  "name": "Faul & Wad",
   "link": "https://www.deezer.com/artist/5330515",
   "picture": "https://cdn-images.dzcdn.net/images/artist/d404efd3b4a8d5a4fc323f8790f1e30c/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -42660,7 +42678,7 @@
   "hidden": false
  },
  {
-  "name": "Fm Laeti",
+  "name": "FM LAETI",
   "link": "https://www.deezer.com/artist/1273857",
   "picture": "https://cdn-images.dzcdn.net/images/artist/af61848c531ddf2b3d484d4c279e6827/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -42770,7 +42788,7 @@
  {
   "name": "Frizzy P & Mr Cole",
   "link": "https://www.deezer.com/artist/12311274",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/30b95cee32825642fd75cae9d6abbde8/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/1d3617247a4282728f8ad5d2e0b43a2a/250x250-000000-80-0-0.jpg",
   "score": 0.25,
   "tier": 3,
   "tier_auto": 3,
@@ -43182,7 +43200,7 @@
   "hidden": false
  },
  {
-  "name": "GIOVANNA",
+  "name": "Giovanna",
   "link": "https://www.deezer.com/artist/101752",
   "picture": "https://cdn-images.dzcdn.net/images/artist/c3541fba7a7389d39c4bba379ffac336/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -43632,7 +43650,7 @@
   "hidden": false
  },
  {
-  "name": "Higo",
+  "name": "HIGO",
   "link": "https://www.deezer.com/artist/4872910",
   "picture": "https://cdn-images.dzcdn.net/images/artist/211404935f838b9cfeb7fbb460de372c/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -43706,7 +43724,7 @@
  {
   "name": "Human Tetris",
   "link": "https://www.deezer.com/artist/11681277",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/7d2dec66f9fd38371db9e283a3450404/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/c285bfc86fa139ee70fccbe56889d780/250x250-000000-80-0-0.jpg",
   "score": 0.25,
   "tier": 3,
   "tier_auto": 3,
@@ -43722,7 +43740,7 @@
   "hidden": false
  },
  {
-  "name": "Idris Elba",
+  "name": "IDRIS",
   "link": "https://www.deezer.com/artist/515260",
   "picture": "https://cdn-images.dzcdn.net/images/artist/7e9f3b1390a4e46de159ff8ef0c82c88/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -43758,7 +43776,7 @@
   "hidden": false
  },
  {
-  "name": "iLL BLU",
+  "name": "Ill Blu",
   "link": "https://www.deezer.com/artist/1231880",
   "picture": "https://cdn-images.dzcdn.net/images/artist/f7cbfd8351fbf70d0ceb983abd100949/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -43812,7 +43830,7 @@
   "hidden": false
  },
  {
-  "name": "Internet Money",
+  "name": "Internet money",
   "link": "https://www.deezer.com/artist/15104399",
   "picture": "https://cdn-images.dzcdn.net/images/artist/ac31c5e8323891887567be6338811938/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -43974,6 +43992,24 @@
   "hidden": false
  },
  {
+  "name": "J A Y E L E C T R O N I C A",
+  "link": "https://www.deezer.com/artist/410877",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/c3d623a15872db2bd5633079d522a114/250x250-000000-80-0-0.jpg",
+  "score": 0.25,
+  "tier": 3,
+  "tier_auto": 3,
+  "first_seen": "2026-10-07",
+  "added": "2021-02-04",
+  "still_liked": true,
+  "sources": {
+   "favorite": false,
+   "albums": 0,
+   "tracks": 0,
+   "playlists": 1
+  },
+  "hidden": false
+ },
+ {
   "name": "J Lloyd",
   "link": "https://www.deezer.com/artist/10388918",
   "picture": "https://cdn-images.dzcdn.net/images/artist/5b3e2735f7cd35daa10a488371348203/250x250-000000-80-0-0.jpg",
@@ -44108,24 +44144,6 @@
   "tier_auto": 3,
   "first_seen": "2026-10-07",
   "added": "2020-05-11",
-  "still_liked": true,
-  "sources": {
-   "favorite": false,
-   "albums": 0,
-   "tracks": 0,
-   "playlists": 1
-  },
-  "hidden": false
- },
- {
-  "name": "Jay Electronica",
-  "link": "https://www.deezer.com/artist/410877",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/c3d623a15872db2bd5633079d522a114/250x250-000000-80-0-0.jpg",
-  "score": 0.25,
-  "tier": 3,
-  "tier_auto": 3,
-  "first_seen": "2026-10-07",
-  "added": "2021-02-04",
   "still_liked": true,
   "sources": {
    "favorite": false,
@@ -44496,7 +44514,7 @@
   "hidden": false
  },
  {
-  "name": "Juice WRLD",
+  "name": "Juice Wrld",
   "link": "https://www.deezer.com/artist/14456487",
   "picture": "https://cdn-images.dzcdn.net/images/artist/2ecf2968fbbc8eb042b241b8e60e5d7e/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -44730,7 +44748,7 @@
   "hidden": false
  },
  {
-  "name": "KANKA",
+  "name": "Kanka",
   "link": "https://www.deezer.com/artist/17295",
   "picture": "https://cdn-images.dzcdn.net/images/artist/dff87f0a86fcba0bb951731577c71cbd/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -44822,7 +44840,7 @@
  {
   "name": "Katie Tupper",
   "link": "https://www.deezer.com/artist/14978461",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/17d0f7dc6ae43d92bab9769f19c27946/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/f74332c1f39a1f9727b9dee66a5d845d/250x250-000000-80-0-0.jpg",
   "score": 0.25,
   "tier": 3,
   "tier_auto": 3,
@@ -44838,7 +44856,7 @@
   "hidden": false
  },
  {
-  "name": "KAWALi",
+  "name": "kawali",
   "link": "https://www.deezer.com/artist/107988892",
   "picture": "https://cdn-images.dzcdn.net/images/artist/a42a2517f9790f67333d1e3292782e38/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -44928,7 +44946,7 @@
   "hidden": false
  },
  {
-  "name": "Keros-N",
+  "name": "Keros-n",
   "link": "https://www.deezer.com/artist/4334621",
   "picture": "https://cdn-images.dzcdn.net/images/artist/d0d1275000004ae6f59361ea52cc5f50/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -44946,7 +44964,7 @@
   "hidden": false
  },
  {
-  "name": "KH",
+  "name": "Kh",
   "link": "https://www.deezer.com/artist/5360998",
   "picture": "https://cdn-images.dzcdn.net/images/artist/255a48340c91049252320b68242f1922/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -45414,24 +45432,6 @@
   "hidden": false
  },
  {
-  "name": "Lego",
-  "link": "https://www.deezer.com/artist/10065",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/d41d8cd98f00b204e9800998ecf8427e/250x250-000000-80-0-0.jpg",
-  "score": 0.25,
-  "tier": 3,
-  "tier_auto": 3,
-  "first_seen": "2026-10-07",
-  "added": "2023-05-29",
-  "still_liked": true,
-  "sources": {
-   "favorite": false,
-   "albums": 0,
-   "tracks": 0,
-   "playlists": 1
-  },
-  "hidden": false
- },
- {
   "name": "Lehár",
   "link": "https://www.deezer.com/artist/4152538",
   "picture": "https://cdn-images.dzcdn.net/images/artist/66e565af79afc0080edb053eb4fd058f/250x250-000000-80-0-0.jpg",
@@ -45792,7 +45792,7 @@
   "hidden": false
  },
  {
-  "name": "Liv.e",
+  "name": "Liv.E",
   "link": "https://www.deezer.com/artist/12948063",
   "picture": "https://cdn-images.dzcdn.net/images/artist/c29c02e4f5971d3923f60ad510a1b08a/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -46026,7 +46026,7 @@
   "hidden": false
  },
  {
-  "name": "LUCKI",
+  "name": "Lucki",
   "link": "https://www.deezer.com/artist/10548057",
   "picture": "https://cdn-images.dzcdn.net/images/artist/7ed1364aaf4af20a506f9d245a8269b7/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -46106,6 +46106,24 @@
   "tier_auto": 3,
   "first_seen": "2026-10-07",
   "added": "2026-06-12",
+  "still_liked": true,
+  "sources": {
+   "favorite": false,
+   "albums": 0,
+   "tracks": 0,
+   "playlists": 1
+  },
+  "hidden": false
+ },
+ {
+  "name": "Légo",
+  "link": "https://www.deezer.com/artist/10065",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/d41d8cd98f00b204e9800998ecf8427e/250x250-000000-80-0-0.jpg",
+  "score": 0.25,
+  "tier": 3,
+  "tier_auto": 3,
+  "first_seen": "2026-10-07",
+  "added": "2023-05-29",
   "still_liked": true,
   "sources": {
    "favorite": false,
@@ -46242,7 +46260,7 @@
   "hidden": false
  },
  {
-  "name": "MAM",
+  "name": "Mam",
   "link": "https://www.deezer.com/artist/55342",
   "picture": "https://cdn-images.dzcdn.net/images/artist/d41d8cd98f00b204e9800998ecf8427e/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -46278,7 +46296,7 @@
   "hidden": false
  },
  {
-  "name": "MAPACHE",
+  "name": "Mapache",
   "link": "https://www.deezer.com/artist/4939459",
   "picture": "https://cdn-images.dzcdn.net/images/artist/fb6dcf3bd91af49dd6d8a716316cb9b5/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -46478,7 +46496,7 @@
  {
   "name": "Martin miller",
   "link": "https://www.deezer.com/artist/4960783",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/0356c6a80603c38ee032970e45699bad/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/139fb5b90142fc973cfa056052c7e630/250x250-000000-80-0-0.jpg",
   "score": 0.25,
   "tier": 3,
   "tier_auto": 3,
@@ -46568,7 +46586,7 @@
  {
   "name": "Matt Duncan",
   "link": "https://www.deezer.com/artist/793742",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/a7f2d574c106a3847332a11ac565b139/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/758e9e345a09646b3732f6bc6e5c62dd/250x250-000000-80-0-0.jpg",
   "score": 0.25,
   "tier": 3,
   "tier_auto": 3,
@@ -46800,7 +46818,7 @@
   "hidden": false
  },
  {
-  "name": "MF Doom",
+  "name": "MF DOOM",
   "link": "https://www.deezer.com/artist/2857",
   "picture": "https://cdn-images.dzcdn.net/images/artist/7dc35cb3ac1a39d02ddad6b153b473dc/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -46926,7 +46944,7 @@
   "hidden": false
  },
  {
-  "name": "Minz",
+  "name": "MINZ",
   "link": "https://www.deezer.com/artist/1118619",
   "picture": "https://cdn-images.dzcdn.net/images/artist/0fac5f8bd30f5678805ffe2b104c9312/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -47304,7 +47322,7 @@
   "hidden": false
  },
  {
-  "name": "MUNYA",
+  "name": "Munya",
   "link": "https://www.deezer.com/artist/7565532",
   "picture": "https://cdn-images.dzcdn.net/images/artist/a94948743cd8dd9d23c96198384c5ee5/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -47340,7 +47358,7 @@
   "hidden": false
  },
  {
-  "name": "MUT4Y",
+  "name": "Mut4y",
   "link": "https://www.deezer.com/artist/13556987",
   "picture": "https://cdn-images.dzcdn.net/images/artist/2743eaf3ad111a1da4f940966bfea480/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -47358,7 +47376,7 @@
   "hidden": false
  },
  {
-  "name": "MUZZ",
+  "name": "Muzz",
   "link": "https://www.deezer.com/artist/4523773",
   "picture": "https://cdn-images.dzcdn.net/images/artist/6377b790acc4a0a82a33c968ac6a1ad3/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -47970,7 +47988,7 @@
   "hidden": false
  },
  {
-  "name": "Olly Alexander",
+  "name": "Olly Alexander (Years & Years)",
   "link": "https://www.deezer.com/artist/4023815",
   "picture": "https://cdn-images.dzcdn.net/images/artist/ac7e3baf0cf1db33d96234530f2e4a52/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -48510,7 +48528,7 @@
   "hidden": false
  },
  {
-  "name": "PJ Morton",
+  "name": "PJ MORTON",
   "link": "https://www.deezer.com/artist/393335",
   "picture": "https://cdn-images.dzcdn.net/images/artist/96ae60a0875d73b6a1fc5debcaff2404/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -48654,7 +48672,7 @@
   "hidden": false
  },
  {
-  "name": "PREP",
+  "name": "Prep",
   "link": "https://www.deezer.com/artist/1815331",
   "picture": "https://cdn-images.dzcdn.net/images/artist/f22a6a31432c9cc6ecaf086f3ff99931/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -48782,7 +48800,7 @@
  {
   "name": "Qendresa",
   "link": "https://www.deezer.com/artist/7848702",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/c194d1b022497fc91c24fbaa9c67cd51/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/05c3ab3bb23bb08f2c40a8d29d4db78a/250x250-000000-80-0-0.jpg",
   "score": 0.25,
   "tier": 3,
   "tier_auto": 3,
@@ -48890,7 +48908,7 @@
  {
   "name": "Rahul",
   "link": "https://www.deezer.com/artist/893962",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/25dc8f688b8ad6ca97d2391b99f739ae/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/6495530688b6d8d2144f80e701cabb34/250x250-000000-80-0-0.jpg",
   "score": 0.25,
   "tier": 3,
   "tier_auto": 3,
@@ -49410,7 +49428,7 @@
   "hidden": false
  },
  {
-  "name": "SadBoi",
+  "name": "SADBOI",
   "link": "https://www.deezer.com/artist/14184949",
   "picture": "https://cdn-images.dzcdn.net/images/artist/761a82ed5e9650d2009c21fb446b8a5b/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -49500,7 +49518,7 @@
   "hidden": false
  },
  {
-  "name": "Salt",
+  "name": "salt",
   "link": "https://www.deezer.com/artist/73131",
   "picture": "https://cdn-images.dzcdn.net/images/artist/db82c5cbe11cb2bfb89f9befc557b972/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -49788,7 +49806,7 @@
   "hidden": false
  },
  {
-  "name": "SHADOW",
+  "name": "Shadow",
   "link": "https://www.deezer.com/artist/203628",
   "picture": "https://cdn-images.dzcdn.net/images/artist/58ce35130998f6a68dbaf4f1ee319e9f/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -49932,7 +49950,7 @@
   "hidden": false
  },
  {
-  "name": "SHY FX",
+  "name": "Shy FX",
   "link": "https://www.deezer.com/artist/12186",
   "picture": "https://cdn-images.dzcdn.net/images/artist/8d39bc664110dff2c08a988bad9e8178/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -50328,6 +50346,24 @@
   "hidden": false
  },
  {
+  "name": "Stephane Legar",
+  "link": "https://www.deezer.com/artist/11679423",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/27e22d4ba1afcf1f3f9574926f122ae0/250x250-000000-80-0-0.jpg",
+  "score": 0.25,
+  "tier": 3,
+  "tier_auto": 3,
+  "first_seen": "2026-10-07",
+  "added": "2026-02-22",
+  "still_liked": true,
+  "sources": {
+   "favorite": false,
+   "albums": 0,
+   "tracks": 0,
+   "playlists": 1
+  },
+  "hidden": false
+ },
+ {
   "name": "Steppenwolf",
   "link": "https://www.deezer.com/artist/1172",
   "picture": "https://cdn-images.dzcdn.net/images/artist/9fd3e94857f8ce52f44d1facadfd3709/250x250-000000-80-0-0.jpg",
@@ -50402,7 +50438,7 @@
  {
   "name": "Stony",
   "link": "https://www.deezer.com/artist/352681",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/f5d5e63ed615f745f872a5f7213a2abf/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/f93fea76f81e9c86dd4cd2e3547fe350/250x250-000000-80-0-0.jpg",
   "score": 0.25,
   "tier": 3,
   "tier_auto": 3,
@@ -50454,7 +50490,7 @@
   "hidden": false
  },
  {
-  "name": "Styl-Plus",
+  "name": "STYL-PLUS",
   "link": "https://www.deezer.com/artist/1084235",
   "picture": "https://cdn-images.dzcdn.net/images/artist/4906a711ce9f16c31dafa78e5ed65afe/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -50490,27 +50526,9 @@
   "hidden": false
  },
  {
-  "name": "Stéphane Legar",
-  "link": "https://www.deezer.com/artist/11679423",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/27e22d4ba1afcf1f3f9574926f122ae0/250x250-000000-80-0-0.jpg",
-  "score": 0.25,
-  "tier": 3,
-  "tier_auto": 3,
-  "first_seen": "2026-10-07",
-  "added": "2026-02-22",
-  "still_liked": true,
-  "sources": {
-   "favorite": false,
-   "albums": 0,
-   "tracks": 0,
-   "playlists": 1
-  },
-  "hidden": false
- },
- {
   "name": "Sunny & The Sunliners",
   "link": "https://www.deezer.com/artist/258339",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/ee9d2d9969f77b4be22b8310050d8819/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/49a97f2267bb623367b8707e2d0de408/250x250-000000-80-0-0.jpg",
   "score": 0.25,
   "tier": 3,
   "tier_auto": 3,
@@ -50904,7 +50922,7 @@
   "hidden": false
  },
  {
-  "name": "Teeway",
+  "name": "teeway",
   "link": "https://www.deezer.com/artist/59994092",
   "picture": "https://cdn-images.dzcdn.net/images/artist/49879a7abf228e118e2c7c056919f5b5/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -50942,7 +50960,7 @@
  {
   "name": "The Beefs",
   "link": "https://www.deezer.com/artist/81949992",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/a9d22c66297e9026403badc2c57fffa7/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/9eeea9a8867793deb971524be0684c07/250x250-000000-80-0-0.jpg",
   "score": 0.25,
   "tier": 3,
   "tier_auto": 3,
@@ -51320,7 +51338,7 @@
  {
   "name": "The Silhouettes Project",
   "link": "https://www.deezer.com/artist/103250192",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/ee47572e0cb6fa829476099d3bb60805/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/6c08e26cbb8c7abf36cd8ce55c44e6d3/250x250-000000-80-0-0.jpg",
   "score": 0.25,
   "tier": 3,
   "tier_auto": 3,
@@ -51570,7 +51588,7 @@
   "hidden": false
  },
  {
-  "name": "TIBASKO",
+  "name": "Tibasko",
   "link": "https://www.deezer.com/artist/13542573",
   "picture": "https://cdn-images.dzcdn.net/images/artist/89cd49e3801615bfebd2d5d0d5eb9afe/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -51894,7 +51912,7 @@
   "hidden": false
  },
  {
-  "name": "TOTO",
+  "name": "Toto",
   "link": "https://www.deezer.com/artist/10465333",
   "picture": "https://cdn-images.dzcdn.net/images/artist/d41d8cd98f00b204e9800998ecf8427e/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -51984,7 +52002,7 @@
   "hidden": false
  },
  {
-  "name": "tUnE-yArDs",
+  "name": "Tune-Yards",
   "link": "https://www.deezer.com/artist/261213",
   "picture": "https://cdn-images.dzcdn.net/images/artist/a2460bcde224d9ad0c5387246541251d/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -52002,7 +52020,7 @@
   "hidden": false
  },
  {
-  "name": "TV On The Radio",
+  "name": "TV on the Radio",
   "link": "https://www.deezer.com/artist/1239",
   "picture": "https://cdn-images.dzcdn.net/images/artist/5e5e728369e93db04f86e781f2971a31/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -52076,7 +52094,7 @@
  {
   "name": "Undercatt",
   "link": "https://www.deezer.com/artist/7062447",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/fbcc026668603b18a21baeb10ade77cb/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/5ffbf5e398afc7b5c5b829e2121651a1/250x250-000000-80-0-0.jpg",
   "score": 0.25,
   "tier": 3,
   "tier_auto": 3,
@@ -52722,7 +52740,7 @@
   "hidden": false
  },
  {
-  "name": "Young The Giant",
+  "name": "Young the Giant",
   "link": "https://www.deezer.com/artist/392698",
   "picture": "https://cdn-images.dzcdn.net/images/artist/076cb4ef35cac3a9592583e7b01b34ea/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -52794,6 +52812,24 @@
   "hidden": false
  },
  {
+  "name": "Zaia",
+  "link": "https://www.deezer.com/artist/96643842",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/314746da78442c74f481394362f29c4f/250x250-000000-80-0-0.jpg",
+  "score": 0.25,
+  "tier": 3,
+  "tier_auto": 3,
+  "first_seen": "2026-10-07",
+  "added": "2025-12-11",
+  "still_liked": true,
+  "sources": {
+   "favorite": false,
+   "albums": 0,
+   "tracks": 0,
+   "playlists": 1
+  },
+  "hidden": false
+ },
+ {
   "name": "Zara Larsson",
   "link": "https://www.deezer.com/artist/4331004",
   "picture": "https://cdn-images.dzcdn.net/images/artist/26e260152661dea1897a6eea198f9981/250x250-000000-80-0-0.jpg",
@@ -52812,25 +52848,7 @@
   "hidden": false
  },
  {
-  "name": "Zaïa",
-  "link": "https://www.deezer.com/artist/96643842",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/314746da78442c74f481394362f29c4f/250x250-000000-80-0-0.jpg",
-  "score": 0.25,
-  "tier": 3,
-  "tier_auto": 3,
-  "first_seen": "2026-10-07",
-  "added": "2025-12-11",
-  "still_liked": true,
-  "sources": {
-   "favorite": false,
-   "albums": 0,
-   "tracks": 0,
-   "playlists": 1
-  },
-  "hidden": false
- },
- {
-  "name": "ZieZie",
+  "name": "ZIEZIE",
   "link": "https://www.deezer.com/artist/13866233",
   "picture": "https://cdn-images.dzcdn.net/images/artist/366781a65814003f1c8552b90b6405ca/250x250-000000-80-0-0.jpg",
   "score": 0.25,
@@ -52866,9 +52884,9 @@
   "hidden": false
  },
  {
-  "name": "ZINO",
+  "name": "Zino",
   "link": "https://www.deezer.com/artist/98704",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/4e0b54017e8846b09bb4c1c18411e60a/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/33aabba2d0f45a4fe37ac3a7642641be/250x250-000000-80-0-0.jpg",
   "score": 0.25,
   "tier": 3,
   "tier_auto": 3,
@@ -52994,7 +53012,7 @@
  {
   "name": "אופק אדנק",
   "link": "https://www.deezer.com/artist/14323825",
-  "picture": "https://cdn-images.dzcdn.net/images/artist/8ac2bf7d2ae2f7ab450db334a372796e/250x250-000000-80-0-0.jpg",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/88ea4234f553ad47d2e8c333167e3222/250x250-000000-80-0-0.jpg",
   "score": 0.25,
   "tier": 3,
   "tier_auto": 3,
@@ -53013,6 +53031,24 @@
   "name": "אלקנה מרציאנו",
   "link": "https://www.deezer.com/artist/7686292",
   "picture": "https://cdn-images.dzcdn.net/images/artist/2ec518a2d3b0e552ab018b634a44fb92/250x250-000000-80-0-0.jpg",
+  "score": 0.25,
+  "tier": 3,
+  "tier_auto": 3,
+  "first_seen": "2026-10-07",
+  "added": "2026-02-22",
+  "still_liked": true,
+  "sources": {
+   "favorite": false,
+   "albums": 0,
+   "tracks": 0,
+   "playlists": 1
+  },
+  "hidden": false
+ },
+ {
+  "name": "דולי ופן",
+  "link": "https://www.deezer.com/artist/69706202",
+  "picture": "https://cdn-images.dzcdn.net/images/artist/e81d12329c53608a1b4d56c28c15c81c/250x250-000000-80-0-0.jpg",
   "score": 0.25,
   "tier": 3,
   "tier_auto": 3,
