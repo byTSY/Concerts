@@ -9867,23 +9867,19 @@
    "date": "2026-10-11",
    "time": "20:00",
    "venue": "Élysée Montmartre",
-   "genre": "Pop, Pop / Rock",
+   "genre": "Rock",
    "price": null,
    "links": [
     {
      "source": "Ticketmaster",
      "url": "https://www.ticketmaster.fr/fr/manifestation/dexys-midnight-runners-billet/idmanif/659847/idtier/18864121"
-    },
-    {
-     "source": "Offi",
-     "url": "https://www.offi.fr/concerts/elysee-montmartre-2168/dexys-midnight-runners-3255869.html"
     }
    ],
-   "kind": "known",
+   "kind": "other",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": "2026-10-07",
-   "list_baseline": true,
+   "list_since": null,
+   "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
     "Offi:3255869-2026-10-11T20:00",
@@ -10008,6 +10004,31 @@
    "last_seen": "2026-10-08",
    "source_keys": [
     "Offi:3338466-2026-10-11T20:00"
+   ]
+  },
+  {
+   "id": "756b673b68ec",
+   "title": "Dexys Midnight Runners",
+   "date": "2026-10-11",
+   "time": "20:00",
+   "venue": "Élysée Montmartre",
+   "genre": "Pop, Pop / Rock",
+   "price": null,
+   "links": [
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/elysee-montmartre-2168/dexys-midnight-runners-3255869.html"
+    }
+   ],
+   "kind": "discovery",
+   "first_seen": "2026-10-07",
+   "baseline": true,
+   "list_since": "2026-10-07",
+   "list_baseline": true,
+   "last_seen": "2026-10-08",
+   "source_keys": [
+    "Offi:3255869-2026-10-11T20:00",
+    "Ticketmaster:ZkyMmBwZ1A7uZbe"
    ]
   },
   {
@@ -32676,7 +32697,7 @@
    ]
   },
   {
-   "id": "390f08ed6e57",
+   "id": "390f08ed6e57x",
    "title": "THE WATCH PLAYS GENESIS",
    "date": "2026-10-29",
    "time": "19:00",
@@ -33042,7 +33063,7 @@
    ]
   },
   {
-   "id": "390f08ed6e57x",
+   "id": "390f08ed6e57",
    "title": "The Watch joue Genesis",
    "date": "2026-10-29",
    "time": "20:00",
@@ -35096,6 +35117,10 @@
     {
      "source": "Ticketmaster",
      "url": "https://www.ticketmaster.fr/fr/manifestation/big-ocean-billet/idmanif/673371/idseance/4427350"
+    },
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/alhambra-3584/big-ocean-3361970.html"
     }
    ],
    "kind": "other",
@@ -35105,6 +35130,7 @@
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
+    "Offi:3361970-2026-10-31T20:00",
     "Ticketmaster:ZkyMmBwZ1A78Eu8"
    ]
   },
@@ -38067,6 +38093,30 @@
    ]
   },
   {
+   "id": "faf44feeaecd",
+   "title": "Ensemble Irini",
+   "date": "2026-11-03",
+   "time": "20:30",
+   "venue": "Église Saint-Pierre de Montmartre",
+   "genre": null,
+   "price": null,
+   "links": [
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/eglise-saint-pierre-de-montmartre-2157/ensemble-irini-3363183.html"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-08",
+   "baseline": false,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-08",
+   "source_keys": [
+    "Offi:3363183-2026-11-03T20:30"
+   ]
+  },
+  {
    "id": "d266f79a7b07",
    "title": "Larrat",
    "date": "2026-11-03",
@@ -38676,10 +38726,10 @@
      "url": "https://www.offi.fr/concerts/360-paris-music-factory-6878/les-mamans-du-congo-rrobin-3361524.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -40744,10 +40794,10 @@
      "url": "https://www.offi.fr/concerts/le-tamanoir-3229/la-chica-la-mana-3336734.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -41354,10 +41404,10 @@
      "url": "https://www.offi.fr/concerts/la-maroquinerie-2748/saults-3305010.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -41454,10 +41504,10 @@
      "url": "https://www.offi.fr/concerts/salle-cortot-3122/french-kiss-3341551.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -42970,10 +43020,10 @@
      "url": "https://www.offi.fr/concerts/petit-bain-5136/the-clockworks-3304369.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -45760,10 +45810,10 @@
      "url": "https://www.offi.fr/concerts/alhambra-3584/haute-freddy-3300199.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -46359,10 +46409,10 @@
      "url": "https://www.offi.fr/concerts/le-cabaret-sauvage-1591/nick-hakim-3300186.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -46383,10 +46433,10 @@
      "url": "https://www.offi.fr/concerts/la-maroquinerie-2748/the-veils-3305032.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -47295,10 +47345,10 @@
      "url": "https://www.offi.fr/concerts/salle-des-concerts-6006/eic-friends-et-bertrand-chamayou-3225780.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -48046,10 +48096,10 @@
      "url": "https://www.offi.fr/concerts/theatre-de-saint-quentin-en-yvelines-4133/thomas-dutronc-jazz-friends-3324174.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -48673,6 +48723,30 @@
    ]
   },
   {
+   "id": "bc27e478f844",
+   "title": "Ensemble Rosas",
+   "date": "2026-11-15",
+   "time": "17:00",
+   "venue": "Église Saint-Leu-Saint-Gilles",
+   "genre": null,
+   "price": null,
+   "links": [
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/eglise-saint-leu-4777/ensemble-rosas-3363180.html"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-08",
+   "baseline": false,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-08",
+   "source_keys": [
+    "Offi:3363180-2026-11-15T17:00"
+   ]
+  },
+  {
    "id": "db3cb7a0caf4",
    "title": "SUZANNE",
    "date": "2026-11-15",
@@ -48888,10 +48962,10 @@
      "url": "https://www.offi.fr/concerts/petit-bain-5136/david-eugene-edwards-3304372.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -48912,10 +48986,10 @@
      "url": "https://www.offi.fr/concerts/grande-salle-6005/colin-currie-group-3225781.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -50910,10 +50984,10 @@
      "url": "https://www.offi.fr/concerts/le-trabendo-3288/howlin-jaws-3260016.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -51282,10 +51356,10 @@
      "url": "https://www.offi.fr/concerts/adidas-arena-7416/bryson-tiller-3304469.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -51306,10 +51380,10 @@
      "url": "https://www.offi.fr/concerts/palais-omnisports-de-paris-bercy-2913/no-limit-3224579.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -51969,10 +52043,10 @@
      "url": "https://www.offi.fr/concerts/cafe-de-la-danse-1598/dumbo-gets-mad-3312802.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -53185,10 +53259,10 @@
      "url": "https://www.offi.fr/concerts/theatre-de-suresnes-jean-vilar-4024/andre-manoukian-et-elodie-frege-3306372.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -54622,10 +54696,10 @@
      "url": "https://www.offi.fr/concerts/theatre-du-chatelet-1801/je-cherche-les-notes-qui-saiment-3229598.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -56633,10 +56707,10 @@
      "url": "https://www.offi.fr/concerts/la-maroquinerie-2748/anais-rosso-3305045.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -57431,10 +57505,10 @@
      "url": "https://www.offi.fr/concerts/le-bataclan-1526/mammoth-3174969.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -58342,10 +58416,10 @@
      "url": "https://www.offi.fr/concerts/la-maroquinerie-2748/chest-3305048.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -58563,10 +58637,10 @@
      "url": "https://www.offi.fr/concerts/alhambra-3584/mnek-3312763.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -60334,10 +60408,10 @@
      "url": "https://www.offi.fr/concerts/maison-de-radio-france-2674/quatuor-modigliani-3316404.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -63096,10 +63170,10 @@
      "url": "https://www.offi.fr/concerts/le-trabendo-3288/gurriers-3251036.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -63386,6 +63460,30 @@
    ]
   },
   {
+   "id": "8791fed4c8d9",
+   "title": "Catalina Skinner et Ensemble Stella d'Oriente",
+   "date": "2026-12-03",
+   "time": "20:30",
+   "venue": "Studio de l'Ermitage",
+   "genre": null,
+   "price": null,
+   "links": [
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/studio-de-lermitage-3207/catalina-skinner-et-ensemble-stella-doriente-3363181.html"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-08",
+   "baseline": false,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-08",
+   "source_keys": [
+    "Offi:3363181-2026-12-03T20:30"
+   ]
+  },
+  {
    "id": "acb1c607cb05",
    "title": "Emmanuel Rossfelder et Paul Rouger",
    "date": "2026-12-03",
@@ -63447,10 +63545,10 @@
      "url": "https://www.offi.fr/concerts/studio-le-regard-du-cygne-3212/alma-correspondances-entre-lili-boulanger-et-alicia-gallienne-3353105.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -64339,6 +64437,30 @@
    ]
   },
   {
+   "id": "18f46ef2ffca",
+   "title": "Catalina Skinner et Ensemble Stella d'Oriente",
+   "date": "2026-12-04",
+   "time": "20:30",
+   "venue": "Église Saint-Leu-Saint-Gilles",
+   "genre": null,
+   "price": null,
+   "links": [
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/eglise-saint-leu-4777/catalina-skinner-et-ensemble-stella-doriente-3363182.html"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-08",
+   "baseline": false,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-08",
+   "source_keys": [
+    "Offi:3363182-2026-12-04T20:30"
+   ]
+  },
+  {
    "id": "55b4443c05b8",
    "title": "Ciné-concert Dragons 2",
    "date": "2026-12-04",
@@ -65140,10 +65262,10 @@
      "url": "https://www.offi.fr/concerts/alhambra-3584/absolem-3363166.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-08",
    "baseline": false,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -65405,10 +65527,10 @@
      "url": "https://www.offi.fr/concerts/salle-gaveau-3136/nemanja-radulovic-et-yvan-cassar-3254529.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -65723,10 +65845,10 @@
      "url": "https://www.offi.fr/concerts/studio-le-regard-du-cygne-3212/alma-correspondances-entre-lili-boulanger-et-alicia-gallienne-3353105.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -68952,11 +69074,11 @@
      "url": "https://www.offi.fr/concerts/salle-gaveau-3136/clash-electro-de-vivaldi-a-daft-punk-3259827.html"
     }
    ],
-   "kind": "known",
+   "kind": "other",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": "2026-10-07",
-   "list_baseline": true,
+   "list_since": null,
+   "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
     "Offi:3259827-2026-12-11T20:30"
@@ -101883,10 +102005,10 @@
      "url": "https://www.offi.fr/concerts/maison-de-radio-france-2674/quatuor-modigliani-3333077.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -106995,11 +107117,11 @@
      "url": "https://www.offi.fr/concerts/salle-pleyel-3159/rumours-of-fleetwood-mac-3259655.html"
     }
    ],
-   "kind": "known",
+   "kind": "other",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": "2026-10-07",
-   "list_baseline": true,
+   "list_since": null,
+   "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
     "Offi:3259655-2027-05-02T20:00",
@@ -108111,10 +108233,10 @@
      "url": "https://www.offi.fr/concerts/espace-1789-2188/la-chica-3319858.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -109319,10 +109441,10 @@
      "url": "https://www.offi.fr/concerts/theatre-des-champs-elysees-1756/kammerorchester-basel-et-nemanja-radulovic-3221096.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -111302,10 +111424,10 @@
      "url": "https://www.offi.fr/concerts/maison-de-radio-france-2674/quatuor-modigliani-et-jean-frederic-neuburger-3333109.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-08",
    "list_baseline": false,
    "last_seen": "2026-10-08",
    "source_keys": [
@@ -116568,16 +116690,12 @@
    "date": "2027-09-18",
    "time": "20:00",
    "venue": "ZENITH PARIS - LA VILLETTE",
-   "genre": "Pop, Pop / Rock",
+   "genre": "Pop",
    "price": null,
    "links": [
     {
      "source": "Ticketmaster",
      "url": "https://www.ticketmaster.fr/fr/manifestation/mari-froes-billet/idmanif/660447/idtier/18864121"
-    },
-    {
-     "source": "Offi",
-     "url": "https://www.offi.fr/concerts/le-zenith-3401/mari-froes-3255833.html"
     }
    ],
    "kind": "other",
@@ -116597,16 +116715,12 @@
    "date": "2027-09-18",
    "time": "20:00",
    "venue": "Le Trianon",
-   "genre": "Monde / Traditionnel",
+   "genre": "World",
    "price": null,
    "links": [
     {
      "source": "Ticketmaster",
      "url": "https://www.ticketmaster.fr/fr/manifestation/orange-blossom-billet/idmanif/672400/idseance/4414179"
-    },
-    {
-     "source": "Offi",
-     "url": "https://www.offi.fr/concerts/theatre-trianon-3299/orange-blossom-3361911.html"
     }
    ],
    "kind": "discovery",
@@ -116650,16 +116764,12 @@
    "date": "2027-09-19",
    "time": "17:00",
    "venue": "SALLE PLEYEL",
-   "genre": "Chanson française, Chanson",
-   "price": "49-69 €",
+   "genre": "Chanson Francaise",
+   "price": null,
    "links": [
     {
      "source": "Ticketmaster",
      "url": "https://www.ticketmaster.fr/fr/manifestation/catherine-lara-billet/idmanif/664528/idseance/4365633"
-    },
-    {
-     "source": "Offi",
-     "url": "https://www.offi.fr/concerts/salle-pleyel-3159/catherine-lara-3307297.html"
     }
    ],
    "kind": "other",

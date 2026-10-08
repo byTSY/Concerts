@@ -1188,45 +1188,43 @@
   }
  },
  {
-  "id": "11a1219299d7",
-  "title": "DEXYS MIDNIGHT RUNNERS",
+  "id": "756b673b68ec",
+  "title": "Dexys Midnight Runners",
   "date": "2026-10-11",
   "time": "20:00",
   "venue": "Élysée Montmartre",
   "venue_favorite": true,
-  "address": "72, boulevard Rochechouart",
-  "city": "Paris",
+  "address": null,
+  "city": null,
   "price": null,
-  "on_sale": "2026-05-22T08:00:00Z",
-  "status": "onsale",
+  "on_sale": null,
+  "status": null,
   "genre": "Pop, Pop / Rock",
-  "image": "https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_RETINA_PORTRAIT_16_9.jpg",
+  "image": null,
   "links": [
-   {
-    "source": "Ticketmaster",
-    "url": "https://www.ticketmaster.fr/fr/manifestation/dexys-midnight-runners-billet/idmanif/659847/idtier/18864121"
-   },
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/elysee-montmartre-2168/dexys-midnight-runners-3255869.html"
    }
   ],
-  "artists": [
-   "Dexy's Midnight Runners"
-  ],
+  "artists": [],
   "description": null,
-  "kind": "known",
+  "kind": "discovery",
   "first_seen": "2026-10-07",
   "badge": null,
-  "tier": 3,
-  "matched": [
-   {
-    "name": "Midnight Runners",
-    "tier": 3,
-    "via": "titre",
-    "link": "https://www.deezer.com/artist/1697197"
-   }
-  ]
+  "discovery": {
+   "score": 0.7,
+   "artist": "Dexys Midnight Runners",
+   "link": "https://www.deezer.com/artist/2209",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/9ed4182d0122efcc0360546e13e996a7/250x250-000000-80-0-0.jpg",
+   "fans": 22219,
+   "close_to": [
+    "The Stranglers",
+    "Talking Heads",
+    "Soft Cell",
+    "Madness"
+   ]
+  }
  },
  {
   "id": "360c204c40c7",
@@ -6736,6 +6734,45 @@
   }
  },
  {
+  "id": "f070c9d2f1b1",
+  "title": "Les Mamans du Congo & Rrobin",
+  "date": "2026-11-04",
+  "time": "20:00",
+  "venue": "360 Paris Music Factory",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Musique africaine, Monde / Traditionnel",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/360-paris-music-factory-6878/les-mamans-du-congo-rrobin-3361524.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.5,
+   "artist": "Les Mamans du Congo",
+   "link": "https://www.deezer.com/artist/99430722",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/ea2d81f443af906c7e5cd576399c5bf6/250x250-000000-80-0-0.jpg",
+   "fans": 1599,
+   "close_to": [
+    "David Walters",
+    "Pat Kalla",
+    "Lass",
+    "Amadou & Mariam"
+   ]
+  }
+ },
+ {
   "id": "5a2dafeca948",
   "title": "BIRELI LAGRENE - BIRELI LAGRENE - 2026",
   "date": "2026-11-04",
@@ -7362,6 +7399,44 @@
   }
  },
  {
+  "id": "c56c6a704a0e",
+  "title": "La Chica - La Mana",
+  "date": "2026-11-06",
+  "time": "20:30",
+  "venue": "Le Tamanoir",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-tamanoir-3229/la-chica-la-mana-3336734.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.53,
+   "artist": "La Chica",
+   "link": "https://www.deezer.com/artist/4895746",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/2b55859eba9d42e43e9aa31c54905091/250x250-000000-80-0-0.jpg",
+   "fans": 12466,
+   "close_to": [
+    "Johan Papaconstantino",
+    "The Dø",
+    "Ezéchiel Pailhès"
+   ]
+  }
+ },
+ {
   "id": "0ce6bfd4f259",
   "title": "THE TEMPERANCE MOVEMENT",
   "date": "2026-11-07",
@@ -7400,6 +7475,45 @@
    "fans": 25270,
    "close_to": [
     "The Black Keys"
+   ]
+  }
+ },
+ {
+  "id": "50172d27eb6c",
+  "title": "Saults",
+  "date": "2026-11-07",
+  "time": "19:30",
+  "venue": "La Maroquinerie",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-maroquinerie-2748/saults-3305010.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.9,
+   "artist": "Saults",
+   "link": "https://www.deezer.com/artist/11622763",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/4d4bae82e5b4e60bb41543e32562e955/250x250-000000-80-0-0.jpg",
+   "fans": 2160,
+   "close_to": [
+    "Mark Ronson",
+    "Jamiroquai",
+    "Chromeo",
+    "Cerrone"
    ]
   }
  },
@@ -7528,6 +7642,49 @@
   }
  },
  {
+  "id": "2d324973ebd2",
+  "title": "FRENCH KISS",
+  "date": "2026-11-07",
+  "time": "20:00",
+  "venue": "Salle Cortot",
+  "venue_favorite": false,
+  "address": "78 rue Cardinet",
+  "city": "Paris",
+  "price": "Carré Or : 45€ Catégorie 1 : 30€ Catégorie 2 : 20€ Tarif réduit* : 15€",
+  "on_sale": null,
+  "status": null,
+  "genre": "Piano, Classique",
+  "image": "https://cdn.paris.fr/qfapv4/2026/09/06/huge-b137430155fbb13d74c10b8048c7bdec.jpg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://sallecortot.com/event/dimitri-naiditch-et-polina-de-carlo-piano-ravel-legrand-improvisations/"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/salle-cortot-3122/french-kiss-3341551.html"
+   }
+  ],
+  "artists": [],
+  "description": "De Ravel à Legrand, deux pianistes, quatre mains : le charme français entre classique et jazz !",
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 1.0,
+   "artist": "French Kiss",
+   "link": "https://www.deezer.com/artist/132661",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/bb81383ecdab4f3eff68f9ccf8d68aae/250x250-000000-80-0-0.jpg",
+   "fans": 1342,
+   "close_to": [
+    "Chic",
+    "Oliver Cheatham",
+    "Imagination",
+    "Loleatta Holloway"
+   ]
+  }
+ },
+ {
   "id": "be035218d0a3",
   "title": "ALCEU VALENÇA",
   "date": "2026-11-08",
@@ -7612,6 +7769,45 @@
     "Miles Kane",
     "The Kooks",
     "Noel Gallagher's High Flying Birds"
+   ]
+  }
+ },
+ {
+  "id": "628fce6e48b6",
+  "title": "The Clockworks",
+  "date": "2026-11-08",
+  "time": "19:30",
+  "venue": "Petit Bain",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/petit-bain-5136/the-clockworks-3304369.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.4,
+   "artist": "The Clockworks",
+   "link": "https://www.deezer.com/artist/4131890",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/484eee02db3b136dda1762b2d63f582a/250x250-000000-80-0-0.jpg",
+   "fans": 1091,
+   "close_to": [
+    "shame",
+    "DEADLETTER",
+    "Coach Party",
+    "BIG SPECIAL"
    ]
   }
  },
@@ -8292,6 +8488,49 @@
   }
  },
  {
+  "id": "f98a68f0cf4c",
+  "title": "HAUTE & FREDDY",
+  "date": "2026-11-12",
+  "time": "20:00",
+  "venue": "ALHAMBRA",
+  "venue_favorite": false,
+  "address": "21, RUE YVES TOUDIC",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2026-06-29T09:00:00Z",
+  "status": "onsale",
+  "genre": "Pop, Pop / Rock",
+  "image": "https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/haute-freddy-billet/idmanif/665139/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/alhambra-3584/haute-freddy-3300199.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 1.0,
+   "artist": "Haute",
+   "link": "https://www.deezer.com/artist/522977",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/5e11c1f7396ed452cf99ebe6e2b907df/250x250-000000-80-0-0.jpg",
+   "fans": 4932,
+   "close_to": [
+    "Poolside",
+    "Later.",
+    "L'Impératrice",
+    "Isaac Delusion"
+   ]
+  }
+ },
+ {
   "id": "c6ed678afd6d",
   "title": "JEANJASS",
   "date": "2026-11-12",
@@ -8454,6 +8693,83 @@
    "close_to": [
     "Alfa Mist",
     "Nate Smith"
+   ]
+  }
+ },
+ {
+  "id": "98aab61da91f",
+  "title": "Nick Hakim",
+  "date": "2026-11-13",
+  "time": "19:30",
+  "venue": "Le Cabaret Sauvage",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "RnB, Musiques urbaines",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-cabaret-sauvage-1591/nick-hakim-3300186.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 1.0,
+   "artist": "Nick Hakim",
+   "link": "https://www.deezer.com/artist/5408757",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/070696bfea10762cbb90a9c2c18ca989/250x250-000000-80-0-0.jpg",
+   "fans": 5680,
+   "close_to": [
+    "Tom Misch",
+    "Joesef",
+    "Gotts Street Park",
+    "Yellow Days"
+   ]
+  }
+ },
+ {
+  "id": "d4004e587ca0",
+  "title": "The Veils",
+  "date": "2026-11-13",
+  "time": "19:30",
+  "venue": "La Maroquinerie",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-maroquinerie-2748/the-veils-3305032.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.3,
+   "artist": "The Veils",
+   "link": "https://www.deezer.com/artist/3568",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/8b8e63ccc8119392abb703f594b05778/250x250-000000-80-0-0.jpg",
+   "fans": 10095,
+   "close_to": [
+    "The National",
+    "My Morning Jacket",
+    "Death Cab for Cutie"
    ]
   }
  },
@@ -8693,6 +9009,49 @@
   ]
  },
  {
+  "id": "fe3ebf7fbe05",
+  "title": "EIC & Friends et Bertrand Chamayou",
+  "date": "2026-11-14",
+  "time": "17:30",
+  "venue": "Salle des concerts - Cité de la Musique-Philharmonie",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Contemporain / Expérimental",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/salle-des-concerts-6006/eic-friends-et-bertrand-chamayou-3225778.html"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/salle-des-concerts-6006/eic-friends-et-bertrand-chamayou-3225780.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.5,
+   "artist": "Friends",
+   "link": "https://www.deezer.com/artist/91747",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/d8efca1a3ba70ff42e25f7787dcc4c57/250x250-000000-80-0-0.jpg",
+   "fans": 5126,
+   "close_to": [
+    "WE ARE MATCH",
+    "The Asteroids Galaxy Tour",
+    "FM Belfast",
+    "!!!"
+   ]
+  }
+ },
+ {
   "id": "6cc3f68af9eb",
   "title": "Leee John",
   "date": "2026-11-14",
@@ -8895,6 +9254,45 @@
   }
  },
  {
+  "id": "1cf9fbee785b",
+  "title": "Thomas Dutronc – Jazz & Friends",
+  "date": "2026-11-14",
+  "time": "20:30",
+  "venue": "Théâtre de Saint-Quentin-en-Yvelines",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": "50 €",
+  "on_sale": null,
+  "status": null,
+  "genre": "Jazz contemporain, Jazz / Blues",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-de-saint-quentin-en-yvelines-4133/thomas-dutronc-jazz-friends-3324174.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.5,
+   "artist": "Friends",
+   "link": "https://www.deezer.com/artist/91747",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/d8efca1a3ba70ff42e25f7787dcc4c57/250x250-000000-80-0-0.jpg",
+   "fans": 5126,
+   "close_to": [
+    "WE ARE MATCH",
+    "The Asteroids Galaxy Tour",
+    "FM Belfast",
+    "!!!"
+   ]
+  }
+ },
+ {
   "id": "4e99d6027071",
   "title": "BÉBÉ CONCERT - JOHANN SEBASTIAN BACH",
   "date": "2026-11-15",
@@ -8971,6 +9369,44 @@
    "fans": 31444,
    "close_to": [
     "TR/ST"
+   ]
+  }
+ },
+ {
+  "id": "f5d471b5d46e",
+  "title": "David Eugene Edwards",
+  "date": "2026-11-15",
+  "time": "19:30",
+  "venue": "Petit Bain",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/petit-bain-5136/david-eugene-edwards-3304372.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.53,
+   "artist": "David Eugene Edwards",
+   "link": "https://www.deezer.com/artist/1017817",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/9fac21d884a911556c5d8a3ae37012d1/250x250-000000-80-0-0.jpg",
+   "fans": 1477,
+   "close_to": [
+    "Yard Act",
+    "BIG SPECIAL",
+    "Arab Strap"
    ]
   }
  },
@@ -9061,6 +9497,43 @@
     "Rag'n'Bone Man",
     "Puggy",
     "Lilly Wood And The Prick"
+   ]
+  }
+ },
+ {
+  "id": "038d1b3440a2",
+  "title": "Colin Currie Group",
+  "date": "2026-11-15",
+  "time": "20:00",
+  "venue": "Grande salle Pierre Boulez - Philharmonie de Paris",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Contemporain / Expérimental",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-salle-6005/colin-currie-group-3225781.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.3,
+   "artist": "Colin Currie Group",
+   "link": "https://www.deezer.com/artist/13741443",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/ce5cc7a57e63f4b48b91a6e091312168/250x250-000000-80-0-0.jpg",
+   "fans": 76,
+   "close_to": [
+    "Francesco Tristano",
+    "Chilly Gonzales"
    ]
   }
  },
@@ -9687,6 +10160,49 @@
   }
  },
  {
+  "id": "465c83a39d74",
+  "title": "HOWLIN' JAWS",
+  "date": "2026-11-18",
+  "time": "19:30",
+  "venue": "LE TRABENDO (Parc de la Villette)",
+  "venue_favorite": false,
+  "address": "AV J.JAURES /METRO PTE DE PANTIN",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2026-04-10T08:00:00Z",
+  "status": "onsale",
+  "genre": "Rock, Pop / Rock",
+  "image": "https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/howlin-jaws-billet/idmanif/655887/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/howlin-jaws-3260016.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.87,
+   "artist": "Howlin' Jaws",
+   "link": "https://www.deezer.com/artist/1598863",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/0b5c48cdaacb533e0947f2aff958ace7/250x250-000000-80-0-0.jpg",
+   "fans": 2942,
+   "close_to": [
+    "The Black Keys",
+    "Miles Kane",
+    "The Beefs",
+    "Hanni El Khatib"
+   ]
+  }
+ },
+ {
   "id": "53fd6d511e5c",
   "title": "KID FRANCESCOLI",
   "date": "2026-11-18",
@@ -9812,6 +10328,84 @@
     "link": "https://www.deezer.com/artist/403152"
    }
   ]
+ },
+ {
+  "id": "cf30f1b9a6ef",
+  "title": "No Limit",
+  "date": "2026-11-18",
+  "time": "20:00",
+  "venue": "Accor Arena",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Rap, Musiques urbaines",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/palais-omnisports-de-paris-bercy-2913/no-limit-3224579.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.83,
+   "artist": "No Limit",
+   "link": "https://www.deezer.com/artist/136645872",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/919393e2e6ad08348f9cbd1323bdebd5/250x250-000000-80-0-0.jpg",
+   "fans": 29972,
+   "close_to": [
+    "PLK",
+    "Gazo",
+    "Rim'K",
+    "Kaaris"
+   ]
+  }
+ },
+ {
+  "id": "a4adf9892e69",
+  "title": "Bryson Tiller",
+  "date": "2026-11-18",
+  "time": "20:00",
+  "venue": "Adidas Arena",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "RnB, Musiques urbaines",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/adidas-arena-7416/bryson-tiller-3304469.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 1.0,
+   "artist": "Bryson Tiller",
+   "link": "https://www.deezer.com/artist/7004075",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/d7af8b6f54a0e2b825d5ae92f9e767da/250x250-000000-80-0-0.jpg",
+   "fans": 998180,
+   "close_to": [
+    "6lack",
+    "Tory Lanez",
+    "PARTYNEXTDOOR",
+    "4batz"
+   ]
+  }
  },
  {
   "id": "103bfaba6926",
@@ -10020,6 +10614,45 @@
   }
  },
  {
+  "id": "662fd0b3c157",
+  "title": "Dumbo Gets Mad",
+  "date": "2026-11-19",
+  "time": "20:00",
+  "venue": "Café de la Danse",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop, Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/cafe-de-la-danse-1598/dumbo-gets-mad-3312802.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.7,
+   "artist": "Dumbo Gets Mad",
+   "link": "https://www.deezer.com/artist/7113463",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/1c590b399d0616bef2dc93f64be26639/250x250-000000-80-0-0.jpg",
+   "fans": 2387,
+   "close_to": [
+    "Soft Hair",
+    "Connan Mockasin",
+    "Unknown Mortal Orchestra",
+    "Tops"
+   ]
+  }
+ },
+ {
   "id": "a6033cb3af52",
   "title": "A2H",
   "date": "2026-11-20",
@@ -10181,6 +10814,44 @@
     "Genesis Owusu",
     "Wet Leg",
     "Temples"
+   ]
+  }
+ },
+ {
+  "id": "da805553f689",
+  "title": "André Manoukian et Élodie Frégé",
+  "date": "2026-11-20",
+  "time": "20:30",
+  "venue": "Théâtre de Suresnes Jean Vilar",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": "22,5-44,5 €",
+  "on_sale": null,
+  "status": null,
+  "genre": "Chanson française, Chanson",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-de-suresnes-jean-vilar-4024/andre-manoukian-et-elodie-frege-3306372.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.4,
+   "artist": "André Manoukian",
+   "link": "https://www.deezer.com/artist/211413",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/ea7b103cec35e5f4b73cfc882c92a8a5/250x250-000000-80-0-0.jpg",
+   "fans": 22219,
+   "close_to": [
+    "Avishai Cohen",
+    "Stacey Kent",
+    "Ibrahim Maalouf"
    ]
   }
  },
@@ -10474,6 +11145,46 @@
    "close_to": [
     "IAM",
     "Akhenaton"
+   ]
+  }
+ },
+ {
+  "id": "0d421916eb3a",
+  "title": "Je cherche les notes qui s’aiment (Wolfgang Amadeus Mozart)",
+  "date": "2026-11-22",
+  "time": "11:00",
+  "venue": "Théâtre du Châtelet",
+  "venue_favorite": false,
+  "address": "1 place du Châtelet",
+  "city": "Paris",
+  "price": "De 5 à 35 euros.",
+  "on_sale": null,
+  "status": null,
+  "genre": "Musique de chambre, Classique",
+  "image": "https://cdn.paris.fr/qfapv4/2026/06/12/huge-5a461776fad33093d49449f5638d990e.jpg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.chatelet.com/programmation/26-27/je-cherche-les-notes-qui-saiment/"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-du-chatelet-1801/je-cherche-les-notes-qui-saiment-3229598.html"
+   }
+  ],
+  "artists": [],
+  "description": "Dans le cadre des Concerts du Dimanche Matin.",
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.33,
+   "artist": "Wolfgang Amadeus Mozart",
+   "link": "https://www.deezer.com/artist/5695",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/41811848bbce380a4753bcb71fa84394/250x250-000000-80-0-0.jpg",
+   "fans": 1576498,
+   "close_to": [
+    "Mstislav Rostropovich"
    ]
   }
  },
@@ -10937,6 +11648,44 @@
   }
  },
  {
+  "id": "07efcf15820f",
+  "title": "Anaïs Rosso",
+  "date": "2026-11-25",
+  "time": "19:30",
+  "venue": "La Maroquinerie",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop, Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-maroquinerie-2748/anais-rosso-3305045.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.77,
+   "artist": "Anaïs Rosso",
+   "link": "https://www.deezer.com/artist/187540397",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/1d8e3ffce1c66c9251f952f46dd08036/250x250-000000-80-0-0.jpg",
+   "fans": 1305,
+   "close_to": [
+    "Voyou",
+    "Pépite",
+    "Ezéchiel Pailhès"
+   ]
+  }
+ },
+ {
   "id": "53f6e0c36b0f",
   "title": "CARO",
   "date": "2026-11-25",
@@ -11323,6 +12072,46 @@
   ]
  },
  {
+  "id": "02f76122e4d4",
+  "title": "MAMMOTH",
+  "date": "2026-11-26",
+  "time": "19:30",
+  "venue": "Le Bataclan",
+  "venue_favorite": false,
+  "address": "50, BOULEVARD VOLTAIRE",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2026-01-30T10:00:00Z",
+  "status": "onsale",
+  "genre": "Metal, Pop / Rock",
+  "image": "https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/mammoth-billet/idmanif/648167/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-bataclan-1526/mammoth-3174969.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.33,
+   "artist": "Mammoth",
+   "link": "https://www.deezer.com/artist/112937382",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/ed5c3c88fb3f7b60569424648cb1bd28/250x250-000000-80-0-0.jpg",
+   "fans": 9916,
+   "close_to": [
+    "Marilyn Manson"
+   ]
+  }
+ },
+ {
   "id": "56f39af1fef4",
   "title": "INDOCHINE",
   "date": "2026-11-26",
@@ -11491,6 +12280,88 @@
     "Red Hot Chili Peppers",
     "Weezer",
     "The Smashing Pumpkins"
+   ]
+  }
+ },
+ {
+  "id": "5d3d0c92dfd2",
+  "title": "Chest.",
+  "date": "2026-11-27",
+  "time": "19:30",
+  "venue": "La Maroquinerie",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Punk, Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-maroquinerie-2748/chest-3305048.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.73,
+   "artist": "chest.",
+   "link": "https://www.deezer.com/artist/267222812",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/a3313407bd4984f9611231abf494783e/250x250-000000-80-0-0.jpg",
+   "fans": 1341,
+   "close_to": [
+    "Viagra Boys",
+    "shame",
+    "DEADLETTER",
+    "BIG SPECIAL"
+   ]
+  }
+ },
+ {
+  "id": "35dafad0f63c",
+  "title": "MNEK",
+  "date": "2026-11-27",
+  "time": "20:00",
+  "venue": "ALHAMBRA",
+  "venue_favorite": false,
+  "address": "21, RUE YVES TOUDIC",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2026-07-07T08:00:00Z",
+  "status": "onsale",
+  "genre": "Rap, Musiques urbaines",
+  "image": "https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/mnek-billet/idmanif/666028/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/alhambra-3584/mnek-3312763.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.4,
+   "artist": "MNEK",
+   "link": "https://www.deezer.com/artist/1454125",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/b779f604772ba9adc808a1490ac9c2b9/250x250-000000-80-0-0.jpg",
+   "fans": 161767,
+   "close_to": [
+    "Peking Duk",
+    "Olly Alexander (Years & Years)",
+    "Mabel",
+    "Clean Bandit"
    ]
   }
  },
@@ -11916,6 +12787,42 @@
     "link": "https://www.deezer.com/artist/47"
    }
   ]
+ },
+ {
+  "id": "9747c8f5ded5",
+  "title": "Quatuor Modigliani",
+  "date": "2026-11-29",
+  "time": "16:00",
+  "venue": "Maison de la Radio et de la Musique",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Musique de chambre, Classique",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/maison-de-radio-france-2674/quatuor-modigliani-3316404.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.33,
+   "artist": "Quatuor Modigliani",
+   "link": "https://www.deezer.com/artist/7323602",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/b5963acd6e070dc02e63a1fe912cf164/250x250-000000-80-0-0.jpg",
+   "fans": 1907,
+   "close_to": [
+    "Mstislav Rostropovich"
+   ]
+  }
  },
  {
   "id": "bb6c4daa6a98",
@@ -12777,6 +13684,83 @@
   }
  },
  {
+  "id": "b5fae622aa05",
+  "title": "Gurriers",
+  "date": "2026-12-03",
+  "time": "20:00",
+  "venue": "Le Trabendo",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/gurriers-3251036.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 1.0,
+   "artist": "Gurriers",
+   "link": "https://www.deezer.com/artist/143101532",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/faec998e2ded51932ca8266b03c3a474/250x250-000000-80-0-0.jpg",
+   "fans": 3201,
+   "close_to": [
+    "Yard Act",
+    "shame",
+    "Getdown Services",
+    "DEADLETTER"
+   ]
+  }
+ },
+ {
+  "id": "deeb6a9c7d16",
+  "title": "Alma, correspondances entre Lili Boulanger et Alicia Gallienne",
+  "date": "2026-12-03",
+  "time": "20:30",
+  "venue": "Studio Le Regard du cygne",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Classique",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/studio-le-regard-du-cygne-3212/alma-correspondances-entre-lili-boulanger-et-alicia-gallienne-3353105.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.3,
+   "artist": "Alma",
+   "link": "https://www.deezer.com/artist/10478743",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/7ed7e0208a7b8f4b9432169be62deaa2/250x250-000000-80-0-0.jpg",
+   "fans": 32173,
+   "close_to": [
+    "Olly Alexander (Years & Years)",
+    "Mabel",
+    "Clean Bandit"
+   ]
+  }
+ },
+ {
   "id": "dd663f7cff1c",
   "title": "BOY GEORGE w/CULTURE CLUB & SHAGGY",
   "date": "2026-12-04",
@@ -13117,6 +14101,80 @@
   ]
  },
  {
+  "id": "78f92ff17b16",
+  "title": "Absolem",
+  "date": "2026-12-05",
+  "time": "20:00",
+  "venue": "Alhambra",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/alhambra-3584/absolem-3363166.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-08",
+  "badge": "annonce",
+  "discovery": {
+   "score": 0.77,
+   "artist": "Absolem",
+   "link": "https://www.deezer.com/artist/11047402",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/8cd2f6d692e38aff317f408263db4c43/250x250-000000-80-0-0.jpg",
+   "fans": 4384,
+   "close_to": [
+    "ISHA",
+    "Caballero & JeanJass",
+    "JeanJass"
+   ]
+  }
+ },
+ {
+  "id": "12ab4c11dc79",
+  "title": "Nemanja Radulović et Yvan Cassar",
+  "date": "2026-12-05",
+  "time": "20:30",
+  "venue": "Salle Gaveau",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": "31,5-112,5 €",
+  "on_sale": null,
+  "status": null,
+  "genre": "Musique de chambre, Classique",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/salle-gaveau-3136/nemanja-radulovic-et-yvan-cassar-3254529.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.33,
+   "artist": "Nemanja Radulovic",
+   "link": "https://www.deezer.com/artist/70889",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/d1233b675e01fea6ba0baa6128c8a16b/250x250-000000-80-0-0.jpg",
+   "fans": 20299,
+   "close_to": [
+    "Mstislav Rostropovich"
+   ]
+  }
+ },
+ {
   "id": "d09b22e8d6f7",
   "title": "Mélissa Laveaux",
   "date": "2026-12-05",
@@ -13152,6 +14210,44 @@
     "The Dø",
     "FM LAETI",
     "Benjamin Clementine"
+   ]
+  }
+ },
+ {
+  "id": "b637172d5fc1",
+  "title": "Alma, correspondances entre Lili Boulanger et Alicia Gallienne",
+  "date": "2026-12-06",
+  "time": "16:00",
+  "venue": "Studio Le Regard du cygne",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Classique",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/studio-le-regard-du-cygne-3212/alma-correspondances-entre-lili-boulanger-et-alicia-gallienne-3353105.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.3,
+   "artist": "Alma",
+   "link": "https://www.deezer.com/artist/10478743",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/7ed7e0208a7b8f4b9432169be62deaa2/250x250-000000-80-0-0.jpg",
+   "fans": 32173,
+   "close_to": [
+    "Olly Alexander (Years & Years)",
+    "Mabel",
+    "Clean Bandit"
    ]
   }
  },
@@ -13980,41 +15076,6 @@
     "tier": 2,
     "via": "titre",
     "link": "https://www.deezer.com/artist/95330772"
-   }
-  ]
- },
- {
-  "id": "87344625de19",
-  "title": "Clash Électro : de Vivaldi à Daft Punk",
-  "date": "2026-12-11",
-  "time": "20:30",
-  "venue": "Salle Gaveau",
-  "venue_favorite": false,
-  "address": null,
-  "city": null,
-  "price": "18-89 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Électro",
-  "image": null,
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/salle-gaveau-3136/clash-electro-de-vivaldi-a-daft-punk-3259827.html"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "kind": "known",
-  "first_seen": "2026-10-07",
-  "badge": null,
-  "tier": 1,
-  "matched": [
-   {
-    "name": "Daft Punk",
-    "tier": 1,
-    "via": "titre",
-    "link": "https://www.deezer.com/artist/27"
    }
   ]
  },
@@ -21430,6 +22491,42 @@
   }
  },
  {
+  "id": "cd713096d223",
+  "title": "Quatuor Modigliani",
+  "date": "2027-04-04",
+  "time": "16:00",
+  "venue": "Maison de la Radio et de la Musique",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Musique de chambre, Classique",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/maison-de-radio-france-2674/quatuor-modigliani-3333077.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.33,
+   "artist": "Quatuor Modigliani",
+   "link": "https://www.deezer.com/artist/7323602",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/b5963acd6e070dc02e63a1fe912cf164/250x250-000000-80-0-0.jpg",
+   "fans": 1907,
+   "close_to": [
+    "Mstislav Rostropovich"
+   ]
+  }
+ },
+ {
   "id": "cc2a24a4a2b4",
   "title": "SOPHIE HUNGER",
   "date": "2027-04-07",
@@ -22920,47 +24017,6 @@
   }
  },
  {
-  "id": "d11c8c36c1f1",
-  "title": "RUMOURS OF FLEETWOOD MAC",
-  "date": "2027-05-02",
-  "time": "20:00",
-  "venue": "SALLE PLEYEL",
-  "venue_favorite": false,
-  "address": "252 RUE FAUBOURG SAINT HONORE",
-  "city": "Paris",
-  "price": null,
-  "on_sale": "2026-06-05T08:00:00Z",
-  "status": "onsale",
-  "genre": "Pop / Rock",
-  "image": "https://s1.ticketm.net/dam/a/3d8/9e092b38-266c-4c6a-950e-c215f72633d8_RETINA_PORTRAIT_16_9.jpg",
-  "links": [
-   {
-    "source": "Ticketmaster",
-    "url": "https://www.ticketmaster.fr/fr/manifestation/rumours-of-fleetwood-mac-billet/idmanif/661507/idtier/18864121"
-   },
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/salle-pleyel-3159/rumours-of-fleetwood-mac-3259655.html"
-   }
-  ],
-  "artists": [
-   "Rumours of Fleetwood Mac"
-  ],
-  "description": null,
-  "kind": "known",
-  "first_seen": "2026-10-07",
-  "badge": null,
-  "tier": 3,
-  "matched": [
-   {
-    "name": "Fleetwood Mac",
-    "tier": 3,
-    "via": "titre",
-    "link": "https://www.deezer.com/artist/169"
-   }
-  ]
- },
- {
   "id": "06473977c45c",
   "title": "PIERS FACCINI",
   "date": "2027-05-03",
@@ -23203,6 +24259,44 @@
    "close_to": [
     "Voyou",
     "Requin Chagrin",
+    "Ezéchiel Pailhès"
+   ]
+  }
+ },
+ {
+  "id": "5e9b8ff3c3a8",
+  "title": "La Chica",
+  "date": "2027-05-13",
+  "time": "20:00",
+  "venue": "Espace 1789",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": "15,5-20 €",
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop, Contemporain / Expérimental",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/espace-1789-2188/la-chica-3319858.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.53,
+   "artist": "La Chica",
+   "link": "https://www.deezer.com/artist/4895746",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/2b55859eba9d42e43e9aa31c54905091/250x250-000000-80-0-0.jpg",
+   "fans": 12466,
+   "close_to": [
+    "Johan Papaconstantino",
+    "The Dø",
     "Ezéchiel Pailhès"
    ]
   }
@@ -23512,6 +24606,42 @@
     "Pink Floyd",
     "Electric Light Orchestra",
     "The Who"
+   ]
+  }
+ },
+ {
+  "id": "099b09e33830",
+  "title": "Kammerorchester Basel et Nemanja Radulović",
+  "date": "2027-05-20",
+  "time": "20:00",
+  "venue": "Théâtre des Champs-Élysées",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Musique symphonique, Classique",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-des-champs-elysees-1756/kammerorchester-basel-et-nemanja-radulovic-3221096.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.33,
+   "artist": "Nemanja Radulovic",
+   "link": "https://www.deezer.com/artist/70889",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/d1233b675e01fea6ba0baa6128c8a16b/250x250-000000-80-0-0.jpg",
+   "fans": 20299,
+   "close_to": [
+    "Mstislav Rostropovich"
    ]
   }
  },
@@ -23849,6 +24979,42 @@
     "Alabama Shakes",
     "Woods",
     "Dope Lemon"
+   ]
+  }
+ },
+ {
+  "id": "b911999c8704",
+  "title": "Quatuor Modigliani et Jean-Frédéric Neuburger",
+  "date": "2027-05-28",
+  "time": "20:00",
+  "venue": "Maison de la Radio et de la Musique",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Musique de chambre, Classique",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/maison-de-radio-france-2674/quatuor-modigliani-et-jean-frederic-neuburger-3333109.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.33,
+   "artist": "Quatuor Modigliani",
+   "link": "https://www.deezer.com/artist/7323602",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/b5963acd6e070dc02e63a1fe912cf164/250x250-000000-80-0-0.jpg",
+   "fans": 1907,
+   "close_to": [
+    "Mstislav Rostropovich"
    ]
   }
  },
@@ -24460,16 +25626,12 @@
   "price": null,
   "on_sale": "2026-09-15T09:00:00Z",
   "status": "onsale",
-  "genre": "Monde / Traditionnel",
+  "genre": "World",
   "image": "https://s1.ticketm.net/dam/a/6bd/a3c40fa4-4ecf-43f8-8c9f-281a923996bd_RETINA_PORTRAIT_16_9.jpg",
   "links": [
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/orange-blossom-billet/idmanif/672400/idseance/4414179"
-   },
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/orange-blossom-3361911.html"
    }
   ],
   "artists": [

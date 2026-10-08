@@ -1,7 +1,7 @@
 [
  {
   "name": "Olympia",
-  "total": 135,
+  "total": 133,
   "known": 15,
   "discovery": 35,
   "favorite": true
@@ -28,9 +28,16 @@
   "favorite": true
  },
  {
+  "name": "La Maroquinerie",
+  "total": 109,
+  "known": 3,
+  "discovery": 29,
+  "favorite": false
+ },
+ {
   "name": "SALLE PLEYEL",
   "total": 70,
-  "known": 12,
+  "known": 11,
   "discovery": 19,
   "favorite": false
  },
@@ -50,29 +57,29 @@
  },
  {
   "name": "Élysée Montmartre",
-  "total": 59,
-  "known": 14,
-  "discovery": 15,
+  "total": 60,
+  "known": 13,
+  "discovery": 16,
   "favorite": true
- },
- {
-  "name": "La Maroquinerie",
-  "total": 109,
-  "known": 3,
-  "discovery": 25,
-  "favorite": false
  },
  {
   "name": "Le Bataclan",
   "total": 57,
   "known": 5,
-  "discovery": 13,
+  "discovery": 14,
   "favorite": false
  },
  {
   "name": "ALHAMBRA",
   "total": 44,
   "known": 4,
+  "discovery": 12,
+  "favorite": false
+ },
+ {
+  "name": "LE TRABENDO (Parc de la Villette)",
+  "total": 41,
+  "known": 0,
   "discovery": 10,
   "favorite": false
  },
@@ -88,13 +95,6 @@
   "total": 62,
   "known": 4,
   "discovery": 5,
-  "favorite": false
- },
- {
-  "name": "LE TRABENDO (Parc de la Villette)",
-  "total": 41,
-  "known": 0,
-  "discovery": 9,
   "favorite": false
  },
  {
@@ -140,6 +140,13 @@
   "favorite": true
  },
  {
+  "name": "Accor Arena",
+  "total": 13,
+  "known": 2,
+  "discovery": 4,
+  "favorite": false
+ },
+ {
   "name": "CABARET SAUVAGE",
   "total": 13,
   "known": 3,
@@ -154,6 +161,20 @@
   "favorite": false
  },
  {
+  "name": "Grande salle Pierre Boulez - Philharmonie de Paris",
+  "total": 161,
+  "known": 2,
+  "discovery": 3,
+  "favorite": false
+ },
+ {
+  "name": "Salle des concerts - Cité de la Musique-Philharmonie",
+  "total": 62,
+  "known": 3,
+  "discovery": 2,
+  "favorite": false
+ },
+ {
   "name": "La Boule Noire",
   "total": 27,
   "known": 1,
@@ -161,10 +182,17 @@
   "favorite": true
  },
  {
-  "name": "Accor Arena",
-  "total": 13,
-  "known": 2,
-  "discovery": 3,
+  "name": "Le Trabendo",
+  "total": 22,
+  "known": 3,
+  "discovery": 2,
+  "favorite": false
+ },
+ {
+  "name": "Petit Bain",
+  "total": 22,
+  "known": 1,
+  "discovery": 4,
   "favorite": false
  },
  {
@@ -182,24 +210,24 @@
   "favorite": false
  },
  {
-  "name": "Grande salle Pierre Boulez - Philharmonie de Paris",
-  "total": 161,
-  "known": 2,
-  "discovery": 2,
+  "name": "Maison de la Radio et de la Musique",
+  "total": 129,
+  "known": 0,
+  "discovery": 4,
   "favorite": false
  },
  {
-  "name": "Salle des concerts - Cité de la Musique-Philharmonie",
-  "total": 62,
+  "name": "Théâtre du Châtelet",
+  "total": 23,
   "known": 3,
   "discovery": 1,
   "favorite": false
  },
  {
-  "name": "Le Trabendo",
-  "total": 22,
-  "known": 3,
-  "discovery": 1,
+  "name": "Alhambra",
+  "total": 20,
+  "known": 1,
+  "discovery": 3,
   "favorite": false
  },
  {
@@ -231,17 +259,10 @@
   "favorite": false
  },
  {
-  "name": "Théâtre du Châtelet",
-  "total": 23,
-  "known": 3,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Petit Bain",
+  "name": "Café de la Danse",
   "total": 22,
-  "known": 1,
-  "discovery": 2,
+  "known": 0,
+  "discovery": 3,
   "favorite": false
  },
  {
@@ -249,13 +270,6 @@
   "total": 21,
   "known": 0,
   "discovery": 3,
-  "favorite": false
- },
- {
-  "name": "Alhambra",
-  "total": 20,
-  "known": 1,
-  "discovery": 2,
   "favorite": false
  },
  {
@@ -280,10 +294,17 @@
   "favorite": false
  },
  {
+  "name": "Théâtre des Champs-Élysées",
+  "total": 100,
+  "known": 0,
+  "discovery": 2,
+  "favorite": false
+ },
+ {
   "name": "Salle Gaveau",
   "total": 66,
-  "known": 1,
-  "discovery": 1,
+  "known": 0,
+  "discovery": 2,
   "favorite": false
  },
  {
@@ -303,13 +324,6 @@
  {
   "name": "Jass Club Paris",
   "total": 23,
-  "known": 0,
-  "discovery": 2,
-  "favorite": false
- },
- {
-  "name": "Café de la Danse",
-  "total": 22,
   "known": 0,
   "discovery": 2,
   "favorite": false
@@ -378,6 +392,13 @@
   "favorite": false
  },
  {
+  "name": "Espace 1789",
+  "total": 5,
+  "known": 0,
+  "discovery": 2,
+  "favorite": false
+ },
+ {
   "name": "Les Folies Bergère",
   "total": 5,
   "known": 0,
@@ -413,22 +434,22 @@
   "favorite": false
  },
  {
-  "name": "Maison de la Radio et de la Musique",
-  "total": 129,
+  "name": "Studio Le Regard du cygne",
+  "total": 3,
   "known": 0,
-  "discovery": 1,
-  "favorite": false
- },
- {
-  "name": "Théâtre des Champs-Élysées",
-  "total": 100,
-  "known": 0,
-  "discovery": 1,
+  "discovery": 2,
   "favorite": false
  },
  {
   "name": "SUPERSONIC",
   "total": 57,
+  "known": 0,
+  "discovery": 1,
+  "favorite": false
+ },
+ {
+  "name": "Salle Cortot",
+  "total": 44,
   "known": 0,
   "discovery": 1,
   "favorite": false
@@ -511,6 +532,13 @@
   "favorite": false
  },
  {
+  "name": "Le Cabaret Sauvage",
+  "total": 13,
+  "known": 0,
+  "discovery": 1,
+  "favorite": false
+ },
+ {
   "name": "Péniche Antipode",
   "total": 13,
   "known": 0,
@@ -519,6 +547,13 @@
  },
  {
   "name": "L'Européen",
+  "total": 11,
+  "known": 0,
+  "discovery": 1,
+  "favorite": false
+ },
+ {
+  "name": "Théâtre de Saint-Quentin-en-Yvelines",
   "total": 11,
   "known": 0,
   "discovery": 1,
@@ -534,6 +569,13 @@
  {
   "name": "Théâtre du Casino",
   "total": 8,
+  "known": 0,
+  "discovery": 1,
+  "favorite": false
+ },
+ {
+  "name": "Adidas Arena",
+  "total": 7,
   "known": 0,
   "discovery": 1,
   "favorite": false
@@ -560,7 +602,7 @@
   "favorite": false
  },
  {
-  "name": "Espace 1789",
+  "name": "360 Paris Music Factory",
   "total": 5,
   "known": 0,
   "discovery": 1,
@@ -575,6 +617,13 @@
  },
  {
   "name": "La Ferme du Buisson",
+  "total": 5,
+  "known": 0,
+  "discovery": 1,
+  "favorite": false
+ },
+ {
+  "name": "Le Tamanoir",
   "total": 5,
   "known": 0,
   "discovery": 1,
@@ -631,6 +680,13 @@
  },
  {
   "name": "Théâtre Antoine Watteau",
+  "total": 3,
+  "known": 0,
+  "discovery": 1,
+  "favorite": false
+ },
+ {
+  "name": "Théâtre de Suresnes Jean Vilar",
   "total": 3,
   "known": 0,
   "discovery": 1,
@@ -756,13 +812,6 @@
   "favorite": false
  },
  {
-  "name": "Salle Cortot",
-  "total": 44,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "Sainte-Chapelle - Palais de la Cité",
   "total": 32,
   "known": 0,
@@ -805,6 +854,13 @@
   "favorite": false
  },
  {
+  "name": "Studio de l'Ermitage",
+  "total": 21,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
   "name": "Conservatoire à rayonnement régional de Paris - Ida Rubinstein",
   "total": 20,
   "known": 0,
@@ -813,13 +869,6 @@
  },
  {
   "name": "Palais des Congrès de Paris",
-  "total": 20,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Studio de l'Ermitage",
   "total": 20,
   "known": 0,
   "discovery": 0,
@@ -863,13 +912,6 @@
  {
   "name": "Opéra royal - Château de Versailles",
   "total": 14,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Le Cabaret Sauvage",
-  "total": 13,
   "known": 0,
   "discovery": 0,
   "favorite": false
@@ -946,13 +988,6 @@
  },
  {
   "name": "Studio Raspail",
-  "total": 11,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Théâtre de Saint-Quentin-en-Yvelines",
   "total": 11,
   "known": 0,
   "discovery": 0,
@@ -1106,13 +1141,6 @@
   "favorite": false
  },
  {
-  "name": "Adidas Arena",
-  "total": 7,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "Atelier du Plateau",
   "total": 7,
   "known": 0,
@@ -1253,13 +1281,6 @@
   "favorite": false
  },
  {
-  "name": "360 Paris Music Factory",
-  "total": 5,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "Conservatoire Municipal Francis Poulenc",
   "total": 5,
   "known": 0,
@@ -1324,13 +1345,6 @@
  },
  {
   "name": "La Seine Musicale - Pianos Hanlet",
-  "total": 5,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Le Tamanoir",
   "total": 5,
   "known": 0,
   "discovery": 0,
@@ -1673,13 +1687,6 @@
   "favorite": false
  },
  {
-  "name": "Studio Le Regard du cygne",
-  "total": 3,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "THEATRE DE LA TOUR EIFFEL",
   "total": 3,
   "known": 0,
@@ -1737,13 +1744,6 @@
  },
  {
   "name": "Théâtre Victor-Hugo",
-  "total": 3,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Théâtre de Suresnes Jean Vilar",
   "total": 3,
   "known": 0,
   "discovery": 0,
@@ -2150,6 +2150,20 @@
  },
  {
   "name": "Église Saint-Denys-du-Saint-Sacrement",
+  "total": 2,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Église Saint-Leu-Saint-Gilles",
+  "total": 2,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Église Saint-Pierre de Montmartre",
   "total": 2,
   "known": 0,
   "discovery": 0,
@@ -3655,13 +3669,6 @@
  },
  {
   "name": "Église Saint-Martin-des-Champs",
-  "total": 1,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Église Saint-Pierre de Montmartre",
   "total": 1,
   "known": 0,
   "discovery": 0,
