@@ -308,3 +308,9 @@ dialog::backdrop { background: rgba(20, 24, 56, .55); }
 .share-preview { display: inline; margin: 0 0 0 4px; }
 .btn-share { border: 0; cursor: pointer; font: inherit; font-weight: 600; background: var(--pink); color: #fff; }
 .btn-share::before { content: "↗ "; }
+
+/* Section « L'artiste » de la fiche d'un concert */
+#ticket-artist.loading p { font-style: italic; }
+.artist-genres { margin: 0 0 6px; display: flex; flex-wrap: wrap; gap: 6px; }
+.tag-genre { background: none; color: var(--ink); border: 1px solid var(--rule); }
+#ticket-artist .buy-links { margin-top: 8px; }

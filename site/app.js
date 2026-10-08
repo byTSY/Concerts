@@ -312,18 +312,43 @@ async function shareOrCopy(data, copied) {
   }
 }
 
+// Description, genres et liens d'écoute de l'artiste, préparés par la fonction de partage
+// (Wikidata et Deezer) ; gardés en mémoire pour la fiche du concert et le message.
+const artistInfoCache = new Map();
+function artistInfo(id, timeout = 4000) {
+  if (!artistInfoCache.has(id)) {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), timeout);
+    artistInfoCache.set(id, fetch(`partage/${id}.json`, { signal: ctrl.signal })
+      .then((r) => (r.ok ? r.json() : null))
+      .catch(() => null)
+      .finally(() => clearTimeout(timer))
+      .then((info) => { if (!info) artistInfoCache.delete(id); return info; }));  // nouvel essai plus tard
+  }
+  return artistInfoCache.get(id);
+}
+
+// Section « L'artiste » de la fiche d'un concert, remplie dès que les informations arrivent
+async function fillArtistSection(ev) {
+  const info = await artistInfo(ev.id);
+  const box = $("#ticket-artist");
+  if (!box || box.dataset.id !== ev.id || !$("#ticket").open) return;  // fiche fermée ou changée entre-temps
+  if (!info || (!info.description && !info.genres?.length)) { box.remove(); return; }
+  const tags = (info.genres || []).map((g) => `<span class="tag tag-genre">${esc(g)}</span>`).join(" ");
+  const listen = info.listen ? ["deezer", "spotify", "youtube"].map((k) =>
+    `<a class="buy-link" href="${esc(info.listen[k])}" target="_blank" rel="noopener">${{ deezer: "Deezer", spotify: "Spotify", youtube: "YouTube" }[k]}</a>`).join(" ") : "";
+  box.innerHTML = `<h3>L'artiste</h3>
+    ${tags ? `<p class="artist-genres">${tags}</p>` : ""}
+    ${info.description ? `<p>${esc(info.description)}</p>` : ""}
+    ${listen ? `<p class="buy-links">${listen}</p>` : ""}
+    ${info.descriptionSource ? `<p class="cell-sub">Sources : Wikidata et Deezer · <a href="${esc(info.descriptionSource)}" target="_blank" rel="noopener">En savoir plus</a></p>` : ""}`;
+  box.classList.remove("loading");
+}
+
 async function shareMessage(id) {
   const ev = state.events.find((e) => e.id === id);
   if (!ev) return;
-  let info = null;
-  try {
-    // Description et style de l'artiste, préparés par la fiche de partage (2,5 s au plus)
-    const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), 2500);
-    const r = await fetch(`partage/${id}.json`, { signal: ctrl.signal });
-    clearTimeout(timer);
-    if (r.ok) info = await r.json();
-  } catch { /* message sans description */ }
+  const info = await artistInfo(id, 2500);  // message sans description si l'information tarde
   // Le lien de la fiche est dans le texte : certaines applications ignorent un lien passé à part
   await shareOrCopy({ text: messageText(ev, info) }, "Message copié : collez-le dans WhatsApp ou Messages");
 }
@@ -718,12 +743,13 @@ function openTicket(id) {
   $("#ticket-body").innerHTML = `
     ${kindTag(ev, true)} ${badgeTag(ev)}
     <h2 id="ticket-title">${esc(headline(ev))}</h2>
-    ${ev.title && ev.title !== headline(ev) ? `<p class="ticket-title-full">${esc(ev.title)}</p>` : ""}
+    ${ev.title && normName(ev.title) !== normName(headline(ev)) ? `<p class="ticket-title-full">${esc(tidy(ev.title))}</p>` : ""}
     <div class="ticket-venue">${esc(ev.venue)}${ev.venue_favorite ? " (salle favorite)" : ""}</div>
-    ${ev.address ? `<div class="ticket-address">${esc(ev.address)}${ev.city ? `, ${esc(ev.city)}` : ""}</div>` : ""}
+    ${ev.address ? `<div class="ticket-address">${esc(tidy(ev.address))}${ev.city ? `, ${esc(tidy(ev.city))}` : ""}</div>` : ""}
     ${sale ? `<div class="ticket-section"><span class="ticket-sale">${esc(sale)}</span></div>` : ""}
     ${status ? `<div class="ticket-section"><p><strong>${esc(status)}</strong></p></div>` : ""}
     ${why}
+    <div class="ticket-section loading" id="ticket-artist" data-id="${esc(ev.id)}"><h3>L'artiste</h3><p class="cell-sub">Chargement de la description…</p></div>
     ${others.length ? `<div class="ticket-section"><h3>À l'affiche également</h3><p>${esc(others.join(", "))}</p></div>` : ""}
     ${ev.price || ev.genre ? `<div class="ticket-section"><h3>Informations</h3><p>${[ev.price ? `Prix : ${esc(ev.price)}` : "", ev.genre ? `Genre : ${esc(ev.genre)}` : ""].filter(Boolean).join("<br>")}</p></div>` : ""}
     ${ev.description ? `<div class="ticket-section"><p>${esc(ev.description)}</p></div>` : ""}
@@ -733,6 +759,7 @@ function openTicket(id) {
       <button type="button" class="btn btn-share" data-share="${esc(ev.id)}">Partager</button></div>
     ${hideButtons ? `<div class="ticket-hide">${hideButtons}</div>` : ""}`;
   dlg.showModal();
+  fillArtistSection(ev);
 }
 
 /* Rendu général --------------------------------------------------------------- */
