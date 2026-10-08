@@ -162,7 +162,7 @@ export function page(c, url) {
 <meta name="description" content="${esc(desc)}">
 <meta property="og:type" content="website">
 <meta property="og:title" content="${esc(c.artist)} · ${esc(c.venue)}">
-<meta property="og:description" content="${esc(when)}${c.style ? ` · ${esc(c.style)}` : ""}">
+<meta property="og:description" content="${esc(when)}${c.genre || c.style ? ` · ${esc(c.genre || c.style)}` : ""}">
 ${c.picture ? `<meta property="og:image" content="${esc(c.picture)}">` : ""}
 <meta property="og:url" content="${esc(url)}">
 <meta name="robots" content="noindex">
