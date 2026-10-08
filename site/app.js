@@ -233,6 +233,103 @@ function setLevel(name, level) {
     `${name} : ${level ? `niveau ${level} imposé` : "niveau calculé à partir de vos likes"} (${effect})`);
 }
 
+/* Partage d'un concert ------------------------------------------------------------ */
+
+// « ANGINE DE POITRINE » -> « Angine De Poitrine » ; les noms en casse mixte sont gardés
+const tidy = (s) => {
+  s = String(s ?? "").trim();
+  return s !== s.toUpperCase() || !/[A-Z]/.test(s) ? s : s.toLowerCase().replace(/(^|[\s\-'’(/])(\p{L})/gu, (m, a, b) => a + b.toUpperCase());
+};
+const startsWithVowel = (s) => /^[aeiouyhàâäéèêëîïôöùûü]/i.test(s);
+const FEMININE = /^(salle|cite|maison|philharmonie|eglise|chapelle|cathedrale|basilique|seine|gaite|boule|scene|grande|petite|bellevilloise|cigale|fondation|machine|maroquinerie|fleche|bourse|halle|station)\b/;
+
+// « au New Morning », « à l'Olympia », « à la Cigale », « aux Étoiles »
+function atVenue(venue) {
+  // « La Seine Musicale - Grande Seine » -> « La Seine Musicale » ; mais « Salle des concerts - Cité de
+  // la Musique » -> « Cité de la Musique », la première partie n'étant qu'un nom de salle générique
+  const parts = tidy(venue).split(/\s+-\s+/);
+  const v = parts.length > 1 && /^(grande |petite )?(salle|auditorium|studio|amphi)/i.test(parts[0]) ? parts[1] : parts[0];
+  const m = v.match(/^(le|la|les|l['’])\s*(.*)$/i);
+  if (m) {
+    const art = m[1].toLowerCase();
+    return art === "le" ? `au ${m[2]}` : art === "les" ? `aux ${m[2]}` : art === "la" ? `à la ${m[2]}` : `à l'${m[2]}`;
+  }
+  if (startsWithVowel(v)) return `à l'${v}`;
+  return FEMININE.test(normName(v)) ? `à la ${v}` : `au ${v}`;
+}
+
+// « C'est du rock », « C'est de la soul » : genre précis d'abord, famille de styles à défaut
+const GENRE_PHRASES = [
+  [/pop rock|pop \/ rock/, "de la pop-rock"], [/metal/, "du metal"], [/punk/, "du punk"], [/hip hop|\brap\b/, "du rap"],
+  [/\br b\b|\brnb\b/, "du R&B"], [/soul/, "de la soul"], [/funk/, "du funk"], [/blues/, "du blues"], [/jazz/, "du jazz"],
+  [/reggae|dub/, "du reggae"], [/techno/, "de la techno"], [/house/, "de la house"], [/electro|dance/, "de l'électro"],
+  [/folk/, "du folk"], [/rock/, "du rock"], [/\bpop\b/, "de la pop"], [/chanson|variete francaise/, "de la chanson française"],
+  [/opera|lyrique/, "de l'opéra"], [/classi|symphoni|baroque|chambre/, "du classique"],
+  [/monde|world|latin|afri|bresil|salsa|samba/, "de la musique du monde"],
+];
+const genrePhrase = (ev) => GENRE_PHRASES.find(([re]) => re.test(normName(ev.genre || "")))?.[1] || null;
+const hourText = (t) => t.replace(/^(\d+):(\d+)$/, (m, h, mn) => `${Number(h)}h${mn === "00" ? "" : mn}`);
+
+function shareArtist(ev) {
+  if (ev.kind === "known" && ev.matched?.length) return { name: ev.matched[0].name, link: ev.matched[0].link };
+  if (ev.kind === "discovery" && ev.discovery) return { name: ev.discovery.artist, link: ev.discovery.link };
+  return { name: tidy((ev.artists || [])[0] || ev.title), link: null };
+}
+
+function messageText(ev, info) {
+  const artist = shareArtist(ev);
+  const name = info?.artist || artist.name;
+  const day = fmt({ weekday: "long", day: "numeric", month: "long" }).format(parseDay(ev.date));
+  const when = `le ${day}${ev.time ? ` à ${hourText(ev.time)}` : ""}`;
+  const style = genrePhrase(ev);
+  // Première phrase de la description, pour rester court
+  const desc = info?.description ? (info.description.match(/^.+?[.!?](\s|$)/)?.[0] || info.description).trim() : "";
+  const lines = [
+    `Hey, il y a le concert ${startsWithVowel(name) ? "d'" : "de "}${name} ${when}, ${atVenue(ev.venue)}.`,
+    [style ? `C'est ${style}.` : "", desc].filter(Boolean).join(" "),
+    "On prend des places ?",
+    "",
+    info?.listen?.deezer || artist.link || `https://www.deezer.com/search/${encodeURIComponent(name)}`,
+  ];
+  return lines.filter((l, i) => l || i === 3).join("\n");
+}
+
+// Menu de partage du téléphone (WhatsApp, Messages…) ; sinon copie dans le presse-papiers
+async function shareOrCopy(data, copied) {
+  if (navigator.share) {
+    try { await navigator.share(data); return; } catch (e) { if (e.name === "AbortError") return; }
+  }
+  try {
+    await navigator.clipboard.writeText(data.url ? `${data.text ? data.text + "\n" : ""}${data.url}` : data.text);
+    toast(copied);
+  } catch {
+    prompt("Copiez ce texte :", data.url || data.text);
+  }
+}
+
+async function shareMessage(id) {
+  const ev = state.events.find((e) => e.id === id);
+  if (!ev) return;
+  let info = null;
+  try {
+    // Description de l'artiste et lien Deezer exact, préparés par la fiche de partage (2,5 s au plus)
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 2500);
+    const r = await fetch(`partage/${id}.json`, { signal: ctrl.signal });
+    clearTimeout(timer);
+    if (r.ok) info = await r.json();
+  } catch { /* message sans description */ }
+  await shareOrCopy({ text: messageText(ev, info) }, "Message copié : collez-le dans WhatsApp ou Messages");
+}
+
+async function sharePage(id) {
+  const ev = state.events.find((e) => e.id === id);
+  if (!ev) return;
+  const url = new URL(`partage/${id}`, location.href).href;
+  const day = fmt({ weekday: "long", day: "numeric", month: "long" }).format(parseDay(ev.date));
+  await shareOrCopy({ title: `${shareArtist(ev).name}, ${day}`, url }, "Lien de la fiche copié");
+}
+
 function toast(text) {
   const el = $("#toast");
   el.textContent = text;
@@ -634,6 +731,10 @@ function openTicket(id) {
     ${ev.description ? `<div class="ticket-section"><p>${esc(ev.description)}</p></div>` : ""}
     ${ev.image ? `<img class="ticket-image" src="${esc(ev.image)}" alt="" loading="lazy">` : ""}
     <div class="ticket-links">${starButton(ev, true)}${links}${listen}</div>
+    <div class="ticket-share"><h3>Partager</h3>
+      <button type="button" class="btn btn-quiet" data-share="message" data-share-id="${esc(ev.id)}">Par message</button>
+      <button type="button" class="btn btn-quiet" data-share="page" data-share-id="${esc(ev.id)}">Fiche web</button>
+      <a class="link-btn share-preview" href="partage/${esc(ev.id)}" target="_blank" rel="noopener">Voir la fiche</a></div>
     ${hideButtons ? `<div class="ticket-hide">${hideButtons}</div>` : ""}`;
   dlg.showModal();
 }
@@ -701,6 +802,8 @@ function bind() {
   $("#search").addEventListener("input", (e) => { clearTimeout(t); t = setTimeout(() => { state.q = e.target.value; render(); }, 150); });
 
   document.body.addEventListener("click", (e) => {
+    const share = e.target.closest("[data-share]");
+    if (share) { e.stopPropagation(); (share.dataset.share === "page" ? sharePage : shareMessage)(share.dataset.shareId); return; }
     const star = e.target.closest("[data-star]");
     if (star) { e.stopPropagation(); toggleStar(star.dataset.star); return; }
     const hide = e.target.closest("[data-hide]");
