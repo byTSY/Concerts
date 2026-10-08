@@ -11,9 +11,13 @@
 
 const UA = "concerts-paris (https://github.com/byTSY/Concerts)";
 const WIKIDATA = "https://www.wikidata.org/w/api.php";
-// Une fiche Wikidata liée à la musique porte un identifiant Deezer, Discogs, MusicBrainz ou
-// Spotify, ou un genre musical ; cela écarte les homonymes (nageur, politicien…)
-const MUSIC_PROPS = ["P2722", "P1953", "P434", "P1902", "P136"];
+// Une fiche Wikidata d'artiste musical porte un identifiant Deezer, Discogs, MusicBrainz, Spotify,
+// Apple Music, AllMusic ou Last.fm ; cela écarte les homonymes (nageur, politicien, film…).
+// Le genre (P136) ne suffit pas : les films et les livres en ont aussi.
+const MUSIC_PROPS = ["P2722", "P1953", "P434", "P1902", "P2850", "P1728", "P3192"];
+const MUSIC_JOBS = ["Q177220", "Q639669", "Q2252262", "Q488205", "Q130857", "Q36834", "Q183945", "Q855091", "Q486748",
+  "Q386854", "Q12800682", "Q12377274", "Q584301", "Q15981151", "Q753110", "Q1327329"];
+const isMusical = (e) => MUSIC_PROPS.some((p) => e.claims?.[p]?.length) || claimIds(e, "P106").some((id) => MUSIC_JOBS.includes(id));
 const CACHE_DAYS = 7;
 
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -112,9 +116,11 @@ async function wikidata(name, deezerId) {
   if (!ids.length) return null;
   const data = await getJSON(`${WIKIDATA}?action=wbgetentities&format=json&props=claims|descriptions|sitelinks&languages=fr&sitefilter=frwiki&ids=${ids.join("|")}`);
   const list = ids.map((id) => data.entities?.[id]).filter(Boolean);
-  // L'identifiant Deezer tranche ; sinon la première fiche liée à la musique
-  const pick = (deezerId && list.find((e) => claimIds(e, "P2722").map(String).includes(String(deezerId))))
-    || list.find((e) => MUSIC_PROPS.some((p) => e.claims?.[p]?.length));
+  // L'identifiant Deezer tranche ; sinon la première fiche d'artiste musical, à condition qu'elle
+  // ne porte pas l'identifiant Deezer d'un autre artiste
+  const sameDeezer = (e) => claimIds(e, "P2722").map(String).includes(String(deezerId));
+  const otherDeezer = (e) => deezerId && claimIds(e, "P2722").length && !sameDeezer(e);
+  const pick = (deezerId && list.find(sameDeezer)) || list.find((e) => isMusical(e) && !otherDeezer(e));
   if (!pick) return null;
   const genreIds = claimIds(pick, "P136").slice(0, 4);
   let genres = [];
@@ -153,7 +159,7 @@ async function deezer(name, knownId) {
 
 // Description, style et liens d'un artiste, mis en cache une semaine
 async function artistInfo(name, deezerLink, ctx) {
-  const cacheKey = new Request(`https://partage.cache/v2/artist/${encodeURIComponent(norm(name))}`);
+  const cacheKey = new Request(`https://partage.cache/v3/artist/${encodeURIComponent(norm(name))}`);
   const cache = caches.default;
   const hit = await cache.match(cacheKey);
   if (hit) return hit.json();

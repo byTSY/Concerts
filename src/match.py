@@ -43,6 +43,24 @@ def title_names(title):
     return out
 
 
+# Mots de billetterie qui précèdent parfois le nom (« PACKAGE VIP GOLD IBRAHIM MAALOUF »)
+TITLE_PREFIXES = {"package", "vip", "gold", "silver", "premium", "platinum", "prestation", "upgrade", "recital",
+                  "concert", "soiree", "live", "special", "billet", "pass", "carre", "or"}
+
+
+def segment_starts(title):
+    """Débuts possibles d'un nom : le titre entier et chacune de ses parties, normalisés,
+    sans les mots de billetterie en tête."""
+    out = []
+    for seg in [title] + SEGMENT_RE.split(title or ""):
+        words = norm(seg).split()
+        while words and words[0] in TITLE_PREFIXES:
+            words = words[1:]
+        if words:
+            out.append(" ".join(words))
+    return out
+
+
 def significant_words(key):
     return [w for w in key.split() if len(w) >= 3]
 
@@ -128,7 +146,7 @@ class ArtistIndex:
         if TRIBUTE_RE.search(normed):
             return []
         words = normed.split()
-        segments = None
+        segments = starts = None
         found = {}
         for n in range(1, 6):
             for i in range(len(words) - n + 1):
@@ -138,6 +156,12 @@ class ArtistIndex:
                 if len(significant_words(key)) < 2:
                     segments = segments if segments is not None else title_segments(title)
                     if key not in segments:
+                        continue
+                else:
+                    # Nom de plusieurs mots : en tête du titre ou d'une de ses parties, sinon il
+                    # s'agit d'un autre nom plus long (« Dexys Midnight Runners » pour « Midnight Runners »)
+                    starts = starts if starts is not None else segment_starts(title)
+                    if not any(s == key or s.startswith(key + " ") for s in starts):
                         continue
                 found[key] = self.by_key[key]
         return list(found.values())
