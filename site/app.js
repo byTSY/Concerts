@@ -333,13 +333,14 @@ async function fillArtistSection(ev) {
   const info = await artistInfo(ev.id);
   const box = $("#ticket-artist");
   if (!box || box.dataset.id !== ev.id || !$("#ticket").open) return;  // fiche fermée ou changée entre-temps
-  if (!info || (!info.description && !info.genres?.length)) { box.remove(); return; }
+  if (!info || (!info.description && !info.genres?.length && !info.organizer)) { box.remove(); return; }
   const tags = (info.genres || []).map((g) => `<span class="tag tag-genre">${esc(g)}</span>`).join(" ");
   const listen = info.listen ? ["deezer", "spotify", "youtube"].map((k) =>
     `<a class="buy-link" href="${esc(info.listen[k])}" target="_blank" rel="noopener">${{ deezer: "Deezer", spotify: "Spotify", youtube: "YouTube" }[k]}</a>`).join(" ") : "";
   box.innerHTML = `<h3>L'artiste</h3>
     ${tags ? `<p class="artist-genres">${tags}</p>` : ""}
     ${info.description ? `<p>${esc(info.description)}</p>` : ""}
+    ${info.organizer ? `<details class="organizer"><summary>Présentation de l'organisateur (Dice)</summary><p>${esc(info.organizer).replace(/\n/g, "<br>")}</p></details>` : ""}
     ${listen ? `<p class="buy-links">${listen}</p>` : ""}
     ${info.descriptionSource ? `<p class="cell-sub">Sources : Wikidata et Deezer · <a href="${esc(info.descriptionSource)}" target="_blank" rel="noopener">En savoir plus</a></p>` : ""}`;
   box.classList.remove("loading");
@@ -736,7 +737,9 @@ function openTicket(id) {
   const others = (ev.artists || []).filter((a) => fold(a) !== fold(headline(ev)));
   const hideable = ev.kind === "known" ? ev.matched.map((m) => m.name) : ev.kind === "discovery" ? [ev.discovery.artist] : [];
   const hideButtons = hideable.map((n) => `<button type="button" class="btn btn-quiet" data-hide="${esc(n)}" data-hide-action="hide">Ne plus recommander ${esc(n)}</button>`).join("");
-  const links = (ev.links || []).map((l) => `<a class="btn" href="${esc(l.url)}" target="_blank" rel="noopener">Voir sur ${esc(l.source)}</a>`).join("");
+  const links = (ev.links || []).map((l) => `<a class="btn" href="${esc(l.url)}" target="_blank" rel="noopener">Voir sur ${esc(l.source)}</a>`).join("")
+    // Fnac Spectacles bloque la lecture automatique : lien de recherche sur l'artiste
+    + `<a class="btn btn-quiet" href="https://www.fnacspectacles.com/search/?searchterm=${encodeURIComponent(shareArtist(ev).name)}" target="_blank" rel="noopener">Chercher sur Fnac Spectacles</a>`;
   const listen = ev.kind === "discovery" && ev.discovery?.link
     ? `<a class="btn btn-secondary" href="${esc(ev.discovery.link)}" target="_blank" rel="noopener">Écouter sur Deezer</a>` : "";
 

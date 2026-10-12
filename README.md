@@ -159,9 +159,25 @@ Description de l'artiste, en français et centrée sur la musique :
 - **Deezer** : photo et trois artistes similaires (« dans la veine de… »), y compris pour les
   artistes absents de Wikidata.
 
-Spotify et YouTube : lien de recherche sur le nom de l'artiste (le lien exact demanderait une
-clé d'accès à leurs API). Résultats mis en cache une semaine. Fonction :
-`functions/partage/[[path]].js`.
+Liens d'écoute et d'achat :
+- **Spotify** : page exacte de l'artiste, grâce à son identifiant Spotify dans Wikidata (c. 55 %
+  de vos artistes) ; à défaut, via l'API Spotify si elle est configurée (voir ci-dessous) ;
+  sinon, recherche sur le nom.
+- **YouTube** : recherche sur le nom de l'artiste.
+- **Billets** : un bouton par billetterie connue (Ticketmaster, Dice, Offi, Que faire à Paris),
+  plus « Chercher sur Fnac Spectacles », qui ouvre la recherche sur l'artiste : Fnac Spectacles
+  bloque la lecture automatique de son site, on ne peut donc pas savoir à l'avance si le
+  concert y est en vente.
+- **Présentation** : pour un concert vendu sur Dice, le texte de l'organisateur est repris sur la
+  fiche web et dans la fiche du concert.
+
+Résultats mis en cache une semaine. Fonction : `functions/partage/[[path]].js`.
+
+**API Spotify (facultatif, liens exacts pour tous les artistes).** Sur
+https://developer.spotify.com/dashboard, créez une application (nom `Concerts`, Redirect URI
+`https://concerts-s2k.pages.dev`, API : *Web API*), puis copiez son *Client ID* et son *Client
+Secret*. Dans Cloudflare, projet `concerts` > Settings > Variables and Secrets, ajoutez deux
+secrets : `SPOTIFY_CLIENT_ID` et `SPOTIFY_CLIENT_SECRET`, puis **Retry deployment**.
 
 **Rendre les fiches accessibles à vos amis (une seule fois).** Le site étant réservé à votre
 adresse e-mail, il faut ouvrir le seul chemin `/partage/` : Zero Trust > Access >
@@ -190,6 +206,7 @@ Après modification, relancez le traitement depuis l'onglet Actions pour voir l'
 | Bandsintown | `BANDSINTOWN_APP_ID`, facultatif | concerts de vos artistes, premières parties |
 | Que faire à Paris (open data de la Ville) | aucune | concerts annoncés par la Ville, souvent gratuits |
 | L'Officiel des spectacles (offi.fr) | aucune | programme des concerts de Paris et d'Île-de-France |
+| Dice (dice.fm) | aucune | concerts et soirées vendus sur Dice, salle par salle |
 | Pages des salles | aucune | salles favorites dotées d'une `agenda_url` |
 
 **L'Officiel des spectacles.** Le programme (https://www.offi.fr/concerts/programme.html) est
@@ -198,6 +215,14 @@ vers ce dépôt (c. 190 pages, c. 10 minutes). Une page refusée par le serveur 
 trois fois, puis ignorée. Seuls le titre, la salle, le genre, le prix, les dates et le lien
 vers la fiche sont conservés ; une fiche à plusieurs dates donne un concert par date. Le prix
 n'est affiché que pour les places vendues par offi.fr (c. 20 % des concerts).
+
+**Dice.** Seules les pages publiques sont lues (le robots.txt de Dice n'interdit que son API
+interne), avec la même pause de 3 secondes et le même User-Agent. Les pages « Paris » (concerts,
+soirées, DJ) révèlent les salles actives sur Dice ; la page de chaque salle donne ensuite ses
+concerts à venir. La liste des salles est conservée dans `data/cache/dice_venues.json` et
+s'enrichit chaque semaine (61 salles au départ, c. 3 minutes de lecture). Limite : la page d'une
+salle n'affiche que ses 30 prochains concerts ; pour les salles très actives (Supersonic, Petit
+Bain…), un concert n'apparaît donc que c. trois semaines avant sa date.
 
 Un même concert vu par plusieurs sources n'apparaît qu'une fois, avec un lien par source.
 Deux fiches sont fusionnées quand elles ont la même date, le même artiste ou le même titre, et
@@ -267,8 +292,9 @@ la couverture s'élargit donc au fil des semaines.
 - Doublons : une salle désignée de deux façons sans mot commun (« Le Dôme de Paris » et
   « Palais des Sports ») ou un concert titré différemment par deux sources sans artiste
   reconnu peut encore apparaître deux fois dans « Tous les concerts ».
-- Couverture : les concerts vendus uniquement par Fnac Spectacles, See Tickets, Dice ou
-  Shotgun n'apparaissent que si la salle est configurée avec une `agenda_url` lisible.
+- Couverture : les concerts vendus uniquement par Fnac Spectacles, See Tickets ou Shotgun
+  n'apparaissent que si la salle est configurée avec une `agenda_url` lisible (Fnac Spectacles
+  bloque la lecture automatique).
 - Les sites de salles changent de structure sans prévenir : une salle qui ne renvoie plus
   rien apparaît avec 0 événement dans le journal du traitement.
 

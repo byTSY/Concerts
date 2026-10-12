@@ -132,6 +132,7 @@ async function wikidata(name, deezerId) {
   return {
     description: pick.descriptions?.fr?.value || builtDescription(pick),
     genres,
+    spotifyId: claimIds(pick, "P1902")[0] || null,  // identifiant d'artiste Spotify
     source: wikiTitle ? `https://fr.wikipedia.org/wiki/${encodeURIComponent(wikiTitle.replace(/ /g, "_"))}` : `https://www.wikidata.org/wiki/${pick.id}`,
   };
 }
@@ -157,15 +158,69 @@ async function deezer(name, knownId) {
   };
 }
 
+// --- Spotify ---------------------------------------------------------------------
+// Lien exact de l'artiste : identifiant Spotify de Wikidata ; à défaut, API Spotify si les clés
+// SPOTIFY_CLIENT_ID et SPOTIFY_CLIENT_SECRET sont renseignées dans Cloudflare ; sinon recherche.
+
+async function spotifyToken(env) {
+  const key = new Request("https://partage.cache/spotify/token");
+  const hit = await caches.default.match(key);
+  if (hit) return (await hit.json()).token;
+  const r = await fetch("https://accounts.spotify.com/api/token", {
+    method: "POST",
+    headers: {
+      authorization: "Basic " + btoa(`${env.SPOTIFY_CLIENT_ID}:${env.SPOTIFY_CLIENT_SECRET}`),
+      "content-type": "application/x-www-form-urlencoded",
+    },
+    body: "grant_type=client_credentials",
+  });
+  if (!r.ok) throw new Error(`Spotify HTTP ${r.status}`);
+  const data = await r.json();
+  await caches.default.put(key, new Response(JSON.stringify({ token: data.access_token }), {
+    headers: { "cache-control": `max-age=${Math.max(60, (data.expires_in || 3600) - 120)}` },
+  }));
+  return data.access_token;
+}
+
+async function spotifyArtist(name, env) {
+  if (!env?.SPOTIFY_CLIENT_ID || !env?.SPOTIFY_CLIENT_SECRET) return null;
+  const token = await spotifyToken(env);
+  const r = await fetch(`https://api.spotify.com/v1/search?type=artist&limit=10&q=${encodeURIComponent(name)}`,
+    { headers: { authorization: `Bearer ${token}` } });
+  if (!r.ok) throw new Error(`Spotify HTTP ${r.status}`);
+  const items = ((await r.json()).artists?.items || []).filter((a) => norm(a.name) === norm(name));
+  items.sort((a, b) => (b.followers?.total || 0) - (a.followers?.total || 0) || (b.popularity || 0) - (a.popularity || 0));
+  return items[0]?.id || null;
+}
+
+// --- Dice : présentation rédigée par l'organisateur ------------------------------------
+
+export async function diceDescription(url) {
+  const r = await fetch(url, { headers: { "user-agent": UA } });
+  if (!r.ok) return null;
+  const html = await r.text();
+  for (const m of html.matchAll(/<script[^>]+application\/ld\+json[^>]*>([\s\S]*?)<\/script>/gi)) {
+    try {
+      const d = JSON.parse(m[1]);
+      if (d && /Event/.test(d["@type"]) && d.description) {
+        const text = d.description.replace(/\s*\n\s*/g, "\n").replace(/[ \t]+/g, " ").trim();
+        return text.length > 600 ? text.slice(0, 600).replace(/\s+\S*$/, "") + "…" : text;
+      }
+    } catch { /* bloc illisible */ }
+  }
+  return null;
+}
+
 // Description, style et liens d'un artiste, mis en cache une semaine
 async function artistInfo(name, deezerLink, ctx) {
-  const cacheKey = new Request(`https://partage.cache/v3/artist/${encodeURIComponent(norm(name))}`);
+  const cacheKey = new Request(`https://partage.cache/v4/artist/${encodeURIComponent(norm(name))}`);
   const cache = caches.default;
   const hit = await cache.match(cacheKey);
   if (hit) return hit.json();
   const knownId = (String(deezerLink || "").match(/artist\/(\d+)/) || [])[1];
   const dz = await deezer(name, knownId).catch(() => null);
   const wd = await wikidata(name, dz?.id).catch(() => null);
+  const spotifyId = wd?.spotifyId || await spotifyArtist(name, ctx.env).catch(() => null);
   const who = cap(wd?.description || "");
   const similar = dz?.similar || [];
   // « Groupe de rock anglais, dans la veine de Tame Impala, Pond et Jacco Gardner. »
@@ -177,6 +232,7 @@ async function artistInfo(name, deezerLink, ctx) {
     styleText: wd?.genres?.length ? withArticle(wd.genres[0]) : null,  // un seul genre dans le message
     source: wd?.source || null,
     deezer: dz?.link || null,
+    spotify: spotifyId ? `https://open.spotify.com/artist/${spotifyId}` : null,
     picture: dz?.picture || null,
   };
   ctx.waitUntil(cache.put(cacheKey, new Response(JSON.stringify(info), {
@@ -211,9 +267,23 @@ export function styleOf(ev) {
   return found.slice(0, 2).join(" et ") || null;
 }
 
+// Présentation Dice d'un concert, mise en cache une semaine
+async function organizerText(ev, ctx) {
+  const dice = (ev.links || []).find((l) => l.source === "Dice");
+  if (!dice) return null;
+  const key = new Request(`https://partage.cache/dice/${encodeURIComponent(dice.url)}`);
+  const hit = await caches.default.match(key);
+  if (hit) return (await hit.json()).text;
+  const text = await diceDescription(dice.url).catch(() => null);
+  ctx.waitUntil(caches.default.put(key, new Response(JSON.stringify({ text }), {
+    headers: { "content-type": "application/json", "cache-control": `max-age=${CACHE_DAYS * 86400}` },
+  })));
+  return text;
+}
+
 export async function concertInfo(ev, ctx) {
   const artist = artistOf(ev);
-  const info = await artistInfo(artist.name, artist.deezer, ctx);
+  const [info, organizer] = await Promise.all([artistInfo(artist.name, artist.deezer, ctx), organizerText(ev, ctx)]);
   const q = encodeURIComponent(artist.name);
   return {
     id: ev.id,
@@ -233,10 +303,14 @@ export async function concertInfo(ev, ctx) {
     genres: info.genres,
     descriptionSource: info.source,
     picture: artist.picture || info.picture || ev.image || null,
+    organizer,  // présentation rédigée par l'organisateur sur Dice
     tickets: (ev.links || []).map((l) => ({ source: l.source, url: l.url })),
+    // Fnac Spectacles bloque la lecture automatique : simple lien de recherche sur l'artiste
+    fnac: `https://www.fnacspectacles.com/search/?searchterm=${q}`,
     listen: {
       deezer: artist.deezer || info.deezer || `https://www.deezer.com/search/${q}`,
-      spotify: `https://open.spotify.com/search/${q}`,
+      spotify: info.spotify || `https://open.spotify.com/search/${q}`,
+      spotifyExact: Boolean(info.spotify),
       youtube: `https://www.youtube.com/results?search_query=${q}`,
     },
   };
@@ -286,6 +360,7 @@ ${c.picture ? `<meta property="og:image" content="${esc(c.picture)}">` : ""}
   .tags { margin: 16px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
   .tag { font-size: .82rem; padding: 2px 10px; border-radius: 99px; background: var(--paper); border: 1px solid var(--rule); }
   .about { margin: 20px 0 0; font-size: 1.02rem; }
+  .organizer { margin: 0; font-size: .95rem; color: var(--ink); }
   .source { font-size: .8rem; color: var(--ink-soft); }
   .source a { color: inherit; }
   h2 { font-size: .85rem; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-soft); margin: 24px 0 8px; }
@@ -314,7 +389,9 @@ ${c.picture ? `<meta property="og:image" content="${esc(c.picture)}">` : ""}
       </div>
       ${c.description ? `<p class="about">${esc(c.description)}</p>
       <p class="source">Sources : Wikidata et Deezer${c.descriptionSource ? ` · <a href="${esc(c.descriptionSource)}" target="_blank" rel="noopener">En savoir plus</a>` : ""}</p>` : ""}
-      ${tickets ? `<h2>Places</h2><div class="row">${tickets}</div>` : ""}
+      ${c.organizer ? `<h2>Présentation</h2><p class="organizer">${esc(c.organizer).replace(/\n/g, "<br>")}</p><p class="source">Texte de l'organisateur, publié sur Dice</p>` : ""}
+      <h2>Places</h2><div class="row">${tickets}
+        <a class="btn out" href="${esc(c.fnac)}" target="_blank" rel="noopener">Chercher sur Fnac Spectacles</a></div>
       <h2>Écouter</h2>
       <div class="row">
         <a class="btn out" href="${esc(c.listen.deezer)}" target="_blank" rel="noopener">Deezer</a>
@@ -351,7 +428,7 @@ export async function onRequestGet(context) {
   const ev = (await assets.json()).find((e) => e.id === id);
   if (!ev) return asJson ? new Response(JSON.stringify({ error: "concert introuvable" }), { status: 404 }) : notFound();
 
-  const info = await concertInfo(ev, { waitUntil });
+  const info = await concertInfo(ev, { waitUntil, env });
   if (asJson) {
     return new Response(JSON.stringify(info), { headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" } });
   }

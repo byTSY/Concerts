@@ -5,7 +5,7 @@ from collections import defaultdict
 
 from .util import norm, norm_venue, today_iso
 
-SOURCE_PRIORITY = {"Ticketmaster": 0, "Bandsintown": 2, "Que faire à Paris": 3, "Offi": 4}
+SOURCE_PRIORITY = {"Ticketmaster": 0, "Dice": 1, "Bandsintown": 2, "Que faire à Paris": 3, "Offi": 4}
 GENRE_PRIORITY = {"Offi"}  # sources dont le genre remplace celui de la source principale
 MIN_TITLE_KEY = 4  # longueur minimale d'un nom pour un rapprochement sur le titre seul
 

@@ -2,7 +2,7 @@
 import os
 
 from . import deezer, discover, history, match, publish
-from .sources import bandsintown, offi, qfap, ticketmaster, venues as venue_pages
+from .sources import bandsintown, dice, offi, qfap, ticketmaster, venues as venue_pages
 from .util import ROOT, load_yaml, log, norm
 
 
@@ -65,6 +65,7 @@ def main():
         status["Bandsintown"] = "ignorée (identifiant absent)"
     events += run_source("Que faire à Paris", status, qfap.fetch, settings)
     events += run_source("Offi", status, offi.fetch, settings)
+    events += run_source("Dice", status, dice.fetch, settings)
     events += run_source("Sites des salles", status, venue_pages.fetch, venues_cfg)
 
     vm = match.VenueMatcher(venues_cfg)
