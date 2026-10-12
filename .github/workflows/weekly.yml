@@ -62,6 +62,9 @@ jobs:
             git push
           fi
 
+      - name: Publier la collecte (après l'envoi des données communes)
+        run: python -m src.main promote
+
   # Tâche membres : chaque membre (ou le membre demandé), à partir de la dernière collecte
   members:
     needs: common
@@ -83,6 +86,9 @@ jobs:
       - name: Tâche membres
         env:
           MEMBER: ${{ inputs.member }}
+          # Collecte de plus de 7 jours : la tâche membres refait d'abord la tâche commune
+          TICKETMASTER_API_KEY: ${{ secrets.TICKETMASTER_API_KEY }}
+          BANDSINTOWN_APP_ID: ${{ secrets.BANDSINTOWN_APP_ID }}
         run: |
           if [ -n "$MEMBER" ]; then
             python -m src.main members --member "$MEMBER" --pending
@@ -90,15 +96,18 @@ jobs:
             python -m src.main members
           fi
 
-      - name: Enregistrer les caches Deezer
+      - name: Enregistrer les données
         run: |
           git config user.name "concerts-bot"
           git config user.email "concerts-bot@users.noreply.github.com"
-          git add data/cache
+          git add data site/data
           if git diff --cached --quiet; then
             echo "Aucun changement"
           else
-            git commit -m "Caches Deezer du $(date -u +%Y-%m-%d)"
+            git commit -m "Calcul des membres du $(date -u +%Y-%m-%d)"
             git pull --rebase
             git push
           fi
+
+      - name: Publier la collecte (si la tâche membres l'a refaite)
+        run: python -m src.main promote

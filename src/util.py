@@ -69,8 +69,10 @@ def save_json(path, obj):
 
 
 def redact(url):
-    """Adresse sans le n° de profil d'un membre (journaux : identifiants de membre seulement)."""
-    return re.sub(r"/user/\d+", "/user/…", str(url))
+    """Adresse sans donnée liée à un membre (journaux : identifiants de membre seulement) :
+    n° de profil, n° d'artiste et paramètres de recherche (nom d'artiste) retirés."""
+    url = str(url).split("?", 1)[0]
+    return re.sub(r"/(user|artist|playlist)/\d+", r"/\1/…", url)
 
 
 def get_json(url, params=None, pause=0.0, retries=3, timeout=30):

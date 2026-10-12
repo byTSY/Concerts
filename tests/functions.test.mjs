@@ -331,8 +331,8 @@ test("arrivée : invité, profil Deezer vérifié (public, libre), calcul demand
 
 test("compte : pseudo unique, une synchronisation par heure, changement de source", async () => {
   const env = setup();
-  env.DB.raw.exec(`INSERT INTO music_sources (user_id, provider, provider_user_id, status) VALUES
-    ('u_aaaaaaaa', 'deezer', '111', 'connected'), ('u_bbbbbbbb', 'deezer', '555', 'connected')`);
+  env.DB.raw.exec(`INSERT INTO music_sources (user_id, provider, provider_user_id, status, last_sync_status) VALUES
+    ('u_aaaaaaaa', 'deezer', '111', 'connected', 'ok'), ('u_bbbbbbbb', 'deezer', '555', 'connected', 'private_profile')`);
   const pseudo = await call(env, "a@test.fr", meRoute.onRequestPatch, { method: "PATCH", body: { pseudo: "Ali" } });
   assert.equal(pseudo.data.display_name, "Ali");
   const taken = await call(env, "b@test.fr", meRoute.onRequestPatch, { method: "PATCH", body: { pseudo: "ali" } });
@@ -341,6 +341,9 @@ test("compte : pseudo unique, une synchronisation par heure, changement de sourc
   assert.equal(vis.data.default_visibility, "members");
   assert.equal((await call(env, "a@test.fr", syncRoute.onRequestPost, { method: "POST" })).status, 200);
   assert.equal((await call(env, "a@test.fr", syncRoute.onRequestPost, { method: "POST" })).data.code, "too_soon");
+  // Après un calcul en erreur, un nouvel essai est permis aussitôt
+  assert.equal((await call(env, "b@test.fr", syncRoute.onRequestPost, { method: "POST" })).status, 200);
+  assert.equal((await call(env, "b@test.fr", syncRoute.onRequestPost, { method: "POST" })).status, 200);
   const detached = await call(env, "a@test.fr", sourceRoute.onRequestDelete, { method: "DELETE" });
   assert.equal(detached.data.status, "onboarding");
   assert.equal(detached.data.source, null);
@@ -364,4 +367,34 @@ test("traitements (admin) : codes seulement, recalcul d'un membre", async () => 
   const bad = await call(env, "c@test.fr", adminRecompute.onRequestPost, {
     method: "POST", path: "/api/admin/members/x/recompute", params: { id: "x' OR 1=1" } });
   assert.equal(bad.status, 400);
+});
+
+test("écritures refusées depuis un autre site (Origin, Sec-Fetch-Site)", async () => {
+  const env = setup();
+  const send = async (headers) => {
+    const request = new Request("https://concerts.test/api/me/sync", {
+      method: "POST", headers: { "cf-access-jwt-assertion": await token({ email: "a@test.fr" }), ...headers } });
+    const context = { request, env, params: {}, data: {}, waitUntil: () => {} };
+    context.next = () => new Response("{}", { status: 200 });
+    return (await middleware(context)).status;
+  };
+  assert.equal(await send({ origin: "https://pirate.example" }), 403);
+  assert.equal(await send({ "sec-fetch-site": "cross-site" }), 403);
+  assert.equal(await send({ origin: "https://concerts.test", "sec-fetch-site": "same-origin" }), 200);
+});
+
+test("arrivée : Deezer en panne n'est pas un profil privé", async () => {
+  const env = setup();
+  env.DB.raw.exec("UPDATE users SET status = 'onboarding' WHERE id = 'u_aaaaaaaa'");
+  DEEZER["/user/777"] = { id: 777, name: "Quota" };
+  DEEZER["/user/777/artists?limit=1"] = { error: { type: "Exception", message: "Quota limit exceeded", code: 4 } };
+  const r = await call(env, "a@test.fr", deezerPreviewRoute.onRequestPost, { method: "POST", body: { profile: "777" } });
+  assert.deepEqual([r.status, r.data.code], [503, "deezer_unavailable"]);
+});
+
+test("profil déjà relié : pas de nouveau calcul par la confirmation", async () => {
+  const env = setup();
+  env.DB.raw.exec("INSERT INTO music_sources (user_id, provider, provider_user_id, status) VALUES ('u_aaaaaaaa', 'deezer', '111', 'connected')");
+  const r = await call(env, "a@test.fr", deezerConfirmRoute.onRequestPost, { method: "POST", body: { profile: "111" } });
+  assert.equal(r.data.code, "already_connected");
 });

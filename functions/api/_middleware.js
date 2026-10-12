@@ -11,6 +11,13 @@ export async function onRequest(context) {
   const path = new URL(request.url).pathname.replace(/\/+$/, "");
 
   return handle(async () => {
+    if (!["GET", "HEAD", "OPTIONS"].includes(request.method)) {
+      const origin = request.headers.get("origin");
+      const site = request.headers.get("sec-fetch-site");
+      if ((origin && origin !== new URL(request.url).origin) || (site && site !== "same-origin")) {
+        return fail(403, "requête refusée : elle ne vient pas du site", "cross_site");
+      }
+    }
     if (!env.DB || !env.BUCKET) throw new HttpError(503, "base D1 ou stockage R2 non relié au projet", "bindings");
     const { email, iat } = await verifyAccess(request, env);
     const user = await identify(env, email);

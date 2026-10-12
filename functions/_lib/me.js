@@ -189,9 +189,12 @@ export function member(env, user) {
 
     // Profil Deezer proposé par le membre : public, et pas déjà rattaché à un autre membre
     async checkDeezer(profileId, preview) {
+      if (preview.error === "deezer_unavailable") {
+        throw new HttpError(503, "Deezer ne répond pas pour l'instant : réessayez dans quelques minutes", preview.error);
+      }
       if (preview.error) {
         const message = preview.error === "private_profile"
-          ? "profil privé : sur Deezer, Paramètres > Confidentialité, rendez votre profil public"
+          ? "profil privé : dans les paramètres de confidentialité de Deezer, rendez votre profil public"
           : "profil Deezer introuvable : vérifiez le lien ou le n°";
         throw new HttpError(422, message, preview.error);
       }
@@ -208,6 +211,10 @@ export function member(env, user) {
       if (current && current.provider_user_id !== preview.id) {
         throw new HttpError(409, "détachez d'abord la source actuelle (Changer de source)", "source_attached");
       }
+      // Profil déjà relié : le recalcul passe par « Synchroniser maintenant » (une fois par heure)
+      if (current && user.status !== "onboarding") {
+        throw new HttpError(409, "ce profil est déjà relié : utilisez « Synchroniser maintenant »", "already_connected");
+      }
       const now = nowIso();
       await db.batch([
         db.prepare("INSERT INTO music_sources (user_id, provider, provider_user_id, provider_name, status, connected_at, sync_requested_at) " +
@@ -223,11 +230,13 @@ export function member(env, user) {
 
     // « Synchroniser maintenant » : une demande par heure au plus
     async requestSync() {
-      const src = await db.prepare("SELECT status, sync_requested_at FROM music_sources WHERE user_id = ?").bind(id).first();
+      const src = await db.prepare("SELECT status, sync_requested_at, last_sync_status FROM music_sources WHERE user_id = ?")
+        .bind(id).first();
       if (!src || src.status !== "connected") throw new HttpError(409, "aucune source reliée", "no_source");
       if (!["active", "error"].includes(user.status)) throw new HttpError(409, "un calcul est déjà en cours", "busy");
+      // Après un calcul en erreur (profil corrigé entre-temps), un nouvel essai est permis aussitôt
       const last = Date.parse(src.sync_requested_at || "");
-      if (last && Date.now() - last < 3600 * 1000) {
+      if (last && Date.now() - last < 3600 * 1000 && src.last_sync_status === "ok") {
         throw new HttpError(429, "une synchronisation par heure au plus : réessayez plus tard", "too_soon");
       }
       await db.prepare("UPDATE music_sources SET sync_requested_at = ? WHERE user_id = ?").bind(nowIso(), id).run();

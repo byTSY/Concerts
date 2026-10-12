@@ -9,8 +9,12 @@ API = "https://api.deezer.com"
 PAUSE = 0.12  # Deezer tolère c. 50 requêtes par 5 secondes
 
 
-def _call(url, params=None):
-    """Appel Deezer avec gestion du dépassement de quota (erreur code 4)."""
+def _call(url, params=None, with_errors=False):
+    """Appel Deezer avec gestion du dépassement de quota (erreur code 4).
+
+    Renvoie None si Deezer ne répond pas (réseau, quota toujours dépassé) ; pour une erreur
+    renvoyée par Deezer (profil introuvable, privé…), None aussi, ou {"error": …} si
+    with_errors : l'appelant distingue alors une panne d'un refus."""
     for _ in range(4):
         data = get_json(url, params=params, pause=PAUSE)
         if isinstance(data, dict) and "error" in data:
@@ -19,7 +23,7 @@ def _call(url, params=None):
                 time.sleep(6)
                 continue
             log(f"  Deezer : {err.get('type')} {err.get('message')} ({redact(url)})")
-            return None
+            return {"error": err} if with_errors else None
         return data
     return None
 

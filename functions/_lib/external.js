@@ -85,15 +85,26 @@ export async function deezerProfileId(input) {
   return null;
 }
 
-// Nom, photo et nombre d'artistes favoris ; { error: "not_found" | "private_profile" }
+// Nom, photo et nombre d'artistes favoris ;
+// { error: "not_found" | "private_profile" | "deezer_unavailable" }
 export async function deezerProfile(id) {
+  // null : Deezer ne répond pas (réseau, erreur serveur, quota dépassé)
   const get = async (path) => {
-    const r = await fetch(`https://api.deezer.com${path}`);
-    return r.ok ? r.json() : { error: { code: r.status } };
+    try {
+      const r = await fetch(`https://api.deezer.com${path}`);
+      if (!r.ok) return null;
+      const data = await r.json();
+      return data?.error?.code === 4 ? null : data;
+    } catch {
+      return null;
+    }
   };
   const user = await get(`/user/${id}`);
-  if (!user || user.error || !user.id) return { error: "not_found" };
+  if (!user) return { error: "deezer_unavailable" };
+  if (user.error) return { error: user.error.code === 800 ? "not_found" : "deezer_unavailable" };
+  if (!user.id) return { error: "not_found" };
   const favs = await get(`/user/${id}/artists?limit=1`);
-  if (!favs || favs.error) return { error: "private_profile" };
+  if (!favs) return { error: "deezer_unavailable" };
+  if (favs.error) return { error: "private_profile" };
   return { id: String(user.id), name: user.name, picture: user.picture_medium || null, favorites: favs.total ?? (favs.data || []).length };
 }

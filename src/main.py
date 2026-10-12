@@ -7,10 +7,15 @@
                                            dernière collecte
   python -m src.main members --pending     membres qui attendent un calcul (arrivée,
                                            « Synchroniser maintenant », relance par l'admin)
-  python -m src.main members --member <id> ce membre (plus ceux qui attendent un calcul)
+  python -m src.main --member <id>          ce membre (plus ceux qui attendent un calcul)
+  python -m src.main promote               publie la collecte préparée (après l'envoi sur GitHub)
 
 La dernière collecte (concerts dédoublonnés, sans champ personnel) est conservée dans R2
-(common/collected.json) : la tâche membres et le calcul d'un seul membre la relisent.
+(common/collected.json) : la tâche membres et le calcul d'un seul membre la relisent. La tâche
+commune la prépare (collected.next.json) ; elle n'est publiée qu'une fois les données communes
+envoyées sur GitHub, pour que les identifiants des concerts concordent.
+Si un calcul de membre trouve une collecte de plus de 7 jours (traitement complet du lundi
+annulé, par exemple), il refait d'abord la tâche commune, puis calcule tous les membres.
 Une erreur chez un membre le passe en statut error et le traitement continue.
 """
 import argparse
@@ -18,6 +23,7 @@ import copy
 import os
 import re
 import time
+from datetime import datetime, timedelta, timezone
 
 from . import catalog, cloud, discover, history, match, members, publish
 from .library import deezer as deezer_library
@@ -26,6 +32,8 @@ from .sources import bandsintown, dice, offi, qfap, ticketmaster, venues as venu
 from .util import ROOT, load_yaml, log, norm
 
 COLLECTED = "common/collected.json"
+COLLECTED_NEXT = "common/collected.next.json"
+STALE_DAYS = 7
 LIBRARIES = {"deezer": deezer_library.read}
 
 
@@ -117,10 +125,36 @@ def common(settings, db, store):
 
     collected = {"initial": initial, "kept_ids": sorted(kept_ids),
                  "events": [{k: v for k, v in ev.items() if k not in publish.PERSONAL} for ev in events]}
-    store.put_json(COLLECTED, collected)
+    store.put_json(COLLECTED_NEXT, collected)
     members.end_run(db, run_id, "ok", status)
-    log(f"Collecte enregistrée : {len(events)} concerts ({store.label})")
+    log(f"Collecte préparée : {len(events)} concerts ({store.label})")
     return collected
+
+
+def promote(store):
+    """Publie la collecte préparée par la tâche commune, une fois les données communes envoyées."""
+    collected = store.get_json(COLLECTED_NEXT)
+    if collected is None:
+        log("Aucune collecte à publier")
+        return
+    store.put_json(COLLECTED, collected)
+    store.delete(COLLECTED_NEXT)
+    log(f"Collecte publiée : {len(collected['events'])} concerts")
+
+
+def collection_is_stale(db):
+    last = members.last_collection(db)
+    if not last:
+        return True
+    try:
+        when = datetime.fromisoformat(last)
+    except ValueError:
+        return True
+    return datetime.now(timezone.utc) - when > timedelta(days=STALE_DAYS)
+
+
+class MemberGone(Exception):
+    """Membre supprimé, suspendu ou passé à une autre source pendant son calcul."""
 
 
 # --- Tâche membres -----------------------------------------------------------------------
@@ -144,6 +178,10 @@ def compute_member(m, collected, settings, db, store, budget):
     new_history = history.update_member(events, member_history, set(collected["kept_ids"]))
     files = publish.build_member(events, {**artists, **hidden}, member_initial=member_history is None)
     files["history"] = new_history
+    # Le membre a pu être supprimé ou changer de source pendant le calcul : rien n'est écrit
+    if not members.still_current(db, uid, m["provider"], m["provider_user_id"]):
+        members.delete_files(store, uid)
+        raise MemberGone()
     total = members.check_quota(store, uid, files, settings)
     for name, value in files.items():
         members.write(store, uid, name, value)
@@ -164,6 +202,9 @@ def run_members(settings, db, store, selection, collected=None, kind="weekly"):
         code = None
         try:
             compute_member(m, collected, settings, db, store, budget)
+        except MemberGone:
+            log(f"  Membre {uid} : supprimé ou modifié pendant le calcul, résultats non enregistrés")
+            continue
         except SourceError as exc:
             code = exc.code
         except members.QuotaError as exc:
@@ -172,8 +213,11 @@ def run_members(settings, db, store, selection, collected=None, kind="weekly"):
         except Exception as exc:  # noqa: BLE001  une erreur chez un membre n'arrête pas les autres
             log(f"  Erreur interne ({exc.__class__.__name__})")
             code = "internal"
-        members.record_sync(db, uid, ok=code is None, error_code=code)
-        members.record_member_run(db, run_id, uid, m["provider"], code is None, code, time.monotonic() - started)
+        try:
+            members.record_sync(db, uid, ok=code is None, error_code=code)
+            members.record_member_run(db, run_id, uid, m["provider"], code is None, code, time.monotonic() - started)
+        except Exception as exc:  # noqa: BLE001  membre supprimé entre-temps (clé étrangère)
+            log(f"  Suivi du membre {uid} non enregistré ({exc.__class__.__name__})")
         log(f"  Membre {uid} : {'calcul terminé' if code is None else f'erreur {code}'}")
         failures += code is not None
     members.end_run(db, run_id, "ok" if not failures else f"{failures} erreur(s)")
@@ -183,7 +227,8 @@ def run_members(settings, db, store, selection, collected=None, kind="weekly"):
 
 def main():
     parser = argparse.ArgumentParser(prog="python -m src.main", description="Traitement des concerts")
-    parser.add_argument("task", nargs="?", choices=("common", "members"), help="tâche seule (défaut : les deux)")
+    parser.add_argument("task", nargs="?", choices=("common", "members", "promote"),
+                        help="tâche seule (défaut : les deux, ou members avec --member / --pending)")
     parser.add_argument("--member", action="append", default=[], help="identifiant d'un membre à calculer")
     parser.add_argument("--pending", action="store_true", help="membres qui attendent un calcul")
     args = parser.parse_args()
@@ -195,11 +240,23 @@ def main():
     db, store = cloud.d1(), cloud.r2()
     log(f"Données des membres : {db.label}, {store.label}")
 
+    if args.task == "promote":
+        promote(store)
+        return
+    targeted = bool(args.member or args.pending)
+    task = args.task or ("members" if targeted else None)
+
     collected = None
-    if args.task in (None, "common"):
+    if task in (None, "common"):
         collected = common(settings, db, store)
-    if args.task in (None, "members"):
-        if args.member or args.pending:
+        if task is None:
+            promote(store)  # essai complet en local : pas d'envoi sur GitHub à attendre
+    if task in (None, "members"):
+        if targeted and collection_is_stale(db):
+            log(f"Collecte de plus de {STALE_DAYS} jours : traitement complet")
+            collected = common(settings, db, store)
+            targeted = False
+        if targeted:
             selection = members.by_ids(db, args.member) if args.member else []
             seen = {m["id"] for m in selection}
             selection += [m for m in members.pending(db) if m["id"] not in seen]

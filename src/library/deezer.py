@@ -24,12 +24,19 @@ def _all(path, first=None):
 
 
 def profile(uid):
-    """Nom et nombre d'artistes favoris d'un profil ; SourceError si introuvable ou privé."""
-    p = api._call(f"{api.API}/user/{uid}")
-    if not p or "id" not in p:
+    """Profil et première page d'artistes favoris ; SourceError si introuvable, privé, ou si
+    Deezer ne répond pas (deezer_unavailable : nouvel essai au calcul suivant)."""
+    p = api._call(f"{api.API}/user/{uid}", with_errors=True)
+    if p is None:
+        raise SourceError("deezer_unavailable")
+    if "error" in p:
+        raise SourceError("not_found" if p["error"].get("code") == 800 else "deezer_unavailable")
+    if "id" not in p:
         raise SourceError("not_found")
-    favs = api._call(f"{api.API}/user/{uid}/artists", {"limit": 100})
+    favs = api._call(f"{api.API}/user/{uid}/artists", {"limit": 100}, with_errors=True)
     if favs is None:
+        raise SourceError("deezer_unavailable")
+    if "error" in favs:
         raise SourceError("private_profile")
     return p, favs
 

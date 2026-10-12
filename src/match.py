@@ -185,8 +185,10 @@ def match_known(events, index):
             a = index.exact(name)
             if a:
                 matched[a["id"]] = {"id": a["id"], "name": a["name"], "tier": a["tier"], "via": "artiste"}
-        for a in index.in_title(ev.get("title") or ""):
-            matched.setdefault(a["id"], {"id": a["id"], "name": a["name"], "tier": a["tier"], "via": "titre"})
+        # Titre de la fiche retenue et des autres fiches fusionnées (alt_titles, dedupe)
+        for title in [ev.get("title") or "", *ev.get("alt_titles", [])]:
+            for a in index.in_title(title):
+                matched.setdefault(a["id"], {"id": a["id"], "name": a["name"], "tier": a["tier"], "via": "titre"})
         ev["matched"] = sorted(matched.values(), key=lambda m: m["tier"])
     return events
 
@@ -312,6 +314,7 @@ def dedupe(events):
         base["links"] = links
         base["matched"] = sorted(matched.values(), key=lambda m: m["tier"])
         base["title_only"] = all(ev.get("title_only") for ev in group)
+        base["alt_titles"] = sorted({ev.get("title") for ev in group if ev.get("title") and ev.get("title") != base.get("title")})
         # Identifiants des sources : servent à retrouver le concert d'une semaine à l'autre
         base["source_keys"] = sorted({f"{ev['source']}:{ev.get('source_id') or ev.get('url') or ''}" for ev in group})
         base["id"] = hashlib.sha1("|".join(key).encode()).hexdigest()[:12]

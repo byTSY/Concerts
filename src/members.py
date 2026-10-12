@@ -39,6 +39,27 @@ def by_ids(db, ids):
     return [m for m in rows if m["id"] in set(ids)]
 
 
+def still_current(db, user_id, provider, provider_user_id):
+    """Le membre existe toujours, avec la même source et un statut calculable (il a pu être
+    supprimé, suspendu ou changer de source pendant le calcul)."""
+    return bool(db.query(
+        "SELECT 1 FROM users u JOIN music_sources s ON s.user_id = u.id WHERE u.id = ? "
+        "AND u.status IN ('active', 'error', 'computing') AND s.status = 'connected' "
+        "AND s.provider = ? AND s.provider_user_id = ?", [user_id, provider, str(provider_user_id)]))
+
+
+def delete_files(store, user_id):
+    assert user_id.startswith("u_")
+    for key in store.list(f"users/{user_id}/"):
+        store.delete(key)
+
+
+def last_collection(db):
+    """Fin de la dernière collecte réussie (tâche commune), ou None."""
+    rows = db.query("SELECT MAX(ended_at) AS t FROM runs WHERE kind = 'weekly' AND sources IS NOT NULL AND status = 'ok'")
+    return rows[0]["t"] if rows else None
+
+
 def record_sync(db, user_id, ok, error_code=None):
     now = now_iso()
     db.query("UPDATE music_sources SET last_sync_at = ?, last_sync_status = ? WHERE user_id = ?",

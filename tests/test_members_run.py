@@ -87,6 +87,25 @@ class MembersRun(unittest.TestCase):
         self.assertEqual(runs["u_cccccccc"], ("error", "private_profile"))
         self.assertEqual(runs["u_aaaaaaaa"], ("ok", None))
 
+    def test_member_deleted_during_computation(self):
+        """Membre supprimé pendant son calcul : rien n'est réécrit, le traitement continue."""
+        db = self.db
+        alpha = library(["Alpha"])
+
+        def read(uid, settings, previous):
+            if uid == "111":
+                db.query("DELETE FROM users WHERE id = 'u_aaaaaaaa'")
+            if uid == "333":
+                raise SourceError("private_profile")
+            return alpha(uid, settings, previous) if uid == "111" else library(["Beta"])(uid, settings, previous)
+
+        self.store.put_json("users/u_aaaaaaaa/meta.json", {"ancien": True})
+        with mock.patch.dict(main.LIBRARIES, {"deezer": read}),                 mock.patch.object(main.discover, "score_events", lambda ev, *a, **k: ev),                 mock.patch.object(main, "log"), mock.patch.object(main.history, "log"),                 mock.patch.object(main.publish, "log"):
+            main.run_members(SETTINGS, db, self.store, members.active(db), self.collected)
+        self.assertEqual(self.store.list("users/u_aaaaaaaa/"), [])         # rien ne réapparaît
+        self.assertEqual(set(members.read(self.store, "u_bbbbbbbb", "overlay")), {"c2"})  # B calculé
+        self.assertEqual(db.query("SELECT status FROM runs")[0]["status"], "1 erreur(s)")
+
     def test_pending_selection(self):
         self.assertEqual(members.pending(self.db), [])
         self.db.query("UPDATE music_sources SET sync_requested_at = ? WHERE user_id = 'u_bbbbbbbb'", [NOW])

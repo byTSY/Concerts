@@ -69,6 +69,9 @@ async function confirmDeezer(profile) {
   try {
     const me = await api("me/source/deezer/confirm", { method: "POST", body: { profile } });
     await renderVenueChoice($("#onboarding"), me);
+    if (me.run?.done === false) {
+      $("#onboarding").insertAdjacentHTML("afterbegin", `<p class="prefs-warning">Le calcul n'a pas pu être lancé tout de suite ; il aura lieu au prochain traitement, au plus tard lundi matin.</p>`);
+    }
   } catch (e) {
     btn.disabled = false;
     $("#deezer-preview").insertAdjacentHTML("beforeend", `<p class="prefs-warning">${esc(e.message)}</p>`);

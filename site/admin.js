@@ -60,7 +60,7 @@ async function renderAdmin() {
     const errors = (r.members || []).filter((m) => m.status === "error");
     const ok = (r.members || []).filter((m) => m.status === "ok").length;
     return `<tr><td class="cell-date">${esc(fmtDateTime(r.started_at))}</td>
-      <td>${r.kind === "weekly" ? "complet" : "membre"}</td>
+      <td>${r.kind === "member" ? "calcul de membre" : r.sources ? "collecte des concerts" : "calcul des membres"}</td>
       <td>${esc(r.status || "")}${r.members?.length ? `<span class="cell-sub">${ok} membre(s) calculé(s)${errors.length ? `, erreurs : ${errors.map((e) => `${esc(e.user_id)} (${esc(e.error_code)})`).join(", ")}` : ""}</span>` : ""}</td></tr>`;
   }).join("");
 
