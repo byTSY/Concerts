@@ -24,12 +24,14 @@ def _reverse_index(artists, related_cache, refresh_days):
     return weight, names
 
 
-def score_events(events, artists, settings, hidden_keys=frozenset()):
-    """artists : votre liste sans les artistes masqués ; hidden_keys : leurs noms normalisés,
-    pour ne pas les proposer en découverte."""
+def score_events(events, artists, settings, hidden_keys=frozenset(), budget=None):
+    """artists : liste du membre sans les artistes masqués ; hidden_keys : leurs noms normalisés,
+    pour ne pas les proposer en découverte. budget : {"left": n}, nombre d'artistes inconnus
+    encore analysables pendant ce traitement, partagé entre les membres (cache commun)."""
     cfg = settings["discovery"]
+    budget = budget if budget is not None else {"left": cfg["max_new_lookups"]}
     search_cache, related_cache = deezer.load_caches()
-    log("Découvertes : lecture des artistes similaires de votre liste")
+    log("  Découvertes : lecture des artistes similaires de la liste")
     rev_weight, rev_names = _reverse_index(artists, related_cache, cfg["related_refresh_days"])
 
     # Noms à analyser : les artistes fournis par la source ; à défaut, pour L'Officiel des
@@ -49,10 +51,12 @@ def score_events(events, artists, settings, hidden_keys=frozenset()):
         best = None
         for name in names_of(ev):
             cached = norm(name) in search_cache
-            if not cached and lookups >= cfg["max_new_lookups"]:
+            if not cached and budget["left"] <= 0:
                 continue
             found = deezer.search_artist(name, search_cache)
-            lookups += 0 if cached else 1
+            if not cached:
+                lookups += 1
+                budget["left"] -= 1
             if not found or norm(name) in hidden_keys or norm(found["name"]) in hidden_keys:
                 continue
 

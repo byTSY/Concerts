@@ -74,11 +74,43 @@ personnelles quittent GitHub pour Cloudflare :
 | Dépôt (`site/data/`, `data/concerts.json`, `data/cache/`) | données communes : tous les concerts, sans aucun champ personnel ; salles observées ; caches Deezer |
 | Cloudflare D1 (base SQL) | membres, source musicale, préférences (masqués, niveaux), salles favorites, ★, catalogue des salles |
 | Cloudflare R2 (`users/<id>/`) | résultats calculés par membre : `artists.json`, `overlay.json` (ce que chaque concert est pour lui), `history.json`, `meta.json` |
+| Cloudflare R2 (`common/collected.json`) | dernière collecte (concerts dédoublonnés, sans champ personnel), relue par le calcul d'un membre |
 
 Le site charge les concerts communs en statique, puis les données du membre connecté par
 `/api/me/*`. Le membre est reconnu par son jeton Cloudflare Access, vérifié par
 `functions/api/_middleware.js` ; seul `functions/_lib/me.js` lit ou écrit ses données
 (côté traitement : `src/members.py`).
+
+### Traitement : tâche commune, puis tâche membres
+
+Le workflow « Mise à jour hebdomadaire » (lundi 5h UTC) enchaîne deux tâches :
+
+1. **commune** (`python -m src.main common`) : sources de concerts, salles du catalogue,
+   dédoublonnage (avec les artistes de tous les membres), historique commun (`first_seen`,
+   badge « annonce »), publication de `site/data/`, collecte enregistrée dans R2 ;
+2. **membres** (`python -m src.main members`) : pour chaque membre actif, lecture de sa source
+   (Deezer : profil public), préférences, rapprochement, salles favorites, découvertes,
+   historique (badge « liste »), résultats dans R2. Une erreur chez un membre (profil devenu
+   privé, par exemple) le passe en statut « en erreur » avec un code, sans arrêter les autres.
+
+Le site lance le calcul d'un seul membre (arrivée, « Synchroniser maintenant », relance par
+l'admin) par le même workflow, avec le paramètre `member` : seule la tâche membres tourne, pour
+ce membre et ceux qui attendent un calcul, à partir de la dernière collecte. Les traitements
+passent l'un après l'autre.
+
+### Membres : invitation, arrivée, compte
+
+- **Admin** (onglet visible du seul admin) : inviter (e-mail, prénom ; l'adresse est ajoutée
+  à la liste Access des membres, et un message prêt à transmettre est proposé), suspendre
+  (accès coupé aussitôt, données gardées), réactiver, supprimer (tout est effacé), relancer un
+  calcul, suivre les traitements. L'admin voit statut, connexions, activité et nombre de ★ ;
+  jamais les artistes, concerts choisis ou préférences d'un membre.
+- **Arrivée d'un membre** : connexion par code reçu par e-mail (Cloudflare Access), lien de son
+  profil Deezer (public, vérifié, pas déjà rattaché à un autre membre), salles favorites
+  (facultatif), puis attente du premier calcul (quelques minutes).
+- **Mon compte** : pseudo, source (« Synchroniser maintenant », une fois par heure ; « Changer
+  de source », qui remet les résultats à zéro en gardant préférences, salles et ★), salles
+  favorites, visibilité par défaut des ★, suppression du compte (double confirmation).
 
 ### Mise à jour du schéma de la base
 
@@ -99,6 +131,13 @@ Réglages Cloudflare du projet Pages (Settings > Bindings, et Variables and Secr
 | `BUCKET` | liaison R2 | compartiment `concerts-membres` (production), `concerts-membres-preview` |
 | `ACCESS_TEAM_DOMAIN` | variable | `<équipe>.cloudflareaccess.com` |
 | `ACCESS_AUD` | variable | « Application Audience (AUD) Tag » de l'application Access du site (plusieurs valeurs séparées par des virgules) |
+| `CF_ACCOUNT_ID` | variable | n° du compte Cloudflare |
+| `ACCESS_LIST_ID` | variable | identifiant de la liste Zero Trust « membres » (adresses autorisées) |
+| `CF_ADMIN_API_TOKEN` | secret | clé Cloudflare : liste Zero Trust (Zero Trust Edit), coupure des sessions (Access : Organizations, Identity Providers and Groups Edit) |
+| `GITHUB_ACTIONS_TOKEN` | secret | clé GitHub limitée au dépôt, droit « Actions : Read and write » (lancement d'un calcul) |
+
+En prévisualisation, sans `CF_ADMIN_API_TOKEN` ni `GITHUB_ACTIONS_TOKEN` : la liste Access et
+les calculs ne sont pas touchés (la liste est commune à la production), l'écran l'indique.
 
 Secrets GitHub Actions : les six variables Cloudflare ci-dessus.
 
@@ -106,7 +145,7 @@ Tests (avant chaque mise en production) :
 
 ```powershell
 .venv\Scripts\python -m unittest discover -s tests -t .   # historique : non-régression
-node --test tests/functions.test.mjs                     # jeton Access, barrière, isolation entre membres
+node --test tests/functions.test.mjs                     # jeton Access, barrière, isolation, admin, arrivée
 ```
 
 Limites des offres gratuites (documentation Cloudflare, 12 octobre 2026) : D1, 5 millions de

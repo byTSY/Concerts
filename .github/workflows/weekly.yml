@@ -3,17 +3,34 @@ name: Mise à jour hebdomadaire
 on:
   schedule:
     - cron: "0 5 * * 1"   # lundi 5h UTC (6h ou 7h à Paris selon la saison)
-  workflow_dispatch:       # bouton « Run workflow » pour lancer à la main
+  workflow_dispatch:       # bouton « Run workflow », ou lancement par le site (calcul d'un membre)
+    inputs:
+      member:
+        description: "Calcul d'un seul membre (u_xxxxxxxx), plus ceux qui attendent ; vide : traitement complet"
+        required: false
+        default: ""
 
 permissions:
   contents: write
 
+# Un traitement à la fois ; un calcul demandé pendant un autre attend son tour
 concurrency:
   group: weekly-update
   cancel-in-progress: false
 
+env:
+  # Données des membres : base D1 et stockage R2 (Cloudflare)
+  CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+  D1_DATABASE_ID: ${{ secrets.D1_DATABASE_ID }}
+  CF_D1_API_TOKEN: ${{ secrets.CF_D1_API_TOKEN }}
+  R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+  R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+  R2_BUCKET: ${{ secrets.R2_BUCKET }}
+
 jobs:
-  update:
+  # Tâche commune : sources, salles, dédoublonnage, historique commun, publication commune
+  common:
+    if: ${{ !inputs.member }}
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
@@ -26,20 +43,13 @@ jobs:
 
       - run: pip install -r requirements.txt
 
-      - name: Traitement
+      - name: Tâche commune
         env:
           TICKETMASTER_API_KEY: ${{ secrets.TICKETMASTER_API_KEY }}
           BANDSINTOWN_APP_ID: ${{ secrets.BANDSINTOWN_APP_ID }}
-          # Données des membres : base D1 et stockage R2 (Cloudflare)
-          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-          D1_DATABASE_ID: ${{ secrets.D1_DATABASE_ID }}
-          CF_D1_API_TOKEN: ${{ secrets.CF_D1_API_TOKEN }}
-          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-          R2_BUCKET: ${{ secrets.R2_BUCKET }}
-        run: python -m src.main
+        run: python -m src.main common
 
-      - name: Enregistrer les données
+      - name: Enregistrer les données communes
         run: |
           git config user.name "concerts-bot"
           git config user.email "concerts-bot@users.noreply.github.com"
@@ -48,7 +58,47 @@ jobs:
             echo "Aucun changement"
           else
             git commit -m "Mise à jour du $(date -u +%Y-%m-%d)"
-            # Le dépôt a pu changer pendant le traitement
+            git pull --rebase
+            git push
+          fi
+
+  # Tâche membres : chaque membre (ou le membre demandé), à partir de la dernière collecte
+  members:
+    needs: common
+    if: ${{ always() && (needs.common.result == 'success' || needs.common.result == 'skipped') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main   # inclut le commit de la tâche commune (caches à jour)
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Tâche membres
+        env:
+          MEMBER: ${{ inputs.member }}
+        run: |
+          if [ -n "$MEMBER" ]; then
+            python -m src.main members --member "$MEMBER" --pending
+          else
+            python -m src.main members
+          fi
+
+      - name: Enregistrer les caches Deezer
+        run: |
+          git config user.name "concerts-bot"
+          git config user.email "concerts-bot@users.noreply.github.com"
+          git add data/cache
+          if git diff --cached --quiet; then
+            echo "Aucun changement"
+          else
+            git commit -m "Caches Deezer du $(date -u +%Y-%m-%d)"
             git pull --rebase
             git push
           fi

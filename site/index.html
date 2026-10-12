@@ -35,6 +35,8 @@
     <button role="tab" aria-selected="false" data-view="starred">★ Intéressés<span id="star-count"></span></button>
     <button role="tab" aria-selected="false" data-view="artists">Mes artistes</button>
     <button role="tab" aria-selected="false" data-view="venues">Salles</button>
+    <button role="tab" aria-selected="false" data-view="account">Mon compte</button>
+    <button role="tab" aria-selected="false" data-view="admin" id="tab-admin" hidden>Admin</button>
   </nav>
 
   <div class="filters" id="filters">
@@ -72,7 +74,12 @@
     <section id="view-starred" class="view" hidden><div id="starred"></div></section>
     <section id="view-artists" class="view" hidden><div id="artists"></div></section>
     <section id="view-venues" class="view" hidden><div id="venues"></div></section>
+    <section id="view-account" class="view" hidden><div id="account"></div></section>
+    <section id="view-admin" class="view" hidden><div id="admin"></div></section>
   </main>
+
+  <!-- Arrivée d'un membre : choix de la source, puis attente du premier calcul -->
+  <section id="onboarding" class="onboarding" hidden></section>
 
   <dialog id="ticket" aria-labelledby="ticket-title">
     <div class="ticket">
@@ -86,6 +93,8 @@
 
   <script src="vendor/fullcalendar.min.js"></script>
   <script src="vendor/fullcalendar-fr.min.js"></script>
+  <script src="account.js"></script>
+  <script src="admin.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

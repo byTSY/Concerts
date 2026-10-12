@@ -317,3 +317,25 @@ dialog::backdrop { background: rgba(20, 24, 56, .55); }
 details.organizer { margin: 8px 0 0; font-size: .9rem; }
 details.organizer summary { cursor: pointer; color: var(--ink-soft); font-weight: 600; }
 details.organizer p { margin: 6px 0 0; }
+
+/* Arrivée d'un membre, Mon compte, Admin */
+.onboarding-mode .masthead .fresh, .onboarding-mode .tabs, .onboarding-mode .filters, .onboarding-mode main { display: none; }
+.onboarding { max-width: 640px; padding: 8px 0 48px; }
+.onboarding h2 { font-size: 1.6rem; font-weight: 800; font-stretch: 85%; margin: 16px 0 8px; }
+.onboarding h3 { margin: 24px 0 8px; font-size: 1.05rem; }
+.source-choice { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
+.source-option { padding: 10px 14px; border: 1.5px solid var(--rule); border-radius: 8px; cursor: pointer; }
+.source-option.disabled { opacity: .55; cursor: not-allowed; }
+.account-form { display: grid; gap: 6px; max-width: 520px; margin: 8px 0; }
+.account-form.inline { grid-template-columns: auto 1fr; align-items: center; column-gap: 10px; }
+.account-form.inline .btn { grid-column: 1 / -1; justify-self: start; }
+.account-form input, .copy-field { font: inherit; color: var(--ink); background: var(--paper-2); border: 1.5px solid var(--rule);
+  border-radius: 6px; padding: 8px 10px; width: 100%; box-sizing: border-box; }
+.account-form .btn, .account-block .btn, .onboarding .btn { cursor: pointer; border: 0; font: inherit; font-weight: 600; }
+.account-form .btn-quiet, .account-block .btn-quiet { border: 1.5px solid var(--rule); }
+.account-block { margin-bottom: 28px; max-width: 900px; }
+.account-block .month-title { text-transform: none; }
+.preview-card { display: flex; align-items: center; gap: 8px; margin: 12px 0; padding: 10px 14px; border: 1.5px solid var(--rule); border-radius: 8px; }
+.venue-checks { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.copy-field { max-width: 640px; resize: vertical; }
+@media (max-width: 640px) { .account-form.inline { grid-template-columns: 1fr; } }

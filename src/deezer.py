@@ -1,14 +1,12 @@
-"""Extraction des favoris Deezer, score d'affinité par artiste, artistes similaires."""
+"""API Deezer commune : appels avec gestion du quota, recherche d'artistes et artistes similaires
+(caches communs à tous les membres). La lecture du profil d'un membre est dans src/library/deezer.py."""
 import time
-from collections import defaultdict
-from datetime import date, datetime, timedelta, timezone
+from datetime import date, timedelta
 
 from .util import ARTICLES, CACHE, get_json, load_json, log, norm, redact, save_json, today_iso
 
 API = "https://api.deezer.com"
 PAUSE = 0.12  # Deezer tolère c. 50 requêtes par 5 secondes
-# Artistes génériques des compilations : pas de vrais artistes, à ne pas suivre
-IGNORED = {"various artists", "artistes divers", "multi interpretes", "verschiedene interpreten"}
 
 
 def _call(url, params=None):
@@ -25,124 +23,6 @@ def _call(url, params=None):
         return data
     return None
 
-
-def _paginate(path):
-    """Parcourt toutes les pages d'une liste Deezer."""
-    url, params, items = f"{API}{path}", {"limit": 100}, []
-    while url:
-        data = _call(url, params)
-        if not data:
-            break
-        items.extend(data.get("data", []))
-        url, params = data.get("next"), None
-    return items
-
-
-def refresh_artists(uid, settings, previous):
-    """Recalcule la liste d'artistes d'un profil Deezer à partir de ses favoris.
-    previous : liste du calcul précédent (users/<id>/artists.json), {} au premier calcul."""
-    sc = settings["scoring"]
-    log("Deezer : lecture du profil")
-
-    profile = _call(f"{API}/user/{uid}")
-    if not profile or "id" not in profile:
-        raise SystemExit("Profil Deezer introuvable ou privé : vérifiez le n° de profil et sa visibilité.")
-
-    counts = defaultdict(lambda: {"favorite": False, "albums": 0, "tracks": 0, "playlists": 0})
-    meta = {}
-    added = {}  # date du like le plus récent (favori, album, titre ou ajout en playlist), horodatage Deezer
-
-    def note_added(aid, item):
-        ts = item.get("time_add")
-        if aid and isinstance(ts, (int, float)) and ts > added.get(aid, 0):
-            added[aid] = ts
-
-    def remember(artist):
-        if artist and artist.get("id") and norm(artist.get("name")) not in IGNORED:
-            aid = str(artist["id"])
-            meta.setdefault(aid, {"name": artist.get("name", ""), "link": artist.get("link"),
-                                  "picture": artist.get("picture_medium")})
-            if not meta[aid].get("picture") and artist.get("picture_medium"):
-                meta[aid]["picture"] = artist["picture_medium"]
-            return aid
-        return None
-
-    favs = _paginate(f"/user/{uid}/artists")
-    for a in favs:
-        aid = remember(a)
-        note_added(aid, a)
-        if aid:
-            counts[aid]["favorite"] = True
-    log(f"  {len(favs)} artistes favoris")
-
-    albums = _paginate(f"/user/{uid}/albums")
-    for al in albums:
-        aid = remember(al.get("artist"))
-        note_added(aid, al)
-        if aid:
-            counts[aid]["albums"] += 1
-    log(f"  {len(albums)} albums likés")
-
-    tracks = _paginate(f"/user/{uid}/tracks")
-    for t in tracks:
-        aid = remember(t.get("artist"))
-        note_added(aid, t)
-        if aid:
-            counts[aid]["tracks"] += 1
-    log(f"  {len(tracks)} titres likés")
-
-    if settings.get("include_own_playlists"):
-        playlists = _paginate(f"/user/{uid}/playlists")
-        own = [p for p in playlists
-               if str((p.get("creator") or {}).get("id")) == str(uid) and not p.get("is_loved_track")]
-        n = 0
-        for p in own:
-            for t in _paginate(f"/playlist/{p['id']}/tracks"):
-                aid = remember(t.get("artist"))
-                note_added(aid, t)
-                if aid:
-                    counts[aid]["playlists"] += 1
-                    n += 1
-        log(f"  {len(own)} playlists personnelles, {n} titres")
-
-    today = today_iso()
-    result = {}
-
-    for aid, c in counts.items():
-        score = (sc["favorite_artist"] * c["favorite"] + sc["liked_album"] * c["albums"]
-                 + sc["liked_track"] * c["tracks"] + sc["playlist_track"] * c["playlists"])
-        tier = 1 if score >= sc["tier1_min"] else 2 if score >= sc["tier2_min"] else 3
-        old = previous.get(aid, {})
-        result[aid] = {
-            "id": aid,
-            "name": meta[aid]["name"],
-            "key": norm(meta[aid]["name"]),
-            "link": meta[aid].get("link") or f"https://www.deezer.com/artist/{aid}",
-            "picture": meta[aid].get("picture"),
-            "score": round(score, 2),
-            "tier": tier,
-            "sources": c,
-            "first_seen": old.get("first_seen", today),
-            "added": (datetime.fromtimestamp(added[aid], timezone.utc).date().isoformat()
-                      if aid in added else old.get("added")),
-            "last_seen": today,
-            "still_liked": True,
-            "provider": "deezer",
-            "deezer_id": aid,
-        }
-
-    # Les artistes retirés de vos favoris restent dans la liste, signalés comme tels
-    for aid, old in previous.items():
-        if aid not in result and norm(old.get("name")) not in IGNORED:
-            old["still_liked"] = False
-            result[aid] = old
-
-    new = [a for a in result.values() if a["first_seen"] == today and a["still_liked"]]
-    log(f"  {len(result)} artistes au total, dont {len(new)} nouveaux cette semaine")
-    return result
-
-
-# --- Recherche et artistes similaires, avec cache ------------------------------
 
 def search_artist(name, cache):
     """Identifiant Deezer d'un nom d'artiste (correspondance exacte du nom normalisé)."""

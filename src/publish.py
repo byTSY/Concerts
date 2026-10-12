@@ -12,6 +12,8 @@ from .util import SITE_DATA, log, save_json, today_iso
 
 COMMON = ("id", "title", "date", "time", "venue", "venue_id", "address", "city", "price", "on_sale",
           "status", "genre", "image", "links", "artists", "description", "first_seen", "badge")
+# Champs propres à un membre, jamais dans les fichiers communs ni dans la collecte (R2 common/)
+PERSONAL = ("matched", "discovery", "venue_favorite", "kind", "list_since", "list_badge")
 ARTIST_FIELDS = ("id", "name", "key", "link", "picture", "score", "tier", "sources", "first_seen", "added",
                  "last_seen", "still_liked", "provider", "deezer_id", "spotify_id")
 

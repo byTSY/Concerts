@@ -851,6 +851,8 @@ function render() {
   if (state.view === "starred") renderStarred();
   if (state.view === "artists") renderArtists();
   if (state.view === "venues") renderVenues();
+  if (state.view === "account") renderAccount();
+  if (state.view === "admin") renderAdmin();
 }
 
 function switchView(view) {
@@ -860,6 +862,7 @@ function switchView(view) {
   const eventFilters = view === "calendar" || view === "list";
   document.querySelectorAll("#filters .chip, #venue-filter").forEach((el) => (el.style.display = eventFilters ? "" : "none"));
   $("#style-filter").style.display = eventFilters || view === "byartist" ? "" : "none";
+  $("#search").style.display = view === "account" || view === "admin" ? "none" : "";
   if (!state.venue) $("#venue-filter").hidden = true;
   render();
   if (view === "calendar" && state.calendar) state.calendar.updateSize();
@@ -938,6 +941,12 @@ function bind() {
       .sort((a, b) => b.score - a.score || (a.name.toLowerCase() < b.name.toLowerCase() ? -1 : a.name.toLowerCase() > b.name.toLowerCase() ? 1 : 0)),
   });
   state.profile = new Map(state.artists.map((a) => [normName(a.name), a]));
+  // Nouveau membre : accueil (choix de la source), puis attente du premier calcul
+  if (me && (["invited", "onboarding"].includes(me.status) || (me.status === "computing" && !state.artists.length))) {
+    showOnboarding(me);
+    return;
+  }
+  $("#tab-admin").hidden = me?.role !== "admin";
   applyPrefs();
   fillStyles();
   updateStarCount();

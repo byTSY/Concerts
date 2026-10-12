@@ -67,7 +67,7 @@ class LocalD1:
         self.conn = sqlite3.connect(path)
         self.conn.row_factory = sqlite3.Row
         self.conn.execute("PRAGMA foreign_keys = ON")  # comme D1
-        self.label = f"SQLite local ({path.relative_to(DATA.parent)})"
+        self.label = f"SQLite local ({path.relative_to(DATA.parent) if path.is_relative_to(DATA.parent) else path})"
 
     def query(self, sql, params=()):
         cur = self.conn.execute(sql, tuple(params))

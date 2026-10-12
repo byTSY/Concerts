@@ -45,7 +45,10 @@ const teamDomain = (env) => String(env.ACCESS_TEAM_DOMAIN || "").replace(/^https
 export async function verifyAccess(request, env) {
   const host = new URL(request.url).hostname;
   if (env.DEV_ACCESS_EMAIL && (host === "localhost" || host === "127.0.0.1")) {
-    return { email: String(env.DEV_ACCESS_EMAIL).toLowerCase(), iat: Number(env.DEV_ACCESS_IAT || 1) };
+    // Essais en local : le cookie dev_email permet de se connecter comme un autre membre de test
+    const cookie = (request.headers.get("cookie") || "").match(/(?:^|;\s*)dev_email=([^;]+)/);
+    const email = cookie ? decodeURIComponent(cookie[1]) : env.DEV_ACCESS_EMAIL;
+    return { email: String(email).toLowerCase(), iat: Number(env.DEV_ACCESS_IAT || 1) };
   }
   const team = teamDomain(env);
   const audiences = String(env.ACCESS_AUD || "").split(",").map((s) => s.trim()).filter(Boolean);
