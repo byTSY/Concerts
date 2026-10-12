@@ -81,17 +81,19 @@ def title_segments(title):
 
 
 class VenueMatcher:
+    """Catalogue commun des salles (catalog.load) : {"venues": [...], "excluded": [...]},
+    chaque salle avec id, name et aliases."""
+
     def __init__(self, cfg):
-        self.favorites = self._build(cfg.get("favorites", []))
+        self.venues = self._build(cfg.get("venues", []))
         self.excluded = self._build(cfg.get("excluded", []))
 
     @staticmethod
     def _build(items):
         out = []
         for v in items:
-            v = {"name": v} if isinstance(v, str) else v
             keys = {norm_venue(v["name"])} | {norm_venue(a) for a in v.get("aliases", [])}
-            out.append((v["name"], [k for k in keys if k]))
+            out.append(((v.get("id"), v["name"]), [k for k in keys if k]))
         return out
 
     @staticmethod
@@ -102,15 +104,17 @@ class VenueMatcher:
                 return canon
         return None
 
-    def favorite(self, venue):
-        return self._find(self.favorites, venue)
+    def canonical(self, venue):
+        """(identifiant, nom) de la salle du catalogue, ou None."""
+        return self._find(self.venues, venue)
 
     def is_excluded(self, venue):
         return self._find(self.excluded, venue) is not None
 
 
 def prepare(events, venues):
-    """Écarte les événements passés ou exclus et rattache les salles favorites."""
+    """Écarte les événements passés ou exclus et rattache les salles du catalogue (nom
+    canonique, identifiant venue_id). Partie commune à tous les membres."""
     today = today_iso()
     out = []
     for ev in events:
@@ -120,13 +124,20 @@ def prepare(events, venues):
             continue
         if (ev.get("status") or "").lower() in {"cancelled", "canceled"}:
             continue
-        fav = venues.favorite(ev["venue"])
-        ev["venue_favorite"] = bool(fav)
-        if fav:
-            ev["venue"] = fav
+        canon = venues.canonical(ev["venue"])
+        ev["venue_id"] = canon[0] if canon else None
+        if canon:
+            ev["venue"] = canon[1]
         ev["venue_key"] = norm_venue(ev["venue"])
         out.append(ev)
     return out
+
+
+def mark_favorites(events, favorite_ids):
+    """Salles favorites d'un membre : venue_favorite selon son choix dans le catalogue."""
+    for ev in events:
+        ev["venue_favorite"] = bool(ev.get("venue_id")) and ev["venue_id"] in favorite_ids
+    return events
 
 
 class ArtistIndex:

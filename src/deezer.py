@@ -3,7 +3,7 @@ import time
 from collections import defaultdict
 from datetime import date, datetime, timedelta, timezone
 
-from .util import ARTICLES, CACHE, DATA, get_json, load_json, log, norm, save_json, today_iso
+from .util import ARTICLES, CACHE, get_json, load_json, log, norm, redact, save_json, today_iso
 
 API = "https://api.deezer.com"
 PAUSE = 0.12  # Deezer tolère c. 50 requêtes par 5 secondes
@@ -20,7 +20,7 @@ def _call(url, params=None):
             if err.get("code") == 4:  # quota dépassé
                 time.sleep(6)
                 continue
-            log(f"  Deezer : {err.get('type')} {err.get('message')} ({url})")
+            log(f"  Deezer : {err.get('type')} {err.get('message')} ({redact(url)})")
             return None
         return data
     return None
@@ -38,15 +38,15 @@ def _paginate(path):
     return items
 
 
-def refresh_artists(settings):
-    """Recalcule la liste d'artistes à partir des favoris et l'ajoute à l'historique."""
-    uid = settings["deezer_user_id"]
+def refresh_artists(uid, settings, previous):
+    """Recalcule la liste d'artistes d'un profil Deezer à partir de ses favoris.
+    previous : liste du calcul précédent (users/<id>/artists.json), {} au premier calcul."""
     sc = settings["scoring"]
-    log(f"Deezer : lecture du profil {uid}")
+    log("Deezer : lecture du profil")
 
     profile = _call(f"{API}/user/{uid}")
     if not profile or "id" not in profile:
-        raise SystemExit("Profil Deezer introuvable ou privé : vérifiez deezer_user_id et la visibilité du profil.")
+        raise SystemExit("Profil Deezer introuvable ou privé : vérifiez le n° de profil et sa visibilité.")
 
     counts = defaultdict(lambda: {"favorite": False, "albums": 0, "tracks": 0, "playlists": 0})
     meta = {}
@@ -105,7 +105,6 @@ def refresh_artists(settings):
                     n += 1
         log(f"  {len(own)} playlists personnelles, {n} titres")
 
-    previous = load_json(DATA / "artists.json", {})
     today = today_iso()
     result = {}
 
@@ -128,6 +127,8 @@ def refresh_artists(settings):
                       if aid in added else old.get("added")),
             "last_seen": today,
             "still_liked": True,
+            "provider": "deezer",
+            "deezer_id": aid,
         }
 
     # Les artistes retirés de vos favoris restent dans la liste, signalés comme tels
@@ -138,7 +139,6 @@ def refresh_artists(settings):
 
     new = [a for a in result.values() if a["first_seen"] == today and a["still_liked"]]
     log(f"  {len(result)} artistes au total, dont {len(new)} nouveaux cette semaine")
-    save_json(DATA / "artists.json", result)
     return result
 
 

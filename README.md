@@ -64,7 +64,72 @@ L'adresse obtenue (`concerts-paris-xxx.pages.dev`) n'est référencée nulle par
 accessible à qui la connaît. Pour la réserver à votre adresse e-mail, activez Cloudflare
 Access sur le projet (gratuit jusqu'à 50 utilisateurs).
 
+## Version multi-membres (en cours, spécification `SPEC.md`)
+
+Le site s'ouvre à un petit groupe de membres, chacun avec son propre univers. Les données
+personnelles quittent GitHub pour Cloudflare :
+
+| Où | Quoi |
+|---|---|
+| Dépôt (`site/data/`, `data/concerts.json`, `data/cache/`) | données communes : tous les concerts, sans aucun champ personnel ; salles observées ; caches Deezer |
+| Cloudflare D1 (base SQL) | membres, source musicale, préférences (masqués, niveaux), salles favorites, ★, catalogue des salles |
+| Cloudflare R2 (`users/<id>/`) | résultats calculés par membre : `artists.json`, `overlay.json` (ce que chaque concert est pour lui), `history.json`, `meta.json` |
+
+Le site charge les concerts communs en statique, puis les données du membre connecté par
+`/api/me/*`. Le membre est reconnu par son jeton Cloudflare Access, vérifié par
+`functions/api/_middleware.js` ; seul `functions/_lib/me.js` lit ou écrit ses données
+(côté traitement : `src/members.py`).
+
+### Étape 1 : socle (état actuel de la branche `multi-membres`)
+
+Le traitement du lundi lit le membre admin dans D1 (profil Deezer, préférences, salles
+favorites), écrit ses résultats dans R2 et ne publie plus dans le dépôt que les données
+communes. La fiche publique `/partage/<concert>` reçoit l'artiste mis en avant dans le lien
+(`?a=<nom>&dz=<n° Deezer>`), les données publiées ne disant plus qui s'intéresse à quel
+artiste.
+
+Reprise de l'existant (une fois, puis vérification) :
+
+```powershell
+.venv\Scripts\python -m src.migrate import --email <votre e-mail Access> --first-name <prénom>
+.venv\Scripts\python -m src.migrate verify --email <votre e-mail Access>
+```
+
+Ces commandes exigent les variables Cloudflare ci-dessous : sans elles, elles s'arrêtent, sauf
+avec `--local` (base SQLite et dossier `data/local/`, non versionnés, pour les essais). Le
+traitement utilise aussi cette copie locale quand les variables manquent, sauf dans GitHub
+Actions. Avec les variables
+`CF_ACCOUNT_ID`, `D1_DATABASE_ID`, `CF_D1_API_TOKEN`, `R2_ACCESS_KEY_ID`,
+`R2_SECRET_ACCESS_KEY` et `R2_BUCKET`, ils travaillent sur Cloudflare. Dans GitHub Actions, un
+secret manquant arrête le traitement.
+
+Réglages Cloudflare du projet Pages (Settings > Bindings, et Variables and Secrets) :
+
+| Nom | Type | Valeur |
+|---|---|---|
+| `DB` | liaison D1 | base `concerts` (production), `concerts-preview` (prévisualisation) |
+| `BUCKET` | liaison R2 | compartiment `concerts-membres` (production), `concerts-membres-preview` |
+| `ACCESS_TEAM_DOMAIN` | variable | `<équipe>.cloudflareaccess.com` |
+| `ACCESS_AUD` | variable | « Application Audience (AUD) Tag » de l'application Access du site (plusieurs valeurs séparées par des virgules) |
+
+Secrets GitHub Actions : les six variables Cloudflare ci-dessus.
+
+Tests (avant chaque mise en production) :
+
+```powershell
+.venv\Scripts\python -m unittest discover -s tests -t .   # historique : non-régression
+node --test tests/functions.test.mjs                     # jeton Access, barrière, isolation entre membres
+```
+
+Limites des offres gratuites (documentation Cloudflare, 12 octobre 2026) : D1, 5 millions de
+lignes lues et 100 000 écrites par jour, 5 Go ; R2, 10 Go, 1 million d'écritures et
+10 millions de lectures par mois ; Functions, 100 000 requêtes par jour et 10 ms de calcul par
+requête (les fichiers R2 sont donc renvoyés sans être relus).
+
 ## Réglages
+
+Depuis la reprise (branche `multi-membres`), salles et préférences sont dans D1 : `config/venues.yaml` et
+`config/artist_prefs.yaml` ne servent plus qu'à la reprise, puis seront retirés. Avant la reprise :
 
 `config/venues.yaml` : vos salles favorites. Elles sont signalées dans le site, filtrables
 (« Vos salles uniquement ») et donnent un léger bonus aux découvertes. Pour une salle absente

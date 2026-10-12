@@ -22,6 +22,11 @@ scoring:
   tier1_min: 5           # score minimal pour le niveau 1
   tier2_min: 2           # score minimal pour le niveau 2
 
+# Garde-fou de stockage R2 (offre gratuite : 10 Go pour tout le compte, deux compartiments).
+# Un membre occupe c. 1,5 Mo ; au-delà de ces plafonds, le traitement n'écrit rien et échoue.
+r2_bucket_max_mb: 500       # par compartiment (production, prévisualisation)
+r2_member_file_max_mb: 20   # par fichier d'un membre
+
 # Bandsintown est interrogé artiste par artiste : on limite aux mieux notés
 bandsintown_max_artists: 400
 

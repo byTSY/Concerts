@@ -171,6 +171,9 @@ export async function onRequestGet({ env }) {
 }
 
 export async function onRequestPost({ request, env }) {
+  // Depuis la reprise (spécification, section 14), les préférences sont dans D1 : une page restée
+  // ouverte sur l'ancienne version du site doit être rechargée
+  if (env.DB) return json({ error: "le site a été mis à jour : rechargez la page" }, 410);
   if (!env.GITHUB_TOKEN) return json({ error: "GITHUB_TOKEN non configuré dans Cloudflare" }, 503);
   // Requête JSON uniquement : un autre site ne peut pas l'envoyer sans autorisation préalable (CORS)
   if (!(request.headers.get("content-type") || "").includes("application/json")) {

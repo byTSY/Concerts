@@ -68,6 +68,11 @@ def save_json(path, obj):
         json.dump(obj, f, ensure_ascii=False, indent=1, sort_keys=False)
 
 
+def redact(url):
+    """Adresse sans le n° de profil d'un membre (journaux : identifiants de membre seulement)."""
+    return re.sub(r"/user/\d+", "/user/…", str(url))
+
+
 def get_json(url, params=None, pause=0.0, retries=3, timeout=30):
     """GET avec quelques tentatives. Renvoie le JSON, ou None en cas d'échec définitif."""
     for attempt in range(retries):
@@ -77,7 +82,7 @@ def get_json(url, params=None, pause=0.0, retries=3, timeout=30):
                 time.sleep(5 * (attempt + 1))
                 continue
             if r.status_code >= 400:
-                log(f"  HTTP {r.status_code} sur {r.url[:120]}")
+                log(f"  HTTP {r.status_code} sur {redact(r.url)[:120]}")
                 return None
             if pause:
                 time.sleep(pause)

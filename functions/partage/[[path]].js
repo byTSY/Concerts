@@ -42,6 +42,19 @@ export function artistOf(ev) {
   return { name: tidy(ev.artists?.[0] || ev.title), deezer: null };
 }
 
+// Les concerts publiés ne disent plus quel artiste de la programmation intéresse chaque membre :
+// le lien de partage le précise (?a=<nom>&dz=<identifiant Deezer>). Le nom n'est retenu que s'il
+// figure dans la programmation ou le titre du concert.
+export function withSharedArtist(ev, params) {
+  const name = String(params.get("a") || "").trim().slice(0, 120);
+  const key = norm(name);
+  if (!key || ev.matched?.length) return ev;
+  const listed = (ev.artists || []).some((a) => norm(a) === key) || ` ${norm(ev.title)} `.includes(` ${key} `);
+  if (!listed) return ev;
+  const dz = /^\d{1,12}$/.test(params.get("dz") || "") ? params.get("dz") : null;
+  return { ...ev, matched: [{ name, link: dz ? `https://www.deezer.com/artist/${dz}` : null }] };
+}
+
 async function getJSON(url) {
   const r = await fetch(url, { headers: { "user-agent": UA, accept: "application/json" } });
   if (!r.ok) throw new Error(`HTTP ${r.status}`);
@@ -142,7 +155,9 @@ async function deezer(name, knownId) {
   let artist = null;
   if (knownId) {
     artist = await getJSON(`https://api.deezer.com/artist/${knownId}`);
-    if (artist?.error) artist = null;
+    // Identifiant venu du lien de partage : écarté s'il désigne un autre artiste (le résultat est
+    // mis en cache sous le nom pour une semaine)
+    if (artist?.error || norm(artist?.name) !== norm(name)) artist = null;
   }
   if (!artist) {
     const data = await getJSON(`https://api.deezer.com/search/artist?limit=10&q=${encodeURIComponent(name)}`);
@@ -425,8 +440,9 @@ export async function onRequestGet(context) {
   // Données publiées, lues directement dans le site (sans passer par la protection d'accès)
   const assets = await env.ASSETS.fetch(new URL("/data/events.json", request.url));
   if (!assets.ok) return new Response("Données indisponibles", { status: 503 });
-  const ev = (await assets.json()).find((e) => e.id === id);
-  if (!ev) return asJson ? new Response(JSON.stringify({ error: "concert introuvable" }), { status: 404 }) : notFound();
+  const found = (await assets.json()).find((e) => e.id === id);
+  if (!found) return asJson ? new Response(JSON.stringify({ error: "concert introuvable" }), { status: 404 }) : notFound();
+  const ev = withSharedArtist(found, new URL(request.url).searchParams);
 
   const info = await concertInfo(ev, { waitUntil, env });
   if (asJson) {

@@ -1,7 +1,7 @@
 "use strict";
 
 const state = {
-  events: [], artists: [], venues: [], meta: {},
+  events: [], artists: [], meta: {}, memberMeta: {}, me: null,
   kinds: new Set(["known", "discovery"]), all: false, favOnly: false, style: "", venue: null, q: "",
   view: "calendar", calendar: null,
   hidden: new Set(), levels: new Map(), starred: new Map(), profile: new Map(), apiError: null, loadFailed: false,
@@ -15,13 +15,13 @@ const parseDay = (iso) => new Date(iso + "T12:00:00");
 const fmt = (opts) => new Intl.DateTimeFormat("fr-FR", opts);
 const fmtShort = fmt({ weekday: "short", day: "numeric", month: "short" });
 const fmtMonth = fmt({ month: "long", year: "numeric" });
-// Même normalisation que src/util.py (norm) et functions/api/prefs.js
+// Même normalisation que src/util.py (norm) et functions/_lib/http.js
 const normName = (s) => String(s ?? "").replace(/['’‘`´]/g, " ").normalize("NFKD").replace(/[^\x00-\x7f]/g, "")
   .toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, " ").replace(/\s+/g, " ").trim().replace(/^the /, "");
 const isHidden = (name) => state.hidden.has(normName(name));
 
-// Données publiées. Une connexion Cloudflare Access expirée renvoie vers la page de connexion :
-// la requête échoue ou est redirigée, on le signale au lieu d'afficher une page vide.
+// Données communes publiées. Une connexion Cloudflare Access expirée renvoie vers la page de
+// connexion : la requête échoue ou est redirigée, on le signale au lieu d'afficher une page vide.
 async function loadJSON(name, fallback) {
   try {
     const r = await fetch(`data/${name}.json`, { cache: "no-store" });
@@ -33,20 +33,60 @@ async function loadJSON(name, fallback) {
   }
 }
 
+// Données personnelles : API /api/me/*, le membre étant reconnu par sa connexion Cloudflare Access
+class ApiError extends Error {
+  constructor(message, status, code) { super(message); this.status = status; this.code = code; }
+}
+
+async function api(path, { method = "GET", body } = {}) {
+  let r;
+  try {
+    r = await fetch(`api/${path}`, {
+      method, cache: "no-store",
+      headers: body ? { "content-type": "application/json" } : {},
+      body: body ? JSON.stringify(body) : undefined,
+    });
+  } catch {
+    throw new ApiError("réseau indisponible ou connexion expirée", 0, "network");
+  }
+  if (r.redirected) throw new ApiError("connexion expirée", 401, "expired");
+  const data = await r.json().catch(() => null);
+  if (!r.ok || data === null) throw new ApiError(data?.error || `HTTP ${r.status}`, r.status, data?.code);
+  return data;
+}
+
+const ACCESS_MESSAGES = {
+  not_member: "Votre adresse n'est pas inscrite sur ce site. Demandez une invitation à l'admin.",
+  suspended: "Votre accès est suspendu. Contactez l'admin.",
+};
+
+// Bandeau d'alerte : connexion expirée (avec bouton de reconnexion) ou accès refusé
+function showAccessAlert(e) {
+  const text = ACCESS_MESSAGES[e?.code];
+  if (text) {
+    $("#session-alert-text").textContent = text;
+    $("#relogin").style.display = "none";
+  }
+  $("#session-alert").hidden = false;
+}
+
 // Retour sur l'application (raccourci d'écran d'accueil, onglet resté ouvert) : si de nouvelles
-// données ont été publiées depuis l'ouverture, on recharge la page ; sinon on resynchronise les préférences.
+// données ont été publiées ou calculées depuis l'ouverture, on recharge la page ; sinon on
+// resynchronise les préférences et les concerts mis de côté.
 async function checkForUpdate() {
   try {
     const r = await fetch("data/meta.json", { cache: "no-store" });
     if (r.redirected || !r.ok) throw new Error();
     const meta = await r.json();
     if (meta.generated_at && meta.generated_at !== state.meta.generated_at) { location.reload(); return; }
+    const me = await api("me");
+    if ((me.source?.last_sync_at || null) !== (state.me?.source?.last_sync_at || null)) { location.reload(); return; }
     await loadPrefs();
     applyPrefs();
     renderMasthead();
     render();
-  } catch {
-    $("#session-alert").hidden = false;
+  } catch (e) {
+    showAccessAlert(e);
   }
 }
 
@@ -119,7 +159,26 @@ function applyPrefs() {
 function setPrefs(data) {
   state.hidden = new Set((data.hidden || []).map(normName));
   state.levels = new Map(Object.entries(data.levels || {}).map(([n, t]) => [normName(n), Number(t)]));
-  state.starred = new Map(Object.entries(data.starred || {}));
+}
+
+function setStars(list) {
+  state.starred = new Map((list || []).map((s) => [s.concert_id, s.label]));
+}
+
+// Concerts communs + ce qu'ils sont pour le membre (overlay calculé par le traitement) :
+// genre de rapprochement, niveau, artistes, découverte, badge « liste », salle favorite.
+// Le fichier commun ne porte que le badge « annonce ».
+function mergeOverlay(events, overlay) {
+  for (const ev of events) {
+    const o = overlay[ev.id] || {};
+    ev.kind = o.kind || "other";
+    ev.tier = o.tier;
+    ev.matched = o.matched || [];
+    ev.discovery = o.discovery || null;
+    ev.venue_favorite = Boolean(o.venue_favorite);
+    ev.badge = ev.badge === "annonce" ? "annonce" : o.badge || null;
+  }
+  return events;
 }
 
 /* Concerts mis de côté (« Intéressés ») ------------------------------------------ */
@@ -142,14 +201,8 @@ async function toggleStar(id) {
   star ? state.starred.set(id, label) : state.starred.delete(id);
   refreshStars(id);
   try {
-    const r = await fetch("api/prefs", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(star ? { action: "star", id, label } : { action: "unstar", id }),
-    });
-    const data = await r.json().catch(() => ({}));
-    if (!r.ok) throw new Error(data.error || `HTTP ${r.status}`);
-    setPrefs(data);
+    const path = `me/stars/${encodeURIComponent(id)}`;
+    setStars(await (star ? api(path, { method: "PUT", body: { label } }) : api(path, { method: "DELETE" })));
     state.apiError = null;
     toast(star ? "Ajouté à vos concerts intéressés" : "Retiré de vos concerts intéressés");
   } catch (e) {
@@ -177,33 +230,23 @@ function updateStarCount() {
 
 async function loadPrefs() {
   try {
-    const r = await fetch("api/prefs", { cache: "no-store" });
-    const data = await r.json();
-    if (!r.ok) throw new Error(data.error || `HTTP ${r.status}`);
-    setPrefs(data);
+    const [prefs, stars] = await Promise.all([api("me/prefs"), api("me/stars")]);
+    setPrefs(prefs);
+    setStars(stars);
+    state.apiError = null;
   } catch (e) {
-    // Site ouvert en local ou fonction Cloudflare non configurée : préférences du dernier traitement
+    // Site ouvert en local, fonction Cloudflare non configurée ou connexion expirée
     state.apiError = e.message;
-    setPrefs({
-      hidden: state.artists.filter((a) => a.hidden).map((a) => a.name),
-      levels: Object.fromEntries(state.artists.filter((a) => a.tier_auto && a.tier !== a.tier_auto).map((a) => [a.name, a.tier])),
-    });
   }
 }
 
-async function savePref(body, done) {
+// name : nom de l'artiste ; change : { hidden } ou { level } (null : niveau calculé)
+async function savePref(name, change, done) {
   try {
-    const r = await fetch("api/prefs", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(body),
-    });
-    const data = await r.json().catch(() => ({}));
-    if (!r.ok) throw new Error(data.error || `HTTP ${r.status}`);
-    setPrefs(data);
+    setPrefs(await api(`me/artists/${encodeURIComponent(normName(name))}`, { method: "PUT", body: { name, ...change } }));
     state.apiError = null;
   } catch (e) {
-    alert(`L'enregistrement a échoué : ${e.message}.\n\nCette fonction ne marche que sur le site publié, une fois la clé GitHub ajoutée dans Cloudflare.`);
+    alert(`L'enregistrement a échoué : ${e.message}.\n\nCette fonction ne marche que sur le site publié.`);
     render();  // remet les menus dans leur état réel
     return;
   }
@@ -219,7 +262,7 @@ function setHidden(name, hide) {
     ? `Ne plus recommander ${name} ?\n\nSes concerts sortiront de « Vos artistes » et des découvertes (ils resteront dans « Tous les concerts »). Vous pourrez annuler depuis l'onglet Mes artistes.`
     : `Recommander à nouveau ${name} ?`;
   if (!confirm(question)) return;
-  savePref({ name, action: hide ? "hide" : "unhide" },
+  savePref(name, { hidden: hide },
     hide ? `${name} ne sera plus recommandé` : `${name} est de nouveau recommandé`);
 }
 
@@ -229,7 +272,7 @@ function setLevel(name, level) {
   const effect = upcoming
     ? `${upcoming} concert${upcoming > 1 ? "s" : ""} à venir mis à jour`
     : "aucun concert à venir pour l'instant, le niveau s'appliquera aux prochains";
-  savePref({ name, action: "level", level },
+  savePref(name, { level },
     `${name} : ${level ? `niveau ${level} imposé` : "niveau calculé à partir de vos likes"} (${effect})`);
 }
 
@@ -279,6 +322,15 @@ function shareArtist(ev) {
   return { name: tidy((ev.artists || [])[0] || ev.title), link: null };
 }
 
+// Fiche publique d'un concert : l'artiste qui vous intéresse est précisé dans le lien, les
+// données publiées ne disant pas quel artiste de la programmation compte pour chaque membre
+function shareQuery(ev) {
+  if (ev.kind === "other") return "";
+  const { name, link } = shareArtist(ev);
+  const dz = String(link || "").match(/deezer\.com\/(?:\w+\/)?artist\/(\d+)/)?.[1];
+  return `?a=${encodeURIComponent(name)}${dz ? `&dz=${dz}` : ""}`;
+}
+
 function messageText(ev, info) {
   const artist = shareArtist(ev);
   const name = info?.artist || artist.name;
@@ -294,7 +346,7 @@ function messageText(ev, info) {
     "On prend des places ?",
     "",
     // Lien vers la fiche web du concert (photo, infos, billets, écoute)
-    new URL(`partage/${ev.id}`, location.href).href,
+    new URL(`partage/${ev.id}${shareQuery(ev)}`, location.href).href,
   ];
   return lines.filter((l, i) => l || i === 3).join("\n");
 }
@@ -319,7 +371,8 @@ function artistInfo(id, timeout = 4000) {
   if (!artistInfoCache.has(id)) {
     const ctrl = new AbortController();
     const timer = setTimeout(() => ctrl.abort(), timeout);
-    artistInfoCache.set(id, fetch(`partage/${id}.json`, { signal: ctrl.signal })
+    const ev = state.events.find((e) => e.id === id);
+    artistInfoCache.set(id, fetch(`partage/${id}.json${ev ? shareQuery(ev) : ""}`, { signal: ctrl.signal })
       .then((r) => (r.ok ? r.json() : null))
       .catch(() => null)
       .finally(() => clearTimeout(timer))
@@ -431,7 +484,7 @@ function renderMasthead() {
   const m = state.meta;
   if (m.generated_at) {
     const d = new Date(m.generated_at);
-    $("#updated").textContent = `Mis à jour le ${fmt({ weekday: "long", day: "numeric", month: "long" }).format(d)} à ${fmt({ hour: "2-digit", minute: "2-digit" }).format(d)}, ${m.counts?.artists ?? 0} artistes suivis`;
+    $("#updated").textContent = `Mis à jour le ${fmt({ weekday: "long", day: "numeric", month: "long" }).format(d)} à ${fmt({ hour: "2-digit", minute: "2-digit" }).format(d)}, ${state.memberMeta.counts?.artists ?? state.artists.length} artistes suivis`;
   }
   // Bandeau : nouveautés de votre liste (vos artistes et découvertes) uniquement
   const fresh = state.events.filter((e) => e.badge && e.kind !== "other");
@@ -662,7 +715,7 @@ function renderArtists() {
   if (!state.artists.length) { $("#artists").innerHTML = emptyMessage(); return; }
   const tiers = [1, 2, 3].map((t) => state.artists.filter((a) => a.tier === t && a.still_liked !== false).length);
   const sync = state.apiError
-    ? `<p class="prefs-warning">Vos préférences (niveaux imposés, artistes masqués) n'ont pas pu être lues : ${esc(state.apiError)}. Les niveaux affichés sont ceux du dernier traitement. Rechargez la page ; si le message persiste, la clé GitHub est peut-être expirée dans Cloudflare.</p>`
+    ? `<p class="prefs-warning">Vos préférences (niveaux imposés, artistes masqués) n'ont pas pu être lues : ${esc(state.apiError)}. Les niveaux affichés sont ceux du dernier traitement. Rechargez la page ; si le message persiste, signalez-le à l'admin.</p>`
     : "";
   let html = `${sync}<p class="count-line">${state.artists.length} artistes : ${tiers[0]} en niveau 1, ${tiers[1]} en niveau 2, ${tiers[2]} en niveau 3. Classés par niveau, puis par score.</p>
     <div class="table-wrap"><table><thead><tr><th>Artiste</th><th>Niveau</th><th class="num">Score</th><th class="hide-mobile">Détail</th><th class="hide-mobile">Ajouté le</th></tr></thead><tbody>`;
@@ -698,10 +751,26 @@ function venueTable(rows) {
   return html + `</tbody></table></div>`;
 }
 
+// Salles observées et vos concerts (préférences appliquées), triées par nombre de concerts retenus
+function venueStats() {
+  const venues = new Map();
+  for (const ev of state.events) {
+    if (!venues.has(ev.venue)) venues.set(ev.venue, { name: ev.venue, total: 0, known: 0, discovery: 0, favorite: false });
+    const v = venues.get(ev.venue);
+    v.total += 1;
+    v.favorite ||= ev.venue_favorite;
+    if (ev.kind === "known") v.known += 1;
+    if (ev.kind === "discovery") v.discovery += 1;
+  }
+  return [...venues.values()].sort((a, b) => (b.known + b.discovery) - (a.known + a.discovery) || b.total - a.total
+    || (a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
+}
+
 function renderVenues() {
-  if (!state.venues.length) { $("#venues").innerHTML = emptyMessage(); return; }
-  const favs = state.venues.filter((v) => v.favorite);
-  const others = state.venues.filter((v) => !v.favorite && v.known + v.discovery > 0);
+  const venues = venueStats();
+  if (!venues.length) { $("#venues").innerHTML = emptyMessage(); return; }
+  const favs = venues.filter((v) => v.favorite);
+  const others = venues.filter((v) => !v.favorite && v.known + v.discovery > 0);
   $("#venues").innerHTML =
     `<h2 class="month-title">Vos salles</h2>${venueTable(favs)}
      <h2 class="month-title">D'autres salles où passent des artistes pour vous</h2>
@@ -849,18 +918,32 @@ function bind() {
 }
 
 (async function init() {
-  const [events, artists, venues, meta] = await Promise.all([
-    loadJSON("events", []), loadJSON("artists", []), loadJSON("venues", []), loadJSON("meta", {}),
-  ]);
-  Object.assign(state, { events: events || [], artists: artists || [], venues: venues || [], meta: meta || {} });
+  const common = Promise.all([loadJSON("events", []), loadJSON("meta", {})]);
+  // Données du membre connecté : profil, concerts retenus pour lui, liste d'artistes, préférences
+  const personal = Promise.all([api("me"), api("me/concerts"), api("me/artists")]).catch((e) => {
+    state.loadFailed = true;
+    state.apiError = e.message;
+    state.accessError = e;
+    return [null, { overlay: {}, meta: null }, {}];
+  });
+  const [[events, meta], [me, concerts, artists]] = await Promise.all([common, personal, loadPrefs()]);
+  Object.assign(state, {
+    events: mergeOverlay(events || [], concerts.overlay || {}),
+    meta: meta || {},
+    memberMeta: concerts.meta || {},
+    me,
+    // Niveau enregistré : calculé à partir des likes ; le niveau imposé vient des préférences
+    // Tri par score décroissant, comme le fichier publié avant la reprise (résolution des homonymes)
+    artists: Object.values(artists || {}).map((a) => ({ ...a, tier_auto: a.tier }))
+      .sort((a, b) => b.score - a.score || (a.name.toLowerCase() < b.name.toLowerCase() ? -1 : a.name.toLowerCase() > b.name.toLowerCase() ? 1 : 0)),
+  });
   state.profile = new Map(state.artists.map((a) => [normName(a.name), a]));
-  await loadPrefs();
   applyPrefs();
   fillStyles();
   updateStarCount();
   bind();
   renderMasthead();
   switchView("calendar");
-  if (state.loadFailed) $("#session-alert").hidden = false;
+  if (state.loadFailed) showAccessAlert(state.accessError);
   else if (!state.meta.generated_at) $("#calendar").insertAdjacentHTML("beforebegin", emptyMessage());
 })();

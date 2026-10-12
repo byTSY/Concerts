@@ -30,6 +30,13 @@ jobs:
         env:
           TICKETMASTER_API_KEY: ${{ secrets.TICKETMASTER_API_KEY }}
           BANDSINTOWN_APP_ID: ${{ secrets.BANDSINTOWN_APP_ID }}
+          # Données des membres : base D1 et stockage R2 (Cloudflare)
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          D1_DATABASE_ID: ${{ secrets.D1_DATABASE_ID }}
+          CF_D1_API_TOKEN: ${{ secrets.CF_D1_API_TOKEN }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
         run: python -m src.main
 
       - name: Enregistrer les données
@@ -41,7 +48,7 @@ jobs:
             echo "Aucun changement"
           else
             git commit -m "Mise à jour du $(date -u +%Y-%m-%d)"
-            # Un artiste a pu être masqué depuis le site pendant le traitement
+            # Le dépôt a pu changer pendant le traitement
             git pull --rebase
             git push
           fi

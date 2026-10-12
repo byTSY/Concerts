@@ -1,7 +1,8 @@
-"""Pages programme des salles favorites, lues via leurs données structurées schema.org.
+"""Pages programme des salles du catalogue, lues via leurs données structurées schema.org.
 
 Beaucoup de sites de salles intègrent des balises JSON-LD de type Event pour les moteurs
-de recherche. Quand c'est le cas, renseigner "agenda_url" dans config/venues.yaml suffit.
+de recherche. Quand c'est le cas, renseigner la page programme (agenda_url) de la salle dans
+le catalogue suffit.
 Sinon la page ne renvoie rien et le script passe à la suivante, sans erreur.
 """
 import json
@@ -35,8 +36,9 @@ def _names(value):
 
 
 def fetch(venues_cfg):
+    """venues_cfg : catalogue commun des salles (catalog.load)."""
     events = []
-    for v in venues_cfg.get("favorites", []):
+    for v in venues_cfg.get("venues", []):
         url = (v.get("agenda_url") or "").strip()
         if not url:
             continue
