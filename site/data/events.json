@@ -154,28 +154,6 @@
   "badge": null
  },
  {
-  "id": "2891afc9d9b0",
-  "title": "Les événements du conservatoire Claude Debussy",
-  "date": "2026-10-12",
-  "time": null,
-  "venue": "Conservatoire Municipal Claude Debussy - site Courcelles",
-  "venue_favorite": false,
-  "price": "Gratuit",
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://www.paris.fr/evenements/les-evenements-du-conservatoire-claude-debussy-124509"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "30cffa3e50cb",
   "title": "Les Bébé Concerts de l'Orchestre Lamoureux",
   "date": "2026-10-12",
@@ -190,6 +168,28 @@
    {
     "source": "Que faire à Paris",
     "url": "https://indiv.themisweb.fr/0010/fChoixSeanceWidget.aspx?idstructure=0010&EventId=339&request=QcE+w0WHSuBUeOyJLH4dpGlGdk1ka40D8b53dE85wRPj2/g8vAerL7bk9B6P2yG4dNXdrw4KEKw="
+   }
+  ],
+  "artists": [],
+  "kind": "other",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "2891afc9d9b0",
+  "title": "Les événements du conservatoire Claude Debussy",
+  "date": "2026-10-12",
+  "time": null,
+  "venue": "Conservatoire Municipal Claude Debussy - site Courcelles",
+  "venue_favorite": false,
+  "price": "Gratuit",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.paris.fr/evenements/les-evenements-du-conservatoire-claude-debussy-124509"
    }
   ],
   "artists": [],
@@ -440,28 +440,6 @@
   "badge": null
  },
  {
-  "id": "43233fce4ff6",
-  "title": "Jam Session Funk au 38Riv, animée par Pierre Gibbe",
-  "date": "2026-10-12",
-  "time": null,
-  "venue": "38Riv",
-  "venue_favorite": false,
-  "price": "De 6 à 9 euros. Les préventes garantissent la priorité d'entrée jusqu'à 30 minutes après ouverture. 23H00 : Coupe-file / Entrée prioritaire 23H30 : Fin d’accès prioritaire (attente en cas de forte affluence - billets non remboursables).",
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://38riv.com/concerts?search=pierre%20gibbe&category=39"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "16e1fc68ecd0",
   "title": "Kiosque en fête au square des Epinettes",
   "date": "2026-10-12",
@@ -476,6 +454,28 @@
    {
     "source": "Que faire à Paris",
     "url": "https://www.paris.fr/pages/appel-a-projets-kiosques-en-fete-25755"
+   }
+  ],
+  "artists": [],
+  "kind": "other",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "43233fce4ff6",
+  "title": "Jam Session Funk au 38Riv, animée par Pierre Gibbe",
+  "date": "2026-10-12",
+  "time": null,
+  "venue": "38Riv",
+  "venue_favorite": false,
+  "price": "De 6 à 9 euros. Les préventes garantissent la priorité d'entrée jusqu'à 30 minutes après ouverture. 23H00 : Coupe-file / Entrée prioritaire 23H30 : Fin d’accès prioritaire (attente en cas de forte affluence - billets non remboursables).",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://38riv.com/concerts?search=pierre%20gibbe&category=39"
    }
   ],
   "artists": [],
@@ -510,28 +510,6 @@
   "badge": null
  },
  {
-  "id": "17ffe7bdf1d6",
-  "title": "#JamVocale / OpenMic de Thalie Bernard",
-  "date": "2026-10-12",
-  "time": null,
-  "venue": "Le Baiser Salé",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://www.paris.fr/evenements/jamvocale-openmic-de-thalie-bernard-117835"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "9e79125a48c2",
   "title": "Kiosque en Fête au square Courteline",
   "date": "2026-10-12",
@@ -546,28 +524,6 @@
    {
     "source": "Que faire à Paris",
     "url": "https://www.paris.fr/pages/appel-a-projets-kiosques-en-fete-25755"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "ab9f4e4f5732",
-  "title": "Late session jazz · Mailo Rakotonanahary, late show et jam session au 38Riv Jazz Club",
-  "date": "2026-10-12",
-  "time": null,
-  "venue": "38Riv",
-  "venue_favorite": false,
-  "price": "20 euros",
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://38riv.com/concerts?search=Late%20session%20jazz&category=All&easepick_start_date_max=&easepick_start_date_min=now%20-3%20hours&easepick_end_date_min=now%20-3%20hours"
    }
   ],
   "artists": [],
@@ -598,8 +554,8 @@
   "badge": null
  },
  {
-  "id": "2039b17a27d3",
-  "title": "#JamVocale / OpenMic de Raphaël & Valentin",
+  "id": "17ffe7bdf1d6",
+  "title": "#JamVocale / OpenMic de Thalie Bernard",
   "date": "2026-10-12",
   "time": null,
   "venue": "Le Baiser Salé",
@@ -611,7 +567,29 @@
   "links": [
    {
     "source": "Que faire à Paris",
-    "url": "https://www.paris.fr/evenements/jamvocale-openmic-de-raphael-valentin-117839"
+    "url": "https://www.paris.fr/evenements/jamvocale-openmic-de-thalie-bernard-117835"
+   }
+  ],
+  "artists": [],
+  "kind": "other",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "ab9f4e4f5732",
+  "title": "Late session jazz · Mailo Rakotonanahary, late show et jam session au 38Riv Jazz Club",
+  "date": "2026-10-12",
+  "time": null,
+  "venue": "38Riv",
+  "venue_favorite": false,
+  "price": "20 euros",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://38riv.com/concerts?search=Late%20session%20jazz&category=All&easepick_start_date_max=&easepick_start_date_min=now%20-3%20hours&easepick_end_date_min=now%20-3%20hours"
    }
   ],
   "artists": [],
@@ -678,6 +656,28 @@
    {
     "source": "Que faire à Paris",
     "url": "https://www.paris.fr/pages/appel-a-projets-kiosques-en-fete-25755"
+   }
+  ],
+  "artists": [],
+  "kind": "other",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "2039b17a27d3",
+  "title": "#JamVocale / OpenMic de Raphaël & Valentin",
+  "date": "2026-10-12",
+  "time": null,
+  "venue": "Le Baiser Salé",
+  "venue_favorite": false,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.paris.fr/evenements/jamvocale-openmic-de-raphael-valentin-117839"
    }
   ],
   "artists": [],
@@ -840,28 +840,6 @@
   "badge": null
  },
  {
-  "id": "d7db0f26ae99",
-  "title": "Kiosque en Fête au parc de Choisy",
-  "date": "2026-10-12",
-  "time": null,
-  "venue": "Parc de Choisy",
-  "venue_favorite": false,
-  "price": "Gratuit",
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://www.paris.fr/pages/appel-a-projets-kiosques-en-fete-25755"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "cdcfbc93283d",
   "title": "Les évènements du conservatoire Mozart",
   "date": "2026-10-12",
@@ -904,6 +882,28 @@
   "kind": "other",
   "first_seen": "2026-10-08",
   "badge": "annonce"
+ },
+ {
+  "id": "d7db0f26ae99",
+  "title": "Kiosque en Fête au parc de Choisy",
+  "date": "2026-10-12",
+  "time": null,
+  "venue": "Parc de Choisy",
+  "venue_favorite": false,
+  "price": "Gratuit",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.paris.fr/pages/appel-a-projets-kiosques-en-fete-25755"
+   }
+  ],
+  "artists": [],
+  "kind": "other",
+  "first_seen": "2026-10-07",
+  "badge": null
  },
  {
   "id": "39c38509f5be",
@@ -994,28 +994,6 @@
   "badge": null
  },
  {
-  "id": "f378532e2662",
-  "title": "L'agenda du Conservatoire Erik Satie",
-  "date": "2026-10-12",
-  "time": null,
-  "venue": "Conservatoire Municipal Erik Satie",
-  "venue_favorite": false,
-  "price": "Gratuit",
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://www.paris.fr/evenements/l-agenda-du-conservatoire-erik-satie-99419"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "f0602c221d59",
   "title": "Jazz & goûter : toute la programmation",
   "date": "2026-10-12",
@@ -1038,20 +1016,20 @@
   "badge": null
  },
  {
-  "id": "7f7bae0de522",
-  "title": "4e Forum générations de la Shoah",
+  "id": "f378532e2662",
+  "title": "L'agenda du Conservatoire Erik Satie",
   "date": "2026-10-12",
   "time": null,
-  "venue": "Mémorial de la Shoah",
+  "venue": "Conservatoire Municipal Erik Satie",
   "venue_favorite": false,
-  "price": "Tarif adulte : 65 € par personne. Renseignements sur le Forum au 01 42 77 44 72 et forumgenerations@memorialdelashoah.org",
+  "price": "Gratuit",
   "on_sale": null,
   "status": null,
   "genre": null,
   "links": [
    {
     "source": "Que faire à Paris",
-    "url": "https://www.paris.fr/evenements/4e-forum-generations-de-la-shoah-116581"
+    "url": "https://www.paris.fr/evenements/l-agenda-du-conservatoire-erik-satie-99419"
    }
   ],
   "artists": [],
@@ -1074,6 +1052,28 @@
    {
     "source": "Que faire à Paris",
     "url": "https://www.paris.fr/pages/appel-a-projets-kiosques-en-fete-25755"
+   }
+  ],
+  "artists": [],
+  "kind": "other",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "7f7bae0de522",
+  "title": "4e Forum générations de la Shoah",
+  "date": "2026-10-12",
+  "time": null,
+  "venue": "Mémorial de la Shoah",
+  "venue_favorite": false,
+  "price": "Tarif adulte : 65 € par personne. Renseignements sur le Forum au 01 42 77 44 72 et forumgenerations@memorialdelashoah.org",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.paris.fr/evenements/4e-forum-generations-de-la-shoah-116581"
    }
   ],
   "artists": [],
@@ -1436,28 +1436,6 @@
   "badge": null
  },
  {
-  "id": "39c1a0999b84",
-  "title": "Le cycle musical de Paul Serri au Théâtre de la Concorde !",
-  "date": "2026-10-12",
-  "time": "19:00",
-  "venue": "Théâtre de la Concorde",
-  "venue_favorite": false,
-  "price": "Gratuit",
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://billetterie.theatredelaconcorde.paris/selection/event/date?productId=10229936358507"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "1cbe28a3e49b",
   "title": "Jam session funk/néo soul à Paris",
   "date": "2026-10-12",
@@ -1472,6 +1450,28 @@
    {
     "source": "Que faire à Paris",
     "url": "marilou-lerestau.fr/event-list"
+   }
+  ],
+  "artists": [],
+  "kind": "other",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "39c1a0999b84",
+  "title": "Le cycle musical de Paul Serri au Théâtre de la Concorde !",
+  "date": "2026-10-12",
+  "time": "19:00",
+  "venue": "Théâtre de la Concorde",
+  "venue_favorite": false,
+  "price": "Gratuit",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://billetterie.theatredelaconcorde.paris/selection/event/date?productId=10229936358507"
    }
   ],
   "artists": [],
@@ -1744,7 +1744,7 @@
    "close_to": [
     "The Police",
     "The Stranglers",
-    "Tears for Fears",
+    "Tears For Fears",
     "Talking Heads"
    ]
   }
@@ -1858,28 +1858,6 @@
   ]
  },
  {
-  "id": "af5e6e56d484",
-  "title": "Les soirées cabaret du Bal Blomet",
-  "date": "2026-10-12",
-  "time": "20:00",
-  "venue": "LE BAL BLOMET",
-  "venue_favorite": false,
-  "price": "26/16€",
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://www.balblomet.fr"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "df314ee4b755",
   "title": "#Rdv avec LE QUINT’UP",
   "date": "2026-10-12",
@@ -1902,20 +1880,20 @@
   "badge": null
  },
  {
-  "id": "bef9f9070886",
-  "title": "Performance artistique et musicale autour de la bande dessinée « Manouche Manouche »",
+  "id": "af5e6e56d484",
+  "title": "Les soirées cabaret du Bal Blomet",
   "date": "2026-10-12",
   "time": "20:00",
-  "venue": "Médiathèque Matéo Maximoff",
+  "venue": "LE BAL BLOMET",
   "venue_favorite": false,
-  "price": "Entrée gratuite sur inscription à l’adresse suivante : documentation@fnasat.asso.fr",
+  "price": "26/16€",
   "on_sale": null,
   "status": null,
   "genre": null,
   "links": [
    {
     "source": "Que faire à Paris",
-    "url": "https://www.paris.fr/evenements/performance-artistique-et-musicale-autour-de-la-bande-dessinee-manouche-manouche-125224"
+    "url": "https://www.balblomet.fr"
    }
   ],
   "artists": [],
@@ -1938,6 +1916,28 @@
    {
     "source": "Que faire à Paris",
     "url": "https://feuilleblanchecafenoir.com/concert-paris-17/"
+   }
+  ],
+  "artists": [],
+  "kind": "other",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "bef9f9070886",
+  "title": "Performance artistique et musicale autour de la bande dessinée « Manouche Manouche »",
+  "date": "2026-10-12",
+  "time": "20:00",
+  "venue": "Médiathèque Matéo Maximoff",
+  "venue_favorite": false,
+  "price": "Entrée gratuite sur inscription à l’adresse suivante : documentation@fnasat.asso.fr",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.paris.fr/evenements/performance-artistique-et-musicale-autour-de-la-bande-dessinee-manouche-manouche-125224"
    }
   ],
   "artists": [],
@@ -2996,7 +2996,7 @@
     "Agar Agar",
     "Slove",
     "Modeselektor",
-    "Chloé (Thévenin)"
+    "CHLOE (Thévenin)"
    ]
   }
  },
@@ -3879,7 +3879,7 @@
    "close_to": [
     "Tony Bennett",
     "Norah Jones",
-    "Jeff Goldblum & the Mildred Snitzer Orchestra",
+    "Jeff Goldblum & The Mildred Snitzer Orchestra",
     "Gregory Porter"
    ]
   }
@@ -4885,6 +4885,41 @@
   "kind": "other",
   "first_seen": "2026-10-07",
   "badge": null
+ },
+ {
+  "id": "f651b9327245",
+  "title": "Miles Davis, la nuit aussi est un soleil",
+  "date": "2026-10-14",
+  "time": "20:00",
+  "venue": "Fondation des États-Unis",
+  "venue_favorite": false,
+  "address": "15 boulevard Jourdan",
+  "city": "Paris",
+  "price": "Gratuit",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2026/10/09/huge-9182bca8846cf4f7f640bb1f0ab874e0.jpg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.helloasso.com/associations/fondation-des-etats-unis/evenements/salon-litteraire-miles-davis-la-nuit-aussi-est-un-soleil-erwann-gauthier?_gl=1%2agwexfc%2a_gcl_au%2aMTk0MzM0Njc3NC4xNzg3MDUwNDEyLi0uLS4xNzg4MTczMDgwLjk1MjA4MDU5My4xNzg4MTY3MzY1LjE3ODgxODI2OTA."
+   }
+  ],
+  "artists": [],
+  "description": "Venez redécouvrir l'histoire de Miles Davis - Rencontre avec Erwann Gauthier",
+  "kind": "known",
+  "first_seen": "2026-10-12",
+  "badge": "annonce",
+  "tier": 2,
+  "matched": [
+   {
+    "name": "Miles Davis",
+    "tier": 2,
+    "via": "titre",
+    "link": "https://www.deezer.com/artist/1910"
+   }
+  ]
  },
  {
   "id": "c8b843c85f76",
@@ -7006,28 +7041,6 @@
   "badge": null
  },
  {
-  "id": "bde643e7316a",
-  "title": "Soirée musicale à Paris : rendez-vous à l'ECUJE",
-  "date": "2026-10-15",
-  "time": "20:00",
-  "venue": "ECUJE",
-  "venue_favorite": false,
-  "price": "Gratuit",
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://www.paris.fr/evenements/soiree-musicale-a-paris-rendez-vous-a-l-ecuje-125827"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-12",
-  "badge": "annonce"
- },
- {
   "id": "839c3d1c3b21",
   "title": "Concert folk-pop indé : Tansky",
   "date": "2026-10-15",
@@ -7752,28 +7765,6 @@
   "badge": null
  },
  {
-  "id": "2e2d5c98d741",
-  "title": "DEUX VIENNE(S) | BEETHOVEN | WEBERN",
-  "date": "2026-10-15",
-  "time": "21:00",
-  "venue": "Théâtre des Champs-Elysées",
-  "venue_favorite": false,
-  "price": "De 10 € à 64 €",
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://www.orchestredechambredeparis.com/concert/deux-viennes/"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "54884a5b92b5",
   "title": "Mune Concert",
   "date": "2026-10-15",
@@ -7788,6 +7779,28 @@
    {
     "source": "Que faire à Paris",
     "url": "https://shotgun.live/fr/events/mune-concert-paris"
+   }
+  ],
+  "artists": [],
+  "kind": "other",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "2e2d5c98d741",
+  "title": "DEUX VIENNE(S) | BEETHOVEN | WEBERN",
+  "date": "2026-10-15",
+  "time": "21:00",
+  "venue": "Théâtre des Champs-Elysées",
+  "venue_favorite": false,
+  "price": "De 10 € à 64 €",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.orchestredechambredeparis.com/concert/deux-viennes/"
    }
   ],
   "artists": [],
@@ -10589,7 +10602,7 @@
   "description": null,
   "kind": "known",
   "first_seen": "2026-10-12",
-  "badge": null,
+  "badge": "liste",
   "tier": 3,
   "matched": [
    {
@@ -14695,7 +14708,7 @@
    "fans": 49276,
    "close_to": [
     "Smoke DZA",
-    "Mike Will Made-It",
+    "Mike WiLL Made-It",
     "Meek Mill",
     "Joyner Lucas"
    ]
@@ -17073,28 +17086,6 @@
   "badge": null
  },
  {
-  "id": "69497a9c45c3",
-  "title": "Les mardis phoniques",
-  "date": "2026-10-20",
-  "time": "21:30",
-  "venue": "Cirque Electrique",
-  "venue_favorite": false,
-  "price": "Prix libre mais nécessaire !",
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://www.cirque-electrique.com/events/les-mardis-phoniques-20-10-2026"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "5f201ce2d08a",
   "title": "Julie Saury 4tet",
   "date": "2026-10-20",
@@ -17109,6 +17100,28 @@
    {
     "source": "Que faire à Paris",
     "url": "https://lemelville.fr/?p=6171"
+   }
+  ],
+  "artists": [],
+  "kind": "other",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "69497a9c45c3",
+  "title": "Les mardis phoniques",
+  "date": "2026-10-20",
+  "time": "21:30",
+  "venue": "Cirque Electrique",
+  "venue_favorite": false,
+  "price": "Prix libre mais nécessaire !",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.cirque-electrique.com/events/les-mardis-phoniques-20-10-2026"
    }
   ],
   "artists": [],
@@ -17349,7 +17362,7 @@
   "tier": 3,
   "matched": [
    {
-    "name": "PJ MORTON",
+    "name": "PJ Morton",
     "tier": 3,
     "via": "artiste",
     "link": "https://www.deezer.com/artist/393335"
@@ -18228,7 +18241,7 @@
    "close_to": [
     "Please",
     "Invigo",
-    "BLOWSOM"
+    "Blowsom"
    ]
   }
  },
@@ -19433,7 +19446,7 @@
    "close_to": [
     "Pépite",
     "Moussa",
-    "Miel de Montagne",
+    "Miel De Montagne",
     "Odezenne"
    ]
   }
@@ -19542,10 +19555,10 @@
    "picture": "https://cdn-images.dzcdn.net/images/artist/244407df886ac5ca9083a2da61d92b58/250x250-000000-80-0-0.jpg",
    "fans": 804,
    "close_to": [
-    "amaarae",
     "Qendresa",
     "FKA twigs",
-    "Durand Bernarr"
+    "Durand Bernarr",
+    "Amaarae"
    ]
   }
  },
@@ -19589,7 +19602,7 @@
    "close_to": [
     "SCH",
     "Lefa",
-    "ICO",
+    "Ico",
     "S.Pri Noir"
    ]
   }
@@ -20697,6 +20710,28 @@
   "badge": null
  },
  {
+  "id": "219407a5689a",
+  "title": "Carte Blanche à Fred Nardin",
+  "date": "2026-10-22",
+  "time": "21:30",
+  "venue": "Eleven Village",
+  "venue_favorite": false,
+  "price": "25 €",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://elevenvillage.fr/event/?id=fred-nardin"
+   }
+  ],
+  "artists": [],
+  "kind": "other",
+  "first_seen": "2026-10-12",
+  "badge": "annonce"
+ },
+ {
   "id": "84d84bef775c",
   "title": "Dandelion String Band",
   "date": "2026-10-22",
@@ -21678,7 +21713,7 @@
   "tier": 3,
   "matched": [
    {
-    "name": "Keros-n",
+    "name": "Keros-N",
     "tier": 3,
     "via": "titre",
     "link": "https://www.deezer.com/artist/4334621"
@@ -23240,6 +23275,28 @@
   "kind": "other",
   "first_seen": "2026-10-07",
   "badge": null
+ },
+ {
+  "id": "38c799f132c8",
+  "title": "SuPERFORM - Une après-midi de performances au CCS",
+  "date": "2026-10-24",
+  "time": "17:00",
+  "venue": "Centre culturel suisse Paris",
+  "venue_favorite": false,
+  "price": "Merci de réserver uniquement votre créneau d’arrivée.",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.paris.fr/evenements/superform-une-apres-midi-de-performances-au-ccs-125770"
+   }
+  ],
+  "artists": [],
+  "kind": "other",
+  "first_seen": "2026-10-12",
+  "badge": "annonce"
  },
  {
   "id": "10b0dd646b94",
@@ -27446,7 +27503,7 @@
    "close_to": [
     "Genesis Owusu",
     "The Avalanches",
-    "LAVA LA RUE",
+    "Lava La Rue",
     "LA Priest"
    ]
   }
@@ -27696,7 +27753,7 @@
    "picture": "https://cdn-images.dzcdn.net/images/artist/0552f9223da8ad3f5195bdb4e99c48b4/250x250-000000-80-0-0.jpg",
    "fans": 24325,
    "close_to": [
-    "Willow",
+    "WILLOW",
     "Sudan Archives",
     "Fcukers",
     "FKA twigs"
@@ -28760,7 +28817,7 @@
    "fans": 1288457,
    "close_to": [
     "a-ha",
-    "Tears for Fears",
+    "Tears For Fears",
     "Eurythmics",
     "Depeche Mode"
    ]
@@ -29628,7 +29685,7 @@
   "badge": null
  },
  {
-  "id": "390f08ed6e57",
+  "id": "390f08ed6e57x",
   "title": "THE WATCH PLAYS GENESIS",
   "date": "2026-10-29",
   "time": "19:00",
@@ -30274,7 +30331,7 @@
   "badge": null
  },
  {
-  "id": "390f08ed6e57x",
+  "id": "390f08ed6e57",
   "title": "The Watch joue Genesis",
   "date": "2026-10-29",
   "time": "20:00",
@@ -33008,8 +33065,8 @@
    "close_to": [
     "Django Django",
     "Dan Croll",
-    "Yeasayer",
-    "Tune-Yards"
+    "tUnE-yArDs",
+    "Yeasayer"
    ]
   }
  },
@@ -36106,8 +36163,8 @@
    "fans": 115181,
    "close_to": [
     "The Black Keys",
-    "Queens of the Stone Age",
-    "Band Of Skulls"
+    "Queens Of The Stone Age",
+    "Band of Skulls"
    ]
   }
  },
@@ -38210,7 +38267,7 @@
    "close_to": [
     "Naive New Beaters",
     "Electric Guest",
-    "BLOW",
+    "Blow",
     "Milky Chance"
    ]
   }
@@ -38919,7 +38976,7 @@
    "fans": 1279,
    "close_to": [
     "Tony Bennett",
-    "Jeff Goldblum & the Mildred Snitzer Orchestra"
+    "Jeff Goldblum & The Mildred Snitzer Orchestra"
    ]
   }
  },
@@ -39412,7 +39469,7 @@
   "description": null,
   "kind": "known",
   "first_seen": "2026-10-12",
-  "badge": null,
+  "badge": "liste",
   "tier": 3,
   "matched": [
    {
@@ -40536,7 +40593,7 @@
    "close_to": [
     "Johan Papaconstantino",
     "The Dø",
-    "Ezéchiel Pailhès"
+    "Ezechiel Pailhes"
    ]
   }
  },
@@ -42300,11 +42357,11 @@
   "description": null,
   "kind": "known",
   "first_seen": "2026-10-12",
-  "badge": null,
+  "badge": "liste",
   "tier": 3,
   "matched": [
    {
-    "name": "Art Of Tones",
+    "name": "Art of Tones",
     "tier": 3,
     "via": "titre",
     "link": "https://www.deezer.com/artist/259223"
@@ -43463,7 +43520,7 @@
    "close_to": [
     "Post Malone",
     "Lil Nas X",
-    "XXXTentacion",
+    "XXXTENTACION",
     "Tyla Yaweh"
    ]
   }
@@ -44033,7 +44090,7 @@
    "close_to": [
     "Post Malone",
     "Lil Nas X",
-    "XXXTentacion",
+    "XXXTENTACION",
     "Tyla Yaweh"
    ]
   }
@@ -44715,7 +44772,7 @@
    "fans": 1662447,
    "close_to": [
     "Zara Larsson",
-    "Olly Alexander (Years & Years)",
+    "Olly Alexander",
     "Miley Cyrus",
     "Dua Lipa"
    ]
@@ -45012,7 +45069,7 @@
     "Voyou",
     "Flea",
     "Laure Briard",
-    "Ezéchiel Pailhès"
+    "Ezechiel Pailhes"
    ]
   }
  },
@@ -45377,7 +45434,7 @@
    "fans": 23105,
    "close_to": [
     "Tony Bennett",
-    "Jeff Goldblum & the Mildred Snitzer Orchestra",
+    "Jeff Goldblum & The Mildred Snitzer Orchestra",
     "Diana Krall"
    ]
   }
@@ -45976,7 +46033,7 @@
   "description": null,
   "kind": "known",
   "first_seen": "2026-10-12",
-  "badge": null,
+  "badge": "liste",
   "tier": 1,
   "matched": [
    {
@@ -47749,7 +47806,7 @@
    "close_to": [
     "The National",
     "My Morning Jacket",
-    "Death Cab for Cutie"
+    "Death Cab For Cutie"
    ]
   }
  },
@@ -48117,7 +48174,7 @@
   "tier": 1,
   "matched": [
    {
-    "name": "Omah lay",
+    "name": "Omah Lay",
     "tier": 1,
     "via": "titre",
     "link": "https://www.deezer.com/artist/56094992"
@@ -48147,28 +48204,6 @@
   "badge": null
  },
  {
-  "id": "767c78ae7630",
-  "title": "MAYOHK – World Tour 2026",
-  "date": "2026-11-13",
-  "time": "20:00",
-  "venue": "Le 360 Paris Music Factory",
-  "venue_favorite": false,
-  "price": "Entrée générale : 55 euros. VIP : 90 euros (concert et expérience VIP avec les artistes).",
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://le360paris.com/evenement/mayohk-world-tour-2026-paris/"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "604eedcada87",
   "title": "Moon Walker en concert (côté Records)",
   "date": "2026-11-13",
@@ -48183,6 +48218,28 @@
    {
     "source": "Que faire à Paris",
     "url": "https://www.aegpresents.fr/event/moon-walker/"
+   }
+  ],
+  "artists": [],
+  "kind": "other",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "767c78ae7630",
+  "title": "MAYOHK – World Tour 2026",
+  "date": "2026-11-13",
+  "time": "20:00",
+  "venue": "Le 360 Paris Music Factory",
+  "venue_favorite": false,
+  "price": "Entrée générale : 55 euros. VIP : 90 euros (concert et expérience VIP avec les artistes).",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://le360paris.com/evenement/mayohk-world-tour-2026-paris/"
    }
   ],
   "artists": [],
@@ -49044,7 +49101,7 @@
    "close_to": [
     "WE ARE MATCH",
     "The Asteroids Galaxy Tour",
-    "FM Belfast",
+    "Fm Belfast",
     "!!!"
    ]
   }
@@ -49322,7 +49379,7 @@
   "description": null,
   "kind": "known",
   "first_seen": "2026-10-12",
-  "badge": null,
+  "badge": "liste",
   "tier": 3,
   "matched": [
    {
@@ -49419,7 +49476,7 @@
    "close_to": [
     "Fred again..",
     "Daniel Avery",
-    "Kh",
+    "KH",
     "DJ Seinfeld"
    ]
   }
@@ -49535,7 +49592,7 @@
    "fans": 2294,
    "close_to": [
     "Deki Alem",
-    "Miel de Montagne",
+    "Miel De Montagne",
     "La Femme",
     "Kids Return"
    ]
@@ -49680,7 +49737,7 @@
     "Domo Genesis",
     "Curren$y",
     "Westside Gunn",
-    "Mavi"
+    "MAVI"
    ]
   }
  },
@@ -50182,7 +50239,7 @@
    "close_to": [
     "WE ARE MATCH",
     "The Asteroids Galaxy Tour",
-    "FM Belfast",
+    "Fm Belfast",
     "!!!"
    ]
   }
@@ -51048,7 +51105,7 @@
     "Olivia Dean",
     "Joy Crookes",
     "Joesef",
-    "Céleste"
+    "Celeste"
    ]
   }
  },
@@ -51094,10 +51151,10 @@
    "picture": "https://cdn-images.dzcdn.net/images/artist/42a2ef16887e2cd54b07b848fdfd9619/250x250-000000-80-0-0.jpg",
    "fans": 339775,
    "close_to": [
-    "Tones and I",
+    "Tones And I",
     "Rag'n'Bone Man",
     "Puggy",
-    "Lilly Wood And The Prick"
+    "Lilly Wood and the Prick"
    ]
   }
  },
@@ -51742,7 +51799,7 @@
    "close_to": [
     "Christine and the Queens",
     "Puggy",
-    "Lilly Wood And The Prick",
+    "Lilly Wood and the Prick",
     "Izïa"
    ]
   }
@@ -52518,8 +52575,8 @@
    "fans": 1582,
    "close_to": [
     "Olivia Dean",
-    "Raye",
     "Rachel Chinouriri",
+    "RAYE",
     "Lola Young"
    ]
   }
@@ -52732,7 +52789,7 @@
    "close_to": [
     "Christine and the Queens",
     "Puggy",
-    "Lilly Wood And The Prick",
+    "Lilly Wood and the Prick",
     "Izïa"
    ]
   }
@@ -52988,7 +53045,7 @@
   "description": null,
   "kind": "known",
   "first_seen": "2026-10-12",
-  "badge": null,
+  "badge": "liste",
   "tier": 3,
   "matched": [
    {
@@ -53759,7 +53816,7 @@
    "close_to": [
     "Christine and the Queens",
     "Puggy",
-    "Lilly Wood And The Prick",
+    "Lilly Wood and the Prick",
     "Izïa"
    ]
   }
@@ -53982,7 +54039,7 @@
    "picture": "https://cdn-images.dzcdn.net/images/artist/d7af8b6f54a0e2b825d5ae92f9e767da/250x250-000000-80-0-0.jpg",
    "fans": 998180,
    "close_to": [
-    "6lack",
+    "6LACK",
     "Tory Lanez",
     "PARTYNEXTDOOR",
     "4batz"
@@ -54268,7 +54325,7 @@
    "fans": 1180,
    "close_to": [
     "Alfa Mist",
-    "Badbadnotgood"
+    "BADBADNOTGOOD"
    ]
   }
  },
@@ -54935,7 +54992,7 @@
    "fans": 1180,
    "close_to": [
     "Alfa Mist",
-    "Badbadnotgood"
+    "BADBADNOTGOOD"
    ]
   }
  },
@@ -57487,7 +57544,7 @@
    "fans": 30362,
    "close_to": [
     "Wolf Alice",
-    "Young the Giant"
+    "Young The Giant"
    ]
   }
  },
@@ -57516,6 +57573,30 @@
   "kind": "other",
   "first_seen": "2026-10-07",
   "badge": null
+ },
+ {
+  "id": "d0c4f9385c7a",
+  "title": "MASSI  ET LOUNES AMRANE",
+  "date": "2026-11-21",
+  "time": "20:00",
+  "venue": "Salle des Fêtes",
+  "venue_favorite": false,
+  "price": null,
+  "on_sale": "2026-10-09T13:33:28Z",
+  "status": "onsale",
+  "genre": "World",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/massi-et-lounes-amrane-billet/idmanif/675228/idseance/4437808"
+   }
+  ],
+  "artists": [
+   "Massi"
+  ],
+  "kind": "other",
+  "first_seen": "2026-10-12",
+  "badge": "annonce"
  },
  {
   "id": "b5015c21ba78",
@@ -58843,7 +58924,7 @@
   "tier": 3,
   "matched": [
    {
-    "name": "Lolo Zouai",
+    "name": "Lolo Zouaï",
     "tier": 3,
     "via": "artiste",
     "link": "https://www.deezer.com/artist/12624185"
@@ -60427,7 +60508,7 @@
    "close_to": [
     "Voyou",
     "Pépite",
-    "Ezéchiel Pailhès"
+    "Ezechiel Pailhes"
    ]
   }
  },
@@ -60716,7 +60797,7 @@
     "Red Hot Chili Peppers",
     "Weezer",
     "The Smashing Pumpkins",
-    "Queens of the Stone Age"
+    "Queens Of The Stone Age"
    ]
   }
  },
@@ -60827,7 +60908,7 @@
    "close_to": [
     "Royel Otis",
     "Master Peace",
-    "Foster the People",
+    "Foster The People",
     "Blu DeTiger"
    ]
   }
@@ -61170,7 +61251,7 @@
   "description": null,
   "kind": "known",
   "first_seen": "2026-10-12",
-  "badge": null,
+  "badge": "liste",
   "tier": 3,
   "matched": [
    {
@@ -61523,28 +61604,6 @@
    {
     "source": "Dice",
     "url": "https://dice.fm/event/6a463b6e63b87200017b8cc7"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-12",
-  "badge": null
- },
- {
-  "id": "8570f1f439b5",
-  "title": "Once in a Blu.e Moon : Cabaret Super Lune",
-  "date": "2026-11-26",
-  "time": "19:30",
-  "venue": "Le Zèbre de Belleville",
-  "venue_favorite": false,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "links": [
-   {
-    "source": "Dice",
-    "url": "https://dice.fm/event/6accbc9f654dda0001281491"
    }
   ],
   "artists": [],
@@ -62787,7 +62846,7 @@
    "fans": 161767,
    "close_to": [
     "Peking Duk",
-    "Olly Alexander (Years & Years)",
+    "Olly Alexander",
     "Mabel",
     "Clean Bandit"
    ]
@@ -62853,7 +62912,7 @@
   "tier": 3,
   "matched": [
    {
-    "name": "Lilly Wood And The Prick",
+    "name": "Lilly Wood and the Prick",
     "tier": 3,
     "via": "artiste",
     "link": "https://www.deezer.com/artist/307677"
@@ -64344,7 +64403,7 @@
   "tier": 3,
   "matched": [
    {
-    "name": "Lilly Wood And The Prick",
+    "name": "Lilly Wood and the Prick",
     "tier": 3,
     "via": "artiste",
     "link": "https://www.deezer.com/artist/307677"
@@ -65136,7 +65195,7 @@
    "close_to": [
     "Ibeyi",
     "The Dø",
-    "FM LAETI",
+    "Fm Laeti",
     "Benjamin Clementine"
    ]
   }
@@ -66693,7 +66752,7 @@
    "close_to": [
     "Ibeyi",
     "The Dø",
-    "FM LAETI",
+    "Fm Laeti",
     "Benjamin Clementine"
    ]
   }
@@ -68564,7 +68623,7 @@
    "picture": "https://cdn-images.dzcdn.net/images/artist/7ed7e0208a7b8f4b9432169be62deaa2/250x250-000000-80-0-0.jpg",
    "fans": 32173,
    "close_to": [
-    "Olly Alexander (Years & Years)",
+    "Olly Alexander",
     "Mabel",
     "Clean Bandit"
    ]
@@ -69236,7 +69295,7 @@
    "close_to": [
     "Puggy",
     "Owlle",
-    "Lilly Wood And The Prick",
+    "Lilly Wood and the Prick",
     "Elephanz"
    ]
   }
@@ -70161,8 +70220,8 @@
    "fans": 43021,
    "close_to": [
     "The Black Keys",
-    "Queens of the Stone Age",
-    "Band Of Skulls"
+    "Queens Of The Stone Age",
+    "Band of Skulls"
    ]
   }
  },
@@ -70920,7 +70979,7 @@
    "close_to": [
     "Ibeyi",
     "The Dø",
-    "FM LAETI",
+    "Fm Laeti",
     "Benjamin Clementine"
    ]
   }
@@ -71179,7 +71238,7 @@
    "picture": "https://cdn-images.dzcdn.net/images/artist/7ed7e0208a7b8f4b9432169be62deaa2/250x250-000000-80-0-0.jpg",
    "fans": 32173,
    "close_to": [
-    "Olly Alexander (Years & Years)",
+    "Olly Alexander",
     "Mabel",
     "Clean Bandit"
    ]
@@ -75424,7 +75483,7 @@
     "Mathame",
     "Kevin de Vries",
     "Innellea",
-    "Artbat"
+    "Agents Of Time"
    ]
   }
  },
@@ -76378,7 +76437,7 @@
   "tier": 3,
   "matched": [
    {
-    "name": "Rémi",
+    "name": "Remi",
     "tier": 3,
     "via": "titre",
     "link": "https://www.deezer.com/artist/259994"
@@ -77404,28 +77463,6 @@
   "badge": null
  },
  {
-  "id": "ed6c22705c5e",
-  "title": "Concert à l'atelier au Musée de la Vie romantique : piano et théâtre",
-  "date": "2026-12-15",
-  "time": "18:30",
-  "venue": "Musée de la Vie romantique",
-  "venue_favorite": false,
-  "price": "Gratuit",
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://museevieromantique.paris.fr"
-   }
-  ],
-  "artists": [],
-  "kind": "other",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "5f780c457211",
   "title": "Concert de l'Orchestre des Benjamins",
   "date": "2026-12-15",
@@ -77440,6 +77477,28 @@
    {
     "source": "Que faire à Paris",
     "url": "https://www.paris.fr/evenements/concert-de-l-orchestre-des-benjamins-116843"
+   }
+  ],
+  "artists": [],
+  "kind": "other",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "ed6c22705c5e",
+  "title": "Concert à l'atelier au Musée de la Vie romantique : piano et théâtre",
+  "date": "2026-12-15",
+  "time": "18:30",
+  "venue": "Musée de la Vie romantique",
+  "venue_favorite": false,
+  "price": "Gratuit",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://museevieromantique.paris.fr"
    }
   ],
   "artists": [],
@@ -77856,7 +77915,7 @@
    "close_to": [
     "Agar Agar",
     "Vendredi sur Mer",
-    "Miel de Montagne",
+    "Miel De Montagne",
     "La Femme"
    ]
   }
@@ -78839,7 +78898,7 @@
   "description": null,
   "kind": "known",
   "first_seen": "2026-10-12",
-  "badge": null,
+  "badge": "liste",
   "tier": 3,
   "matched": [
    {
@@ -79006,7 +79065,7 @@
   "description": null,
   "kind": "known",
   "first_seen": "2026-10-12",
-  "badge": null,
+  "badge": "liste",
   "tier": 2,
   "matched": [
    {
@@ -79842,7 +79901,7 @@
   "description": null,
   "kind": "known",
   "first_seen": "2026-10-12",
-  "badge": null,
+  "badge": "liste",
   "tier": 2,
   "matched": [
    {
@@ -88025,10 +88084,13 @@
   "time": "19:30",
   "venue": "LE TRABENDO (Parc de la Villette)",
   "venue_favorite": false,
+  "address": "AV J.JAURES /METRO PTE DE PANTIN",
+  "city": "Paris",
   "price": null,
   "on_sale": "2026-05-29T09:00:00Z",
   "status": "onsale",
   "genre": "Rock, Pop / Rock",
+  "image": "https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_RETINA_PORTRAIT_16_9.jpg",
   "links": [
    {
     "source": "Ticketmaster",
@@ -88044,9 +88106,23 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 0.97,
+   "artist": "Gilla Band",
+   "link": "https://www.deezer.com/artist/152385282",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/9adf57165c884ce78baa2c69766d449a/250x250-000000-80-0-0.jpg",
+   "fans": 6648,
+   "close_to": [
+    "Yard Act",
+    "Tropical Fuck Storm",
+    "DEADLETTER",
+    "BIG SPECIAL"
+   ]
+  }
  },
  {
   "id": "bddd099f1cc0",
@@ -88455,10 +88531,13 @@
   "time": "20:00",
   "venue": "Maison de la Radio et de la Musique",
   "venue_favorite": false,
+  "address": null,
+  "city": null,
   "price": null,
   "on_sale": null,
   "status": null,
   "genre": "Classique",
+  "image": null,
   "links": [
    {
     "source": "Offi",
@@ -88466,9 +88545,23 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 0.6,
+   "artist": "America",
+   "link": "https://www.deezer.com/artist/4",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/457f2a9a9b2c4717a6ebf7ff4237a9c7/250x250-000000-80-0-0.jpg",
+   "fans": 140450,
+   "close_to": [
+    "Paul McCartney",
+    "Electric Light Orchestra",
+    "Fleetwood Mac",
+    "Eagles"
+   ]
+  }
  },
  {
   "id": "9ee0c3eebb10",
@@ -88615,10 +88708,13 @@
   "time": "19:30",
   "venue": "La Maroquinerie",
   "venue_favorite": false,
+  "address": "23, RUE BOYER",
+  "city": "Paris",
   "price": null,
   "on_sale": "2026-04-20T08:46:07Z",
   "status": "onsale",
   "genre": "Rock, Pop / Rock",
+  "image": "https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_RETINA_PORTRAIT_16_9.jpg",
   "links": [
    {
     "source": "Ticketmaster",
@@ -88630,9 +88726,23 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 0.4,
+   "artist": "The Weeks",
+   "link": "https://www.deezer.com/artist/655839",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/ebdaddd724ee8130b58d94658119f509/250x250-000000-80-0-0.jpg",
+   "fans": 1386,
+   "close_to": [
+    "Ram Jam",
+    "Nashville Pussy",
+    "George Thorogood & The Destroyers",
+    "Foghat"
+   ]
+  }
  },
  {
   "id": "ad04515b2dc5",
@@ -89970,10 +90080,13 @@
   "time": "20:00",
   "venue": "Théâtre de la Ville – Sarah Bernhardt",
   "venue_favorite": false,
+  "address": null,
+  "city": null,
   "price": "7-32,5 €",
   "on_sale": null,
   "status": null,
   "genre": "Chanson française, Chanson",
+  "image": null,
   "links": [
    {
     "source": "Offi",
@@ -89981,9 +90094,22 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 0.77,
+   "artist": "Miossec",
+   "link": "https://www.deezer.com/artist/1420",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/87a49a0f3cacf635d12ca70e081fc571/250x250-000000-80-0-0.jpg",
+   "fans": 78915,
+   "close_to": [
+    "Philippe Katerine",
+    "Feu! Chatterton",
+    "Brigitte Fontaine"
+   ]
+  }
  },
  {
   "id": "c24863d0e3f7",
@@ -89992,10 +90118,13 @@
   "time": "20:00",
   "venue": "Théâtre de la Ville – Les Abbesses",
   "venue_favorite": false,
+  "address": null,
+  "city": null,
   "price": "7-32,5 €",
   "on_sale": null,
   "status": null,
   "genre": "Chanson française, Chanson",
+  "image": null,
   "links": [
    {
     "source": "Offi",
@@ -90003,9 +90132,20 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 0.33,
+   "artist": "Alexis HK",
+   "link": "https://www.deezer.com/artist/1403",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/b7c147e9ed68c3b03efb0fcb92c3f4fe/250x250-000000-80-0-0.jpg",
+   "fans": 49917,
+   "close_to": [
+    "Philippe Katerine"
+   ]
+  }
  },
  {
   "id": "d23b5ccd3baa",
@@ -90404,10 +90544,13 @@
   "time": "19:00",
   "venue": "Trabendo",
   "venue_favorite": false,
+  "address": "Parc de la Villette, 211 Avenue Jean Jaurès, 75019 Paris",
+  "city": "Paris",
   "price": null,
   "on_sale": null,
   "status": null,
   "genre": "Rock, Pop / Rock",
+  "image": null,
   "links": [
    {
     "source": "Dice",
@@ -90419,9 +90562,21 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 0.3,
+   "artist": "Slow Pulp",
+   "link": "https://www.deezer.com/artist/12611413",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/0635249c8ff489fefb621107277b0fa6/250x250-000000-80-0-0.jpg",
+   "fans": 4355,
+   "close_to": [
+    "Freak Slug",
+    "Big Thief"
+   ]
+  }
  },
  {
   "id": "2a74914fcab4",
@@ -91860,7 +92015,7 @@
    "close_to": [
     "Royel Otis",
     "Master Peace",
-    "Young the Giant",
+    "Young The Giant",
     "Saint Motel"
    ]
   }
@@ -92080,7 +92235,7 @@
    "close_to": [
     "Ibeyi",
     "The Dø",
-    "FM LAETI",
+    "Fm Laeti",
     "Benjamin Clementine"
    ]
   }
@@ -93139,7 +93294,7 @@
   "description": null,
   "kind": "known",
   "first_seen": "2026-10-12",
-  "badge": null,
+  "badge": "liste",
   "tier": 3,
   "matched": [
    {
@@ -95160,10 +95315,13 @@
   "time": "19:00",
   "venue": "Le Trabendo",
   "venue_favorite": false,
+  "address": null,
+  "city": null,
   "price": null,
   "on_sale": null,
   "status": null,
   "genre": "Rock, Pop / Rock",
+  "image": null,
   "links": [
    {
     "source": "Offi",
@@ -95171,9 +95329,23 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-08",
-  "badge": "annonce"
+  "badge": "annonce",
+  "discovery": {
+   "score": 0.73,
+   "artist": "Los Bitchos",
+   "link": "https://www.deezer.com/artist/13354827",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/5b8bfd6bc57f85d6f0ead1cdaa9e67cd/250x250-000000-80-0-0.jpg",
+   "fans": 8593,
+   "close_to": [
+    "Metronomy",
+    "Baxter Dury",
+    "Yin Yin",
+    "Chassol"
+   ]
+  }
  },
  {
   "id": "897f1b67f05a",
@@ -97026,7 +97198,7 @@
    "fans": 26913,
    "close_to": [
     "The Good, The Bad & The Queen",
-    "TV on the Radio",
+    "TV On The Radio",
     "Arcade Fire"
    ]
   }
@@ -97231,10 +97403,13 @@
   "time": "19:00",
   "venue": "Le Trabendo",
   "venue_favorite": false,
+  "address": null,
+  "city": null,
   "price": null,
   "on_sale": null,
   "status": null,
   "genre": "Punk, Pop / Rock",
+  "image": null,
   "links": [
    {
     "source": "Offi",
@@ -97242,9 +97417,23 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 1.0,
+   "artist": "Protomartyr",
+   "link": "https://www.deezer.com/artist/4541009",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/27d78c53d5af72c9c66586fc63cbff8c/250x250-000000-80-0-0.jpg",
+   "fans": 10130,
+   "close_to": [
+    "shame",
+    "Yard Act",
+    "Viagra Boys",
+    "IDLES"
+   ]
+  }
  },
  {
   "id": "21a461ab7759",
@@ -97425,7 +97614,7 @@
     "ZZ Top",
     "AC/DC",
     "Led Zeppelin",
-    "KISS"
+    "Kiss"
    ]
   }
  },
@@ -98521,7 +98710,7 @@
    "picture": "https://cdn-images.dzcdn.net/images/artist/200982268dcabae98644b1601a90a948/250x250-000000-80-0-0.jpg",
    "fans": 20634,
    "close_to": [
-    "Empire of the Sun",
+    "Empire Of The Sun",
     "Dom Dolla"
    ]
   }
@@ -98773,10 +98962,13 @@
   "time": "20:00",
   "venue": "ZENITH PARIS - LA VILLETTE",
   "venue_favorite": false,
+  "address": "211 AVENUE JEAN JAURÈS",
+  "city": "Paris",
   "price": null,
   "on_sale": "2026-07-10T09:00:00Z",
   "status": "onsale",
   "genre": "Pop, Pop / Rock",
+  "image": "https://s1.ticketm.net/dam/c/548/5fefbd1c-973b-4b0e-9b2e-d78e4ce37548_106111_RETINA_PORTRAIT_16_9.jpg",
   "links": [
    {
     "source": "Ticketmaster",
@@ -98788,9 +98980,23 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 1.0,
+   "artist": "Ezra Collective",
+   "link": "https://www.deezer.com/artist/13882529",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/897ec6318a8e6a9856cc4042bcaf5d27/250x250-000000-80-0-0.jpg",
+   "fans": 26332,
+   "close_to": [
+    "Tom Misch",
+    "Alfa Mist",
+    "FKJ",
+    "Terrace Martin"
+   ]
+  }
  },
  {
   "id": "b8bafbe9edf9",
@@ -98954,10 +99160,13 @@
   "time": "20:00",
   "venue": "POPUP!",
   "venue_favorite": false,
+  "address": "14 RUE ABEL",
+  "city": "Paris",
   "price": null,
   "on_sale": "2026-10-14T09:00:00Z",
   "status": "offsale",
   "genre": "R&B",
+  "image": "https://s1.ticketm.net/dam/c/bea/03d47f66-d37b-4aca-aa17-0135be64dbea_105801_RETINA_PORTRAIT_16_9.jpg",
   "links": [
    {
     "source": "Ticketmaster",
@@ -98967,9 +99176,23 @@
   "artists": [
    "Quinn Oulton"
   ],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-12",
-  "badge": "annonce"
+  "badge": "annonce",
+  "discovery": {
+   "score": 0.83,
+   "artist": "Quinn Oulton",
+   "link": "https://www.deezer.com/artist/13849265",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/27d4ce14836c523b79b03dcac94a3f22/250x250-000000-80-0-0.jpg",
+   "fans": 1061,
+   "close_to": [
+    "Samm Henshaw",
+    "Joesef",
+    "Pip Millett",
+    "Mereba"
+   ]
+  }
  },
  {
   "id": "fc06447f072d",
@@ -99473,10 +99696,13 @@
   "time": "20:00",
   "venue": "Café de la Danse",
   "venue_favorite": false,
+  "address": null,
+  "city": null,
   "price": null,
   "on_sale": null,
   "status": null,
   "genre": "Soul, Musiques urbaines",
+  "image": null,
   "links": [
    {
     "source": "Offi",
@@ -99484,9 +99710,22 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 0.3,
+   "artist": "Elvett",
+   "link": "https://www.deezer.com/artist/7588142",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/13c4c87cfd8d06d6d2e04d3924cf2269/250x250-000000-80-0-0.jpg",
+   "fans": 1689,
+   "close_to": [
+    "Philippe Cohen Solal",
+    "Fm Laeti",
+    "Benjamin Clementine"
+   ]
+  }
  },
  {
   "id": "7240f7eab355",
@@ -99585,10 +99824,13 @@
   "time": "20:30",
   "venue": "Théâtre de Saint-Quentin-en-Yvelines",
   "venue_favorite": false,
+  "address": null,
+  "city": null,
   "price": "13,5-31,5 €",
   "on_sale": null,
   "status": null,
   "genre": "Expérimental, Contemporain / Expérimental",
+  "image": null,
   "links": [
    {
     "source": "Offi",
@@ -99596,9 +99838,21 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 0.53,
+   "artist": "Fred Pallem",
+   "link": "https://www.deezer.com/artist/162643",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/8397237f61ebf23fb062a22a4f9cf6ae/250x250-000000-80-0-0.jpg",
+   "fans": 2808,
+   "close_to": [
+    "Tony Allen",
+    "Moondog"
+   ]
+  }
  },
  {
   "id": "33feef02e9d5",
@@ -99675,10 +99929,13 @@
   "time": "18:00",
   "venue": "Le Studio - Philharmonie de Paris",
   "venue_favorite": false,
+  "address": null,
+  "city": null,
   "price": null,
   "on_sale": null,
   "status": null,
   "genre": "Jazz / Blues",
+  "image": null,
   "links": [
    {
     "source": "Offi",
@@ -99686,9 +99943,23 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 0.8,
+   "artist": "Celia Kameni",
+   "link": "https://www.deezer.com/artist/6233082",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/28b4420915bdaeabfc090e263ab84b85/250x250-000000-80-0-0.jpg",
+   "fans": 2058,
+   "close_to": [
+    "MARO",
+    "James Blake",
+    "Ibeyi",
+    "Celeste"
+   ]
+  }
  },
  {
   "id": "7b673fa2582c",
@@ -99951,10 +100222,13 @@
   "time": "20:00",
   "venue": "ZENITH PARIS - LA VILLETTE",
   "venue_favorite": false,
+  "address": "211 AVENUE JEAN JAURÈS",
+  "city": "Paris",
   "price": null,
   "on_sale": "2026-10-16T08:00:00Z",
   "status": "offsale",
   "genre": "Rock",
+  "image": "https://s1.ticketm.net/dam/a/14c/87c9a995-e1b7-45b6-be05-054b656fc14c_RETINA_PORTRAIT_16_9.jpg",
   "links": [
    {
     "source": "Ticketmaster",
@@ -99968,9 +100242,22 @@
   "artists": [
    "Royal Blood"
   ],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-12",
-  "badge": "annonce"
+  "badge": "annonce",
+  "discovery": {
+   "score": 0.3,
+   "artist": "Royal Blood",
+   "link": "https://www.deezer.com/artist/1035806",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/ab2e3dd23b1d71f4c9b7403e538a7d9c/250x250-000000-80-0-0.jpg",
+   "fans": 386308,
+   "close_to": [
+    "The Smashing Pumpkins",
+    "Queens Of The Stone Age",
+    "Band of Skulls"
+   ]
+  }
  },
  {
   "id": "c65bcd31ff84",
@@ -100343,10 +100630,13 @@
   "time": "19:00",
   "venue": "Grande salle Pierre Boulez - Philharmonie de Paris",
   "venue_favorite": false,
+  "address": null,
+  "city": null,
   "price": null,
   "on_sale": null,
   "status": null,
   "genre": "Jazz vocal, Jazz / Blues",
+  "image": null,
   "links": [
    {
     "source": "Offi",
@@ -100354,9 +100644,22 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 0.3,
+   "artist": "Dee Dee Bridgewater",
+   "link": "https://www.deezer.com/artist/14864",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/0609eafac9a07385b78c78ec7a49e575/250x250-000000-80-0-0.jpg",
+   "fans": 32979,
+   "close_to": [
+    "Jamie Cullum",
+    "Dinah Washington",
+    "Diana Krall"
+   ]
+  }
  },
  {
   "id": "bdb20b148f0d",
@@ -101808,10 +102111,13 @@
   "time": "20:30",
   "venue": "EMC – Espace Marcel-Carné",
   "venue_favorite": false,
+  "address": null,
+  "city": null,
   "price": "16,5-22,5 €",
   "on_sale": null,
   "status": null,
   "genre": "Jazz / Blues",
+  "image": null,
   "links": [
    {
     "source": "Offi",
@@ -101819,9 +102125,23 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 0.8,
+   "artist": "Hugh Coltman",
+   "link": "https://www.deezer.com/artist/135273",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/a11cea11f79745dfe19b19664c5bf6d3/250x250-000000-80-0-0.jpg",
+   "fans": 26622,
+   "close_to": [
+    "Norah Jones",
+    "Gregory Porter",
+    "Stacey Kent",
+    "José James"
+   ]
+  }
  },
  {
   "id": "3f0cef8bb08e",
@@ -102192,10 +102512,13 @@
   "time": "20:00",
   "venue": "Maison de la Radio et de la Musique",
   "venue_favorite": false,
+  "address": null,
+  "city": null,
   "price": null,
   "on_sale": null,
   "status": null,
   "genre": "Contemporain / Expérimental",
+  "image": null,
   "links": [
    {
     "source": "Offi",
@@ -102203,9 +102526,20 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 0.33,
+   "artist": "Martha Argerich",
+   "link": "https://www.deezer.com/artist/72019",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/21672aa3a669561041b6b7dbe7a29016/250x250-000000-80-0-0.jpg",
+   "fans": 130192,
+   "close_to": [
+    "Mstislav Rostropovich"
+   ]
+  }
  },
  {
   "id": "cc491cfc539c",
@@ -102466,10 +102800,13 @@
   "time": "16:00",
   "venue": "Opéra de Massy",
   "venue_favorite": false,
+  "address": null,
+  "city": null,
   "price": null,
   "on_sale": null,
   "status": null,
   "genre": "Musique symphonique, Classique",
+  "image": null,
   "links": [
    {
     "source": "Offi",
@@ -102477,9 +102814,23 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 1.0,
+   "artist": "Destin",
+   "link": "https://www.deezer.com/artist/1177425",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/e99908c79318258c6c5a7a0980dff15c/250x250-000000-80-0-0.jpg",
+   "fans": 911,
+   "close_to": [
+    "Pépite",
+    "L'Impératrice",
+    "Vendredi sur Mer",
+    "The Pirouettes"
+   ]
+  }
  },
  {
   "id": "4878fb2e1f26",
@@ -102566,10 +102917,13 @@
   "time": "19:30",
   "venue": "La Maroquinerie",
   "venue_favorite": false,
+  "address": "23, RUE BOYER",
+  "city": "Paris",
   "price": null,
   "on_sale": "2026-10-09T09:00:00Z",
   "status": "onsale",
   "genre": "Rock",
+  "image": "https://s1.ticketm.net/dam/a/9c4/9508acd1-c274-4f0d-bc07-9b02e72729c4_1534171_RETINA_PORTRAIT_16_9.jpg",
   "links": [
    {
     "source": "Ticketmaster",
@@ -102579,9 +102933,23 @@
   "artists": [
    "Bodega"
   ],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-08",
-  "badge": "annonce"
+  "badge": "annonce",
+  "discovery": {
+   "score": 1.0,
+   "artist": "BODEGA",
+   "link": "https://www.deezer.com/artist/148743",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/a3af0658b5ca37b3f75f80a0a17654b8/250x250-000000-80-0-0.jpg",
+   "fans": 4476,
+   "close_to": [
+    "shame",
+    "Yard Act",
+    "Viagra Boys",
+    "Amyl and The Sniffers"
+   ]
+  }
  },
  {
   "id": "7dbe0a361d38",
@@ -104312,10 +104680,13 @@
   "time": "20:30",
   "venue": "Salle Gaveau",
   "venue_favorite": false,
+  "address": null,
+  "city": null,
   "price": "18-89 €",
   "on_sale": null,
   "status": null,
   "genre": "Monde / Traditionnel",
+  "image": null,
   "links": [
    {
     "source": "Offi",
@@ -104323,9 +104694,21 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 0.3,
+   "artist": "Hamilton De Holanda",
+   "link": "https://www.deezer.com/artist/111545",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/2364f1a34cc0b99dccb04592c8987aed/250x250-000000-80-0-0.jpg",
+   "fans": 44277,
+   "close_to": [
+    "Gal Costa",
+    "Gilberto Gil"
+   ]
+  }
  },
  {
   "id": "54556895e264",
@@ -104933,10 +105316,13 @@
   "time": "20:00",
   "venue": "Amphithéâtre - Cité de la Musique-Philharmonie",
   "venue_favorite": false,
+  "address": null,
+  "city": null,
   "price": null,
   "on_sale": null,
   "status": null,
   "genre": "Musique de chambre, Classique",
+  "image": null,
   "links": [
    {
     "source": "Offi",
@@ -104944,9 +105330,21 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 0.3,
+   "artist": "DUO",
+   "link": "https://www.deezer.com/artist/379915",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/c76b12399d5b07f0816bd9b60a785083/250x250-000000-80-0-0.jpg",
+   "fans": 477,
+   "close_to": [
+    "Dan Croll",
+    "Woods"
+   ]
+  }
  },
  {
   "id": "3af935c4a0f7",
@@ -105111,10 +105509,13 @@
   "time": "16:00",
   "venue": "Amphithéâtre - Cité de la Musique-Philharmonie",
   "venue_favorite": false,
+  "address": null,
+  "city": null,
   "price": null,
   "on_sale": null,
   "status": null,
   "genre": "Musique de chambre, Classique",
+  "image": null,
   "links": [
    {
     "source": "Offi",
@@ -105122,9 +105523,21 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 0.3,
+   "artist": "DUO",
+   "link": "https://www.deezer.com/artist/379915",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/c76b12399d5b07f0816bd9b60a785083/250x250-000000-80-0-0.jpg",
+   "fans": 477,
+   "close_to": [
+    "Dan Croll",
+    "Woods"
+   ]
+  }
  },
  {
   "id": "638d6f6ff19b",
@@ -107894,10 +108307,13 @@
   "time": "19:00",
   "venue": "Le Zénith Paris – La Villette",
   "venue_favorite": false,
+  "address": null,
+  "city": null,
   "price": null,
   "on_sale": null,
   "status": null,
   "genre": "Metal, Pop / Rock",
+  "image": null,
   "links": [
    {
     "source": "Offi",
@@ -107905,9 +108321,23 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 1.0,
+   "artist": "Megadeth",
+   "link": "https://www.deezer.com/artist/3487",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/cff12b4ef973a62d886d69bf056941ec/250x250-000000-80-0-0.jpg",
+   "fans": 1800972,
+   "close_to": [
+    "Metallica",
+    "Black Sabbath",
+    "Ozzy Osbourne",
+    "Motörhead"
+   ]
+  }
  },
  {
   "id": "94f570944a9c",
@@ -108790,10 +109220,13 @@
   "time": "19:00",
   "venue": "LE TRABENDO (Parc de la Villette)",
   "venue_favorite": false,
+  "address": "AV J.JAURES /METRO PTE DE PANTIN",
+  "city": "Paris",
   "price": null,
   "on_sale": "2026-09-07T10:00:00Z",
   "status": "onsale",
   "genre": "Jazz / Blues",
+  "image": "https://s1.ticketm.net/dam/c/bea/03d47f66-d37b-4aca-aa17-0135be64dbea_105801_RETINA_PORTRAIT_16_9.jpg",
   "links": [
    {
     "source": "Ticketmaster",
@@ -108805,9 +109238,23 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 0.73,
+   "artist": "Corto.Alto",
+   "link": "https://www.deezer.com/artist/70437882",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/f5570164228990f2a8ed59af8da9f808/250x250-000000-80-0-0.jpg",
+   "fans": 1622,
+   "close_to": [
+    "Alfa Mist",
+    "Moses Yoofee Trio",
+    "Nubiyan Twist",
+    "Greg Spero"
+   ]
+  }
  },
  {
   "id": "5971d853e9c7",
@@ -108840,10 +109287,13 @@
   "time": "19:30",
   "venue": "ALHAMBRA",
   "venue_favorite": false,
+  "address": "21, RUE YVES TOUDIC",
+  "city": "Paris",
   "price": null,
   "on_sale": "2026-06-22T10:00:00Z",
   "status": "onsale",
   "genre": "Pop, Pop / Rock",
+  "image": "https://s1.ticketm.net/dam/c/0d2/1201f713-3288-4790-854a-ae42895450d2_105931_RETINA_PORTRAIT_16_9.jpg",
   "links": [
    {
     "source": "Ticketmaster",
@@ -108855,9 +109305,22 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 0.53,
+   "artist": "Manon Lisa",
+   "link": "https://www.deezer.com/artist/177356667",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/71d05d4c87ff6cc1aa02b0655068b1e6/250x250-000000-80-0-0.jpg",
+   "fans": 13513,
+   "close_to": [
+    "Eddy de Pretto",
+    "Laurie Darmon",
+    "Foé"
+   ]
+  }
  },
  {
   "id": "990e12babaf6",
@@ -109043,10 +109506,13 @@
   "time": "20:00",
   "venue": "Le Grand Rex",
   "venue_favorite": false,
+  "address": null,
+  "city": null,
   "price": null,
   "on_sale": null,
   "status": null,
   "genre": "Monde / Traditionnel",
+  "image": null,
   "links": [
    {
     "source": "Offi",
@@ -109054,9 +109520,22 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 0.4,
+   "artist": "Angélique Kidjo",
+   "link": "https://www.deezer.com/artist/6165",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/0c739459cab7a9e6a42d79be17508fca/250x250-000000-80-0-0.jpg",
+   "fans": 97936,
+   "close_to": [
+    "Lamomali",
+    "Ibrahim Maalouf",
+    "Amadou & Mariam"
+   ]
+  }
  },
  {
   "id": "abf2980ab220",
@@ -109470,10 +109949,13 @@
   "time": "20:30",
   "venue": "Théâtre des 2 Rives",
   "venue_favorite": false,
+  "address": null,
+  "city": null,
   "price": "15,5-23,5 €",
   "on_sale": null,
   "status": null,
   "genre": "Musiques urbaines",
+  "image": null,
   "links": [
    {
     "source": "Offi",
@@ -109481,9 +109963,23 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 0.5,
+   "artist": "Kolinga",
+   "link": "https://www.deezer.com/artist/12199790",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/5c9f032650d020a353ee429df1a5bb11/250x250-000000-80-0-0.jpg",
+   "fans": 8298,
+   "close_to": [
+    "David Walters",
+    "Pat Kalla",
+    "Lass",
+    "La Yegros"
+   ]
+  }
  },
  {
   "id": "ead38a212be6",
@@ -110697,10 +111193,13 @@
   "time": "19:30",
   "venue": "La Maroquinerie",
   "venue_favorite": false,
+  "address": null,
+  "city": null,
   "price": null,
   "on_sale": null,
   "status": null,
   "genre": "Pop, Pop / Rock",
+  "image": null,
   "links": [
    {
     "source": "Offi",
@@ -110708,9 +111207,23 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 1.0,
+   "artist": "Charlotte Fever",
+   "link": "https://www.deezer.com/artist/14913551",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/e05d80633d2768f03c63da0352b412d2/250x250-000000-80-0-0.jpg",
+   "fans": 1221,
+   "close_to": [
+    "Pépite",
+    "Bolivard",
+    "Bleu Toucan",
+    "Vendredi sur Mer"
+   ]
+  }
  },
  {
   "id": "57cd543d45e9",
@@ -111132,7 +111645,7 @@
   "tier": 3,
   "matched": [
    {
-    "name": "KALEO",
+    "name": "Kaleo",
     "tier": 3,
     "via": "artiste",
     "link": "https://www.deezer.com/artist/1138351"
@@ -111168,10 +111681,13 @@
   "time": "20:00",
   "venue": "Théâtre 71",
   "venue_favorite": false,
+  "address": null,
+  "city": null,
   "price": "34,5 €",
   "on_sale": null,
   "status": null,
   "genre": "Jazz / Blues",
+  "image": null,
   "links": [
    {
     "source": "Offi",
@@ -111179,9 +111695,23 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 0.8,
+   "artist": "Celia Kameni",
+   "link": "https://www.deezer.com/artist/6233082",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/28b4420915bdaeabfc090e263ab84b85/250x250-000000-80-0-0.jpg",
+   "fans": 2058,
+   "close_to": [
+    "MARO",
+    "James Blake",
+    "Ibeyi",
+    "Celeste"
+   ]
+  }
  },
  {
   "id": "25994570be2d",
@@ -112970,7 +113500,7 @@
    "fans": 771925,
    "close_to": [
     "New Order",
-    "Tears for Fears",
+    "Tears For Fears",
     "Soft Cell",
     "Genesis"
    ]
@@ -113818,7 +114348,7 @@
   "description": null,
   "kind": "known",
   "first_seen": "2026-10-12",
-  "badge": null,
+  "badge": "liste",
   "tier": 3,
   "matched": [
    {
@@ -114039,10 +114569,13 @@
   "time": "20:00",
   "venue": "Grande salle Pierre Boulez - Philharmonie de Paris",
   "venue_favorite": false,
+  "address": null,
+  "city": null,
   "price": null,
   "on_sale": null,
   "status": null,
   "genre": "Musiques de film, Contemporain / Expérimental",
+  "image": null,
   "links": [
    {
     "source": "Offi",
@@ -114050,9 +114583,23 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 0.6,
+   "artist": "America",
+   "link": "https://www.deezer.com/artist/4",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/457f2a9a9b2c4717a6ebf7ff4237a9c7/250x250-000000-80-0-0.jpg",
+   "fans": 140450,
+   "close_to": [
+    "Paul McCartney",
+    "Electric Light Orchestra",
+    "Fleetwood Mac",
+    "Eagles"
+   ]
+  }
  },
  {
   "id": "b1bd85ca92d8",
@@ -114152,10 +114699,13 @@
   "time": "20:00",
   "venue": "Grande salle Pierre Boulez - Philharmonie de Paris",
   "venue_favorite": false,
+  "address": null,
+  "city": null,
   "price": null,
   "on_sale": null,
   "status": null,
   "genre": "Musiques de film, Contemporain / Expérimental",
+  "image": null,
   "links": [
    {
     "source": "Offi",
@@ -114163,9 +114713,23 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 0.6,
+   "artist": "America",
+   "link": "https://www.deezer.com/artist/4",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/457f2a9a9b2c4717a6ebf7ff4237a9c7/250x250-000000-80-0-0.jpg",
+   "fans": 140450,
+   "close_to": [
+    "Paul McCartney",
+    "Electric Light Orchestra",
+    "Fleetwood Mac",
+    "Eagles"
+   ]
+  }
  },
  {
   "id": "b53167a759fb",
@@ -115760,7 +116324,7 @@
    "close_to": [
     "Videoclub",
     "Clio",
-    "BLOWSOM"
+    "Blowsom"
    ]
   }
  },
@@ -116142,7 +116706,7 @@
   "description": null,
   "kind": "known",
   "first_seen": "2026-10-12",
-  "badge": null,
+  "badge": "liste",
   "tier": 3,
   "matched": [
    {
@@ -117031,7 +117595,7 @@
    "close_to": [
     "Ibeyi",
     "The Dø",
-    "FM LAETI",
+    "Fm Laeti",
     "Benjamin Clementine"
    ]
   }
@@ -117660,10 +118224,13 @@
   "time": "20:00",
   "venue": "Grande salle Pierre Boulez - Philharmonie de Paris",
   "venue_favorite": false,
+  "address": null,
+  "city": null,
   "price": null,
   "on_sale": null,
   "status": null,
   "genre": "Musique de chambre, Classique",
+  "image": null,
   "links": [
    {
     "source": "Offi",
@@ -117671,9 +118238,20 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 0.33,
+   "artist": "Martha Argerich",
+   "link": "https://www.deezer.com/artist/72019",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/21672aa3a669561041b6b7dbe7a29016/250x250-000000-80-0-0.jpg",
+   "fans": 130192,
+   "close_to": [
+    "Mstislav Rostropovich"
+   ]
+  }
  },
  {
   "id": "2769b4c57284",
@@ -117745,10 +118323,13 @@
   "time": "20:00",
   "venue": "Grande salle Pierre Boulez - Philharmonie de Paris",
   "venue_favorite": false,
+  "address": null,
+  "city": null,
   "price": null,
   "on_sale": null,
   "status": null,
   "genre": "Musique de chambre, Classique",
+  "image": null,
   "links": [
    {
     "source": "Offi",
@@ -117756,9 +118337,20 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 0.33,
+   "artist": "Martha Argerich",
+   "link": "https://www.deezer.com/artist/72019",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/21672aa3a669561041b6b7dbe7a29016/250x250-000000-80-0-0.jpg",
+   "fans": 130192,
+   "close_to": [
+    "Mstislav Rostropovich"
+   ]
+  }
  },
  {
   "id": "366e6855b1a6",
@@ -117918,10 +118510,13 @@
   "time": "20:00",
   "venue": "Grande salle Pierre Boulez - Philharmonie de Paris",
   "venue_favorite": false,
+  "address": null,
+  "city": null,
   "price": null,
   "on_sale": null,
   "status": null,
   "genre": "Musique de chambre, Classique",
+  "image": null,
   "links": [
    {
     "source": "Offi",
@@ -117929,9 +118524,20 @@
    }
   ],
   "artists": [],
-  "kind": "other",
+  "description": null,
+  "kind": "discovery",
   "first_seen": "2026-10-07",
-  "badge": null
+  "badge": "liste",
+  "discovery": {
+   "score": 0.33,
+   "artist": "Martha Argerich",
+   "link": "https://www.deezer.com/artist/72019",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/21672aa3a669561041b6b7dbe7a29016/250x250-000000-80-0-0.jpg",
+   "fans": 130192,
+   "close_to": [
+    "Mstislav Rostropovich"
+   ]
+  }
  },
  {
   "id": "08fae6d54fad",
@@ -118757,7 +119363,7 @@
    "close_to": [
     "Voyou",
     "Requin Chagrin",
-    "Ezéchiel Pailhès"
+    "Ezechiel Pailhes"
    ]
   }
  },
@@ -118839,7 +119445,7 @@
    "close_to": [
     "Johan Papaconstantino",
     "The Dø",
-    "Ezéchiel Pailhès"
+    "Ezechiel Pailhes"
    ]
   }
  },
@@ -121918,7 +122524,7 @@
    "close_to": [
     "Alabama Shakes",
     "Woods",
-    "Dope Lemon"
+    "DOPE LEMON"
    ]
   }
  },
@@ -124438,7 +125044,7 @@
    "close_to": [
     "Christine and the Queens",
     "Asaf Avidan",
-    "Lilly Wood And The Prick",
+    "Lilly Wood and the Prick",
     "Kimberose"
    ]
   }
@@ -126893,7 +127499,7 @@
    "picture": "https://cdn-images.dzcdn.net/images/artist/5b0aab23f8d2856951a92f3a9faf70e3/250x250-000000-80-0-0.jpg",
    "fans": 3415709,
    "close_to": [
-    "J Balvin",
+    "J. Balvin",
     "Nicky Jam"
    ]
   }
@@ -127397,7 +128003,7 @@
    "fans": 42977,
    "close_to": [
     "The Dø",
-    "Ezéchiel Pailhès"
+    "Ezechiel Pailhes"
    ]
   }
  },
