@@ -213,7 +213,7 @@ export async function diceDescription(url) {
 
 // Description, style et liens d'un artiste, mis en cache une semaine
 async function artistInfo(name, deezerLink, ctx) {
-  const cacheKey = new Request(`https://partage.cache/v4/artist/${encodeURIComponent(norm(name))}`);
+  const cacheKey = new Request(`https://partage.cache/v5/artist/${encodeURIComponent(norm(name))}`);
   const cache = caches.default;
   const hit = await cache.match(cacheKey);
   if (hit) return hit.json();
