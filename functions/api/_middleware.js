@@ -6,13 +6,9 @@ import { verifyAccess } from "../_lib/access.js";
 import { fail, handle, HttpError } from "../_lib/http.js";
 import { identify, member } from "../_lib/me.js";
 
-// Ancienne route des préférences (fichier YAML du dépôt), retirée après la reprise (section 14)
-const LEGACY = new Set(["/api/prefs"]);
-
 export async function onRequest(context) {
   const { request, env, next, data, waitUntil } = context;
   const path = new URL(request.url).pathname.replace(/\/+$/, "");
-  if (LEGACY.has(path)) return next();
 
   return handle(async () => {
     if (!env.DB || !env.BUCKET) throw new HttpError(503, "base D1 ou stockage R2 non relié au projet", "bindings");

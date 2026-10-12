@@ -80,28 +80,16 @@ Le site charge les concerts communs en statique, puis les données du membre con
 `functions/api/_middleware.js` ; seul `functions/_lib/me.js` lit ou écrit ses données
 (côté traitement : `src/members.py`).
 
-### Étape 1 : socle (état actuel de la branche `multi-membres`)
-
-Le traitement du lundi lit le membre admin dans D1 (profil Deezer, préférences, salles
-favorites), écrit ses résultats dans R2 et ne publie plus dans le dépôt que les données
-communes. La fiche publique `/partage/<concert>` reçoit l'artiste mis en avant dans le lien
-(`?a=<nom>&dz=<n° Deezer>`), les données publiées ne disant plus qui s'intéresse à quel
-artiste.
-
-Reprise de l'existant (une fois, puis vérification) :
+### Mise à jour du schéma de la base
 
 ```powershell
-.venv\Scripts\python -m src.migrate import --email <votre e-mail Access> --first-name <prénom>
-.venv\Scripts\python -m src.migrate verify --email <votre e-mail Access>
+.venv\Scripts\python -m src.migrate schema
 ```
 
-Ces commandes exigent les variables Cloudflare ci-dessous : sans elles, elles s'arrêtent, sauf
-avec `--local` (base SQLite et dossier `data/local/`, non versionnés, pour les essais). Le
-traitement utilise aussi cette copie locale quand les variables manquent, sauf dans GitHub
-Actions. Avec les variables
-`CF_ACCOUNT_ID`, `D1_DATABASE_ID`, `CF_D1_API_TOKEN`, `R2_ACCESS_KEY_ID`,
-`R2_SECRET_ACCESS_KEY` et `R2_BUCKET`, ils travaillent sur Cloudflare. Dans GitHub Actions, un
-secret manquant arrête le traitement.
+Avec les variables `CF_ACCOUNT_ID`, `D1_DATABASE_ID` et `CF_D1_API_TOKEN`, la commande travaille
+sur Cloudflare ; `--local` la fait travailler sur la copie locale (`data/local/`, non
+versionnée). Le traitement utilise aussi cette copie locale quand les variables Cloudflare
+manquent, sauf dans GitHub Actions où un secret manquant l'arrête.
 
 Réglages Cloudflare du projet Pages (Settings > Bindings, et Variables and Secrets) :
 
@@ -128,61 +116,20 @@ requête (les fichiers R2 sont donc renvoyés sans être relus).
 
 ## Réglages
 
-Depuis la reprise (branche `multi-membres`), salles et préférences sont dans D1 : `config/venues.yaml` et
-`config/artist_prefs.yaml` ne servent plus qu'à la reprise, puis seront retirés. Avant la reprise :
-
-`config/venues.yaml` : vos salles favorites. Elles sont signalées dans le site, filtrables
-(« Vos salles uniquement ») et donnent un léger bonus aux découvertes. Pour une salle absente
-des billetteries couvertes, renseignez `agenda_url` avec sa page programme : si la page
-publie des données schema.org, ses concerts sont lus directement.
-
-`config/artist_prefs.yaml` : vos préférences, modifiables depuis le site (artistes masqués,
-niveaux imposés, concerts mis de côté).
+Préférences, ★ et salles favorites de chaque membre : depuis le site, enregistrés dans D1.
 
 - **Masquer un artiste** que vous ne voulez pas voir en concert : ses concerts sortent de
   « Vos artistes » et des découvertes, et il ne sert plus à calculer les découvertes ; ses
   concerts restent dans « Tous les concerts ». Un artiste hors de votre liste peut aussi être
-  masqué, pour ne plus être proposé en découverte.
-- **Imposer un niveau** (1, 2 ou 3) à la place du niveau calculé à partir de vos likes, par
-  exemple pour un artiste beaucoup écouté autrefois et moins aujourd'hui. Le niveau imposé
-  compte aussi dans le calcul des découvertes.
+  masqué, pour ne plus être proposé en découverte (fiche du concert, « Ne plus recommander »).
+- **Imposer un niveau** (1, 2 ou 3) à la place du niveau calculé à partir de vos likes
+  (onglet Mes artistes ; « Calculé » pour revenir au niveau issu de vos likes). Le niveau
+  imposé compte aussi dans le calcul des découvertes, au traitement suivant.
 
-```yaml
-hidden:
-  - "Michel"
-levels:
-  "Russ": 3
-  "Indochine": 1
-```
+Catalogue des salles : table `venues` de D1 (nom, alias selon les billetteries, page programme
+`agenda_url` lue quand elle publie des données schema.org, exclusion).
 
-**Depuis le site** (une fois le réglage ci-dessous fait) : sur la fiche d'un concert,
-« Ne plus recommander … » ; dans l'onglet Mes artistes, « Masquer » / « Ne plus masquer » et le
-menu de niveau (« Calculé » pour revenir au niveau issu de vos likes). Le changement est
-enregistré dans le fichier et visible aussitôt, sur tous vos appareils ; le calcul des
-découvertes en tient compte au traitement suivant (lundi).
-
-**Depuis GitHub** : ouvrez le fichier dans le dépôt, cliquez sur l'icône crayon (Edit this
-file), modifiez, puis **Commit changes**. Noms tels qu'affichés dans Mes artistes (accents et
-majuscules ignorés).
-
-### Réglage des préférences depuis le site (une seule fois)
-
-Le site appelle une fonction Cloudflare (`functions/api/prefs.js`) qui modifie
-`config/artist_prefs.yaml` dans le dépôt. Il lui faut une clé GitHub :
-
-1. Sur GitHub : photo de profil > **Settings > Developer settings > Personal access tokens >
-   Fine-grained tokens > Generate new token**. Nom : `concerts-site` ; expiration : au choix
-   (à renouveler à échéance) ; **Repository access** : *Only select repositories*, `Concerts` ;
-   **Permissions > Repository permissions > Contents** : *Read and write*. Générez et copiez la clé.
-2. Sur Cloudflare : projet Pages `concerts` > **Settings > Variables and Secrets > Add** ;
-   type *Secret*, nom `GITHUB_TOKEN`, valeur : la clé. Enregistrez, puis redéployez (onglet
-   Deployments > dernier déploiement > **Retry deployment**).
-3. Protégez le site avec **Cloudflare Access** (projet Pages > Settings > *Access policy*,
-   ou Zero Trust > Access > Applications) en n'autorisant que votre adresse e-mail. Sans cette
-   protection, quiconque connaît l'adresse du site pourrait modifier vos préférences.
-
-Sans clé, le site fonctionne normalement ; seuls les boutons de préférences affichent un
-message d'erreur.
+`config/settings.yaml` : zone, horizon, barème du score, découvertes, plafonds de stockage R2.
 
 ## Le site
 
@@ -194,8 +141,8 @@ message d'erreur.
 - **★ Intéressés** : les concerts mis de côté pour acheter les places plus tard (étoile dans
   la liste ou « ☆ Mettre de côté » sur la fiche d'un concert), du plus proche au plus lointain,
   avec la date de mise en vente quand elle est connue et un lien par billetterie. La liste est
-  enregistrée dans `config/artist_prefs.yaml` (section `starred`), donc commune à tous vos
-  appareils ; les concerts passés y sont signalés et peuvent être retirés.
+  enregistrée dans D1, donc commune à tous vos appareils ; les concerts passés y sont
+  signalés et peuvent être retirés.
 - **Mes artistes** : toute votre liste, classée par niveau puis par score, avec le détail du
   score et les préférences (masquer, niveau imposé).
 - **Salles** : vos salles favorites et celles où passent des artistes pour vous.
@@ -345,8 +292,7 @@ artistes par semaine au plus, en commençant par vos salles favorites ; le cache
 la couverture s'élargit donc au fil des semaines.
 
 **Votre liste ne fait que grandir.** Un artiste retiré de vos favoris reste suivi, signalé
-« Retiré de vos favoris » dans l'onglet Mes artistes. Pour l'oublier, supprimez sa ligne dans
-`data/artists.json`.
+« Retiré de vos favoris » dans l'onglet Mes artistes. Pour ne plus le voir en concert, masquez-le.
 
 ## Limites connues
 

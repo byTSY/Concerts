@@ -6,7 +6,7 @@ import secrets
 import string
 from datetime import datetime, timezone
 
-from .util import norm
+
 
 FILES = ("artists", "overlay", "history", "meta")
 
@@ -60,65 +60,6 @@ def favorite_venues(db, user_id):
 
 def stars(db, user_id):
     return db.query("SELECT concert_id, label, status, visibility FROM stars WHERE user_id = ?", [user_id])
-
-
-# --- Reprise de l'existant (src/migrate.py) ----------------------------------------------
-
-def upsert_admin(db, email, first_name):
-    """Crée le compte admin s'il n'existe pas ; renvoie son identifiant."""
-    email = email.strip().lower()
-    row = db.query("SELECT id FROM users WHERE email = ?", [email])
-    if row:
-        db.query("UPDATE users SET role = 'admin', first_name = ? WHERE id = ?", [first_name, row[0]["id"]])
-        return row[0]["id"]
-    uid = new_id()
-    now = now_iso()
-    db.query("INSERT INTO users (id, email, first_name, role, status, invited_at, activated_at) "
-             "VALUES (?, ?, ?, 'admin', 'active', ?, ?)", [uid, email, first_name, now, now])
-    return uid
-
-
-def set_deezer_source(db, user_id, deezer_id, name=None):
-    db.query("INSERT INTO music_sources (user_id, provider, provider_user_id, provider_name, status, connected_at) "
-             "VALUES (?, 'deezer', ?, ?, 'connected', ?) "
-             "ON CONFLICT (user_id) DO UPDATE SET provider = 'deezer', provider_user_id = excluded.provider_user_id, "
-             "provider_name = excluded.provider_name, status = 'connected', refresh_token_enc = NULL, scopes = NULL",
-             [user_id, str(deezer_id), name, now_iso()])
-
-
-def replace_prefs(db, user_id, hidden_names, levels):
-    """Remplace toutes les préférences du membre (reprise de config/artist_prefs.yaml)."""
-    rows = {}
-    for name in hidden_names:
-        if norm(name):
-            rows.setdefault(norm(name), {"name": name, "hidden": 1, "level": None})["hidden"] = 1
-    for name, level in levels.items():
-        if norm(name) and str(level) in {"1", "2", "3"}:
-            rows.setdefault(norm(name), {"name": name, "hidden": 0, "level": None})["level"] = int(level)
-    db.query("DELETE FROM artist_prefs WHERE user_id = ?", [user_id])
-    now = now_iso()
-    for key, r in rows.items():
-        db.query("INSERT INTO artist_prefs (user_id, artist_key, artist_name, hidden, level, updated_at) "
-                 "VALUES (?, ?, ?, ?, ?, ?)", [user_id, key, r["name"], r["hidden"], r["level"], now])
-    return len(rows)
-
-
-def replace_stars(db, user_id, starred):
-    """starred : {identifiant du concert: libellé} ; ★ privés, statut « intéressé »."""
-    db.query("DELETE FROM stars WHERE user_id = ?", [user_id])
-    now = now_iso()
-    for cid, label in starred.items():
-        db.query("INSERT INTO stars (user_id, concert_id, label, status, visibility, created_at, updated_at) "
-                 "VALUES (?, ?, ?, 'interested', 'private', ?, ?)", [user_id, str(cid), label or "", now, now])
-    return len(starred)
-
-
-def replace_favorite_venues(db, user_id, venue_ids):
-    db.query("DELETE FROM venue_favorites WHERE user_id = ?", [user_id])
-    now = now_iso()
-    for vid in venue_ids:
-        db.query("INSERT INTO venue_favorites (user_id, venue_id, added_at) VALUES (?, ?, ?)", [user_id, vid, now])
-    return len(venue_ids)
 
 
 # --- Résultats calculés (R2) -------------------------------------------------------------

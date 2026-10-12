@@ -1,6 +1,3 @@
-# Identifiant du profil Deezer (doit rester public)
-deezer_user_id: 1836006062
-
 # Inclure les titres des playlists que vous avez créées (poids faible dans le score)
 include_own_playlists: true
 
