@@ -17,7 +17,7 @@
   "name": "ZENITH PARIS - LA VILLETTE",
   "total": 113,
   "known": 16,
-  "discovery": 29,
+  "discovery": 31,
   "favorite": false
  },
  {
@@ -31,7 +31,7 @@
   "name": "La Maroquinerie",
   "total": 117,
   "known": 5,
-  "discovery": 31,
+  "discovery": 34,
   "favorite": false
  },
  {
@@ -73,14 +73,28 @@
   "name": "ALHAMBRA",
   "total": 44,
   "known": 4,
-  "discovery": 12,
+  "discovery": 13,
+  "favorite": false
+ },
+ {
+  "name": "Grande salle Pierre Boulez - Philharmonie de Paris",
+  "total": 157,
+  "known": 2,
+  "discovery": 10,
   "favorite": false
  },
  {
   "name": "LE TRABENDO (Parc de la Villette)",
   "total": 41,
   "known": 0,
-  "discovery": 10,
+  "discovery": 12,
+  "favorite": false
+ },
+ {
+  "name": "Le Grand Rex",
+  "total": 61,
+  "known": 4,
+  "discovery": 6,
   "favorite": false
  },
  {
@@ -91,10 +105,10 @@
   "favorite": false
  },
  {
-  "name": "Le Grand Rex",
-  "total": 61,
-  "known": 4,
-  "discovery": 5,
+  "name": "POPUP!",
+  "total": 36,
+  "known": 0,
+  "discovery": 9,
   "favorite": false
  },
  {
@@ -102,13 +116,6 @@
   "total": 18,
   "known": 3,
   "discovery": 6,
-  "favorite": false
- },
- {
-  "name": "POPUP!",
-  "total": 36,
-  "known": 0,
-  "discovery": 8,
   "favorite": false
  },
  {
@@ -133,10 +140,10 @@
   "favorite": false
  },
  {
-  "name": "Grande salle Pierre Boulez - Philharmonie de Paris",
-  "total": 157,
-  "known": 2,
-  "discovery": 4,
+  "name": "Maison de la Radio et de la Musique",
+  "total": 125,
+  "known": 0,
+  "discovery": 6,
   "favorite": false
  },
  {
@@ -203,6 +210,20 @@
   "favorite": true
  },
  {
+  "name": "Café de la Danse",
+  "total": 21,
+  "known": 0,
+  "discovery": 5,
+  "favorite": false
+ },
+ {
+  "name": "Trabendo",
+  "total": 21,
+  "known": 2,
+  "discovery": 3,
+  "favorite": false
+ },
+ {
   "name": "Accor Arena",
   "total": 12,
   "known": 2,
@@ -224,24 +245,10 @@
   "favorite": false
  },
  {
-  "name": "Maison de la Radio et de la Musique",
-  "total": 125,
+  "name": "Salle Gaveau",
+  "total": 62,
   "known": 0,
   "discovery": 4,
-  "favorite": false
- },
- {
-  "name": "Café de la Danse",
-  "total": 21,
-  "known": 0,
-  "discovery": 4,
-  "favorite": false
- },
- {
-  "name": "Trabendo",
-  "total": 21,
-  "known": 2,
-  "discovery": 2,
   "favorite": false
  },
  {
@@ -259,13 +266,6 @@
   "favorite": false
  },
  {
-  "name": "Salle Gaveau",
-  "total": 62,
-  "known": 0,
-  "discovery": 3,
-  "favorite": false
- },
- {
   "name": "Badaboum",
   "total": 29,
   "known": 1,
@@ -280,6 +280,13 @@
   "favorite": false
  },
  {
+  "name": "Amphithéâtre - Cité de la Musique-Philharmonie",
+  "total": 26,
+  "known": 1,
+  "discovery": 2,
+  "favorite": false
+ },
+ {
   "name": "Duc des Lombards",
   "total": 18,
   "known": 0,
@@ -291,6 +298,13 @@
   "total": 11,
   "known": 0,
   "discovery": 3,
+  "favorite": false
+ },
+ {
+  "name": "Le Trabendo",
+  "total": 10,
+  "known": 1,
+  "discovery": 2,
   "favorite": false
  },
  {
@@ -350,8 +364,29 @@
   "favorite": false
  },
  {
+  "name": "Théâtre de la Ville – Les Abbesses",
+  "total": 16,
+  "known": 0,
+  "discovery": 2,
+  "favorite": false
+ },
+ {
+  "name": "Le Zénith Paris – La Villette",
+  "total": 15,
+  "known": 1,
+  "discovery": 1,
+  "favorite": false
+ },
+ {
   "name": "TH DU ROND POINT-SALLE RENAUD BARRAULT",
   "total": 12,
+  "known": 0,
+  "discovery": 2,
+  "favorite": false
+ },
+ {
+  "name": "Théâtre de Saint-Quentin-en-Yvelines",
+  "total": 10,
   "known": 0,
   "discovery": 2,
   "favorite": false
@@ -413,7 +448,21 @@
   "favorite": false
  },
  {
+  "name": "Théâtre 71",
+  "total": 5,
+  "known": 0,
+  "discovery": 2,
+  "favorite": false
+ },
+ {
   "name": "Gaîté Lyrique",
+  "total": 4,
+  "known": 0,
+  "discovery": 2,
+  "favorite": false
+ },
+ {
+  "name": "Théâtre des 2 Rives",
   "total": 4,
   "known": 0,
   "discovery": 2,
@@ -422,6 +471,13 @@
  {
   "name": "Théâtre des Bergeries",
   "total": 4,
+  "known": 0,
+  "discovery": 2,
+  "favorite": false
+ },
+ {
+  "name": "EMC – Espace Marcel-Carné",
+  "total": 3,
   "known": 0,
   "discovery": 2,
   "favorite": false
@@ -497,13 +553,6 @@
   "favorite": false
  },
  {
-  "name": "Amphithéâtre - Cité de la Musique-Philharmonie",
-  "total": 26,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "Salle Pleyel",
   "total": 26,
   "known": 1,
@@ -532,24 +581,17 @@
   "favorite": false
  },
  {
-  "name": "Théâtre de la Ville – Les Abbesses",
-  "total": 16,
-  "known": 0,
-  "discovery": 1,
-  "favorite": false
- },
- {
-  "name": "Le Zénith Paris – La Villette",
-  "total": 15,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "Cathédrale Saint-Louis-des-Invalides - Hôtel national des Invalides",
   "total": 13,
   "known": 1,
   "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Opéra de Massy",
+  "total": 13,
+  "known": 0,
+  "discovery": 1,
   "favorite": false
  },
  {
@@ -581,14 +623,7 @@
   "favorite": false
  },
  {
-  "name": "Le Trabendo",
-  "total": 10,
-  "known": 1,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Théâtre de Saint-Quentin-en-Yvelines",
+  "name": "Le Studio - Philharmonie de Paris",
   "total": 10,
   "known": 0,
   "discovery": 1,
@@ -658,7 +693,7 @@
   "favorite": false
  },
  {
-  "name": "Théâtre 71",
+  "name": "Théâtre de la Ville – Sarah Bernhardt",
   "total": 5,
   "known": 0,
   "discovery": 1,
@@ -693,13 +728,6 @@
   "favorite": false
  },
  {
-  "name": "Théâtre des 2 Rives",
-  "total": 4,
-  "known": 0,
-  "discovery": 1,
-  "favorite": false
- },
- {
   "name": "CIRQUE D'HIVER BOUGLIONE",
   "total": 3,
   "known": 1,
@@ -715,13 +743,6 @@
  },
  {
   "name": "Centre Paris Anim' Jacques Bravo",
-  "total": 3,
-  "known": 0,
-  "discovery": 1,
-  "favorite": false
- },
- {
-  "name": "EMC – Espace Marcel-Carné",
   "total": 3,
   "known": 0,
   "discovery": 1,
@@ -764,6 +785,13 @@
  },
  {
   "name": "Bus Palladium",
+  "total": 2,
+  "known": 1,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Fondation des États-Unis",
   "total": 2,
   "known": 1,
   "discovery": 0,
@@ -1022,13 +1050,6 @@
   "favorite": false
  },
  {
-  "name": "Opéra de Massy",
-  "total": 13,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "PALAIS DES CONGRES DE PARIS",
   "total": 13,
   "known": 0,
@@ -1148,13 +1169,6 @@
   "favorite": false
  },
  {
-  "name": "ECUJE",
-  "total": 10,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "Grand Salon du Musée de l'Armée - Musée de l'Armée",
   "total": 10,
   "known": 0,
@@ -1169,14 +1183,14 @@
   "favorite": false
  },
  {
-  "name": "Le Studio - Philharmonie de Paris",
-  "total": 10,
+  "name": "CATHEDRALE AMERICAINE",
+  "total": 9,
   "known": 0,
   "discovery": 0,
   "favorite": false
  },
  {
-  "name": "CATHEDRALE AMERICAINE",
+  "name": "ECUJE",
   "total": 9,
   "known": 0,
   "discovery": 0,
@@ -1533,13 +1547,6 @@
   "favorite": false
  },
  {
-  "name": "Théâtre de la Ville – Sarah Bernhardt",
-  "total": 5,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "Église Saint-Eustache",
   "total": 5,
   "known": 0,
@@ -1562,6 +1569,13 @@
  },
  {
   "name": "EGLISE LUTHERIENNE DE LA TRINITE",
+  "total": 4,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Eleven Village",
   "total": 4,
   "known": 0,
   "discovery": 0,
@@ -1779,13 +1793,6 @@
  },
  {
   "name": "Eglise Saint-Vincent de Paul",
-  "total": 3,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Eleven Village",
   "total": 3,
   "known": 0,
   "discovery": 0,
@@ -2163,13 +2170,6 @@
   "favorite": false
  },
  {
-  "name": "Le Zèbre de Belleville",
-  "total": 2,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
   "name": "Ligne 13 - Maison de la Jeunesse",
   "total": 2,
   "known": 0,
@@ -2255,6 +2255,13 @@
  },
  {
   "name": "Peniche Marcounet",
+  "total": 2,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
+  "name": "Salle des Fêtes",
   "total": 2,
   "known": 0,
   "discovery": 0,
@@ -2611,6 +2618,13 @@
   "favorite": false
  },
  {
+  "name": "Centre culturel suisse Paris",
+  "total": 1,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
   "name": "Centre culturel tchèque",
   "total": 1,
   "known": 0,
@@ -2787,13 +2801,6 @@
  },
  {
   "name": "Fnac Forum des Halles",
-  "total": 1,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Fondation des États-Unis",
   "total": 1,
   "known": 0,
   "discovery": 0,
@@ -3066,6 +3073,13 @@
   "favorite": false
  },
  {
+  "name": "Le Zèbre de Belleville",
+  "total": 1,
+  "known": 0,
+  "discovery": 0,
+  "favorite": false
+ },
+ {
   "name": "MAISON DE LA MUTUALITE / THEATRE",
   "total": 1,
   "known": 0,
@@ -3263,13 +3277,6 @@
  },
  {
   "name": "Salle Turenne - Hôtel national des Invalides",
-  "total": 1,
-  "known": 0,
-  "discovery": 0,
-  "favorite": false
- },
- {
-  "name": "Salle des Fêtes",
   "total": 1,
   "known": 0,
   "discovery": 0,

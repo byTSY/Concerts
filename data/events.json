@@ -82,7 +82,7 @@
    "close_to": [
     "The Police",
     "The Stranglers",
-    "Tears for Fears",
+    "Tears For Fears",
     "Talking Heads"
    ]
   }
@@ -292,7 +292,7 @@
     "Agar Agar",
     "Slove",
     "Modeselektor",
-    "Chloé (Thévenin)"
+    "CHLOE (Thévenin)"
    ]
   }
  },
@@ -561,7 +561,7 @@
    "close_to": [
     "Tony Bennett",
     "Norah Jones",
-    "Jeff Goldblum & the Mildred Snitzer Orchestra",
+    "Jeff Goldblum & The Mildred Snitzer Orchestra",
     "Gregory Porter"
    ]
   }
@@ -787,6 +787,41 @@
     "Les Rita Mitsouko"
    ]
   }
+ },
+ {
+  "id": "f651b9327245",
+  "title": "Miles Davis, la nuit aussi est un soleil",
+  "date": "2026-10-14",
+  "time": "20:00",
+  "venue": "Fondation des États-Unis",
+  "venue_favorite": false,
+  "address": "15 boulevard Jourdan",
+  "city": "Paris",
+  "price": "Gratuit",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2026/10/09/huge-9182bca8846cf4f7f640bb1f0ab874e0.jpg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.helloasso.com/associations/fondation-des-etats-unis/evenements/salon-litteraire-miles-davis-la-nuit-aussi-est-un-soleil-erwann-gauthier?_gl=1%2agwexfc%2a_gcl_au%2aMTk0MzM0Njc3NC4xNzg3MDUwNDEyLi0uLS4xNzg4MTczMDgwLjk1MjA4MDU5My4xNzg4MTY3MzY1LjE3ODgxODI2OTA."
+   }
+  ],
+  "artists": [],
+  "description": "Venez redécouvrir l'histoire de Miles Davis - Rencontre avec Erwann Gauthier",
+  "kind": "known",
+  "first_seen": "2026-10-12",
+  "badge": "annonce",
+  "tier": 2,
+  "matched": [
+   {
+    "name": "Miles Davis",
+    "tier": 2,
+    "via": "titre",
+    "link": "https://www.deezer.com/artist/1910"
+   }
+  ]
  },
  {
   "id": "5952029ee5d1",
@@ -1653,7 +1688,7 @@
   "description": null,
   "kind": "known",
   "first_seen": "2026-10-12",
-  "badge": null,
+  "badge": "liste",
   "tier": 3,
   "matched": [
    {
@@ -2191,7 +2226,7 @@
    "fans": 49276,
    "close_to": [
     "Smoke DZA",
-    "Mike Will Made-It",
+    "Mike WiLL Made-It",
     "Meek Mill",
     "Joyner Lucas"
    ]
@@ -2873,7 +2908,7 @@
   "tier": 3,
   "matched": [
    {
-    "name": "PJ MORTON",
+    "name": "PJ Morton",
     "tier": 3,
     "via": "artiste",
     "link": "https://www.deezer.com/artist/393335"
@@ -3172,7 +3207,7 @@
    "close_to": [
     "Please",
     "Invigo",
-    "BLOWSOM"
+    "Blowsom"
    ]
   }
  },
@@ -3449,7 +3484,7 @@
    "close_to": [
     "Pépite",
     "Moussa",
-    "Miel de Montagne",
+    "Miel De Montagne",
     "Odezenne"
    ]
   }
@@ -3488,10 +3523,10 @@
    "picture": "https://cdn-images.dzcdn.net/images/artist/244407df886ac5ca9083a2da61d92b58/250x250-000000-80-0-0.jpg",
    "fans": 804,
    "close_to": [
-    "amaarae",
     "Qendresa",
     "FKA twigs",
-    "Durand Bernarr"
+    "Durand Bernarr",
+    "Amaarae"
    ]
   }
  },
@@ -3535,7 +3570,7 @@
    "close_to": [
     "SCH",
     "Lefa",
-    "ICO",
+    "Ico",
     "S.Pri Noir"
    ]
   }
@@ -3974,7 +4009,7 @@
   "tier": 3,
   "matched": [
    {
-    "name": "Keros-n",
+    "name": "Keros-N",
     "tier": 3,
     "via": "titre",
     "link": "https://www.deezer.com/artist/4334621"
@@ -4764,7 +4799,7 @@
    "close_to": [
     "Genesis Owusu",
     "The Avalanches",
-    "LAVA LA RUE",
+    "Lava La Rue",
     "LA Priest"
    ]
   }
@@ -4850,7 +4885,7 @@
    "picture": "https://cdn-images.dzcdn.net/images/artist/0552f9223da8ad3f5195bdb4e99c48b4/250x250-000000-80-0-0.jpg",
    "fans": 24325,
    "close_to": [
-    "Willow",
+    "WILLOW",
     "Sudan Archives",
     "Fcukers",
     "FKA twigs"
@@ -5150,7 +5185,7 @@
    "fans": 1288457,
    "close_to": [
     "a-ha",
-    "Tears for Fears",
+    "Tears For Fears",
     "Eurythmics",
     "Depeche Mode"
    ]
@@ -5716,8 +5751,8 @@
    "close_to": [
     "Django Django",
     "Dan Croll",
-    "Yeasayer",
-    "Tune-Yards"
+    "tUnE-yArDs",
+    "Yeasayer"
    ]
   }
  },
@@ -6088,8 +6123,8 @@
    "fans": 115181,
    "close_to": [
     "The Black Keys",
-    "Queens of the Stone Age",
-    "Band Of Skulls"
+    "Queens Of The Stone Age",
+    "Band of Skulls"
    ]
   }
  },
@@ -6472,7 +6507,7 @@
    "close_to": [
     "Naive New Beaters",
     "Electric Guest",
-    "BLOW",
+    "Blow",
     "Milky Chance"
    ]
   }
@@ -6731,7 +6766,7 @@
    "fans": 1279,
    "close_to": [
     "Tony Bennett",
-    "Jeff Goldblum & the Mildred Snitzer Orchestra"
+    "Jeff Goldblum & The Mildred Snitzer Orchestra"
    ]
   }
  },
@@ -6798,7 +6833,7 @@
   "description": null,
   "kind": "known",
   "first_seen": "2026-10-12",
-  "badge": null,
+  "badge": "liste",
   "tier": 3,
   "matched": [
    {
@@ -7106,7 +7141,7 @@
    "close_to": [
     "Johan Papaconstantino",
     "The Dø",
-    "Ezéchiel Pailhès"
+    "Ezechiel Pailhes"
    ]
   }
  },
@@ -7382,11 +7417,11 @@
   "description": null,
   "kind": "known",
   "first_seen": "2026-10-12",
-  "badge": null,
+  "badge": "liste",
   "tier": 3,
   "matched": [
    {
-    "name": "Art Of Tones",
+    "name": "Art of Tones",
     "tier": 3,
     "via": "titre",
     "link": "https://www.deezer.com/artist/259223"
@@ -7601,7 +7636,7 @@
    "close_to": [
     "Post Malone",
     "Lil Nas X",
-    "XXXTentacion",
+    "XXXTENTACION",
     "Tyla Yaweh"
    ]
   }
@@ -7775,7 +7810,7 @@
    "close_to": [
     "Post Malone",
     "Lil Nas X",
-    "XXXTentacion",
+    "XXXTENTACION",
     "Tyla Yaweh"
    ]
   }
@@ -7913,7 +7948,7 @@
    "fans": 1662447,
    "close_to": [
     "Zara Larsson",
-    "Olly Alexander (Years & Years)",
+    "Olly Alexander",
     "Miley Cyrus",
     "Dua Lipa"
    ]
@@ -8132,7 +8167,7 @@
     "Voyou",
     "Flea",
     "Laure Briard",
-    "Ezéchiel Pailhès"
+    "Ezechiel Pailhes"
    ]
   }
  },
@@ -8211,7 +8246,7 @@
    "fans": 23105,
    "close_to": [
     "Tony Bennett",
-    "Jeff Goldblum & the Mildred Snitzer Orchestra",
+    "Jeff Goldblum & The Mildred Snitzer Orchestra",
     "Diana Krall"
    ]
   }
@@ -8240,7 +8275,7 @@
   "description": null,
   "kind": "known",
   "first_seen": "2026-10-12",
-  "badge": null,
+  "badge": "liste",
   "tier": 1,
   "matched": [
    {
@@ -8541,7 +8576,7 @@
    "close_to": [
     "The National",
     "My Morning Jacket",
-    "Death Cab for Cutie"
+    "Death Cab For Cutie"
    ]
   }
  },
@@ -8705,7 +8740,7 @@
   "tier": 1,
   "matched": [
    {
-    "name": "Omah lay",
+    "name": "Omah Lay",
     "tier": 1,
     "via": "titre",
     "link": "https://www.deezer.com/artist/56094992"
@@ -8830,7 +8865,7 @@
    "close_to": [
     "WE ARE MATCH",
     "The Asteroids Galaxy Tour",
-    "FM Belfast",
+    "Fm Belfast",
     "!!!"
    ]
   }
@@ -8898,7 +8933,7 @@
   "description": null,
   "kind": "known",
   "first_seen": "2026-10-12",
-  "badge": null,
+  "badge": "liste",
   "tier": 3,
   "matched": [
    {
@@ -8951,7 +8986,7 @@
    "close_to": [
     "Fred again..",
     "Daniel Avery",
-    "Kh",
+    "KH",
     "DJ Seinfeld"
    ]
   }
@@ -8995,7 +9030,7 @@
    "fans": 2294,
    "close_to": [
     "Deki Alem",
-    "Miel de Montagne",
+    "Miel De Montagne",
     "La Femme",
     "Kids Return"
    ]
@@ -9036,7 +9071,7 @@
     "Domo Genesis",
     "Curren$y",
     "Westside Gunn",
-    "Mavi"
+    "MAVI"
    ]
   }
  },
@@ -9110,7 +9145,7 @@
    "close_to": [
     "WE ARE MATCH",
     "The Asteroids Galaxy Tour",
-    "FM Belfast",
+    "Fm Belfast",
     "!!!"
    ]
   }
@@ -9274,7 +9309,7 @@
     "Olivia Dean",
     "Joy Crookes",
     "Joesef",
-    "Céleste"
+    "Celeste"
    ]
   }
  },
@@ -9320,10 +9355,10 @@
    "picture": "https://cdn-images.dzcdn.net/images/artist/42a2ef16887e2cd54b07b848fdfd9619/250x250-000000-80-0-0.jpg",
    "fans": 339775,
    "close_to": [
-    "Tones and I",
+    "Tones And I",
     "Rag'n'Bone Man",
     "Puggy",
-    "Lilly Wood And The Prick"
+    "Lilly Wood and the Prick"
    ]
   }
  },
@@ -9494,7 +9529,7 @@
    "close_to": [
     "Christine and the Queens",
     "Puggy",
-    "Lilly Wood And The Prick",
+    "Lilly Wood and the Prick",
     "Izïa"
    ]
   }
@@ -9710,8 +9745,8 @@
    "fans": 1582,
    "close_to": [
     "Olivia Dean",
-    "Raye",
     "Rachel Chinouriri",
+    "RAYE",
     "Lola Young"
    ]
   }
@@ -9892,7 +9927,7 @@
    "close_to": [
     "Christine and the Queens",
     "Puggy",
-    "Lilly Wood And The Prick",
+    "Lilly Wood and the Prick",
     "Izïa"
    ]
   }
@@ -9966,7 +10001,7 @@
   "description": null,
   "kind": "known",
   "first_seen": "2026-10-12",
-  "badge": null,
+  "badge": "liste",
   "tier": 3,
   "matched": [
    {
@@ -10193,7 +10228,7 @@
    "close_to": [
     "Christine and the Queens",
     "Puggy",
-    "Lilly Wood And The Prick",
+    "Lilly Wood and the Prick",
     "Izïa"
    ]
   }
@@ -10310,7 +10345,7 @@
    "picture": "https://cdn-images.dzcdn.net/images/artist/d7af8b6f54a0e2b825d5ae92f9e767da/250x250-000000-80-0-0.jpg",
    "fans": 998180,
    "close_to": [
-    "6lack",
+    "6LACK",
     "Tory Lanez",
     "PARTYNEXTDOOR",
     "4batz"
@@ -10352,7 +10387,7 @@
    "fans": 1180,
    "close_to": [
     "Alfa Mist",
-    "Badbadnotgood"
+    "BADBADNOTGOOD"
    ]
   }
  },
@@ -10523,7 +10558,7 @@
    "fans": 1180,
    "close_to": [
     "Alfa Mist",
-    "Badbadnotgood"
+    "BADBADNOTGOOD"
    ]
   }
  },
@@ -11033,7 +11068,7 @@
    "fans": 30362,
    "close_to": [
     "Wolf Alice",
-    "Young the Giant"
+    "Young The Giant"
    ]
   }
  },
@@ -11277,7 +11312,7 @@
   "tier": 3,
   "matched": [
    {
-    "name": "Lolo Zouai",
+    "name": "Lolo Zouaï",
     "tier": 3,
     "via": "artiste",
     "link": "https://www.deezer.com/artist/12624185"
@@ -11615,7 +11650,7 @@
    "close_to": [
     "Voyou",
     "Pépite",
-    "Ezéchiel Pailhès"
+    "Ezechiel Pailhes"
    ]
   }
  },
@@ -11794,7 +11829,7 @@
     "Red Hot Chili Peppers",
     "Weezer",
     "The Smashing Pumpkins",
-    "Queens of the Stone Age"
+    "Queens Of The Stone Age"
    ]
   }
  },
@@ -11877,7 +11912,7 @@
    "close_to": [
     "Royel Otis",
     "Master Peace",
-    "Foster the People",
+    "Foster The People",
     "Blu DeTiger"
    ]
   }
@@ -11994,7 +12029,7 @@
   "description": null,
   "kind": "known",
   "first_seen": "2026-10-12",
-  "badge": null,
+  "badge": "liste",
   "tier": 3,
   "matched": [
    {
@@ -12301,7 +12336,7 @@
    "fans": 161767,
    "close_to": [
     "Peking Duk",
-    "Olly Alexander (Years & Years)",
+    "Olly Alexander",
     "Mabel",
     "Clean Bandit"
    ]
@@ -12341,7 +12376,7 @@
   "tier": 3,
   "matched": [
    {
-    "name": "Lilly Wood And The Prick",
+    "name": "Lilly Wood and the Prick",
     "tier": 3,
     "via": "artiste",
     "link": "https://www.deezer.com/artist/307677"
@@ -12650,7 +12685,7 @@
   "tier": 3,
   "matched": [
    {
-    "name": "Lilly Wood And The Prick",
+    "name": "Lilly Wood and the Prick",
     "tier": 3,
     "via": "artiste",
     "link": "https://www.deezer.com/artist/307677"
@@ -12814,7 +12849,7 @@
    "close_to": [
     "Ibeyi",
     "The Dø",
-    "FM LAETI",
+    "Fm Laeti",
     "Benjamin Clementine"
    ]
   }
@@ -13257,7 +13292,7 @@
    "close_to": [
     "Ibeyi",
     "The Dø",
-    "FM LAETI",
+    "Fm Laeti",
     "Benjamin Clementine"
    ]
   }
@@ -13724,7 +13759,7 @@
    "picture": "https://cdn-images.dzcdn.net/images/artist/7ed7e0208a7b8f4b9432169be62deaa2/250x250-000000-80-0-0.jpg",
    "fans": 32173,
    "close_to": [
-    "Olly Alexander (Years & Years)",
+    "Olly Alexander",
     "Mabel",
     "Clean Bandit"
    ]
@@ -13898,7 +13933,7 @@
    "close_to": [
     "Puggy",
     "Owlle",
-    "Lilly Wood And The Prick",
+    "Lilly Wood and the Prick",
     "Elephanz"
    ]
   }
@@ -13987,8 +14022,8 @@
    "fans": 43021,
    "close_to": [
     "The Black Keys",
-    "Queens of the Stone Age",
-    "Band Of Skulls"
+    "Queens Of The Stone Age",
+    "Band of Skulls"
    ]
   }
  },
@@ -14182,7 +14217,7 @@
    "close_to": [
     "Ibeyi",
     "The Dø",
-    "FM LAETI",
+    "Fm Laeti",
     "Benjamin Clementine"
    ]
   }
@@ -14219,7 +14254,7 @@
    "picture": "https://cdn-images.dzcdn.net/images/artist/7ed7e0208a7b8f4b9432169be62deaa2/250x250-000000-80-0-0.jpg",
    "fans": 32173,
    "close_to": [
-    "Olly Alexander (Years & Years)",
+    "Olly Alexander",
     "Mabel",
     "Clean Bandit"
    ]
@@ -15156,7 +15191,7 @@
     "Mathame",
     "Kevin de Vries",
     "Innellea",
-    "Artbat"
+    "Agents Of Time"
    ]
   }
  },
@@ -15354,7 +15389,7 @@
   "tier": 3,
   "matched": [
    {
-    "name": "Rémi",
+    "name": "Remi",
     "tier": 3,
     "via": "titre",
     "link": "https://www.deezer.com/artist/259994"
@@ -15860,7 +15895,7 @@
    "close_to": [
     "Agar Agar",
     "Vendredi sur Mer",
-    "Miel de Montagne",
+    "Miel De Montagne",
     "La Femme"
    ]
   }
@@ -16275,7 +16310,7 @@
   "description": null,
   "kind": "known",
   "first_seen": "2026-10-12",
-  "badge": null,
+  "badge": "liste",
   "tier": 3,
   "matched": [
    {
@@ -16354,7 +16389,7 @@
   "description": null,
   "kind": "known",
   "first_seen": "2026-10-12",
-  "badge": null,
+  "badge": "liste",
   "tier": 2,
   "matched": [
    {
@@ -16550,7 +16585,7 @@
   "description": null,
   "kind": "known",
   "first_seen": "2026-10-12",
-  "badge": null,
+  "badge": "liste",
   "tier": 2,
   "matched": [
    {
@@ -17447,6 +17482,53 @@
   }
  },
  {
+  "id": "9a7695296eef",
+  "title": "GILLA BAND",
+  "date": "2027-01-20",
+  "time": "19:30",
+  "venue": "LE TRABENDO (Parc de la Villette)",
+  "venue_favorite": false,
+  "address": "AV J.JAURES /METRO PTE DE PANTIN",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2026-05-29T09:00:00Z",
+  "status": "onsale",
+  "genre": "Rock, Pop / Rock",
+  "image": "https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/gilla-band-billet/idmanif/660472/idtier/18864121"
+   },
+   {
+    "source": "Dice",
+    "url": "https://dice.fm/event/6a0f34bea7ce6d0001f22ccf"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/gilla-band-3260024.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.97,
+   "artist": "Gilla Band",
+   "link": "https://www.deezer.com/artist/152385282",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/9adf57165c884ce78baa2c69766d449a/250x250-000000-80-0-0.jpg",
+   "fans": 6648,
+   "close_to": [
+    "Yard Act",
+    "Tropical Fuck Storm",
+    "DEADLETTER",
+    "BIG SPECIAL"
+   ]
+  }
+ },
+ {
   "id": "6b6064fba128",
   "title": "MICO",
   "date": "2027-01-20",
@@ -17565,6 +17647,88 @@
     "B.B. King",
     "Muddy Waters",
     "Lucky Peterson"
+   ]
+  }
+ },
+ {
+  "id": "9fce419adec5",
+  "title": "America !",
+  "date": "2027-01-21",
+  "time": "20:00",
+  "venue": "Maison de la Radio et de la Musique",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Classique",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/maison-de-radio-france-2674/america-3331982.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.6,
+   "artist": "America",
+   "link": "https://www.deezer.com/artist/4",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/457f2a9a9b2c4717a6ebf7ff4237a9c7/250x250-000000-80-0-0.jpg",
+   "fans": 140450,
+   "close_to": [
+    "Paul McCartney",
+    "Electric Light Orchestra",
+    "Fleetwood Mac",
+    "Eagles"
+   ]
+  }
+ },
+ {
+  "id": "ea241d4e7ade",
+  "title": "7 WEEKS",
+  "date": "2027-01-22",
+  "time": "19:30",
+  "venue": "La Maroquinerie",
+  "venue_favorite": false,
+  "address": "23, RUE BOYER",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2026-04-20T08:46:07Z",
+  "status": "onsale",
+  "genre": "Rock, Pop / Rock",
+  "image": "https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/7-weeks-billet/idmanif/657055/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-maroquinerie-2748/7-weeks-3305072.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.4,
+   "artist": "The Weeks",
+   "link": "https://www.deezer.com/artist/655839",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/ebdaddd724ee8130b58d94658119f509/250x250-000000-80-0-0.jpg",
+   "fans": 1386,
+   "close_to": [
+    "Ram Jam",
+    "Nashville Pussy",
+    "George Thorogood & The Destroyers",
+    "Foghat"
    ]
   }
  },
@@ -17774,6 +17938,80 @@
   ]
  },
  {
+  "id": "2bdf9283d0e4",
+  "title": "Miossec",
+  "date": "2027-01-25",
+  "time": "20:00",
+  "venue": "Théâtre de la Ville – Sarah Bernhardt",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": "7-32,5 €",
+  "on_sale": null,
+  "status": null,
+  "genre": "Chanson française, Chanson",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-de-la-ville-3378/miossec-3316185.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.77,
+   "artist": "Miossec",
+   "link": "https://www.deezer.com/artist/1420",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/87a49a0f3cacf635d12ca70e081fc571/250x250-000000-80-0-0.jpg",
+   "fans": 78915,
+   "close_to": [
+    "Philippe Katerine",
+    "Feu! Chatterton",
+    "Brigitte Fontaine"
+   ]
+  }
+ },
+ {
+  "id": "c24863d0e3f7",
+  "title": "Alexis HK",
+  "date": "2027-01-25",
+  "time": "20:00",
+  "venue": "Théâtre de la Ville – Les Abbesses",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": "7-32,5 €",
+  "on_sale": null,
+  "status": null,
+  "genre": "Chanson française, Chanson",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-de-la-ville-les-abbesses-3377/alexis-hk-3316429.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.33,
+   "artist": "Alexis HK",
+   "link": "https://www.deezer.com/artist/1403",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/b7c147e9ed68c3b03efb0fcb92c3f4fe/250x250-000000-80-0-0.jpg",
+   "fans": 49917,
+   "close_to": [
+    "Philippe Katerine"
+   ]
+  }
+ },
+ {
   "id": "7b89dfbddfd5",
   "title": "TEDDYBEAR",
   "date": "2027-01-26",
@@ -17850,6 +18088,47 @@
     "Pépite",
     "Requin Chagrin",
     "Odezenne"
+   ]
+  }
+ },
+ {
+  "id": "47b6e7e6ac00",
+  "title": "Slow Pulp",
+  "date": "2027-01-27",
+  "time": "19:00",
+  "venue": "Trabendo",
+  "venue_favorite": false,
+  "address": "Parc de la Villette, 211 Avenue Jean Jaurès, 75019 Paris",
+  "city": "Paris",
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Rock, Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Dice",
+    "url": "https://dice.fm/event/6a464b572c3cca00014f63a2"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/slow-pulp-3312257.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.3,
+   "artist": "Slow Pulp",
+   "link": "https://www.deezer.com/artist/12611413",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/0635249c8ff489fefb621107277b0fa6/250x250-000000-80-0-0.jpg",
+   "fans": 4355,
+   "close_to": [
+    "Freak Slug",
+    "Big Thief"
    ]
   }
  },
@@ -18226,7 +18505,7 @@
    "close_to": [
     "Royel Otis",
     "Master Peace",
-    "Young the Giant",
+    "Young The Giant",
     "Saint Motel"
    ]
   }
@@ -18304,7 +18583,7 @@
    "close_to": [
     "Ibeyi",
     "The Dø",
-    "FM LAETI",
+    "Fm Laeti",
     "Benjamin Clementine"
    ]
   }
@@ -18619,7 +18898,7 @@
   "description": null,
   "kind": "known",
   "first_seen": "2026-10-12",
-  "badge": null,
+  "badge": "liste",
   "tier": 3,
   "matched": [
    {
@@ -19182,6 +19461,45 @@
   ]
  },
  {
+  "id": "cfa8935064c9",
+  "title": "Los Bitchos et invités",
+  "date": "2027-02-11",
+  "time": "19:00",
+  "venue": "Le Trabendo",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Rock, Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/los-bitchos-et-invites-3361947.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-08",
+  "badge": "annonce",
+  "discovery": {
+   "score": 0.73,
+   "artist": "Los Bitchos",
+   "link": "https://www.deezer.com/artist/13354827",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/5b8bfd6bc57f85d6f0ead1cdaa9e67cd/250x250-000000-80-0-0.jpg",
+   "fans": 8593,
+   "close_to": [
+    "Metronomy",
+    "Baxter Dury",
+    "Yin Yin",
+    "Chassol"
+   ]
+  }
+ },
+ {
   "id": "c6f853cc9e42",
   "title": "JEANJASS",
   "date": "2027-02-11",
@@ -19602,7 +19920,7 @@
    "fans": 26913,
    "close_to": [
     "The Good, The Bad & The Queen",
-    "TV on the Radio",
+    "TV On The Radio",
     "Arcade Fire"
    ]
   }
@@ -19643,6 +19961,45 @@
     "Luidji",
     "Laylow",
     "Dinos"
+   ]
+  }
+ },
+ {
+  "id": "d010f3b88a61",
+  "title": "Protomartyr",
+  "date": "2027-02-19",
+  "time": "19:00",
+  "venue": "Le Trabendo",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Punk, Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/protomartyr-3312261.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 1.0,
+   "artist": "Protomartyr",
+   "link": "https://www.deezer.com/artist/4541009",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/27d78c53d5af72c9c66586fc63cbff8c/250x250-000000-80-0-0.jpg",
+   "fans": 10130,
+   "close_to": [
+    "shame",
+    "Yard Act",
+    "Viagra Boys",
+    "IDLES"
    ]
   }
  },
@@ -19695,7 +20052,7 @@
     "ZZ Top",
     "AC/DC",
     "Led Zeppelin",
-    "KISS"
+    "Kiss"
    ]
   }
  },
@@ -19993,7 +20350,7 @@
    "picture": "https://cdn-images.dzcdn.net/images/artist/200982268dcabae98644b1601a90a948/250x250-000000-80-0-0.jpg",
    "fans": 20634,
    "close_to": [
-    "Empire of the Sun",
+    "Empire Of The Sun",
     "Dom Dolla"
    ]
   }
@@ -20093,6 +20450,49 @@
   }
  },
  {
+  "id": "4f16d7eb4bfc",
+  "title": "EZRA COLLECTIVE",
+  "date": "2027-02-24",
+  "time": "20:00",
+  "venue": "ZENITH PARIS - LA VILLETTE",
+  "venue_favorite": false,
+  "address": "211 AVENUE JEAN JAURÈS",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2026-07-10T09:00:00Z",
+  "status": "onsale",
+  "genre": "Pop, Pop / Rock",
+  "image": "https://s1.ticketm.net/dam/c/548/5fefbd1c-973b-4b0e-9b2e-d78e4ce37548_106111_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/ezra-collective-billet/idmanif/665719/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-zenith-3401/ezra-collective-3307317.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 1.0,
+   "artist": "Ezra Collective",
+   "link": "https://www.deezer.com/artist/13882529",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/897ec6318a8e6a9856cc4042bcaf5d27/250x250-000000-80-0-0.jpg",
+   "fans": 26332,
+   "close_to": [
+    "Tom Misch",
+    "Alfa Mist",
+    "FKJ",
+    "Terrace Martin"
+   ]
+  }
+ },
+ {
   "id": "a3a2f0f0b067",
   "title": "Myra",
   "date": "2027-02-25",
@@ -20130,6 +20530,47 @@
    "close_to": [
     "Moussa",
     "Lous and The Yakuza"
+   ]
+  }
+ },
+ {
+  "id": "f1208052e33f",
+  "title": "QUINN OULTON",
+  "date": "2027-02-25",
+  "time": "20:00",
+  "venue": "POPUP!",
+  "venue_favorite": false,
+  "address": "14 RUE ABEL",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2026-10-14T09:00:00Z",
+  "status": "offsale",
+  "genre": "R&B",
+  "image": "https://s1.ticketm.net/dam/c/bea/03d47f66-d37b-4aca-aa17-0135be64dbea_105801_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/quinn-oulton-billet/idmanif/674137/idseance/4430721"
+   }
+  ],
+  "artists": [
+   "Quinn Oulton"
+  ],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-12",
+  "badge": "annonce",
+  "discovery": {
+   "score": 0.83,
+   "artist": "Quinn Oulton",
+   "link": "https://www.deezer.com/artist/13849265",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/27d4ce14836c523b79b03dcac94a3f22/250x250-000000-80-0-0.jpg",
+   "fans": 1061,
+   "close_to": [
+    "Samm Henshaw",
+    "Joesef",
+    "Pip Millett",
+    "Mereba"
    ]
   }
  },
@@ -20335,6 +20776,120 @@
   }
  },
  {
+  "id": "46f427a79e65",
+  "title": "Elvett",
+  "date": "2027-02-26",
+  "time": "20:00",
+  "venue": "Café de la Danse",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Soul, Musiques urbaines",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/cafe-de-la-danse-1598/elvett-3312809.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.3,
+   "artist": "Elvett",
+   "link": "https://www.deezer.com/artist/7588142",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/13c4c87cfd8d06d6d2e04d3924cf2269/250x250-000000-80-0-0.jpg",
+   "fans": 1689,
+   "close_to": [
+    "Philippe Cohen Solal",
+    "Fm Laeti",
+    "Benjamin Clementine"
+   ]
+  }
+ },
+ {
+  "id": "a445e7f8c1d9",
+  "title": "Fred Pallem & Le Sacre du Tympan",
+  "date": "2027-02-26",
+  "time": "20:30",
+  "venue": "Théâtre de Saint-Quentin-en-Yvelines",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": "13,5-31,5 €",
+  "on_sale": null,
+  "status": null,
+  "genre": "Expérimental, Contemporain / Expérimental",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-de-saint-quentin-en-yvelines-4133/fred-pallem-le-sacre-du-tympan-3326698.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.53,
+   "artist": "Fred Pallem",
+   "link": "https://www.deezer.com/artist/162643",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/8397237f61ebf23fb062a22a4f9cf6ae/250x250-000000-80-0-0.jpg",
+   "fans": 2808,
+   "close_to": [
+    "Tony Allen",
+    "Moondog"
+   ]
+  }
+ },
+ {
+  "id": "ae01a4810e5a",
+  "title": "Célia Kameni",
+  "date": "2027-02-27",
+  "time": "18:00",
+  "venue": "Le Studio - Philharmonie de Paris",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Jazz / Blues",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-studio-7027/celia-kameni-3229992.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.8,
+   "artist": "Celia Kameni",
+   "link": "https://www.deezer.com/artist/6233082",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/28b4420915bdaeabfc090e263ab84b85/250x250-000000-80-0-0.jpg",
+   "fans": 2058,
+   "close_to": [
+    "MARO",
+    "James Blake",
+    "Ibeyi",
+    "Celeste"
+   ]
+  }
+ },
+ {
   "id": "edde57c886dd",
   "title": "Abd Al Malik",
   "date": "2027-02-27",
@@ -20415,6 +20970,50 @@
   }
  },
  {
+  "id": "0cef519dc3d4",
+  "title": "ROYAL BLOOD",
+  "date": "2027-02-27",
+  "time": "20:00",
+  "venue": "ZENITH PARIS - LA VILLETTE",
+  "venue_favorite": false,
+  "address": "211 AVENUE JEAN JAURÈS",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2026-10-16T08:00:00Z",
+  "status": "offsale",
+  "genre": "Rock",
+  "image": "https://s1.ticketm.net/dam/a/14c/87c9a995-e1b7-45b6-be05-054b656fc14c_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/royal-blood-billet/idmanif/674903/idseance/4435179"
+   },
+   {
+    "source": "Dice",
+    "url": "https://dice.fm/event/6ac65b9936add6000112cf1c"
+   }
+  ],
+  "artists": [
+   "Royal Blood"
+  ],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-12",
+  "badge": "annonce",
+  "discovery": {
+   "score": 0.3,
+   "artist": "Royal Blood",
+   "link": "https://www.deezer.com/artist/1035806",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/ab2e3dd23b1d71f4c9b7403e538a7d9c/250x250-000000-80-0-0.jpg",
+   "fans": 386308,
+   "close_to": [
+    "The Smashing Pumpkins",
+    "Queens Of The Stone Age",
+    "Band of Skulls"
+   ]
+  }
+ },
+ {
   "id": "8f82117471f9",
   "title": "José James",
   "date": "2027-02-27",
@@ -20485,6 +21084,44 @@
     "Naive New Beaters",
     "The Ting Tings",
     "Willy Moon"
+   ]
+  }
+ },
+ {
+  "id": "16197876a476",
+  "title": "Dee Dee Bridgewater",
+  "date": "2027-02-28",
+  "time": "19:00",
+  "venue": "Grande salle Pierre Boulez - Philharmonie de Paris",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Jazz vocal, Jazz / Blues",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-salle-6005/dee-dee-bridgewater-3229993.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.3,
+   "artist": "Dee Dee Bridgewater",
+   "link": "https://www.deezer.com/artist/14864",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/0609eafac9a07385b78c78ec7a49e575/250x250-000000-80-0-0.jpg",
+   "fans": 32979,
+   "close_to": [
+    "Jamie Cullum",
+    "Dinah Washington",
+    "Diana Krall"
    ]
   }
  },
@@ -20914,6 +21551,45 @@
   }
  },
  {
+  "id": "fa6f6695a09c",
+  "title": "Hugh Coltman et l'Ensemble Contraste",
+  "date": "2027-03-05",
+  "time": "20:30",
+  "venue": "EMC – Espace Marcel-Carné",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": "16,5-22,5 €",
+  "on_sale": null,
+  "status": null,
+  "genre": "Jazz / Blues",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/cines-carne-1834/hugh-coltman-et-lensemble-contraste-3299095.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.8,
+   "artist": "Hugh Coltman",
+   "link": "https://www.deezer.com/artist/135273",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/a11cea11f79745dfe19b19664c5bf6d3/250x250-000000-80-0-0.jpg",
+   "fans": 26622,
+   "close_to": [
+    "Norah Jones",
+    "Gregory Porter",
+    "Stacey Kent",
+    "José James"
+   ]
+  }
+ },
+ {
   "id": "388262f08f50",
   "title": "ARCHIMEDE",
   "date": "2027-03-06",
@@ -20948,6 +21624,122 @@
    "fans": 33492,
    "close_to": [
     "BB Brunes"
+   ]
+  }
+ },
+ {
+  "id": "e1406e2d7f0d",
+  "title": "Gidon Kremer fête ses 80 ans avec Martha Argerich",
+  "date": "2027-03-06",
+  "time": "20:00",
+  "venue": "Maison de la Radio et de la Musique",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Contemporain / Expérimental",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/maison-de-radio-france-2674/gidon-kremer-fete-ses-80-ans-avec-martha-argerich-3332014.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.33,
+   "artist": "Martha Argerich",
+   "link": "https://www.deezer.com/artist/72019",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/21672aa3a669561041b6b7dbe7a29016/250x250-000000-80-0-0.jpg",
+   "fans": 130192,
+   "close_to": [
+    "Mstislav Rostropovich"
+   ]
+  }
+ },
+ {
+  "id": "b606cb54f5b8",
+  "title": "Virtuosité et destin",
+  "date": "2027-03-07",
+  "time": "16:00",
+  "venue": "Opéra de Massy",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Musique symphonique, Classique",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/opera-de-massy-4129/virtuosite-et-destin-3358212.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 1.0,
+   "artist": "Destin",
+   "link": "https://www.deezer.com/artist/1177425",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/e99908c79318258c6c5a7a0980dff15c/250x250-000000-80-0-0.jpg",
+   "fans": 911,
+   "close_to": [
+    "Pépite",
+    "L'Impératrice",
+    "Vendredi sur Mer",
+    "The Pirouettes"
+   ]
+  }
+ },
+ {
+  "id": "cc348526a453",
+  "title": "BODEGA",
+  "date": "2027-03-08",
+  "time": "19:30",
+  "venue": "La Maroquinerie",
+  "venue_favorite": false,
+  "address": "23, RUE BOYER",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2026-10-09T09:00:00Z",
+  "status": "onsale",
+  "genre": "Rock",
+  "image": "https://s1.ticketm.net/dam/a/9c4/9508acd1-c274-4f0d-bc07-9b02e72729c4_1534171_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/bodega-billet/idmanif/674925/idseance/4435363"
+   }
+  ],
+  "artists": [
+   "Bodega"
+  ],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-08",
+  "badge": "annonce",
+  "discovery": {
+   "score": 1.0,
+   "artist": "BODEGA",
+   "link": "https://www.deezer.com/artist/148743",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/a3af0658b5ca37b3f75f80a0a17654b8/250x250-000000-80-0-0.jpg",
+   "fans": 4476,
+   "close_to": [
+    "shame",
+    "Yard Act",
+    "Viagra Boys",
+    "Amyl and The Sniffers"
    ]
   }
  },
@@ -21468,6 +22260,43 @@
   }
  },
  {
+  "id": "ada885e8409c",
+  "title": "Hamilton de Holanda",
+  "date": "2027-03-12",
+  "time": "20:30",
+  "venue": "Salle Gaveau",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": "18-89 €",
+  "on_sale": null,
+  "status": null,
+  "genre": "Monde / Traditionnel",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/salle-gaveau-3136/hamilton-de-holanda-3260099.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.3,
+   "artist": "Hamilton De Holanda",
+   "link": "https://www.deezer.com/artist/111545",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/2364f1a34cc0b99dccb04592c8987aed/250x250-000000-80-0-0.jpg",
+   "fans": 44277,
+   "close_to": [
+    "Gal Costa",
+    "Gilberto Gil"
+   ]
+  }
+ },
+ {
   "id": "8312eaf22d73",
   "title": "ASSASSIN",
   "date": "2027-03-13",
@@ -21633,6 +22462,80 @@
     "Angèle",
     "Julien Doré",
     "Clara Luciani"
+   ]
+  }
+ },
+ {
+  "id": "c30bb6c996e7",
+  "title": "Duo, trio & co",
+  "date": "2027-03-13",
+  "time": "20:00",
+  "venue": "Amphithéâtre - Cité de la Musique-Philharmonie",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Musique de chambre, Classique",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/amphitheatre-6007/duo-trio-co-3230047.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.3,
+   "artist": "DUO",
+   "link": "https://www.deezer.com/artist/379915",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/c76b12399d5b07f0816bd9b60a785083/250x250-000000-80-0-0.jpg",
+   "fans": 477,
+   "close_to": [
+    "Dan Croll",
+    "Woods"
+   ]
+  }
+ },
+ {
+  "id": "0fab104d12bc",
+  "title": "Duo, trio & co",
+  "date": "2027-03-14",
+  "time": "16:00",
+  "venue": "Amphithéâtre - Cité de la Musique-Philharmonie",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Musique de chambre, Classique",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/amphitheatre-6007/duo-trio-co-3230047.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.3,
+   "artist": "DUO",
+   "link": "https://www.deezer.com/artist/379915",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/c76b12399d5b07f0816bd9b60a785083/250x250-000000-80-0-0.jpg",
+   "fans": 477,
+   "close_to": [
+    "Dan Croll",
+    "Woods"
    ]
   }
  },
@@ -22304,6 +23207,45 @@
   }
  },
  {
+  "id": "db46ba89c97e",
+  "title": "Megadeth",
+  "date": "2027-03-21",
+  "time": "19:00",
+  "venue": "Le Zénith Paris – La Villette",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Metal, Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-zenith-3401/megadeth-3333133.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 1.0,
+   "artist": "Megadeth",
+   "link": "https://www.deezer.com/artist/3487",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/cff12b4ef973a62d886d69bf056941ec/250x250-000000-80-0-0.jpg",
+   "fans": 1800972,
+   "close_to": [
+    "Metallica",
+    "Black Sabbath",
+    "Ozzy Osbourne",
+    "Motörhead"
+   ]
+  }
+ },
+ {
   "id": "b90b9305c665",
   "title": "SIENNA SPIRO",
   "date": "2027-03-21",
@@ -22524,6 +23466,91 @@
   }
  },
  {
+  "id": "68ba4b675f4c",
+  "title": "CORTO.ALTO",
+  "date": "2027-03-24",
+  "time": "19:00",
+  "venue": "LE TRABENDO (Parc de la Villette)",
+  "venue_favorite": false,
+  "address": "AV J.JAURES /METRO PTE DE PANTIN",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2026-09-07T10:00:00Z",
+  "status": "onsale",
+  "genre": "Jazz / Blues",
+  "image": "https://s1.ticketm.net/dam/c/bea/03d47f66-d37b-4aca-aa17-0135be64dbea_105801_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/cortoalto-billet/idmanif/671518/idseance/4405832"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/cortoalto-3361960.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.73,
+   "artist": "Corto.Alto",
+   "link": "https://www.deezer.com/artist/70437882",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/f5570164228990f2a8ed59af8da9f808/250x250-000000-80-0-0.jpg",
+   "fans": 1622,
+   "close_to": [
+    "Alfa Mist",
+    "Moses Yoofee Trio",
+    "Nubiyan Twist",
+    "Greg Spero"
+   ]
+  }
+ },
+ {
+  "id": "03606f96e27a",
+  "title": "MANON LISA",
+  "date": "2027-03-24",
+  "time": "19:30",
+  "venue": "ALHAMBRA",
+  "venue_favorite": false,
+  "address": "21, RUE YVES TOUDIC",
+  "city": "Paris",
+  "price": null,
+  "on_sale": "2026-06-22T10:00:00Z",
+  "status": "onsale",
+  "genre": "Pop, Pop / Rock",
+  "image": "https://s1.ticketm.net/dam/c/0d2/1201f713-3288-4790-854a-ae42895450d2_105931_RETINA_PORTRAIT_16_9.jpg",
+  "links": [
+   {
+    "source": "Ticketmaster",
+    "url": "https://www.ticketmaster.fr/fr/manifestation/manon-lisa-billet/idmanif/664071/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/alhambra-3584/manon-lisa-3312772.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.53,
+   "artist": "Manon Lisa",
+   "link": "https://www.deezer.com/artist/177356667",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/71d05d4c87ff6cc1aa02b0655068b1e6/250x250-000000-80-0-0.jpg",
+   "fans": 13513,
+   "close_to": [
+    "Eddy de Pretto",
+    "Laurie Darmon",
+    "Foé"
+   ]
+  }
+ },
+ {
   "id": "3e5096119727",
   "title": "THYLACINE",
   "date": "2027-03-24",
@@ -22609,6 +23636,44 @@
   }
  },
  {
+  "id": "ee57060aff09",
+  "title": "Angélique Kidjo et Youssou Ndour",
+  "date": "2027-03-24",
+  "time": "20:00",
+  "venue": "Le Grand Rex",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Monde / Traditionnel",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-rex-3071/angelique-kidjo-et-youssou-ndour-3341529.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.4,
+   "artist": "Angélique Kidjo",
+   "link": "https://www.deezer.com/artist/6165",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/0c739459cab7a9e6a42d79be17508fca/250x250-000000-80-0-0.jpg",
+   "fans": 97936,
+   "close_to": [
+    "Lamomali",
+    "Ibrahim Maalouf",
+    "Amadou & Mariam"
+   ]
+  }
+ },
+ {
   "id": "5bf9eb1158a1",
   "title": "THYLACINE",
   "date": "2027-03-25",
@@ -22648,6 +23713,45 @@
     "link": "https://www.deezer.com/artist/106574"
    }
   ]
+ },
+ {
+  "id": "7e9ced370440",
+  "title": "Kolinga",
+  "date": "2027-03-25",
+  "time": "20:30",
+  "venue": "Théâtre des 2 Rives",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": "15,5-23,5 €",
+  "on_sale": null,
+  "status": null,
+  "genre": "Musiques urbaines",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-des-deux-rives-1995/kolinga-3341583.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.5,
+   "artist": "Kolinga",
+   "link": "https://www.deezer.com/artist/12199790",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/5c9f032650d020a353ee429df1a5bb11/250x250-000000-80-0-0.jpg",
+   "fans": 8298,
+   "close_to": [
+    "David Walters",
+    "Pat Kalla",
+    "Lass",
+    "La Yegros"
+   ]
+  }
  },
  {
   "id": "91b34bfec6a3",
@@ -23039,6 +24143,45 @@
   }
  },
  {
+  "id": "715200baba05",
+  "title": "Charlotte Fever",
+  "date": "2027-03-31",
+  "time": "19:30",
+  "venue": "La Maroquinerie",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop, Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/la-maroquinerie-2748/charlotte-fever-3305272.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 1.0,
+   "artist": "Charlotte Fever",
+   "link": "https://www.deezer.com/artist/14913551",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/e05d80633d2768f03c63da0352b412d2/250x250-000000-80-0-0.jpg",
+   "fans": 1221,
+   "close_to": [
+    "Pépite",
+    "Bolivard",
+    "Bleu Toucan",
+    "Vendredi sur Mer"
+   ]
+  }
+ },
+ {
   "id": "57cd543d45e9",
   "title": "TEDDY SWIMS",
   "date": "2027-03-31",
@@ -23232,12 +24375,51 @@
   "tier": 3,
   "matched": [
    {
-    "name": "KALEO",
+    "name": "Kaleo",
     "tier": 3,
     "via": "artiste",
     "link": "https://www.deezer.com/artist/1138351"
    }
   ]
+ },
+ {
+  "id": "3d0c912cc5ef",
+  "title": "Célia Kameni",
+  "date": "2027-04-01",
+  "time": "20:00",
+  "venue": "Théâtre 71",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": "34,5 €",
+  "on_sale": null,
+  "status": null,
+  "genre": "Jazz / Blues",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/theatre-71-3268/celia-kameni-3265904.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.8,
+   "artist": "Celia Kameni",
+   "link": "https://www.deezer.com/artist/6233082",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/28b4420915bdaeabfc090e263ab84b85/250x250-000000-80-0-0.jpg",
+   "fans": 2058,
+   "close_to": [
+    "MARO",
+    "James Blake",
+    "Ibeyi",
+    "Celeste"
+   ]
+  }
  },
  {
   "id": "eaf9ff9b746c",
@@ -23732,7 +24914,7 @@
    "fans": 771925,
    "close_to": [
     "New Order",
-    "Tears for Fears",
+    "Tears For Fears",
     "Soft Cell",
     "Genesis"
    ]
@@ -24090,7 +25272,7 @@
   "description": null,
   "kind": "known",
   "first_seen": "2026-10-12",
-  "badge": null,
+  "badge": "liste",
   "tier": 3,
   "matched": [
    {
@@ -24147,6 +25329,45 @@
   }
  },
  {
+  "id": "9f824f95137b",
+  "title": "America !",
+  "date": "2027-04-14",
+  "time": "20:00",
+  "venue": "Grande salle Pierre Boulez - Philharmonie de Paris",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Musiques de film, Contemporain / Expérimental",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-salle-6005/america-3234906.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.6,
+   "artist": "America",
+   "link": "https://www.deezer.com/artist/4",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/457f2a9a9b2c4717a6ebf7ff4237a9c7/250x250-000000-80-0-0.jpg",
+   "fans": 140450,
+   "close_to": [
+    "Paul McCartney",
+    "Electric Light Orchestra",
+    "Fleetwood Mac",
+    "Eagles"
+   ]
+  }
+ },
+ {
   "id": "ee79806408c7",
   "title": "ZUUKOU MAYZIE",
   "date": "2027-04-15",
@@ -24186,6 +25407,45 @@
     "Wit.",
     "Jazzy Bazz",
     "EDGE"
+   ]
+  }
+ },
+ {
+  "id": "19b28ff2ef71",
+  "title": "America !",
+  "date": "2027-04-15",
+  "time": "20:00",
+  "venue": "Grande salle Pierre Boulez - Philharmonie de Paris",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Musiques de film, Contemporain / Expérimental",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-salle-6005/america-3234906.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.6,
+   "artist": "America",
+   "link": "https://www.deezer.com/artist/4",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/457f2a9a9b2c4717a6ebf7ff4237a9c7/250x250-000000-80-0-0.jpg",
+   "fans": 140450,
+   "close_to": [
+    "Paul McCartney",
+    "Electric Light Orchestra",
+    "Fleetwood Mac",
+    "Eagles"
    ]
   }
  },
@@ -24608,7 +25868,7 @@
    "close_to": [
     "Videoclub",
     "Clio",
-    "BLOWSOM"
+    "Blowsom"
    ]
   }
  },
@@ -24722,7 +25982,7 @@
   "description": null,
   "kind": "known",
   "first_seen": "2026-10-12",
-  "badge": null,
+  "badge": "liste",
   "tier": 3,
   "matched": [
    {
@@ -24975,7 +26235,7 @@
    "close_to": [
     "Ibeyi",
     "The Dø",
-    "FM LAETI",
+    "Fm Laeti",
     "Benjamin Clementine"
    ]
   }
@@ -25112,6 +26372,42 @@
   }
  },
  {
+  "id": "7fd114d3c1db",
+  "title": "Maxim Vengerov et Martha Argerich (1)",
+  "date": "2027-05-03",
+  "time": "20:00",
+  "venue": "Grande salle Pierre Boulez - Philharmonie de Paris",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Musique de chambre, Classique",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-salle-6005/maxim-vengerov-et-martha-argerich-1-3239727.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.33,
+   "artist": "Martha Argerich",
+   "link": "https://www.deezer.com/artist/72019",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/21672aa3a669561041b6b7dbe7a29016/250x250-000000-80-0-0.jpg",
+   "fans": 130192,
+   "close_to": [
+    "Mstislav Rostropovich"
+   ]
+  }
+ },
+ {
   "id": "02623d6e295c",
   "title": "PIERS FACCINI",
   "date": "2027-05-04",
@@ -25153,6 +26449,42 @@
   }
  },
  {
+  "id": "b0a21e4e2114",
+  "title": "Maxim Vengerov et Martha Argerich (2)",
+  "date": "2027-05-04",
+  "time": "20:00",
+  "venue": "Grande salle Pierre Boulez - Philharmonie de Paris",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Musique de chambre, Classique",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-salle-6005/maxim-vengerov-et-martha-argerich-2-3239728.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.33,
+   "artist": "Martha Argerich",
+   "link": "https://www.deezer.com/artist/72019",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/21672aa3a669561041b6b7dbe7a29016/250x250-000000-80-0-0.jpg",
+   "fans": 130192,
+   "close_to": [
+    "Mstislav Rostropovich"
+   ]
+  }
+ },
+ {
   "id": "74932928e521",
   "title": "Louis Matute",
   "date": "2027-05-04",
@@ -25186,6 +26518,42 @@
    "close_to": [
     "Avishai Cohen",
     "Julian Lage"
+   ]
+  }
+ },
+ {
+  "id": "c332a8019950",
+  "title": "Maxim Vengerov et Martha Argerich (3)",
+  "date": "2027-05-05",
+  "time": "20:00",
+  "venue": "Grande salle Pierre Boulez - Philharmonie de Paris",
+  "venue_favorite": false,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Musique de chambre, Classique",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/grande-salle-6005/maxim-vengerov-et-martha-argerich-3-3239729.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "kind": "discovery",
+  "first_seen": "2026-10-07",
+  "badge": "liste",
+  "discovery": {
+   "score": 0.33,
+   "artist": "Martha Argerich",
+   "link": "https://www.deezer.com/artist/72019",
+   "picture": "https://cdn-images.dzcdn.net/images/artist/21672aa3a669561041b6b7dbe7a29016/250x250-000000-80-0-0.jpg",
+   "fans": 130192,
+   "close_to": [
+    "Mstislav Rostropovich"
    ]
   }
  },
@@ -25313,7 +26681,7 @@
    "close_to": [
     "Voyou",
     "Requin Chagrin",
-    "Ezéchiel Pailhès"
+    "Ezechiel Pailhes"
    ]
   }
  },
@@ -25351,7 +26719,7 @@
    "close_to": [
     "Johan Papaconstantino",
     "The Dø",
-    "Ezéchiel Pailhès"
+    "Ezechiel Pailhes"
    ]
   }
  },
@@ -26126,7 +27494,7 @@
    "close_to": [
     "Alabama Shakes",
     "Woods",
-    "Dope Lemon"
+    "DOPE LEMON"
    ]
   }
  },
@@ -26460,7 +27828,7 @@
    "close_to": [
     "Christine and the Queens",
     "Asaf Avidan",
-    "Lilly Wood And The Prick",
+    "Lilly Wood and the Prick",
     "Kimberose"
    ]
   }
@@ -26753,7 +28121,7 @@
    "picture": "https://cdn-images.dzcdn.net/images/artist/5b0aab23f8d2856951a92f3a9faf70e3/250x250-000000-80-0-0.jpg",
    "fans": 3415709,
    "close_to": [
-    "J Balvin",
+    "J. Balvin",
     "Nicky Jam"
    ]
   }
@@ -26879,7 +28247,7 @@
    "fans": 42977,
    "close_to": [
     "The Dø",
-    "Ezéchiel Pailhès"
+    "Ezechiel Pailhes"
    ]
   }
  },

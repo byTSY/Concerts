@@ -5576,6 +5576,30 @@
    ]
   },
   {
+   "id": "f651b9327245",
+   "title": "Miles Davis, la nuit aussi est un soleil",
+   "date": "2026-10-14",
+   "time": "20:00",
+   "venue": "Fondation des États-Unis",
+   "genre": null,
+   "price": "Gratuit",
+   "links": [
+    {
+     "source": "Que faire à Paris",
+     "url": "https://www.helloasso.com/associations/fondation-des-etats-unis/evenements/salon-litteraire-miles-davis-la-nuit-aussi-est-un-soleil-erwann-gauthier?_gl=1%2agwexfc%2a_gcl_au%2aMTk0MzM0Njc3NC4xNzg3MDUwNDEyLi0uLS4xNzg4MTczMDgwLjk1MjA4MDU5My4xNzg4MTY3MzY1LjE3ODgxODI2OTA."
+    }
+   ],
+   "kind": "known",
+   "first_seen": "2026-10-12",
+   "baseline": false,
+   "list_since": "2026-10-12",
+   "list_baseline": false,
+   "last_seen": "2026-10-12",
+   "source_keys": [
+    "Que faire à Paris:125765"
+   ]
+  },
+  {
    "id": "ffc08eaeddc6",
    "title": "L'OSMOSE + GALAWESH + SERJE",
    "date": "2026-10-14",
@@ -20914,6 +20938,30 @@
    ]
   },
   {
+   "id": "219407a5689a",
+   "title": "Carte Blanche à Fred Nardin",
+   "date": "2026-10-22",
+   "time": "21:30",
+   "venue": "Eleven Village",
+   "genre": null,
+   "price": "25 €",
+   "links": [
+    {
+     "source": "Que faire à Paris",
+     "url": "https://elevenvillage.fr/event/?id=fred-nardin"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-12",
+   "baseline": false,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-12",
+   "source_keys": [
+    "Que faire à Paris:125729"
+   ]
+  },
+  {
    "id": "84d84bef775c",
    "title": "Dandelion String Band",
    "date": "2026-10-22",
@@ -23618,6 +23666,30 @@
    "last_seen": "2026-10-12",
    "source_keys": [
     "Que faire à Paris:115449"
+   ]
+  },
+  {
+   "id": "38c799f132c8",
+   "title": "SuPERFORM - Une après-midi de performances au CCS",
+   "date": "2026-10-24",
+   "time": "17:00",
+   "venue": "Centre culturel suisse Paris",
+   "genre": null,
+   "price": "Merci de réserver uniquement votre créneau d’arrivée.",
+   "links": [
+    {
+     "source": "Que faire à Paris",
+     "url": "https://www.paris.fr/evenements/superform-une-apres-midi-de-performances-au-ccs-125770"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-12",
+   "baseline": false,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-12",
+   "source_keys": [
+    "Que faire à Paris:125770"
    ]
   },
   {
@@ -30187,7 +30259,7 @@
    ]
   },
   {
-   "id": "390f08ed6e57",
+   "id": "390f08ed6e57x",
    "title": "THE WATCH PLAYS GENESIS",
    "date": "2026-10-29",
    "time": "19:00",
@@ -30707,7 +30779,7 @@
    ]
   },
   {
-   "id": "390f08ed6e57x",
+   "id": "390f08ed6e57",
    "title": "The Watch joue Genesis",
    "date": "2026-10-29",
    "time": "20:00",
@@ -58163,6 +58235,30 @@
    "last_seen": "2026-10-12",
    "source_keys": [
     "Offi:3315279-2026-11-21T20:00"
+   ]
+  },
+  {
+   "id": "d0c4f9385c7a",
+   "title": "MASSI  ET LOUNES AMRANE",
+   "date": "2026-11-21",
+   "time": "20:00",
+   "venue": "Salle des Fêtes",
+   "genre": "World",
+   "price": null,
+   "links": [
+    {
+     "source": "Ticketmaster",
+     "url": "https://www.ticketmaster.fr/fr/manifestation/massi-et-lounes-amrane-billet/idmanif/675228/idseance/4437808"
+    }
+   ],
+   "kind": "other",
+   "first_seen": "2026-10-12",
+   "baseline": false,
+   "list_since": null,
+   "list_baseline": false,
+   "last_seen": "2026-10-12",
+   "source_keys": [
+    "Ticketmaster:ZkyMmBwZ1A78MOF"
    ]
   },
   {
@@ -88415,10 +88511,10 @@
      "url": "https://www.offi.fr/concerts/le-trabendo-3288/gilla-band-3260024.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -88787,10 +88883,10 @@
      "url": "https://www.offi.fr/concerts/maison-de-radio-france-2674/america-3331982.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -89000,10 +89096,10 @@
      "url": "https://www.offi.fr/concerts/la-maroquinerie-2748/7-weeks-3305072.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -90357,10 +90453,10 @@
      "url": "https://www.offi.fr/concerts/theatre-de-la-ville-3378/miossec-3316185.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -90381,10 +90477,10 @@
      "url": "https://www.offi.fr/concerts/theatre-de-la-ville-les-abbesses-3377/alexis-hk-3316429.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -90822,10 +90918,10 @@
      "url": "https://www.offi.fr/concerts/le-trabendo-3288/slow-pulp-3312257.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -95417,10 +95513,10 @@
      "url": "https://www.offi.fr/concerts/le-trabendo-3288/los-bitchos-et-invites-3361947.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-08",
    "baseline": false,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -97428,10 +97524,10 @@
      "url": "https://www.offi.fr/concerts/le-trabendo-3288/protomartyr-3312261.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -98822,10 +98918,10 @@
      "url": "https://www.offi.fr/concerts/le-zenith-3401/ezra-collective-3307317.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -99218,10 +99314,10 @@
      "url": "https://www.ticketmaster.fr/fr/manifestation/quinn-oulton-billet/idmanif/674137/idseance/4430721"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-12",
    "baseline": false,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -99458,10 +99554,10 @@
      "url": "https://www.offi.fr/concerts/cafe-de-la-danse-1598/elvett-3312809.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -99660,10 +99756,10 @@
      "url": "https://www.offi.fr/concerts/theatre-de-saint-quentin-en-yvelines-4133/fred-pallem-le-sacre-du-tympan-3326698.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -99756,10 +99852,10 @@
      "url": "https://www.offi.fr/concerts/le-studio-7027/celia-kameni-3229992.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -100049,10 +100145,10 @@
      "url": "https://dice.fm/event/6ac65b9936add6000112cf1c"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-12",
    "baseline": false,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -100387,10 +100483,10 @@
      "url": "https://www.offi.fr/concerts/grande-salle-6005/dee-dee-bridgewater-3229993.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -101821,10 +101917,10 @@
      "url": "https://www.offi.fr/concerts/cines-carne-1834/hugh-coltman-et-lensemble-contraste-3299095.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -102220,10 +102316,10 @@
      "url": "https://www.offi.fr/concerts/maison-de-radio-france-2674/gidon-kremer-fete-ses-80-ans-avec-martha-argerich-3332014.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -102489,10 +102585,10 @@
      "url": "https://www.offi.fr/concerts/opera-de-massy-4129/virtuosite-et-destin-3358212.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -102624,10 +102720,10 @@
      "url": "https://www.ticketmaster.fr/fr/manifestation/bodega-billet/idmanif/674925/idseance/4435363"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-08",
    "baseline": false,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -104307,10 +104403,10 @@
      "url": "https://www.offi.fr/concerts/salle-gaveau-3136/hamilton-de-holanda-3260099.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -104870,10 +104966,10 @@
      "url": "https://www.offi.fr/concerts/amphitheatre-6007/duo-trio-co-3230047.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -105096,10 +105192,10 @@
      "url": "https://www.offi.fr/concerts/amphitheatre-6007/duo-trio-co-3230047.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -107802,10 +107898,10 @@
      "url": "https://www.offi.fr/concerts/le-zenith-3401/megadeth-3333133.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -108701,10 +108797,10 @@
      "url": "https://www.offi.fr/concerts/le-trabendo-3288/cortoalto-3361960.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -108730,10 +108826,10 @@
      "url": "https://www.offi.fr/concerts/alhambra-3584/manon-lisa-3312772.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -108914,10 +109010,10 @@
      "url": "https://www.offi.fr/concerts/le-rex-3071/angelique-kidjo-et-youssou-ndour-3341529.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -109337,10 +109433,10 @@
      "url": "https://www.offi.fr/concerts/theatre-des-deux-rives-1995/kolinga-3341583.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -110540,10 +110636,10 @@
      "url": "https://www.offi.fr/concerts/la-maroquinerie-2748/charlotte-fever-3305272.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -110910,10 +111006,10 @@
      "url": "https://www.offi.fr/concerts/theatre-71-3268/celia-kameni-3265904.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -113711,10 +113807,10 @@
      "url": "https://www.offi.fr/concerts/grande-salle-6005/america-3234906.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -113759,10 +113855,10 @@
      "url": "https://www.offi.fr/concerts/grande-salle-6005/america-3234906.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -117251,10 +117347,10 @@
      "url": "https://www.offi.fr/concerts/grande-salle-6005/maxim-vengerov-et-martha-argerich-1-3239727.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -117347,10 +117443,10 @@
      "url": "https://www.offi.fr/concerts/grande-salle-6005/maxim-vengerov-et-martha-argerich-2-3239728.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
@@ -117515,10 +117611,10 @@
      "url": "https://www.offi.fr/concerts/grande-salle-6005/maxim-vengerov-et-martha-argerich-3-3239729.html"
     }
    ],
-   "kind": "other",
+   "kind": "discovery",
    "first_seen": "2026-10-07",
    "baseline": true,
-   "list_since": null,
+   "list_since": "2026-10-12",
    "list_baseline": false,
    "last_seen": "2026-10-12",
    "source_keys": [
