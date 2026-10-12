@@ -1,30 +1,5 @@
 [
  {
-  "id": "2db471ee0ee9",
-  "title": "Les P'tits Baudets, la prog famille des Trois Baudets !",
-  "date": "2026-10-12",
-  "time": null,
-  "venue": "Les Trois Baudets",
-  "venue_id": null,
-  "address": "64 Boulevard de Clichy",
-  "city": "Paris",
-  "price": "7 euros.",
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": "https://cdn.paris.fr/qfapv4/2024/12/20/huge-526c54bce4236a7e8b5c9039f40c9a7b.jpg",
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://lestroisbaudets.com/l-agenda?filtre%5Bltb_liste_evenements%5D%5Btype%5D=161"
-   }
-  ],
-  "artists": [],
-  "description": "Les Trois Baudets propose, du 27 septembre au 06 décembre 2026, une programmation musicale familiale pour les enfants de 2 ans à 6 ans et +, selon les spectacles.",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "ea8378902bcb",
   "title": "Apollo « late » sessions, Groove & spirited jazz, late show et jam session au 38Riv Jazz Club",
   "date": "2026-10-12",
@@ -71,6 +46,31 @@
   ],
   "artists": [],
   "description": "Une Jam Session Blues animée par Lemmy’s Tribe !",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "2db471ee0ee9",
+  "title": "Les P'tits Baudets, la prog famille des Trois Baudets !",
+  "date": "2026-10-12",
+  "time": null,
+  "venue": "Les Trois Baudets",
+  "venue_id": null,
+  "address": "64 Boulevard de Clichy",
+  "city": "Paris",
+  "price": "7 euros.",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2024/12/20/huge-526c54bce4236a7e8b5c9039f40c9a7b.jpg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://lestroisbaudets.com/l-agenda?filtre%5Bltb_liste_evenements%5D%5Btype%5D=161"
+   }
+  ],
+  "artists": [],
+  "description": "Les Trois Baudets propose, du 27 septembre au 06 décembre 2026, une programmation musicale familiale pour les enfants de 2 ans à 6 ans et +, selon les spectacles.",
   "first_seen": "2026-10-07",
   "badge": null
  },
@@ -225,31 +225,6 @@
   "badge": null
  },
  {
-  "id": "161e7c2553c0",
-  "title": "Kiosque en fête au jardin du Ranelagh",
-  "date": "2026-10-12",
-  "time": null,
-  "venue": "Jardin du Ranelagh",
-  "venue_id": null,
-  "address": "1, avenue Prudhon",
-  "city": "Paris",
-  "price": "Gratuit",
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": "https://cdn.paris.fr/qfapv4/2025/06/04/huge-df66110b2c5d35ca79be682547c26f7e.jpg",
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://www.paris.fr/pages/appel-a-projets-kiosques-en-fete-25755"
-   }
-  ],
-  "artists": [],
-  "description": "Concerts et représentations de danse y sont programmés dans le cadre de la saison « Kiosques en fête ».",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "f1e837146998",
   "title": "Agenda artistique du Conservatoire Municipal Francis Poulenc",
   "date": "2026-10-12",
@@ -271,6 +246,31 @@
   ],
   "artists": [],
   "description": "Le Conservatoire Muncipal du 16ème vous propose chaque année une saison artistique riche et variée.",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "161e7c2553c0",
+  "title": "Kiosque en fête au jardin du Ranelagh",
+  "date": "2026-10-12",
+  "time": null,
+  "venue": "Jardin du Ranelagh",
+  "venue_id": null,
+  "address": "1, avenue Prudhon",
+  "city": "Paris",
+  "price": "Gratuit",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2025/06/04/huge-df66110b2c5d35ca79be682547c26f7e.jpg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.paris.fr/pages/appel-a-projets-kiosques-en-fete-25755"
+   }
+  ],
+  "artists": [],
+  "description": "Concerts et représentations de danse y sont programmés dans le cadre de la saison « Kiosques en fête ».",
   "first_seen": "2026-10-07",
   "badge": null
  },
@@ -371,31 +371,6 @@
   ],
   "artists": [],
   "description": "Concerts et danse y sont programmés dans le cadre de la saison « Kiosques en fête ».",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "9db06c51a283",
-  "title": "L'agenda du CRR de Paris",
-  "date": "2026-10-12",
-  "time": null,
-  "venue": "Conservatoire à rayonnement régional de Paris - Ida Rubinstein, site Italie",
-  "venue_id": null,
-  "address": "18 avenue de la porte d’Italie",
-  "city": "Paris",
-  "price": "Gratuit",
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": "https://cdn.paris.fr/qfapv4/2026/07/06/huge-5aec81f44128582a9077e43f29bf3fba.jpg",
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://www.paris.fr/evenements/l-agenda-et-les-evenements-du-crr-de-paris-ida-rubinstein-90297"
-   }
-  ],
-  "artists": [],
-  "description": "Chaque saison, l'équipe du CRR de Paris propose une multitude de représentations publiques in situ ou hors les murs. Cette programmation culturelle constitue un moment d'apprentissage privilégié de la scène pour nos élèves et étudiant·es.",
   "first_seen": "2026-10-07",
   "badge": null
  },
@@ -879,6 +854,31 @@
   "badge": null
  },
  {
+  "id": "9db06c51a283",
+  "title": "L'agenda du CRR de Paris",
+  "date": "2026-10-12",
+  "time": null,
+  "venue": "Conservatoire à rayonnement régional de Paris - Ida Rubinstein, site Italie",
+  "venue_id": null,
+  "address": "18 avenue de la porte d’Italie",
+  "city": "Paris",
+  "price": "Gratuit",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2026/07/06/huge-5aec81f44128582a9077e43f29bf3fba.jpg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.paris.fr/evenements/l-agenda-et-les-evenements-du-crr-de-paris-ida-rubinstein-90297"
+   }
+  ],
+  "artists": [],
+  "description": "Chaque saison, l'équipe du CRR de Paris propose une multitude de représentations publiques in situ ou hors les murs. Cette programmation culturelle constitue un moment d'apprentissage privilégié de la scène pour nos élèves et étudiant·es.",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
   "id": "8d7f2fb24dea",
   "title": "Zoot « late » sessions - Heritage jazz, late show et jam session au 38Riv Jazz Club",
   "date": "2026-10-12",
@@ -954,6 +954,31 @@
   "badge": null
  },
  {
+  "id": "d7db0f26ae99",
+  "title": "Kiosque en Fête au parc de Choisy",
+  "date": "2026-10-12",
+  "time": null,
+  "venue": "Parc de Choisy",
+  "venue_id": null,
+  "address": "128, avenue de Choisy",
+  "city": "Paris",
+  "price": "Gratuit",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2025/05/28/huge-164f8aff042b5f1c1d80e4e2699be0ab.jpg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.paris.fr/pages/appel-a-projets-kiosques-en-fete-25755"
+   }
+  ],
+  "artists": [],
+  "description": "Concerts, danse et théâtre y sont programmés dans le cadre de la saison « Kiosques en fête ».",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
   "id": "cdcfbc93283d",
   "title": "Les évènements du conservatoire Mozart",
   "date": "2026-10-12",
@@ -1002,31 +1027,6 @@
   "description": "Un moment de partage autour du travail réalisé par les élèves d'une même classe",
   "first_seen": "2026-10-08",
   "badge": "annonce"
- },
- {
-  "id": "d7db0f26ae99",
-  "title": "Kiosque en Fête au parc de Choisy",
-  "date": "2026-10-12",
-  "time": null,
-  "venue": "Parc de Choisy",
-  "venue_id": null,
-  "address": "128, avenue de Choisy",
-  "city": "Paris",
-  "price": "Gratuit",
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": "https://cdn.paris.fr/qfapv4/2025/05/28/huge-164f8aff042b5f1c1d80e4e2699be0ab.jpg",
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://www.paris.fr/pages/appel-a-projets-kiosques-en-fete-25755"
-   }
-  ],
-  "artists": [],
-  "description": "Concerts, danse et théâtre y sont programmés dans le cadre de la saison « Kiosques en fête ».",
-  "first_seen": "2026-10-07",
-  "badge": null
  },
  {
   "id": "39c38509f5be",
@@ -1129,31 +1129,6 @@
   "badge": null
  },
  {
-  "id": "f0602c221d59",
-  "title": "Jazz & goûter : toute la programmation",
-  "date": "2026-10-12",
-  "time": null,
-  "venue": "Le Sunset/Sunside",
-  "venue_id": null,
-  "address": "60, rue des Lombards",
-  "city": "Paris",
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": "https://cdn.paris.fr/qfapv4/2024/02/02/huge-42810f06bed92e405095359736ee0cff.jpg",
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://www.sunset-sunside.com/agenda/"
-   }
-  ],
-  "artists": [],
-  "description": "Jazz & Goûter, le concept qui cartonne chaque dimanche à l’heure du goûter est de retour! Vous avez le choix entre trois séances : 11h, 15h ou 17h. Dès 2 ans",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "f378532e2662",
   "title": "L'agenda du Conservatoire Erik Satie",
   "date": "2026-10-12",
@@ -1175,6 +1150,31 @@
   ],
   "artists": [],
   "description": "Retrouvez tous les évènements, rendez-vous, temps forts du conservatoire du 7e arrondissement de Paris.",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "f0602c221d59",
+  "title": "Jazz & goûter : toute la programmation",
+  "date": "2026-10-12",
+  "time": null,
+  "venue": "Le Sunset/Sunside",
+  "venue_id": null,
+  "address": "60, rue des Lombards",
+  "city": "Paris",
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2024/02/02/huge-42810f06bed92e405095359736ee0cff.jpg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.sunset-sunside.com/agenda/"
+   }
+  ],
+  "artists": [],
+  "description": "Jazz & Goûter, le concept qui cartonne chaque dimanche à l’heure du goûter est de retour! Vous avez le choix entre trois séances : 11h, 15h ou 17h. Dès 2 ans",
   "first_seen": "2026-10-07",
   "badge": null
  },
@@ -1454,31 +1454,6 @@
   "badge": null
  },
  {
-  "id": "38f9fcb16ee5",
-  "title": "Master classes, ateliers, rencontres, restitutions et conférences",
-  "date": "2026-10-12",
-  "time": "15:00",
-  "venue": "Conservatoire à rayonnement régional de Paris - Ida Rubinstein",
-  "venue_id": null,
-  "address": "14, rue de Madrid",
-  "city": "Paris",
-  "price": "Gratuit",
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": "https://cdn.paris.fr/qfapv4/2025/09/10/huge-99b963b872c4075473fe4238e4616742.jpg",
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://www.paris.fr/crr"
-   }
-  ],
-  "artists": [],
-  "description": "Assistez à ces moments de rencontres avec des personnalités artistiques invité·es dans les domaines de la musique, de la danse et du théâtre",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "ca41cf59a14b",
   "title": "Orphée",
   "date": "2026-10-12",
@@ -1581,31 +1556,6 @@
   "badge": null
  },
  {
-  "id": "1cbe28a3e49b",
-  "title": "Jam session funk/néo soul à Paris",
-  "date": "2026-10-12",
-  "time": "19:00",
-  "venue": "Restaurant Marilou",
-  "venue_id": null,
-  "address": "46 rue de la victoire",
-  "city": "Paris",
-  "price": "Gratuit",
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": "https://cdn.paris.fr/qfapv4/2026/03/30/huge-c953d91699d26341d793c16d221ac9db.jpg",
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "marilou-lerestau.fr/event-list"
-   }
-  ],
-  "artists": [],
-  "description": "Le restaurant Marilou organise une jam session funk et néo-soul tous les jeudis. Venez découvrir de jeunes artistes qui viennent s’amuser sur des reprises ou faire de l’improvisation.",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "39c1a0999b84",
   "title": "Le cycle musical de Paul Serri au Théâtre de la Concorde !",
   "date": "2026-10-12",
@@ -1631,52 +1581,27 @@
   "badge": null
  },
  {
-  "id": "da2a7c697610",
-  "title": "Ensemble royal de Paris",
+  "id": "1cbe28a3e49b",
+  "title": "Jam session funk/néo soul à Paris",
   "date": "2026-10-12",
   "time": "19:00",
-  "venue": "Église Saint-Julien-le-Pauvre",
+  "venue": "Restaurant Marilou",
   "venue_id": null,
-  "address": null,
-  "city": null,
-  "price": "24,5-46,5 €",
+  "address": "46 rue de la victoire",
+  "city": "Paris",
+  "price": "Gratuit",
   "on_sale": null,
   "status": null,
-  "genre": "Église, Classique",
-  "image": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2026/03/30/huge-c953d91699d26341d793c16d221ac9db.jpg",
   "links": [
    {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/eglise-saint-julien-le-pauvre-2144/ensemble-royal-de-paris-3298966.html"
+    "source": "Que faire à Paris",
+    "url": "marilou-lerestau.fr/event-list"
    }
   ],
   "artists": [],
-  "description": null,
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "31cabdcedb53",
-  "title": "Adrien Polycarpe",
-  "date": "2026-10-12",
-  "time": "19:00",
-  "venue": "Église Saint-Éphrem",
-  "venue_id": null,
-  "address": null,
-  "city": null,
-  "price": "16,5-25,5 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Concert à la bougie, Classique",
-  "image": null,
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/eglise-saint-ephrem-2115/adrien-polycarpe-3307232.html"
-   }
-  ],
-  "artists": [],
-  "description": null,
+  "description": "Le restaurant Marilou organise une jam session funk et néo-soul tous les jeudis. Venez découvrir de jeunes artistes qui viennent s’amuser sur des reprises ou faire de l’improvisation.",
   "first_seen": "2026-10-07",
   "badge": null
  },
@@ -1692,116 +1617,12 @@
   "price": null,
   "on_sale": null,
   "status": null,
-  "genre": "Pop / Rock",
+  "genre": null,
   "image": null,
   "links": [
    {
     "source": "Dice",
     "url": "https://dice.fm/event/6a15bb1b32a0c90001986676"
-   },
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/supersonic-6333/alisons-halo-typical-light-tannhauser-dream-3353053.html"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "1c3f990b9ff8",
-  "title": "Felhur et Andro",
-  "date": "2026-10-12",
-  "time": "19:30",
-  "venue": "La Maroquinerie",
-  "venue_id": null,
-  "address": null,
-  "city": null,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Rap, Musiques urbaines",
-  "image": null,
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/la-maroquinerie-2748/felhur-et-andro-3304992.html"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "d25cee4b0767",
-  "title": "Ramona Horvath et Lisa Cat-Berro",
-  "date": "2026-10-12",
-  "time": "19:30",
-  "venue": "38 RIV - Jazz Club & Bar",
-  "venue_id": null,
-  "address": null,
-  "city": null,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Jazz / Blues",
-  "image": null,
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/cave-du-38-riv-4381/ramona-horvath-et-lisa-cat-berro-3342456.html"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "b022c81d0e23",
-  "title": "Amaro Freitas trio",
-  "date": "2026-10-12",
-  "time": "19:30",
-  "venue": "Duc des Lombards",
-  "venue_id": null,
-  "address": null,
-  "city": null,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Musique brésilienne, Jazz / Blues",
-  "image": null,
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/duc-des-lombards-2009/amaro-freitas-trio-3356858.html"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "ef43ecba576a",
-  "title": "Hommage à Freddie Hubbard",
-  "date": "2026-10-12",
-  "time": "19:30",
-  "venue": "Sunside",
-  "venue_id": null,
-  "address": null,
-  "city": null,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Jazz / Blues",
-  "image": null,
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/sunside-3225/hommage-a-freddie-hubbard-3338467.html"
    }
   ],
   "artists": [],
@@ -1820,7 +1641,7 @@
   "city": "Paris",
   "price": null,
   "on_sale": "2026-08-28T09:00:00Z",
-  "status": "onsale",
+  "status": "offsale",
   "genre": "Rock",
   "image": "https://s1.ticketm.net/dam/a/098/96d2c381-e29a-4231-838f-6cbacc9ce098_RETINA_PORTRAIT_16_9.jpg",
   "links": [
@@ -1847,17 +1668,13 @@
   "city": "Paris",
   "price": null,
   "on_sale": "2026-06-15T08:00:00Z",
-  "status": "onsale",
-  "genre": "Rap, Musiques urbaines",
+  "status": "offsale",
+  "genre": "Jazz",
   "image": "https://s1.ticketm.net/dam/a/fb9/2f37211b-6278-4c75-8ec6-505a4ac9efb9_RETINA_PORTRAIT_16_9.jpg",
   "links": [
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/lowdown-brass-band-billet/idmanif/663444/idtier/18864121"
-   },
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/new-morning-2842/lowdown-brass-band-3315080.html"
    }
   ],
   "artists": [
@@ -1878,17 +1695,13 @@
   "city": "Paris",
   "price": null,
   "on_sale": "2026-01-27T11:33:01Z",
-  "status": "onsale",
-  "genre": "Pop / Rock",
+  "status": "offsale",
+  "genre": "Rock",
   "image": "https://s1.ticketm.net/dam/a/51b/1c8fde45-36ff-4fe6-a244-12280aee251b_RETINA_PORTRAIT_16_9.jpg",
   "links": [
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/joe-jackson-band-billet/idmanif/640669/idtier/18864121"
-   },
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/lolympia-2874/joe-jackson-3121712.html"
    }
   ],
   "artists": [
@@ -1909,17 +1722,13 @@
   "city": "Paris",
   "price": null,
   "on_sale": "2026-01-29T09:00:00Z",
-  "status": "onsale",
-  "genre": "Pop / Rock",
+  "status": "offsale",
+  "genre": "Rock",
   "image": "https://s1.ticketm.net/dam/a/60e/2fbd0c41-705a-4056-8fdc-3e19e3b3560e_159071_RETINA_PORTRAIT_16_9.jpg",
   "links": [
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/jack-savoretti-billet/idmanif/648012/idtier/18864121"
-   },
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/theatre-trianon-3299/jack-savoretti-3172879.html"
    }
   ],
   "artists": [
@@ -1940,7 +1749,7 @@
   "city": "Paris",
   "price": null,
   "on_sale": "2026-07-02T09:00:00Z",
-  "status": "onsale",
+  "status": "offsale",
   "genre": "Hip-Hop/Rap",
   "image": "https://s1.ticketm.net/dam/c/80b/f3cd8d24-c3ae-4fa0-b4bc-1ba99f9b380b_106091_RETINA_PORTRAIT_16_9.jpg",
   "links": [
@@ -1965,8 +1774,8 @@
   "city": "Paris",
   "price": null,
   "on_sale": "2026-07-29T08:00:00Z",
-  "status": "onsale",
-  "genre": "Pop, Pop / Rock",
+  "status": "offsale",
+  "genre": "Pop",
   "image": "https://s1.ticketm.net/dam/a/261/b5355031-8938-4629-8fdf-99e606aa2261_RETINA_PORTRAIT_16_9.jpg",
   "links": [
    {
@@ -1976,41 +1785,12 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/tyla-billet/idmanif/668812/idseance/4389572"
-   },
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/le-zenith-3401/tyla-3346862.html"
    }
   ],
   "artists": [
    "Tyla"
   ],
   "description": null,
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "df314ee4b755",
-  "title": "#Rdv avec LE QUINT’UP",
-  "date": "2026-10-12",
-  "time": "20:00",
-  "venue": "Le Baiser Salé",
-  "venue_id": null,
-  "address": "58 Rue des Lombards",
-  "city": "Paris",
-  "price": "Tarif sur place : 33 EUR Tarif Reduit : 13 EUR Tarif Paris Jazz Club : 23 EUR Tarif Web : 28 EUR",
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": "https://cdn.paris.fr/qfapv4/2026/06/19/huge-579c693814328d842174f598260d2b8c.jpeg",
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://www.lebaisersale.com/fr/agenda?date_concert=24%2F09%2F2026&artiste=LE+QUINT%E2%80%99UP"
-   }
-  ],
-  "artists": [],
-  "description": "Quint’Up réunit cinq musiciens d’exception autour d’un jazz incandescent, où hard bop, rythmes caribéens et énergie collective ne font qu’un.",
   "first_seen": "2026-10-07",
   "badge": null
  },
@@ -2036,6 +1816,31 @@
   ],
   "artists": [],
   "description": "Le rendez vous incontournable des amoureux de la chanson introuvable, oubliée, décalée, interprétée par un orchestre de haut vol et des chanteurs tous plus uniques les uns que les autres.",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "df314ee4b755",
+  "title": "#Rdv avec LE QUINT’UP",
+  "date": "2026-10-12",
+  "time": "20:00",
+  "venue": "Le Baiser Salé",
+  "venue_id": null,
+  "address": "58 Rue des Lombards",
+  "city": "Paris",
+  "price": "Tarif sur place : 33 EUR Tarif Reduit : 13 EUR Tarif Paris Jazz Club : 23 EUR Tarif Web : 28 EUR",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2026/06/19/huge-579c693814328d842174f598260d2b8c.jpeg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.lebaisersale.com/fr/agenda?date_concert=24%2F09%2F2026&artiste=LE+QUINT%E2%80%99UP"
+   }
+  ],
+  "artists": [],
+  "description": "Quint’Up réunit cinq musiciens d’exception autour d’un jazz incandescent, où hard bop, rythmes caribéens et énergie collective ne font qu’un.",
   "first_seen": "2026-10-07",
   "badge": null
  },
@@ -2165,56 +1970,6 @@
   "badge": null
  },
  {
-  "id": "d56feb2a457a",
-  "title": "Lucas et Arthur Jussen",
-  "date": "2026-10-12",
-  "time": "20:00",
-  "venue": "Théâtre des Champs-Élysées",
-  "venue_id": null,
-  "address": null,
-  "city": null,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Piano, Classique",
-  "image": null,
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/theatre-des-champs-elysees-1756/lucas-et-arthur-jussen-3227126.html"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "99d0c4c5130d",
-  "title": "Alexandre Tharaud : voyage en France",
-  "date": "2026-10-12",
-  "time": "20:00",
-  "venue": "Grande salle Pierre Boulez - Philharmonie de Paris",
-  "venue_id": null,
-  "address": null,
-  "city": null,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Piano, Classique",
-  "image": null,
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/grande-salle-6005/alexandre-tharaud-voyage-en-france-3224496.html"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "37a40fe58b68",
   "title": "James Blake | Trying times european tour 2026 + Monica Martin",
   "date": "2026-10-12",
@@ -2226,116 +1981,12 @@
   "price": null,
   "on_sale": null,
   "status": null,
-  "genre": "RnB, Musiques urbaines",
+  "genre": null,
   "image": null,
   "links": [
    {
     "source": "Dice",
     "url": "https://dice.fm/event/69b3d441f4ea660001d0ba94"
-   },
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/le-rex-3071/james-blake-3225874.html"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "227ab19782b9",
-  "title": "I Got Rhythm",
-  "date": "2026-10-12",
-  "time": "20:00",
-  "venue": "Grand Salon du Musée de l'Armée - Musée de l'Armée",
-  "venue_id": null,
-  "address": null,
-  "city": null,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Piano, Classique",
-  "image": null,
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/grand-salon-du-musee-de-larmee-5605/i-got-rhythm-3308689.html"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "8db724e799f7",
-  "title": "Petite Sœur",
-  "date": "2026-10-12",
-  "time": "20:00",
-  "venue": "La Cigale",
-  "venue_id": "cigale",
-  "address": null,
-  "city": null,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Rap, Musiques urbaines",
-  "image": null,
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/la-cigale-1805/petite-soeur-3351927.html"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "38f82bb3606a",
-  "title": "Toshín",
-  "date": "2026-10-12",
-  "time": "20:00",
-  "venue": "Péniche Antipode",
-  "venue_id": null,
-  "address": null,
-  "city": null,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Musiques urbaines",
-  "image": null,
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/peniche-antipode-2979/toshin-3353139.html"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "67a860d634cd",
-  "title": "Jhariah Clare",
-  "date": "2026-10-12",
-  "time": "20:00",
-  "venue": "PopUp!",
-  "venue_id": null,
-  "address": null,
-  "city": null,
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "Pop / Rock",
-  "image": null,
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/le-pop-up-du-label-5926/jhariah-clare-3353073.html"
    }
   ],
   "artists": [],
@@ -2354,17 +2005,13 @@
   "city": "Paris",
   "price": null,
   "on_sale": "2026-06-26T09:00:00Z",
-  "status": "onsale",
+  "status": "offsale",
   "genre": "Rock",
   "image": "https://s1.ticketm.net/dam/a/d52/9a01fabe-95cb-4f26-a4ba-0bb779425d52_RETINA_PORTRAIT_16_9.jpg",
   "links": [
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/jhariah-billet/idmanif/664652/idtier/18864121"
-   },
-   {
-    "source": "Dice",
-    "url": "https://dice.fm/event/6a33ef3700591a000135be24"
    }
   ],
   "artists": [
@@ -3004,31 +2651,6 @@
   "badge": null
  },
  {
-  "id": "f1bdbde2a317",
-  "title": "Ensemble royal de Paris",
-  "date": "2026-10-13",
-  "time": "18:00",
-  "venue": "Église Saint-Julien-le-Pauvre",
-  "venue_id": null,
-  "address": null,
-  "city": null,
-  "price": "24,5-46,5 €",
-  "on_sale": null,
-  "status": null,
-  "genre": "Église, Classique",
-  "image": null,
-  "links": [
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/eglise-saint-julien-le-pauvre-2144/ensemble-royal-de-paris-3298966.html"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "7b0ec3194ebd",
   "title": "AMON AMARTH",
   "date": "2026-10-13",
@@ -3569,35 +3191,6 @@
   "badge": null
  },
  {
-  "id": "0c8d87b49215",
-  "title": "James Blake | Trying times european tour 2026 + Monica Martin",
-  "date": "2026-10-13",
-  "time": "20:00",
-  "venue": "Le Grand Rex",
-  "venue_id": null,
-  "address": "1 Boulevard Poissonnière, 75009 Paris",
-  "city": "Paris",
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": "RnB, Musiques urbaines",
-  "image": null,
-  "links": [
-   {
-    "source": "Dice",
-    "url": "https://dice.fm/event/69b99a2f66bbb800017e494b"
-   },
-   {
-    "source": "Offi",
-    "url": "https://www.offi.fr/concerts/le-rex-3071/james-blake-3225874.html"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "1c2fe4f98a39",
   "title": "Classic Spectacular",
   "date": "2026-10-13",
@@ -3898,6 +3491,31 @@
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/la-dame-de-canton-3451/violet-noise-diivague-andrew-clarke-3353667.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "0c8d87b49215",
+  "title": "James Blake | Trying times european tour 2026 + Monica Martin",
+  "date": "2026-10-13",
+  "time": "20:00",
+  "venue": "Le Grand Rex",
+  "venue_id": null,
+  "address": "1 Boulevard Poissonnière, 75009 Paris",
+  "city": "Paris",
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": null,
+  "links": [
+   {
+    "source": "Dice",
+    "url": "https://dice.fm/event/69b99a2f66bbb800017e494b"
    }
   ],
   "artists": [],
@@ -8238,31 +7856,6 @@
   "badge": null
  },
  {
-  "id": "54884a5b92b5",
-  "title": "Mune Concert",
-  "date": "2026-10-15",
-  "time": "21:00",
-  "venue": "Bateau El Alamein",
-  "venue_id": null,
-  "address": "8, port de la Gare",
-  "city": "Paris",
-  "price": "De 10 à 15 euros. 🎟️ Prévente : 12 euros (+ frais) 🎟️ Sur place : 15 euros (Billets disponibles uniquement à l’entrée, le jour du concert, dans la limite des places disponibles)",
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": "https://cdn.paris.fr/qfapv4/2026/08/17/huge-0d0733e1a78fd07db9c795a716af1861.jpeg",
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://shotgun.live/fr/events/mune-concert-paris"
-   }
-  ],
-  "artists": [],
-  "description": "MUNE compose depuis sa tiny house nichée dans les dunes du Cotentin. Ici, pas de studio aux murs capitonnés : juste le vent, l'océan et une écriture qui s'abreuve aux images encore humides de rêve.",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "2e2d5c98d741",
   "title": "DEUX VIENNE(S) | BEETHOVEN | WEBERN",
   "date": "2026-10-15",
@@ -8284,6 +7877,31 @@
   ],
   "artists": [],
   "description": "Et si vous faisiez un voyage musical à Vienne… sans quitter Paris ? Le 15 octobre au Théâtre des Champs-Elysées.",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "54884a5b92b5",
+  "title": "Mune Concert",
+  "date": "2026-10-15",
+  "time": "21:00",
+  "venue": "Bateau El Alamein",
+  "venue_id": null,
+  "address": "8, port de la Gare",
+  "city": "Paris",
+  "price": "De 10 à 15 euros. 🎟️ Prévente : 12 euros (+ frais) 🎟️ Sur place : 15 euros (Billets disponibles uniquement à l’entrée, le jour du concert, dans la limite des places disponibles)",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2026/08/17/huge-0d0733e1a78fd07db9c795a716af1861.jpeg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://shotgun.live/fr/events/mune-concert-paris"
+   }
+  ],
+  "artists": [],
+  "description": "MUNE compose depuis sa tiny house nichée dans les dunes du Cotentin. Ici, pas de studio aux murs capitonnés : juste le vent, l'océan et une écriture qui s'abreuve aux images encore humides de rêve.",
   "first_seen": "2026-10-07",
   "badge": null
  },
@@ -8634,6 +8252,31 @@
   ],
   "artists": [],
   "description": null,
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "38f9fcb16ee5",
+  "title": "Master classes, ateliers, rencontres, restitutions et conférences",
+  "date": "2026-10-16",
+  "time": "15:00",
+  "venue": "Conservatoire à rayonnement régional de Paris - Ida Rubinstein",
+  "venue_id": null,
+  "address": "14, rue de Madrid",
+  "city": "Paris",
+  "price": "Gratuit",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2025/09/10/huge-99b963b872c4075473fe4238e4616742.jpg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.paris.fr/crr"
+   }
+  ],
+  "artists": [],
+  "description": "Assistez à ces moments de rencontres avec des personnalités artistiques invité·es dans les domaines de la musique, de la danse et du théâtre",
   "first_seen": "2026-10-07",
   "badge": null
  },
@@ -23578,31 +23221,6 @@
   "badge": null
  },
  {
-  "id": "63e0af24664b",
-  "title": "HOT BODIES à la Maison des Métallos",
-  "date": "2026-10-23",
-  "time": "21:00",
-  "venue": "La Maison des Métallos",
-  "venue_id": null,
-  "address": "94, rue Jean-Pierre Timbaud",
-  "city": "Paris",
-  "price": "Tarif plein｜25€ Tarif réduit 1｜15€ Tarif réduit 2｜10€",
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": "https://cdn.paris.fr/qfapv4/2026/06/16/huge-4ac8a36b96c78a036b00e9c503223536.jpg",
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://maisondesmetallos-billetterie.mapado.com/event/707445-hot-bodies-gerald-kurdian"
-   }
-  ],
-  "artists": [],
-  "description": "Après la sortie de son EP Digital Fairy/Folk Songs en 2025, Gérald Kurdian, alias HOT BODIES, revient avec une nouvelle proposition intime et élégante : un concert, comme une plongée en avant-première dans les morceaux de son prochain album, The Transition Pieces.",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "323b6c674278",
   "title": "Tribute to Brandford Marsalis",
   "date": "2026-10-23",
@@ -23624,6 +23242,31 @@
   ],
   "artists": [],
   "description": "C'est au sein de son formidable quartet que Sébastien Jarrousse va pouvoir rendre hommage au grand Brandford Marsalis !",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "63e0af24664b",
+  "title": "HOT BODIES à la Maison des Métallos",
+  "date": "2026-10-23",
+  "time": "21:00",
+  "venue": "La Maison des Métallos",
+  "venue_id": null,
+  "address": "94, rue Jean-Pierre Timbaud",
+  "city": "Paris",
+  "price": "Tarif plein｜25€ Tarif réduit 1｜15€ Tarif réduit 2｜10€",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2026/06/16/huge-4ac8a36b96c78a036b00e9c503223536.jpg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://maisondesmetallos-billetterie.mapado.com/event/707445-hot-bodies-gerald-kurdian"
+   }
+  ],
+  "artists": [],
+  "description": "Après la sortie de son EP Digital Fairy/Folk Songs en 2025, Gérald Kurdian, alias HOT BODIES, revient avec une nouvelle proposition intime et élégante : un concert, comme une plongée en avant-première dans les morceaux de son prochain album, The Transition Pieces.",
   "first_seen": "2026-10-07",
   "badge": null
  },
@@ -31280,7 +30923,7 @@
   "badge": null
  },
  {
-  "id": "390f08ed6e57",
+  "id": "390f08ed6e57x",
   "title": "THE WATCH PLAYS GENESIS",
   "date": "2026-10-29",
   "time": "19:00",
@@ -31981,7 +31624,7 @@
   "badge": null
  },
  {
-  "id": "390f08ed6e57x",
+  "id": "390f08ed6e57",
   "title": "The Watch joue Genesis",
   "date": "2026-10-29",
   "time": "20:00",
@@ -35665,6 +35308,31 @@
   "artists": [],
   "description": null,
   "first_seen": "2026-10-08",
+  "badge": "annonce"
+ },
+ {
+  "id": "ea8b40f325da",
+  "title": "The Funeral Party - Halloween",
+  "date": "2026-10-31",
+  "time": "20:00",
+  "venue": "Point Ephémère",
+  "venue_id": null,
+  "address": "200 Quai de Valmy, 75010 Paris-10E-Arrondissement",
+  "city": "Paris",
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": null,
+  "links": [
+   {
+    "source": "Dice",
+    "url": "https://dice.fm/event/6acce99aacb2f70001848c96"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-12",
   "badge": "annonce"
  },
  {
@@ -47201,6 +46869,31 @@
   "badge": null
  },
  {
+  "id": "fc83cbf679bc",
+  "title": "Peacock dreams | Abdullah Miniawy (trio)",
+  "date": "2026-11-10",
+  "time": "19:00",
+  "venue": "Réfectoire des Cordeliers",
+  "venue_id": null,
+  "address": "15 rue de l'école de médecine",
+  "city": "Paris",
+  "price": "Gratuit",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2026/10/12/huge-cc47ab327d2346f8c75c66e5f22b9c33.jpg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://billetterie-culture.u-pariscite.fr/event/798164-peacock-dreams-abdullah-miniawy-trio"
+   }
+  ],
+  "artists": [],
+  "description": "Dans le cadre du Festival d’Automne à l’université, l’Université Paris Cité et le Festival invitent le trio original Peacock dreams d’Abdullah Miniawy, pour une soirée entre jazz et tradition orientales.",
+  "first_seen": "2026-10-12",
+  "badge": "annonce"
+ },
+ {
   "id": "fb472da5d628",
   "title": "Ensemble royal de Paris",
   "date": "2026-11-10",
@@ -50227,6 +49920,31 @@
   "badge": null
  },
  {
+  "id": "9ef06257e08e",
+  "title": "NOUVELLE SAISON DES CONCERTS CLASH : CHARLIE WINSTON ET SA MUSIQUE POP RÉINVENTENT LE CLASSIQUE",
+  "date": "2026-11-12",
+  "time": "20:30",
+  "venue": "Salle Gaveau",
+  "venue_id": null,
+  "address": "45-47 Rue La Boétie, 75008 Paris, France",
+  "city": "Paris",
+  "price": "De 24€ à 89€",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2026/10/12/huge-08dc531530da793f1a41ae43b1cb08d6.jpeg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://sallegaveau.com/event-pro/clash-pop-les-classiques-de-charlie-winston/"
+   }
+  ],
+  "artists": [],
+  "description": "Retrouvez Charlie Winston à la Salle Gaveau le jeudi 12 novembre 2026",
+  "first_seen": "2026-10-12",
+  "badge": "annonce"
+ },
+ {
   "id": "fc749e3be47d",
   "title": "Clash Pop : les classiques de Charlie Winston",
   "date": "2026-11-12",
@@ -51906,6 +51624,31 @@
   "badge": null
  },
  {
+  "id": "7f259029d43e",
+  "title": "Résonances",
+  "date": "2026-11-14",
+  "time": "15:00",
+  "venue": "Cité de l'architecture et du patrimoine",
+  "venue_id": null,
+  "address": "1 place du Trocadéro et du 11 Novembre",
+  "city": "Paris",
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2026/07/22/huge-1bc3bab8b75571f4e1d9cd70e680a64a.jpg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.citedelarchitecture.fr/fr"
+   }
+  ],
+  "artists": [],
+  "description": "Parcours vocal de la Maîtrise de Paris à la Cité de l'architecture et du patrimoine",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
   "id": "78b5de410de9",
   "title": "Cabaret Satie",
   "date": "2026-11-14",
@@ -51927,31 +51670,6 @@
   ],
   "artists": [],
   "description": "A l'occasion de l'inauguration du nouvel auditorium du conservatoire Erik Satie, les élèves du conservatoire vous invitent à un concert cabaret, autours de l'œuvre du compositeur et de ses amis.",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "7f259029d43e",
-  "title": "Résonnances",
-  "date": "2026-11-14",
-  "time": "15:00",
-  "venue": "Cité de l'architecture et du patrimoine",
-  "venue_id": null,
-  "address": "1 place du Trocadéro et du 11 Novembre",
-  "city": "Paris",
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": "https://cdn.paris.fr/qfapv4/2026/07/22/huge-1bc3bab8b75571f4e1d9cd70e680a64a.jpg",
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://www.citedelarchitecture.fr/fr"
-   }
-  ],
-  "artists": [],
-  "description": "Parcours vocal de la Maîtrise de Paris à la Cité de l'architecture et du patrimoine",
   "first_seen": "2026-10-07",
   "badge": null
  },
@@ -52526,6 +52244,31 @@
   "description": null,
   "first_seen": "2026-10-12",
   "badge": null
+ },
+ {
+  "id": "e185cc7a1f08",
+  "title": "MetalOnze",
+  "date": "2026-11-14",
+  "time": "19:30",
+  "venue": "MPAA/Saint-Germain - Maison des Pratiques Artistiques Amateurs",
+  "venue_id": null,
+  "address": "4 rue Félibien",
+  "city": "Paris",
+  "price": "Vente sur place sous réserve de places disponibles. Billetterie complice : 5, 10, 15, 20, 25 ou 30 € au choix (placement libre)",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2026/10/12/huge-e25c00a0c343bd8c4cfc20a32e2a437e.jpg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.mpaa.fr/programmation/metalonze"
+   }
+  ],
+  "artists": [],
+  "description": "Un concert de Metal symphonique par un groupe du Conservatoire du 11ᵉ arrondissement",
+  "first_seen": "2026-10-12",
+  "badge": "annonce"
  },
  {
   "id": "4370e44a4497",
@@ -56196,31 +55939,6 @@
   "badge": null
  },
  {
-  "id": "e1018de5ad0b",
-  "title": "GRACE CUMMINGS",
-  "date": "2026-11-17",
-  "time": "20:00",
-  "venue": "Point Ephémère",
-  "venue_id": null,
-  "address": "200 Quai de Valmy, 75010 Paris-10E-Arrondissement",
-  "city": "Paris",
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": null,
-  "links": [
-   {
-    "source": "Dice",
-    "url": "https://dice.fm/event/6a33f75df11a370001a140c9"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-12",
-  "badge": null
- },
- {
   "id": "b48a59752bc7",
   "title": "Flower Face",
   "date": "2026-11-17",
@@ -58231,31 +57949,6 @@
   "badge": null
  },
  {
-  "id": "9bb3dedd4682",
-  "title": "Jazzmazz : Louis Matute & Gabi Hartmann",
-  "date": "2026-11-19",
-  "time": "20:00",
-  "venue": "Centre Culturel Arménien Alex Manoogian",
-  "venue_id": null,
-  "address": "118 rue de Courcelles",
-  "city": "Paris",
-  "price": "Réservation conseillée, dans la limite des places disponibles. Plein tarif : 16€ Tarif réduit : 12€",
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": "https://cdn.paris.fr/qfapv4/2026/09/17/huge-d8a7860ebed492367fef84e7a72af455.png",
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://ugabfrance.org/jazzmazz-reserve-0"
-   }
-  ],
-  "artists": [],
-  "description": "Une rencontre musicale entre jazz, poésie et influences brésiliennes, portée par la voix de Gabi Hartmann et la guitare de Louis Matute.",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "23160e4529e0",
   "title": "Agathe Peyrat et Pierre Cussac en concert au Zèbre de Belleville",
   "date": "2026-11-19",
@@ -58277,6 +57970,31 @@
   ],
   "artists": [],
   "description": "Avec « Je chante la nuit », leur premier album, la soprano (et aussi joueuse de ukulélé) Agathe Peyrat et l’accordéoniste (également chanteur) Pierre Cussac s’affranchissent des frontières entre opéra, chanson et musique populaire.",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "9bb3dedd4682",
+  "title": "Jazzmazz : Louis Matute & Gabi Hartmann",
+  "date": "2026-11-19",
+  "time": "20:00",
+  "venue": "Centre Culturel Arménien Alex Manoogian",
+  "venue_id": null,
+  "address": "118 rue de Courcelles",
+  "city": "Paris",
+  "price": "Réservation conseillée, dans la limite des places disponibles. Plein tarif : 16€ Tarif réduit : 12€",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2026/09/17/huge-d8a7860ebed492367fef84e7a72af455.png",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://ugabfrance.org/jazzmazz-reserve-0"
+   }
+  ],
+  "artists": [],
+  "description": "Une rencontre musicale entre jazz, poésie et influences brésiliennes, portée par la voix de Gabi Hartmann et la guitare de Louis Matute.",
   "first_seen": "2026-10-07",
   "badge": null
  },
@@ -58553,6 +58271,31 @@
   "artists": [],
   "description": null,
   "first_seen": "2026-10-08",
+  "badge": "annonce"
+ },
+ {
+  "id": "76ebd901bb65",
+  "title": "Widowspeak",
+  "date": "2026-11-19",
+  "time": "20:00",
+  "venue": "POPUP!",
+  "venue_id": null,
+  "address": "14 Rue Abel, 75012 Paris",
+  "city": "Paris",
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": null,
+  "links": [
+   {
+    "source": "Dice",
+    "url": "https://dice.fm/event/69d8b7085ed509000165c5e3"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-12",
   "badge": "annonce"
  },
  {
@@ -60741,6 +60484,31 @@
   "description": null,
   "first_seen": "2026-10-07",
   "badge": null
+ },
+ {
+  "id": "8466671c2015",
+  "title": "Diary of women",
+  "date": "2026-11-21",
+  "time": "19:30",
+  "venue": "MPAA/Broussais - Maison des Pratiques Artistiques Amateurs",
+  "venue_id": null,
+  "address": "100 rue Didot",
+  "city": "Paris",
+  "price": "Vente sur place sous réserve de places disponibles. Billetterie complice : 5, 10, 15, 20, 25 ou 30 € au choix (placement libre)",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2026/10/12/huge-271db82b95676e4e79e16b61d663d88f.jpg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.mpaa.fr/programmation/diary-of-women"
+   }
+  ],
+  "artists": [],
+  "description": "Une poésie de mots et de mouvements à travers la danse Bharata natyam\r\n\r\nDécouvrez un spectacle mêlant à la fois poésie des mots et poésie du mouvement, à travers le Bharata natyam, danse sacrée du sud de l’Inde.",
+  "first_seen": "2026-10-12",
+  "badge": "annonce"
  },
  {
   "id": "f5c5cce322e3",
@@ -73313,7 +73081,7 @@
   "on_sale": "2026-10-06T16:00:00Z",
   "status": "onsale",
   "genre": "Rock",
-  "image": "https://s1.ticketm.net/dam/c/4f2/0109888a-61b5-4525-8432-b026ef04f4f2_105631_RETINA_PORTRAIT_16_9.jpg",
+  "image": "https://s1.ticketm.net/dam/a/dd5/475a3da1-bdd4-4d69-b30c-f0560066edd5_RETINA_PORTRAIT_16_9.jpg",
   "links": [
    {
     "source": "Ticketmaster",
@@ -74119,31 +73887,6 @@
   "badge": null
  },
  {
-  "id": "00d9e86d19e0",
-  "title": "Visions d’avant-garde - les pionnières de l’expérimentation cinématographique. Ciné-concert d'Olivier Longre",
-  "date": "2026-12-05",
-  "time": "15:00",
-  "venue": "Bibliothèque Buffon",
-  "venue_id": null,
-  "address": "15 Bis rue Buffon",
-  "city": "Paris",
-  "price": "Gratuit",
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": "https://cdn.paris.fr/qfapv4/2026/09/02/huge-aeba235570143000677271eb2a9625cc.jpg",
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://www.paris.fr/evenements/visions-d-avant-garde-les-pionnieres-de-l-experimentation-cinematographique-cine-concert-d-olivier-longre-118503"
-   }
-  ],
-  "artists": [],
-  "description": "Alice Guy / Germaine Dulac / Maya Deren / Marie Menken : les pionnières de l’expérimentation cinématographique. \r\nCiné-concert pour un multi-instrumentiste, par Olivier Longre (composition et interprétation), dans le cadre du festival Monte le son 2026 'Ô féminins'.",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "b66be4046516",
   "title": "Brunelle et Léon en concert",
   "date": "2026-12-05",
@@ -74165,6 +73908,31 @@
   ],
   "artists": [],
   "description": "Concert de fin d'année avec un duo de musiques du monde",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "00d9e86d19e0",
+  "title": "Visions d’avant-garde - les pionnières de l’expérimentation cinématographique. Ciné-concert d'Olivier Longre",
+  "date": "2026-12-05",
+  "time": "15:00",
+  "venue": "Bibliothèque Buffon",
+  "venue_id": null,
+  "address": "15 Bis rue Buffon",
+  "city": "Paris",
+  "price": "Gratuit",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2026/09/02/huge-aeba235570143000677271eb2a9625cc.jpg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.paris.fr/evenements/visions-d-avant-garde-les-pionnieres-de-l-experimentation-cinematographique-cine-concert-d-olivier-longre-118503"
+   }
+  ],
+  "artists": [],
+  "description": "Alice Guy / Germaine Dulac / Maya Deren / Marie Menken : les pionnières de l’expérimentation cinématographique. \r\nCiné-concert pour un multi-instrumentiste, par Olivier Longre (composition et interprétation), dans le cadre du festival Monte le son 2026 'Ô féminins'.",
   "first_seen": "2026-10-07",
   "badge": null
  },
@@ -74473,6 +74241,31 @@
   "badge": null
  },
  {
+  "id": "604a9eead6ac",
+  "title": "The Wackids - Futur 2000",
+  "date": "2026-12-05",
+  "time": "18:00",
+  "venue": "L'Avant-Seine / Théâtre de Colombes",
+  "venue_id": null,
+  "address": "88 Rue Saint-Denis, 92700 Colombes",
+  "city": "Paris",
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": null,
+  "links": [
+   {
+    "source": "Dice",
+    "url": "https://dice.fm/event/6accf10d0a3d64000192c28f"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-12",
+  "badge": "annonce"
+ },
+ {
   "id": "ef0a8acca67d",
   "title": "SUZANNE",
   "date": "2026-12-05",
@@ -74577,6 +74370,31 @@
   ],
   "artists": [],
   "description": null,
+  "first_seen": "2026-10-12",
+  "badge": "annonce"
+ },
+ {
+  "id": "e7a82416de98",
+  "title": "Familles de cœur",
+  "date": "2026-12-05",
+  "time": "19:30",
+  "venue": "MPAA/Saint-Germain - Maison des Pratiques Artistiques Amateurs",
+  "venue_id": null,
+  "address": "4 rue Félibien",
+  "city": "Paris",
+  "price": "Vente sur place sous réserve de places disponibles. Billetterie complice : 5, 10, 15, 20, 25 ou 30 € au choix (placement libre)",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2026/10/12/huge-77b494a75bc199fab48c7b34048f145f.png",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.mpaa.fr/programmation/familles-de-coeur"
+   }
+  ],
+  "artists": [],
+  "description": "Explorez les multiples facettes du cœur à travers la musique",
   "first_seen": "2026-10-12",
   "badge": "annonce"
  },
@@ -75554,6 +75372,31 @@
   "description": null,
   "first_seen": "2026-10-07",
   "badge": null
+ },
+ {
+  "id": "f1647da81f4c",
+  "title": "Nous sommes le vent",
+  "date": "2026-12-06",
+  "time": "16:00",
+  "venue": "MPAA/Saint-Germain - Maison des Pratiques Artistiques Amateurs",
+  "venue_id": null,
+  "address": "4 rue Félibien",
+  "city": "Paris",
+  "price": "Vente sur place sous réserve de places disponibles. Billetterie complice : 5, 10, 15, 20, 25 ou 30 € au choix (placement libre)",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2026/10/12/huge-70d58a8ec33b6e1004e6dc4ffb7c4ad1.jpg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.mpaa.fr/programmation/nous-sommes-le-vent"
+   }
+  ],
+  "artists": [],
+  "description": "Un voyage musical autour des éléments climatiques mêlant quartet de jazz et orchestre d'harmonie",
+  "first_seen": "2026-10-12",
+  "badge": "annonce"
  },
  {
   "id": "b637172d5fc1",
@@ -77965,6 +77808,31 @@
   "description": "Élèves du Parcours d’Excellence en Interprétation Musicale",
   "first_seen": "2026-10-07",
   "badge": null
+ },
+ {
+  "id": "21c753d04e88",
+  "title": "Les midi-concerts à la mairie du 8e",
+  "date": "2026-12-10",
+  "time": "13:00",
+  "venue": "Mairie du 8e arrondissement",
+  "venue_id": null,
+  "address": "3 rue de Lisbonne",
+  "city": "Paris",
+  "price": "Gratuit",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2025/10/01/huge-06ade22905642e6dba7b6386927d2a14.jpg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.paris.fr/crr"
+   }
+  ],
+  "artists": [],
+  "description": "Concert à la mairie du 8e par les élèves de Musique de chambre",
+  "first_seen": "2026-10-12",
+  "badge": "annonce"
  },
  {
   "id": "58c490a5a15a",
@@ -82703,6 +82571,31 @@
   "description": null,
   "first_seen": "2026-10-07",
   "badge": null
+ },
+ {
+  "id": "0ff20bfeb904",
+  "title": "Le Grand Marcel",
+  "date": "2026-12-16",
+  "time": "19:30",
+  "venue": "MPAA/Saint-Germain - Maison des Pratiques Artistiques Amateurs",
+  "venue_id": null,
+  "address": "4 rue Félibien",
+  "city": "Paris",
+  "price": "Vente sur place sous réserve de places disponibles. Billetterie complice : 5, 10, 15, 20, 25 ou 30 € au choix (placement libre)",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2026/10/12/huge-c476ebe4b3e12c874ace8885603bb826.jpeg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.mpaa.fr/programmation/le-grand-marcel"
+   }
+  ],
+  "artists": [],
+  "description": "Orchestre amateur à Montreuil axé sur le collectif, l'écoute et l'improvisation",
+  "first_seen": "2026-10-12",
+  "badge": "annonce"
  },
  {
   "id": "3d5a7289c7c0",
@@ -111442,6 +111335,31 @@
   "badge": null
  },
  {
+  "id": "eb505e82f411",
+  "title": "THE UNDERTONES",
+  "date": "2027-03-16",
+  "time": "19:00",
+  "venue": "Alhambra",
+  "venue_id": null,
+  "address": "21 Rue Yves Toudic, 75010 Paris",
+  "city": "Paris",
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": null,
+  "links": [
+   {
+    "source": "Dice",
+    "url": "https://dice.fm/event/6acd03120a3d640001bd893c"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-12",
+  "badge": "annonce"
+ },
+ {
   "id": "666e97683207",
   "title": "THE INTERSPHERE",
   "date": "2027-03-16",
@@ -117023,10 +116941,6 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/the-wombats-billet/idmanif/674943/idseance/4435643"
-   },
-   {
-    "source": "Dice",
-    "url": "https://dice.fm/event/6acc9bbb62785d0001209e26"
    }
   ],
   "artists": [
@@ -129662,6 +129576,31 @@
   "badge": null
  },
  {
+  "id": "42a297987b55",
+  "title": "Les midi-concerts à la mairie du 8e",
+  "date": "2027-06-03",
+  "time": "14:00",
+  "venue": "Mairie du 8e arrondissement",
+  "venue_id": null,
+  "address": "3 rue de Lisbonne",
+  "city": "Paris",
+  "price": "Gratuit",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2025/10/01/huge-06ade22905642e6dba7b6386927d2a14.jpg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.paris.fr/crr"
+   }
+  ],
+  "artists": [],
+  "description": "Concert à la mairie du 8e par les élèves de Musique de chambre",
+  "first_seen": "2026-10-12",
+  "badge": "annonce"
+ },
+ {
   "id": "a3fba339265e",
   "title": "TAYC",
   "date": "2027-06-03",
@@ -130804,6 +130743,31 @@
   "description": null,
   "first_seen": "2026-10-07",
   "badge": null
+ },
+ {
+  "id": "3fcc59531cfb",
+  "title": "Les midi-concerts à la mairie du 8e",
+  "date": "2027-06-10",
+  "time": "14:00",
+  "venue": "Mairie du 8e arrondissement",
+  "venue_id": null,
+  "address": "3 rue de Lisbonne",
+  "city": "Paris",
+  "price": "Gratuit",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2025/10/01/huge-06ade22905642e6dba7b6386927d2a14.jpg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.paris.fr/crr"
+   }
+  ],
+  "artists": [],
+  "description": "Concert à la mairie du 8e par les élèves de Musique de chambre",
+  "first_seen": "2026-10-12",
+  "badge": "annonce"
  },
  {
   "id": "adf3def276c0",
@@ -134412,12 +134376,16 @@
   "price": null,
   "on_sale": "2026-09-08T08:00:00Z",
   "status": "onsale",
-  "genre": "Pop",
+  "genre": "Chanson",
   "image": "https://s1.ticketm.net/dam/c/0d2/1201f713-3288-4790-854a-ae42895450d2_105931_RETINA_PORTRAIT_16_9.jpg",
   "links": [
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/ycare-billet/idmanif/671517/idseance/4405782"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/lolympia-2874/ycare-3361835.html"
    }
   ],
   "artists": [
@@ -134464,12 +134432,16 @@
   "price": null,
   "on_sale": "2026-06-08T08:00:00Z",
   "status": "onsale",
-  "genre": "Hip-Hop/Rap",
+  "genre": "Rap, Musiques urbaines",
   "image": "https://s1.ticketm.net/dam/c/80b/f3cd8d24-c3ae-4fa0-b4bc-1ba99f9b380b_106091_RETINA_PORTRAIT_16_9.jpg",
   "links": [
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/jok-air-billet/idmanif/662222/idseance/4355199"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/u-arena-6551/jokair-3305321.html"
    }
   ],
   "artists": [
@@ -134591,12 +134563,16 @@
   "price": null,
   "on_sale": "2026-09-30T08:00:00Z",
   "status": "onsale",
-  "genre": "Chanson Francaise",
+  "genre": "Pop, Pop / Rock",
   "image": "https://s1.ticketm.net/dam/a/dd9/c4790008-82ae-4342-a795-35fa5f609dd9_822081_RETINA_PORTRAIT_16_9.jpg",
   "links": [
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/zazie-billet/idmanif/673396/idseance/4427503"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-zenith-3401/zazie-3358275.html"
    }
   ],
   "artists": [

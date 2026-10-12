@@ -2,7 +2,7 @@
  {
   "name": "Grande salle Pierre Boulez - Philharmonie de Paris",
   "venue_id": null,
-  "total": 157
+  "total": 156
  },
  {
   "name": "Olympia",
@@ -17,12 +17,12 @@
  {
   "name": "La Cigale",
   "venue_id": "cigale",
-  "total": 124
+  "total": 123
  },
  {
   "name": "La Maroquinerie",
   "venue_id": null,
-  "total": 117
+  "total": 116
  },
  {
   "name": "ZENITH PARIS - LA VILLETTE",
@@ -32,15 +32,15 @@
  {
   "name": "Église Saint-Julien-le-Pauvre",
   "venue_id": null,
-  "total": 102
- },
- {
-  "name": "Théâtre des Champs-Élysées",
-  "venue_id": null,
-  "total": 99
+  "total": 100
  },
  {
   "name": "ACCOR ARENA",
+  "venue_id": null,
+  "total": 98
+ },
+ {
+  "name": "Théâtre des Champs-Élysées",
   "venue_id": null,
   "total": 98
  },
@@ -50,12 +50,12 @@
   "total": 76
  },
  {
-  "name": "Sunside",
+  "name": "Le Baiser Salé",
   "venue_id": null,
-  "total": 74
+  "total": 73
  },
  {
-  "name": "Le Baiser Salé",
+  "name": "Sunside",
   "venue_id": null,
   "total": 73
  },
@@ -72,12 +72,12 @@
  {
   "name": "Église Saint-Éphrem",
   "venue_id": null,
-  "total": 67
+  "total": 66
  },
  {
   "name": "Salle Gaveau",
   "venue_id": null,
-  "total": 62
+  "total": 63
  },
  {
   "name": "38Riv Jazz Club",
@@ -170,12 +170,12 @@
   "total": 41
  },
  {
-  "name": "LE BACKSTAGE BY THE MILL",
+  "name": "POPUP!",
   "venue_id": null,
-  "total": 36
+  "total": 37
  },
  {
-  "name": "POPUP!",
+  "name": "LE BACKSTAGE BY THE MILL",
   "venue_id": null,
   "total": 36
  },
@@ -230,6 +230,11 @@
   "total": 29
  },
  {
+  "name": "Alhambra",
+  "venue_id": null,
+  "total": 27
+ },
+ {
   "name": "Chapelle royale - Château de Versailles",
   "venue_id": null,
   "total": 27
@@ -255,19 +260,9 @@
   "total": 27
  },
  {
-  "name": "Alhambra",
-  "venue_id": null,
-  "total": 26
- },
- {
   "name": "Amphithéâtre - Cité de la Musique-Philharmonie",
   "venue_id": null,
   "total": 26
- },
- {
-  "name": "38 RIV - Jazz Club & Bar",
-  "venue_id": null,
-  "total": 25
  },
  {
   "name": "Le Cabaret Sauvage",
@@ -278,6 +273,11 @@
   "name": "Salle Pleyel",
   "venue_id": null,
   "total": 25
+ },
+ {
+  "name": "38 RIV - Jazz Club & Bar",
+  "venue_id": null,
+  "total": 24
  },
  {
   "name": "LA SEINE MUSICALE - GRANDE SEINE",
@@ -340,11 +340,6 @@
   "total": 19
  },
  {
-  "name": "Péniche Antipode",
-  "venue_id": null,
-  "total": 19
- },
- {
   "name": "Théâtre du Châtelet",
   "venue_id": null,
   "total": 19
@@ -360,12 +355,12 @@
   "total": 18
  },
  {
-  "name": "Duc des Lombards",
+  "name": "Le Solo",
   "venue_id": null,
   "total": 18
  },
  {
-  "name": "Le Solo",
+  "name": "Péniche Antipode",
   "venue_id": null,
   "total": 18
  },
@@ -376,6 +371,11 @@
  },
  {
   "name": "Baiser salé",
+  "venue_id": null,
+  "total": 17
+ },
+ {
+  "name": "Duc des Lombards",
   "venue_id": null,
   "total": 17
  },
@@ -555,11 +555,6 @@
   "total": 10
  },
  {
-  "name": "Grand Salon du Musée de l'Armée - Musée de l'Armée",
-  "venue_id": null,
-  "total": 10
- },
- {
   "name": "L'Archipel",
   "venue_id": null,
   "total": 10
@@ -590,6 +585,11 @@
   "total": 10
  },
  {
+  "name": "Mairie du 8e arrondissement",
+  "venue_id": null,
+  "total": 10
+ },
+ {
   "name": "Théâtre de Saint-Quentin-en-Yvelines",
   "venue_id": null,
   "total": 10
@@ -601,6 +601,11 @@
  },
  {
   "name": "ECUJE",
+  "venue_id": null,
+  "total": 9
+ },
+ {
+  "name": "Grand Salon du Musée de l'Armée - Musée de l'Armée",
   "venue_id": null,
   "total": 9
  },
@@ -640,11 +645,6 @@
   "total": 9
  },
  {
-  "name": "PopUp!",
-  "venue_id": null,
-  "total": 9
- },
- {
   "name": "Péniche Marcounet",
   "venue_id": null,
   "total": 9
@@ -676,6 +676,11 @@
  },
  {
   "name": "Les Rendez-Vous d'Ailleurs",
+  "venue_id": null,
+  "total": 8
+ },
+ {
+  "name": "PopUp!",
   "venue_id": null,
   "total": 8
  },
@@ -731,11 +736,6 @@
  },
  {
   "name": "Louloute",
-  "venue_id": null,
-  "total": 7
- },
- {
-  "name": "Mairie du 8e arrondissement",
   "venue_id": null,
   "total": 7
  },
@@ -880,6 +880,11 @@
   "total": 5
  },
  {
+  "name": "L'Avant-Seine / Théâtre de Colombes",
+  "venue_id": null,
+  "total": 5
+ },
+ {
   "name": "LE BADABOUM",
   "venue_id": null,
   "total": 5
@@ -1010,11 +1015,6 @@
   "total": 4
  },
  {
-  "name": "L'Avant-Seine / Théâtre de Colombes",
-  "venue_id": null,
-  "total": 4
- },
- {
   "name": "LE PETIT REPUBLIQUE",
   "venue_id": null,
   "total": 4
@@ -1066,6 +1066,11 @@
  },
  {
   "name": "L’ODÉON - Scène Musicale de Tremblay",
+  "venue_id": null,
+  "total": 4
+ },
+ {
+  "name": "MPAA/Saint-Germain - Maison des Pratiques Artistiques Amateurs",
   "venue_id": null,
   "total": 4
  },
@@ -2205,6 +2210,11 @@
   "total": 1
  },
  {
+  "name": "MPAA/Broussais - Maison des Pratiques Artistiques Amateurs",
+  "venue_id": null,
+  "total": 1
+ },
+ {
   "name": "MPAA/Saint-Germain",
   "venue_id": null,
   "total": 1
@@ -2326,6 +2336,11 @@
  },
  {
   "name": "Rex Club",
+  "venue_id": null,
+  "total": 1
+ },
+ {
+  "name": "Réfectoire des Cordeliers",
   "venue_id": null,
   "total": 1
  },
