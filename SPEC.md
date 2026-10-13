@@ -222,7 +222,7 @@ des membres Spotify l'un après l'autre.
 **users** : `id` (PK, `u_xxxxxxxx`), `email` (unique, minuscules), `first_name`, `pseudo`
 (unique, nullable), `role` (`admin` / `member`), `status` (`invited` / `onboarding` /
 `computing` / `active` / `error` / `suspended`), `default_visibility` (`private` /
-`members`, défaut `private`), `error_message`, `invited_at`, `activated_at`,
+`members`, défaut `members` depuis la version 1.7.0, `private` = « masqués »), `error_message`, `invited_at`, `activated_at`,
 `suspended_at`, `last_seen_at`. Nom affiché = `pseudo` sinon `first_name`.
 
 Ajout de la version 1.5.0 à **users** : `newsletter` (1 par défaut), `newsletter_token` (jeton du

@@ -14,6 +14,17 @@ Revenir à une version antérieure :
 3. base D1 : les migrations ne s'annulent pas seules ; chaque entrée indique la commande inverse
    quand une migration est ajoutée.
 
+## 1.7.0 (13 octobre 2026)
+
+★ visibles par les autres membres par défaut.
+- Nouveaux membres : réglage « visibles par les membres » à la création ; membres existants passés
+  à ce réglage (migration 0009). Choix « masqués (visibles par vous seul) » dans « Mon compte », et
+  case « Visible par les membres » à décocher sur la fiche d'un concert.
+- Les ★ déjà posés gardent leur visibilité.
+- Lien « Ajouter à mes Intéressés » de la newsletter : suit le réglage du membre ; le message
+  indique la visibilité, avec « Annuler ».
+- Migration D1 : 0009_visible_by_default.sql. Retour arrière : voir l'en-tête du fichier.
+
 ## 1.6.0 (13 octobre 2026)
 
 Comprend les changements de 1.5.1 (non publiée seule).
