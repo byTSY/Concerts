@@ -168,6 +168,7 @@ function setPrefs(data) {
 // ★ du membre : concert → { label, status (interested, going), visibility (private, members) }
 function setStars(list) {
   state.starred = new Map((list || []).map((s) => [s.concert_id,
+    // Valeur absente (jamais renvoyée par l'API) : masqué, par prudence
     { label: s.label, status: s.status || "interested", visibility: s.visibility || "private" }]));
 }
 
@@ -235,7 +236,7 @@ function toggleStar(id) {
   const previous = state.starred.get(id);
   const label = ev ? starLabel(ev) : previous?.label || id;
   const star = !isStarred(id);
-  star ? state.starred.set(id, { label, status: "interested", visibility: state.me?.default_visibility || "private" }) : state.starred.delete(id);
+  star ? state.starred.set(id, { label, status: "interested", visibility: state.me?.default_visibility || "members" }) : state.starred.delete(id);
   refreshStars(id);
   return queueStar(id, async (last) => {
     try {
@@ -260,7 +261,7 @@ function setStarOption(id, field, value, onCreate = {}) {
   const previous = state.starred.get(id);
   const created = !previous;
   const label = previous?.label || (ev ? starLabel(ev) : id);
-  state.starred.set(id, { label, status: "interested", visibility: state.me?.default_visibility || "private",
+  state.starred.set(id, { label, status: "interested", visibility: state.me?.default_visibility || "members",
     ...(created ? onCreate : {}), ...previous, [field]: value });
   refreshStars(id);
   const body = { [field]: value, ...(created ? { label, ...onCreate } : {}) };
@@ -270,7 +271,7 @@ function setStarOption(id, field, value, onCreate = {}) {
       if (last()) setStars(list);
       toast(field === "status"
         ? (value === "going" ? "Noté : places prises" : created ? "Ajouté à vos concerts intéressés" : "Noté : intéressé")
-        : (value === "members" ? "Visible par les membres" : "Visible par vous seul"));
+        : (value === "members" ? "Visible par les membres" : "Masqué : visible par vous seul"));
     } catch (e) {
       if (last()) previous ? state.starred.set(id, previous) : state.starred.delete(id);
       toast(`Enregistrement impossible : ${e.message}`);
@@ -780,7 +781,7 @@ function renderStarred() {
       html += `<tr class="clickable" data-id="${ev.id}" tabindex="0">
         <td class="cell-date">${esc(fmtShort.format(parseDay(ev.date)))}${ev.time ? `<span class="cell-sub">${esc(ev.time)}</span>` : ""}</td>
         <td><span class="cell-name">${esc(headline(ev))}</span>${headline(ev) !== ev.title ? `<span class="cell-sub">${esc(ev.title)}</span>` : ""}
-          <span class="cell-sub">${star.status === "going" ? `<span class="tag tag-going">Places prises</span> ` : ""}${star.visibility === "members" ? "visible par les membres" : "privé"} ${membersTag(ev)}</span></td>
+          <span class="cell-sub">${star.status === "going" ? `<span class="tag tag-going">Places prises</span> ` : ""}${star.visibility === "members" ? "visible par les membres" : "masqué"} ${membersTag(ev)}</span></td>
         <td>${esc(ev.venue)}</td>
         <td class="hide-mobile">${esc(ev.price || "")}</td>
         <td>${status ? `<span class="cell-sub"><strong>${esc(status)}</strong></span>` : ""}${sale ? `<span class="stub-sale">${esc(sale.replace("Mise en vente le ", "En vente le "))}</span>` : ""}<span class="buy-links">${links}</span></td>
@@ -1092,8 +1093,8 @@ function bind() {
 // Lien d'une fiche /partage/ ouverte depuis la newsletter : ?concert=<id> ouvre la fiche du
 // concert ; &star=interested l'ajoute aussi aux Intéressés (s'il n'y est pas déjà). L'adresse est
 // ensuite nettoyée : un rechargement ne refait rien.
-// Un lien venu d'ailleurs ne doit rien rendre visible aux membres : l'ajout est toujours privé, avec
-// « Annuler » dans le message.
+// L'ajout suit le réglage du membre (★ visibles par les membres par défaut), avec « Annuler »
+// dans le message.
 async function openFromLink({ onboarding = false } = {}) {
   const params = new URLSearchParams(location.search);
   const id = params.get("concert");
@@ -1105,8 +1106,11 @@ async function openFromLink({ onboarding = false } = {}) {
   openTicket(id);
   if (params.get("star") !== "interested") return;
   if (isStarred(id)) { toast("Déjà dans vos concerts"); return; }
-  await setStarOption(id, "status", "interested", { visibility: "private" });
-  if (isStarred(id)) toast("Ajouté à vos concerts intéressés (visible par vous seul)", { label: "Annuler", run: () => toggleStar(id) });
+  await setStarOption(id, "status", "interested");
+  if (!isStarred(id)) return;
+  const shared = state.starred.get(id).visibility === "members";
+  toast(`Ajouté à vos concerts intéressés (${shared ? "visible par les membres" : "visible par vous seul"})`,
+    { label: "Annuler", run: () => toggleStar(id) });
 }
 
 (async function init() {

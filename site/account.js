@@ -303,8 +303,8 @@ async function renderAccount() {
       <h2 class="month-title">Concerts mis de côté</h2>
       <label for="default-visibility">Par défaut, vos ★ sont</label>
       <select id="default-visibility" class="style-filter">
-        <option value="private"${me.default_visibility === "private" ? " selected" : ""}>privés</option>
-        <option value="members"${me.default_visibility === "members" ? " selected" : ""}>visibles par les membres</option>
+        <option value="members"${me.default_visibility !== "private" ? " selected" : ""}>visibles par les membres</option>
+        <option value="private"${me.default_visibility === "private" ? " selected" : ""}>masqués (visibles par vous seul)</option>
       </select>
     </section>
     ${me.newsletter === null || me.newsletter === undefined ? "" : `<section class="account-block">

@@ -797,8 +797,8 @@ test("lien d'invitation : créé par l'admin, jeton jamais gardé en clair, usag
   assert.match((await invitationPage(env, token, { method: "POST", form: { email: "A@test.fr", email2: "a@test.fr" } })).html, /déjà inscrite/);
   const done = await invitationPage(env, token, { method: "POST", form: { email: "Hugo@Mail.FR", email2: "hugo@mail.fr" } });
   assert.match(done.html, /C&#39;est fait|C'est fait/);
-  const user = env.DB.raw.prepare("SELECT id, first_name, status, role, invited_via, access_pending FROM users WHERE email = 'hugo@mail.fr'").get();
-  assert.deepEqual([user.first_name, user.status, user.role, user.invited_via], ["Hugo", "invited", "member", "link"]);
+  const user = env.DB.raw.prepare("SELECT id, first_name, status, role, invited_via, access_pending, default_visibility FROM users WHERE email = 'hugo@mail.fr'").get();
+  assert.deepEqual([user.first_name, user.status, user.role, user.invited_via, user.default_visibility], ["Hugo", "invited", "member", "link", "members"]);
   // Liste Access non configurée dans les tests : échec signalé à l'admin, qui peut relancer
   assert.equal(user.access_pending, 1);
   const members = (await call(env, "c@test.fr", adminMembers.onRequestGet, { path: "/api/admin/members" })).data;
@@ -950,4 +950,22 @@ test("newsletter : réglage dans Mon compte, désabonnement par le lien sans con
   const me = await call(env, "a@test.fr", getMe);
   assert.equal(me.status, 200);
   assert.equal(me.data.newsletter, null);
+});
+
+test("★ visibles par les membres par défaut ; masqués au choix", async () => {
+  const env = setup();
+  // Nouveau membre invité par l'admin : réglage « visibles » d'emblée
+  const r = await call(env, "c@test.fr", adminMembers.onRequestPost, {
+    method: "POST", path: "/api/admin/members", body: { email: "nouveau@test.fr", first_name: "Nina" } });
+  assert.ok(r.status < 300, JSON.stringify(r.data));
+  assert.equal(env.DB.raw.prepare("SELECT default_visibility AS v FROM users WHERE email = 'nouveau@test.fr'").get().v, "members");
+  // Membre au réglage « visibles » : ★ partagé sans rien préciser ; « masqué » si demandé
+  env.DB.raw.exec("UPDATE users SET default_visibility = 'members' WHERE id = 'u_aaaaaaaa'");
+  await call(env, "a@test.fr", starRoute.onRequestPut, { method: "PUT", params: { concert: "eeeeee555555" }, body: { label: "x" } });
+  await call(env, "a@test.fr", starRoute.onRequestPut, { method: "PUT", params: { concert: "ffffff666666" }, body: { label: "y", visibility: "private" } });
+  const vis = (c) => env.DB.raw.prepare("SELECT visibility AS v FROM stars WHERE user_id = 'u_aaaaaaaa' AND concert_id = ?").get(c).v;
+  assert.equal(vis("eeeeee555555"), "members");
+  assert.equal(vis("ffffff666666"), "private");
+  const seen = await call(env, "b@test.fr", communityRoute.onRequestGet, { path: "/api/community/stars" });
+  assert.deepEqual(seen.data.map((s) => s.concert_id).filter((c) => ["eeeeee555555", "ffffff666666"].includes(c)), ["eeeeee555555"]);
 });

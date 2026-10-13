@@ -1,5 +1,5 @@
 // GET /api/community/stars : ★ partagés par les autres membres (visibilité « members », membres
-// non suspendus) : concert, nom affiché, statut (interested ou going). Jamais un ★ privé, jamais
+// non suspendus) : concert, nom affiché, statut (interested ou going). Jamais un ★ masqué (private), jamais
 // d'identifiant de membre.
 
 import { handle, json } from "../../_lib/http.js";

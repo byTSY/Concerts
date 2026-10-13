@@ -222,7 +222,7 @@ des membres Spotify l'un après l'autre.
 **users** : `id` (PK, `u_xxxxxxxx`), `email` (unique, minuscules), `first_name`, `pseudo`
 (unique, nullable), `role` (`admin` / `member`), `status` (`invited` / `onboarding` /
 `computing` / `active` / `error` / `suspended`), `default_visibility` (`private` /
-`members`, défaut `private`), `error_message`, `invited_at`, `activated_at`,
+`members`, défaut `members` depuis la version 1.7.0, `private` = « masqués »), `error_message`, `invited_at`, `activated_at`,
 `suspended_at`, `last_seen_at`. Nom affiché = `pseudo` sinon `first_name`.
 
 Ajout de la version 1.5.0 à **users** : `newsletter` (1 par défaut), `newsletter_token` (jeton du
@@ -355,7 +355,7 @@ d'artistes Spotify non rapprochés de Deezer.
 
 | Méthode et route | Rôle |
 |---|---|
-| `GET /api/community/stars` | ★ en visibilité `members` des membres actifs : concert, nom affiché, statut. Jamais un ★ privé. |
+| `GET /api/community/stars` | ★ en visibilité `members` des membres actifs : concert, nom affiché, statut. Jamais un ★ masqué (`private`). |
 | `GET /api/venues` | catalogue approuvé |
 | `POST /api/venues/proposals` | `{ name, aliases?, agenda_url? }`, statut `pending` |
 
@@ -393,7 +393,7 @@ sans script.
 Salles), plus **Mon compte** : nom affiché et pseudo ; source (Deezer ou Spotify, nom du
 profil, dernière synchronisation, « Synchroniser maintenant », « Changer de source ») ;
 visibilité par défaut des ★ ; suppression du compte. Dans Salles : « Proposer une salle ».
-Fiche d'un concert : bloc « Membres », choix privé / visible lors de la mise de côté, statut
+Fiche d'un concert : bloc « Membres », choix visible / masqué lors de la mise de côté, statut
 « Places prises ». Liens d'écoute : Spotify en premier pour un membre Spotify.
 
 **Admin** (onglet visible du seul admin) : **Membres** (tableau et actions), **Spotify**
@@ -462,11 +462,11 @@ validation des salles et relance des calculs se font dans la console Concert.
 
 ## 12. Communauté v1
 
-**Principe : rien de personnel n'est visible par défaut.** Chaque élément partagé résulte
-d'une action du membre et peut être retiré.
+**Principe (version 1.7.0) : les ★ sont visibles par les membres par défaut**, chacun peut les
+masquer ; tout autre partage résulte d'une action du membre et peut être retiré.
 
-- **★ partagés** : à la mise de côté, « privé » (défaut, réglable) ou « visible par les
-  membres ». Fiche du concert : « Intéressés : Marie, Paul » et « Ont leurs places : Léa ». Filtre
+- **★ partagés** : à la mise de côté, « visible par les membres » (défaut, réglable) ou
+  « masqué » (visible par le seul membre). Fiche du concert : « Intéressés : Marie, Paul » et « Ont leurs places : Léa ». Filtre
   « Avec les membres ».
 - **« Places prises »** (ancien « J'y vais », renommé en version 1.3.0) : second niveau du ★ (`going`),
   même règle de visibilité.

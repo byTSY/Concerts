@@ -300,7 +300,7 @@ export function member(env, user) {
         .bind(id, concertId,
           label === undefined ? (current?.label ?? "") : String(label).replace(/\s+/g, " ").trim().slice(0, 200),
           status ?? current?.status ?? "interested",
-          visibility ?? current?.visibility ?? user.default_visibility ?? "private",
+          visibility ?? current?.visibility ?? user.default_visibility ?? "members",
           now, now).run();
       return api.stars();
     },
@@ -703,8 +703,8 @@ export async function claimInvitation(env, token, email) {
   let results;
   try {
     results = await db.batch([
-      db.prepare("INSERT INTO users (id, email, first_name, role, status, invited_at, invited_via) " +
-        "SELECT ?, ?, first_name, 'member', 'invited', ?, 'link' FROM invitations WHERE id = ? AND token_hash = ? AND expires_at > ?")
+      db.prepare("INSERT INTO users (id, email, first_name, role, status, invited_at, invited_via, default_visibility) " +
+        "SELECT ?, ?, first_name, 'member', 'invited', ?, 'link', 'members' FROM invitations WHERE id = ? AND token_hash = ? AND expires_at > ?")
         .bind(newMemberId(), mail, now, invitation.id, hash, now),
       db.prepare("DELETE FROM invitations WHERE id = ? AND token_hash = ?").bind(invitation.id, hash),
     ]);
@@ -793,7 +793,8 @@ export function admin(env) {
       const exists = await db.prepare("SELECT id FROM users WHERE email = ?").bind(mail).first();
       if (exists) throw new HttpError(409, "cette adresse est déjà inscrite", "exists");
       const memberId = newMemberId();
-      await db.prepare("INSERT INTO users (id, email, first_name, role, status, invited_at, invited_via) VALUES (?, ?, ?, 'member', 'invited', ?, 'email')")
+      // ★ visibles par les membres par défaut (version 1.7.0) ; « masqués » au choix dans Mon compte
+      await db.prepare("INSERT INTO users (id, email, first_name, role, status, invited_at, invited_via, default_visibility) VALUES (?, ?, ?, 'member', 'invited', ?, 'email', 'members')")
         .bind(memberId, mail, name, nowIso()).run();
       return { id: memberId, email: mail, first_name: name };
     },
