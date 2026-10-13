@@ -38,6 +38,29 @@ Audit complet du code des versions 1.1.0 à 1.3.0, corrections :
 - Accessibilité : nom « Reels » du cercle lu, position des fiches et nombre de résultats annoncés.
 Aucune migration D1.
 
+## 1.2.1 (13 octobre 2026)
+
+Correctifs du calcul des membres.
+- D1 (src/cloud.py) : une connexion neuve par requête (en-tête « Connection: close », plus de
+  session partagée). Cause : un grand membre Spotify (lecture de la bibliothèque et rapprochement
+  Deezer, c. 9 min sans requête D1) échouait en « internal » (ReadTimeout après 60 s) sur une
+  connexion gardée ouverte que Cloudflare avait fermée. Nouvel essai automatique d'une lecture
+  après une erreur réseau, une réponse tronquée ou une erreur passagère de Cloudflare (429, 5xx ;
+  3 essais) ; d'une écriture, seulement si elle n'a pas pu partir (délai de connexion, connexion
+  impossible), pour ne rien écrire en double.
+- Relais côté site : à l'ouverture du site (GET /api/me), un calcul demandé depuis plus de
+  15 minutes et resté sans résultat est relancé (dispatchRun), au plus une fois par 15 minutes et
+  par membre, 3 fois au plus par demande, jamais le lundi de 5 h à 9 h UTC (un lancement
+  remplacerait le traitement hebdomadaire en attente). Les tâches programmées de GitHub (relance
+  des 2 heures, gardée en complément) peuvent être retardées ou abandonnées.
+- Fin d'un calcul : last_sync_at reçoit l'heure de début du calcul ; une demande faite pendant le
+  calcul (« Synchroniser maintenant », « Recalculer ») reste en attente au lieu d'être absorbée.
+- Traitement lancé par le site (--member X --pending) : un membre déjà calculé entre-temps n'est
+  pas recalculé (relais arrivé après la fin d'un calcul long).
+- Migration D1 : 0007_sync_relay.sql (colonnes music_sources.sync_relayed_at et sync_relay_count),
+  à appliquer en production avant le déploiement. Retour arrière :
+  `ALTER TABLE music_sources DROP COLUMN sync_relayed_at; ALTER TABLE music_sources DROP COLUMN sync_relay_count; DELETE FROM schema_migrations WHERE name = '0007_sync_relay.sql';`
+
 ## 1.2.0 (13 octobre 2026)
 
 Fiches Reels des nouveautés de la semaine, à la place du bandeau de billets.
