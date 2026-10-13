@@ -168,6 +168,7 @@ function setPrefs(data) {
 // ★ du membre : concert → { label, status (interested, going), visibility (private, members) }
 function setStars(list) {
   state.starred = new Map((list || []).map((s) => [s.concert_id,
+    // Valeur absente (jamais renvoyée par l'API) : masqué, par prudence
     { label: s.label, status: s.status || "interested", visibility: s.visibility || "private" }]));
 }
 
@@ -780,7 +781,7 @@ function renderStarred() {
       html += `<tr class="clickable" data-id="${ev.id}" tabindex="0">
         <td class="cell-date">${esc(fmtShort.format(parseDay(ev.date)))}${ev.time ? `<span class="cell-sub">${esc(ev.time)}</span>` : ""}</td>
         <td><span class="cell-name">${esc(headline(ev))}</span>${headline(ev) !== ev.title ? `<span class="cell-sub">${esc(ev.title)}</span>` : ""}
-          <span class="cell-sub">${star.status === "going" ? `<span class="tag tag-going">Places prises</span> ` : ""}${star.visibility === "members" ? "visible par les membres" : "privé"} ${membersTag(ev)}</span></td>
+          <span class="cell-sub">${star.status === "going" ? `<span class="tag tag-going">Places prises</span> ` : ""}${star.visibility === "members" ? "visible par les membres" : "masqué"} ${membersTag(ev)}</span></td>
         <td>${esc(ev.venue)}</td>
         <td class="hide-mobile">${esc(ev.price || "")}</td>
         <td>${status ? `<span class="cell-sub"><strong>${esc(status)}</strong></span>` : ""}${sale ? `<span class="stub-sale">${esc(sale.replace("Mise en vente le ", "En vente le "))}</span>` : ""}<span class="buy-links">${links}</span></td>

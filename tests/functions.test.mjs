@@ -797,8 +797,8 @@ test("lien d'invitation : créé par l'admin, jeton jamais gardé en clair, usag
   assert.match((await invitationPage(env, token, { method: "POST", form: { email: "A@test.fr", email2: "a@test.fr" } })).html, /déjà inscrite/);
   const done = await invitationPage(env, token, { method: "POST", form: { email: "Hugo@Mail.FR", email2: "hugo@mail.fr" } });
   assert.match(done.html, /C&#39;est fait|C'est fait/);
-  const user = env.DB.raw.prepare("SELECT id, first_name, status, role, invited_via, access_pending FROM users WHERE email = 'hugo@mail.fr'").get();
-  assert.deepEqual([user.first_name, user.status, user.role, user.invited_via], ["Hugo", "invited", "member", "link"]);
+  const user = env.DB.raw.prepare("SELECT id, first_name, status, role, invited_via, access_pending, default_visibility FROM users WHERE email = 'hugo@mail.fr'").get();
+  assert.deepEqual([user.first_name, user.status, user.role, user.invited_via, user.default_visibility], ["Hugo", "invited", "member", "link", "members"]);
   // Liste Access non configurée dans les tests : échec signalé à l'admin, qui peut relancer
   assert.equal(user.access_pending, 1);
   const members = (await call(env, "c@test.fr", adminMembers.onRequestGet, { path: "/api/admin/members" })).data;
