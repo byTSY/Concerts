@@ -307,6 +307,11 @@ async function renderAccount() {
         <option value="members"${me.default_visibility === "members" ? " selected" : ""}>visibles par les membres</option>
       </select>
     </section>
+    ${me.newsletter === null || me.newsletter === undefined ? "" : `<section class="account-block">
+      <h2 class="month-title">Newsletter du lundi</h2>
+      <label class="chip"><input type="checkbox" id="newsletter"${me.newsletter ? " checked" : ""}> Recevoir chaque lundi par e-mail les annonces de mes artistes, mes recommandations et mes prochains concerts</label>
+      <p class="cell-sub">Envoyée à ${esc(me.email)}.</p>
+    </section>`}
     ${me.role === "admin" ? "" : `<section class="account-block">
       <h2 class="month-title">Supprimer mon compte</h2>
       <p class="cell-sub">Efface votre compte, vos préférences, vos concerts mis de côté et vos résultats. Irréversible.</p>
@@ -326,6 +331,15 @@ async function renderAccount() {
       state.me = await api("me", { method: "PATCH", body: { default_visibility: e.target.value } });
       toast("Réglage enregistré");
     } catch (err) { toast(`Enregistrement impossible : ${err.message}`); }
+  });
+  $("#newsletter")?.addEventListener("change", async (e) => {
+    try {
+      state.me = await api("me", { method: "PATCH", body: { newsletter: e.target.checked } });
+      toast(e.target.checked ? "Newsletter du lundi activée" : "Vous ne recevrez plus la newsletter");
+    } catch (err) {
+      e.target.checked = !e.target.checked;
+      toast(`Enregistrement impossible : ${err.message}`);
+    }
   });
   bindVenueChecks(box);
   if (spotifyStep) renderSpotifyStep($("#spotify-step"), me);

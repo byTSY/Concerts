@@ -1,6 +1,6 @@
 // GET /api/me : profil, statut, nom affiché, visibilité par défaut des ★, source musicale et
 // état de la synchronisation, salles favorites.
-// PATCH /api/me { pseudo?, default_visibility? }
+// PATCH /api/me { pseudo?, default_visibility?, newsletter? }
 // DELETE /api/me { confirm: "SUPPRIMER" } : suppression du compte par le membre (données D1 et
 // R2 effacées, adresse retirée de la liste Access, sessions coupées).
 
@@ -22,7 +22,7 @@ export const onRequestGet = ({ env, data, waitUntil }) => handle(async () => {
 
 export const onRequestPatch = ({ request, data }) => handle(async () => {
   const body = await readJson(request);
-  return json(await data.me.updateProfile({ pseudo: body.pseudo, default_visibility: body.default_visibility }));
+  return json(await data.me.updateProfile({ pseudo: body.pseudo, default_visibility: body.default_visibility, newsletter: body.newsletter }));
 });
 
 export const onRequestDelete = ({ request, env, data }) => handle(async () => {

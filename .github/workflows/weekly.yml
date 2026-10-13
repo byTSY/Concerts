@@ -120,3 +120,14 @@ jobs:
 
       - name: Publier la collecte (si la tâche membres l'a refaite)
         run: python -m src.main promote
+
+      # Newsletter : seulement après le traitement programmé du lundi (un envoi par jour au plus)
+      - name: Newsletter du lundi
+        if: ${{ !cancelled() && github.event.schedule == '0 5 * * 1' }}
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          NEWSLETTER_FROM: ${{ secrets.NEWSLETTER_FROM }}
+        run: python -m src.main newsletter

@@ -11,6 +11,7 @@
                                            n'aurait pas pu lancer le calcul
   python -m src.main --member <id>          ce membre (plus ceux qui attendent un calcul)
   python -m src.main promote               publie la collecte préparée (après l'envoi sur GitHub)
+  python -m src.main newsletter            newsletter du lundi à chaque membre abonné (SMTP)
 
 La dernière collecte (concerts dédoublonnés, sans champ personnel) est conservée dans R2
 (common/collected.json) : la tâche membres et le calcul d'un seul membre la relisent. La tâche
@@ -27,7 +28,7 @@ import re
 import time
 from datetime import datetime, timedelta, timezone
 
-from . import catalog, cloud, discover, history, match, members, publish
+from . import catalog, cloud, discover, history, match, members, newsletter, publish
 from .library import deezer as deezer_library, spotify as spotify_library
 from .library.base import SourceError
 from .sources import bandsintown, dice, offi, qfap, ticketmaster, venues as venue_pages
@@ -234,7 +235,7 @@ def run_members(settings, db, store, selection, collected=None, kind="weekly"):
 
 def main():
     parser = argparse.ArgumentParser(prog="python -m src.main", description="Traitement des concerts")
-    parser.add_argument("task", nargs="?", choices=("common", "members", "promote"),
+    parser.add_argument("task", nargs="?", choices=("common", "members", "promote", "newsletter"),
                         help="tâche seule (défaut : les deux, ou members avec --member / --pending)")
     parser.add_argument("--member", action="append", default=[], help="identifiant d'un membre à calculer")
     parser.add_argument("--pending", action="store_true", help="membres qui attendent un calcul")
@@ -249,6 +250,9 @@ def main():
 
     if args.task == "promote":
         promote(store)
+        return
+    if args.task == "newsletter":
+        newsletter.send_all(db, store, store.get_json(COLLECTED))
         return
     targeted = bool(args.member or args.pending)
     task = args.task or ("members" if targeted else None)

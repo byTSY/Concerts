@@ -48,6 +48,7 @@ import * as adminInvitation from "../functions/api/admin/invitations/[id]/index.
 import * as adminRenew from "../functions/api/admin/invitations/[id]/renew.js";
 import * as adminAccess from "../functions/api/admin/members/[id]/access.js";
 import * as seenRoute from "../functions/api/me/seen.js";
+import * as unsubscribeRoute from "../functions/partage/desabonnement/[token].js";
 
 // --- D1 et R2 simulés --------------------------------------------------------------
 
@@ -921,4 +922,32 @@ test("fiches Reels vues : par membre, sans doublon, contrôle des identifiants, 
   env.DB.raw.exec("INSERT INTO seen_cards (user_id, concert_id, seen_at) VALUES ('u_aaaaaaaa', 'dddddd444444', '2024-01-01T00:00:00+00:00')");
   r = await post("a@test.fr", { ids: ["eeeeee555555"] });
   assert.deepEqual([...r.data].sort(), ["aaaaaa111111", "cccccc333333", "eeeeee555555"]);
+});
+
+test("newsletter : réglage dans Mon compte, désabonnement par le lien sans connexion", async () => {
+  const env = setup();
+  assert.equal((await call(env, "a@test.fr", getMe)).data.newsletter, true);           // abonné par défaut
+  let r = await call(env, "a@test.fr", meRoute.onRequestPatch, { method: "PATCH", body: { newsletter: false } });
+  assert.equal(r.data.newsletter, false);
+  assert.equal((await call(env, "a@test.fr", meRoute.onRequestPatch, { method: "PATCH", body: { newsletter: "non" } })).status, 400);
+  await call(env, "a@test.fr", meRoute.onRequestPatch, { method: "PATCH", body: { newsletter: true } });
+  // Lien de l'e-mail : la page ne désabonne pas, le bouton (ou la messagerie, en POST) oui
+  const token = "jeton-personnel-de-test-0123456789";
+  env.DB.raw.exec(`UPDATE users SET newsletter_token = '${token}' WHERE id = 'u_aaaaaaaa'`);
+  const nl = () => env.DB.raw.prepare("SELECT newsletter FROM users WHERE id = 'u_aaaaaaaa'").get().newsletter;
+  const get = await unsubscribeRoute.onRequestGet({ env, params: { token } });
+  assert.equal(get.status, 200);
+  assert.equal(nl(), 1);
+  const post = await unsubscribeRoute.onRequestPost({ env, params: { token } });
+  assert.equal(post.status, 200);
+  assert.equal(nl(), 0);
+  assert.equal(env.DB.raw.prepare("SELECT newsletter FROM users WHERE id = 'u_bbbbbbbb'").get().newsletter, 1);  // B intact
+  for (const bad of ["inconnu-mais-assez-long-000000", "court", "'; DROP TABLE users; --"]) {
+    assert.equal((await unsubscribeRoute.onRequestPost({ env, params: { token: bad } })).status, 404);
+  }
+  // Migration 0008 pas encore appliquée : profil affiché sans le réglage
+  env.DB.raw.exec("DROP INDEX users_newsletter_token; ALTER TABLE users DROP COLUMN newsletter_sent_at; ALTER TABLE users DROP COLUMN newsletter_token; ALTER TABLE users DROP COLUMN newsletter");
+  const me = await call(env, "a@test.fr", getMe);
+  assert.equal(me.status, 200);
+  assert.equal(me.data.newsletter, null);
 });
