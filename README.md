@@ -104,7 +104,9 @@ il s'arrête aussitôt (c. 1 minute de GitHub Actions) et n'enregistre aucun tra
 ### Membres : invitation, arrivée, compte
 
 - **Admin** (onglet visible du seul admin) : inviter (e-mail, prénom ; l'adresse est ajoutée
-  à la liste Access des membres, et un message prêt à transmettre est proposé), suspendre
+  à la liste Access des membres ; bouton « Envoyer par SMS », qui ouvre l'application Messages
+  avec le lien prérempli, et message complet à copier ; « Inviter par SMS » renvoie l'invitation
+  d'un membre pas encore arrivé), suspendre
   (accès coupé aussitôt, données gardées), réactiver, supprimer (tout est effacé), relancer un
   calcul, suivre les traitements. L'admin voit statut, connexions, activité et nombre de ★ ;
   jamais les artistes, concerts choisis ou préférences d'un membre.
