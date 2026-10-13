@@ -1,6 +1,6 @@
 -- Newsletter du lundi (version 1.5.0) : envoyée par défaut, désabonnement dans « Mon compte » ou
 -- par le lien de l'e-mail (jeton personnel, page publique /partage/desabonnement/<jeton>).
--- newsletter_sent_at : date du dernier envoi, pour ne jamais envoyer deux fois le même jour.
+-- newsletter_sent_at : date du dernier envoi (un envoi par semaine au plus, 6 jours).
 -- Retour arrière : DROP INDEX users_newsletter_token;
 --                  ALTER TABLE users DROP COLUMN newsletter_sent_at;
 --                  ALTER TABLE users DROP COLUMN newsletter_token;

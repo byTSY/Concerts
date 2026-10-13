@@ -39,6 +39,16 @@ class VenueMatching(unittest.TestCase):
         self.assertEqual(venues._web("/agenda/x", "https://salle.fr/programme"), "https://salle.fr/agenda/x")
         self.assertIsNone(venues._web("javascript:alert(1)", "https://salle.fr/"))
 
+    def test_comedy_and_theatre_left_out_of_the_catalogue(self):
+        from src import match
+        venues = match.VenueMatcher({"venues": []})
+        base = {"date": "2099-01-01", "venue": "Salle"}
+        events = [dict(base, id="c1", genre="Comedy"), dict(base, id="c2", genre="Theatre"),
+                  dict(base, id="c3", genre="Children's Theatre"), dict(base, id="c4", genre="Théâtre, Humour"),
+                  dict(base, id="k1", genre="Rock, Pop / Rock"), dict(base, id="k2", genre=None),
+                  dict(base, id="k3", genre="Jazz / Blues")]
+        self.assertEqual([e["id"] for e in match.prepare(events, venues)], ["k1", "k2", "k3"])
+
     def test_oversized_page_is_not_read(self):
         from src.sources import venues
 

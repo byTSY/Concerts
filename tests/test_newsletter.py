@@ -64,6 +64,24 @@ class Sections(unittest.TestCase):
         self.assertIn("jeudi 22 octobre".split()[0], newsletter.day_label("2026-10-22"))
         self.assertEqual(newsletter.day_label("2026-11-01"), "dimanche 1er novembre")
 
+    def test_style_instead_of_level(self):
+        events = [dict(ev("a1", "2026-11-20", "Razorlight", badge="annonce"), genre="Rock, Pop / Rock"),
+                  dict(ev("d1", "2026-10-28", "Découverte"), genre="Église, Classique")]
+        announced, recommended, _ = newsletter.sections(events, OVERLAY, [], TODAY)
+        html = newsletter.build_email("Léa", announced, recommended, [], "https://s", "https://s/u")[2]
+        self.assertNotIn("niveau", html)
+        self.assertIn("La Cigale · <span style=\"color:#565b78\">Rock</span>", html)
+        self.assertIn("Classique · Découverte, proche de Mien", html)
+        self.assertEqual(newsletter.display_genre("Pop, Pop / Rock"), "Pop")
+        self.assertIsNone(newsletter.display_genre(None))
+
+    def test_port_tolerant(self):
+        with mock.patch.object(newsletter, "log"):
+            self.assertEqual(newsletter.smtp_port(" 587\n"), 587)
+            self.assertEqual(newsletter.smtp_port("465"), 465)
+            self.assertEqual(newsletter.smtp_port("port 587"), 587)
+            self.assertEqual(newsletter.smtp_port(None), 587)
+
     def test_nothing_to_say_sends_nothing(self):
         self.assertIsNone(newsletter.build_email("Léa", [], [], [], "https://s", "https://s/u"))
 
@@ -118,6 +136,20 @@ class Sending(unittest.TestCase):
         self.assertEqual(newsletter.send_all(self.db, self.store, {"events": EVENTS}, CFG, TODAY), 1)
         failed = self.db.query("SELECT newsletter_sent_at FROM users WHERE id = 'u_aaaaaaaa'")[0]["newsletter_sent_at"]
         self.assertIsNone(failed)                                  # nouvel essai possible
+
+    def test_weekly_limit_boundary(self):
+        newsletter.send_all(self.db, self.store, {"events": EVENTS}, CFG, TODAY)
+        self.assertEqual(newsletter.send_all(self.db, self.store, {"events": EVENTS}, CFG, "2026-10-24"), 0)  # 5 jours
+        self.assertEqual(newsletter.send_all(self.db, self.store, {"events": EVENTS}, CFG, "2026-10-25"), 1)  # 6 jours
+
+    def test_member_deleted_during_the_send_gets_nothing(self):
+        real = newsletter.token_for
+        def vanish(db, member):
+            db.query("DELETE FROM users WHERE id = ?", [member["id"]])
+            return real(db, member)
+        with mock.patch.object(newsletter, "token_for", side_effect=vanish):
+            self.assertEqual(newsletter.send_all(self.db, self.store, {"events": EVENTS}, CFG, TODAY), 0)
+        self.smtp.send_message.assert_not_called()
 
     def test_rerun_the_next_day_sends_nothing(self):
         newsletter.send_all(self.db, self.store, {"events": EVENTS}, CFG, TODAY)

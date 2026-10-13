@@ -22,6 +22,9 @@ const CACHE_DAYS = 7;
 const DICE_TIMEOUT_MS = 4000;  // une page Dice lente ne retarde pas le reste de la fiche
 
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+// Lien externe venu des sources : http(s) seulement ; image : adresse encodée pour url("…")
+export const safeUrl = (u) => (/^https?:\/\//i.test(String(u ?? "").trim()) ? String(u).trim() : "#");
+const cssUrl = (u) => (/^https:\/\//i.test(String(u ?? "")) ? String(u).replace(/["'()\\\s]/g, (c) => `%${c.charCodeAt(0).toString(16).padStart(2, "0")}`) : "");
 
 // Même normalisation que src/util.py (norm)
 export function norm(text) {
@@ -365,10 +368,21 @@ export async function concertInfo(ev, ctx) {
 const fmtDate = (iso) => new Intl.DateTimeFormat("fr-FR", { weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })
   .format(new Date(iso + "T12:00:00Z"));
 
+// Lien de la newsletter (?app=1) : « Ouvrir dans l'app » et « Ajouter à mes Intéressés »
+// (connexion demandée par Cloudflare Access, puis la fiche s'ouvre dans l'application)
+function appButtons(c, url) {
+  const u = new URL(url);
+  if (u.searchParams.get("app") !== "1") return "";
+  const open = new URL(`/?concert=${encodeURIComponent(c.id)}`, u.origin).href;
+  return `<div class="row app">
+        <a class="btn" href="${esc(open)}">Ouvrir dans l'app</a>
+        <a class="btn out" href="${esc(open)}&amp;star=interested">★ Ajouter à mes Intéressés</a></div>`;
+}
+
 export function page(c, url) {
   const when = `${fmtDate(c.date)}${c.time ? ` à ${c.time.replace(/^(\d+):(\d+)$/, (m, h, mn) => `${Number(h)}h${mn === "00" ? "" : mn}`)}` : ""}`;
   const desc = c.description || [c.style && `Concert ${c.style}`, `${when}, ${c.venue}`].filter(Boolean).join(" · ");
-  const tickets = c.tickets.map((t) => `<a class="btn" href="${esc(t.url)}" target="_blank" rel="noopener">Billets sur ${esc(t.source)}</a>`).join("");
+  const tickets = c.tickets.map((t) => `<a class="btn" href="${esc(safeUrl(t.url))}" target="_blank" rel="noopener">Billets sur ${esc(t.source)}</a>`).join("");
   return `<!doctype html>
 <html lang="fr">
 <head>
@@ -419,7 +433,7 @@ ${c.picture ? `<meta property="og:image" content="${esc(c.picture)}">` : ""}
 <body>
 <main>
   <article class="card">
-    <div class="hero" style="${c.picture ? `background-image:url('${esc(c.picture)}')` : ""}"><h1>${esc(c.artist)}</h1></div>
+    <div class="hero" style="${cssUrl(c.picture) ? `background-image:url(&quot;${esc(cssUrl(c.picture))}&quot;)` : ""}"><h1>${esc(c.artist)}</h1></div>
     <div class="body">
       <div class="when">
         <div class="stub"><b>${Number(c.date.slice(8, 10))}</b><span>${esc(new Intl.DateTimeFormat("fr-FR", { month: "short", timeZone: "UTC" }).format(new Date(c.date + "T12:00:00Z")))}</span></div>
@@ -428,21 +442,22 @@ ${c.picture ? `<meta property="og:image" content="${esc(c.picture)}">` : ""}
           <p class="venue">${esc(c.venue)}${c.address ? `, ${esc(c.address)}` : ""}</p>
         </div>
       </div>
+      ${appButtons(c, url)}
       <div class="tags">
         ${(c.genres?.length ? c.genres : [c.genre || c.style].filter(Boolean)).map((g) => `<span class="tag">${esc(g)}</span>`).join("")}
         ${c.price ? `<span class="tag">${esc(c.price)}</span>` : ""}
         ${c.title && norm(c.title) !== norm(c.artist) ? `<span class="tag">${esc(c.title)}</span>` : ""}
       </div>
       ${c.description ? `<p class="about">${esc(c.description)}</p>
-      <p class="source">Sources : Wikidata et Deezer${c.descriptionSource ? ` · <a href="${esc(c.descriptionSource)}" target="_blank" rel="noopener">En savoir plus</a>` : ""}</p>` : ""}
+      <p class="source">Sources : Wikidata et Deezer${c.descriptionSource ? ` · <a href="${esc(safeUrl(c.descriptionSource))}" target="_blank" rel="noopener">En savoir plus</a>` : ""}</p>` : ""}
       ${c.organizer ? `<h2>Présentation</h2><p class="organizer">${esc(c.organizer).replace(/\n/g, "<br>")}</p><p class="source">Texte de l'organisateur, publié sur Dice</p>` : ""}
       <h2>Places</h2><div class="row">${tickets}
         <a class="btn out" href="${esc(c.fnac)}" target="_blank" rel="noopener">Chercher sur Fnac Spectacles</a></div>
       <h2>Écouter</h2>
       <div class="row">
-        <a class="btn out" href="${esc(c.listen.deezer)}" target="_blank" rel="noopener">Deezer</a>
-        <a class="btn out" href="${esc(c.listen.spotify)}" target="_blank" rel="noopener">Spotify</a>
-        <a class="btn out" href="${esc(c.listen.youtube)}" target="_blank" rel="noopener">YouTube</a>
+        <a class="btn out" href="${esc(safeUrl(c.listen.deezer))}" target="_blank" rel="noopener">Deezer</a>
+        <a class="btn out" href="${esc(safeUrl(c.listen.spotify))}" target="_blank" rel="noopener">Spotify</a>
+        <a class="btn out" href="${esc(safeUrl(c.listen.youtube))}" target="_blank" rel="noopener">YouTube</a>
       </div>
     </div>
   </article>
@@ -457,7 +472,7 @@ function notFound() {
 <title>Concert introuvable</title><meta name="robots" content="noindex"></head>
 <body style="font-family:system-ui,sans-serif;max-width:560px;margin:48px auto;padding:0 16px;line-height:1.5">
 <h1>Concert introuvable</h1><p>Ce concert est passé ou n'est plus à l'affiche.</p></body></html>`,
-    { status: 404, headers: { "content-type": "text/html; charset=utf-8" } });
+    { status: 404, headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" } });
 }
 
 // Concert publié, lu directement dans le site (sans passer par la protection d'accès) : petit
@@ -492,7 +507,10 @@ export async function onRequestGet(context) {
   } catch {
     return new Response("Données indisponibles", { status: 503 });
   }
-  if (!found) return asJson ? new Response(JSON.stringify({ error: "concert introuvable" }), { status: 404 }) : notFound();
+  if (!found) {
+    return asJson ? new Response(JSON.stringify({ error: "concert introuvable" }),
+      { status: 404, headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" } }) : notFound();
+  }
   const ev = withSharedArtist(found, new URL(request.url).searchParams);
 
   const ctx = { waitUntil, env };

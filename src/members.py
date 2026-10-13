@@ -139,10 +139,6 @@ def favorite_venues(db, user_id):
     return {r["venue_id"] for r in db.query("SELECT venue_id FROM venue_favorites WHERE user_id = ?", [user_id])}
 
 
-def stars(db, user_id):
-    return db.query("SELECT concert_id, label, status, visibility FROM stars WHERE user_id = ?", [user_id])
-
-
 def all_star_ids(db):
     """Concerts mis de côté par au moins un membre (choix de l'identifiant lors d'une fusion)."""
     return {r["concert_id"] for r in db.query("SELECT DISTINCT concert_id FROM stars")}

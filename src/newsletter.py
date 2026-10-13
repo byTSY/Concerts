@@ -6,25 +6,45 @@ Contenu, à partir de la dernière collecte (R2 common/collected.json), des rés
 2. recommandations des 30 jours suivants (ses artistes et découvertes, 15 au plus) ;
 3. ses prochains concerts (« Places prises »).
 
-Envoi par SMTP (compte Gmail dédié avec mot de passe d'application, ou relais Brevo) :
+Envoi par SMTP (relais Brevo, ou compte Gmail avec mot de passe d'application) :
 SMTP_HOST, SMTP_PORT (587 STARTTLS, 465 SSL), SMTP_USER, SMTP_PASSWORD, NEWSLETTER_FROM
 (facultatif, SMTP_USER par défaut), SITE_URL (facultatif). Sans réglage SMTP : rien n'est envoyé,
-le traitement continue. Un membre reçoit au plus un envoi par jour (users.newsletter_sent_at),
+le traitement continue. Un membre reçoit au plus un envoi par semaine (6 jours, users.newsletter_sent_at),
 seulement s'il est actif, abonné (users.newsletter) et que l'e-mail a un contenu.
 """
 import os
+import re
 import secrets
-from datetime import datetime
-from zoneinfo import ZoneInfo
 import smtplib
 import ssl
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
+from zoneinfo import ZoneInfo
 from email.message import EmailMessage
 from email.utils import formataddr, make_msgid
 from html import escape
 
 from . import members
-from .util import log
+from .util import log, norm
+
+# Genre affiché : même règle que la fiche /partage/ (functions/partage/[[path]].js, displayGenre) :
+# « Pop, Pop / Rock » donne « Pop » ; un lieu ou un instrument (« Église, Classique ») est sauté
+NOT_GENRE = re.compile(r"^(eglise|piano|violon|orgue|guitare|concert a la bougie|concert de noel|"
+                       r"choix de la redaction|music|other|undefined)$")
+
+
+def display_genre(genre):
+    parts = [p.strip() for p in str(genre or "").split(",") if p.strip()]
+    return next((p for p in parts if not NOT_GENRE.match(norm(p))), None)
+
+
+def smtp_port(value):
+    """Port lu dans le secret SMTP_PORT ; espaces tolérés, 587 si la valeur est illisible."""
+    text = str(value or "").strip()
+    if text.isdigit():
+        return int(text)
+    if text:
+        log("Newsletter : SMTP_PORT illisible, port 587 utilisé")
+    return 587
 
 SITE_URL = "https://concerts-s2k.pages.dev"
 HORIZON_DAYS = 30
@@ -46,7 +66,7 @@ def smtp_settings():
         return None
     return {
         "host": os.environ["SMTP_HOST"],
-        "port": int(os.environ.get("SMTP_PORT") or 587),
+        "port": smtp_port(os.environ.get("SMTP_PORT")),
         "user": os.environ["SMTP_USER"],
         "password": os.environ["SMTP_PASSWORD"],
         "sender": os.environ.get("NEWSLETTER_FROM") or os.environ["SMTP_USER"],
@@ -97,15 +117,14 @@ def sections(events, overlay, going_ids, today=None):
 
 
 def _row(ev, item, site):
-    link = f"{site}/partage/{escape(ev['id'])}"
+    link = f"{site}/partage/{escape(ev['id'])}?app=1"  # boutons vers l'application sur la fiche
     when = day_label(ev["date"]) + (f" · {escape(ev['time'])}" if ev.get("time") else "")
-    tag = ""
+    # Style musical, et pour une découverte les artistes proches
+    details = [escape(g) for g in [display_genre(ev.get("genre"))] if g]
     if item.get("kind") == "discovery":
         close = ", ".join((item.get("discovery") or {}).get("close_to", [])[:2])
-        tag = f"Découverte{f', proche de {escape(close)}' if close else ''}"
-    elif item.get("kind") == "known":
-        tag = f"Vos artistes, niveau {item.get('tier') or 3}"
-    tag_html = f' · <span style="color:#565b78">{tag}</span>' if tag else ""
+        details.append(f"Découverte{f', proche de {escape(close)}' if close else ''}")
+    tag_html = f' · <span style="color:#565b78">{" · ".join(details)}</span>' if details else ""
     return (f'<tr><td style="padding:10px 0;border-bottom:1px solid #d9dbe3">'
             f'<div style="font-size:13px;color:#565b78">{when}</div>'
             f'<div style="font-size:16px;font-weight:700;margin:2px 0">'
@@ -128,7 +147,9 @@ def _text_block(title, rows, site):
     lines = [title.upper()]
     for ev, item in rows:
         when = day_label(ev["date"]) + (f" {ev['time']}" if ev.get("time") else "")
-        lines.append(f"- {when} : {headline(ev, item)}, {ev.get('venue') or ''} ({site}/partage/{ev['id']})")
+        genre = display_genre(ev.get("genre"))
+        lines.append(f"- {when} : {headline(ev, item)}, {ev.get('venue') or ''}"
+                     f"{f' ({genre})' if genre else ''} : {site}/partage/{ev['id']}?app=1")
     return "\n".join(lines) + "\n\n"
 
 
@@ -176,12 +197,13 @@ def recipients(db, today, test_member=None):
 
 
 def token_for(db, member):
+    """Jeton du lien de désabonnement ; None si le membre a été supprimé entre-temps."""
     if member.get("newsletter_token"):
         return member["newsletter_token"]
     token = secrets.token_urlsafe(24)
     db.query("UPDATE users SET newsletter_token = ? WHERE id = ? AND newsletter_token IS NULL", [token, member["id"]])
     rows = db.query("SELECT newsletter_token FROM users WHERE id = ?", [member["id"]])
-    return rows[0]["newsletter_token"] if rows else token
+    return rows[0]["newsletter_token"] if rows and rows[0]["newsletter_token"] else None
 
 
 def message(cfg, to, subject, text, html, unsubscribe):
@@ -234,7 +256,11 @@ def send_all(db, store, collected, cfg=None, today=None, test_member=None):
                 going = [r["concert_id"] for r in db.query(
                     "SELECT concert_id FROM stars WHERE user_id = ? AND status = 'going'", [m["id"]])]
                 announced, recommended, going_rows = sections(events, overlay, going, today)
-                unsubscribe = f"{cfg['site']}/partage/desabonnement/{token_for(db, m)}"
+                token = token_for(db, m)
+                if not token:
+                    log(f"  Membre {m['id']} : supprimé entre-temps, rien envoyé")
+                    continue
+                unsubscribe = f"{cfg['site']}/partage/desabonnement/{token}"
                 built = build_email(m.get("pseudo") or m["first_name"], announced, recommended, going_rows,
                                     cfg["site"], unsubscribe)
                 if not built:

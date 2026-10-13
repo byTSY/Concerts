@@ -2,3 +2,4 @@ requests>=2.31
 PyYAML>=6.0
 boto3>=1.34
 cryptography>=42
+tzdata  # fuseau Europe/Paris (newsletter), aussi sous Windows

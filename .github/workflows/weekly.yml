@@ -3,7 +3,11 @@ name: Mise à jour hebdomadaire
 on:
   schedule:
     - cron: "0 5 * * 1"     # lundi 5h UTC (6h ou 7h à Paris selon la saison) : traitement complet
-    - cron: "30 */2 * * *"  # toutes les 2 heures : membres en attente d'un calcul que le site n'a pas pu lancer
+    # Relance de sécurité toutes les 2 heures : membres en attente d'un calcul que le site n'a pas pu
+    # lancer. Pas le lundi de 5 h à 9 h UTC : GitHub ne garde qu'un lancement en attente par groupe,
+    # une relance remplacerait le traitement du lundi s'il attend la fin d'un calcul.
+    - cron: "30 */2 * * 0,2-6"
+    - cron: "30 0,2,4,10,12,14,16,18,20,22 * * 1"
   workflow_dispatch:       # bouton « Run workflow », ou lancement par le site (calcul d'un membre)
     inputs:
       member:
@@ -31,8 +35,9 @@ env:
 jobs:
   # Tâche commune : sources, salles, dédoublonnage, historique commun, publication commune
   common:
-    # Pas pour un calcul de membre ni pour la relance de sécurité des 2 heures
-    if: ${{ !inputs.member && github.event.schedule != '30 */2 * * *' }}
+    # Traitement du lundi ou lancement manuel sans membre ; pas pour un calcul de membre ni pour la
+    # relance de sécurité
+    if: ${{ !inputs.member && (github.event_name != 'schedule' || github.event.schedule == '0 5 * * 1') }}
     runs-on: ubuntu-24.04   # version fixée (ubuntu-latest passe à Ubuntu 26 le 19 octobre 2026)
     timeout-minutes: 60
     steps:
@@ -72,7 +77,7 @@ jobs:
     needs: common
     if: ${{ always() && (needs.common.result == 'success' || needs.common.result == 'skipped') }}
     runs-on: ubuntu-24.04   # version fixée (ubuntu-latest passe à Ubuntu 26 le 19 octobre 2026)
-    timeout-minutes: 60
+    timeout-minutes: 120    # plusieurs grands membres Spotify (c. 10 min chacun)
     steps:
       - uses: actions/checkout@v7
         with:
@@ -86,9 +91,10 @@ jobs:
       - run: pip install -r requirements.txt
 
       - name: Tâche membres
+        id: members_task
         env:
           MEMBER: ${{ inputs.member }}
-          SAFETY_NET: ${{ github.event.schedule == '30 */2 * * *' }}
+          SAFETY_NET: ${{ github.event_name == 'schedule' && github.event.schedule != '0 5 * * 1' }}
           # Membres Spotify : rafraîchissement du jeton (chiffré en D1)
           SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
           SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
@@ -118,12 +124,31 @@ jobs:
             git push
           fi
 
+      # Seulement si la tâche membres a refait la collecte (collecte de plus de 7 jours) : un fichier
+      # préparé par une tâche commune dont l'envoi sur GitHub a échoué n'est jamais publié
       - name: Publier la collecte (si la tâche membres l'a refaite)
+        if: ${{ steps.members_task.outputs.redid_common == 'true' }}
         run: python -m src.main promote
 
-      # Newsletter : seulement après le traitement programmé du lundi (un envoi par jour au plus)
+  # Newsletter du lundi : tâche à part, envoyée même si la tâche membres a échoué ou dépassé son
+  # délai (résultats de la semaine précédente pour les membres non recalculés), pas si la collecte
+  # du lundi a échoué. Un envoi par semaine au plus (6 jours).
+  newsletter:
+    needs: [common, members]
+    if: ${{ always() && github.event.schedule == '0 5 * * 1' && needs.common.result == 'success' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
       - name: Newsletter du lundi
-        if: ${{ !cancelled() && github.event.schedule == '0 5 * * 1' }}
         env:
           SMTP_HOST: ${{ secrets.SMTP_HOST }}
           SMTP_PORT: ${{ secrets.SMTP_PORT }}

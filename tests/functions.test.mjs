@@ -680,7 +680,7 @@ test("★ partagés : jamais un ★ privé, jamais un membre suspendu, ni identi
   assert.deepEqual((await call(env, "c@test.fr", communityRoute.onRequestGet, { path: "/api/community/stars" })).data, []);
 });
 
-test("★ : statut « j'y vais » et visibilité par défaut du membre", async () => {
+test("★ : statut « places prises » et visibilité par défaut du membre", async () => {
   const env = setup();
   await call(env, "a@test.fr", meRoute.onRequestPatch, { method: "PATCH", body: { default_visibility: "members" } });
   const put = (body) => call(env, "a@test.fr", starRoute.onRequestPut, {
