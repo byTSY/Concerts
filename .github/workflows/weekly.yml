@@ -86,6 +86,10 @@ jobs:
       - name: Tâche membres
         env:
           MEMBER: ${{ inputs.member }}
+          # Membres Spotify : rafraîchissement du jeton (chiffré en D1)
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+          TOKEN_ENC_KEY: ${{ secrets.TOKEN_ENC_KEY }}
           # Collecte de plus de 7 jours : la tâche membres refait d'abord la tâche commune
           TICKETMASTER_API_KEY: ${{ secrets.TICKETMASTER_API_KEY }}
           BANDSINTOWN_APP_ID: ${{ secrets.BANDSINTOWN_APP_ID }}

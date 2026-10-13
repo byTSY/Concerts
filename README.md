@@ -89,7 +89,7 @@ Le workflow « Mise à jour hebdomadaire » (lundi 5h UTC) enchaîne deux tâche
    dédoublonnage (avec les artistes de tous les membres), historique commun (`first_seen`,
    badge « annonce »), publication de `site/data/`, collecte enregistrée dans R2 ;
 2. **membres** (`python -m src.main members`) : pour chaque membre actif, lecture de sa source
-   (Deezer : profil public), préférences, rapprochement, salles favorites, découvertes,
+   (Deezer : profil public ; Spotify : bibliothèque, voir ci-dessous), préférences, rapprochement, salles favorites, découvertes,
    historique (badge « liste »), résultats dans R2. Une erreur chez un membre (profil devenu
    privé, par exemple) le passe en statut « en erreur » avec un code, sans arrêter les autres.
 
@@ -105,18 +105,53 @@ passent l'un après l'autre.
   (accès coupé aussitôt, données gardées), réactiver, supprimer (tout est effacé), relancer un
   calcul, suivre les traitements. L'admin voit statut, connexions, activité et nombre de ★ ;
   jamais les artistes, concerts choisis ou préférences d'un membre.
-- **Arrivée d'un membre** : connexion par code reçu par e-mail (Cloudflare Access), lien de son
-  profil Deezer (public, vérifié, pas déjà rattaché à un autre membre), salles favorites
-  (facultatif), puis attente du premier calcul (quelques minutes).
+- **Arrivée d'un membre** : connexion par code reçu par e-mail (Cloudflare Access), choix de la
+  source : lien de son profil Deezer (public, vérifié, pas déjà rattaché à un autre membre), ou
+  demande de place Spotify (voir ci-dessous) ; salles favorites (facultatif), puis attente du
+  premier calcul (quelques minutes).
 - **Mon compte** : pseudo, source (« Synchroniser maintenant », une fois par heure ; « Changer
   de source », qui remet les résultats à zéro en gardant préférences, salles et ★), salles
   favorites, visibilité par défaut des ★, suppression du compte (double confirmation).
+
+### Spotify
+
+L'application Spotify « Concerts » est en mode développement : son propriétaire doit garder un
+abonnement Premium, et elle n'accepte que 5 comptes, ajoutés à la main dans le tableau de bord
+Spotify (page User Management). D'où le parcours :
+
+1. Le membre choisit Spotify et indique le nom et l'e-mail de son compte Spotify (option grisée
+   quand les 5 places sont prises ; plafond `SPOTIFY_MAX_USERS`, 5 par défaut).
+2. L'admin, dans l'onglet Admin, section Spotify : copie le nom et l'e-mail, ouvre la page User
+   Management par le bouton « Ouvrir Spotify », ajoute le compte, puis clique « Fait ».
+3. Le membre voit « Connecter Spotify », autorise l'application chez Spotify (Authorization
+   Code avec PKCE ; l'échange du code se fait côté serveur) et revient sur le site ; le calcul
+   est lancé. Si Spotify refuse le compte (adresse erronée), la demande revient chez l'admin avec
+   la mention « Spotify refuse encore ce compte ».
+
+Seul le jeton de rafraîchissement est conservé, chiffré (AES-GCM, clé `TOKEN_ENC_KEY` commune
+aux fonctions et au traitement, liée à l'identifiant du membre) ; il expire au bout de
+180 jours ou quand le membre retire l'accès chez Spotify : la source passe alors en
+« accès expiré » et le membre voit « Reconnecter Spotify », sans gêner les autres membres.
+
+Le traitement (`src/library/spotify.py`) lit les artistes suivis, les albums et titres
+sauvegardés, les titres des playlists du membre et ses artistes les plus écoutés (poids
+`top_artist`). Chaque artiste Spotify est rapproché d'un artiste Deezer, dont les artistes
+similaires servent aux découvertes ; un artiste non rapproché (identifiant `sp:<id>`) sert au
+rapprochement des concerts par nom seulement. Le nombre d'appels Spotify et d'artistes non
+rapprochés figure dans le journal du traitement.
+
+Une place reste prise tant qu'un compte figure dans le tableau de bord Spotify : après la
+suppression d'un membre Spotify ou son passage à Deezer, la section Spotify affiche un
+« retrait à faire » ; le bouton « Retiré » libère la place et efface le nom et l'e-mail.
 
 ### Mise à jour du schéma de la base
 
 ```powershell
 .venv\Scripts\python -m src.migrate schema
 ```
+
+Ordre de mise en production : appliquer d'abord les migrations sur la base de production, puis
+déployer le code (les fonctions lisent les nouvelles colonnes et tables).
 
 Avec les variables `CF_ACCOUNT_ID`, `D1_DATABASE_ID` et `CF_D1_API_TOKEN`, la commande travaille
 sur Cloudflare ; `--local` la fait travailler sur la copie locale (`data/local/`, non
@@ -135,17 +170,23 @@ Réglages Cloudflare du projet Pages (Settings > Bindings, et Variables and Secr
 | `ACCESS_LIST_ID` | variable | identifiant de la liste Zero Trust « membres » (adresses autorisées) |
 | `CF_ADMIN_API_TOKEN` | secret | clé Cloudflare : liste Zero Trust (Zero Trust Edit), coupure des sessions (Access : Organizations, Identity Providers and Groups Edit) |
 | `GITHUB_ACTIONS_TOKEN` | secret | clé GitHub limitée au dépôt, droit « Actions : Read and write » (lancement d'un calcul) |
+| `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET` | secret | identifiants de l'application Spotify (fiche de partage, connexion des membres) |
+| `TOKEN_ENC_KEY` | secret | clé de chiffrement des jetons Spotify : 32 octets en base64, identique dans GitHub Actions |
+| `SPOTIFY_MAX_USERS` | variable (facultative) | places Spotify, 5 par défaut |
 
 En prévisualisation, sans `CF_ADMIN_API_TOKEN` ni `GITHUB_ACTIONS_TOKEN` : la liste Access et
 les calculs ne sont pas touchés (la liste est commune à la production), l'écran l'indique.
 
-Secrets GitHub Actions : les six variables Cloudflare ci-dessus.
+Secrets GitHub Actions : les six variables Cloudflare ci-dessus, et pour les membres Spotify
+`SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, `TOKEN_ENC_KEY` (la même clé que dans Cloudflare :
+avec une autre clé, les jetons sont illisibles et les calculs Spotify échouent avec le code
+`token_key`, sans rien effacer).
 
 Tests (avant chaque mise en production) :
 
 ```powershell
-.venv\Scripts\python -m unittest discover -s tests -t .   # historique : non-régression
-node --test tests/functions.test.mjs                     # jeton Access, barrière, isolation, admin, arrivée
+.venv\Scripts\python -m unittest discover -s tests -t .   # historique, membres, Spotify (simulé)
+node --test tests/functions.test.mjs                     # jeton Access, barrière, isolation, admin, arrivée, Spotify
 ```
 
 Limites des offres gratuites (documentation Cloudflare, 12 octobre 2026) : D1, 5 millions de
@@ -225,9 +266,10 @@ Liens d'écoute et d'achat :
 Résultats mis en cache une semaine. Fonction : `functions/partage/[[path]].js`.
 
 **API Spotify (facultatif, liens exacts pour tous les artistes).** Sur
-https://developer.spotify.com/dashboard, créez une application (nom `Concerts`, Redirect URI
-`https://concerts-s2k.pages.dev`, API : *Web API*), puis copiez son *Client ID* et son *Client
-Secret*. Dans Cloudflare, projet `concerts` > Settings > Variables and Secrets, ajoutez deux
+https://developer.spotify.com/dashboard, créez une application (nom `Concerts`, Redirect URIs
+`https://concerts-s2k.pages.dev/api/me/spotify/callback` et, pour la version d'essai,
+`https://spotify.concerts-s2k.pages.dev/api/me/spotify/callback`, API : *Web API*), puis copiez
+son *Client ID* et son *Client Secret*. Dans Cloudflare, projet `concerts` > Settings > Variables and Secrets, ajoutez deux
 secrets : `SPOTIFY_CLIENT_ID` et `SPOTIFY_CLIENT_SECRET`, puis **Retry deployment**.
 
 **Rendre les fiches accessibles à vos amis (une seule fois).** Le site étant réservé à votre

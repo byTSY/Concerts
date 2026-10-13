@@ -15,7 +15,9 @@ REVERSE_POOL = 300  # nombre de vos artistes dont on lit les similaires
 
 
 def _reverse_index(artists, related_cache, refresh_days):
-    pool = sorted((a for a in artists.values() if a["tier"] <= 2), key=lambda a: -a["score"])[:REVERSE_POOL]
+    # Artistes Spotify non rapprochés de Deezer (sp:<id>) : pas d'artistes similaires connus
+    pool = sorted((a for a in artists.values() if a["tier"] <= 2 and not str(a["id"]).startswith("sp:")),
+                  key=lambda a: -a["score"])[:REVERSE_POOL]
     weight, names = defaultdict(float), defaultdict(list)
     for a in pool:
         for rid in deezer.related(a["id"], related_cache, refresh_days):

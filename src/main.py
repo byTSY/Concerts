@@ -26,7 +26,7 @@ import time
 from datetime import datetime, timedelta, timezone
 
 from . import catalog, cloud, discover, history, match, members, publish
-from .library import deezer as deezer_library
+from .library import deezer as deezer_library, spotify as spotify_library
 from .library.base import SourceError
 from .sources import bandsintown, dice, offi, qfap, ticketmaster, venues as venue_pages
 from .util import ROOT, load_yaml, log, norm
@@ -34,7 +34,7 @@ from .util import ROOT, load_yaml, log, norm
 COLLECTED = "common/collected.json"
 COLLECTED_NEXT = "common/collected.next.json"
 STALE_DAYS = 7
-LIBRARIES = {"deezer": deezer_library.read}
+LIBRARIES = {"deezer": deezer_library.read, "spotify": spotify_library.read}
 
 
 def run_source(label, status, fn, *args):
@@ -166,7 +166,9 @@ def compute_member(m, collected, settings, db, store, budget):
     if not read_library:
         raise SourceError("unsupported_provider", m["provider"])
     previous = members.read(store, uid, "artists", {})
-    artists = read_library(m["provider_user_id"], settings, previous)
+    # Deezer : n° du profil public ; Spotify : jeton du membre (chiffré en D1)
+    source = members.SpotifyAccess(db, uid) if m["provider"] == "spotify" else m["provider_user_id"]
+    artists = read_library(source, settings, previous)
     artists, hidden, hidden_keys = apply_prefs(artists, members.prefs(db, uid))
 
     events = copy.deepcopy(collected["events"])
@@ -206,6 +208,9 @@ def run_members(settings, db, store, selection, collected=None, kind="weekly"):
             log(f"  Membre {uid} : supprimé ou modifié pendant le calcul, résultats non enregistrés")
             continue
         except SourceError as exc:
+            if exc.code == "superseded":  # reconnecté pendant le calcul : le calcul demandé suivra
+                log(f"  Membre {uid} : reconnecté pendant le calcul, résultats non enregistrés")
+                continue
             code = exc.code
         except members.QuotaError as exc:
             log(f"  Stockage : {exc}")

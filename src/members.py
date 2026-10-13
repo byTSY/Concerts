@@ -60,6 +60,35 @@ def last_collection(db):
     return rows[0]["t"] if rows else None
 
 
+class SpotifyAccess:
+    """Jeton de rafraîchissement Spotify du membre, chiffré (src/library/spotify.py le
+    déchiffre) ; remplacé quand Spotify en renvoie un nouveau."""
+
+    def __init__(self, db, user_id):
+        self.db, self.user_id = db, user_id
+        self.read = None  # jeton lu au début du calcul
+
+    def token(self):
+        rows = self.db.query("SELECT refresh_token_enc FROM music_sources WHERE user_id = ? AND provider = 'spotify'",
+                             [self.user_id])
+        self.read = rows[0]["refresh_token_enc"] if rows else None
+        return self.read
+
+    def replace(self, token_enc):
+        # Seulement si le membre ne s'est pas reconnecté entre-temps (nouveau jeton déjà enregistré)
+        self.db.query("UPDATE music_sources SET refresh_token_enc = ? WHERE user_id = ? AND provider = 'spotify' "
+                      "AND refresh_token_enc = ?", [token_enc, self.user_id, self.read])
+        self.read = token_enc
+
+    def revoke(self):
+        """Accès retiré ou expiré : jeton effacé et source en revoked, sauf si le membre s'est
+        reconnecté pendant le calcul. Renvoie False dans ce cas."""
+        rows = self.db.query("UPDATE music_sources SET status = 'revoked', refresh_token_enc = NULL "
+                             "WHERE user_id = ? AND provider = 'spotify' AND refresh_token_enc = ? RETURNING user_id",
+                             [self.user_id, self.read])
+        return bool(rows)
+
+
 def record_sync(db, user_id, ok, error_code=None):
     now = now_iso()
     db.query("UPDATE music_sources SET last_sync_at = ?, last_sync_status = ? WHERE user_id = ?",

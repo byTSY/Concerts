@@ -1,5 +1,6 @@
 // Services extérieurs appelés par les fonctions : liste Access des membres et révocation des
-// sessions (API Cloudflare), lancement d'un calcul (GitHub Actions), profil public Deezer.
+// sessions (API Cloudflare), lancement d'un calcul (GitHub Actions), profil public Deezer,
+// autorisation Spotify d'un membre (OAuth).
 //
 // Variables : CF_ACCOUNT_ID, ACCESS_LIST_ID (liste Zero Trust « membres »), CF_ADMIN_API_TOKEN
 // (secret : Zero Trust Edit, Access Organizations Edit), GITHUB_ACTIONS_TOKEN (secret : droit
@@ -107,4 +108,73 @@ export async function deezerProfile(id) {
   if (!favs) return { error: "deezer_unavailable" };
   if (favs.error) return { error: "private_profile" };
   return { id: String(user.id), name: user.name, picture: user.picture_medium || null, favorites: favs.total ?? (favs.data || []).length };
+}
+
+// --- Spotify : autorisation d'un membre (Authorization Code avec PKCE) --------------------
+// Variables : SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET (secret, échange côté serveur).
+// Aucun jeton n'est journalisé ni renvoyé au navigateur.
+
+export const SPOTIFY_SCOPES =
+  "user-library-read user-follow-read user-top-read playlist-read-private playlist-read-collaborative";
+
+export const spotifyReady = (env) => Boolean(env.SPOTIFY_CLIENT_ID && env.SPOTIFY_CLIENT_SECRET);
+
+// Page User Management de l'application dans le tableau de bord Spotify (format vérifié le
+// 13 octobre 2026 : l'identifiant de l'application est son Client ID)
+export const spotifyDashboardUrl = (env) => (env.SPOTIFY_CLIENT_ID
+  ? `https://developer.spotify.com/dashboard/${encodeURIComponent(env.SPOTIFY_CLIENT_ID)}/users`
+  : "https://developer.spotify.com/dashboard");
+
+const urlSafe = (bytes) => btoa(String.fromCharCode(...bytes)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+
+export function randomToken(size = 32) {
+  return urlSafe(crypto.getRandomValues(new Uint8Array(size)));
+}
+
+export async function pkceChallenge(verifier) {
+  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(verifier));
+  return urlSafe(new Uint8Array(digest));
+}
+
+export async function spotifyAuthorizeUrl(env, { state, verifier, redirectUri }) {
+  const q = new URLSearchParams({
+    client_id: env.SPOTIFY_CLIENT_ID,
+    response_type: "code",
+    redirect_uri: redirectUri,
+    scope: SPOTIFY_SCOPES,
+    state,
+    code_challenge_method: "S256",
+    code_challenge: await pkceChallenge(verifier),
+    show_dialog: "true",  // le membre voit le compte Spotify utilisé et peut en changer
+  });
+  return `https://accounts.spotify.com/authorize?${q}`;
+}
+
+// Échange du code contre les jetons ; { error } si Spotify refuse (code expiré, déjà utilisé)
+export async function spotifyExchange(env, { code, verifier, redirectUri }) {
+  const r = await fetch("https://accounts.spotify.com/api/token", {
+    method: "POST",
+    headers: {
+      authorization: "Basic " + btoa(`${env.SPOTIFY_CLIENT_ID}:${env.SPOTIFY_CLIENT_SECRET}`),
+      "content-type": "application/x-www-form-urlencoded",
+    },
+    body: new URLSearchParams({ grant_type: "authorization_code", code, redirect_uri: redirectUri, code_verifier: verifier }),
+  });
+  const data = await r.json().catch(() => ({}));
+  if (!r.ok || !data.access_token || !data.refresh_token) {
+    // Seul le code d'erreur Spotify est gardé (jamais le corps complet)
+    throw new Error(`Spotify : échange refusé (HTTP ${r.status}${data.error ? `, ${String(data.error).slice(0, 40)}` : ""})`);
+  }
+  return { access: data.access_token, refresh: data.refresh_token, scopes: data.scope || "" };
+}
+
+// Profil Spotify du compte autorisé ; { error: "not_allowlisted" } si l'application refuse ce
+// compte (absent de la liste User Management du tableau de bord)
+export async function spotifyMe(access) {
+  const r = await fetch("https://api.spotify.com/v1/me", { headers: { authorization: `Bearer ${access}` } });
+  if (r.status === 403) return { error: "not_allowlisted" };
+  if (!r.ok) throw new Error(`Spotify : profil illisible (HTTP ${r.status})`);
+  const me = await r.json();
+  if (!me?.id) throw new Error("Spotify : profil sans identifiant");
+  return { id: String(me.id), name: me.display_name || null };
 }
