@@ -618,3 +618,19 @@ test("fonctions déployées avant la migration 0003 : le profil reste lisible, S
   assert.equal(me.status, 200);
   assert.equal(me.data.spotify.enabled, false);
 });
+
+test("fiche de partage : concert lu dans son petit fichier, events.json complet à défaut", async () => {
+  const { findConcert } = await import("../functions/partage/[[path]].js");
+  const json = (body) => new Response(JSON.stringify(body), { headers: { "content-type": "application/json" } });
+  const served = [];
+  const env = (files) => ({ ASSETS: { fetch: async (u) => {
+    served.push(u.pathname);
+    return files[u.pathname]?.() ?? new Response("<!doctype html>", { headers: { "content-type": "text/html" } });
+  } } });
+  const withShards = env({ "/data/share/ab.json": () => json([{ id: "ab12cd34ef56", title: "Concert" }]) });
+  assert.equal((await findConcert(withShards, "https://x.test/partage/ab12cd34ef56", "ab12cd34ef56")).title, "Concert");
+  assert.equal(await findConcert(withShards, "https://x.test/", "ab0000000000"), null);
+  assert.ok(!served.includes("/data/events.json"));
+  const before = env({ "/data/events.json": () => json([{ id: "cd12cd34ef56", title: "Ancien" }]) });
+  assert.equal((await findConcert(before, "https://x.test/", "cd12cd34ef56")).title, "Ancien");
+});

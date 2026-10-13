@@ -429,6 +429,20 @@ function notFound() {
     { status: 404, headers: { "content-type": "text/html; charset=utf-8" } });
 }
 
+// Concert publié, lu directement dans le site (sans passer par la protection d'accès) : petit
+// fichier data/share/<2 premiers caractères>.json (src/publish.py, build_share) ; à défaut (avant
+// la première publication de ces fichiers), events.json complet
+export async function findConcert(env, url, id) {
+  const shard = await env.ASSETS.fetch(new URL(`/data/share/${id.slice(0, 2)}.json`, url));
+  // Pages renvoie la page d'accueil pour un fichier absent : seul un JSON est accepté
+  if (shard.ok && (shard.headers.get("content-type") || "").includes("json")) {
+    return (await shard.json()).find((e) => e.id === id) || null;
+  }
+  const all = await env.ASSETS.fetch(new URL("/data/events.json", url));
+  if (!all.ok) throw new Error("données indisponibles");
+  return (await all.json()).find((e) => e.id === id) || null;
+}
+
 export async function onRequestGet(context) {
   const { request, env, params } = context;
   const waitUntil = (p) => context.waitUntil(p);
@@ -437,10 +451,12 @@ export async function onRequestGet(context) {
   const id = raw.replace(/\.json$/, "");
   if (!/^[a-z0-9]{6,40}$/.test(id)) return notFound();
 
-  // Données publiées, lues directement dans le site (sans passer par la protection d'accès)
-  const assets = await env.ASSETS.fetch(new URL("/data/events.json", request.url));
-  if (!assets.ok) return new Response("Données indisponibles", { status: 503 });
-  const found = (await assets.json()).find((e) => e.id === id);
+  let found;
+  try {
+    found = await findConcert(env, request.url, id);
+  } catch {
+    return new Response("Données indisponibles", { status: 503 });
+  }
   if (!found) return asJson ? new Response(JSON.stringify({ error: "concert introuvable" }), { status: 404 }) : notFound();
   const ev = withSharedArtist(found, new URL(request.url).searchParams);
 
