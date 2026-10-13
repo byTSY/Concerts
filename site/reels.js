@@ -219,12 +219,14 @@ function hideUndo() {
   if (bar) { bar.hidden = true; bar.innerHTML = ""; }
 }
 
-// Gestes : la fiche suit le doigt ; au-delà de 70 px, l'action est déclenchée
+// Gestes : la fiche suit le doigt. Glissement de 45 px, ou geste rapide de 20 px (30 px vers le
+// bas, qui masque l'artiste). Toucher la photo : à droite fiche suivante, à gauche précédente.
 function bindReelGestures(card) {
   let start = null;
+  const reset = () => { start = null; card.classList.remove("dragging"); card.style.transform = ""; };
   card.addEventListener("pointerdown", (e) => {
     if (e.button !== 0 || e.target.closest("button, a")) return;
-    start = { x: e.clientX, y: e.clientY, id: e.pointerId };
+    start = { x: e.clientX, y: e.clientY, t: Date.now(), id: e.pointerId, photo: Boolean(e.target.closest(".reel-photo")) };
     card.setPointerCapture(e.pointerId);
     card.classList.add("dragging");
   });
@@ -233,17 +235,20 @@ function bindReelGestures(card) {
     const dx = e.clientX - start.x, dy = e.clientY - start.y;
     card.style.transform = Math.abs(dx) > Math.abs(dy) ? `translateX(${dx}px) rotate(${dx / 30}deg)` : `translateY(${Math.max(0, dy)}px)`;
   });
-  const end = (e) => {
+  card.addEventListener("pointerup", (e) => {
     if (!start || e.pointerId !== start.id) return;
     const dx = e.clientX - start.x, dy = e.clientY - start.y;
-    start = null;
-    card.classList.remove("dragging");
-    card.style.transform = "";
-    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 70) step(dx < 0 ? 1 : -1);
-    else if (dy > 70 && dy > Math.abs(dx)) notForMe();
-  };
-  card.addEventListener("pointerup", end);
-  card.addEventListener("pointercancel", (e) => { if (start) { start = null; card.classList.remove("dragging"); card.style.transform = ""; } });
+    const quick = Date.now() - start.t < 250;
+    const { photo } = start;
+    reset();
+    if (Math.abs(dx) > Math.abs(dy) && (Math.abs(dx) > 45 || (quick && Math.abs(dx) > 20))) step(dx < 0 ? 1 : -1);
+    else if (dy > Math.abs(dx) && (dy > 60 || (quick && dy > 30))) notForMe();
+    else if (photo && Math.abs(dx) < 10 && Math.abs(dy) < 10) {
+      const box = card.getBoundingClientRect();
+      step(e.clientX - box.left < box.width / 3 ? -1 : 1);
+    }
+  });
+  card.addEventListener("pointercancel", reset);
 }
 
 function bindReels() {

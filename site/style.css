@@ -75,6 +75,9 @@ h1 {
 
 /* Fiches plein écran */
 dialog.reels {
+  /* Couleurs propres aux fiches (fond sombre, en mode clair comme en mode sombre) */
+  --ink: #f4f5fb; --ink-soft: #c9cde3; --rule: rgba(255, 255, 255, .45); --paper: #0f1230; --paper-2: #20254a;
+  overscroll-behavior: contain;
   width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0;
   background: #0f1230; color: #fff; overflow: hidden;
 }
@@ -91,13 +94,19 @@ dialog.reels::backdrop { background: #0f1230; }
 }
 .reel-card.dragging { transition: none; }
 .reel-photo { flex: 1 1 45%; min-height: 140px; background: #20254a center / cover no-repeat; border-radius: 10px; margin: 0 16px; }
-.reel-body { flex: 0 1 auto; padding: 14px 16px 6px; overflow-y: auto; }
+.reel-body { flex: 0 1 auto; padding: 14px 16px 6px; overflow: hidden; }
+/* Pas de défilement dans la fiche : le téléphone prendrait un geste pour un défilement */
+.reel-card, .reel-card * { touch-action: none; }
+.reel-photo { cursor: pointer; }
 .reel-tags { margin: 0 0 8px; }
 .reel-title { margin: 0; font-size: 1.6rem; line-height: 1.1; font-weight: 800; }
 .reel-when { margin: 8px 0 0; font-size: 1rem; opacity: .9; }
 .reel-sale { display: inline-block; margin: 8px 0 0; font-size: .85rem; background: var(--yellow); color: #1e2350; padding: 1px 6px; border-radius: 3px; }
 .reel-about { margin-top: 10px; font-size: .95rem; line-height: 1.4; }
-.reel-about p { margin: 6px 0 0; }
+.reel-about p { margin: 6px 0 0; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
+.reels .tag-known.tier-2, .reels .tag-known.tier-3 { color: #1e2350; }
+.reels .btn-star { color: #fff; border-color: #fff; }
+.reels .btn-star.on { color: #1e2350; }
 .reel-about .cell-sub { color: rgba(255,255,255,.7); }
 .reel-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
 .reels .btn-quiet { color: #fff; border-color: rgba(255,255,255,.5); }

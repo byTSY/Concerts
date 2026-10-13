@@ -22,7 +22,8 @@ Fiches Reels des nouveautés de la semaine, à la place du bandeau de billets.
 - Fiche plein écran : photo Deezer, description Wikidata et artistes similaires (mêmes données que
   /partage/), date, salle, badge, mise en vente. Boutons Intéressé (= ★), Pas pour moi, Voir la fiche.
 - Gestes : gauche, suivante ; droite, précédente ; bas, « Pas pour moi » (Ne plus recommander
-  l'artiste, barre Annuler 6 s). Clavier : flèches.
+  l'artiste, barre Annuler 6 s) ; seuil 45 px ou geste rapide ; toucher la photo à droite ou à
+  gauche comme sur Instagram. Clavier : flèches. Couleurs propres aux fiches (lisibles en mode clair).
 - Fiche vue dès son affichage, jamais réaffichée, sur tous les appareils : table D1 `seen_cards`,
   route GET/POST /api/me/seen (50 identifiants par appel, lignes de plus de 400 jours effacées).
 - Migration D1 : 0006_seen_cards.sql. Retour arrière :
