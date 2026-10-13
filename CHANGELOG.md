@@ -14,6 +14,17 @@ Revenir à une version antérieure :
 3. base D1 : les migrations ne s'annulent pas seules ; chaque entrée indique la commande inverse
    quand une migration est ajoutée.
 
+## 1.6.0 (13 octobre 2026)
+
+Comprend les changements de 1.5.1 (non publiée seule).
+- Catalogue : spectacles d'humour et de théâtre écartés (genres Ticketmaster « Comedy »,
+  « Theatre », « Children's Theatre » ; 102 sur 5 105 le 13 octobre 2026), au prochain traitement.
+- Fiche /partage/ ouverte depuis la newsletter (?app=1) : boutons « Ouvrir dans l'app » et
+  « ★ Ajouter à mes Intéressés ». L'application ouvre la fiche du concert (?concert=<id>) et,
+  pour le second, l'ajoute aux Intéressés s'il n'y est pas ; l'adresse est ensuite nettoyée.
+  Une fiche partagée à quelqu'un d'autre (sans ?app=1) ne montre pas ces boutons.
+Aucune migration D1.
+
 ## 1.5.1 (13 octobre 2026)
 
 Newsletter : retours du premier essai.

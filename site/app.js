@@ -1086,6 +1086,22 @@ function bind() {
   dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close(); });
 }
 
+// Lien d'une fiche /partage/ ouverte depuis la newsletter : ?concert=<id> ouvre la fiche du
+// concert ; &star=interested l'ajoute aussi aux Intéressés (s'il n'y est pas déjà). L'adresse est
+// ensuite nettoyée : un rechargement ne refait rien.
+function openFromLink() {
+  const params = new URLSearchParams(location.search);
+  const id = params.get("concert");
+  if (!id) return;
+  history.replaceState(null, "", location.pathname);
+  if (!state.events.some((e) => e.id === id)) { toast("Ce concert n'est plus à l'affiche"); return; }
+  if (params.get("star") === "interested") {
+    if (isStarred(id)) toast("Déjà dans vos concerts");
+    else setStarOption(id, "status", "interested");
+  }
+  openTicket(id);
+}
+
 (async function init() {
   const common = Promise.all([loadJSON("events", []), loadJSON("meta", {})]);
   // Données du membre connecté : profil, concerts retenus pour lui, liste d'artistes, préférences
@@ -1125,6 +1141,7 @@ function bind() {
   bindSearch();
   renderMasthead();
   switchView("calendar");
+  openFromLink();
   if (state.loadFailed) showAccessAlert(state.accessError);
   else if (!state.meta.generated_at) $("#calendar").insertAdjacentHTML("beforebegin", emptyMessage());
   // Retour de Spotify en erreur, accès Spotify expiré ou retiré (les concerts ne sont plus mis à jour)

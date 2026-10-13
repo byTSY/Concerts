@@ -365,6 +365,17 @@ export async function concertInfo(ev, ctx) {
 const fmtDate = (iso) => new Intl.DateTimeFormat("fr-FR", { weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })
   .format(new Date(iso + "T12:00:00Z"));
 
+// Lien de la newsletter (?app=1) : « Ouvrir dans l'app » et « Ajouter à mes Intéressés »
+// (connexion demandée par Cloudflare Access, puis la fiche s'ouvre dans l'application)
+function appButtons(c, url) {
+  const u = new URL(url);
+  if (u.searchParams.get("app") !== "1") return "";
+  const open = new URL(`/?concert=${encodeURIComponent(c.id)}`, u.origin).href;
+  return `<div class="row app">
+        <a class="btn" href="${esc(open)}">Ouvrir dans l'app</a>
+        <a class="btn out" href="${esc(open)}&amp;star=interested">★ Ajouter à mes Intéressés</a></div>`;
+}
+
 export function page(c, url) {
   const when = `${fmtDate(c.date)}${c.time ? ` à ${c.time.replace(/^(\d+):(\d+)$/, (m, h, mn) => `${Number(h)}h${mn === "00" ? "" : mn}`)}` : ""}`;
   const desc = c.description || [c.style && `Concert ${c.style}`, `${when}, ${c.venue}`].filter(Boolean).join(" · ");
@@ -428,6 +439,7 @@ ${c.picture ? `<meta property="og:image" content="${esc(c.picture)}">` : ""}
           <p class="venue">${esc(c.venue)}${c.address ? `, ${esc(c.address)}` : ""}</p>
         </div>
       </div>
+      ${appButtons(c, url)}
       <div class="tags">
         ${(c.genres?.length ? c.genres : [c.genre || c.style].filter(Boolean)).map((g) => `<span class="tag">${esc(g)}</span>`).join("")}
         ${c.price ? `<span class="tag">${esc(c.price)}</span>` : ""}

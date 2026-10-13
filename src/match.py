@@ -114,9 +114,20 @@ class VenueMatcher:
         return self._find(self.excluded, venue) is not None
 
 
+# Genres qui ne sont pas des concerts (Ticketmaster : « Comedy », « Theatre », « Children's
+# Theatre ») : écartés du catalogue (version 1.6.0). Mot entier, après normalisation (« Théâtre »
+# compris) ; un genre musical qui contiendrait l'un de ces mots serait aussi écarté.
+NOT_CONCERT_RE = re.compile(r"\b(comedy|theatre)\b")
+
+
+def not_a_concert(ev):
+    return any(NOT_CONCERT_RE.search(norm(part)) for part in str(ev.get("genre") or "").split(","))
+
+
 def prepare(events, venues):
-    """Écarte les événements passés ou exclus et rattache les salles du catalogue (nom
-    canonique, identifiant venue_id). Partie commune à tous les membres."""
+    """Écarte les événements passés ou exclus, les spectacles qui ne sont pas des concerts
+    (humour, théâtre), et rattache les salles du catalogue (nom canonique, identifiant
+    venue_id). Partie commune à tous les membres."""
     today = today_iso()
     out = []
     for ev in events:
@@ -125,6 +136,8 @@ def prepare(events, venues):
         if venues.is_excluded(ev["venue"]):
             continue
         if (ev.get("status") or "").lower() in {"cancelled", "canceled"}:
+            continue
+        if not_a_concert(ev):
             continue
         canon = venues.canonical(ev["venue"])
         ev["venue_id"] = canon[0] if canon else None

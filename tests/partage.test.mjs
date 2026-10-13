@@ -106,3 +106,26 @@ test("diceDescription : signale l'échec de lecture sans lever d'erreur", async 
     globalThis.fetch = realFetch;
   }
 });
+
+test("Lien de la newsletter (?app=1) : boutons vers l'application ; fiche partagée : aucun", async () => {
+  fakeCache();
+  const pageFor = async (query) => {
+    const realFetch = globalThis.fetch;
+    globalThis.fetch = async () => new Response("{}", { status: 404 });
+    try {
+      const res = await onRequestGet({
+        request: new Request(`https://site.test/partage/ab12cd34ef56${query}`),
+        params: { path: ["ab12cd34ef56"] },
+        env: { ASSETS: { fetch: async () => new Response(JSON.stringify(SHARD), { headers: { "content-type": "application/json" } }) } },
+        waitUntil: () => {},
+      });
+      return res.text();
+    } finally {
+      globalThis.fetch = realFetch;
+    }
+  };
+  const app = await pageFor("?app=1");
+  assert.match(app, /href="https:\/\/site\.test\/\?concert=ab12cd34ef56">Ouvrir dans l'app/);
+  assert.match(app, /\?concert=ab12cd34ef56&amp;star=interested">★ Ajouter à mes Intéressés/);
+  assert.doesNotMatch(await pageFor(""), /Ouvrir dans l'app/);
+});

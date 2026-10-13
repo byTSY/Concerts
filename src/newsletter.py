@@ -117,7 +117,7 @@ def sections(events, overlay, going_ids, today=None):
 
 
 def _row(ev, item, site):
-    link = f"{site}/partage/{escape(ev['id'])}"
+    link = f"{site}/partage/{escape(ev['id'])}?app=1"  # boutons vers l'application sur la fiche
     when = day_label(ev["date"]) + (f" · {escape(ev['time'])}" if ev.get("time") else "")
     # Style musical, et pour une découverte les artistes proches
     details = [escape(g) for g in [display_genre(ev.get("genre"))] if g]
@@ -149,7 +149,7 @@ def _text_block(title, rows, site):
         when = day_label(ev["date"]) + (f" {ev['time']}" if ev.get("time") else "")
         genre = display_genre(ev.get("genre"))
         lines.append(f"- {when} : {headline(ev, item)}, {ev.get('venue') or ''}"
-                     f"{f' ({genre})' if genre else ''} : {site}/partage/{ev['id']}")
+                     f"{f' ({genre})' if genre else ''} : {site}/partage/{ev['id']}?app=1")
     return "\n".join(lines) + "\n\n"
 
 
