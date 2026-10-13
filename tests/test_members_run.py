@@ -113,6 +113,14 @@ class MembersRun(unittest.TestCase):
         self.run_all()
         self.assertEqual(members.pending(self.db), [])        # calcul fait après la demande
 
+    def test_safety_net_without_pending_member_does_nothing(self):
+        """Relance des 2 heures sans membre en attente : ni calcul, ni traitement enregistré,
+        même avec une collecte périmée."""
+        with mock.patch.object(main.cloud, "d1", lambda **k: self.db),                 mock.patch.object(main.cloud, "r2", lambda **k: self.store),                 mock.patch.object(main, "common") as full, mock.patch.object(main, "log"),                 mock.patch("sys.argv", ["src.main", "members", "--pending"]):
+            main.main()
+        full.assert_not_called()
+        self.assertEqual(self.db.query("SELECT COUNT(*) AS n FROM runs")[0]["n"], 0)
+
 
 if __name__ == "__main__":
     unittest.main()

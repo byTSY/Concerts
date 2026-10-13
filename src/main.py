@@ -6,7 +6,9 @@
   python -m src.main members               tâche membres : chaque membre actif, à partir de la
                                            dernière collecte
   python -m src.main members --pending     membres qui attendent un calcul (arrivée,
-                                           « Synchroniser maintenant », relance par l'admin)
+                                           « Synchroniser maintenant », relance par l'admin) ;
+                                           lancé aussi toutes les 2 heures, au cas où le site
+                                           n'aurait pas pu lancer le calcul
   python -m src.main --member <id>          ce membre (plus ceux qui attendent un calcul)
   python -m src.main promote               publie la collecte préparée (après l'envoi sur GitHub)
 
@@ -257,6 +259,11 @@ def main():
         if task is None:
             promote(store)  # essai complet en local : pas d'envoi sur GitHub à attendre
     if task in (None, "members"):
+        # Relance de sécurité (toutes les 2 heures) : rien à faire si aucun membre n'attend, et
+        # aucun traitement enregistré
+        if targeted and not args.member and not members.pending(db):
+            log("Aucun membre en attente de calcul")
+            return
         if targeted and collection_is_stale(db):
             log(f"Collecte de plus de {STALE_DAYS} jours : traitement complet")
             collected = common(settings, db, store)

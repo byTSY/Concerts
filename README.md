@@ -97,6 +97,9 @@ Le site lance le calcul d'un seul membre (arrivée, « Synchroniser maintenant �
 l'admin) par le même workflow, avec le paramètre `member` : seule la tâche membres tourne, pour
 ce membre et ceux qui attendent un calcul, à partir de la dernière collecte. Les traitements
 passent l'un après l'autre.
+Filet de sécurité : toutes les 2 heures, le même workflow calcule les membres dont le calcul
+n'a pas pu être lancé par le site (GitHub indisponible, clé expirée) ; sans membre en attente,
+il s'arrête aussitôt (c. 1 minute de GitHub Actions) et n'enregistre aucun traitement.
 
 ### Membres : invitation, arrivée, compte
 
