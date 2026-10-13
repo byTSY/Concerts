@@ -35,9 +35,19 @@ function cleanName(value, max = 80) {
 
 // Mots trop courants pour désigner une salle à eux seuls : le traitement rattache un concert à
 // la salle dont un nom figure dans le libellé de la salle (src/match.py, VenueMatcher)
-const GENERIC_VENUE_WORDS = new Set(["paris", "salle", "theatre", "club", "cafe", "bar", "scene", "studio", "espace",
-  "eglise", "temple", "live", "jazz", "arena", "hall", "maison", "centre", "musique", "musiques", "opera", "cave",
-  "concert", "concerts", "grande", "petite", "grand", "petit", "saint", "sainte", "de", "du", "des", "et", "a"]);
+// (mêmes mots que VENUE_STOP, src/match.py, plus quelques mots de liaison)
+const GENERIC_VENUE_WORDS = new Set(["salle", "grande", "petite", "petit", "grand", "paris", "theatre", "eglise", "saint",
+  "sainte", "temple", "club", "cafe", "studio", "maison", "espace", "centre", "musique", "musiques", "music",
+  "auditorium", "cathedrale", "basilique", "chapelle", "conservatoire", "square", "jardin", "parc", "place", "scene",
+  "live", "bar", "cave", "caveau", "jazz", "arena", "hall", "palais", "opera", "institut", "musee", "fondation",
+  "philharmonie", "cite", "pavillon", "kiosque", "bibliotheque", "municipal", "municipale", "concert", "concerts",
+  "de", "du", "des", "et", "a", "au", "aux", "en"]);
+
+// Nom trop général pour désigner une salle : moins de 4 caractères, ou seulement des mots courants
+const tooGeneric = (name) => {
+  const key = normVenue(name);
+  return key.length < 4 || key.split(" ").every((w) => GENERIC_VENUE_WORDS.has(w));
+};
 
 // Alias : liste de noms (au plus 10), sans doublon ; chacun assez distinctif (4 caractères au
 // moins, pas seulement des mots courants)
@@ -47,10 +57,7 @@ function cleanAliases(value) {
   if (list.length > 10) throw new HttpError(400, "10 autres noms au plus");
   const out = [...new Set(list.map((a) => cleanName(a)).filter(Boolean))];
   for (const alias of out) {
-    const key = normVenue(alias);
-    if (key.length < 4 || key.split(" ").every((w) => GENERIC_VENUE_WORDS.has(w))) {
-      throw new HttpError(400, `autre nom trop général : « ${alias} » (il désignerait d'autres salles)`, "generic_alias");
-    }
+    if (tooGeneric(alias)) throw new HttpError(400, `autre nom trop général : « ${alias} » (il désignerait d'autres salles)`, "generic_alias");
   }
   return out;
 }
@@ -290,6 +297,7 @@ export function member(env, user) {
       const clean = cleanName(name);
       const id = venueId(clean);
       if (clean.length < 2 || !VENUE_ID.test(id)) throw new HttpError(400, "nom de salle : 2 à 80 caractères", "bad_name");
+      if (tooGeneric(clean)) throw new HttpError(400, "nom trop général : précisez le nom de la salle", "generic_name");
       const list = cleanAliases(aliases);
       const url = cleanUrl(agenda_url);
       for (const alias of list) {
@@ -636,7 +644,7 @@ export function admin(env) {
         "COALESCE(u.pseudo, u.first_name) AS proposed_by_name FROM venues v LEFT JOIN users u ON u.id = v.proposed_by " +
         "WHERE v.status = ? ORDER BY COALESCE(v.proposed_at, v.name)").bind(status).all();
       const out = results.map((v) => ({ ...v, aliases: JSON.parse(v.aliases || "[]"), excluded: Boolean(v.excluded) }));
-      if (status === "pending") {
+      if (status !== "approved") {
         for (const v of out) v.overlaps = await overlappingVenues(db, v.id, [v.name, ...v.aliases]);
       }
       return out;
@@ -652,17 +660,27 @@ export function admin(env) {
     // Correction : nom affiché, autres noms, page programme, exclusion (l'identifiant ne change pas)
     async updateVenue(venueKey, { name, aliases, agenda_url, excluded }) {
       const row = await this.venue(venueKey);
+      const current = await db.prepare("SELECT agenda_url FROM venues WHERE id = ?").bind(row.id).first();
       const sets = [];
       const values = [];
       if (name !== undefined) {
         const clean = cleanName(name);
         if (clean.length < 2) throw new HttpError(400, "nom de salle : 2 à 80 caractères");
+        if (tooGeneric(clean)) throw new HttpError(400, "nom trop général : précisez le nom de la salle", "generic_name");
         const known = await knownVenue(db, clean, row.id);
         if (known) throw new HttpError(409, "ce nom correspond déjà à une autre salle du catalogue", "exists");
         sets.push("name = ?"); values.push(clean);
       }
-      if (aliases !== undefined) { sets.push("aliases = ?"); values.push(JSON.stringify(cleanAliases(aliases))); }
-      if (agenda_url !== undefined) { sets.push("agenda_url = ?"); values.push(cleanUrl(agenda_url)); }
+      if (aliases !== undefined) {
+        const list = cleanAliases(aliases);
+        for (const alias of list) {
+          if (await knownVenue(db, alias, row.id)) throw new HttpError(409, `« ${alias} » désigne déjà une autre salle`, "exists");
+        }
+        sets.push("aliases = ?"); values.push(JSON.stringify(list));
+      }
+      if (agenda_url !== undefined && String(agenda_url ?? "").trim() !== (current?.agenda_url || "")) {
+        sets.push("agenda_url = ?"); values.push(cleanUrl(agenda_url));
+      }
       if (excluded !== undefined) {
         if (typeof excluded !== "boolean") throw new HttpError(400, "excluded : vrai ou faux");
         sets.push("excluded = ?"); values.push(excluded ? 1 : 0);

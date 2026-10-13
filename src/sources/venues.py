@@ -7,6 +7,7 @@ Sinon la page ne renvoie rien et le script passe à la suivante, sans erreur.
 """
 import json
 import re
+from urllib.parse import urljoin
 
 from ..util import SESSION, log
 
@@ -38,9 +39,27 @@ def _names(value):
 MAX_PAGE = 5 * 1024 * 1024  # page programme lue au plus (octets)
 
 
-def _web(value):
-    """Adresse http(s) seulement (la page d'une salle proposée par un membre n'est pas sûre)."""
-    return value if isinstance(value, str) and value.lower().startswith(("https://", "http://")) else None
+def _web(value, base=None):
+    """Adresse http(s) seulement (la page d'une salle proposée par un membre n'est pas sûre) ;
+    une adresse relative (« /agenda/x ») est complétée par celle de la page programme."""
+    if not isinstance(value, str) or not value.strip():
+        return None
+    full = urljoin(base, value.strip()) if base else value.strip()
+    return full if full.lower().startswith(("https://", "http://")) else None
+
+
+def _read(url):
+    """Texte de la page, ou None si elle dépasse MAX_PAGE (lecture interrompue)."""
+    with SESSION.get(url, timeout=30, stream=True) as r:
+        if int(r.headers.get("content-length") or 0) > MAX_PAGE:
+            return None
+        chunks, size = [], 0
+        for chunk in r.iter_content(65536):
+            size += len(chunk)
+            if size > MAX_PAGE:
+                return None
+            chunks.append(chunk)
+        return b"".join(chunks).decode(r.encoding or "utf-8", errors="replace")
 
 
 def fetch(venues_cfg):
@@ -51,11 +70,10 @@ def fetch(venues_cfg):
         if not url:
             continue
         try:
-            r = SESSION.get(url, timeout=30)
-            if len(r.content) > MAX_PAGE:
+            html = _read(url)
+            if html is None:
                 log(f"  {v['name']} : page programme trop lourde, ignorée")
                 continue
-            html = r.text
         except Exception as exc:  # noqa: BLE001
             log(f"  {v['name']} : page inaccessible ({exc.__class__.__name__})")
             continue
@@ -78,7 +96,7 @@ def fetch(venues_cfg):
                 performers = [n for n in _names(ev.get("performer")) if n]
                 events.append({
                     "source": f"Site {v['name']}",
-                    "source_id": _web(ev.get("url")) or f"{v['name']}-{start}",
+                    "source_id": _web(ev.get("url"), url) or f"{v['name']}-{start}",
                     "title": ev.get("name"),
                     "date": start[:10],
                     "time": start[11:16] or None,
@@ -87,13 +105,13 @@ def fetch(venues_cfg):
                     "city": "Paris",
                     "lat": None,
                     "lon": None,
-                    "url": _web(ev.get("url")) or url,
+                    "url": _web(ev.get("url"), url) or url,
                     "on_sale": None,
                     "price": f"{price} €" if price not in (None, "", 0, "0") else None,
                     "status": None,
                     "artists": performers,
                     "genre": None,
-                    "image": _web(image),
+                    "image": _web(image, url),
                     "title_only": not performers,
                 })
                 found += 1

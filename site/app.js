@@ -234,11 +234,12 @@ async function toggleStar(id) {
 // Statut (« j'y vais ») ou visibilité d'un concert ; un concert pas encore mis de côté l'est
 async function setStarOption(id, field, value) {
   const ev = state.events.find((e) => e.id === id);
-  const body = { [field]: value, ...(isStarred(id) ? {} : { label: ev ? starLabel(ev) : id }) };
+  const created = !isStarred(id);
+  const body = { [field]: value, ...(created ? { label: ev ? starLabel(ev) : id } : {}) };
   try {
     setStars(await api(`me/stars/${encodeURIComponent(id)}`, { method: "PUT", body }));
     toast(field === "status"
-      ? (value === "going" ? "Noté : vous y allez" : "Noté : intéressé")
+      ? (value === "going" ? "Noté : vous y allez" : created ? "Ajouté à vos concerts intéressés" : "Noté : intéressé")
       : (value === "members" ? "Visible par les membres" : "Visible par vous seul"));
   } catch (e) {
     toast(`Enregistrement impossible : ${e.message}`);

@@ -36,3 +36,16 @@ class VenueMatching(unittest.TestCase):
         self.assertEqual(m.canonical("Théâtre de l'Elysée")[0], "elysee")
         self.assertIsNone(venues._web("javascript:alert(1)"))
         self.assertEqual(venues._web("https://salle.fr/a"), "https://salle.fr/a")
+        self.assertEqual(venues._web("/agenda/x", "https://salle.fr/programme"), "https://salle.fr/agenda/x")
+        self.assertIsNone(venues._web("javascript:alert(1)", "https://salle.fr/"))
+
+    def test_oversized_page_is_not_read(self):
+        from src.sources import venues
+
+        class Big:
+            headers, encoding = {}, "utf-8"
+            def __enter__(self): return self
+            def __exit__(self, *a): return False
+            def iter_content(self, size): return iter([b"x" * size] * 200)  # 13 Mo
+        with mock.patch.object(venues.SESSION, "get", lambda *a, **k: Big()):
+            self.assertIsNone(venues._read("https://salle.fr/"))

@@ -735,6 +735,8 @@ test("salles : autres noms trop généraux refusés, https exigé, recoupements 
   const propose = (body) => call(env, "a@test.fr", proposalsRoute.onRequestPost, { method: "POST", path: "/api/venues/proposals", body });
   assert.equal((await propose({ name: "Péniche X", aliases: "Paris" })).data.code, "generic_alias");
   assert.equal((await propose({ name: "Péniche X", aliases: "la" })).data.code, "generic_alias");
+  assert.equal((await propose({ name: "Jazz Club" })).data.code, "generic_name");
+  assert.equal((await propose({ name: "Péniche X", aliases: "Auditorium" })).data.code, "generic_alias");
   assert.equal((await propose({ name: "Péniche X", agenda_url: "http://peniche.fr" })).data.code, "bad_url");
   assert.equal((await propose({ name: "Péniche X", agenda_url: "https://127.0.0.1/agenda" })).data.code, "bad_url");
   assert.equal((await propose({ name: "Elysée" })).status, 201);
