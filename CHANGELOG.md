@@ -14,6 +14,13 @@ Revenir à une version antérieure :
 3. base D1 : les migrations ne s'annulent pas seules ; chaque entrée indique la commande inverse
    quand une migration est ajoutée.
 
+## 1.8.1 (13 octobre 2026)
+
+Icônes du site.
+- Onglet du navigateur : l'étoile bleue à l'éclair rose remplace l'émoji 🎟️.
+- Écran d'accueil de l'iPhone : icône dédiée (étoile dans un cadre arrondi) au lieu du « C »
+  généré par iOS. Supprimer puis ajouter de nouveau le raccourci pour la voir.
+
 ## 1.8.0 (13 octobre 2026)
 
 Retirer un concert sans écarter l'artiste.
