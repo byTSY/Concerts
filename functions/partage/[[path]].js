@@ -19,6 +19,7 @@ const MUSIC_JOBS = ["Q177220", "Q639669", "Q2252262", "Q488205", "Q130857", "Q36
   "Q386854", "Q12800682", "Q12377274", "Q584301", "Q15981151", "Q753110", "Q1327329"];
 const isMusical = (e) => MUSIC_PROPS.some((p) => e.claims?.[p]?.length) || claimIds(e, "P106").some((id) => MUSIC_JOBS.includes(id));
 const CACHE_DAYS = 7;
+const DICE_TIMEOUT_MS = 4000;  // une page Dice lente ne retarde pas le reste de la fiche
 
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
@@ -210,20 +211,45 @@ async function spotifyArtist(name, env) {
 
 // --- Dice : présentation rédigée par l'organisateur ------------------------------------
 
-export async function diceDescription(url) {
-  const r = await fetch(url, { headers: { "user-agent": UA } });
-  if (!r.ok) return null;
-  const html = await r.text();
+// Texte du bloc JSON-LD de l'événement (objet, liste ou @graph) ; à défaut, aperçu og:description
+// (tronqué par Dice, mais mieux que rien si la page change de structure)
+const ENTITIES = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " ", rsquo: "’", lsquo: "‘", hellip: "…",
+  eacute: "é", egrave: "è", ecirc: "ê", agrave: "à", acirc: "â", ccedil: "ç", ocirc: "ô", ucirc: "û", icirc: "î" };
+const unescapeHtml = (s) => s.replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (m, e) => {
+  if (e[0] !== "#") return ENTITIES[e.toLowerCase()] ?? m;
+  const code = e[1].toLowerCase() === "x" ? parseInt(e.slice(2), 16) : Number(e.slice(1));
+  return code > 0 && code <= 0x10ffff && (code < 0xd800 || code > 0xdfff) ? String.fromCodePoint(code) : m;
+});
+const isEvent = (d) => [].concat(d?.["@type"] || []).some((t) => /Event/.test(t));
+
+export function diceText(html) {
+  let text = null;
   for (const m of html.matchAll(/<script[^>]+application\/ld\+json[^>]*>([\s\S]*?)<\/script>/gi)) {
-    try {
-      const d = JSON.parse(m[1]);
-      if (d && /Event/.test(d["@type"]) && d.description) {
-        const text = d.description.replace(/\s*\n\s*/g, "\n").replace(/[ \t]+/g, " ").trim();
-        return text.length > 600 ? text.slice(0, 600).replace(/\s+\S*$/, "") + "…" : text;
-      }
-    } catch { /* bloc illisible */ }
+    let data;
+    try { data = JSON.parse(m[1]); } catch { continue; }  // bloc illisible
+    const nodes = [].concat(data || []).flatMap((d) => [d, ...[].concat(d?.["@graph"] || [])]);
+    const ev = nodes.find((d) => isEvent(d) && typeof d.description === "string" && d.description.trim());
+    if (ev) { text = ev.description; break; }
   }
-  return null;
+  if (!text) {
+    const meta = html.match(/<meta[^>]+property=["']og:description["'][^>]*>/i)?.[0];
+    text = meta?.match(/content=(["'])([\s\S]*?)\1/i)?.[2] || null;
+  }
+  text = unescapeHtml(text || "").replace(/\s*\n\s*/g, "\n").replace(/[ \t]+/g, " ").trim();
+  if (!text) return null;
+  return text.length > 600 ? text.slice(0, 600).replace(/\s+\S*$/, "") + "…" : text;
+}
+
+// { text, ok } : ok faux quand la page n'a pas pu être lue (erreur, délai dépassé) ; le résultat
+// n'est alors pas gardé en cache, pour réessayer à la visite suivante
+export async function diceDescription(url) {
+  try {
+    const r = await fetch(url, { headers: { "user-agent": UA }, signal: AbortSignal.timeout(DICE_TIMEOUT_MS) });
+    if (!r.ok) { await r.body?.cancel(); return { text: null, ok: false }; }
+    return { text: diceText(await r.text()), ok: true };
+  } catch {
+    return { text: null, ok: false };
+  }
 }
 
 // Description, style et liens d'un artiste, mis en cache une semaine
@@ -282,17 +308,21 @@ export function styleOf(ev) {
   return found.slice(0, 2).join(" et ") || null;
 }
 
-// Présentation Dice d'un concert, mise en cache une semaine
+// Présentation Dice d'un concert : une semaine en cache si elle existe, un jour si la page n'en a
+// pas (structure changée, texte ajouté plus tard), pas de cache si la page n'a pas pu être lue.
+// Clé « dice2 » : abandonne les résultats vides gardés une semaine par l'ancienne version.
 async function organizerText(ev, ctx) {
   const dice = (ev.links || []).find((l) => l.source === "Dice");
   if (!dice) return null;
-  const key = new Request(`https://partage.cache/dice/${encodeURIComponent(dice.url)}`);
+  const key = new Request(`https://partage.cache/dice2/${encodeURIComponent(dice.url)}`);
   const hit = await caches.default.match(key);
   if (hit) return (await hit.json()).text;
-  const text = await diceDescription(dice.url).catch(() => null);
-  ctx.waitUntil(caches.default.put(key, new Response(JSON.stringify({ text }), {
-    headers: { "content-type": "application/json", "cache-control": `max-age=${CACHE_DAYS * 86400}` },
-  })));
+  const { text, ok } = await diceDescription(dice.url);
+  if (ok) {
+    ctx.waitUntil(caches.default.put(key, new Response(JSON.stringify({ text }), {
+      headers: { "content-type": "application/json", "cache-control": `max-age=${(text ? CACHE_DAYS : 1) * 86400}` },
+    })));
+  }
   return text;
 }
 
@@ -468,7 +498,9 @@ export async function onRequestGet(context) {
   if (asJson) {
     return new Response(JSON.stringify(info), { headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" } });
   }
+  // Présentation Dice manquante (page Dice non lue) : page non gardée en cache, nouvel essai
+  const diceMissing = !info.organizer && (ev.links || []).some((l) => l.source === "Dice");
   return new Response(page(info, request.url), {
-    headers: { "content-type": "text/html; charset=utf-8", "cache-control": "public, max-age=3600" },
+    headers: { "content-type": "text/html; charset=utf-8", "cache-control": diceMissing ? "no-store" : "public, max-age=3600" },
   });
 }

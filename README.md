@@ -206,11 +206,14 @@ Secrets GitHub Actions : les six variables Cloudflare ci-dessus, et pour les mem
 avec une autre clé, les jetons sont illisibles et les calculs Spotify échouent avec le code
 `token_key`, sans rien effacer).
 
+Versions : numéro dans `VERSION`, journal et retour arrière dans `CHANGELOG.md`.
+
 Tests (avant chaque mise en production) :
 
 ```powershell
 .venv\Scripts\python -m unittest discover -s tests -t .   # historique, membres, Spotify (simulé)
 node --test tests/functions.test.mjs                     # jeton Access, barrière, isolation, admin, arrivée, Spotify
+node --test tests/partage.test.mjs                       # fiche /partage : présentation Dice et cache
 ```
 
 Limites des offres gratuites (documentation Cloudflare, 12 octobre 2026) : D1, 5 millions de
