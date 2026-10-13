@@ -33,21 +33,51 @@ function cleanName(value, max = 80) {
   return String(value ?? "").replace(/\s+/g, " ").trim().slice(0, max);
 }
 
-// Alias : liste de noms (au plus 10), sans doublon ni nom vide
+// Mots trop courants pour désigner une salle à eux seuls : le traitement rattache un concert à
+// la salle dont un nom figure dans le libellé de la salle (src/match.py, VenueMatcher)
+const GENERIC_VENUE_WORDS = new Set(["paris", "salle", "theatre", "club", "cafe", "bar", "scene", "studio", "espace",
+  "eglise", "temple", "live", "jazz", "arena", "hall", "maison", "centre", "musique", "musiques", "opera", "cave",
+  "concert", "concerts", "grande", "petite", "grand", "petit", "saint", "sainte", "de", "du", "des", "et", "a"]);
+
+// Alias : liste de noms (au plus 10), sans doublon ; chacun assez distinctif (4 caractères au
+// moins, pas seulement des mots courants)
 function cleanAliases(value) {
   if (value === undefined || value === null || value === "") return [];
   const list = Array.isArray(value) ? value : String(value).split(/[,;\n]/);
   if (list.length > 10) throw new HttpError(400, "10 autres noms au plus");
-  return [...new Set(list.map((a) => cleanName(a)).filter((a) => a.length >= 2))];
+  const out = [...new Set(list.map((a) => cleanName(a)).filter(Boolean))];
+  for (const alias of out) {
+    const key = normVenue(alias);
+    if (key.length < 4 || key.split(" ").every((w) => GENERIC_VENUE_WORDS.has(w))) {
+      throw new HttpError(400, `autre nom trop général : « ${alias} » (il désignerait d'autres salles)`, "generic_alias");
+    }
+  }
+  return out;
 }
 
+// Page programme : https, hôte public (lue par le traitement chaque semaine)
 function cleanUrl(value) {
   const text = String(value ?? "").trim();
   if (!text) return null;
+  const invalid = () => new HttpError(400, "adresse de la page programme invalide (https://… attendu)", "bad_url");
   let url;
-  try { url = new URL(text); } catch { throw new HttpError(400, "adresse de la page programme invalide", "bad_url"); }
-  if (!/^https?:$/.test(url.protocol) || text.length > 300) throw new HttpError(400, "adresse de la page programme invalide", "bad_url");
+  try { url = new URL(text); } catch { throw invalid(); }
+  const host = url.hostname.toLowerCase();
+  if (url.protocol !== "https:" || url.username || url.password || url.href.length > 300 || !host.includes(".")
+      || /^[\d.]+$/.test(host) || host.includes(":") || host === "localhost" || host.endsWith(".local") || host.endsWith(".internal")) {
+    throw invalid();
+  }
   return url.href;
+}
+
+// Salle dont un nom contient un nom de la salle proposée, ou l'inverse (mot pour mot) : noms
+// des autres salles concernées, signalés à l'admin
+async function overlappingVenues(db, id, names) {
+  const keys = names.map(normVenue).filter(Boolean);
+  const inside = (a, b) => ` ${b} `.includes(` ${a} `);
+  const { results } = await db.prepare("SELECT id, name, aliases FROM venues WHERE status = 'approved' AND id <> ?").bind(id).all();
+  return results.filter((v) => [v.name, ...JSON.parse(v.aliases || "[]")].map(normVenue)
+    .some((k) => keys.some((key) => inside(key, k) || inside(k, key)))).map((v) => v.name);
 }
 
 // Salle déjà connue sous ce nom ou l'un de ses autres noms : { id, status } ou null
@@ -62,12 +92,13 @@ async function knownVenue(db, name, excludeId = null) {
   return null;
 }
 
-// ★ partagés (section 12) : visibilité « members », membres non suspendus, sans ceux du
+// ★ partagés (section 12) : visibilité « members », membres actifs (ni invités ni suspendus), sans ceux du
 // membre qui consulte. Nom affiché et statut seulement : jamais d'identifiant de membre.
 export async function communityStars(env, viewerId) {
   const { results } = await env.DB.prepare(
     "SELECT s.concert_id, COALESCE(u.pseudo, u.first_name) AS name, s.status FROM stars s JOIN users u ON u.id = s.user_id " +
-    "WHERE s.visibility = 'members' AND u.status <> 'suspended' AND s.user_id <> ? ORDER BY s.created_at").bind(viewerId).all();
+    "WHERE s.visibility = 'members' AND u.status IN ('active', 'computing', 'error') AND s.user_id <> ? ORDER BY s.created_at")
+    .bind(viewerId).all();
   return results;
 }
 
@@ -261,20 +292,24 @@ export function member(env, user) {
       if (clean.length < 2 || !VENUE_ID.test(id)) throw new HttpError(400, "nom de salle : 2 à 80 caractères", "bad_name");
       const list = cleanAliases(aliases);
       const url = cleanUrl(agenda_url);
+      for (const alias of list) {
+        if (await knownVenue(db, alias)) throw new HttpError(409, `« ${alias} » désigne déjà une salle connue`, "exists");
+      }
       const known = await knownVenue(db, clean);
       if (known) {
         const message = { approved: "cette salle est déjà au catalogue", pending: "cette salle est déjà proposée, en attente de l'admin",
           rejected: "cette salle a déjà été proposée et refusée" }[known.status];
         throw new HttpError(409, message, "exists");
       }
-      const pending = await db.prepare("SELECT COUNT(*) AS n FROM venues WHERE proposed_by = ? AND status = 'pending'").bind(user.id).first();
-      if (pending.n >= MAX_PENDING_PROPOSALS) {
-        throw new HttpError(429, `${MAX_PENDING_PROPOSALS} propositions en attente au plus : attendez la réponse de l'admin`, "too_many");
-      }
       try {
-        await db.prepare("INSERT INTO venues (id, name, aliases, agenda_url, excluded, status, proposed_by, proposed_at) " +
-          "VALUES (?, ?, ?, ?, 0, 'pending', ?, ?)").bind(id, clean, JSON.stringify(list), url, user.id, nowIso()).run();
+        const r = await db.prepare("INSERT INTO venues (id, name, aliases, agenda_url, excluded, status, proposed_by, proposed_at) " +
+          "SELECT ?, ?, ?, ?, 0, 'pending', ?, ? WHERE (SELECT COUNT(*) FROM venues WHERE proposed_by = ? AND status = 'pending') < ?")
+          .bind(id, clean, JSON.stringify(list), url, user.id, nowIso(), user.id, MAX_PENDING_PROPOSALS).run();
+        if (!r.meta?.changes) {
+          throw new HttpError(429, `${MAX_PENDING_PROPOSALS} propositions en attente au plus : attendez la réponse de l'admin`, "too_many");
+        }
       } catch (e) {
+        if (e instanceof HttpError) throw e;
         if (/UNIQUE|PRIMARY/i.test(String(e?.message))) throw new HttpError(409, "cette salle est déjà proposée", "exists");
         throw e;
       }
@@ -600,7 +635,11 @@ export function admin(env) {
         "SELECT v.id, v.name, v.aliases, v.agenda_url, v.excluded, v.status, v.proposed_at, v.reviewed_at, v.review_note, " +
         "COALESCE(u.pseudo, u.first_name) AS proposed_by_name FROM venues v LEFT JOIN users u ON u.id = v.proposed_by " +
         "WHERE v.status = ? ORDER BY COALESCE(v.proposed_at, v.name)").bind(status).all();
-      return results.map((v) => ({ ...v, aliases: JSON.parse(v.aliases || "[]"), excluded: Boolean(v.excluded) }));
+      const out = results.map((v) => ({ ...v, aliases: JSON.parse(v.aliases || "[]"), excluded: Boolean(v.excluded) }));
+      if (status === "pending") {
+        for (const v of out) v.overlaps = await overlappingVenues(db, v.id, [v.name, ...v.aliases]);
+      }
+      return out;
     },
 
     async venue(venueKey) {
@@ -635,8 +674,10 @@ export function admin(env) {
     // Décision sur une proposition : approved (publiée au prochain traitement) ou rejected
     async reviewVenue(venueKey, status, note) {
       const row = await this.venue(venueKey);
-      const r = await db.prepare("UPDATE venues SET status = ?, reviewed_at = ?, review_note = ? WHERE id = ? AND status = 'pending'")
-        .bind(status, nowIso(), cleanName(note, 300) || null, row.id).run();
+      // En attente, ou refusée puis finalement approuvée (refus par erreur)
+      const from = status === "approved" ? ["pending", "rejected"] : ["pending"];
+      const r = await db.prepare(`UPDATE venues SET status = ?, reviewed_at = ?, review_note = ? WHERE id = ? AND status IN (${from.map(() => "?").join(", ")})`)
+        .bind(status, nowIso(), cleanName(note, 300) || null, row.id, ...from).run();
       if (!r.meta?.changes) throw new HttpError(409, "cette salle n'est pas en attente de validation", "not_pending");
       return { id: row.id, status };
     },

@@ -231,10 +231,12 @@ async function toggleStar(id) {
   refreshStars(id);
 }
 
-// Statut (« j'y vais ») ou visibilité d'un concert mis de côté
+// Statut (« j'y vais ») ou visibilité d'un concert ; un concert pas encore mis de côté l'est
 async function setStarOption(id, field, value) {
+  const ev = state.events.find((e) => e.id === id);
+  const body = { [field]: value, ...(isStarred(id) ? {} : { label: ev ? starLabel(ev) : id }) };
   try {
-    setStars(await api(`me/stars/${encodeURIComponent(id)}`, { method: "PUT", body: { [field]: value } }));
+    setStars(await api(`me/stars/${encodeURIComponent(id)}`, { method: "PUT", body }));
     toast(field === "status"
       ? (value === "going" ? "Noté : vous y allez" : "Noté : intéressé")
       : (value === "members" ? "Visible par les membres" : "Visible par vous seul"));
@@ -244,18 +246,14 @@ async function setStarOption(id, field, value) {
   refreshStars(id);
 }
 
-// Fiche d'un concert : ★, et pour un concert mis de côté, statut et visibilité
+// Fiche d'un concert : « Intéressé » ou « J'y vais », partage avec les membres, retrait
 function starBlock(ev) {
   const s = state.starred.get(ev.id);
-  if (!s) return starButton(ev, true);
-  const opt = (value, label, current) => `<option value="${value}"${current === value ? " selected" : ""}>${label}</option>`;
-  return `${starButton(ev, true)}
-    <span class="star-options">
-      <select data-star-field="status" data-star-id="${esc(ev.id)}" aria-label="Statut">
-        ${opt("interested", "Intéressé", s.status)}${opt("going", "J'y vais", s.status)}</select>
-      <select data-star-field="visibility" data-star-id="${esc(ev.id)}" aria-label="Visibilité">
-        ${opt("private", "Visible par moi seul", s.visibility)}${opt("members", "Visible par les membres", s.visibility)}</select>
-    </span>`;
+  const choice = (status, off, on) => `<button type="button" class="btn btn-star${s?.status === status ? " on" : ""}"
+    data-star-set="${status}" data-star-id="${esc(ev.id)}" aria-pressed="${s?.status === status}">${s?.status === status ? on : off}</button>`;
+  return `${choice("interested", "☆ Intéressé", "★ Intéressé")}${choice("going", "J'y vais", "✓ J'y vais")}
+    ${s ? `<label class="chip star-share"><input type="checkbox" data-star-share data-star-id="${esc(ev.id)}"${s.visibility === "members" ? " checked" : ""}> Visible par les membres</label>
+      <button type="button" class="link-btn" data-star="${esc(ev.id)}">Retirer de mes concerts</button>` : ""}`;
 }
 
 // Fiche d'un concert : membres qui l'ont mis de côté et le partagent
@@ -994,8 +992,8 @@ function bind() {
   document.body.addEventListener("change", (e) => {
     const sel = e.target.closest(".tier-select");
     if (sel) setLevel(sel.dataset.level, sel.value ? Number(sel.value) : null);
-    const opt = e.target.closest("[data-star-field]");
-    if (opt) setStarOption(opt.dataset.starId, opt.dataset.starField, opt.value);
+    const share = e.target.closest("[data-star-share]");
+    if (share) setStarOption(share.dataset.starId, "visibility", share.checked ? "members" : "private");
   });
   $("#fav-only").addEventListener("change", (e) => { state.favOnly = e.target.checked; render(); });
   $("#with-members").addEventListener("change", (e) => { state.withMembers = e.target.checked; render(); });
@@ -1012,6 +1010,14 @@ function bind() {
     if (share) { e.stopPropagation(); shareMessage(share.dataset.share); return; }
     const star = e.target.closest("[data-star]");
     if (star) { e.stopPropagation(); toggleStar(star.dataset.star); return; }
+    const status = e.target.closest("[data-star-set]");
+    if (status) {
+      e.stopPropagation();
+      if (state.starred.get(status.dataset.starId)?.status !== status.dataset.starSet) {
+        setStarOption(status.dataset.starId, "status", status.dataset.starSet);
+      }
+      return;
+    }
     const hide = e.target.closest("[data-hide]");
     if (hide) { e.stopPropagation(); setHidden(hide.dataset.hide, hide.dataset.hideAction !== "unhide"); return; }
     const row = e.target.closest("[data-id]");

@@ -75,6 +75,7 @@ function venuesSection(pending) {
         <label for="venue-url-${esc(v.id)}">Page programme</label>
         <input id="venue-url-${esc(v.id)}" class="js-venue-url" type="url" value="${esc(v.agenda_url || "")}">
       </div>
+      ${v.overlaps?.length ? `<p class="prefs-warning">Noms proches d'autres salles du catalogue : ${esc(v.overlaps.join(", "))}. Vérifiez que les concerts de ces salles ne lui seront pas rattachés par erreur.</p>` : ""}
       <p class="cell-sub">Vérifiez que la salle est dans la zone couverte et que ses autres noms correspondent à ceux des billetteries.</p>
       <p><button class="btn" type="button" data-venue-review="approve" data-id="${esc(v.id)}">Approuver</button>
         <button class="btn btn-quiet" type="button" data-venue-review="reject" data-id="${esc(v.id)}">Refuser</button></p>

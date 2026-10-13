@@ -24,3 +24,15 @@ class ShareFiles(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class VenueMatching(unittest.TestCase):
+    def test_longest_name_wins_and_unsafe_links_dropped(self):
+        from src import match
+        from src.sources import venues
+        m = match.VenueMatcher({"venues": [{"id": "elysee", "name": "Elysée", "aliases": []},
+                                           {"id": "elysee-montmartre", "name": "Élysée Montmartre", "aliases": []}]})
+        self.assertEqual(m.canonical("ELYSEE MONTMARTRE - Paris")[0], "elysee-montmartre")
+        self.assertEqual(m.canonical("Théâtre de l'Elysée")[0], "elysee")
+        self.assertIsNone(venues._web("javascript:alert(1)"))
+        self.assertEqual(venues._web("https://salle.fr/a"), "https://salle.fr/a")

@@ -35,6 +35,14 @@ def _names(value):
     return [v.get("name") if isinstance(v, dict) else str(v) for v in value if v]
 
 
+MAX_PAGE = 5 * 1024 * 1024  # page programme lue au plus (octets)
+
+
+def _web(value):
+    """Adresse http(s) seulement (la page d'une salle proposée par un membre n'est pas sûre)."""
+    return value if isinstance(value, str) and value.lower().startswith(("https://", "http://")) else None
+
+
 def fetch(venues_cfg):
     """venues_cfg : catalogue commun des salles (catalog.load)."""
     events = []
@@ -43,7 +51,11 @@ def fetch(venues_cfg):
         if not url:
             continue
         try:
-            html = SESSION.get(url, timeout=30).text
+            r = SESSION.get(url, timeout=30)
+            if len(r.content) > MAX_PAGE:
+                log(f"  {v['name']} : page programme trop lourde, ignorée")
+                continue
+            html = r.text
         except Exception as exc:  # noqa: BLE001
             log(f"  {v['name']} : page inaccessible ({exc.__class__.__name__})")
             continue
@@ -66,7 +78,7 @@ def fetch(venues_cfg):
                 performers = [n for n in _names(ev.get("performer")) if n]
                 events.append({
                     "source": f"Site {v['name']}",
-                    "source_id": ev.get("url") or f"{v['name']}-{start}",
+                    "source_id": _web(ev.get("url")) or f"{v['name']}-{start}",
                     "title": ev.get("name"),
                     "date": start[:10],
                     "time": start[11:16] or None,
@@ -75,13 +87,13 @@ def fetch(venues_cfg):
                     "city": "Paris",
                     "lat": None,
                     "lon": None,
-                    "url": ev.get("url") or url,
+                    "url": _web(ev.get("url")) or url,
                     "on_sale": None,
                     "price": f"{price} €" if price not in (None, "", 0, "0") else None,
                     "status": None,
                     "artists": performers,
                     "genre": None,
-                    "image": image if isinstance(image, str) else None,
+                    "image": _web(image),
                     "title_only": not performers,
                 })
                 found += 1

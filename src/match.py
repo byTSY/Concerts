@@ -90,17 +90,19 @@ class VenueMatcher:
 
     @staticmethod
     def _build(items):
+        """[(nom normalisé, (identifiant, nom))], du nom le plus long au plus court : « Elysée
+        Montmartre » l'emporte sur une salle « Elysée » pour un libellé qui contient les deux."""
         out = []
         for v in items:
             keys = {norm_venue(v["name"])} | {norm_venue(a) for a in v.get("aliases", [])}
-            out.append(((v.get("id"), v["name"]), [k for k in keys if k]))
-        return out
+            out.extend((k, (v.get("id"), v["name"])) for k in keys if k)
+        return sorted(out, key=lambda kc: -len(kc[0]))
 
     @staticmethod
     def _find(table, venue):
         nv = f" {norm_venue(venue)} "
-        for canon, keys in table:
-            if any(f" {k} " in nv for k in keys):
+        for key, canon in table:
+            if f" {key} " in nv:
                 return canon
         return None
 

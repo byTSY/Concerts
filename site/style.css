@@ -187,8 +187,7 @@ tr.clickable:hover td { background: var(--paper-2); }
 .tag-members { background: none; color: var(--ink); border: 1px dashed var(--ink); }
 .tag-going { background: #1e8a4c; }
 .ticket-star { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 14px; }
-.star-options { display: inline-flex; flex-wrap: wrap; gap: 6px; }
-.star-options select { font: inherit; padding: 6px 8px; border-radius: 8px; border: 1.5px solid var(--rule); background: var(--paper-2); color: var(--ink); }
+.star-share { cursor: pointer; }
 .count-line { color: var(--ink-soft); margin: 4px 0 14px; }
 .venue-name-btn { border: 0; background: none; padding: 0; font-weight: 700; cursor: pointer; text-align: left; text-decoration: underline; text-underline-offset: 3px; }
 .num { text-align: right; font-variant-numeric: tabular-nums; }

@@ -726,3 +726,23 @@ test("salles : proposition, doublons, plafond, validation par l'admin, auteur ja
   await call(env, "a@test.fr", meRoute.onRequestDelete, { method: "DELETE", body: { confirm: "SUPPRIMER" } });
   assert.equal(env.DB.raw.prepare("SELECT COUNT(*) AS n FROM venues WHERE proposed_by IS NOT NULL").get().n, 0);
 });
+
+test("salles : autres noms trop généraux refusés, https exigé, recoupements signalés, refus réversible", async () => {
+  const env = setup();
+  env.DB.raw.exec(`INSERT INTO venues (id, name, aliases, status) VALUES ('elysee-montmartre', 'Élysée Montmartre', '[]', 'approved');
+    INSERT INTO users (id, email, first_name, status, invited_at) VALUES ('u_dddddddd', 'd@test.fr', 'Dora', 'invited', 'x');
+    INSERT INTO stars (user_id, concert_id, label, visibility, created_at, updated_at) VALUES ('u_dddddddd', 'ffffff666666', 'x', 'members', 'x', 'x');`);
+  const propose = (body) => call(env, "a@test.fr", proposalsRoute.onRequestPost, { method: "POST", path: "/api/venues/proposals", body });
+  assert.equal((await propose({ name: "Péniche X", aliases: "Paris" })).data.code, "generic_alias");
+  assert.equal((await propose({ name: "Péniche X", aliases: "la" })).data.code, "generic_alias");
+  assert.equal((await propose({ name: "Péniche X", agenda_url: "http://peniche.fr" })).data.code, "bad_url");
+  assert.equal((await propose({ name: "Péniche X", agenda_url: "https://127.0.0.1/agenda" })).data.code, "bad_url");
+  assert.equal((await propose({ name: "Elysée" })).status, 201);
+  const pending = (await call(env, "c@test.fr", adminVenues.onRequestGet, { path: "/api/admin/venues?status=pending" })).data;
+  assert.deepEqual(pending.find((v) => v.id === "elysee").overlaps, ["Élysée Montmartre"]);
+  await call(env, "c@test.fr", adminReject.onRequestPost, { method: "POST", path: "/api/admin/venues/elysee/reject", params: { id: "elysee" } });
+  const again = await call(env, "c@test.fr", adminApprove.onRequestPost, { method: "POST", path: "/api/admin/venues/elysee/approve", params: { id: "elysee" } });
+  assert.equal(again.data.status, "approved");
+  // Membre seulement invité : ses ★ ne sont pas montrés
+  assert.deepEqual((await call(env, "c@test.fr", communityRoute.onRequestGet, { path: "/api/community/stars" })).data, []);
+});
