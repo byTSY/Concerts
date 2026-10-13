@@ -56,6 +56,17 @@ const SEEN_KEEP_DAYS = 400;
 const SYNC_RELAY_MINUTES = 15;
 const SYNC_RELAY_MAX = 3;  // relais par demande de calcul
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const MAX_REMOVED = 1000;     // concerts retirés à venir, par membre
+const MAX_REMOVED_URLS = 5;
+
+// Nombre de concerts retirés du membre ; null si la table manque (migration 0010 non appliquée)
+async function countRemoved(db, id) {
+  try {
+    return (await db.prepare("SELECT COUNT(*) AS n FROM removed_concerts WHERE user_id = ?").bind(id).first()).n;
+  } catch {
+    return null;
+  }
+}
 
 // --- Catalogue des salles (spécification, sections 12 et 13.1) ---------------------------
 // Identifiant d'une salle : nom normalisé sans article, mots reliés par des tirets (même règle
@@ -332,6 +343,59 @@ export function member(env, user) {
         db.prepare("DELETE FROM seen_cards WHERE user_id = ? AND seen_at < ?").bind(id, limit),
       ]);
       return api.seenCards();
+    },
+
+    // Concerts retirés (« Ne plus voir ce concert ») : liste vide si la table manque (fonctions
+    // déployées avant la migration 0010)
+    async removedConcerts() {
+      try {
+        const { results } = await db.prepare(
+          "SELECT concert_id, concert_date, label, venue, title, urls, removed_at FROM removed_concerts WHERE user_id = ? " +
+          "ORDER BY concert_date, removed_at").bind(id).all();
+        return results.map((r) => ({ ...r, urls: JSON.parse(r.urls || "[]") }));
+      } catch {
+        return [];
+      }
+    },
+
+    // Retrait d'un concert : la ★ du membre sur ce concert est effacée dans le même lot ; les
+    // retraits de concerts passés (veille comprise, décalage horaire) sont effacés.
+    // Renvoie { removed, stars }.
+    async removeConcert(concertId, { label, date, venue, title, urls }) {
+      if (!CONCERT_ID.test(concertId)) throw new HttpError(400, "identifiant de concert invalide");
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(String(date || ""))) throw new HttpError(400, "date du concert : AAAA-MM-JJ");
+      const text = cleanName(label, 200);
+      if (!text) throw new HttpError(400, "libellé du concert manquant");
+      if (urls !== undefined && (!Array.isArray(urls) || urls.length > MAX_REMOVED_URLS)) {
+        throw new HttpError(400, `liens : liste de ${MAX_REMOVED_URLS} adresses au plus`);
+      }
+      const links = (urls || []).map((u) => String(u ?? "").trim())
+        .filter((u) => /^https?:\/\//i.test(u) && u.length <= 500);
+      const yesterday = new Date(Date.now() - 86400 * 1000).toISOString().slice(0, 10);
+      const count = await countRemoved(db, id);
+      if (count === null) throw new HttpError(503, "retrait de concert pas encore disponible", "removed_unavailable");
+      if (count >= MAX_REMOVED) throw new HttpError(429, `${MAX_REMOVED} concerts retirés au plus`, "too_many");
+      await db.batch([
+        db.prepare("INSERT INTO removed_concerts (user_id, concert_id, concert_date, label, venue, title, urls, removed_at) " +
+          "VALUES (?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT (user_id, concert_id) DO UPDATE SET concert_date = excluded.concert_date, " +
+          "label = excluded.label, venue = excluded.venue, title = excluded.title, urls = excluded.urls, removed_at = excluded.removed_at")
+          .bind(id, concertId, date, text, cleanName(venue, 200) || null, cleanName(title, 300) || null,
+            JSON.stringify(links), nowIso()),
+        db.prepare("DELETE FROM stars WHERE user_id = ? AND concert_id = ?").bind(id, concertId),
+        db.prepare("DELETE FROM removed_concerts WHERE user_id = ? AND concert_date < ?").bind(id, yesterday),
+      ]);
+      return { removed: await api.removedConcerts(), stars: await api.stars() };
+    },
+
+    // « Remettre » : le concert revient dans le calendrier (la ★ effacée au retrait ne revient pas)
+    async restoreConcert(concertId) {
+      if (!CONCERT_ID.test(concertId)) throw new HttpError(400, "identifiant de concert invalide");
+      try {
+        await db.prepare("DELETE FROM removed_concerts WHERE user_id = ? AND concert_id = ?").bind(id, concertId).run();
+      } catch {
+        throw new HttpError(503, "retrait de concert pas encore disponible", "removed_unavailable");
+      }
+      return api.removedConcerts();
     },
 
     // Salles favorites : seulement des salles approuvées du catalogue commun

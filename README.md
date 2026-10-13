@@ -256,12 +256,17 @@ La Défense Arena, Stade de France) ; les concerts de vos artistes y restent aff
 
 - **Reels** (cercle en haut, version 1.2.0) : nouveautés de la semaine en fiches plein écran
   (photo, description, artistes similaires). Glisser ou toucher la photo à droite : suivante ;
-  à gauche : précédente ; vers le bas : « Pas pour moi » (Ne plus recommander, Annuler 6 s).
+  à gauche : précédente ; vers le bas : « Ne plus voir ce concert » (version 1.8.0, Annuler 6 s ;
+  l'artiste reste recommandé). « Ne plus recommander l'artiste » reste en lien sous les boutons.
   Une fiche vue ne revient sur aucun appareil (table D1 `seen_cards`).
 - **Recherche** (barre en haut, version 1.3.0) : tous les concerts à venir publiés, sans tenir
   compte des filtres, concerts non recommandés compris ; une ligne par date ; boutons
   « Intéressé » et « Places prises » (second clic : retrait).
 - **Mes prochains concerts** : concerts avec places prises, du plus proche au plus lointain.
+- **Concerts retirés** (version 1.8.0) : concerts retirés par « Ne plus voir ce concert » (fiche,
+  Reels), jusqu'à leur date, avec « Remettre » (table D1 `removed_concerts`). Ils n'apparaissent
+  plus dans le calendrier, les listes, les Reels ni la newsletter ; la recherche les montre avec
+  l'étiquette « Retiré ».
 - **Calendrier** et **Liste** : vos artistes et les découvertes, ou tous les concerts.
   Filtres : vos salles, style.
 - **Par artiste** : vos artistes qui ont au moins un concert à venir, avec la date et la salle

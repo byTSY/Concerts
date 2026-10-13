@@ -48,6 +48,8 @@ import * as adminInvitation from "../functions/api/admin/invitations/[id]/index.
 import * as adminRenew from "../functions/api/admin/invitations/[id]/renew.js";
 import * as adminAccess from "../functions/api/admin/members/[id]/access.js";
 import * as seenRoute from "../functions/api/me/seen.js";
+import * as removedRoute from "../functions/api/me/removed/[concert].js";
+import { onRequestGet as getRemoved } from "../functions/api/me/removed/index.js";
 import * as unsubscribeRoute from "../functions/partage/desabonnement/[token].js";
 
 // --- D1 et R2 simulés --------------------------------------------------------------
@@ -270,7 +272,7 @@ test("fiche de partage : artiste du lien retenu seulement s'il figure dans le co
 // --- Étape 3 : compte du membre, arrivée, espace admin ------------------------------------
 
 const ALL_TABLES = ["users", "music_sources", "oauth_states", "connections", "activity_daily", "artist_prefs",
-  "venue_favorites", "stars", "member_runs", "seen_cards"];
+  "venue_favorites", "stars", "member_runs", "seen_cards", "removed_concerts"];
 
 test("admin : invitation, refus d'un doublon, liste sans artiste ni concert", async () => {
   const env = setup();
@@ -315,6 +317,8 @@ test("suppression par l'admin : plus aucune ligne D1 ni objet R2 du membre", asy
     VALUES ('u_aaaaaaaa', 'deezer', '999', 'connected', 'chiffré')`);
   await call(env, "a@test.fr", getMe);  // crée connexions et activité
   await call(env, "a@test.fr", seenRoute.onRequestPost, { method: "POST", body: { ids: ["aaaaaa111111"] } });
+  await call(env, "a@test.fr", removedRoute.onRequestPut, { method: "PUT", params: { concert: "cccccc333333" },
+    body: { label: "Concert retiré", date: "2099-01-01" } });
   const del = await call(env, "c@test.fr", adminMember.onRequestDelete, {
     method: "DELETE", path: "/api/admin/members/u_aaaaaaaa", params: { id: "u_aaaaaaaa" } });
   assert.equal(del.data.deleted, true);
@@ -968,4 +972,44 @@ test("★ visibles par les membres par défaut ; masqués au choix", async () =>
   assert.equal(vis("ffffff666666"), "private");
   const seen = await call(env, "b@test.fr", communityRoute.onRequestGet, { path: "/api/community/stars" });
   assert.deepEqual(seen.data.map((s) => s.concert_id).filter((c) => ["eeeeee555555", "ffffff666666"].includes(c)), ["eeeeee555555"]);
+});
+
+test("concerts retirés : par membre, ★ effacée, remise, contrôles, lignes passées effacées, table absente", async () => {
+  const env = setup();
+  const put = (email, concert, body) => call(env, email, removedRoute.onRequestPut, { method: "PUT", params: { concert }, body });
+  const body = { label: "2099-05-01 · Artiste A · La Cigale", date: "2099-05-01", venue: "La Cigale", title: "Artiste A",
+    urls: ["https://billets.test/a", "javascript:alert(1)"], user_id: "u_bbbbbbbb" };
+  // A retire son concert mis de côté : la ★ est effacée dans le même lot
+  let r = await put("a@test.fr", "aaaaaa111111", body);
+  assert.equal(r.status, 200);
+  assert.deepEqual(r.data.stars, []);
+  assert.equal(r.data.removed.length, 1);
+  assert.deepEqual(r.data.removed[0].urls, ["https://billets.test/a"]);  // adresse non http écartée
+  assert.equal(r.data.removed[0].concert_date, "2099-05-01");
+  // B ne voit rien de A ; sa ★ reste
+  assert.deepEqual((await call(env, "b@test.fr", getRemoved, { path: "/api/me/removed" })).data, []);
+  assert.equal((await call(env, "b@test.fr", getStars)).data.length, 1);
+  // Même concert retiré deux fois : une seule ligne
+  r = await put("a@test.fr", "aaaaaa111111", body);
+  assert.equal(r.data.removed.length, 1);
+  // Contrôles
+  for (const [concert, b] of [["../x", body], ["aaaaaa111111", { ...body, date: "demain" }], ["aaaaaa111111", { ...body, label: " " }],
+    ["aaaaaa111111", { ...body, urls: "https://x.test" }], ["aaaaaa111111", { ...body, urls: Array(6).fill("https://x.test") }]]) {
+    assert.equal((await put("a@test.fr", concert, b)).status, 400, JSON.stringify(b));
+  }
+  // Remise par B d'un concert de A : sans effet chez A
+  await call(env, "b@test.fr", removedRoute.onRequestDelete, { method: "DELETE", params: { concert: "aaaaaa111111" } });
+  assert.equal((await call(env, "a@test.fr", getRemoved)).data.length, 1);
+  r = await call(env, "a@test.fr", removedRoute.onRequestDelete, { method: "DELETE", params: { concert: "aaaaaa111111" } });
+  assert.deepEqual(r.data, []);
+  // Retrait passé effacé au retrait suivant
+  env.DB.raw.exec("INSERT INTO removed_concerts (user_id, concert_id, concert_date, label, removed_at) VALUES ('u_aaaaaaaa', 'dddddd444444', '2024-01-01', 'vieux', 'x')");
+  r = await put("a@test.fr", "eeeeee555555", body);
+  assert.deepEqual(r.data.removed.map((x) => x.concert_id), ["eeeeee555555"]);
+  // Migration 0010 non appliquée : liste vide, retrait refusé proprement
+  env.DB.raw.exec("DROP TABLE removed_concerts");
+  assert.deepEqual((await call(env, "a@test.fr", getRemoved)).data, []);
+  r = await put("a@test.fr", "aaaaaa111111", body);
+  assert.equal(r.status, 503);
+  assert.equal(r.data.code, "removed_unavailable");
 });

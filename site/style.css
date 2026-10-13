@@ -119,6 +119,7 @@ dialog.reels::backdrop { background: #0f1230; }
   background: #fff; color: #1e2350; padding: 10px 14px; border-radius: 8px; font-size: .9rem;
 }
 .reels-undo[hidden] { display: none; }
+.reel-nope { flex-basis: 100%; margin-top: 0; text-align: left; }
 .reels-undo .link-btn { font-weight: 700; color: var(--blue); }
 @media (prefers-reduced-motion: reduce) { .reel-card, .reels-bar span { transition: none; } }
 
@@ -173,6 +174,9 @@ dialog.reels::backdrop { background: #0f1230; }
 .upcoming-title { margin: 0 0 8px; font-size: 1.05rem; font-weight: 700; }
 .upcoming-list { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; }
 .upcoming-item { flex: 0 0 auto; min-width: 180px; max-width: 240px; padding: 10px 12px; border-radius: 8px; background: var(--paper-2); border-left: 4px solid var(--yellow); }
+.removed { margin-top: 10px; max-width: 760px; }
+.removed summary { cursor: pointer; font-size: .9rem; font-weight: 600; color: var(--ink-soft); padding: 4px 0; }
+.removed-list { list-style: none; margin: 0; padding: 0; }
 .artist-filter { margin: 0 0 12px; width: 100%; max-width: 320px; padding: 6px 12px; border-radius: 99px; border: 1.5px solid var(--rule); background: var(--paper-2); color: var(--ink); font: inherit; }
 
 main { padding: 0 clamp(16px, 4vw, 48px) 64px; }
@@ -376,7 +380,7 @@ details.organizer summary { cursor: pointer; color: var(--ink-soft); font-weight
 details.organizer p { margin: 6px 0 0; }
 
 /* Arrivée d'un membre, Mon compte, Admin */
-.onboarding-mode .masthead .fresh, .onboarding-mode .global-search, .onboarding-mode #search-results, .onboarding-mode #upcoming, .onboarding-mode .tabs, .onboarding-mode .filters, .onboarding-mode main { display: none; }
+.onboarding-mode .masthead .fresh, .onboarding-mode .global-search, .onboarding-mode #search-results, .onboarding-mode #upcoming, .onboarding-mode #removed, .onboarding-mode .tabs, .onboarding-mode .filters, .onboarding-mode main { display: none; }
 .onboarding { max-width: 640px; padding: 8px 0 48px; }
 .onboarding h2 { font-size: 1.6rem; font-weight: 800; font-stretch: 85%; margin: 16px 0 8px; }
 .onboarding h3 { margin: 24px 0 8px; font-size: 1.05rem; }

@@ -31,6 +31,7 @@
     </section>
     <!-- Concerts avec places prises, puis recherche sur tout le catalogue (site/search.js) -->
     <section class="upcoming" id="upcoming" aria-label="Mes prochains concerts" hidden></section>
+    <section class="removed" id="removed" aria-label="Concerts retirés" hidden></section>
     <div class="global-search">
       <input type="search" id="search" placeholder="Rechercher un artiste, une salle… (tout le catalogue)" aria-label="Rechercher dans tous les concerts">
     </div>
@@ -89,7 +90,7 @@
     <section id="view-account" class="view" hidden><div id="account"></div></section>
     <section id="view-admin" class="view" hidden><div id="admin"></div></section>
   </main>
-  <footer class="app-version">Version <span id="app-version">1.7.0</span></footer>
+  <footer class="app-version">Version <span id="app-version">1.8.0</span></footer>
 
   <!-- Arrivée d'un membre : choix de la source, puis attente du premier calcul -->
   <section id="onboarding" class="onboarding" hidden></section>
@@ -112,7 +113,7 @@
     <article class="reel-card" id="reel-card" tabindex="-1"></article>
     <nav class="reels-nav" aria-label="Changer de fiche">
       <button type="button" class="btn btn-quiet" data-reel-nav="-1" aria-label="Fiche précédente">‹</button>
-      <span class="reels-hint">Toucher la photo ou glisser : fiche suivante<br>Glisser vers le bas : pas pour moi</span>
+      <span class="reels-hint">Toucher la photo ou glisser : fiche suivante<br>Glisser vers le bas : ne plus voir ce concert</span>
       <button type="button" class="btn btn-quiet" data-reel-nav="1" aria-label="Fiche suivante">›</button>
     </nav>
     <div class="reels-undo" id="reels-undo" role="status" hidden></div>

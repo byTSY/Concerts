@@ -3,7 +3,8 @@
 // Recherche sur tout le catalogue publié (events.json déjà chargé), sans tenir compte des filtres,
 // concerts non recommandés compris ; une ligne par date. Depuis un résultat : « Intéressé » ou
 // « Places prises » (statut going des ★). Section « Mes prochains concerts » : concerts à venir
-// avec places prises, du plus proche au plus lointain. Utilise les fonctions de app.js.
+// avec places prises, du plus proche au plus lointain. Section « Concerts retirés » : concerts
+// retirés à venir, avec « Remettre ». Utilise les fonctions de app.js.
 
 const SEARCH_MAX = 60;
 // Date du jour à Paris, AAAA-MM-JJ
@@ -41,11 +42,14 @@ function hiddenArtistIn(ev) {
 }
 
 function searchTag(ev) {
+  if (isRemoved(ev)) return `<span class="tag tag-other">Retiré</span>`;
   if (ev.kind !== "other") return kindTag(ev);
   return hiddenArtistIn(ev) ? `<span class="tag tag-other">Non recommandé</span>` : "";
 }
 
 function statusButtons(ev) {
+  const removal = removalOf(ev);
+  if (removal) return `<button type="button" class="btn btn-quiet btn-small" data-restore="${esc(removal.concert_id)}">Remettre</button>`;
   const s = state.starred.get(ev.id)?.status;
   const choice = (status, off, on) => `<button type="button" class="btn btn-star btn-small${s === status ? " on" : ""}"
     data-star-set="${status}" data-star-id="${esc(ev.id)}" aria-pressed="${s === status}">${s === status ? on : off}</button>`;
@@ -98,6 +102,29 @@ function renderUpcoming() {
       <span class="cell-name">${esc(nameOf(ev))}</span>
       <span class="cell-sub">${esc(ev.venue)}</span>
     </button></li>`).join("")}</ul>` : "";
+}
+
+// Concerts retirés à venir, du plus proche au plus lointain ; repliés par défaut. Concert plus
+// publié (annulé, retiré des billetteries) : libellé enregistré au retrait.
+function renderRemoved() {
+  const box = $("#removed");
+  if (!box) return;
+  const today = todayIso();
+  const list = state.removed.filter((r) => r.concert_date >= today)
+    .map((r) => ({ r, ev: state.events.find((e) => e.id === r.concert_id) || state.events.find((e) => removalOf(e) === r) }))
+    .sort((a, b) => a.r.concert_date.localeCompare(b.r.concert_date) || (a.ev?.time || "").localeCompare(b.ev?.time || ""));
+  box.hidden = !list.length;
+  box.innerHTML = list.length ? `<details class="removed-box"${state.removedOpen ? " open" : ""}>
+    <summary>Concerts retirés (${list.length})</summary>
+    <ul class="removed-list">${list.map(({ r, ev }) => `<li class="search-item">
+      ${ev ? `<button type="button" class="search-main" data-id="${esc(ev.id)}">
+        <span class="search-date">${esc(fmtShort.format(parseDay(ev.date)))}${ev.time ? ` · ${esc(ev.time)}` : ""}</span>
+        <span class="cell-name">${esc(nameOf(ev))}</span>
+        <span class="cell-sub">${esc(ev.venue)}</span></button>`
+      : `<span class="search-main"><span class="search-date">${esc(fmtShort.format(parseDay(r.concert_date)))}</span>
+        <span class="cell-name">${esc(r.label)}</span><span class="cell-sub">Plus à l'affiche</span></span>`}
+      <span class="search-actions"><button type="button" class="btn btn-quiet btn-small" data-restore="${esc(r.concert_id)}">Remettre</button></span>
+    </li>`).join("")}</ul></details>` : "";
 }
 
 function bindSearch() {
