@@ -14,6 +14,21 @@ Revenir à une version antérieure :
 3. base D1 : les migrations ne s'annulent pas seules ; chaque entrée indique la commande inverse
    quand une migration est ajoutée.
 
+## 1.4.0 (13 octobre 2026)
+
+Découvertes : grandes salles exclues.
+- Liste dans config/venues.yaml (discovery_excluded) : Accor Arena, Zénith Paris La Villette,
+  Paris La Défense Arena (libellée « Plenitude Arena » par les billetteries), Stade de France,
+  avec leurs autres libellés. Adidas Arena gardée.
+- Un concert dans ces salles n'est plus proposé en découverte (ni en fiche Reels). Les concerts
+  de vos artistes y restent affichés, y compris un artiste repéré sous un autre libellé ; tous les
+  concerts restent dans « Tous les concerts » et dans la recherche.
+- Reconnaissance des salles par le comparateur existant (VenueMatcher) : 287 concerts reconnus
+  dans le catalogue du 13 octobre 2026, aucun autre.
+- Liste illisible ou entrée mal écrite : signalée dans le journal, aucun calcul arrêté.
+- Pris en compte au calcul suivant de chaque membre (lundi, ou « Recalculer »).
+Aucune migration D1.
+
 ## 1.3.0 (13 octobre 2026)
 
 Recherche sur tout le catalogue, statut « Places prises », section « Mes prochains concerts ».

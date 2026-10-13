@@ -1,0 +1,18 @@
+# Grandes salles : leurs concerts ne sont jamais proposés en découverte (places vendues des mois
+# à l'avance). Les concerts de vos artistes dans ces salles restent affichés, et tous les concerts
+# restent dans « Tous les concerts » et dans la recherche.
+#
+# Une salle : son nom et, si besoin, les autres libellés employés par les billetteries. La
+# comparaison ignore majuscules, accents, articles et ponctuation, et cherche le nom dans le
+# libellé (« ZENITH PARIS - LA VILLETTE » contient « Zénith Paris »). Éviter un libellé trop court
+# ou trop courant (« Bercy » désignerait aussi Bercy Village).
+# Pris en compte au calcul suivant de chaque membre (lundi, ou « Recalculer » dans l'Admin).
+
+discovery_excluded:
+  - name: Accor Arena
+    aliases: [AccorHotels Arena, Palais Omnisports de Paris-Bercy, POPB]
+  - name: Zénith Paris La Villette
+    aliases: [Zénith Paris, Zénith de Paris]
+  - name: Paris La Défense Arena
+    aliases: [La Défense Arena, Plenitude Arena, U Arena]   # renommée « Plenitude Arena » en 2026
+  - name: Stade de France

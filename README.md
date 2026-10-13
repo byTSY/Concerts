@@ -239,6 +239,9 @@ Catalogue des salles : table `venues` de D1 (nom, alias selon les billetteries, 
 
 `config/settings.yaml` : zone, horizon, barème du score, découvertes, plafonds de stockage R2.
 
+`config/venues.yaml` : grandes salles jamais proposées en découverte (Accor Arena, Zénith, Paris
+La Défense Arena, Stade de France) ; les concerts de vos artistes y restent affichés.
+
 ## Le site
 
 - **Reels** (cercle en haut, version 1.2.0) : nouveautés de la semaine en fiches plein écran
