@@ -22,15 +22,21 @@ def big_venues(path=VENUES_FILE):
     except Exception as exc:  # noqa: BLE001  YAML invalide
         log(f"  config/venues.yaml illisible ({exc.__class__.__name__}) : aucune grande salle exclue")
         items = []
+    if not isinstance(items, list):
+        log("  config/venues.yaml : discovery_excluded doit être une liste, aucune grande salle exclue")
+        items = []
     venues = []
-    for item in items if isinstance(items, list) else []:
+    for item in items:
         if isinstance(item, str):
             item = {"name": item}
         if not isinstance(item, dict) or not str(item.get("name") or "").strip():
             log(f"  config/venues.yaml : entrée ignorée ({item!r})")
             continue
         aliases = item.get("aliases") or []
-        venues.append({"name": str(item["name"]), "aliases": [str(a) for a in aliases] if isinstance(aliases, list) else [str(aliases)]})
+        aliases = aliases if isinstance(aliases, list) else [aliases]
+        # Alias vide (« - » seul) ignoré : il deviendrait le libellé « None »
+        venues.append({"name": str(item["name"]),
+                       "aliases": [str(a) for a in aliases if a is not None and str(a).strip()]})
     return VenueMatcher({"venues": venues})
 
 TIER_WEIGHT = {1: 1.0, 2: 0.6, 3: 0.3}

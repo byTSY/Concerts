@@ -59,6 +59,14 @@ class BigVenues(unittest.TestCase):
             self.assertIsNone(discover.big_venues(path).canonical("Accor Arena"))
             path.write_text("- juste une liste", encoding="utf-8")
             self.assertIsNone(discover.big_venues(path).canonical("Accor Arena"))
+            path.write_text(textwrap.dedent("""\
+                discovery_excluded:
+                  - name: Stade de France
+                    aliases: [~, '', Saint-Denis Stade]
+                """), encoding="utf-8")
+            venues = discover.big_venues(path)
+            self.assertIsNone(venues.canonical("Salle None"))               # alias vide ignoré
+            self.assertIsNotNone(venues.canonical("Saint-Denis Stade"))
 
 
 class ScoreEvents(unittest.TestCase):
