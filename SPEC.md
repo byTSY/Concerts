@@ -94,7 +94,8 @@ GitHub (dépôt privé)                    Cloudflare
 ### 5.1 Deux barrières
 
 1. **Cloudflare Access** n'autorise que les e-mails de la liste « membres » (liste Zero Trust
-   tenue à jour par l'espace admin).
+   tenue à jour par l'espace admin, et par la page d'invitation quand une personne y saisit son
+   adresse).
 2. **L'application** vérifie le jeton `Cf-Access-Jwt-Assertion` (signature contre les
    certificats `https://<équipe>.cloudflareaccess.com/cdn-cgi/access/certs`, audience
    `ACCESS_AUD`), en extrait l'e-mail et cherche le membre dans `users`. E-mail absent, statut
@@ -234,6 +235,12 @@ de bord Spotify), `refresh_token_enc`, `scopes`, `connected_at`, `last_sync_at`,
 **oauth_states** : `state` (PK), `user_id`, `code_verifier`, `expires_at` (10 min), à usage
 unique.
 
+**invitations** (ajout du 13 octobre 2026) : `id` (`i_` + 8 caractères), `token_hash` (empreinte
+SHA-256 du jeton du lien, jamais le jeton), `first_name`, `created_at`, `expires_at` (7 jours).
+Ligne effacée quand le lien sert ; un lien expiré reste listé jusqu'à sa suppression par
+l'admin. `users` reçoit `invited_via` (`email` / `link`) et `access_pending` (ajout à la liste
+Access à refaire).
+
 **connections** : `user_id`, `session_started_at`. Une connexion = un jeton Access dont la
 valeur `iat` n'a jamais été vue pour ce membre.
 
@@ -361,6 +368,9 @@ d'artistes Spotify non rapprochés de Deezer.
 ### 9.4 Public
 
 `/partage/*` : inchangé (application Access séparée, ouverte à tous).
+`/invitation/<jeton>` : page d'inscription par lien (même application Access ouverte à tous) ;
+formulaire de cette page seulement, en-têtes `no-store`, `referrer-policy: same-origin`, CSP
+sans script.
 
 ## 10. Écrans
 
@@ -514,6 +524,8 @@ l'admin.
   liaisons au projet Pages, liste Zero Trust « membres » et règle Access qui l'utilise,
   jetons API aux droits limités, relevé de l'équipe Access et de l'audience.
 - GitHub : secrets Actions ; jeton limité aux Actions du dépôt.
+- Cloudflare Access : chemin `concerts-s2k.pages.dev/invitation` ouvert à tous, dans la même
+  application que `/partage` (ajout du 13 octobre 2026).
 - Spotify : l'application `Concerts` existe déjà (identifiants enregistrés dans Cloudflare,
   utilisés par la fiche de partage). Confirmer que le compte Spotify qui la possède a un
   abonnement **Premium** actif (page Compte de spotify.com) ; ajouter l'adresse de retour

@@ -88,11 +88,12 @@ function linksBlock(links) {
   if (!links?.length) return "";
   return `<h3>Liens envoyés, pas encore utilisés</h3><ul class="plain-list">${links.map((l) => `<li>${esc(l.first_name)}
       <span class="cell-sub">${l.expired ? "expiré" : `valable jusqu'au ${esc(fmtDateTime(l.expires_at))}`}</span>
-      <button class="link-btn" data-link="renew" data-id="${esc(l.id)}">Nouveau lien</button>
+      <button class="link-btn" data-link="renew" data-id="${esc(l.id)}" data-name="${esc(l.first_name)}">Nouveau lien</button>
       <button class="link-btn" data-link="delete" data-id="${esc(l.id)}" data-name="${esc(l.first_name)}">Supprimer</button></li>`).join("")}</ul>`;
 }
 
 async function linkAction({ link: action, id, name }) {
+  if (action === "renew" && !confirm(`Créer un nouveau lien pour ${name} ? Le lien déjà envoyé ne fonctionnera plus.`)) return;
   try {
     if (action === "delete") {
       if (!confirm(`Supprimer le lien d'invitation de ${name} ? Il ne fonctionnera plus.`)) return;
@@ -215,11 +216,12 @@ async function renderAdmin() {
   }
   const rows = list.map((m) => `<tr>
       <td><span class="cell-name">${esc(m.display_name)}</span><span class="cell-sub">${esc(m.email)}${m.role === "admin" ? " · admin" : ""}</span></td>
-      <td>${esc(MEMBER_STATUS[m.status] || m.status)}${m.error_message ? `<span class="cell-sub">${esc(m.error_message)}</span>` : ""}</td>
+      <td>${esc(MEMBER_STATUS[m.status] || m.status)}${m.error_message ? `<span class="cell-sub">${esc(m.error_message)}</span>` : ""}${m.invited_via === "link" ? `<span class="cell-sub">inscrit par lien le ${esc(fmtDateTime(m.invited_at))} : vérifiez que l'adresse est bien la sienne</span>` : ""}${m.access_pending ? `<span class="cell-sub"><strong>Accès Cloudflare non ouvert</strong></span>` : ""}</td>
       <td>${m.provider ? esc(m.provider === "deezer" ? "Deezer" : `Spotify${m.source_status !== "connected" ? ` (${SPOTIFY_SOURCE_STATUS[m.source_status] || m.source_status})` : ""}`) : "aucune"}<span class="cell-sub">${m.last_sync_at ? esc(fmtDateTime(m.last_sync_at)) : ""}${m.last_sync_status ? ` · ${esc(m.last_sync_status)}` : ""}</span></td>
       <td class="hide-mobile">${m.last_seen_at ? esc(fmtDateTime(m.last_seen_at)) : "jamais"}<span class="cell-sub">${m.connections_30d} connexion${m.connections_30d > 1 ? "s" : ""}, ${m.api_calls_30d} requêtes, ${m.changes_30d} modifications sur 30 jours</span></td>
       <td class="num">${m.stars}</td>
       <td>${m.role === "admin" ? "" : `
+        ${m.access_pending ? `<button class="link-btn" data-admin="access" data-id="${esc(m.id)}">Ouvrir l'accès</button>` : ""}
         ${["invited", "onboarding"].includes(m.status) ? `<button class="link-btn" data-admin="invite" data-first="${esc(m.first_name)}" data-email="${esc(m.email)}">Inviter par SMS</button>` : ""}
         ${m.provider ? `<button class="link-btn" data-admin="recompute" data-id="${esc(m.id)}">Recalculer</button>` : ""}
         ${m.status === "suspended"
@@ -348,6 +350,7 @@ async function adminAction({ admin: action, id, name, first, email }) {
   const [method, path] = {
     suspend: ["POST", `admin/members/${id}/suspend`], reactivate: ["POST", `admin/members/${id}/reactivate`],
     delete: ["DELETE", `admin/members/${id}`], recompute: ["POST", `admin/members/${id}/recompute`],
+    access: ["POST", `admin/members/${id}/access`],
   }[action];
   try {
     const r = await api(path, { method });
@@ -355,6 +358,7 @@ async function adminAction({ admin: action, id, name, first, email }) {
     const notes = accessNote(r.access, "mettre à jour la liste des membres") + accessNote(r.sessions, "couper les sessions du membre")
       + (r.run?.done === false ? `<p class="prefs-warning">Calcul enregistré, lancé au prochain traitement (${esc(r.run.reason)}).</p>` : "");
     $("#admin-action-result").innerHTML = notes;
-    toast({ suspend: "Membre suspendu", reactivate: "Membre réactivé", delete: "Membre supprimé", recompute: "Calcul demandé" }[action]);
+    toast({ suspend: "Membre suspendu", reactivate: "Membre réactivé", delete: "Membre supprimé", recompute: "Calcul demandé",
+      access: r.access?.done === false ? "Accès toujours non ouvert" : "Accès ouvert" }[action]);
   } catch (err) { toast(err.message); }
 }

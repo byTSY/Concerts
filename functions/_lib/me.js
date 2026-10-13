@@ -603,18 +603,30 @@ export async function claimInvitation(env, token, email) {
   if (await db.prepare("SELECT 1 FROM users WHERE email = ?").bind(mail).first()) {
     throw new HttpError(409, "cette adresse est déjà inscrite : connectez-vous directement", "exists");
   }
-  // Effacement d'abord : deux envois simultanés du même lien ne créent qu'un membre
-  const taken = await db.prepare("DELETE FROM invitations WHERE id = ? RETURNING first_name").bind(invitation.id).first();
-  if (!taken) throw new HttpError(410, "lien déjà utilisé", "expired");
+  // Inscription et effacement du lien dans un même lot (transaction D1) : le lien n'est
+  // consommé que si le membre est créé, et deux envois simultanés ne créent qu'un membre
+  const hash = await tokenHash(token);
+  const now = nowIso();
+  let results;
   try {
-    await db.prepare("INSERT INTO users (id, email, first_name, role, status, invited_at) VALUES (?, ?, ?, 'member', 'invited', ?)")
-      .bind(newMemberId(), mail, taken.first_name, nowIso()).run();
+    results = await db.batch([
+      db.prepare("INSERT INTO users (id, email, first_name, role, status, invited_at, invited_via) " +
+        "SELECT ?, ?, first_name, 'member', 'invited', ?, 'link' FROM invitations WHERE id = ? AND token_hash = ? AND expires_at > ?")
+        .bind(newMemberId(), mail, now, invitation.id, hash, now),
+      db.prepare("DELETE FROM invitations WHERE id = ? AND token_hash = ?").bind(invitation.id, hash),
+    ]);
   } catch (e) {
     if (/UNIQUE/i.test(String(e?.message))) throw new HttpError(409, "cette adresse est déjà inscrite : connectez-vous directement", "exists");
     throw e;
   }
-  console.log(`Invitation ${invitation.id} utilisée le ${nowIso()}`);
-  return { email: mail, first_name: taken.first_name };
+  if (!results[0].meta?.changes) throw new HttpError(410, "lien déjà utilisé", "expired");
+  console.log(`Invitation ${invitation.id} utilisée le ${now}`);
+  return { email: mail, first_name: invitation.first_name };
+}
+
+// Ajout à la liste Access : réussi ou non (un échec est montré à l'admin, qui peut relancer)
+export async function setAccessPending(env, email, pending) {
+  await env.DB.prepare("UPDATE users SET access_pending = ? WHERE email = ?").bind(pending ? 1 : 0, String(email).toLowerCase()).run();
 }
 
 export function admin(env) {
@@ -635,7 +647,7 @@ export function admin(env) {
       const day = since();
       const { results } = await db.prepare(
         "SELECT u.id, u.email, u.first_name, u.pseudo, u.role, u.status, u.error_message, u.invited_at, " +
-        "u.activated_at, u.suspended_at, u.last_seen_at, " +
+        "u.activated_at, u.suspended_at, u.last_seen_at, u.invited_via, u.access_pending, " +
         "s.provider, s.status AS source_status, s.last_sync_at, s.last_sync_status, s.sync_requested_at, " +
         "(SELECT COUNT(*) FROM connections c WHERE c.user_id = u.id AND c.session_started_at >= ?1) AS connections_30d, " +
         "(SELECT COALESCE(SUM(api_calls), 0) FROM activity_daily a WHERE a.user_id = u.id AND a.day >= ?1) AS api_calls_30d, " +
@@ -688,7 +700,7 @@ export function admin(env) {
       const exists = await db.prepare("SELECT id FROM users WHERE email = ?").bind(mail).first();
       if (exists) throw new HttpError(409, "cette adresse est déjà inscrite", "exists");
       const memberId = newMemberId();
-      await db.prepare("INSERT INTO users (id, email, first_name, role, status, invited_at) VALUES (?, ?, ?, 'member', 'invited', ?)")
+      await db.prepare("INSERT INTO users (id, email, first_name, role, status, invited_at, invited_via) VALUES (?, ?, ?, 'member', 'invited', ?, 'email')")
         .bind(memberId, mail, name, nowIso()).run();
       return { id: memberId, email: mail, first_name: name };
     },

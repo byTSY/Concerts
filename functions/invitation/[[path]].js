@@ -8,7 +8,7 @@
 
 import { accessListAdd } from "../_lib/external.js";
 import { HttpError } from "../_lib/http.js";
-import { claimInvitation, findInvitation } from "../_lib/me.js";
+import { claimInvitation, findInvitation, setAccessPending } from "../_lib/me.js";
 import { attempt } from "../_lib/outside.js";
 
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -92,6 +92,8 @@ export async function onRequest({ request, env, params }) {
     return form(invitation.first_name, "Erreur inattendue : réessayez dans quelques minutes.", email);
   }
   const access = await attempt(() => accessListAdd(env, member.email));
+  // Échec : signalé à l'admin dans la liste des membres, avec un bouton pour relancer
+  if (access?.done === false) await setAccessPending(env, member.email, true).catch(() => {});
   const home = new URL("/", request.url).href;
   return page("Inscription faite", `<h1>C'est fait, ${esc(member.first_name)}</h1>
     <p>Votre adresse <strong>${esc(member.email)}</strong> est inscrite.</p>
