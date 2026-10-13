@@ -89,10 +89,13 @@ class SpotifyAccess:
         return bool(rows)
 
 
-def record_sync(db, user_id, ok, error_code=None):
+def record_sync(db, user_id, ok, error_code=None, started_at=None):
+    """last_sync_at reçoit l'heure de début du calcul : une demande faite pendant le calcul
+    (« Synchroniser maintenant », « Recalculer ») reste en attente, le calcul ayant lu la
+    bibliothèque avant elle."""
     now = now_iso()
     db.query("UPDATE music_sources SET last_sync_at = ?, last_sync_status = ? WHERE user_id = ?",
-             [now, "ok" if ok else (error_code or "error"), user_id])
+             [started_at or now, "ok" if ok else (error_code or "error"), user_id])
     if ok:
         db.query("UPDATE users SET status = 'active', error_message = NULL, "
                  "activated_at = COALESCE(activated_at, ?) WHERE id = ? AND status IN ('computing', 'error', 'active')",

@@ -10,9 +10,12 @@ au lieu d'écrire des résultats qui ne seraient vus par personne.
 """
 import json
 import os
+import re
 import sqlite3
+import time
 
 import requests
+from urllib3.exceptions import NewConnectionError
 
 from .util import DATA, log
 
@@ -38,15 +41,69 @@ def _local_allowed(what, remote_only=False):
 
 # --- D1 -------------------------------------------------------------------------
 
+# Lecture : première instruction SELECT (ou WITH … SELECT), sans écriture dans la requête
+_READ = re.compile(r"^\s*(select|with)\b", re.I)
+_WRITE_WORDS = re.compile(r"\b(insert|update|delete|replace|create|alter|drop)\b", re.I)
+
+
+def _is_read(sql):
+    return bool(_READ.match(sql)) and not _WRITE_WORDS.search(sql)
+
+
+def _not_sent(exc):
+    """Vrai si la requête n'a pas pu partir : délai de connexion, ou connexion impossible
+    (nom introuvable, refus) avant tout envoi. Une connexion coupée en cours de réponse ne
+    compte pas : la requête a pu être exécutée."""
+    if isinstance(exc, requests.exceptions.ConnectTimeout):
+        return True
+    if not isinstance(exc, requests.exceptions.ConnectionError):
+        return False
+    inner = exc.args[0] if exc.args else None           # MaxRetryError de urllib3, en général
+    reason = getattr(inner, "reason", inner)
+    return isinstance(reason, NewConnectionError) or isinstance(inner, NewConnectionError)
+
+
 class RemoteD1:
+    """Une connexion neuve par requête : pas de connexion gardée ouverte, que Cloudflare peut
+    fermer pendant une longue pause (lecture Spotify d'un grand membre, c. 9 min), ce qui
+    faisait échouer la requête suivante après 60 s (ReadTimeout). Nouvel essai automatique
+    d'une lecture après une erreur réseau ; d'une écriture, seulement si elle n'a pas pu partir."""
+
+    ATTEMPTS = 3
+    PAUSES = (2, 5)          # secondes entre deux essais
+    TIMEOUT = (10, 60)       # connexion, réponse
+
     def __init__(self, account, database, token):
         self.url = f"https://api.cloudflare.com/client/v4/accounts/{account}/d1/database/{database}/query"
-        self.session = requests.Session()
-        self.session.headers["authorization"] = f"Bearer {token}"
+        self.headers = {"authorization": f"Bearer {token}", "connection": "close"}
         self.label = "D1 (Cloudflare)"
 
+    def _post(self, sql, params):
+        read = _is_read(sql)
+        for attempt in range(self.ATTEMPTS):
+            try:
+                return requests.post(self.url, json={"sql": sql, "params": list(params)},
+                                     headers=self.headers, timeout=self.TIMEOUT)
+            except (requests.exceptions.ConnectionError, requests.exceptions.Timeout,
+                    requests.exceptions.ChunkedEncodingError) as exc:
+                retry = read or _not_sent(exc)
+                if not retry or attempt == self.ATTEMPTS - 1:
+                    kind = "lecture" if read else "écriture"
+                    raise CloudError(f"D1 : {kind} impossible après {attempt + 1} essai(s) "
+                                     f"({exc.__class__.__name__})") from exc
+                log(f"D1 : {exc.__class__.__name__}, nouvel essai dans {self.PAUSES[attempt]} s")
+                time.sleep(self.PAUSES[attempt])
+
     def query(self, sql, params=()):
-        r = self.session.post(self.url, json={"sql": sql, "params": list(params)}, timeout=60)
+        r = self._post(sql, params)
+        # Lecture : erreur passagère de Cloudflare (429, 5xx), nouvel essai ; écriture : jamais
+        # (elle a pu être exécutée)
+        for pause in self.PAUSES if _is_read(sql) else ():
+            if r.status_code not in (429, 500, 502, 503, 504):
+                break
+            log(f"D1 : HTTP {r.status_code}, nouvel essai dans {pause} s")
+            time.sleep(pause)
+            r = self._post(sql, params)
         try:
             data = r.json()
         except ValueError:

@@ -830,6 +830,79 @@ test("lien d'invitation : expiration, nouveau lien (l'ancien ne marche plus), su
   assert.equal(env.DB.raw.prepare("SELECT COUNT(*) AS n FROM invitations").get().n, 0);
 });
 
+test("relais du calcul : demande de plus de 15 min sans résultat, une fois par 15 min, jamais pour un autre membre", async () => {
+  const env = setup();
+  const dispatched = [];
+  env.GITHUB_ACTIONS_TOKEN = "jeton-github";
+  const before = globalThis.fetch;
+  globalThis.fetch = async (url, init) => {
+    if (String(url).startsWith("https://api.github.com/")) { dispatched.push(JSON.parse(init.body).inputs.member); return new Response(null, { status: 204 }); }
+    return before(url, init);
+  };
+  try {
+    const ago = (min) => new Date(Date.now() - min * 60000).toISOString().replace(/\.\d{3}Z$/, "+00:00");
+    env.DB.raw.exec(`INSERT INTO music_sources (user_id, provider, provider_user_id, status, sync_requested_at, last_sync_at) VALUES
+      ('u_aaaaaaaa', 'spotify', 'sa', 'connected', '${ago(20)}', '${ago(60)}'),
+      ('u_bbbbbbbb', 'deezer', '222', 'connected', '${ago(5)}', '${ago(60)}')`);
+    await call(env, "a@test.fr", getMe);
+    assert.deepEqual(dispatched, ["u_aaaaaaaa"]);
+    await call(env, "a@test.fr", getMe);  // moins de 15 min après le relais : rien
+    assert.deepEqual(dispatched, ["u_aaaaaaaa"]);
+    await call(env, "b@test.fr", getMe);  // demande de 5 min : rien
+    assert.deepEqual(dispatched, ["u_aaaaaaaa"]);
+    // Relais de plus de 15 min, toujours sans résultat : nouveau relais
+    env.DB.raw.exec(`UPDATE music_sources SET sync_relayed_at = '${ago(16)}' WHERE user_id = 'u_aaaaaaaa'`);
+    await call(env, "a@test.fr", getMe);
+    assert.deepEqual(dispatched, ["u_aaaaaaaa", "u_aaaaaaaa"]);
+    // Calcul abouti (réussi ou en erreur) après la demande : plus de relais
+    env.DB.raw.exec(`UPDATE music_sources SET last_sync_at = '${ago(1)}', sync_relayed_at = '${ago(30)}' WHERE user_id = 'u_aaaaaaaa'`);
+    await call(env, "a@test.fr", getMe);
+    assert.equal(dispatched.length, 2);
+    // Tâche arrêtée avant la fin : 3 relais au plus pour une même demande
+    env.DB.raw.exec(`UPDATE music_sources SET last_sync_at = '${ago(60)}', sync_relayed_at = '${ago(16)}', sync_relay_count = 3 WHERE user_id = 'u_aaaaaaaa'`);
+    await call(env, "a@test.fr", getMe);
+    assert.equal(dispatched.length, 2);
+    // Nouvelle demande : compteur remis à 1
+    env.DB.raw.exec(`UPDATE music_sources SET sync_requested_at = '${ago(16)}', sync_relayed_at = '${ago(20)}' WHERE user_id = 'u_aaaaaaaa'`);
+    await call(env, "a@test.fr", getMe);
+    assert.equal(dispatched.length, 3);
+    assert.equal(env.DB.raw.prepare("SELECT sync_relay_count AS n FROM music_sources WHERE user_id = 'u_aaaaaaaa'").get().n, 1);
+    // Membre suspendu : jamais
+    env.DB.raw.exec(`UPDATE music_sources SET last_sync_at = '${ago(60)}' WHERE user_id = 'u_aaaaaaaa'`);
+    env.DB.raw.exec("UPDATE users SET status = 'suspended' WHERE id = 'u_aaaaaaaa'");
+    await call(env, "a@test.fr", getMe);
+    assert.equal(dispatched.length, 3);
+  } finally {
+    globalThis.fetch = before;
+  }
+});
+
+test("relais du calcul : lundi matin, échec du lancement, migration absente", async () => {
+  const env = setup();
+  const ago = (min) => new Date(Date.now() - min * 60000).toISOString().replace(/\.\d{3}Z$/, "+00:00");
+  env.DB.raw.exec(`INSERT INTO music_sources (user_id, provider, provider_user_id, status, sync_requested_at, last_sync_at)
+    VALUES ('u_aaaaaaaa', 'deezer', '111', 'connected', '${ago(20)}', '${ago(60)}')`);
+  const user = env.DB.raw.prepare("SELECT * FROM users WHERE id = 'u_aaaaaaaa'").get();
+  const { member } = await import("../functions/_lib/me.js");
+  // Lundi 6 h UTC : pas de relais (traitement hebdomadaire en attente)
+  assert.equal(await member(env, user).claimSyncRelay(new Date("2026-10-12T06:00:00Z")), false);
+  assert.equal(await member(env, user).claimSyncRelay(new Date("2026-10-12T09:30:00Z")), true);
+  // Lancement GitHub refusé : la page répond normalement
+  env.DB.raw.exec("UPDATE music_sources SET sync_relayed_at = NULL, sync_relay_count = 0 WHERE user_id = 'u_aaaaaaaa'");
+  env.GITHUB_ACTIONS_TOKEN = "jeton-github";
+  const before = globalThis.fetch;
+  globalThis.fetch = async (url, init) => (String(url).startsWith("https://api.github.com/")
+    ? new Response("{}", { status: 500 }) : before(url, init));
+  try {
+    assert.equal((await call(env, "a@test.fr", getMe)).status, 200);
+  } finally {
+    globalThis.fetch = before;
+  }
+  // Migration 0007 non appliquée : la page répond normalement
+  env.DB.raw.exec("ALTER TABLE music_sources DROP COLUMN sync_relay_count; ALTER TABLE music_sources DROP COLUMN sync_relayed_at");
+  assert.equal((await call(env, "a@test.fr", getMe)).status, 200);
+});
+
 test("fiches Reels vues : par membre, sans doublon, contrôle des identifiants, vieilles lignes effacées", async () => {
   const env = setup();
   const post = (email, body) => call(env, email, seenRoute.onRequestPost, { method: "POST", path: "/api/me/seen", body });

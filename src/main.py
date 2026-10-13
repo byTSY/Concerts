@@ -201,7 +201,7 @@ def run_members(settings, db, store, selection, collected=None, kind="weekly"):
     failures = 0
     log(f"Tâche membres : {len(selection)} membre(s)")
     for m in selection:
-        uid, started = m["id"], time.monotonic()
+        uid, started, started_at = m["id"], time.monotonic(), members.now_iso()
         log(f"Membre {uid} ({m['provider']})")
         code = None
         try:
@@ -221,7 +221,7 @@ def run_members(settings, db, store, selection, collected=None, kind="weekly"):
             log(f"  Erreur interne ({exc.__class__.__name__})")
             code = "internal"
         try:
-            members.record_sync(db, uid, ok=code is None, error_code=code)
+            members.record_sync(db, uid, ok=code is None, error_code=code, started_at=started_at)
             members.record_member_run(db, run_id, uid, m["provider"], code is None, code, time.monotonic() - started)
         except Exception as exc:  # noqa: BLE001  membre supprimé entre-temps (clé étrangère)
             log(f"  Suivi du membre {uid} non enregistré ({exc.__class__.__name__})")
@@ -261,7 +261,7 @@ def main():
     if task in (None, "members"):
         # Relance de sécurité (toutes les 2 heures) : rien à faire si aucun membre n'attend, et
         # aucun traitement enregistré
-        if targeted and not args.member and not members.pending(db):
+        if targeted and args.pending and not members.pending(db):
             log("Aucun membre en attente de calcul")
             return
         if targeted and collection_is_stale(db):
@@ -269,9 +269,21 @@ def main():
             collected = common(settings, db, store)
             targeted = False
         if targeted:
+            waiting = members.pending(db)
             selection = members.by_ids(db, args.member) if args.member else []
+            if args.pending:
+                # Lancement par le site (relais compris) : un membre calculé entre-temps n'est pas
+                # recalculé (le relais peut arriver après la fin d'un calcul long)
+                ready = {m["id"] for m in waiting}
+                for m in selection:
+                    if m["id"] not in ready:
+                        log(f"Membre {m['id']} : plus en attente (calcul déjà fait), ignoré")
+                selection = [m for m in selection if m["id"] in ready]
             seen = {m["id"] for m in selection}
-            selection += [m for m in members.pending(db) if m["id"] not in seen]
+            selection += [m for m in waiting if m["id"] not in seen]
+            if not selection:
+                log("Aucun membre en attente de calcul")
+                return
             kind = "member"
         else:
             selection, kind = members.active(db), "weekly"

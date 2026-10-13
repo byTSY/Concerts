@@ -230,7 +230,8 @@ des membres Spotify l'un après l'autre.
 membre seul), `status` (`pending_allowlist` / `ready_to_connect` / `connected` / `error` /
 `revoked`), `spotify_account_email` et `spotify_account_name` (pour l'ajout dans le tableau
 de bord Spotify), `refresh_token_enc`, `scopes`, `connected_at`, `last_sync_at`,
-`last_sync_status`, `sync_requested_at`.
+`last_sync_status`, `sync_requested_at`, `sync_relayed_at` et `sync_relay_count` (version 1.2.1 : dernier relais du calcul par le site,
+nombre de relais pour la demande en cours, 3 au plus).
 
 **oauth_states** : `state` (PK), `user_id`, `code_verifier`, `expires_at` (10 min), à usage
 unique.
@@ -306,6 +307,12 @@ de la dernière collecte. Lancé par l'API (`workflow_dispatch`, paramètre `mem
 l'arrivée d'un membre, au changement de source, sur « Synchroniser maintenant » ou à la
 demande de l'admin. Le groupe de concurrence est conservé : les calculs passent l'un après
 l'autre.
+
+Relais (version 1.2.1) : à l'ouverture du site (`GET /api/me`), un calcul demandé depuis plus de
+15 minutes et resté sans résultat est relancé, au plus une fois par 15 minutes et par membre
+(`sync_relayed_at`), 3 fois au plus par demande, jamais le lundi de 5 h à 9 h UTC ; la relance
+de sécurité des 2 heures reste en complément. `last_sync_at` reçoit l'heure de début du calcul. Avec `--pending`,
+un membre désigné qui n'attend plus de calcul est ignoré.
 
 Premier calcul d'un membre (ou changement de source) : base initiale du membre, aucun badge
 « liste » ce jour-là.
