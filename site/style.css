@@ -349,3 +349,6 @@ details.organizer p { margin: 6px 0 0; }
 .copy-row .copy-field { flex: 1; min-width: 0; }
 .plain-list { margin: 6px 0; padding-left: 18px; }
 @media (max-width: 640px) { .account-form.inline { grid-template-columns: 1fr; } }
+
+/* Numéro de version (VERSION, CHANGELOG.md) */
+.app-version { text-align: center; font-size: .75rem; color: var(--ink-soft); padding: 1.5rem 16px 1rem; }

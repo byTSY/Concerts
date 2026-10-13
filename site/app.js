@@ -423,7 +423,7 @@ async function shareOrCopy(data, copied) {
 // Description, genres et liens d'écoute de l'artiste, préparés par la fonction de partage
 // (Wikidata et Deezer) ; gardés en mémoire pour la fiche du concert et le message.
 const artistInfoCache = new Map();
-function artistInfo(id, timeout = 4000) {
+function artistInfo(id, timeout = 8000) {
   if (!artistInfoCache.has(id)) {
     const ctrl = new AbortController();
     const timer = setTimeout(() => ctrl.abort(), timeout);
