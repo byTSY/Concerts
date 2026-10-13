@@ -12,6 +12,7 @@
   python -m src.main --member <id>          ce membre (plus ceux qui attendent un calcul)
   python -m src.main promote               publie la collecte préparée (après l'envoi sur GitHub)
   python -m src.main newsletter            newsletter du lundi à chaque membre abonné (SMTP)
+  python -m src.main newsletter --test-member <id>   essai pour ce seul membre
 
 La dernière collecte (concerts dédoublonnés, sans champ personnel) est conservée dans R2
 (common/collected.json) : la tâche membres et le calcul d'un seul membre la relisent. La tâche
@@ -239,8 +240,9 @@ def main():
                         help="tâche seule (défaut : les deux, ou members avec --member / --pending)")
     parser.add_argument("--member", action="append", default=[], help="identifiant d'un membre à calculer")
     parser.add_argument("--pending", action="store_true", help="membres qui attendent un calcul")
+    parser.add_argument("--test-member", default="", help="newsletter : essai pour ce seul membre")
     args = parser.parse_args()
-    for uid in args.member:
+    for uid in args.member + ([args.test_member] if args.test_member else []):
         if not re.fullmatch(members.MEMBER_ID, uid):
             raise SystemExit("Identifiant de membre invalide (u_ suivi de 8 caractères)")
 
@@ -252,7 +254,7 @@ def main():
         promote(store)
         return
     if args.task == "newsletter":
-        newsletter.send_all(db, store, store.get_json(COLLECTED))
+        newsletter.send_all(db, store, store.get_json(COLLECTED), test_member=args.test_member or None)
         return
     targeted = bool(args.member or args.pending)
     task = args.task or ("members" if targeted else None)

@@ -24,6 +24,9 @@ Newsletter du lundi.
 - Envoi SMTP (src/newsletter.py, étape « Newsletter du lundi » de weekly.yml) : compte Gmail dédié
   avec mot de passe d'application, ou relais Brevo. Secrets GitHub SMTP_HOST, SMTP_PORT,
   SMTP_USER, SMTP_PASSWORD, NEWSLETTER_FROM ; sans eux, aucun envoi et le traitement continue.
+- Essai : workflow « Newsletter (essai) » (newsletter-test.yml, bouton « Run workflow », champ
+  member) : e-mail « [Essai] » à ce seul membre, sans collecte ni calcul, semaine non comptée ;
+  groupe de concurrence à part, pour ne jamais remplacer le traitement du lundi en attente.
 - Abonnement par défaut ; case « Newsletter du lundi » dans « Mon compte » ; lien de
   désabonnement dans chaque e-mail (page publique /partage/desabonnement/<jeton>, confirmation par
   un bouton) et désabonnement en un clic depuis la messagerie (List-Unsubscribe, RFC 8058).

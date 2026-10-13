@@ -213,7 +213,8 @@ Sans eux, rien n'est envoyé. Sans nom de domaine : un compte Gmail dédié, ave
 deux étapes et un mot de passe d'application (`SMTP_HOST` = `smtp.gmail.com`, port 587). La
 newsletter part à la fin du traitement programmé du lundi, une fois par jour au plus, aux membres
 actifs abonnés (abonnés par défaut ; désabonnement dans « Mon compte » ou par le lien de l'e-mail,
-page publique `/partage/desabonnement/<jeton>`).
+page publique `/partage/desabonnement/<jeton>`). Essai pour un seul membre : onglet Actions, « Newsletter (essai) »,
+« Run workflow », identifiant du membre (`u_xxxxxxxx`).
 
 Versions : numéro dans `VERSION`, journal et retour arrière dans `CHANGELOG.md`.
 

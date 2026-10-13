@@ -140,6 +140,17 @@ class Sending(unittest.TestCase):
         self.db.conn.executescript("DROP INDEX users_newsletter_token; ALTER TABLE users DROP COLUMN newsletter_sent_at;")
         self.assertEqual(newsletter.send_all(self.db, self.store, {"events": EVENTS}, CFG, TODAY), 0)
 
+    def test_test_send_to_one_member_only(self):
+        """Essai : ce seul membre (même désabonné), objet « [Essai] », semaine non comptée."""
+        self.db.query("UPDATE users SET newsletter = 0 WHERE id = 'u_aaaaaaaa'")
+        sent = newsletter.send_all(self.db, self.store, {"events": EVENTS}, CFG, TODAY, test_member="u_aaaaaaaa")
+        self.assertEqual(sent, 1)
+        msg = self.smtp.send_message.call_args.args[0]
+        self.assertEqual(msg["To"], "u_aaaaaaaa@test.fr")
+        self.assertTrue(msg["Subject"].startswith("[Essai] "))
+        self.assertIsNone(self.db.query("SELECT newsletter_sent_at FROM users WHERE id = 'u_aaaaaaaa'")[0]["newsletter_sent_at"])
+        self.assertEqual(newsletter.send_all(self.db, self.store, {"events": EVENTS}, CFG, TODAY, test_member="u_cccccccc"), 0)
+
     def test_without_smtp_settings_nothing_happens(self):
         with mock.patch.dict("os.environ", {}, clear=True):
             self.assertEqual(newsletter.send_all(self.db, self.store, {"events": EVENTS}, None, TODAY), 0)

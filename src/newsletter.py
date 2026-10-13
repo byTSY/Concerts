@@ -162,8 +162,12 @@ def build_email(name, announced, recommended, going, site, unsubscribe):
     return subject, text, html
 
 
-def recipients(db, today):
-    """Membres actifs, abonnés, sans envoi depuis 6 jours (relance du traitement : pas de doublon)."""
+def recipients(db, today, test_member=None):
+    """Membres actifs, abonnés, sans envoi depuis 6 jours (relance du traitement : pas de doublon).
+    Essai : le seul membre désigné, abonné ou non, s'il n'est pas suspendu."""
+    if test_member:
+        return db.query("SELECT id, email, first_name, pseudo, newsletter_token FROM users "
+                        "WHERE id = ? AND status <> 'suspended' AND email <> ''", [test_member])
     cutoff = (date.fromisoformat(today) - timedelta(days=MIN_GAP_DAYS)).isoformat()
     return db.query(
         "SELECT id, email, first_name, pseudo, newsletter_token FROM users "
@@ -205,9 +209,10 @@ def connect(cfg):
     return smtp
 
 
-def send_all(db, store, collected, cfg=None, today=None):
+def send_all(db, store, collected, cfg=None, today=None, test_member=None):
     """Envoie la newsletter à chaque membre concerné ; renvoie le nombre d'e-mails envoyés.
-    Une erreur chez un membre est signalée et n'arrête pas les autres."""
+    Une erreur chez un membre est signalée et n'arrête pas les autres.
+    test_member : essai pour ce seul membre (objet « [Essai] », envoi de la semaine non compté)."""
     cfg = cfg or smtp_settings()
     if not cfg:
         log("Newsletter : SMTP non configuré (secrets SMTP_HOST, SMTP_USER, SMTP_PASSWORD), aucun envoi")
@@ -215,11 +220,12 @@ def send_all(db, store, collected, cfg=None, today=None):
     today = today or today_iso()
     events = (collected or {}).get("events") or []
     try:
-        targets = recipients(db, today)
+        targets = recipients(db, today, test_member)
     except Exception as exc:  # noqa: BLE001  migration 0008 pas encore appliquée, par exemple
         log(f"Newsletter : membres illisibles ({exc}), aucun envoi (migration 0008 appliquée ?)")
         return 0
-    log(f"Newsletter : {len(targets)} membre(s) abonné(s) à servir")
+    log(f"Newsletter d'essai pour {test_member} : {'membre trouvé' if targets else 'membre introuvable, suspendu ou sans e-mail'}"
+        if test_member else f"Newsletter : {len(targets)} membre(s) abonné(s) à servir")
     sent, smtp = 0, None
     try:
         for m in targets:
@@ -232,8 +238,10 @@ def send_all(db, store, collected, cfg=None, today=None):
                 built = build_email(m.get("pseudo") or m["first_name"], announced, recommended, going_rows,
                                     cfg["site"], unsubscribe)
                 if not built:
-                    log(f"  Membre {m['id']} : rien à envoyer")
+                    log(f"  Membre {m['id']} : rien à envoyer (aucune annonce, recommandation ni place prise)")
                     continue
+                if test_member:
+                    built = (f"[Essai] {built[0]}",) + tuple(built[1:])
                 mail = message(cfg, m["email"], *built, unsubscribe)
             except Exception as exc:  # noqa: BLE001  un membre en erreur n'arrête pas les autres
                 log(f"  Membre {m['id']} : newsletter non préparée ({exc.__class__.__name__})")
@@ -257,6 +265,9 @@ def send_all(db, store, collected, cfg=None, today=None):
                     log(f"  Membre {m['id']} : newsletter non envoyée ({exc.__class__.__name__})")
                     break
                 sent += 1
+                if test_member:
+                    log(f"  Membre {m['id']} : newsletter d'essai envoyée")
+                    break
                 try:
                     db.query("UPDATE users SET newsletter_sent_at = ? WHERE id = ?", [today, m["id"]])
                     log(f"  Membre {m['id']} : newsletter envoyée")
