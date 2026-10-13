@@ -207,6 +207,15 @@ Secrets GitHub Actions : les six variables Cloudflare ci-dessus, et pour les mem
 avec une autre clé, les jetons sont illisibles et les calculs Spotify échouent avec le code
 `token_key`, sans rien effacer).
 
+Newsletter du lundi (version 1.5.0), secrets GitHub facultatifs : `SMTP_HOST`, `SMTP_PORT` (587 ou
+465), `SMTP_USER`, `SMTP_PASSWORD`, `NEWSLETTER_FROM` (adresse d'envoi, `SMTP_USER` par défaut).
+Sans eux, rien n'est envoyé. Sans nom de domaine : un compte Gmail dédié, avec la validation en
+deux étapes et un mot de passe d'application (`SMTP_HOST` = `smtp.gmail.com`, port 587). La
+newsletter part à la fin du traitement programmé du lundi, une fois par jour au plus, aux membres
+actifs abonnés (abonnés par défaut ; désabonnement dans « Mon compte » ou par le lien de l'e-mail,
+page publique `/partage/desabonnement/<jeton>`). Essai pour un seul membre : onglet Actions, « Newsletter (essai) »,
+« Run workflow », identifiant du membre (`u_xxxxxxxx`).
+
 Versions : numéro dans `VERSION`, journal et retour arrière dans `CHANGELOG.md`.
 
 Tests (avant chaque mise en production) :

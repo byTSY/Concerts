@@ -14,6 +14,29 @@ Revenir à une version antérieure :
 3. base D1 : les migrations ne s'annulent pas seules ; chaque entrée indique la commande inverse
    quand une migration est ajoutée.
 
+## 1.5.0 (13 octobre 2026)
+
+Newsletter du lundi.
+- À la fin du traitement programmé du lundi, un e-mail HTML par membre actif abonné : concerts de
+  ses artistes annoncés cette semaine, recommandations des 30 jours suivants (ses artistes puis
+  découvertes, 15 au plus), ses prochains concerts (« Places prises ») ; liens vers les fiches
+  /partage/ et le site. Aucun envoi si les trois parties sont vides ; un envoi par jour au plus.
+- Envoi SMTP (src/newsletter.py, étape « Newsletter du lundi » de weekly.yml) : compte Gmail dédié
+  avec mot de passe d'application, ou relais Brevo. Secrets GitHub SMTP_HOST, SMTP_PORT,
+  SMTP_USER, SMTP_PASSWORD, NEWSLETTER_FROM ; sans eux, aucun envoi et le traitement continue.
+- Essai : workflow « Newsletter (essai) » (newsletter-test.yml, bouton « Run workflow », champ
+  member) : e-mail « [Essai] » à ce seul membre, sans collecte ni calcul, semaine non comptée ;
+  groupe de concurrence à part, pour ne jamais remplacer le traitement du lundi en attente.
+- Abonnement par défaut ; case « Newsletter du lundi » dans « Mon compte » ; lien de
+  désabonnement dans chaque e-mail (page publique /partage/desabonnement/<jeton>, confirmation par
+  un bouton) et désabonnement en un clic depuis la messagerie (List-Unsubscribe, RFC 8058).
+- Audit : case « Mon compte » réellement enregistrée ; un envoi par semaine au plus même si le
+  traitement est relancé ; newsletter envoyée même si un calcul de membre a échoué ; connexion SMTP
+  impossible : envoi arrêté proprement, connexion perdue : un nouvel essai ; base sans la
+  migration 0008 : aucun échec du traitement ni du site ; date du jour à Paris.
+- Migration D1 : 0008_newsletter.sql (users.newsletter, newsletter_token, newsletter_sent_at),
+  à appliquer en production avant le déploiement. Retour arrière : voir l'en-tête du fichier.
+
 ## 1.4.0 (13 octobre 2026)
 
 Découvertes : grandes salles exclues.

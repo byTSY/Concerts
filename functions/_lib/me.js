@@ -11,6 +11,38 @@ import { tokenKeyReady } from "./tokens.js";
 const USER_FIELDS = "id, email, first_name, pseudo, role, status, default_visibility, error_message, " +
   "invited_at, activated_at, last_seen_at";
 
+// Abonnement à la newsletter du lundi ; null si la colonne n'existe pas encore (migration 0008
+// non appliquée) : le reste du profil s'affiche normalement
+async function newsletterOf(db, id) {
+  try {
+    const row = await db.prepare("SELECT newsletter FROM users WHERE id = ?").bind(id).first();
+    return row ? Boolean(row.newsletter) : null;
+  } catch {
+    return null;
+  }
+}
+
+// Désabonnement par le lien de l'e-mail (page publique /partage/desabonnement/<jeton>)
+// (base sans la migration 0008 : lien traité comme inconnu)
+export async function unsubscribeByToken(env, token) {
+  if (!/^[A-Za-z0-9_-]{20,64}$/.test(String(token || ""))) return false;
+  try {
+    const r = await env.DB.prepare("UPDATE users SET newsletter = 0 WHERE newsletter_token = ?").bind(token).run();
+    return Boolean(r.meta?.changes);
+  } catch {
+    return false;
+  }
+}
+
+export async function knownToken(env, token) {
+  if (!/^[A-Za-z0-9_-]{20,64}$/.test(String(token || ""))) return false;
+  try {
+    return Boolean(await env.DB.prepare("SELECT 1 AS ok FROM users WHERE newsletter_token = ?").bind(token).first());
+  } catch {
+    return false;
+  }
+}
+
 // Membre correspondant à l'e-mail du jeton Access, ou null
 export async function identify(env, email) {
   return env.DB.prepare(`SELECT ${USER_FIELDS} FROM users WHERE email = ?`).bind(email).first();
@@ -199,6 +231,7 @@ export function member(env, user) {
         source: source || null,
         spotify: { enabled: used !== null && spotifyEnabled(env), full: used === null || used >= spotifyMax(env) },
         favorite_venues: favorites.results.map((r) => r.venue_id),
+        newsletter: await newsletterOf(db, id),
       };
     },
 
@@ -362,13 +395,23 @@ export function member(env, user) {
     // --- Compte du membre -------------------------------------------------------------
 
     // Pseudo (2 à 30 caractères, unique ; vide : prénom) et visibilité par défaut des ★
-    async updateProfile({ pseudo, default_visibility }) {
+    async updateProfile({ pseudo, default_visibility, newsletter }) {
       if (default_visibility !== undefined && !VISIBILITY.has(default_visibility)) {
         throw new HttpError(400, "visibilité : private ou members");
       }
+      if (newsletter !== undefined && typeof newsletter !== "boolean") throw new HttpError(400, "newsletter : vrai ou faux");
       let p = pseudo === undefined ? undefined : String(pseudo ?? "").replace(/\s+/g, " ").trim();
       if (p !== undefined && p !== "" && (p.length < 2 || p.length > 30)) throw new HttpError(400, "pseudo : 2 à 30 caractères");
       if (p === "") p = null;
+      // Tout est vérifié avant d'écrire
+      if (newsletter !== undefined) {
+        try {
+          await db.prepare("UPDATE users SET newsletter = ? WHERE id = ?").bind(newsletter ? 1 : 0, id).run();
+        } catch {
+          throw new HttpError(503, "réglage de la newsletter pas encore disponible", "newsletter_unavailable");
+        }
+        if (pseudo === undefined && default_visibility === undefined) return api.profile();
+      }
       try {
         await db.prepare("UPDATE users SET pseudo = CASE WHEN ?1 THEN ?2 ELSE pseudo END, " +
           "default_visibility = COALESCE(?3, default_visibility) WHERE id = ?4")

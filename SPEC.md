@@ -225,6 +225,9 @@ des membres Spotify l'un après l'autre.
 `members`, défaut `private`), `error_message`, `invited_at`, `activated_at`,
 `suspended_at`, `last_seen_at`. Nom affiché = `pseudo` sinon `first_name`.
 
+Ajout de la version 1.5.0 à **users** : `newsletter` (1 par défaut), `newsletter_token` (jeton du
+lien de désabonnement), `newsletter_sent_at` (date du dernier envoi).
+
 **music_sources** (une ligne par membre) : `user_id` (PK), `provider` (`deezer` / `spotify`),
 `provider_user_id` (unique par fournisseur), `provider_name` (nom du profil, visible du
 membre seul), `status` (`pending_allowlist` / `ready_to_connect` / `connected` / `error` /
