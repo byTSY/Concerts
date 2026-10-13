@@ -7,8 +7,31 @@ Deux signaux tirés des « artistes similaires » de Deezer :
 from collections import defaultdict
 
 from . import deezer
-from .match import title_names
-from .util import log, norm
+from .match import VenueMatcher, title_names
+from .util import ROOT, load_yaml, log, norm
+
+VENUES_FILE = ROOT / "config" / "venues.yaml"
+
+
+def big_venues(path=VENUES_FILE):
+    """Grandes salles jamais proposées en découverte (config/venues.yaml, discovery_excluded).
+    Fichier illisible ou entrée mal écrite : signalé dans le journal, sans arrêter les calculs."""
+    try:
+        cfg = load_yaml(path) if path.exists() else {}
+        items = (cfg.get("discovery_excluded") or []) if isinstance(cfg, dict) else []
+    except Exception as exc:  # noqa: BLE001  YAML invalide
+        log(f"  config/venues.yaml illisible ({exc.__class__.__name__}) : aucune grande salle exclue")
+        items = []
+    venues = []
+    for item in items if isinstance(items, list) else []:
+        if isinstance(item, str):
+            item = {"name": item}
+        if not isinstance(item, dict) or not str(item.get("name") or "").strip():
+            log(f"  config/venues.yaml : entrée ignorée ({item!r})")
+            continue
+        aliases = item.get("aliases") or []
+        venues.append({"name": str(item["name"]), "aliases": [str(a) for a in aliases] if isinstance(aliases, list) else [str(aliases)]})
+    return VenueMatcher({"venues": venues})
 
 TIER_WEIGHT = {1: 1.0, 2: 0.6, 3: 0.3}
 REVERSE_POOL = 300  # nombre de vos artistes dont on lit les similaires
@@ -26,11 +49,15 @@ def _reverse_index(artists, related_cache, refresh_days):
     return weight, names
 
 
-def score_events(events, artists, settings, hidden_keys=frozenset(), budget=None):
+def score_events(events, artists, settings, hidden_keys=frozenset(), budget=None, excluded=None):
     """artists : liste du membre sans les artistes masqués ; hidden_keys : leurs noms normalisés,
     pour ne pas les proposer en découverte. budget : {"left": n}, nombre d'artistes inconnus
-    encore analysables pendant ce traitement, partagé entre les membres (cache commun)."""
+    encore analysables pendant ce traitement, partagé entre les membres (cache commun).
+    excluded : grandes salles (big_venues) ; leurs concerts ne deviennent jamais des découvertes,
+    mais un de vos artistes repéré sous un autre libellé y reste rapproché."""
     cfg = settings["discovery"]
+    excluded = excluded if excluded is not None else big_venues()
+    skipped = 0
     budget = budget if budget is not None else {"left": cfg["max_new_lookups"]}
     search_cache, related_cache = deezer.load_caches()
     log("  Découvertes : lecture des artistes similaires de la liste")
@@ -88,9 +115,13 @@ def score_events(events, artists, settings, hidden_keys=frozenset(), budget=None
                 best = {"score": round(proximity, 2), "artist": found["name"], "link": found.get("link"),
                         "picture": found.get("picture"), "fans": found.get("fans"), "close_to": close_names[:4]}
         if best and best["score"] >= cfg["min_score"]:
+            if excluded.canonical(ev.get("venue") or ""):
+                skipped += 1
+                continue
             ev["discovery"] = best
             scored += 1
 
     deezer.save_caches(search_cache, related_cache)
-    log(f"  {lookups} nouveaux artistes analysés, {scored} découvertes retenues")
+    log(f"  {lookups} nouveaux artistes analysés, {scored} découvertes retenues"
+        + (f", {skipped} écartées (grandes salles)" if skipped else ""))
     return events
