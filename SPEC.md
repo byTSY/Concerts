@@ -422,7 +422,7 @@ validation des salles et relance des calculs se font dans la console Concert.
 1. L'admin invite : soit par un lien personnel créé pour un prénom, que la personne ouvre
    (`/invitation/<jeton>`, chemin ouvert à tous dans Access, comme `/partage`) pour y saisir son
    adresse, alors inscrite et ajoutée à la liste Access ; soit par e-mail et prénom. Il transmet
-   lui-même le lien (SMS prérempli, WhatsApp, e-mail).
+   lui-même le lien (bouton « Partager » : WhatsApp, Messenger, Messages, e-mail).
 2. Le membre se connecte (code Access). Statut `onboarding`. Texte court sur les données
    conservées (e-mail, prénom ou pseudo, source musicale, préférences) et la suppression
    possible à tout moment.

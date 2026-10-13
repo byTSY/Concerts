@@ -53,7 +53,7 @@ function showMessage(out, intro, message, notes = "") {
   }
   out.innerHTML = `<p>${intro}</p>
     <p><button class="btn btn-share js-share" type="button">Partager l'invitation</button></p>
-    <p class="cell-sub">Choisissez l'application (WhatsApp, Messenger, Messages…) puis le destinataire. Sur ordinateur, le message est copié : collez-le où vous voulez.</p>
+    <p class="cell-sub">Choisissez l'application (WhatsApp, Messenger, Messages…) puis le destinataire. Si aucun menu de partage ne s'ouvre, le message est copié : collez-le où vous voulez.</p>
     <textarea class="copy-field js-text" readonly rows="5" aria-label="Message d'invitation">${esc(message)}</textarea>
     <p><button class="btn btn-quiet js-copy" type="button">Copier le message</button></p>${notes}`;
   out.querySelector(".js-copy").addEventListener("click", (ev) => copyText(ev.target, message, out.querySelector(".js-text")));
