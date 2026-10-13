@@ -6,7 +6,9 @@
   python -m src.main members               tâche membres : chaque membre actif, à partir de la
                                            dernière collecte
   python -m src.main members --pending     membres qui attendent un calcul (arrivée,
-                                           « Synchroniser maintenant », relance par l'admin)
+                                           « Synchroniser maintenant », relance par l'admin) ;
+                                           lancé aussi toutes les 2 heures, au cas où le site
+                                           n'aurait pas pu lancer le calcul
   python -m src.main --member <id>          ce membre (plus ceux qui attendent un calcul)
   python -m src.main promote               publie la collecte préparée (après l'envoi sur GitHub)
 
@@ -26,7 +28,7 @@ import time
 from datetime import datetime, timedelta, timezone
 
 from . import catalog, cloud, discover, history, match, members, publish
-from .library import deezer as deezer_library
+from .library import deezer as deezer_library, spotify as spotify_library
 from .library.base import SourceError
 from .sources import bandsintown, dice, offi, qfap, ticketmaster, venues as venue_pages
 from .util import ROOT, load_yaml, log, norm
@@ -34,7 +36,7 @@ from .util import ROOT, load_yaml, log, norm
 COLLECTED = "common/collected.json"
 COLLECTED_NEXT = "common/collected.next.json"
 STALE_DAYS = 7
-LIBRARIES = {"deezer": deezer_library.read}
+LIBRARIES = {"deezer": deezer_library.read, "spotify": spotify_library.read}
 
 
 def run_source(label, status, fn, *args):
@@ -166,7 +168,9 @@ def compute_member(m, collected, settings, db, store, budget):
     if not read_library:
         raise SourceError("unsupported_provider", m["provider"])
     previous = members.read(store, uid, "artists", {})
-    artists = read_library(m["provider_user_id"], settings, previous)
+    # Deezer : n° du profil public ; Spotify : jeton du membre (chiffré en D1)
+    source = members.SpotifyAccess(db, uid) if m["provider"] == "spotify" else m["provider_user_id"]
+    artists = read_library(source, settings, previous)
     artists, hidden, hidden_keys = apply_prefs(artists, members.prefs(db, uid))
 
     events = copy.deepcopy(collected["events"])
@@ -206,6 +210,9 @@ def run_members(settings, db, store, selection, collected=None, kind="weekly"):
             log(f"  Membre {uid} : supprimé ou modifié pendant le calcul, résultats non enregistrés")
             continue
         except SourceError as exc:
+            if exc.code == "superseded":  # reconnecté pendant le calcul : le calcul demandé suivra
+                log(f"  Membre {uid} : reconnecté pendant le calcul, résultats non enregistrés")
+                continue
             code = exc.code
         except members.QuotaError as exc:
             log(f"  Stockage : {exc}")
@@ -252,6 +259,11 @@ def main():
         if task is None:
             promote(store)  # essai complet en local : pas d'envoi sur GitHub à attendre
     if task in (None, "members"):
+        # Relance de sécurité (toutes les 2 heures) : rien à faire si aucun membre n'attend, et
+        # aucun traitement enregistré
+        if targeted and not args.member and not members.pending(db):
+            log("Aucun membre en attente de calcul")
+            return
         if targeted and collection_is_stale(db):
             log(f"Collecte de plus de {STALE_DAYS} jours : traitement complet")
             collected = common(settings, db, store)

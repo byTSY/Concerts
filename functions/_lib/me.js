@@ -6,6 +6,7 @@
 // ce membre ; les objets R2 ne sont servis que par ce module.
 
 import { HttpError, norm, nowIso } from "./http.js";
+import { tokenKeyReady } from "./tokens.js";
 
 const USER_FIELDS = "id, email, first_name, pseudo, role, status, default_visibility, error_message, " +
   "invited_at, activated_at, last_seen_at";
@@ -18,6 +19,38 @@ export async function identify(env, email) {
 const STAR_STATUS = new Set(["interested", "going"]);
 const VISIBILITY = new Set(["private", "members"]);
 const CONCERT_ID = /^[a-z0-9]{6,40}$/;
+const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// --- Places Spotify (spécification, sections 6.3 et 10) ------------------------------------
+// Une place est prise par chaque source Spotify (demande en attente comprise) et par chaque
+// compte encore à retirer du tableau de bord Spotify.
+const SPOTIFY_USED = "(SELECT COUNT(*) FROM music_sources WHERE provider = 'spotify') + (SELECT COUNT(*) FROM spotify_removals)";
+export const spotifyMax = (env) => {
+  const n = Number.parseInt(env.SPOTIFY_MAX_USERS ?? "", 10);
+  return Number.isInteger(n) && n >= 0 ? n : 5;
+};
+const spotifyEnabled = (env) => Boolean(env.SPOTIFY_CLIENT_ID && env.SPOTIFY_CLIENT_SECRET && tokenKeyReady(env));
+// Statuts de la source qui permettent de (re)lancer l'autorisation chez Spotify
+const SPOTIFY_CONNECTABLE = ["ready_to_connect", "connected", "revoked", "error"];
+const OAUTH_STATE = /^[A-Za-z0-9_-]{20,100}$/;
+const SOURCE_FOR_REMOVAL = "SELECT provider, spotify_account_name, spotify_account_email, spotify_allowlisted_at " +
+  "FROM music_sources WHERE user_id = ?";
+
+// null si la table des retraits manque (fonctions déployées avant la migration 0003)
+async function spotifyUsed(db) {
+  try {
+    return (await db.prepare(`SELECT ${SPOTIFY_USED} AS used`).first()).used;
+  } catch {
+    return null;
+  }
+}
+
+// Compte à retirer du tableau de bord Spotify, si l'admin l'y avait ajouté
+function queueRemoval(db, src, memberName, reason) {
+  if (!src || src.provider !== "spotify" || !src.spotify_allowlisted_at || !src.spotify_account_email) return null;
+  return db.prepare("INSERT INTO spotify_removals (account_name, account_email, member_name, reason, created_at) VALUES (?, ?, ?, ?, ?)")
+    .bind(src.spotify_account_name, src.spotify_account_email, memberName, reason, nowIso());
+}
 
 export function member(env, user) {
   const id = user.id;
@@ -55,9 +88,12 @@ export function member(env, user) {
     },
 
     async profile() {
+      // Jamais refresh_token_enc ni provider_user_id dans une réponse
       const source = await db.prepare(
-        "SELECT provider, provider_name, status, connected_at, last_sync_at, last_sync_status, sync_requested_at " +
+        "SELECT provider, provider_name, status, connected_at, last_sync_at, last_sync_status, sync_requested_at, " +
+        "spotify_account_name, spotify_account_email, spotify_requested_at, spotify_refused_at " +
         "FROM music_sources WHERE user_id = ?").bind(id).first();
+      const used = await spotifyUsed(db);
       const favorites = await db.prepare("SELECT venue_id FROM venue_favorites WHERE user_id = ? ORDER BY added_at")
         .bind(id).all();
       return {
@@ -69,6 +105,7 @@ export function member(env, user) {
         status: user.status,
         default_visibility: user.default_visibility,
         source: source || null,
+        spotify: { enabled: used !== null && spotifyEnabled(env), full: used === null || used >= spotifyMax(env) },
         favorite_venues: favorites.results.map((r) => r.venue_id),
       };
     },
@@ -228,6 +265,112 @@ export function member(env, user) {
       return api.profile();
     },
 
+    // --- Spotify (spécification, sections 6.3 et 11) --------------------------------------
+
+    // Demande de place : nom et e-mail du compte Spotify, que l'admin ajoute dans le tableau de
+    // bord Spotify. Le membre peut corriger sa demande tant qu'elle est en attente.
+    async requestSpotify({ account_email, account_name }) {
+      const mail = String(account_email || "").trim().toLowerCase();
+      const name = String(account_name || "").replace(/\s+/g, " ").trim();
+      if (!EMAIL.test(mail) || mail.length > 200) throw new HttpError(400, "adresse e-mail du compte Spotify invalide", "bad_email");
+      if (name.length < 2 || name.length > 80) throw new HttpError(400, "nom : 2 à 80 caractères", "bad_name");
+      const current = await db.prepare(SOURCE_FOR_REMOVAL.replace("SELECT ", "SELECT status, ")).bind(id).first();
+      if (current && !(current.provider === "spotify" && current.status === "pending_allowlist")) {
+        throw new HttpError(409, "détachez d'abord la source actuelle (Changer de source)", "source_attached");
+      }
+      const taken = await db.prepare(
+        "SELECT 1 FROM music_sources WHERE provider = 'spotify' AND spotify_account_email = ? AND user_id <> ?").bind(mail, id).first();
+      if (taken) throw new HttpError(409, "ce compte Spotify est déjà demandé par un autre membre", "taken");
+      const now = nowIso();
+      // Compte encore présent chez Spotify (retrait en attente, après un changement de source) :
+      // pas de retrait ni de nouvel ajout, l'accès est rouvert aussitôt
+      const kept = await db.prepare("SELECT id FROM spotify_removals WHERE account_email = ? ORDER BY id LIMIT 1").bind(mail).first();
+      if (kept && !current) {
+        await db.batch([
+          db.prepare("DELETE FROM spotify_removals WHERE id = ?").bind(kept.id),
+          db.prepare("INSERT INTO music_sources (user_id, provider, status, spotify_account_email, spotify_account_name, " +
+            "spotify_requested_at, spotify_allowlisted_at) VALUES (?, 'spotify', 'ready_to_connect', ?, ?, ?, ?) " +
+            "ON CONFLICT (user_id) DO NOTHING").bind(id, mail, name, now, now),
+        ]);
+        return api.profile();
+      }
+      if (current) {
+        // Correction de l'adresse : si l'admin avait déjà ajouté l'ancienne chez Spotify, elle est à retirer
+        const changed = current.spotify_account_email !== mail;
+        await db.batch([
+          changed ? queueRemoval(db, current, user.pseudo || user.first_name, "source_changed") : null,
+          db.prepare("UPDATE music_sources SET spotify_account_email = ?, spotify_account_name = ?, spotify_requested_at = ?, " +
+            "spotify_refused_at = NULL, spotify_allowlisted_at = CASE WHEN ? THEN NULL ELSE spotify_allowlisted_at END " +
+            "WHERE user_id = ? AND provider = 'spotify'").bind(mail, name, now, changed ? 1 : 0, id),
+        ].filter(Boolean));
+      } else {
+        // Une seule instruction : deux demandes simultanées ne peuvent pas dépasser le plafond
+        const r = await db.prepare(
+          "INSERT INTO music_sources (user_id, provider, status, spotify_account_email, spotify_account_name, spotify_requested_at) " +
+          `SELECT ?, 'spotify', 'pending_allowlist', ?, ?, ? WHERE ${SPOTIFY_USED} < ? ON CONFLICT (user_id) DO NOTHING`)
+          .bind(id, mail, name, now, spotifyMax(env)).run();
+        if (!r.meta?.changes) {
+          const again = await db.prepare("SELECT 1 FROM music_sources WHERE user_id = ?").bind(id).first();
+          if (again) return api.profile();  // demande envoyée deux fois
+          throw new HttpError(409, "toutes les places Spotify sont prises : choisissez Deezer, ou parlez-en à l'admin", "spotify_full");
+        }
+      }
+      return api.profile();
+    },
+
+    // Début de l'autorisation : state à usage unique (10 minutes) et code_verifier PKCE
+    async startSpotifyAuth({ state, verifier }) {
+      const src = await db.prepare("SELECT status FROM music_sources WHERE user_id = ? AND provider = 'spotify'").bind(id).first();
+      if (!src || !SPOTIFY_CONNECTABLE.includes(src.status)) {
+        throw new HttpError(409, "l'admin n'a pas encore ouvert votre accès Spotify", "not_ready");
+      }
+      const expires = new Date(Date.now() + 10 * 60 * 1000).toISOString();
+      await db.batch([
+        db.prepare("DELETE FROM oauth_states WHERE user_id = ?").bind(id),  // une autorisation à la fois
+        db.prepare("INSERT INTO oauth_states (state, user_id, code_verifier, expires_at) VALUES (?, ?, ?, ?)")
+          .bind(state, id, verifier, expires),
+      ]);
+    },
+
+    // Retour de Spotify : le state doit appartenir au membre connecté ; il est consommé
+    async takeSpotifyState(state) {
+      if (!OAUTH_STATE.test(String(state || ""))) throw new HttpError(400, "retour Spotify invalide", "bad_state");
+      const row = await db.prepare("SELECT code_verifier, expires_at FROM oauth_states WHERE state = ? AND user_id = ?")
+        .bind(state, id).first();
+      if (!row) throw new HttpError(403, "retour Spotify refusé : autorisation commencée par un autre compte, ou déjà utilisée", "bad_state");
+      const used = await db.prepare("DELETE FROM oauth_states WHERE state = ? AND user_id = ?").bind(state, id).run();
+      if (!used.meta?.changes) throw new HttpError(403, "retour Spotify déjà utilisé", "bad_state");
+      if (Date.parse(row.expires_at) < Date.now()) throw new HttpError(400, "autorisation expirée : recommencez", "expired");
+      return row.code_verifier;
+    },
+
+    // Spotify refuse le compte (absent de User Management) : retour à la demande en attente
+    async spotifyRefused() {
+      await db.prepare("UPDATE music_sources SET status = 'pending_allowlist', spotify_refused_at = ?, refresh_token_enc = NULL " +
+        "WHERE user_id = ? AND provider = 'spotify'").bind(nowIso(), id).run();
+    },
+
+    // Compte Spotify autorisé : jeton de rafraîchissement déjà chiffré, calcul demandé
+    async connectSpotify({ spotifyId, name, tokenEnc, scopes }) {
+      const src = await db.prepare("SELECT status, provider_user_id FROM music_sources WHERE user_id = ? AND provider = 'spotify'")
+        .bind(id).first();
+      if (!src || !SPOTIFY_CONNECTABLE.includes(src.status)) throw new HttpError(409, "source Spotify non prête", "not_ready");
+      const taken = await db.prepare(
+        "SELECT 1 FROM music_sources WHERE provider = 'spotify' AND provider_user_id = ? AND user_id <> ?").bind(spotifyId, id).first();
+      if (taken) throw new HttpError(409, "ce compte Spotify est déjà rattaché à un autre membre", "taken");
+      const now = nowIso();
+      await db.batch([
+        db.prepare("UPDATE music_sources SET provider_user_id = ?, provider_name = ?, status = 'connected', refresh_token_enc = ?, " +
+          "scopes = ?, connected_at = ?, sync_requested_at = ?, spotify_refused_at = NULL WHERE user_id = ? AND provider = 'spotify'")
+          .bind(spotifyId, name, tokenEnc, scopes, now, now, id),
+        db.prepare("UPDATE users SET status = 'computing', error_message = NULL WHERE id = ? AND status <> 'suspended'").bind(id),
+      ]);
+      // Autre compte Spotify que la fois précédente : résultats et historique repartent de zéro
+      if (src.provider_user_id && src.provider_user_id !== spotifyId) await api.deleteFiles();
+      user.status = "computing";
+      return api.profile();
+    },
+
     // « Synchroniser maintenant » : une demande par heure au plus
     async requestSync() {
       const src = await db.prepare("SELECT status, sync_requested_at, last_sync_status FROM music_sources WHERE user_id = ?")
@@ -246,10 +389,13 @@ export function member(env, user) {
     // Détache la source (avant d'en choisir une autre) : résultats calculés et historique remis
     // à zéro ; préférences, salles et ★ conservés (spécification, section 13.2)
     async detachSource() {
+      const src = await db.prepare(SOURCE_FOR_REMOVAL).bind(id).first();
       await db.batch([
+        queueRemoval(db, src, user.pseudo || user.first_name, "source_changed"),
+        db.prepare("DELETE FROM oauth_states WHERE user_id = ?").bind(id),
         db.prepare("DELETE FROM music_sources WHERE user_id = ?").bind(id),
         db.prepare("UPDATE users SET status = 'onboarding', error_message = NULL WHERE id = ? AND status <> 'suspended'").bind(id),
-      ]);
+      ].filter(Boolean));
       await api.deleteFiles();
       user.status = "onboarding";
       return api.profile();
@@ -263,10 +409,14 @@ export function member(env, user) {
     },
 
     // Suppression complète : fichiers R2, puis le membre et toutes ses lignes (ON DELETE CASCADE ;
-    // venues.proposed_by remis à null)
+    // venues.proposed_by remis à null). Compte Spotify : tâche de retrait affichée à l'admin.
     async deleteAll() {
       await api.deleteFiles();
-      await db.prepare("DELETE FROM users WHERE id = ?").bind(id).run();
+      const src = await db.prepare(SOURCE_FOR_REMOVAL).bind(id).first();
+      await db.batch([
+        queueRemoval(db, src, user.pseudo || user.first_name, "deleted"),
+        db.prepare("DELETE FROM users WHERE id = ?").bind(id),
+      ].filter(Boolean));
       console.log(`Membre ${id} supprimé le ${nowIso()}`);
     },
   };
@@ -276,8 +426,6 @@ export function member(env, user) {
 // --- Espace admin (spécification, section 9.3) -----------------------------------------------
 // Ce que voit l'admin : statut, connexions, activité, nombre de ★, état de la synchronisation.
 // Jamais le contenu (artistes, concerts choisis, préférences).
-
-const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function newMemberId() {
   const alphabet = "abcdefghijklmnopqrstuvwxyz0123456789";
@@ -356,6 +504,41 @@ export function admin(env) {
         .bind(nowIso(), memberId).run();
       if (!updated.meta?.changes) throw new HttpError(409, "ce membre n'a pas de source reliée", "no_source");
       return row;
+    },
+
+    // --- Spotify : places, demandes à ajouter, comptes à retirer (section 10) -------------
+    async spotify() {
+      const { results: sources } = await db.prepare(
+        "SELECT s.user_id, u.first_name, u.pseudo, s.status, s.spotify_account_name, s.spotify_account_email, " +
+        "s.spotify_requested_at, s.spotify_allowlisted_at, s.spotify_refused_at, s.last_sync_status " +
+        "FROM music_sources s JOIN users u ON u.id = s.user_id WHERE s.provider = 'spotify' ORDER BY s.spotify_requested_at").all();
+      const { results: removals } = await db.prepare(
+        "SELECT id, account_name, account_email, member_name, reason, created_at FROM spotify_removals ORDER BY created_at").all();
+      const list = sources.map(({ first_name, pseudo, ...r }) => ({ ...r, display_name: pseudo || first_name }));
+      return {
+        max: spotifyMax(env),
+        used: list.length + removals.length,
+        requests: list.filter((m) => m.status === "pending_allowlist"),
+        members: list.filter((m) => m.status !== "pending_allowlist"),
+        removals,
+      };
+    },
+
+    // L'admin a ajouté le compte dans le tableau de bord Spotify : le membre peut se connecter
+    async spotifyAllowlisted(memberId) {
+      const row = await target(memberId);
+      const r = await db.prepare("UPDATE music_sources SET status = 'ready_to_connect', spotify_allowlisted_at = ? " +
+        "WHERE user_id = ? AND provider = 'spotify' AND status = 'pending_allowlist'").bind(nowIso(), memberId).run();
+      if (!r.meta?.changes) throw new HttpError(409, "aucune demande Spotify en attente pour ce membre", "no_request");
+      return row;
+    },
+
+    // L'admin a retiré le compte du tableau de bord Spotify : place libérée, nom et e-mail effacés
+    async spotifyRemoved(removalId) {
+      if (!/^\d{1,9}$/.test(String(removalId))) throw new HttpError(400, "identifiant de retrait invalide");
+      const r = await db.prepare("DELETE FROM spotify_removals WHERE id = ?").bind(Number(removalId)).run();
+      if (!r.meta?.changes) throw new HttpError(404, "retrait introuvable");
+      return { removed: true };
     },
 
     // Traitements : dates, statuts, codes d'erreur par membre (identifiants seulement)

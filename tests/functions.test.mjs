@@ -27,6 +27,13 @@ import * as adminSuspend from "../functions/api/admin/members/[id]/suspend.js";
 import * as adminReactivate from "../functions/api/admin/members/[id]/reactivate.js";
 import * as adminRecompute from "../functions/api/admin/members/[id]/recompute.js";
 import * as adminRuns from "../functions/api/admin/runs.js";
+import * as spotifyRequest from "../functions/api/me/source/spotify/request.js";
+import * as spotifyAuthorize from "../functions/api/me/spotify/authorize.js";
+import * as spotifyCallback from "../functions/api/me/spotify/callback.js";
+import * as adminSpotify from "../functions/api/admin/spotify/index.js";
+import * as adminAllowlisted from "../functions/api/admin/spotify/[user]/allowlisted.js";
+import * as adminRemoved from "../functions/api/admin/spotify/removals/[id]/removed.js";
+import { decryptToken, encryptToken } from "../functions/_lib/tokens.js";
 
 // --- D1 et R2 simulés --------------------------------------------------------------
 
@@ -70,8 +77,18 @@ const DEEZER = {
   "/user/111": { id: 111, name: "Profil public" }, "/user/111/artists?limit=1": { data: [{}], total: 12 },
   "/user/222": { id: 222, name: "Profil privé" }, "/user/222/artists?limit=1": { error: { type: "OAuthException", code: 200 } },
 };
+// Spotify simulé : échange du code, profil (/v1/me) ; SPOTIFY.me = 403 : compte non autorisé
+const SPOTIFY = { me: { id: "spotify-alice", display_name: "Alice S." }, refresh: "JETON-RAFRAICHISSEMENT-SECRET", exchanges: [] };
 globalThis.fetch = async (url, init) => {
   const u = String(url);
+  if (u === "https://accounts.spotify.com/api/token") {
+    SPOTIFY.exchanges.push(Object.fromEntries(new URLSearchParams(String(init.body))));
+    return new Response(JSON.stringify({ access_token: "JETON-ACCES-SECRET", refresh_token: SPOTIFY.refresh, scope: "user-library-read" }));
+  }
+  if (u === "https://api.spotify.com/v1/me") {
+    if (SPOTIFY.me === 403) return new Response(JSON.stringify({ error: { status: 403, message: "User not registered" } }), { status: 403 });
+    return new Response(JSON.stringify(SPOTIFY.me));
+  }
   if (u === `https://${TEAM}/cdn-cgi/access/certs`) return new Response(JSON.stringify({ keys: [jwk] }));
   if (u.startsWith("https://api.deezer.com")) {
     const path = u.slice("https://api.deezer.com".length);
@@ -397,4 +414,207 @@ test("profil déjà relié : pas de nouveau calcul par la confirmation", async (
   env.DB.raw.exec("INSERT INTO music_sources (user_id, provider, provider_user_id, status) VALUES ('u_aaaaaaaa', 'deezer', '111', 'connected')");
   const r = await call(env, "a@test.fr", deezerConfirmRoute.onRequestPost, { method: "POST", body: { profile: "111" } });
   assert.equal(r.data.code, "already_connected");
+});
+
+// --- Spotify (étape 4) --------------------------------------------------------------------
+
+const TOKEN_KEY = "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8=";  // clé de test (octets 0 à 31)
+const spotifyEnv = () => ({ ...setup(), SPOTIFY_CLIENT_ID: "client-test", SPOTIFY_CLIENT_SECRET: "secret-client-test", TOKEN_ENC_KEY: TOKEN_KEY });
+
+// Requête de navigation (redirections) : réponse brute
+async function navigate(env, email, route, path, params = {}) {
+  const request = new Request(`https://concerts.test${path}`, { headers: { "cf-access-jwt-assertion": await token({ email }) } });
+  const context = { request, env, params, data: {}, waitUntil: () => {} };
+  context.next = () => route(context);
+  return middleware(context);
+}
+
+// Journaux capturés pendant un test (aucun jeton ne doit y paraître)
+function captureLogs() {
+  const lines = [];
+  const saved = { log: console.log, error: console.error, warn: console.warn };
+  for (const k of Object.keys(saved)) console[k] = (...a) => lines.push(a.join(" "));
+  return { lines, restore: () => Object.assign(console, saved) };
+}
+
+const askSpotify = (env, email, body) => call(env, email, spotifyRequest.onRequestPost, { method: "POST", path: "/api/me/source/spotify/request", body });
+const onboard = (env, ids) => env.DB.raw.exec(ids.map((id) =>
+  `INSERT INTO users (id, email, first_name, status, invited_at) VALUES ('${id}', '${id}@test.fr', '${id}', 'onboarding', 'x');`).join(""));
+const result = (response) => new URL(response.headers.get("location")).search;
+
+test("chiffrement : format commun aux fonctions et au traitement Python, lié au membre", async () => {
+  const env = { TOKEN_ENC_KEY: TOKEN_KEY };
+  // Échantillon chiffré par src/library/spotify.py avec la même clé
+  assert.equal(await decryptToken(env, "u_aaaaaaaa", "v1.W_6ENffxz6yQGR70.e-i3UaQThwx2XIoX7bNFyYtoGYqU6gC1TvW4w6_gIB8"), "jeton-de-test-py");
+  const sealed = await encryptToken(env, "u_aaaaaaaa", "abc");
+  assert.ok(sealed.startsWith("v1.") && !sealed.includes("abc"));
+  assert.equal(await decryptToken(env, "u_aaaaaaaa", sealed), "abc");
+  await assert.rejects(decryptToken(env, "u_bbbbbbbb", sealed));  // recopié sur un autre membre : illisible
+  await assert.rejects(encryptToken({ TOKEN_ENC_KEY: "trop-courte" }, "u_aaaaaaaa", "abc"));
+});
+
+test("Spotify : demande de place, contrôles, la 6e demande est refusée", async () => {
+  const env = spotifyEnv();
+  onboard(env, ["u_s1aaaaaa", "u_s2aaaaaa", "u_s3aaaaaa", "u_s4aaaaaa", "u_s5aaaaaa", "u_s6aaaaaa"]);
+  assert.equal((await askSpotify(env, "u_s1aaaaaa@test.fr", { account_email: "pas-un-mail", account_name: "Sam" })).data.code, "bad_email");
+  const first = await askSpotify(env, "u_s1aaaaaa@test.fr", { account_email: " Sam@Mail.FR ", account_name: "Sam Un" });
+  assert.deepEqual([first.data.source.status, first.data.source.spotify_account_email], ["pending_allowlist", "sam@mail.fr"]);
+  assert.equal((await askSpotify(env, "u_s2aaaaaa@test.fr", { account_email: "sam@mail.fr", account_name: "Autre" })).data.code, "taken");
+  // Correction de sa propre demande : pas de place supplémentaire
+  assert.equal((await askSpotify(env, "u_s1aaaaaa@test.fr", { account_email: "sam2@mail.fr", account_name: "Sam Un" })).status, 200);
+  for (const n of [2, 3, 4, 5]) {
+    assert.equal((await askSpotify(env, `u_s${n}aaaaaa@test.fr`, { account_email: `s${n}@mail.fr`, account_name: `Membre ${n}` })).status, 200);
+  }
+  const sixth = await askSpotify(env, "u_s6aaaaaa@test.fr", { account_email: "s6@mail.fr", account_name: "Membre 6" });
+  assert.deepEqual([sixth.status, sixth.data.code], [409, "spotify_full"]);
+  assert.equal((await call(env, "u_s6aaaaaa@test.fr", getMe)).data.spotify.full, true);
+  // Plafond réglable (SPOTIFY_MAX_USERS)
+  assert.equal((await askSpotify({ ...env, SPOTIFY_MAX_USERS: "6" }, "u_s6aaaaaa@test.fr", { account_email: "s6@mail.fr", account_name: "Membre 6" })).status, 200);
+  // Membre déjà relié à Deezer : il doit d'abord détacher sa source
+  env.DB.raw.exec("INSERT INTO music_sources (user_id, provider, provider_user_id, status) VALUES ('u_aaaaaaaa', 'deezer', '111', 'connected')");
+  assert.equal((await askSpotify({ ...env, SPOTIFY_MAX_USERS: "9" }, "a@test.fr", { account_email: "a@mail.fr", account_name: "Alice" })).data.code, "source_attached");
+});
+
+test("Spotify : admin (places, Fait), autorisation, retour et jeton chiffré", async () => {
+  const env = spotifyEnv();
+  const logs = captureLogs();
+  try {
+    env.DB.raw.exec("UPDATE users SET status = 'onboarding' WHERE id = 'u_aaaaaaaa'");
+    await askSpotify(env, "a@test.fr", { account_email: "alice@mail.fr", account_name: "Alice Martin" });
+    // Pas encore ouvert par l'admin : pas d'autorisation possible
+    assert.equal(result(await navigate(env, "a@test.fr", spotifyAuthorize.onRequestGet, "/api/me/spotify/authorize")), "?spotify=not_ready");
+    assert.equal(env.DB.raw.prepare("SELECT COUNT(*) AS n FROM oauth_states").get().n, 0);
+    // Route admin interdite à un membre
+    assert.equal((await call(env, "a@test.fr", adminSpotify.onRequestGet, { path: "/api/admin/spotify" })).status, 403);
+    const sp = await call(env, "c@test.fr", adminSpotify.onRequestGet, { path: "/api/admin/spotify" });
+    assert.deepEqual([sp.data.used, sp.data.max, sp.data.requests[0].spotify_account_email], [1, 5, "alice@mail.fr"]);
+    assert.equal(sp.data.dashboard_url, "https://developer.spotify.com/dashboard/client-test/users");
+    const done = await call(env, "c@test.fr", adminAllowlisted.onRequestPost, {
+      method: "POST", path: "/api/admin/spotify/u_aaaaaaaa/allowlisted", params: { user: "u_aaaaaaaa" } });
+    assert.equal(done.data.status, "ready_to_connect");
+
+    const go = await navigate(env, "a@test.fr", spotifyAuthorize.onRequestGet, "/api/me/spotify/authorize");
+    assert.equal(go.status, 302);
+    const target = new URL(go.headers.get("location"));
+    assert.equal(target.origin + target.pathname, "https://accounts.spotify.com/authorize");
+    assert.equal(target.searchParams.get("code_challenge_method"), "S256");
+    assert.equal(target.searchParams.get("redirect_uri"), "https://concerts.test/api/me/spotify/callback");
+    const state = target.searchParams.get("state");
+    const stored = env.DB.raw.prepare("SELECT user_id, code_verifier FROM oauth_states WHERE state = ?").get(state);
+    assert.equal(stored.user_id, "u_aaaaaaaa");
+    assert.equal(target.searchParams.get("code_challenge"),
+      Buffer.from(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(stored.code_verifier))).toString("base64url"));
+
+    // B termine le retour avec le state de A : refusé, rien ne change, le state de A reste valable
+    const exchanges = SPOTIFY.exchanges.length;
+    const cross = await navigate(env, "b@test.fr", spotifyCallback.onRequestGet, `/api/me/spotify/callback?code=c1&state=${state}`);
+    assert.equal(result(cross), "?spotify=bad_state");
+    assert.equal(SPOTIFY.exchanges.length, exchanges);
+    assert.equal(env.DB.raw.prepare("SELECT COUNT(*) AS n FROM music_sources WHERE user_id = 'u_bbbbbbbb'").get().n, 0);
+
+    const back = await navigate(env, "a@test.fr", spotifyCallback.onRequestGet, `/api/me/spotify/callback?code=c1&state=${state}`);
+    assert.equal(result(back), "?spotify=ok_later");  // relié ; calcul non lancé (pas de clé GitHub dans les tests)
+    assert.equal(SPOTIFY.exchanges.at(-1).code_verifier, stored.code_verifier);
+    const src = env.DB.raw.prepare("SELECT * FROM music_sources WHERE user_id = 'u_aaaaaaaa'").get();
+    assert.deepEqual([src.status, src.provider_user_id, src.provider_name], ["connected", "spotify-alice", "Alice S."]);
+    assert.equal(await decryptToken(env, "u_aaaaaaaa", src.refresh_token_enc), SPOTIFY.refresh);
+    assert.equal(env.DB.raw.prepare("SELECT status FROM users WHERE id = 'u_aaaaaaaa'").get().status, "computing");
+    // State à usage unique
+    const again = await navigate(env, "a@test.fr", spotifyCallback.onRequestGet, `/api/me/spotify/callback?code=c1&state=${state}`);
+    assert.equal(result(again), "?spotify=bad_state");
+
+    // Aucun jeton en clair : base, stockage, réponses d'API, journaux
+    const dump = JSON.stringify([
+      env.DB.raw.prepare("SELECT * FROM music_sources").all(), env.DB.raw.prepare("SELECT * FROM oauth_states").all(),
+      env.BUCKET.objects,
+      (await call(env, "a@test.fr", getMe)).data,
+      (await call(env, "c@test.fr", adminMembers.onRequestGet, { path: "/api/admin/members" })).data,
+      (await call(env, "c@test.fr", adminSpotify.onRequestGet, { path: "/api/admin/spotify" })).data,
+      logs.lines,
+    ]);
+    assert.ok(!dump.includes("SECRET"), "jeton en clair trouvé");
+    const exposed = JSON.stringify([(await call(env, "a@test.fr", getMe)).data,
+      (await call(env, "c@test.fr", adminSpotify.onRequestGet, { path: "/api/admin/spotify" })).data]);
+    assert.ok(!exposed.includes("v1."), "jeton chiffré exposé dans une réponse");
+  } finally {
+    logs.restore();
+  }
+});
+
+test("Spotify : compte refusé par Spotify, retour à la demande avec mention pour l'admin", async () => {
+  const env = spotifyEnv();
+  env.DB.raw.exec(`UPDATE users SET status = 'onboarding' WHERE id = 'u_aaaaaaaa';
+    INSERT INTO music_sources (user_id, provider, status, spotify_account_email, spotify_account_name, spotify_allowlisted_at)
+    VALUES ('u_aaaaaaaa', 'spotify', 'ready_to_connect', 'alice@mail.fr', 'Alice', 'x')`);
+  const go = await navigate(env, "a@test.fr", spotifyAuthorize.onRequestGet, "/api/me/spotify/authorize");
+  const state = new URL(go.headers.get("location")).searchParams.get("state");
+  SPOTIFY.me = 403;
+  try {
+    const back = await navigate(env, "a@test.fr", spotifyCallback.onRequestGet, `/api/me/spotify/callback?code=c2&state=${state}`);
+    assert.equal(result(back), "?spotify=not_allowlisted");
+  } finally {
+    SPOTIFY.me = { id: "spotify-alice", display_name: "Alice S." };
+  }
+  const src = env.DB.raw.prepare("SELECT status, spotify_refused_at, refresh_token_enc FROM music_sources WHERE user_id = 'u_aaaaaaaa'").get();
+  assert.equal(src.status, "pending_allowlist");
+  assert.ok(src.spotify_refused_at);
+  assert.equal(src.refresh_token_enc, null);
+  const sp = await call(env, "c@test.fr", adminSpotify.onRequestGet, { path: "/api/admin/spotify" });
+  assert.ok(sp.data.requests[0].spotify_refused_at);
+  // Annulation chez Spotify : rien n'est relié
+  await call(env, "c@test.fr", adminAllowlisted.onRequestPost, { method: "POST", path: "/api/admin/spotify/u_aaaaaaaa/allowlisted", params: { user: "u_aaaaaaaa" } });
+  const go2 = await navigate(env, "a@test.fr", spotifyAuthorize.onRequestGet, "/api/me/spotify/authorize");
+  const state2 = new URL(go2.headers.get("location")).searchParams.get("state");
+  const denied = await navigate(env, "a@test.fr", spotifyCallback.onRequestGet, `/api/me/spotify/callback?error=access_denied&state=${state2}`);
+  assert.equal(result(denied), "?spotify=denied");
+  assert.equal(env.DB.raw.prepare("SELECT status FROM music_sources WHERE user_id = 'u_aaaaaaaa'").get().status, "ready_to_connect");
+});
+
+test("Spotify : suppression et changement de source créent un retrait ; « Retiré » libère la place", async () => {
+  const env = spotifyEnv();
+  env.DB.raw.exec(`INSERT INTO music_sources (user_id, provider, provider_user_id, status, refresh_token_enc, spotify_account_email, spotify_account_name, spotify_allowlisted_at) VALUES
+    ('u_aaaaaaaa', 'spotify', 'sp-a', 'connected', 'v1.x.y', 'alice@mail.fr', 'Alice', 'x'),
+    ('u_bbbbbbbb', 'spotify', 'sp-b', 'connected', 'v1.x.z', 'bruno@mail.fr', 'Bruno', 'x');
+    INSERT INTO oauth_states (state, user_id, code_verifier, expires_at) VALUES ('etat-de-test-aaaaaaaaaaaa', 'u_aaaaaaaa', 'v', 'x');`);
+  await call(env, "c@test.fr", adminMember.onRequestDelete, { method: "DELETE", path: "/api/admin/members/u_aaaaaaaa", params: { id: "u_aaaaaaaa" } });
+  for (const t of ALL_TABLES) {
+    const col = t === "users" ? "id" : "user_id";
+    assert.equal(env.DB.raw.prepare(`SELECT COUNT(*) AS n FROM ${t} WHERE ${col} = 'u_aaaaaaaa'`).get().n, 0, t);
+  }
+  await call(env, "b@test.fr", sourceRoute.onRequestDelete, { method: "DELETE" });
+  assert.equal(env.DB.raw.prepare("SELECT COUNT(*) AS n FROM music_sources WHERE refresh_token_enc IS NOT NULL").get().n, 0);
+  const sp = await call(env, "c@test.fr", adminSpotify.onRequestGet, { path: "/api/admin/spotify" });
+  assert.deepEqual(sp.data.removals.map((r) => [r.account_email, r.reason]), [["alice@mail.fr", "deleted"], ["bruno@mail.fr", "source_changed"]]);
+  assert.equal(sp.data.used, 2);  // places gardées tant que l'admin n'a pas retiré les comptes chez Spotify
+  for (const r of sp.data.removals) {
+    const done = await call(env, "c@test.fr", adminRemoved.onRequestPost, {
+      method: "POST", path: `/api/admin/spotify/removals/${r.id}/removed`, params: { id: String(r.id) } });
+    assert.equal(done.data.removed, true);
+  }
+  const after = await call(env, "c@test.fr", adminSpotify.onRequestGet, { path: "/api/admin/spotify" });
+  assert.equal(after.data.used, 0);
+  assert.equal(env.DB.raw.prepare("SELECT COUNT(*) AS n FROM spotify_removals").get().n, 0);
+});
+
+test("Spotify : le même compte redemandé après un changement de source n'occupe qu'une place", async () => {
+  const env = spotifyEnv();
+  env.DB.raw.exec(`INSERT INTO music_sources (user_id, provider, provider_user_id, status, spotify_account_email, spotify_account_name, spotify_allowlisted_at)
+    VALUES ('u_aaaaaaaa', 'spotify', 'sp-a', 'connected', 'alice@mail.fr', 'Alice', 'x')`);
+  await call(env, "a@test.fr", sourceRoute.onRequestDelete, { method: "DELETE" });
+  assert.equal(env.DB.raw.prepare("SELECT COUNT(*) AS n FROM spotify_removals").get().n, 1);
+  const again = await askSpotify(env, "a@test.fr", { account_email: "Alice@mail.fr", account_name: "Alice" });
+  assert.equal(again.data.source.status, "ready_to_connect");  // toujours inscrit chez Spotify : pas d'attente
+  const sp = await call(env, "c@test.fr", adminSpotify.onRequestGet, { path: "/api/admin/spotify" });
+  assert.deepEqual([sp.data.used, sp.data.removals.length], [1, 0]);
+  // SPOTIFY_MAX_USERS = 0 ferme Spotify ; clé mal formée : Spotify non proposé
+  assert.equal((await askSpotify({ ...env, SPOTIFY_MAX_USERS: "0" }, "b@test.fr", { account_email: "b@mail.fr", account_name: "Bruno" })).data.code, "spotify_full");
+  assert.equal((await call({ ...env, TOKEN_ENC_KEY: "abc" }, "b@test.fr", getMe)).data.spotify.enabled, false);
+});
+
+test("fonctions déployées avant la migration 0003 : le profil reste lisible, Spotify non proposé", async () => {
+  const env = spotifyEnv();
+  env.DB.raw.exec("DROP TABLE spotify_removals");
+  const me = await call(env, "a@test.fr", getMe);
+  assert.equal(me.status, 200);
+  assert.equal(me.data.spotify.enabled, false);
 });

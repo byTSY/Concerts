@@ -388,7 +388,9 @@ async function fillArtistSection(ev) {
   if (!box || box.dataset.id !== ev.id || !$("#ticket").open) return;  // fiche fermée ou changée entre-temps
   if (!info || (!info.description && !info.genres?.length && !info.organizer)) { box.remove(); return; }
   const tags = (info.genres || []).map((g) => `<span class="tag tag-genre">${esc(g)}</span>`).join(" ");
-  const listen = info.listen ? ["deezer", "spotify", "youtube"].map((k) =>
+  // Membre Spotify : lien Spotify en premier
+  const order = state.me?.source?.provider === "spotify" ? ["spotify", "deezer", "youtube"] : ["deezer", "spotify", "youtube"];
+  const listen = info.listen ? order.map((k) =>
     `<a class="buy-link" href="${esc(info.listen[k])}" target="_blank" rel="noopener">${{ deezer: "Deezer", spotify: "Spotify", youtube: "YouTube" }[k]}</a>`).join(" ") : "";
   box.innerHTML = `<h3>L'artiste</h3>
     ${tags ? `<p class="artist-genres">${tags}</p>` : ""}
@@ -942,7 +944,11 @@ function bind() {
   });
   state.profile = new Map(state.artists.map((a) => [normName(a.name), a]));
   // Nouveau membre : accueil (choix de la source), puis attente du premier calcul
-  if (me && (["invited", "onboarding"].includes(me.status) || (me.status === "computing" && !state.artists.length))) {
+  // Membre Spotify dont la demande est en attente ou l'accès à (re)connecter : même écran qu'à l'arrivée
+  // Membre Spotify sans résultats dont la demande est en attente ou l'accès à connecter : écran d'arrivée
+  const spotifyPending = me?.source?.provider === "spotify" && ["pending_allowlist", "ready_to_connect"].includes(me.source.status);
+  if (me && (["invited", "onboarding"].includes(me.status) || (spotifyPending && !state.artists.length)
+      || (me.status === "computing" && !state.artists.length))) {
     showOnboarding(me);
     return;
   }
@@ -955,4 +961,9 @@ function bind() {
   switchView("calendar");
   if (state.loadFailed) showAccessAlert(state.accessError);
   else if (!state.meta.generated_at) $("#calendar").insertAdjacentHTML("beforebegin", emptyMessage());
+  // Retour de Spotify en erreur, accès Spotify expiré ou retiré (les concerts ne sont plus mis à jour)
+  const revoked = me?.source?.provider === "spotify" && me.source.status === "revoked"
+    ? `<p class="prefs-warning">L'accès de Concerts à votre compte Spotify a expiré ou a été retiré : vos concerts ne sont plus mis à jour. <a href="api/me/spotify/authorize">Reconnecter Spotify</a></p>`
+    : spotifyPending ? `<p class="prefs-warning">Votre accès Spotify est à reconnecter : vos concerts ne sont plus mis à jour. Suite dans « Mon compte ».</p>` : "";
+  $("#filters").insertAdjacentHTML("beforebegin", spotifyNotice() + revoked);
 })();

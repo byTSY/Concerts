@@ -1,6 +1,6 @@
 "use strict";
 // Onglet « Admin » (visible du seul admin ; les routes /api/admin/* vérifient aussi le rôle) :
-// invitations, membres (suspendre, réactiver, supprimer, recalculer), traitements.
+// invitations, membres (suspendre, réactiver, supprimer, recalculer), places Spotify, traitements.
 // Ce que voit l'admin : statut, connexions, activité, nombre de ★, synchronisation ; jamais le
 // contenu (artistes, concerts choisis, préférences).
 
@@ -27,17 +27,62 @@ const accessNote = (r, task) => (r && r.done === false
   ? `<p class="prefs-warning">À faire à la main dans Cloudflare Zero Trust : ${task} (${esc(r.reason)}).</p>` : "");
 
 function invitationText(member, link) {
-  return `Bonjour ${member.first_name},\n\nJe vous invite sur Concerts à Paris, qui repère les concerts de vos artistes à Paris à partir de votre bibliothèque Deezer.\n\n` +
+  return `Bonjour ${member.first_name},\n\nJe vous invite sur Concerts à Paris, qui repère les concerts de vos artistes à Paris à partir de votre bibliothèque Deezer ou Spotify.\n\n` +
     `Ouvrez ${link} et connectez-vous avec cette adresse : ${member.email}. Un code de connexion vous sera envoyé par e-mail.\n\n` +
-    `Il vous faudra le lien de votre profil Deezer, qui doit être public.`;
+    `Sur Deezer, il vous faudra le lien de votre profil, qui doit être public. Sur Spotify, il vous faudra l'adresse e-mail de votre compte Spotify ; je l'ajouterai à l'application avant que vous ne la reliiez.`;
+}
+
+const SPOTIFY_SOURCE_STATUS = {
+  pending_allowlist: "demande à traiter", ready_to_connect: "accès ouvert, connexion attendue",
+  connected: "relié", revoked: "accès expiré ou retiré", error: "en erreur",
+};
+
+// Carte d'un compte Spotify : nom et e-mail à copier, lien direct vers User Management
+function spotifyCard(kind, item, dashboard) {
+  const key = `${kind}-${item.user_id || item.id}`;
+  const field = (label, name, value) => `<label for="${key}-${name}">${label}</label>
+    <span class="copy-row"><input id="${key}-${name}" class="copy-field" type="text" readonly value="${esc(value || "")}">
+    <button class="btn btn-quiet" type="button" data-copy="${key}-${name}">Copier</button></span>`;
+  const head = kind === "request"
+    ? `<p><strong>${esc(item.display_name)}</strong> <span class="cell-sub">demande du ${esc(fmtDateTime(item.spotify_requested_at))}</span></p>
+       ${item.spotify_refused_at ? `<p class="prefs-warning">Spotify refuse encore ce compte : vérifier l'e-mail (refus du ${esc(fmtDateTime(item.spotify_refused_at))}).</p>` : ""}`
+    : `<p><strong>${esc(item.member_name || "membre")}</strong> <span class="cell-sub">${item.reason === "deleted" ? "compte supprimé" : "source changée"} le ${esc(fmtDateTime(item.created_at))}</span></p>`;
+  const name = kind === "request" ? item.spotify_account_name : item.account_name;
+  const email = kind === "request" ? item.spotify_account_email : item.account_email;
+  return `<div class="spotify-card">
+    ${head}
+    <div class="account-form inline">${field("Nom", "name", name)}${field("E-mail", "email", email)}</div>
+    <p class="cell-sub">${kind === "request"
+      ? "Dans Spotify : remplissez Full Name avec le nom, puis Email avec l'e-mail, puis Add user."
+      : "Dans Spotify : retirez ce compte de la liste des utilisateurs."}</p>
+    <p><a class="btn btn-quiet" href="${esc(dashboard)}" target="_blank" rel="noopener">Ouvrir Spotify</a>
+      ${kind === "request"
+        ? `<button class="btn" type="button" data-spotify="allowlisted" data-id="${esc(item.user_id)}">Fait</button>`
+        : `<button class="btn" type="button" data-spotify="removed" data-id="${esc(item.id)}">Retiré</button>`}</p>
+  </div>`;
+}
+
+function spotifySection(sp) {
+  if (!sp) return `<section class="account-block"><h2 class="month-title">Spotify</h2><p class="prefs-warning">Places Spotify illisibles.</p></section>`;
+  const members = sp.members.map((m) => `<li>${esc(m.display_name)} : ${esc(SPOTIFY_SOURCE_STATUS[m.status] || m.status)}${m.last_sync_status === "not_allowlisted" ? ", refusé par Spotify au dernier calcul : vérifiez que ce compte figure toujours dans User Management" : m.last_sync_status && m.last_sync_status !== "ok" ? `, dernier calcul : ${esc(m.last_sync_status)}` : ""}
+    <span class="cell-sub">${esc(m.spotify_account_email || "")}</span></li>`).join("");
+  return `<section class="account-block">
+      <h2 class="month-title">Spotify</h2>
+      <p><strong>${sp.used} / ${sp.max} places utilisées</strong></p>
+      ${sp.used > sp.max ? `<p class="prefs-warning">Plus de comptes que de places : faites d'abord les retraits, puis les ajouts.</p>` : ""}
+      <h3>Demandes à traiter (${sp.requests.length})</h3>
+      ${sp.requests.length ? sp.requests.map((r) => spotifyCard("request", r, sp.dashboard_url)).join("") : `<p class="cell-sub">Aucune.</p>`}
+      ${sp.removals.length ? `<h3>Retraits à faire (${sp.removals.length})</h3>${sp.removals.map((r) => spotifyCard("removal", r, sp.dashboard_url)).join("")}` : ""}
+      ${members ? `<h3>Membres Spotify</h3><ul class="plain-list">${members}</ul>` : ""}
+    </section>`;
 }
 
 async function renderAdmin() {
   const box = $("#admin");
   box.innerHTML = `<p class="cell-sub">Chargement…</p>`;
-  let list, runs;
+  let list, runs, spotify;
   try {
-    [list, runs] = await Promise.all([api("admin/members"), api("admin/runs")]);
+    [list, runs, spotify] = await Promise.all([api("admin/members"), api("admin/runs"), api("admin/spotify").catch(() => null)]);
   } catch (e) {
     box.innerHTML = `<p class="prefs-warning">Espace admin illisible : ${esc(e.message)}</p>`;
     return;
@@ -45,7 +90,7 @@ async function renderAdmin() {
   const rows = list.map((m) => `<tr>
       <td><span class="cell-name">${esc(m.display_name)}</span><span class="cell-sub">${esc(m.email)}${m.role === "admin" ? " · admin" : ""}</span></td>
       <td>${esc(MEMBER_STATUS[m.status] || m.status)}${m.error_message ? `<span class="cell-sub">${esc(m.error_message)}</span>` : ""}</td>
-      <td>${m.provider ? esc(m.provider === "deezer" ? "Deezer" : "Spotify") : "aucune"}<span class="cell-sub">${m.last_sync_at ? esc(fmtDateTime(m.last_sync_at)) : ""}${m.last_sync_status ? ` · ${esc(m.last_sync_status)}` : ""}</span></td>
+      <td>${m.provider ? esc(m.provider === "deezer" ? "Deezer" : `Spotify${m.source_status !== "connected" ? ` (${SPOTIFY_SOURCE_STATUS[m.source_status] || m.source_status})` : ""}`) : "aucune"}<span class="cell-sub">${m.last_sync_at ? esc(fmtDateTime(m.last_sync_at)) : ""}${m.last_sync_status ? ` · ${esc(m.last_sync_status)}` : ""}</span></td>
       <td class="hide-mobile">${m.last_seen_at ? esc(fmtDateTime(m.last_seen_at)) : "jamais"}<span class="cell-sub">${m.connections_30d} connexion${m.connections_30d > 1 ? "s" : ""}, ${m.api_calls_30d} requêtes, ${m.changes_30d} modifications sur 30 jours</span></td>
       <td class="num">${m.stars}</td>
       <td>${m.role === "admin" ? "" : `
@@ -80,6 +125,7 @@ async function renderAdmin() {
       <tbody>${rows}</tbody></table></div>
       <div id="admin-action-result"></div>
     </section>
+    ${spotifySection(spotify)}
     <section class="account-block">
       <h2 class="month-title">Traitements</h2>
       <p><button class="btn btn-quiet" type="button" id="run-weekly">Relancer le traitement complet</button></p>
@@ -110,6 +156,19 @@ async function renderAdmin() {
     } catch (err) { toast(err.message); }
   });
   box.querySelectorAll("[data-admin]").forEach((b) => b.addEventListener("click", () => adminAction(b.dataset)));
+  box.querySelectorAll("[data-copy]").forEach((b) => b.addEventListener("click", () => {
+    const field = document.getElementById(b.dataset.copy);
+    copyText(b, field.value, field);
+  }));
+  box.querySelectorAll("[data-spotify]").forEach((b) => b.addEventListener("click", async () => {
+    const done = b.dataset.spotify === "allowlisted";
+    if (!done && !confirm("Confirmez-vous avoir retiré ce compte dans le tableau de bord Spotify ?\n\nLe nom et l'e-mail seront effacés et la place libérée.")) return;
+    try {
+      await api(done ? `admin/spotify/${b.dataset.id}/allowlisted` : `admin/spotify/removals/${b.dataset.id}/removed`, { method: "POST" });
+      await renderAdmin();
+      toast(done ? "Accès ouvert : le membre voit « Connecter Spotify »" : "Place Spotify libérée");
+    } catch (err) { toast(err.message); }
+  }));
 }
 
 // Après une invitation : on recharge la liste sans effacer le message à copier

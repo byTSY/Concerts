@@ -338,4 +338,8 @@ details.organizer p { margin: 6px 0 0; }
 .preview-card { display: flex; align-items: center; gap: 8px; margin: 12px 0; padding: 10px 14px; border: 1.5px solid var(--rule); border-radius: 8px; }
 .venue-checks { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
 .copy-field { max-width: 640px; resize: vertical; }
+.spotify-card { margin: 12px 0; padding: 10px 14px; border: 1.5px solid var(--rule); border-radius: 8px; max-width: 640px; }
+.copy-row { display: flex; gap: 6px; align-items: center; min-width: 0; }
+.copy-row .copy-field { flex: 1; min-width: 0; }
+.plain-list { margin: 6px 0; padding-left: 18px; }
 @media (max-width: 640px) { .account-form.inline { grid-template-columns: 1fr; } }

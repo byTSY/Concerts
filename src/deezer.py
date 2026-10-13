@@ -34,6 +34,8 @@ def search_artist(name, cache):
     if key in cache:
         return cache[key]
     data = _call(f"{API}/search/artist", {"q": name, "limit": 10})
+    if data is None:
+        return None  # Deezer ne répond pas : pas de mise en cache, nouvel essai au prochain calcul
     found = None
     if data:
         bare = ARTICLES.sub("", key)

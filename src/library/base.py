@@ -12,7 +12,7 @@ class SourceError(Exception):
     """Erreur propre à la source d'un membre ; le traitement passe au membre suivant.
 
     Codes : private_profile, not_found, revoked, not_allowlisted, quota, spotify_unavailable,
-    deezer_unavailable."""
+    deezer_unavailable, token_key (clé de chiffrement absente ou changée), spotify_unconfigured."""
 
     def __init__(self, code, detail=""):
         super().__init__(f"{code}{f' ({detail})' if detail else ''}")
