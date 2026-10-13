@@ -32,6 +32,30 @@ function invitationText(member, link) {
     `Sur Deezer, il vous faudra le lien de votre profil, qui doit être public. Sur Spotify, il vous faudra l'adresse e-mail de votre compte Spotify ; je l'ajouterai à l'application avant que vous ne la reliiez.`;
 }
 
+// Version courte pour un SMS : lien et adresse de connexion seulement
+function invitationSms(member, link) {
+  return `Bonjour ${member.first_name}, je vous invite sur Concerts à Paris, qui repère les concerts de vos artistes à Paris. ` +
+    `Ouvrez ${link} et connectez-vous avec ${member.email} : un code de connexion vous sera envoyé par e-mail.`;
+}
+
+// Lien qui ouvre l'application Messages avec le texte prérempli (destinataire choisi dans
+// l'application ; aucun numéro n'est enregistré). « sms:?&body= » est compris par iPhone et Android.
+const smsHref = (text) => `sms:?&body=${encodeURIComponent(text)}`;
+
+// Message d'invitation : texte complet à copier, SMS prérempli, partage du téléphone
+function showInvitation(out, member, link, intro, notes = "") {
+  const text = invitationText(member, link);
+  const sms = invitationSms(member, link);
+  out.innerHTML = `<p>${intro}</p>
+    <p><a class="btn" href="${esc(smsHref(sms))}">Envoyer par SMS</a>
+      ${navigator.share ? `<button class="btn btn-quiet" type="button" id="share-invite">Partager…</button>` : ""}</p>
+    <p class="cell-sub">Le SMS ouvre votre application Messages avec le texte prêt : choisissez le destinataire, puis envoyez. Sur ordinateur, le lien ne fonctionne que si une application de SMS est reliée (Mac avec iPhone, Lien avec le téléphone sous Windows) ; sinon, copiez le message ci-dessous.</p>
+    <textarea id="invite-text" class="copy-field" readonly rows="7">${esc(text)}</textarea>
+    <p><button class="btn btn-quiet" type="button" id="copy-invite">Copier le message complet</button></p>${notes}`;
+  $("#copy-invite").addEventListener("click", (ev) => copyText(ev.target, text, $("#invite-text")));
+  $("#share-invite")?.addEventListener("click", () => navigator.share({ text: sms }).catch(() => {}));
+}
+
 const SPOTIFY_SOURCE_STATUS = {
   pending_allowlist: "demande à traiter", ready_to_connect: "accès ouvert, connexion attendue",
   connected: "relié", revoked: "accès expiré ou retiré", error: "en erreur",
@@ -94,6 +118,7 @@ async function renderAdmin() {
       <td class="hide-mobile">${m.last_seen_at ? esc(fmtDateTime(m.last_seen_at)) : "jamais"}<span class="cell-sub">${m.connections_30d} connexion${m.connections_30d > 1 ? "s" : ""}, ${m.api_calls_30d} requêtes, ${m.changes_30d} modifications sur 30 jours</span></td>
       <td class="num">${m.stars}</td>
       <td>${m.role === "admin" ? "" : `
+        ${["invited", "onboarding"].includes(m.status) ? `<button class="link-btn" data-admin="invite" data-first="${esc(m.first_name)}" data-email="${esc(m.email)}">Inviter par SMS</button>` : ""}
         ${m.provider ? `<button class="link-btn" data-admin="recompute" data-id="${esc(m.id)}">Recalculer</button>` : ""}
         ${m.status === "suspended"
           ? `<button class="link-btn" data-admin="reactivate" data-id="${esc(m.id)}">Réactiver</button>`
@@ -137,13 +162,10 @@ async function renderAdmin() {
     const out = $("#invite-result");
     try {
       const r = await api("admin/members", { method: "POST", body: { email: $("#invite-email").value, first_name: $("#invite-name").value } });
-      const text = invitationText(r.member, r.link);
-      out.innerHTML = `<p>Invitation créée pour <strong>${esc(r.member.first_name)}</strong>. Message à transmettre (WhatsApp, e-mail) :</p>
-        <textarea id="invite-text" class="copy-field" readonly rows="7">${esc(text)}</textarea>
-        <p><button class="btn" type="button" id="copy-invite">Copier</button></p>${accessNote(r.access, "ajouter l'adresse à la liste des membres")}`;
-      $("#copy-invite").addEventListener("click", (ev) => copyText(ev.target, text, $("#invite-text")));
       $("#invite-form").reset();
-      renderAdminTable();
+      await renderAdmin();
+      showInvitation($("#invite-result"), r.member, r.link, `Invitation créée pour <strong>${esc(r.member.first_name)}</strong>. Transmettez-lui le lien :`,
+        accessNote(r.access, "ajouter l'adresse à la liste des membres"));
     } catch (err) {
       out.innerHTML = `<p class="prefs-warning">${esc(err.message)}</p>`;
     }
@@ -171,15 +193,15 @@ async function renderAdmin() {
   }));
 }
 
-// Après une invitation : on recharge la liste sans effacer le message à copier
-async function renderAdminTable() {
-  const kept = $("#invite-result").innerHTML;
-  await renderAdmin();
-  $("#invite-result").innerHTML = kept;
-  $("#copy-invite")?.addEventListener("click", (ev) => copyText(ev.target, $("#invite-text").value, $("#invite-text")));
-}
-
-async function adminAction({ admin: action, id, name }) {
+async function adminAction({ admin: action, id, name, first, email }) {
+  // Invitation à renvoyer (membre pas encore arrivé) : message seulement, rien n'est modifié
+  if (action === "invite") {
+    const out = $("#admin-action-result");
+    showInvitation(out, { first_name: first, email }, new URL("/", location.href).href,
+      `Invitation de <strong>${esc(first)}</strong> (${esc(email)}) :`);
+    out.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    return;
+  }
   const questions = {
     suspend: `Suspendre ${name} ?\n\nSon accès est coupé aussitôt ; ses données sont gardées et ses ★ partagés disparaissent.`,
     delete: `Supprimer ${name} ?\n\nToutes ses données sont effacées. Irréversible.`,
