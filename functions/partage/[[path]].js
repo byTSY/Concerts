@@ -433,11 +433,15 @@ function notFound() {
 // fichier data/share/<2 premiers caractères>.json (src/publish.py, build_share) ; à défaut (avant
 // la première publication de ces fichiers), events.json complet
 export async function findConcert(env, url, id) {
+  // Identifiants publiés : début hexadécimal (empreinte sha1) ; un autre lien est refusé sans
+  // relire tout events.json
+  if (!/^[0-9a-f]{2}/.test(id)) return null;
   const shard = await env.ASSETS.fetch(new URL(`/data/share/${id.slice(0, 2)}.json`, url));
   // Pages renvoie la page d'accueil pour un fichier absent : seul un JSON est accepté
   if (shard.ok && (shard.headers.get("content-type") || "").includes("json")) {
     return (await shard.json()).find((e) => e.id === id) || null;
   }
+  await shard.body?.cancel();
   const all = await env.ASSETS.fetch(new URL("/data/events.json", url));
   if (!all.ok) throw new Error("données indisponibles");
   return (await all.json()).find((e) => e.id === id) || null;

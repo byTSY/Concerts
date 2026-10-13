@@ -631,6 +631,8 @@ test("fiche de partage : concert lu dans son petit fichier, events.json complet 
   assert.equal((await findConcert(withShards, "https://x.test/partage/ab12cd34ef56", "ab12cd34ef56")).title, "Concert");
   assert.equal(await findConcert(withShards, "https://x.test/", "ab0000000000"), null);
   assert.ok(!served.includes("/data/events.json"));
+  assert.equal(await findConcert(withShards, "https://x.test/", "zzzzzz"), null);  // refusé sans lecture
+  assert.ok(!served.includes("/data/share/zz.json"));
   const before = env({ "/data/events.json": () => json([{ id: "cd12cd34ef56", title: "Ancien" }]) });
   assert.equal((await findConcert(before, "https://x.test/", "cd12cd34ef56")).title, "Ancien");
 });
