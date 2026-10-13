@@ -43,7 +43,7 @@ def smtp_port(value):
     if text.isdigit():
         return int(text)
     if text:
-        log(f"Newsletter : SMTP_PORT illisible, port 587 utilisé")
+        log("Newsletter : SMTP_PORT illisible, port 587 utilisé")
     return 587
 
 SITE_URL = "https://concerts-s2k.pages.dev"
@@ -119,7 +119,7 @@ def sections(events, overlay, going_ids, today=None):
 def _row(ev, item, site):
     link = f"{site}/partage/{escape(ev['id'])}"
     when = day_label(ev["date"]) + (f" · {escape(ev['time'])}" if ev.get("time") else "")
-    # Salle, style musical, et pour une découverte les artistes proches
+    # Style musical, et pour une découverte les artistes proches
     details = [escape(g) for g in [display_genre(ev.get("genre"))] if g]
     if item.get("kind") == "discovery":
         close = ", ".join((item.get("discovery") or {}).get("close_to", [])[:2])
