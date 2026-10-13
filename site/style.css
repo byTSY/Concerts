@@ -184,6 +184,10 @@ tr.clickable:hover td { background: var(--paper-2); }
 .tag-new-liste { background: none; color: var(--ink); border: 1.5px dashed var(--ink); padding: 0 7px; }
 .tag-other { background: var(--ink-soft); }
 .tag-fav { background: none; color: var(--ink); border: 1px solid var(--ink); }
+.tag-members { background: none; color: var(--ink); border: 1px dashed var(--ink); }
+.tag-going { background: #1e8a4c; }
+.ticket-star { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 14px; }
+.star-share { cursor: pointer; }
 .count-line { color: var(--ink-soft); margin: 4px 0 14px; }
 .venue-name-btn { border: 0; background: none; padding: 0; font-weight: 700; cursor: pointer; text-align: left; text-decoration: underline; text-underline-offset: 3px; }
 .num { text-align: right; font-variant-numeric: tabular-nums; }

@@ -34,6 +34,14 @@ import * as adminSpotify from "../functions/api/admin/spotify/index.js";
 import * as adminAllowlisted from "../functions/api/admin/spotify/[user]/allowlisted.js";
 import * as adminRemoved from "../functions/api/admin/spotify/removals/[id]/removed.js";
 import { decryptToken, encryptToken } from "../functions/_lib/tokens.js";
+import * as communityRoute from "../functions/api/community/stars.js";
+import * as proposalsRoute from "../functions/api/venues/proposals.js";
+import * as venuesRoute from "../functions/api/venues/index.js";
+import * as favoriteVenue from "../functions/api/me/venues/[id].js";
+import * as adminVenues from "../functions/api/admin/venues/index.js";
+import * as adminVenue from "../functions/api/admin/venues/[id]/index.js";
+import * as adminApprove from "../functions/api/admin/venues/[id]/approve.js";
+import * as adminReject from "../functions/api/admin/venues/[id]/reject.js";
 
 // --- D1 et R2 simulés --------------------------------------------------------------
 
@@ -635,4 +643,108 @@ test("fiche de partage : concert lu dans son petit fichier, events.json complet 
   assert.ok(!served.includes("/data/share/zz.json"));
   const before = env({ "/data/events.json": () => json([{ id: "cd12cd34ef56", title: "Ancien" }]) });
   assert.equal((await findConcert(before, "https://x.test/", "cd12cd34ef56")).title, "Ancien");
+});
+
+// --- Communauté (étape 5) -------------------------------------------------------------------
+
+test("★ partagés : jamais un ★ privé, jamais un membre suspendu, ni identifiant ni ses propres ★", async () => {
+  const env = setup();
+  const now = "2026-10-13T00:00:00+00:00";
+  env.DB.raw.exec(`UPDATE stars SET visibility = 'members' WHERE user_id = 'u_bbbbbbbb';
+    INSERT INTO stars (user_id, concert_id, label, status, visibility, created_at, updated_at) VALUES
+      ('u_bbbbbbbb', 'cccccc333333', 'Privé de B', 'going', 'private', '${now}', '${now}'),
+      ('u_aaaaaaaa', 'dddddd444444', 'Partagé par A', 'going', 'members', '${now}', '${now}');
+    UPDATE users SET pseudo = 'Bubu' WHERE id = 'u_bbbbbbbb';`);
+  const seenByC = (await call(env, "c@test.fr", communityRoute.onRequestGet, { path: "/api/community/stars" })).data;
+  assert.deepEqual(seenByC.map((s) => [s.concert_id, s.name, s.status]).sort(),
+    [["bbbbbb222222", "Bubu", "interested"], ["dddddd444444", "Alice", "going"]]);
+  assert.ok(!JSON.stringify(seenByC).includes("u_"), "identifiant de membre exposé");
+  assert.ok(!JSON.stringify(seenByC).includes("cccccc333333"), "★ privé exposé");
+  // A ne reçoit pas ses propres ★ ; B suspendu disparaît aussitôt
+  const seenByA = (await call(env, "a@test.fr", communityRoute.onRequestGet, { path: "/api/community/stars" })).data;
+  assert.deepEqual(seenByA.map((s) => s.concert_id), ["bbbbbb222222"]);
+  env.DB.raw.exec("UPDATE users SET status = 'suspended' WHERE id = 'u_bbbbbbbb'");
+  const afterSuspend = (await call(env, "c@test.fr", communityRoute.onRequestGet, { path: "/api/community/stars" })).data;
+  assert.deepEqual(afterSuspend.map((s) => s.concert_id), ["dddddd444444"]);
+  // Retrait du partage par A (visibilité privée) : disparaît aussi
+  await call(env, "a@test.fr", starRoute.onRequestPut, {
+    method: "PUT", path: "/api/me/stars/dddddd444444", params: { concert: "dddddd444444" }, body: { visibility: "private" } });
+  assert.deepEqual((await call(env, "c@test.fr", communityRoute.onRequestGet, { path: "/api/community/stars" })).data, []);
+});
+
+test("★ : statut « j'y vais » et visibilité par défaut du membre", async () => {
+  const env = setup();
+  await call(env, "a@test.fr", meRoute.onRequestPatch, { method: "PATCH", body: { default_visibility: "members" } });
+  const put = (body) => call(env, "a@test.fr", starRoute.onRequestPut, {
+    method: "PUT", path: "/api/me/stars/eeeeee555555", params: { concert: "eeeeee555555" }, body });
+  let list = (await put({ label: "Concert E" })).data;
+  assert.deepEqual([list.at(-1).status, list.at(-1).visibility], ["interested", "members"]);
+  list = (await put({ status: "going" })).data;
+  assert.deepEqual([list.at(-1).status, list.at(-1).visibility, list.at(-1).label], ["going", "members", "Concert E"]);
+  assert.equal((await put({ status: "peut-etre" })).status, 400);
+});
+
+test("salles : proposition, doublons, plafond, validation par l'admin, auteur jamais montré aux membres", async () => {
+  const env = setup();
+  env.DB.raw.exec(`INSERT INTO venues (id, name, aliases, status) VALUES ('bellevilloise', 'La Bellevilloise', '["Bellevilloise Paris"]', 'approved')`);
+  const propose = (email, body) => call(env, email, proposalsRoute.onRequestPost, { method: "POST", path: "/api/venues/proposals", body });
+  assert.equal((await propose("a@test.fr", { name: "x" })).data.code, "bad_name");
+  assert.equal((await propose("a@test.fr", { name: "Bellevilloise" })).data.code, "exists");          // nom sans article
+  assert.equal((await propose("a@test.fr", { name: "bellevilloise paris" })).data.code, "exists");    // autre nom connu
+  assert.equal((await propose("a@test.fr", { name: "Le Petit Bain", agenda_url: "javascript:alert(1)" })).data.code, "bad_url");
+  const ok = await propose("a@test.fr", { name: " Le  Petit Bain ", aliases: "Petit Bain, Petit-Bain", agenda_url: "https://petitbain.org/agenda" });
+  assert.equal(ok.status, 201);
+  assert.deepEqual([ok.data[0].id, ok.data[0].name, ok.data[0].status], ["petit-bain", "Le Petit Bain", "pending"]);
+  assert.equal((await propose("b@test.fr", { name: "Petit Bain" })).data.code, "exists");
+  for (const n of [2, 3, 4, 5]) assert.equal((await propose("a@test.fr", { name: `Salle numéro ${n}` })).status, 201);
+  assert.equal((await propose("a@test.fr", { name: "Salle numéro 6" })).data.code, "too_many");
+  // B ne voit ni les propositions de A, ni leur auteur ; le catalogue public ne montre que les salles approuvées
+  assert.deepEqual((await call(env, "b@test.fr", proposalsRoute.onRequestGet, { path: "/api/venues/proposals" })).data, []);
+  const catalog = (await call(env, "b@test.fr", venuesRoute.onRequestGet, { path: "/api/venues" })).data;
+  assert.deepEqual(catalog.map((v) => v.id), ["bellevilloise"]);
+  assert.ok(!JSON.stringify(catalog).includes("proposed"));
+  // Admin : liste, correction, validation ; un membre n'a pas accès
+  assert.equal((await call(env, "a@test.fr", adminVenues.onRequestGet, { path: "/api/admin/venues" })).status, 403);
+  const pending = (await call(env, "c@test.fr", adminVenues.onRequestGet, { path: "/api/admin/venues?status=pending" })).data;
+  assert.equal(pending.find((v) => v.id === "petit-bain").proposed_by_name, "Alice");
+  const fixed = await call(env, "c@test.fr", adminVenue.onRequestPatch, {
+    method: "PATCH", path: "/api/admin/venues/petit-bain", params: { id: "petit-bain" }, body: { aliases: ["Petit Bain", "Le Petit-Bain"] } });
+  assert.deepEqual(fixed.data.aliases, ["Petit Bain", "Le Petit-Bain"]);
+  const approved = await call(env, "c@test.fr", adminApprove.onRequestPost, {
+    method: "POST", path: "/api/admin/venues/petit-bain/approve", params: { id: "petit-bain" } });
+  assert.equal(approved.data.status, "approved");
+  assert.equal((await call(env, "c@test.fr", adminApprove.onRequestPost, {
+    method: "POST", path: "/api/admin/venues/petit-bain/approve", params: { id: "petit-bain" } })).data.code, "not_pending");
+  await call(env, "c@test.fr", adminReject.onRequestPost, {
+    method: "POST", path: "/api/admin/venues/salle-numero-2/reject", params: { id: "salle-numero-2" }, body: { note: "Hors zone" } });
+  const mine = (await call(env, "a@test.fr", proposalsRoute.onRequestGet, { path: "/api/venues/proposals" })).data;
+  assert.equal(mine.find((v) => v.id === "salle-numero-2").review_note, "Hors zone");
+  // Salle approuvée : au catalogue et utilisable comme favorite ; suppression du membre : auteur effacé
+  assert.ok((await call(env, "b@test.fr", venuesRoute.onRequestGet, { path: "/api/venues" })).data.some((v) => v.id === "petit-bain"));
+  assert.equal((await call(env, "b@test.fr", favoriteVenue.onRequestPut, {
+    method: "PUT", path: "/api/me/venues/petit-bain", params: { id: "petit-bain" } })).status, 200);
+  await call(env, "a@test.fr", meRoute.onRequestDelete, { method: "DELETE", body: { confirm: "SUPPRIMER" } });
+  assert.equal(env.DB.raw.prepare("SELECT COUNT(*) AS n FROM venues WHERE proposed_by IS NOT NULL").get().n, 0);
+});
+
+test("salles : autres noms trop généraux refusés, https exigé, recoupements signalés, refus réversible", async () => {
+  const env = setup();
+  env.DB.raw.exec(`INSERT INTO venues (id, name, aliases, status) VALUES ('elysee-montmartre', 'Élysée Montmartre', '[]', 'approved');
+    INSERT INTO users (id, email, first_name, status, invited_at) VALUES ('u_dddddddd', 'd@test.fr', 'Dora', 'invited', 'x');
+    INSERT INTO stars (user_id, concert_id, label, visibility, created_at, updated_at) VALUES ('u_dddddddd', 'ffffff666666', 'x', 'members', 'x', 'x');`);
+  const propose = (body) => call(env, "a@test.fr", proposalsRoute.onRequestPost, { method: "POST", path: "/api/venues/proposals", body });
+  assert.equal((await propose({ name: "Péniche X", aliases: "Paris" })).data.code, "generic_alias");
+  assert.equal((await propose({ name: "Péniche X", aliases: "la" })).data.code, "generic_alias");
+  assert.equal((await propose({ name: "Jazz Club" })).data.code, "generic_name");
+  assert.equal((await propose({ name: "Péniche X", aliases: "Auditorium" })).data.code, "generic_alias");
+  assert.equal((await propose({ name: "Péniche X", agenda_url: "http://peniche.fr" })).data.code, "bad_url");
+  assert.equal((await propose({ name: "Péniche X", agenda_url: "https://127.0.0.1/agenda" })).data.code, "bad_url");
+  assert.equal((await propose({ name: "Elysée" })).status, 201);
+  const pending = (await call(env, "c@test.fr", adminVenues.onRequestGet, { path: "/api/admin/venues?status=pending" })).data;
+  assert.deepEqual(pending.find((v) => v.id === "elysee").overlaps, ["Élysée Montmartre"]);
+  await call(env, "c@test.fr", adminReject.onRequestPost, { method: "POST", path: "/api/admin/venues/elysee/reject", params: { id: "elysee" } });
+  const again = await call(env, "c@test.fr", adminApprove.onRequestPost, { method: "POST", path: "/api/admin/venues/elysee/approve", params: { id: "elysee" } });
+  assert.equal(again.data.status, "approved");
+  // Membre seulement invité : ses ★ ne sont pas montrés
+  assert.deepEqual((await call(env, "c@test.fr", communityRoute.onRequestGet, { path: "/api/community/stars" })).data, []);
 });

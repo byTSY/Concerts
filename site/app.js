@@ -2,7 +2,8 @@
 
 const state = {
   events: [], artists: [], meta: {}, memberMeta: {}, me: null,
-  kinds: new Set(["known", "discovery"]), all: false, favOnly: false, style: "", venue: null, q: "",
+  kinds: new Set(["known", "discovery"]), all: false, favOnly: false, withMembers: false, style: "", venue: null, q: "",
+  community: new Map(),  // concert → [{ name, status }] : ★ partagés par les autres membres
   view: "calendar", calendar: null,
   hidden: new Set(), levels: new Map(), starred: new Map(), profile: new Map(), apiError: null, loadFailed: false,
   byArtistSort: (() => { try { return localStorage.getItem("byArtistSort") || "date"; } catch { return "date"; } })(),
@@ -161,9 +162,26 @@ function setPrefs(data) {
   state.levels = new Map(Object.entries(data.levels || {}).map(([n, t]) => [normName(n), Number(t)]));
 }
 
+// ★ du membre : concert → { label, status (interested, going), visibility (private, members) }
 function setStars(list) {
-  state.starred = new Map((list || []).map((s) => [s.concert_id, s.label]));
+  state.starred = new Map((list || []).map((s) => [s.concert_id,
+    { label: s.label, status: s.status || "interested", visibility: s.visibility || "private" }]));
 }
+
+// ★ partagés par les autres membres (section 12 de la spécification)
+function setCommunity(list) {
+  state.community = new Map();
+  for (const s of list || []) {
+    if (!state.community.has(s.concert_id)) state.community.set(s.concert_id, []);
+    state.community.get(s.concert_id).push({ name: s.name, status: s.status });
+  }
+}
+
+const membersOf = (ev) => state.community.get(ev.id) || [];
+const membersTag = (ev) => {
+  const n = membersOf(ev).length;
+  return n ? `<span class="tag tag-members" title="Membres qui ont mis ce concert de côté">${n} membre${n > 1 ? "s" : ""}</span>` : "";
+};
 
 // Concerts communs + ce qu'ils sont pour le membre (overlay calculé par le traitement) :
 // genre de rapprochement, niveau, artistes, découverte, badge « liste », salle favorite.
@@ -196,9 +214,10 @@ function starButton(ev, long = false) {
 // Mise à jour immédiate de l'affichage, puis enregistrement ; retour en arrière si l'enregistrement échoue
 async function toggleStar(id) {
   const ev = state.events.find((e) => e.id === id);
-  const label = ev ? starLabel(ev) : state.starred.get(id) || id;
+  const previous = state.starred.get(id);
+  const label = ev ? starLabel(ev) : previous?.label || id;
   const star = !isStarred(id);
-  star ? state.starred.set(id, label) : state.starred.delete(id);
+  star ? state.starred.set(id, { label, status: "interested", visibility: state.me?.default_visibility || "private" }) : state.starred.delete(id);
   refreshStars(id);
   try {
     const path = `me/stars/${encodeURIComponent(id)}`;
@@ -206,17 +225,53 @@ async function toggleStar(id) {
     state.apiError = null;
     toast(star ? "Ajouté à vos concerts intéressés" : "Retiré de vos concerts intéressés");
   } catch (e) {
-    star ? state.starred.delete(id) : state.starred.set(id, label);
+    star ? state.starred.delete(id) : state.starred.set(id, previous);
     alert(`L'enregistrement a échoué : ${e.message}.\n\nCette fonction ne marche que sur le site publié.`);
   }
   refreshStars(id);
 }
 
+// Statut (« j'y vais ») ou visibilité d'un concert ; un concert pas encore mis de côté l'est
+async function setStarOption(id, field, value) {
+  const ev = state.events.find((e) => e.id === id);
+  const created = !isStarred(id);
+  const body = { [field]: value, ...(created ? { label: ev ? starLabel(ev) : id } : {}) };
+  try {
+    setStars(await api(`me/stars/${encodeURIComponent(id)}`, { method: "PUT", body }));
+    toast(field === "status"
+      ? (value === "going" ? "Noté : vous y allez" : created ? "Ajouté à vos concerts intéressés" : "Noté : intéressé")
+      : (value === "members" ? "Visible par les membres" : "Visible par vous seul"));
+  } catch (e) {
+    toast(`Enregistrement impossible : ${e.message}`);
+  }
+  refreshStars(id);
+}
+
+// Fiche d'un concert : « Intéressé » ou « J'y vais », partage avec les membres, retrait
+function starBlock(ev) {
+  const s = state.starred.get(ev.id);
+  const choice = (status, off, on) => `<button type="button" class="btn btn-star${s?.status === status ? " on" : ""}"
+    data-star-set="${status}" data-star-id="${esc(ev.id)}" aria-pressed="${s?.status === status}">${s?.status === status ? on : off}</button>`;
+  return `${choice("interested", "☆ Intéressé", "★ Intéressé")}${choice("going", "J'y vais", "✓ J'y vais")}
+    ${s ? `<label class="chip star-share"><input type="checkbox" data-star-share data-star-id="${esc(ev.id)}"${s.visibility === "members" ? " checked" : ""}> Visible par les membres</label>
+      <button type="button" class="link-btn" data-star="${esc(ev.id)}">Retirer de mes concerts</button>` : ""}`;
+}
+
+// Fiche d'un concert : membres qui l'ont mis de côté et le partagent
+function membersBlock(ev) {
+  const list = membersOf(ev);
+  if (!list.length) return "";
+  const names = (status) => list.filter((m) => m.status === status).map((m) => esc(m.name)).join(", ");
+  const going = names("going");
+  const interested = names("interested");
+  return `<div class="ticket-section"><h3>Membres</h3><p>${[interested ? `Intéressés : ${interested}` : "", going ? `Y vont : ${going}` : ""].filter(Boolean).join("<br>")}</p></div>`;
+}
+
 function refreshStars(id) {
   const ev = state.events.find((e) => e.id === id);
   if (ev && $("#ticket").open) {
-    const btn = $("#ticket-body [data-star]");
-    if (btn) btn.outerHTML = starButton(ev, true);
+    const box = $("#ticket-star");
+    if (box) box.innerHTML = starBlock(ev);
   }
   updateStarCount();
   if (state.view !== "calendar") render();
@@ -230,9 +285,10 @@ function updateStarCount() {
 
 async function loadPrefs() {
   try {
-    const [prefs, stars] = await Promise.all([api("me/prefs"), api("me/stars")]);
+    const [prefs, stars, community] = await Promise.all([api("me/prefs"), api("me/stars"), api("community/stars").catch(() => [])]);
     setPrefs(prefs);
     setStars(stars);
+    setCommunity(community);
     state.apiError = null;
   } catch (e) {
     // Site ouvert en local, fonction Cloudflare non configurée ou connexion expirée
@@ -454,7 +510,9 @@ function fillStyles() {
 function filtered() {
   const q = fold(state.q.trim());
   return state.events.filter((ev) => {
-    if (!state.all && !state.kinds.has(ev.kind)) return false;
+    if (state.withMembers) {
+      if (!membersOf(ev).length) return false;
+    } else if (!state.all && !state.kinds.has(ev.kind)) return false;
     if (!styleOk(ev)) return false;
     if (state.favOnly && !ev.venue_favorite) return false;
     if (state.venue && ev.venue !== state.venue) return false;
@@ -601,7 +659,7 @@ function renderList() {
         <td><span class="cell-name">${esc(headline(ev))}</span>${sub ? `<span class="cell-sub">${esc(sub)}</span>` : ""}</td>
         <td>${esc(ev.venue)}${ev.venue_favorite ? ` <span class="tag tag-fav">Favorite</span>` : ""}</td>
         <td class="hide-mobile">${esc(ev.price || "")}</td>
-        <td>${starButton(ev)} ${[kindTag(ev), badgeTag(ev)].filter(Boolean).join(" ")}</td>
+        <td>${starButton(ev)} ${[kindTag(ev), badgeTag(ev), membersTag(ev)].filter(Boolean).join(" ")}</td>
       </tr>`;
     }
     html += `</tbody></table></div></div>`;
@@ -673,7 +731,7 @@ function renderByArtist() {
 /* Intéressés ------------------------------------------------------------------- */
 
 function renderStarred() {
-  const items = [...state.starred].map(([id, label]) => ({ id, label, ev: state.events.find((e) => e.id === id) }));
+  const items = [...state.starred].map(([id, s]) => ({ id, label: s.label, star: s, ev: state.events.find((e) => e.id === id) }));
   const upcoming = items.filter((i) => i.ev)
     .sort((a, b) => a.ev.date.localeCompare(b.ev.date) || (a.ev.time || "").localeCompare(b.ev.time || ""));
   const gone = items.filter((i) => !i.ev);
@@ -685,13 +743,14 @@ function renderStarred() {
   let html = `<p class="count-line">${upcoming.length} concert${upcoming.length > 1 ? "s" : ""} mis de côté, du plus proche au plus lointain.</p>`;
   if (upcoming.length) {
     html += `<div class="table-wrap"><table class="events"><thead><tr><th>Date</th><th>Concert</th><th>Salle</th><th class="hide-mobile">Prix</th><th>Billets</th><th></th></tr></thead><tbody>`;
-    for (const { ev } of upcoming) {
+    for (const { ev, star } of upcoming) {
       const sale = onSaleInfo(ev);
       const status = statusLabel(ev.status);
       const links = (ev.links || []).map((l) => `<a class="buy-link" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.source)}</a>`).join(" ");
       html += `<tr class="clickable" data-id="${ev.id}" tabindex="0">
         <td class="cell-date">${esc(fmtShort.format(parseDay(ev.date)))}${ev.time ? `<span class="cell-sub">${esc(ev.time)}</span>` : ""}</td>
-        <td><span class="cell-name">${esc(headline(ev))}</span>${headline(ev) !== ev.title ? `<span class="cell-sub">${esc(ev.title)}</span>` : ""}</td>
+        <td><span class="cell-name">${esc(headline(ev))}</span>${headline(ev) !== ev.title ? `<span class="cell-sub">${esc(ev.title)}</span>` : ""}
+          <span class="cell-sub">${star.status === "going" ? `<span class="tag tag-going">J'y vais</span> ` : ""}${star.visibility === "members" ? "visible par les membres" : "privé"} ${membersTag(ev)}</span></td>
         <td>${esc(ev.venue)}</td>
         <td class="hide-mobile">${esc(ev.price || "")}</td>
         <td>${status ? `<span class="cell-sub"><strong>${esc(status)}</strong></span>` : ""}${sale ? `<span class="stub-sale">${esc(sale.replace("Mise en vente le ", "En vente le "))}</span>` : ""}<span class="buy-links">${links}</span></td>
@@ -744,10 +803,11 @@ function renderArtists() {
 
 /* Salles --------------------------------------------------------------------- */
 
-function venueTable(rows) {
+function venueTable(rows, proposable = false) {
   let html = `<div class="table-wrap"><table><thead><tr><th>Salle</th><th class="num">Vos artistes</th><th class="num">Découvertes</th><th class="num hide-mobile">Concerts au total</th></tr></thead><tbody>`;
   for (const v of rows) {
-    html += `<tr><td><button class="venue-name-btn" data-venue="${esc(v.name)}">${esc(v.name)}</button></td>
+    html += `<tr><td><button class="venue-name-btn" data-venue="${esc(v.name)}">${esc(v.name)}</button>${proposable && !v.venue_id
+      ? ` <button type="button" class="link-btn" data-propose-venue="${esc(v.name)}">Proposer au catalogue</button>` : ""}</td>
       <td class="num">${v.known}</td><td class="num">${v.discovery}</td><td class="num hide-mobile">${v.total}</td></tr>`;
   }
   return html + `</tbody></table></div>`;
@@ -757,8 +817,9 @@ function venueTable(rows) {
 function venueStats() {
   const venues = new Map();
   for (const ev of state.events) {
-    if (!venues.has(ev.venue)) venues.set(ev.venue, { name: ev.venue, total: 0, known: 0, discovery: 0, favorite: false });
+    if (!venues.has(ev.venue)) venues.set(ev.venue, { name: ev.venue, venue_id: null, total: 0, known: 0, discovery: 0, favorite: false });
     const v = venues.get(ev.venue);
+    v.venue_id ||= ev.venue_id || null;
     v.total += 1;
     v.favorite ||= ev.venue_favorite;
     if (ev.kind === "known") v.known += 1;
@@ -776,8 +837,47 @@ function renderVenues() {
   $("#venues").innerHTML =
     `<h2 class="month-title">Vos salles</h2>${venueTable(favs)}
      <h2 class="month-title">D'autres salles où passent des artistes pour vous</h2>
-     <p class="count-line">Classées par nombre de concerts retenus. Cliquez sur une salle pour voir sa programmation.</p>
-     ${others.length ? venueTable(others) : `<p class="empty">Aucune autre salle pour l'instant.</p>`}`;
+     <p class="count-line">Classées par nombre de concerts retenus. Cliquez sur une salle pour voir sa programmation. Une salle absente du catalogue peut y être proposée : après validation par l'admin, chaque membre pourra la choisir comme favorite.</p>
+     ${others.length ? venueTable(others, true) : `<p class="empty">Aucune autre salle pour l'instant.</p>`}
+     <h2 class="month-title">Proposer une salle</h2>
+     <form id="venue-proposal" class="account-form">
+       <label for="proposal-name">Nom de la salle</label>
+       <input id="proposal-name" type="text" maxlength="80" required>
+       <label for="proposal-aliases">Autres noms utilisés par les billetteries (facultatif, séparés par des virgules)</label>
+       <input id="proposal-aliases" type="text" maxlength="400">
+       <label for="proposal-url">Page programme de la salle (facultatif)</label>
+       <input id="proposal-url" type="url" maxlength="300" placeholder="https://">
+       <button class="btn" type="submit">Proposer</button>
+     </form>
+     <div id="venue-proposals"></div>`;
+  $("#venue-proposal").addEventListener("submit", (e) => { e.preventDefault(); proposeVenue(); });
+  renderProposals();
+}
+
+const PROPOSAL_STATUS = { pending: "en attente de l'admin", approved: "ajoutée au catalogue", rejected: "refusée" };
+
+// Propositions du membre et réponse de l'admin
+async function renderProposals(list) {
+  const box = $("#venue-proposals");
+  if (!box) return;
+  try { list = list || await api("venues/proposals"); } catch { return; }
+  box.innerHTML = list.length ? `<h3>Vos propositions</h3><ul class="plain-list">${list.map((p) =>
+    `<li>${esc(p.name)} : ${esc(PROPOSAL_STATUS[p.status] || p.status)}${p.review_note ? ` (${esc(p.review_note)})` : ""}</li>`).join("")}</ul>` : "";
+}
+
+async function proposeVenue() {
+  const btn = $("#venue-proposal button[type=submit]");
+  btn.disabled = true;
+  try {
+    const list = await api("venues/proposals", { method: "POST", body: {
+      name: $("#proposal-name").value, aliases: $("#proposal-aliases").value, agenda_url: $("#proposal-url").value } });
+    $("#venue-proposal").reset();
+    toast("Salle proposée : l'admin la validera");
+    renderProposals(list);
+  } catch (e) {
+    toast(e.message);
+  }
+  btn.disabled = false;
 }
 
 /* Billet détaillé ------------------------------------------------------------- */
@@ -823,12 +923,14 @@ function openTicket(id) {
     ${sale ? `<div class="ticket-section"><span class="ticket-sale">${esc(sale)}</span></div>` : ""}
     ${status ? `<div class="ticket-section"><p><strong>${esc(status)}</strong></p></div>` : ""}
     ${why}
+    ${membersBlock(ev)}
     <div class="ticket-section loading" id="ticket-artist" data-id="${esc(ev.id)}"><h3>L'artiste</h3><p class="cell-sub">Chargement de la description…</p></div>
     ${others.length ? `<div class="ticket-section"><h3>À l'affiche également</h3><p>${esc(others.join(", "))}</p></div>` : ""}
     ${ev.price || ev.genre ? `<div class="ticket-section"><h3>Informations</h3><p>${[ev.price ? `Prix : ${esc(ev.price)}` : "", ev.genre ? `Genre : ${esc(ev.genre)}` : ""].filter(Boolean).join("<br>")}</p></div>` : ""}
     ${ev.description ? `<div class="ticket-section"><p>${esc(ev.description)}</p></div>` : ""}
     ${ev.image ? `<img class="ticket-image" src="${esc(ev.image)}" alt="" loading="lazy">` : ""}
-    <div class="ticket-links">${starButton(ev, true)}${links}${listen}</div>
+    <div class="ticket-star" id="ticket-star">${starBlock(ev)}</div>
+    <div class="ticket-links">${links}${listen}</div>
     <div class="ticket-share">
       <button type="button" class="btn btn-share" data-share="${esc(ev.id)}">Partager</button></div>
     ${hideButtons ? `<div class="ticket-hide">${hideButtons}</div>` : ""}`;
@@ -891,8 +993,11 @@ function bind() {
   document.body.addEventListener("change", (e) => {
     const sel = e.target.closest(".tier-select");
     if (sel) setLevel(sel.dataset.level, sel.value ? Number(sel.value) : null);
+    const share = e.target.closest("[data-star-share]");
+    if (share) setStarOption(share.dataset.starId, "visibility", share.checked ? "members" : "private");
   });
   $("#fav-only").addEventListener("change", (e) => { state.favOnly = e.target.checked; render(); });
+  $("#with-members").addEventListener("change", (e) => { state.withMembers = e.target.checked; render(); });
   $("#refresh").addEventListener("click", () => location.reload());
   $("#relogin").addEventListener("click", () => location.reload());
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") checkForUpdate(); });
@@ -906,10 +1011,25 @@ function bind() {
     if (share) { e.stopPropagation(); shareMessage(share.dataset.share); return; }
     const star = e.target.closest("[data-star]");
     if (star) { e.stopPropagation(); toggleStar(star.dataset.star); return; }
+    const status = e.target.closest("[data-star-set]");
+    if (status) {
+      e.stopPropagation();
+      if (state.starred.get(status.dataset.starId)?.status !== status.dataset.starSet) {
+        setStarOption(status.dataset.starId, "status", status.dataset.starSet);
+      }
+      return;
+    }
     const hide = e.target.closest("[data-hide]");
     if (hide) { e.stopPropagation(); setHidden(hide.dataset.hide, hide.dataset.hideAction !== "unhide"); return; }
     const row = e.target.closest("[data-id]");
     if (row && !e.target.closest("a")) { openTicket(row.dataset.id); return; }
+    const propose = e.target.closest("[data-propose-venue]");
+    if (propose) {
+      $("#proposal-name").value = propose.dataset.proposeVenue;
+      $("#venue-proposal").scrollIntoView({ behavior: "smooth", block: "center" });
+      $("#proposal-aliases").focus();
+      return;
+    }
     const venue = e.target.closest("[data-venue]");
     if (venue) { setVenueFilter(venue.dataset.venue); switchView("list"); }
   });

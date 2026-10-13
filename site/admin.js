@@ -62,6 +62,54 @@ function showInvitation(out, member, link, intro, notes = "") {
   out.querySelector(".js-sms").focus();
 }
 
+// Salles proposées par les membres (section 13.1) : correction éventuelle, puis décision
+function venuesSection(pending) {
+  if (!pending) return `<section class="account-block"><h2 class="month-title">Salles à valider</h2><p class="prefs-warning">Propositions illisibles.</p></section>`;
+  const cards = pending.map((v) => `<div class="spotify-card" data-venue-card="${esc(v.id)}">
+      <p><strong>${esc(v.name)}</strong> <span class="cell-sub">proposée ${v.proposed_by_name ? `par ${esc(v.proposed_by_name)} ` : ""}le ${esc(fmtDateTime(v.proposed_at))}</span></p>
+      <div class="account-form">
+        <label for="venue-name-${esc(v.id)}">Nom affiché</label>
+        <input id="venue-name-${esc(v.id)}" class="js-venue-name" type="text" maxlength="80" value="${esc(v.name)}">
+        <label for="venue-aliases-${esc(v.id)}">Autres noms (séparés par des virgules)</label>
+        <input id="venue-aliases-${esc(v.id)}" class="js-venue-aliases" type="text" value="${esc(v.aliases.join(", "))}">
+        <label for="venue-url-${esc(v.id)}">Page programme</label>
+        <input id="venue-url-${esc(v.id)}" class="js-venue-url" type="url" value="${esc(v.agenda_url || "")}">
+      </div>
+      ${v.overlaps?.length ? `<p class="prefs-warning">Noms proches d'autres salles du catalogue : ${esc(v.overlaps.join(", "))}. Vérifiez que les concerts de ces salles ne lui seront pas rattachés par erreur.</p>` : ""}
+      <p class="cell-sub">Vérifiez que la salle est dans la zone couverte et que ses autres noms correspondent à ceux des billetteries.</p>
+      <p><button class="btn" type="button" data-venue-review="approve" data-id="${esc(v.id)}">Approuver</button>
+        <button class="btn btn-quiet" type="button" data-venue-review="reject" data-id="${esc(v.id)}">Refuser</button></p>
+    </div>`).join("");
+  return `<section class="account-block">
+      <h2 class="month-title">Salles à valider (${pending.length})</h2>
+      ${pending.length ? cards : `<p class="cell-sub">Aucune proposition en attente.</p>`}
+      <p class="cell-sub">Une salle approuvée est aussitôt proposée comme favorite ; ses concerts sont rattachés au catalogue au prochain traitement.</p>
+    </section>`;
+}
+
+async function reviewVenue(button) {
+  const id = button.dataset.id;
+  const card = button.closest("[data-venue-card]");
+  try {
+    if (button.dataset.venueReview === "approve") {
+      // Corrections saisies, puis validation
+      await api(`admin/venues/${encodeURIComponent(id)}`, { method: "PATCH", body: {
+        name: card.querySelector(".js-venue-name").value,
+        aliases: card.querySelector(".js-venue-aliases").value,
+        agenda_url: card.querySelector(".js-venue-url").value,
+      } });
+      await api(`admin/venues/${encodeURIComponent(id)}/approve`, { method: "POST" });
+      toast("Salle ajoutée au catalogue");
+    } else {
+      const note = prompt("Refuser cette salle ? Motif visible par le membre qui l'a proposée (facultatif) :", "");
+      if (note === null) return;
+      await api(`admin/venues/${encodeURIComponent(id)}/reject`, { method: "POST", body: { note } });
+      toast("Proposition refusée");
+    }
+    await renderAdmin();
+  } catch (err) { toast(err.message); }
+}
+
 const SPOTIFY_SOURCE_STATUS = {
   pending_allowlist: "demande à traiter", ready_to_connect: "accès ouvert, connexion attendue",
   connected: "relié", revoked: "accès expiré ou retiré", error: "en erreur",
@@ -110,9 +158,10 @@ function spotifySection(sp) {
 async function renderAdmin() {
   const box = $("#admin");
   box.innerHTML = `<p class="cell-sub">Chargement…</p>`;
-  let list, runs, spotify;
+  let list, runs, spotify, pendingVenues;
   try {
-    [list, runs, spotify] = await Promise.all([api("admin/members"), api("admin/runs"), api("admin/spotify").catch(() => null)]);
+    [list, runs, spotify, pendingVenues] = await Promise.all([api("admin/members"), api("admin/runs"),
+      api("admin/spotify").catch(() => null), api("admin/venues?status=pending").catch(() => null)]);
   } catch (e) {
     box.innerHTML = `<p class="prefs-warning">Espace admin illisible : ${esc(e.message)}</p>`;
     return;
@@ -157,6 +206,7 @@ async function renderAdmin() {
       <div id="admin-action-result" aria-live="polite"></div>
     </section>
     ${spotifySection(spotify)}
+    ${venuesSection(pendingVenues)}
     <section class="account-block">
       <h2 class="month-title">Traitements</h2>
       <p><button class="btn btn-quiet" type="button" id="run-weekly">Relancer le traitement complet</button></p>
@@ -194,6 +244,7 @@ async function renderAdmin() {
     const field = document.getElementById(b.dataset.copy);
     copyText(b, field.value, field);
   }));
+  box.querySelectorAll("[data-venue-review]").forEach((b) => b.addEventListener("click", () => reviewVenue(b)));
   box.querySelectorAll("[data-spotify]").forEach((b) => b.addEventListener("click", async () => {
     const done = b.dataset.spotify === "allowlisted";
     if (!done && !confirm("Confirmez-vous avoir retiré ce compte dans le tableau de bord Spotify ?\n\nLe nom et l'e-mail seront effacés et la place libérée.")) return;

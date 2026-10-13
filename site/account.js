@@ -323,7 +323,7 @@ async function renderAccount() {
   });
   $("#default-visibility").addEventListener("change", async (e) => {
     try {
-      await api("me", { method: "PATCH", body: { default_visibility: e.target.value } });
+      state.me = await api("me", { method: "PATCH", body: { default_visibility: e.target.value } });
       toast("Réglage enregistré");
     } catch (err) { toast(`Enregistrement impossible : ${err.message}`); }
   });
