@@ -1311,6 +1311,28 @@
    ]
   },
   {
+   "id": "63e3a92d75e9",
+   "title": "Gizmo + D'Accord Simon + Eliah",
+   "date": "2026-10-13",
+   "time": "19:00",
+   "venue": "Supersonic",
+   "genre": null,
+   "price": null,
+   "links": [
+    {
+     "source": "Dice",
+     "url": "https://dice.fm/event/6abbf4a388dd550001136194"
+    }
+   ],
+   "first_seen": "2026-10-07",
+   "baseline": true,
+   "last_seen": "2026-10-13",
+   "source_keys": [
+    "Dice:6abbf4a388dd550001136194",
+    "Que faire à Paris:125158"
+   ]
+  },
+  {
    "id": "9267d22039e5",
    "title": "JON ANDERSON AND THE BAND GEEKS",
    "date": "2026-10-13",
@@ -1770,10 +1792,6 @@
     {
      "source": "Ticketmaster",
      "url": "https://www.ticketmaster.fr/fr/manifestation/noor-billet/idmanif/651684/idtier/18864121"
-    },
-    {
-     "source": "Dice",
-     "url": "https://dice.fm/event/699de6b4d0e9630001a2776f"
     }
    ],
    "first_seen": "2026-10-07",
@@ -15398,28 +15416,6 @@
    ]
   },
   {
-   "id": "5bf6135f9812",
-   "title": "HYD",
-   "date": "2026-10-21",
-   "time": "20:00",
-   "venue": "Hasard Ludique",
-   "genre": "Électro pop, Pop / Rock",
-   "price": null,
-   "links": [
-    {
-     "source": "Offi",
-     "url": "https://www.offi.fr/concerts/le-hasard-ludique-6987/hyd-3358404.html"
-    }
-   ],
-   "first_seen": "2026-10-07",
-   "baseline": true,
-   "last_seen": "2026-10-13",
-   "source_keys": [
-    "Dice:69f35037ff1d7d0001b9584f",
-    "Offi:3358404-2026-10-21T20:00"
-   ]
-  },
-  {
    "id": "73511d408266",
    "title": "DES ROCS",
    "date": "2026-10-21",
@@ -15541,16 +15537,20 @@
   },
   {
    "id": "acc8d8308d98",
-   "title": "Hyd + Kahi Baby",
+   "title": "Hyd",
    "date": "2026-10-21",
    "time": "20:00",
    "venue": "Hasard Ludique",
-   "genre": null,
+   "genre": "Électro pop, Pop / Rock",
    "price": null,
    "links": [
     {
      "source": "Dice",
      "url": "https://dice.fm/event/69f35037ff1d7d0001b9584f"
+    },
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/le-hasard-ludique-6987/hyd-3358404.html"
     }
    ],
    "first_seen": "2026-10-07",
@@ -16773,28 +16773,6 @@
    ]
   },
   {
-   "id": "2a9b21d79b03",
-   "title": "SMR - Lpee",
-   "date": "2026-10-22",
-   "time": "20:00",
-   "venue": "PopUp!",
-   "genre": "Rap, Musiques urbaines",
-   "price": null,
-   "links": [
-    {
-     "source": "Offi",
-     "url": "https://www.offi.fr/concerts/le-pop-up-du-label-5926/smr-lpee-3363396.html"
-    }
-   ],
-   "first_seen": "2026-10-12",
-   "baseline": false,
-   "last_seen": "2026-10-13",
-   "source_keys": [
-    "Dice:6aa3cb4a8fd8d800016d5a02",
-    "Offi:3363396-2026-10-22T20:00"
-   ]
-  },
-  {
    "id": "30a8289be8cd",
    "title": "DOSSEH",
    "date": "2026-10-22",
@@ -17084,6 +17062,28 @@
   },
   {
    "id": "76d448955937",
+   "title": "SMR - Lpee",
+   "date": "2026-10-22",
+   "time": "20:00",
+   "venue": "PopUp!",
+   "genre": "Rap, Musiques urbaines",
+   "price": null,
+   "links": [
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/le-pop-up-du-label-5926/smr-lpee-3363396.html"
+    }
+   ],
+   "first_seen": "2026-10-12",
+   "baseline": false,
+   "last_seen": "2026-10-13",
+   "source_keys": [
+    "Dice:6aa3cb4a8fd8d800016d5a02",
+    "Offi:3363396-2026-10-22T20:00"
+   ]
+  },
+  {
+   "id": "76d448955937x",
    "title": "SMR + LPEE + TIRI",
    "date": "2026-10-22",
    "time": "20:00",
@@ -25933,7 +25933,7 @@
    ]
   },
   {
-   "id": "390f08ed6e57",
+   "id": "390f08ed6e57x",
    "title": "THE WATCH PLAYS GENESIS",
    "date": "2026-10-29",
    "time": "19:00",
@@ -26390,7 +26390,7 @@
    ]
   },
   {
-   "id": "390f08ed6e57x",
+   "id": "390f08ed6e57",
    "title": "The Watch joue Genesis",
    "date": "2026-10-29",
    "time": "20:00",
@@ -33660,7 +33660,7 @@
    "title": "PASS 3 JOURS - Pitchfork Avant-Garde 2026",
    "date": "2026-11-05",
    "time": "18:30",
-   "venue": "Supersonic",
+   "venue": "POPUP!",
    "genre": null,
    "price": null,
    "links": [
@@ -45928,29 +45928,6 @@
   },
   {
    "id": "ab98c47b7ef6",
-   "title": "BLOC PARTY   INTERPOL",
-   "date": "2026-11-16",
-   "time": "19:00",
-   "venue": "ZENITH PARIS - LA VILLETTE",
-   "genre": "Rock",
-   "price": null,
-   "links": [
-    {
-     "source": "Ticketmaster",
-     "url": "https://www.ticketmaster.fr/fr/manifestation/bloc-party-interpol-billet/idmanif/639790/idtier/18864121"
-    }
-   ],
-   "first_seen": "2026-10-07",
-   "baseline": true,
-   "last_seen": "2026-10-13",
-   "source_keys": [
-    "Dice:69a7091885d65900016246a5",
-    "Offi:3126533-2026-11-16T19:00",
-    "Ticketmaster:ZkyMmBwZ1A7kF8F"
-   ]
-  },
-  {
-   "id": "ab98c47b7ef6x",
    "title": "Bloc Party + Interpol",
    "date": "2026-11-16",
    "time": "19:00",
@@ -45965,6 +45942,29 @@
     {
      "source": "Offi",
      "url": "https://www.offi.fr/concerts/le-zenith-3401/bloc-party-interpol-3126533.html"
+    }
+   ],
+   "first_seen": "2026-10-07",
+   "baseline": true,
+   "last_seen": "2026-10-13",
+   "source_keys": [
+    "Dice:69a7091885d65900016246a5",
+    "Offi:3126533-2026-11-16T19:00",
+    "Ticketmaster:ZkyMmBwZ1A7kF8F"
+   ]
+  },
+  {
+   "id": "ab98c47b7ef6x",
+   "title": "BLOC PARTY   INTERPOL",
+   "date": "2026-11-16",
+   "time": "19:00",
+   "venue": "ZENITH PARIS - LA VILLETTE",
+   "genre": "Rock",
+   "price": null,
+   "links": [
+    {
+     "source": "Ticketmaster",
+     "url": "https://www.ticketmaster.fr/fr/manifestation/bloc-party-interpol-billet/idmanif/639790/idtier/18864121"
     }
    ],
    "first_seen": "2026-10-07",
@@ -94038,6 +94038,27 @@
    ]
   },
   {
+   "id": "c121172d89c9",
+   "title": "SHYGIRL - SWALLOW! LIVE",
+   "date": "2027-03-16",
+   "time": "18:30",
+   "venue": "Élysée Montmartre",
+   "genre": null,
+   "price": null,
+   "links": [
+    {
+     "source": "Dice",
+     "url": "https://dice.fm/event/6ac9274486507f0001cd2c2d"
+    }
+   ],
+   "first_seen": "2026-10-13",
+   "baseline": false,
+   "last_seen": "2026-10-13",
+   "source_keys": [
+    "Dice:6ac9274486507f0001cd2c2d"
+   ]
+  },
+  {
    "id": "6702f4687ae5",
    "title": "Pokey LaFarge",
    "date": "2027-03-16",
@@ -104038,13 +104059,13 @@
    "title": "TIF",
    "date": "2027-04-29",
    "time": "20:00",
-   "venue": "ACCOR ARENA",
-   "genre": "Hip-Hop/Rap",
+   "venue": "Accor Arena",
+   "genre": "Rap, Musiques urbaines",
    "price": null,
    "links": [
     {
-     "source": "Ticketmaster",
-     "url": "https://www.ticketmaster.fr/fr/manifestation/tif-billet/idmanif/655892/idseance/4315244"
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/palais-omnisports-de-paris-bercy-2913/tif-3225761.html"
     }
    ],
    "first_seen": "2026-10-07",
@@ -104060,13 +104081,13 @@
    "title": "TIF",
    "date": "2027-04-29",
    "time": "20:00",
-   "venue": "Accor Arena",
-   "genre": "Rap, Musiques urbaines",
+   "venue": "ACCOR ARENA",
+   "genre": "Hip-Hop/Rap",
    "price": null,
    "links": [
     {
-     "source": "Offi",
-     "url": "https://www.offi.fr/concerts/palais-omnisports-de-paris-bercy-2913/tif-3225761.html"
+     "source": "Ticketmaster",
+     "url": "https://www.ticketmaster.fr/fr/manifestation/tif-billet/idmanif/655892/idseance/4315244"
     }
    ],
    "first_seen": "2026-10-07",
@@ -106701,16 +106722,16 @@
   },
   {
    "id": "9b02cd4a0359",
-   "title": "YES",
+   "title": "Yes",
    "date": "2027-05-20",
    "time": "20:00",
    "venue": "Olympia",
-   "genre": "Rock",
+   "genre": "Rock, Pop / Rock",
    "price": null,
    "links": [
     {
-     "source": "Ticketmaster",
-     "url": "https://www.ticketmaster.fr/fr/manifestation/yes-billet/idmanif/648160/idtier/18864121"
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/lolympia-2874/yes-3308677.html"
     }
    ],
    "first_seen": "2026-10-07",
@@ -106723,16 +106744,16 @@
   },
   {
    "id": "9b02cd4a0359x",
-   "title": "Yes",
+   "title": "YES",
    "date": "2027-05-20",
    "time": "20:00",
    "venue": "Olympia",
-   "genre": "Rock, Pop / Rock",
+   "genre": "Rock",
    "price": null,
    "links": [
     {
-     "source": "Offi",
-     "url": "https://www.offi.fr/concerts/lolympia-2874/yes-3308677.html"
+     "source": "Ticketmaster",
+     "url": "https://www.ticketmaster.fr/fr/manifestation/yes-billet/idmanif/648160/idtier/18864121"
     }
    ],
    "first_seen": "2026-10-07",

@@ -47,7 +47,7 @@
  {
   "name": "Élysée Montmartre",
   "venue_id": "elysee-montmartre",
-  "total": 76
+  "total": 77
  },
  {
   "name": "Le Baiser Salé",
@@ -172,7 +172,7 @@
  {
   "name": "POPUP!",
   "venue_id": null,
-  "total": 35
+  "total": 36
  },
  {
   "name": "La Bellevilloise",
@@ -290,11 +290,6 @@
   "total": 23
  },
  {
-  "name": "Hasard Ludique",
-  "venue_id": "hasard-ludique",
-  "total": 22
- },
- {
   "name": "Les Trois Baudets",
   "venue_id": null,
   "total": 22
@@ -307,6 +302,11 @@
  {
   "name": "Café de la Danse",
   "venue_id": null,
+  "total": 21
+ },
+ {
+  "name": "Hasard Ludique",
+  "venue_id": "hasard-ludique",
   "total": 21
  },
  {
@@ -451,11 +451,6 @@
  },
  {
   "name": "Accor Arena",
-  "venue_id": null,
-  "total": 12
- },
- {
-  "name": "EMB Sannois",
   "venue_id": null,
   "total": 12
  },

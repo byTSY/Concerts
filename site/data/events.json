@@ -1556,6 +1556,31 @@
   "badge": null
  },
  {
+  "id": "63e3a92d75e9",
+  "title": "Gizmo + D'Accord Simon + Eliah",
+  "date": "2026-10-13",
+  "time": "19:00",
+  "venue": "Supersonic",
+  "venue_id": null,
+  "address": "9 Rue Biscornet, 75012 Paris",
+  "city": "Paris",
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": null,
+  "links": [
+   {
+    "source": "Dice",
+    "url": "https://dice.fm/event/6abbf4a388dd550001136194"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
   "id": "1fe5d7ccb8d9",
   "title": "THE BROOKS",
   "date": "2026-10-13",
@@ -1725,10 +1750,6 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/noor-billet/idmanif/651684/idtier/18864121"
-   },
-   {
-    "source": "Dice",
-    "url": "https://dice.fm/event/699de6b4d0e9630001a2776f"
    }
   ],
   "artists": [],
@@ -8907,31 +8928,6 @@
   "artists": [],
   "description": null,
   "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "9437fdcc7e34",
-  "title": "WAMEN",
-  "date": "2026-10-16",
-  "time": "20:30",
-  "venue": "EMB Sannois",
-  "venue_id": null,
-  "address": "2 Rue du Président Georges Pompidou, 95110 Sannois",
-  "city": "Paris",
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": null,
-  "links": [
-   {
-    "source": "Dice",
-    "url": "https://dice.fm/event/69f8a6d65acc8a00019957b6"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-12",
   "badge": null
  },
  {
@@ -17425,20 +17421,24 @@
   "badge": null
  },
  {
-  "id": "5bf6135f9812",
-  "title": "HYD",
+  "id": "acc8d8308d98",
+  "title": "Hyd",
   "date": "2026-10-21",
   "time": "20:00",
   "venue": "Hasard Ludique",
   "venue_id": "hasard-ludique",
-  "address": null,
-  "city": null,
+  "address": "128 Avenue de Saint-Ouen, 75018 Paris",
+  "city": "Paris",
   "price": null,
   "on_sale": null,
   "status": null,
   "genre": "Électro pop, Pop / Rock",
   "image": null,
   "links": [
+   {
+    "source": "Dice",
+    "url": "https://dice.fm/event/69f35037ff1d7d0001b9584f"
+   },
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/le-hasard-ludique-6987/hyd-3358404.html"
@@ -17622,31 +17622,6 @@
   "artists": [],
   "description": null,
   "first_seen": "2026-10-12",
-  "badge": null
- },
- {
-  "id": "acc8d8308d98",
-  "title": "Hyd + Kahi Baby",
-  "date": "2026-10-21",
-  "time": "20:00",
-  "venue": "Hasard Ludique",
-  "venue_id": "hasard-ludique",
-  "address": "128 Avenue de Saint-Ouen, 75018 Paris",
-  "city": "Paris",
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": null,
-  "links": [
-   {
-    "source": "Dice",
-    "url": "https://dice.fm/event/69f35037ff1d7d0001b9584f"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-07",
   "badge": null
  },
  {
@@ -19337,7 +19312,7 @@
   "badge": "annonce"
  },
  {
-  "id": "2a9b21d79b03",
+  "id": "76d448955937",
   "title": "SMR - Lpee",
   "date": "2026-10-22",
   "time": "20:00",
@@ -19412,7 +19387,7 @@
   "badge": "annonce"
  },
  {
-  "id": "76d448955937",
+  "id": "76d448955937x",
   "title": "SMR + LPEE + TIRI",
   "date": "2026-10-22",
   "time": "20:00",
@@ -29417,7 +29392,7 @@
   "badge": null
  },
  {
-  "id": "390f08ed6e57",
+  "id": "390f08ed6e57x",
   "title": "THE WATCH PLAYS GENESIS",
   "date": "2026-10-29",
   "time": "19:00",
@@ -30118,7 +30093,7 @@
   "badge": null
  },
  {
-  "id": "390f08ed6e57x",
+  "id": "390f08ed6e57",
   "title": "The Watch joue Genesis",
   "date": "2026-10-29",
   "time": "20:00",
@@ -38412,9 +38387,9 @@
   "title": "PASS 3 JOURS - Pitchfork Avant-Garde 2026",
   "date": "2026-11-05",
   "time": "18:30",
-  "venue": "Supersonic",
+  "venue": "POPUP!",
   "venue_id": null,
-  "address": "9 Rue Biscornet, 75012 Paris",
+  "address": "14 Rue Abel, 75012 Paris",
   "city": "Paris",
   "price": null,
   "on_sale": null,
@@ -41104,31 +41079,6 @@
   "badge": null
  },
  {
-  "id": "4129ce4fade7",
-  "title": "Colours In The Street",
-  "date": "2026-11-06",
-  "time": "20:30",
-  "venue": "EMB Sannois",
-  "venue_id": null,
-  "address": "2 Rue du Président Georges Pompidou, 95110 Sannois",
-  "city": "Paris",
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": null,
-  "links": [
-   {
-    "source": "Dice",
-    "url": "https://dice.fm/event/69bc06d13e4a420001265af1"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-12",
-  "badge": null
- },
- {
   "id": "18c0fd0b6480",
   "title": "Gospel Hélios",
   "date": "2026-11-06",
@@ -42728,31 +42678,6 @@
   "artists": [],
   "description": null,
   "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "7d6575c2d4ef",
-  "title": "Robert Finley",
-  "date": "2026-11-07",
-  "time": "20:30",
-  "venue": "EMB Sannois",
-  "venue_id": null,
-  "address": "2 Rue du Président Georges Pompidou, 95110 Sannois",
-  "city": "Paris",
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": null,
-  "links": [
-   {
-    "source": "Dice",
-    "url": "https://dice.fm/event/69ef5cf8d260e4000187e9e3"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-12",
   "badge": null
  },
  {
@@ -48471,31 +48396,6 @@
   "badge": null
  },
  {
-  "id": "5ea16a5870e3",
-  "title": "ZAOUI",
-  "date": "2026-11-13",
-  "time": "19:00",
-  "venue": "EMB Sannois",
-  "venue_id": null,
-  "address": "2 Rue du Président Georges Pompidou, 95110 Sannois",
-  "city": "Paris",
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": null,
-  "links": [
-   {
-    "source": "Dice",
-    "url": "https://dice.fm/event/69ef5af2801f2400013a5c99"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-12",
-  "badge": null
- },
- {
   "id": "e6133359d13b",
   "title": "« Mademoiselle Maya en Ut Intégral » enchante le Théâtre Stéphane Gildas",
   "date": "2026-11-13",
@@ -52420,7 +52320,7 @@
   "badge": null
  },
  {
-  "id": "ab98c47b7ef6",
+  "id": "ab98c47b7ef6x",
   "title": "BLOC PARTY   INTERPOL",
   "date": "2026-11-16",
   "time": "19:00",
@@ -52497,7 +52397,7 @@
   "badge": null
  },
  {
-  "id": "ab98c47b7ef6x",
+  "id": "ab98c47b7ef6",
   "title": "Bloc Party + Interpol",
   "date": "2026-11-16",
   "time": "19:00",
@@ -59076,31 +58976,6 @@
   "badge": null
  },
  {
-  "id": "2298e04f5088",
-  "title": "Laura Cox",
-  "date": "2026-11-21",
-  "time": "20:30",
-  "venue": "EMB Sannois",
-  "venue_id": null,
-  "address": "2 Rue du Président Georges Pompidou, 95110 Sannois",
-  "city": "Paris",
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": null,
-  "links": [
-   {
-    "source": "Dice",
-    "url": "https://dice.fm/event/69fc97ecaa961b0001fd3e3d"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-12",
-  "badge": null
- },
- {
   "id": "7f416eb7d739",
   "title": "VIVALDI - ALBINONI",
   "date": "2026-11-21",
@@ -62751,31 +62626,6 @@
   "badge": null
  },
  {
-  "id": "6e9aa95f9c65",
-  "title": "BALM - AFTERWORK",
-  "date": "2026-11-26",
-  "time": "19:00",
-  "venue": "EMB Sannois",
-  "venue_id": null,
-  "address": "2 Rue du Président Georges Pompidou, 95110 Sannois",
-  "city": "Paris",
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": null,
-  "links": [
-   {
-    "source": "Dice",
-    "url": "https://dice.fm/event/6ac627142348370001ed9fdc"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-12",
-  "badge": null
- },
- {
   "id": "02f76122e4d4",
   "title": "MAMMOTH",
   "date": "2026-11-26",
@@ -66161,31 +66011,6 @@
   "artists": [],
   "description": null,
   "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "5b543572254e",
-  "title": "LES WAMPAS",
-  "date": "2026-11-28",
-  "time": "20:30",
-  "venue": "EMB Sannois",
-  "venue_id": null,
-  "address": "2 Rue du Président Georges Pompidou, 95110 Sannois",
-  "city": "Paris",
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": null,
-  "links": [
-   {
-    "source": "Dice",
-    "url": "https://dice.fm/event/69b97ce6cffc900001abcec8"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-12",
   "badge": null
  },
  {
@@ -72506,31 +72331,6 @@
   "badge": null
  },
  {
-  "id": "11d599bc8e82",
-  "title": "FLORE BENGUIGUI & THE SENSIBLE NOTES",
-  "date": "2026-12-05",
-  "time": "20:30",
-  "venue": "EMB Sannois",
-  "venue_id": null,
-  "address": "2 Rue du Président Georges Pompidou, 95110 Sannois",
-  "city": "Paris",
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": null,
-  "links": [
-   {
-    "source": "Dice",
-    "url": "https://dice.fm/event/6a302a2a02d3c00001e797d2"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-12",
-  "badge": null
- },
- {
   "id": "70f977535488",
   "title": "Orchestre Les Solistes français et Paul Rouger",
   "date": "2026-12-05",
@@ -75931,31 +75731,6 @@
   "artists": [],
   "description": null,
   "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "7b8a98fb14ea",
-  "title": "THE INSPECTOR CLUZO",
-  "date": "2026-12-10",
-  "time": "20:30",
-  "venue": "EMB Sannois",
-  "venue_id": null,
-  "address": "2 Rue du Président Georges Pompidou, 95110 Sannois",
-  "city": "Paris",
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": null,
-  "links": [
-   {
-    "source": "Dice",
-    "url": "https://dice.fm/event/69d62c7954e7d500016f756a"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-12",
   "badge": null
  },
  {
@@ -81161,31 +80936,6 @@
   "artists": [],
   "description": null,
   "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "74d5142dfd2e",
-  "title": "TÉTÉ",
-  "date": "2026-12-17",
-  "time": "20:30",
-  "venue": "EMB Sannois",
-  "venue_id": null,
-  "address": "2 Rue du Président Georges Pompidou, 95110 Sannois",
-  "city": "Paris",
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": null,
-  "links": [
-   {
-    "source": "Dice",
-    "url": "https://dice.fm/event/69ef5f636e431e000113fbc7"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-12",
   "badge": null
  },
  {
@@ -94154,31 +93904,6 @@
   "badge": null
  },
  {
-  "id": "4eefd26f6909",
-  "title": "ZED",
-  "date": "2027-01-30",
-  "time": "20:30",
-  "venue": "EMB Sannois",
-  "venue_id": null,
-  "address": "2 Rue du Président Georges Pompidou, 95110 Sannois",
-  "city": "Paris",
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": null,
-  "links": [
-   {
-    "source": "Dice",
-    "url": "https://dice.fm/event/6a3028df1b98d1000148f3c5"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-12",
-  "badge": null
- },
- {
   "id": "27a0f106daa0",
   "title": "La plus grosse soirée hip-hop, reggaeton de france",
   "date": "2027-01-30",
@@ -104623,31 +104348,6 @@
   "badge": null
  },
  {
-  "id": "5038d05a9e98",
-  "title": "YSÉ",
-  "date": "2027-03-06",
-  "time": "20:30",
-  "venue": "EMB Sannois",
-  "venue_id": null,
-  "address": "2 Rue du Président Georges Pompidou, 95110 Sannois",
-  "city": "Paris",
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": null,
-  "links": [
-   {
-    "source": "Dice",
-    "url": "https://dice.fm/event/6a317e9928d6130001ad81c9"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-12",
-  "badge": null
- },
- {
   "id": "8f84c53c52da",
   "title": "Beethoven : Symphonies n°5 et n°6",
   "date": "2027-03-07",
@@ -107947,6 +107647,31 @@
   "description": null,
   "first_seen": "2026-10-07",
   "badge": null
+ },
+ {
+  "id": "c121172d89c9",
+  "title": "SHYGIRL - SWALLOW! LIVE",
+  "date": "2027-03-16",
+  "time": "18:30",
+  "venue": "Élysée Montmartre",
+  "venue_id": "elysee-montmartre",
+  "address": "72 Boulevard de Rochechouart, 75018 Paris",
+  "city": "Paris",
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": null,
+  "links": [
+   {
+    "source": "Dice",
+    "url": "https://dice.fm/event/6ac9274486507f0001cd2c2d"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-13",
+  "badge": "annonce"
  },
  {
   "id": "6702f4687ae5",
@@ -119773,7 +119498,7 @@
   "badge": null
  },
  {
-  "id": "b68161dad4d2",
+  "id": "b68161dad4d2x",
   "title": "TIF",
   "date": "2027-04-29",
   "time": "20:00",
@@ -119800,7 +119525,7 @@
   "badge": null
  },
  {
-  "id": "b68161dad4d2x",
+  "id": "b68161dad4d2",
   "title": "TIF",
   "date": "2027-04-29",
   "time": "20:00",
@@ -122863,7 +122588,7 @@
   "badge": null
  },
  {
-  "id": "9b02cd4a0359",
+  "id": "9b02cd4a0359x",
   "title": "YES",
   "date": "2027-05-20",
   "time": "20:00",
@@ -122996,7 +122721,7 @@
   "badge": null
  },
  {
-  "id": "9b02cd4a0359x",
+  "id": "9b02cd4a0359",
   "title": "Yes",
   "date": "2027-05-20",
   "time": "20:00",
