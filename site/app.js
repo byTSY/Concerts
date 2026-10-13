@@ -168,16 +168,24 @@ function applyPrefs() {
 const removedKey = (date, venue, title) => `${date}|${normName(venue)}|${normName(title)}`;
 
 // Index des concerts retirés. Un concert se reconnaît à son identifiant ; si cet identifiant n'est
-// plus publié (date, salle ou artiste corrigés par une source), à sa date et, soit à sa salle et son
-// titre, soit à un lien en commun. Même règle que la newsletter (src/newsletter.py, removed_rule).
+// plus publié (salle ou artiste corrigés par une source, par exemple), à la même date et, soit à sa
+// salle et son titre, soit à un lien qu'aucun autre concert du même jour ne porte (page programme
+// d'une salle ou d'un festival écartée). Une date modifiée fait revenir le concert.
+// Même règle que la newsletter (src/newsletter.py, removed_rule).
 function indexRemoved() {
   const ids = new Map(), keys = new Map(), links = new Map();
   const published = new Set(state.events.map((e) => e.id));
+  const linkUse = new Map();  // « date|lien » → nombre de concerts publiés qui le portent
+  for (const e of state.events) {
+    for (const l of e.links || []) linkUse.set(`${e.date}|${l.url}`, (linkUse.get(`${e.date}|${l.url}`) || 0) + 1);
+  }
   for (const r of state.removed) {
     ids.set(r.concert_id, r);
     if (published.has(r.concert_id)) continue;
     if (r.venue && r.title) keys.set(removedKey(r.concert_date, r.venue, r.title), r);
-    for (const u of r.urls || []) links.set(`${r.concert_date}|${u}`, r);
+    for (const u of r.urls || []) {
+      if ((linkUse.get(`${r.concert_date}|${u}`) || 0) <= 1) links.set(`${r.concert_date}|${u}`, r);
+    }
   }
   state.removedIndex = { ids, keys, links };
 }
@@ -208,6 +216,9 @@ async function removeConcert(id) {
   if (star?.status === "going" && !confirm("Vous avez noté des places prises pour ce concert.\n\nLe retirer quand même ? Le statut « Places prises » sera effacé.")) return null;
   const body = { label: starLabel(ev), date: ev.date, venue: ev.venue, title: ev.title,
     urls: (ev.links || []).map((l) => l.url).filter((u) => /^https?:\/\//i.test(u || "")).slice(0, 5) };
+  // ★ envoyée juste avant (clic sur « Intéressé » puis retrait) : attendue, sinon elle arriverait
+  // au serveur après le retrait et reviendrait sur un concert retiré
+  await starQueue.get(id)?.tail;
   const r = await api(`me/removed/${encodeURIComponent(id)}`, { method: "PUT", body });
   setRemoved(r.removed);
   setStars(r.stars);
@@ -1003,6 +1014,7 @@ function openTicket(id) {
   const d = parseDay(ev.date);
   const dlg = $("#ticket");
   dlg.querySelector(".ticket").className = `ticket ${ev.kind}`;
+  dlg.dataset.id = ev.id;  // concert affiché (« Remettre » rouvre la fiche)
   $("#ticket-stub").innerHTML = `
     <div><div class="ticket-day">${d.getDate()}</div>
     <div class="ticket-month">${esc(fmt({ month: "long", year: "numeric" }).format(d))}</div>
@@ -1182,23 +1194,32 @@ function bind() {
 
 // « Ne plus voir ce concert » depuis la fiche : elle se ferme ; « Annuler » dans le message (ou dans
 // la barre des Reels, la fiche ayant été ouverte depuis une fiche Reels)
+let removing = false;  // un seul retrait à la fois (double clic)
 async function removeFromTicket(id) {
+  if (removing) return;
+  removing = true;
   let undo;
   try {
     undo = await removeConcert(id);
   } catch (e) {
     toast(`Retrait impossible : ${e.message}`);
     return;
+  } finally {
+    removing = false;
   }
   if (!undo) return;
+  const ev = state.events.find((e) => e.id === id);
   if ($("#ticket").open) $("#ticket").close();
   const text = "Concert retiré : retrouvez-le dans « Concerts retirés »";
-  if ($("#reels").open) showUndo("Concert retiré", undo);
+  if ($("#reels").open) {
+    dropCard(ev);  // sans attendre l'événement de fermeture de la fiche
+    showUndo("Concert retiré", reelsUndo(ev, undo));
+  }
   else toast(text, { label: "Annuler", run: () => undo().catch((e) => toast(`Annulation impossible : ${e.message}`)) });
 }
 
 async function restoreFromButton(concertId) {
-  const shown = $("#ticket").open ? $("#ticket-artist")?.dataset.id : null;
+  const shown = $("#ticket").open ? $("#ticket").dataset.id : null;
   try {
     await restoreConcert(concertId);
   } catch (e) {

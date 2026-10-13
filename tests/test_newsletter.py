@@ -147,13 +147,18 @@ class Sending(unittest.TestCase):
 
     def test_removed_rule_keeps_other_shows_of_a_published_concert(self):
         """Identifiant encore publié : seul ce concert est retiré, pas une autre séance du même soir."""
+        published = [ev("a1", "2026-11-20", "Razorlight"), ev("a2", "2026-11-20", "Razorlight")]
         rule = newsletter.removed_rule([{"concert_id": "a1", "concert_date": "2026-11-20", "venue": "La Cigale",
-                                         "title": "Razorlight", "urls": []}], {"a1", "a2"})
+                                         "title": "Razorlight", "urls": []}], published)
         self.assertTrue(rule(ev("a1", "2026-11-20", "Razorlight")))
         self.assertFalse(rule(ev("a2", "2026-11-20", "Razorlight")))
-        rule = newsletter.removed_rule([{"concert_id": "zz", "concert_date": "2026-11-20", "venue": None, "title": None,
-                                         "urls": ["https://b.test/1"]}], {"a1"})
-        self.assertTrue(rule({**ev("a1", "2026-11-20", "Autre"), "links": [{"url": "https://b.test/1"}]}))
+        a1 = {**ev("a1", "2026-11-20", "Autre"), "links": [{"url": "https://b.test/1"}]}
+        rows = [{"concert_id": "zz", "concert_date": "2026-11-20", "venue": None, "title": None,
+                 "urls": ["https://b.test/1"]}]
+        self.assertTrue(newsletter.removed_rule(rows, [a1])(a1))
+        # Lien porté par deux concerts du même jour (page programme d'un festival) : ignoré
+        a2 = {**ev("a2", "2026-11-20", "Autre encore"), "links": [{"url": "https://b.test/1"}]}
+        self.assertFalse(newsletter.removed_rule(rows, [a1, a2])(a1))
 
     def test_one_failure_does_not_stop_the_others(self):
         self.db.query("UPDATE users SET newsletter = 1 WHERE id = 'u_bbbbbbbb'")

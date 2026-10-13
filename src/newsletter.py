@@ -90,11 +90,17 @@ def headline(ev, item):
     return ev.get("title") or "Concert"
 
 
-def removed_rule(rows, published):
+def removed_rule(rows, events):
     """Concerts retirés par le membre : fonction qui dit si un concert en fait partie. Même règle
-    que le site (site/app.js, removalOf) : même identifiant ; si cet identifiant n'est plus publié
-    (published : identifiants des concerts publiés), même date et, soit même salle et même titre,
-    soit un lien en commun."""
+    que le site (site/app.js, indexRemoved) : même identifiant ; si cet identifiant n'est plus publié
+    (events : concerts publiés), même date et, soit même salle et même titre, soit un lien
+    qu'aucun autre concert publié du même jour ne porte."""
+    published = {ev.get("id") for ev in events}
+    link_use = {}
+    for ev in events:
+        for link in ev.get("links") or []:
+            key = (ev.get("date"), link.get("url"))
+            link_use[key] = link_use.get(key, 0) + 1
     ids, keys, links = set(), set(), set()
     for r in rows:
         ids.add(r["concert_id"])
@@ -103,7 +109,8 @@ def removed_rule(rows, published):
         if r.get("venue") and r.get("title"):
             keys.add((r["concert_date"], norm(r["venue"]), norm(r["title"])))
         for url in r.get("urls") or []:
-            links.add((r["concert_date"], url))
+            if link_use.get((r["concert_date"], url), 0) <= 1:
+                links.add((r["concert_date"], url))
     def removed(ev):
         if ev.get("id") in ids:
             return True
@@ -114,11 +121,13 @@ def removed_rule(rows, published):
 
 
 def removed_rows(db, member_id):
-    """Concerts retirés du membre ; liste vide si la table manque (migration 0010 non appliquée)."""
+    """Concerts retirés du membre ; liste vide si la table manque (migration 0010 non appliquée) ou
+    si la lecture échoue (signalé)."""
     try:
         rows = db.query("SELECT concert_id, concert_date, venue, title, urls FROM removed_concerts WHERE user_id = ?",
                         [member_id])
-    except Exception:  # noqa: BLE001
+    except Exception as exc:  # noqa: BLE001
+        log(f"  Membre {member_id} : concerts retirés illisibles ({exc.__class__.__name__}), envoyés quand même")
         return []
     for r in rows:
         try:
@@ -289,7 +298,6 @@ def send_all(db, store, collected, cfg=None, today=None, test_member=None):
         return 0
     log(f"Newsletter d'essai pour {test_member} : {'membre trouvé' if targets else 'membre introuvable, suspendu ou sans e-mail'}"
         if test_member else f"Newsletter : {len(targets)} membre(s) abonné(s) à servir")
-    published = {ev.get("id") for ev in events}
     sent, smtp = 0, None
     try:
         for m in targets:
@@ -297,7 +305,7 @@ def send_all(db, store, collected, cfg=None, today=None, test_member=None):
                 overlay = members.read(store, m["id"], "overlay", {}) or {}
                 going = [r["concert_id"] for r in db.query(
                     "SELECT concert_id FROM stars WHERE user_id = ? AND status = 'going'", [m["id"]])]
-                removed = removed_rule(removed_rows(db, m["id"]), published)
+                removed = removed_rule(removed_rows(db, m["id"]), events)
                 announced, recommended, going_rows = sections([ev for ev in events if not removed(ev)],
                                                               overlay, going, today)
                 token = token_for(db, m)

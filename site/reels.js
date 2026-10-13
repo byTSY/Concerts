@@ -201,19 +201,31 @@ async function removeCard() {
     reels.busy = false;
   }
   if (!undo) return;  // places prises : le membre a renoncé
-  const i = Math.max(0, reels.queue.indexOf(ev));
-  reels.queue.splice(i, 1);  // fiche retirée de la file : « précédente » ne la remontre pas
-  // Annuler : le concert revient, et sa fiche aussi si la fenêtre des fiches est encore ouverte
-  showUndo("Concert retiré", async () => {
+  dropCard(ev);
+  showUndo("Concert retiré", reelsUndo(ev, undo));
+}
+
+// Fiche retirée de la file (« précédente » ne la remontre pas) ; la fiche affichée reste la même,
+// sauf si c'était celle-ci (la suivante prend sa place)
+function dropCard(ev) {
+  const i = reels.queue.indexOf(ev);
+  if (i < 0) return;
+  reels.queue.splice(i, 1);
+  if (reels.index > i) reels.index -= 1;
+  if ($("#reels").open) showCard();
+}
+
+// Annuler un retrait fait dans les Reels : le concert revient, et sa fiche aussi, à la place de la
+// fiche affichée, si la fenêtre des fiches est encore ouverte
+function reelsUndo(ev, undo) {
+  return async () => {
     await undo();
-    if (!$("#reels").open || reels.queue.includes(ev)) return;
-    const at = Math.min(reels.index, reels.queue.length);  // à la place de la fiche affichée
+    if (!ev || !$("#reels").open || reels.queue.includes(ev)) return;
+    const at = Math.min(reels.index, reels.queue.length);
     reels.queue.splice(at, 0, ev);
     reels.index = at;
     showCard();
-  });
-  reels.index = i;
-  showCard();
+  };
 }
 
 // « Ne plus recommander l'artiste » : le ou les artistes de la fiche, sans fenêtre de
@@ -353,8 +365,8 @@ function bindReels() {
   $("#ticket").addEventListener("close", () => {
     if (!dlg.open) return;
     const ev = reels.queue[reels.index];
-    if (ev && isRemoved(ev)) reels.queue.splice(reels.index, 1);
-    showCard();
+    if (ev && isRemoved(ev)) dropCard(ev);
+    else showCard();
   });
   // Fiches vues envoyées avant de quitter l'application
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") flushSeen(true); });

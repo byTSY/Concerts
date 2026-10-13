@@ -1006,6 +1006,13 @@ test("concerts retirés : par membre, ★ effacée, remise, contrôles, lignes p
   env.DB.raw.exec("INSERT INTO removed_concerts (user_id, concert_id, concert_date, label, removed_at) VALUES ('u_aaaaaaaa', 'dddddd444444', '2024-01-01', 'vieux', 'x')");
   r = await put("a@test.fr", "eeeeee555555", body);
   assert.deepEqual(r.data.removed.map((x) => x.concert_id), ["eeeeee555555"]);
+  // Plafond atteint avec des lignes passées seulement : elles sont effacées, le retrait passe
+  env.DB.raw.exec("WITH RECURSIVE n(i) AS (SELECT 1 UNION ALL SELECT i + 1 FROM n WHERE i < 1000) " +
+    "INSERT INTO removed_concerts (user_id, concert_id, concert_date, label, removed_at) " +
+    "SELECT 'u_aaaaaaaa', printf('old%09d', i), '2024-01-01', 'vieux', 'x' FROM n");
+  r = await put("a@test.fr", "ffffff666666", body);
+  assert.equal(r.status, 200);
+  assert.equal(r.data.removed.length, 2);
   // Migration 0010 non appliquée : liste vide, retrait refusé proprement
   env.DB.raw.exec("DROP TABLE removed_concerts");
   assert.deepEqual((await call(env, "a@test.fr", getRemoved)).data, []);

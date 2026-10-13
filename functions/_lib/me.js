@@ -359,7 +359,7 @@ export function member(env, user) {
     },
 
     // Retrait d'un concert : la ★ du membre sur ce concert est effacée dans le même lot ; les
-    // retraits de concerts passés (veille comprise, décalage horaire) sont effacés.
+    // retraits de concerts passés (avant la veille, décalage horaire) sont effacés.
     // Renvoie { removed, stars }.
     async removeConcert(concertId, { label, date, venue, title, urls }) {
       if (!CONCERT_ID.test(concertId)) throw new HttpError(400, "identifiant de concert invalide");
@@ -372,6 +372,12 @@ export function member(env, user) {
       const links = (urls || []).map((u) => String(u ?? "").trim())
         .filter((u) => /^https?:\/\//i.test(u) && u.length <= 500);
       const yesterday = new Date(Date.now() - 86400 * 1000).toISOString().slice(0, 10);
+      // Lignes passées effacées d'abord : elles ne comptent pas dans le plafond
+      try {
+        await db.prepare("DELETE FROM removed_concerts WHERE user_id = ? AND concert_date < ?").bind(id, yesterday).run();
+      } catch {
+        throw new HttpError(503, "retrait de concert pas encore disponible", "removed_unavailable");
+      }
       const count = await countRemoved(db, id);
       if (count === null) throw new HttpError(503, "retrait de concert pas encore disponible", "removed_unavailable");
       if (count >= MAX_REMOVED) throw new HttpError(429, `${MAX_REMOVED} concerts retirés au plus`, "too_many");
@@ -382,7 +388,6 @@ export function member(env, user) {
           .bind(id, concertId, date, text, cleanName(venue, 200) || null, cleanName(title, 300) || null,
             JSON.stringify(links), nowIso()),
         db.prepare("DELETE FROM stars WHERE user_id = ? AND concert_id = ?").bind(id, concertId),
-        db.prepare("DELETE FROM removed_concerts WHERE user_id = ? AND concert_date < ?").bind(id, yesterday),
       ]);
       return { removed: await api.removedConcerts(), stars: await api.stars() };
     },
