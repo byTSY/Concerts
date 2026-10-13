@@ -121,6 +121,36 @@ class MembersRun(unittest.TestCase):
         full.assert_not_called()
         self.assertEqual(self.db.query("SELECT COUNT(*) AS n FROM runs")[0]["n"], 0)
 
+    def test_relay_after_finished_computation_does_nothing(self):
+        """Relais du site arrivé après la fin du calcul (--member X --pending) : rien n'est refait."""
+        self.db.query("UPDATE music_sources SET sync_requested_at = ?, last_sync_at = ? WHERE user_id = 'u_aaaaaaaa'",
+                      ["2026-10-12T10:00:00+00:00", "2026-10-12T10:20:00+00:00"])
+        with mock.patch.object(main.cloud, "d1", lambda **k: self.db), \
+                mock.patch.object(main.cloud, "r2", lambda **k: self.store), \
+                mock.patch.object(main, "common") as full, mock.patch.object(main, "run_members") as run, \
+                mock.patch.object(main, "log"), \
+                mock.patch("sys.argv", ["src.main", "members", "--member", "u_aaaaaaaa", "--pending"]):
+            main.main()
+        full.assert_not_called()
+        run.assert_not_called()
+
+    def test_request_during_computation_stays_pending(self):
+        """« Recalculer » pendant le calcul : last_sync_at = début du calcul, la demande attend."""
+        members.record_sync(self.db, "u_aaaaaaaa", ok=True, started_at="2026-10-12T10:00:00+00:00")
+        self.db.query("UPDATE music_sources SET sync_requested_at = ? WHERE user_id = 'u_aaaaaaaa'",
+                      ["2026-10-12T10:05:00+00:00"])  # demande faite pendant le calcul
+        self.assertEqual([m["id"] for m in members.pending(self.db)], ["u_aaaaaaaa"])
+
+    def test_member_still_waiting_is_computed(self):
+        self.db.query("UPDATE music_sources SET sync_requested_at = ? WHERE user_id = 'u_aaaaaaaa'", [NOW])
+        with mock.patch.object(main.cloud, "d1", lambda **k: self.db), \
+                mock.patch.object(main.cloud, "r2", lambda **k: self.store), \
+                mock.patch.object(main, "collection_is_stale", return_value=False), \
+                mock.patch.object(main, "run_members") as run, mock.patch.object(main, "log"), \
+                mock.patch("sys.argv", ["src.main", "members", "--member", "u_aaaaaaaa", "--pending"]):
+            main.main()
+        self.assertEqual([m["id"] for m in run.call_args.args[3]], ["u_aaaaaaaa"])
+
 
 if __name__ == "__main__":
     unittest.main()

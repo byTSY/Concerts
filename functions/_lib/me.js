@@ -21,6 +21,8 @@ const VISIBILITY = new Set(["private", "members"]);
 const CONCERT_ID = /^[a-z0-9]{6,40}$/;
 const MAX_SEEN_PER_CALL = 50;
 const SEEN_KEEP_DAYS = 400;
+const SYNC_RELAY_MINUTES = 15;
+const SYNC_RELAY_MAX = 3;  // relais par demande de calcul
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // --- Catalogue des salles (spécification, sections 12 et 13.1) ---------------------------
@@ -524,6 +526,29 @@ export function member(env, user) {
       if (src.provider_user_id && src.provider_user_id !== spotifyId) await api.deleteFiles();
       user.status = "computing";
       return api.profile();
+    },
+
+    // Relais du calcul demandé (ouverture du site) : demande de plus de 15 minutes, toujours sans
+    // résultat (même règle que members.pending côté traitement), dernier relais de plus de
+    // 15 minutes, 3 relais au plus par demande (tâche arrêtée avant la fin : pas de relance sans
+    // fin). Pas de relais le lundi de 5 h à 9 h UTC : un lancement remplacerait le traitement
+    // hebdomadaire en attente (GitHub ne garde qu'un lancement en attente par groupe).
+    // Mise à jour conditionnelle : un seul relais même si deux pages s'ouvrent ensemble.
+    // Renvoie vrai si le calcul doit être relancé.
+    async claimSyncRelay(at = new Date()) {
+      if (at.getUTCDay() === 1 && at.getUTCHours() >= 5 && at.getUTCHours() < 9) return false;
+      const now = nowIso();
+      const cutoff = new Date(Date.now() - SYNC_RELAY_MINUTES * 60 * 1000).toISOString().replace(/\.\d{3}Z$/, "+00:00");
+      const r = await db.prepare(
+        "UPDATE music_sources SET sync_relayed_at = ?, sync_relay_count = CASE " +
+        "WHEN COALESCE(sync_relayed_at, '') < sync_requested_at THEN 1 ELSE sync_relay_count + 1 END " +
+        "WHERE user_id = ? AND status = 'connected' " +
+        "AND sync_requested_at IS NOT NULL AND sync_requested_at < ? AND COALESCE(sync_relayed_at, '') < ? " +
+        `AND (COALESCE(sync_relayed_at, '') < sync_requested_at OR sync_relay_count < ${SYNC_RELAY_MAX}) ` +
+        "AND EXISTS (SELECT 1 FROM users u WHERE u.id = music_sources.user_id AND u.status IN ('active', 'error', 'computing') " +
+        "AND (u.status = 'computing' OR music_sources.sync_requested_at > COALESCE(music_sources.last_sync_at, '')))")
+        .bind(now, id, cutoff, cutoff).run();
+      return Boolean(r.meta?.changes);
     },
 
     // « Synchroniser maintenant » : une demande par heure au plus
