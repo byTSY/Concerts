@@ -42,6 +42,10 @@ import * as adminVenues from "../functions/api/admin/venues/index.js";
 import * as adminVenue from "../functions/api/admin/venues/[id]/index.js";
 import * as adminApprove from "../functions/api/admin/venues/[id]/approve.js";
 import * as adminReject from "../functions/api/admin/venues/[id]/reject.js";
+import * as invitationRoute from "../functions/invitation/[[path]].js";
+import * as adminInvitations from "../functions/api/admin/invitations/index.js";
+import * as adminInvitation from "../functions/api/admin/invitations/[id]/index.js";
+import * as adminRenew from "../functions/api/admin/invitations/[id]/renew.js";
 
 // --- D1 et R2 simulés --------------------------------------------------------------
 
@@ -747,4 +751,71 @@ test("salles : autres noms trop généraux refusés, https exigé, recoupements 
   assert.equal(again.data.status, "approved");
   // Membre seulement invité : ses ★ ne sont pas montrés
   assert.deepEqual((await call(env, "c@test.fr", communityRoute.onRequestGet, { path: "/api/community/stars" })).data, []);
+});
+
+// --- Liens d'invitation -------------------------------------------------------------------
+
+// Page publique /invitation/<jeton> (hors /api : pas de jeton Access)
+async function invitationPage(env, token, { method = "GET", form, headers = {} } = {}) {
+  const init = { method, headers: { ...headers } };
+  if (form) {
+    init.body = new URLSearchParams(form).toString();
+    init.headers["content-type"] = "application/x-www-form-urlencoded";
+  }
+  const r = await invitationRoute.onRequest({ request: new Request(`https://concerts.test/invitation/${token}`, init), env, params: { path: [token] } });
+  return { status: r.status, html: await r.text(), headers: r.headers };
+}
+
+test("lien d'invitation : créé par l'admin, jeton jamais gardé en clair, usage unique", async () => {
+  const env = setup();
+  assert.equal((await call(env, "a@test.fr", adminInvitations.onRequestPost, { method: "POST", path: "/api/admin/invitations", body: { first_name: "Hugo" } })).status, 403);
+  const created = await call(env, "c@test.fr", adminInvitations.onRequestPost, { method: "POST", path: "/api/admin/invitations", body: { first_name: " Hugo " } });
+  assert.equal(created.status, 201);
+  const link = new URL(created.data.link);
+  assert.equal(link.origin, "https://concerts.test");
+  const token = link.pathname.split("/").pop();
+  assert.ok(!JSON.stringify(env.DB.raw.prepare("SELECT * FROM invitations").all()).includes(token), "jeton gardé en clair");
+  const listed = (await call(env, "c@test.fr", adminInvitations.onRequestGet, { path: "/api/admin/invitations" })).data;
+  assert.deepEqual([listed.length, listed[0].first_name, listed[0].expired], [1, "Hugo", false]);
+  assert.ok(!JSON.stringify(listed).includes(token));
+
+  const page = await invitationPage(env, token);
+  assert.equal(page.status, 200);
+  assert.match(page.html, /Bonjour Hugo/);
+  assert.equal(page.headers.get("referrer-policy"), "same-origin");
+  assert.equal((await invitationPage(env, "x".repeat(43))).status, 410);                       // jeton inconnu
+  // Envoi depuis un autre site : refusé ; adresses différentes : formulaire à nouveau
+  assert.equal((await invitationPage(env, token, { method: "POST", form: { email: "h@x.fr", email2: "h@x.fr" }, headers: { origin: "https://pirate.example" } })).status, 403);
+  assert.equal((await invitationPage(env, token, { method: "POST", form: { email: "h@x.fr", email2: "h@x.fr" }, headers: { "sec-fetch-site": "cross-site", origin: "null" } })).status, 403);
+  // Formulaire de la page elle-même, origine masquée par le navigateur : accepté (adresses différentes ici)
+  assert.match((await invitationPage(env, token, { method: "POST", form: { email: "h@x.fr", email2: "z@x.fr" }, headers: { "sec-fetch-site": "same-origin", origin: "null" } })).html, /diffèrent/);
+  assert.match((await invitationPage(env, token, { method: "POST", form: { email: "h@x.fr", email2: "autre@x.fr" } })).html, /diffèrent/);
+  assert.match((await invitationPage(env, token, { method: "POST", form: { email: "A@test.fr", email2: "a@test.fr" } })).html, /déjà inscrite/);
+  const done = await invitationPage(env, token, { method: "POST", form: { email: "Hugo@Mail.FR", email2: "hugo@mail.fr" } });
+  assert.match(done.html, /C&#39;est fait|C'est fait/);
+  const user = env.DB.raw.prepare("SELECT first_name, status, role FROM users WHERE email = 'hugo@mail.fr'").get();
+  assert.deepEqual([user.first_name, user.status, user.role], ["Hugo", "invited", "member"]);
+  assert.equal(env.DB.raw.prepare("SELECT COUNT(*) AS n FROM invitations").get().n, 0);
+  // Deuxième usage : refusé
+  assert.equal((await invitationPage(env, token, { method: "POST", form: { email: "autre@mail.fr", email2: "autre@mail.fr" } })).status, 410);
+  // La personne inscrite se connecte ensuite normalement
+  assert.equal((await call(env, "hugo@mail.fr", getMe)).data.first_name, "Hugo");
+});
+
+test("lien d'invitation : expiration, nouveau lien (l'ancien ne marche plus), suppression", async () => {
+  const env = setup();
+  const created = await call(env, "c@test.fr", adminInvitations.onRequestPost, { method: "POST", path: "/api/admin/invitations", body: { first_name: "Inès" } });
+  const old = new URL(created.data.link).pathname.split("/").pop();
+  const id = created.data.invitation.id;
+  const renewed = await call(env, "c@test.fr", adminRenew.onRequestPost, { method: "POST", path: `/api/admin/invitations/${id}/renew`, params: { id } });
+  const fresh = new URL(renewed.data.link).pathname.split("/").pop();
+  assert.notEqual(fresh, old);
+  assert.equal((await invitationPage(env, old)).status, 410);
+  assert.equal((await invitationPage(env, fresh)).status, 200);
+  env.DB.raw.exec("UPDATE invitations SET expires_at = '2020-01-01T00:00:00+00:00'");
+  assert.equal((await invitationPage(env, fresh)).status, 410);
+  assert.equal((await call(env, "c@test.fr", adminInvitations.onRequestGet, { path: "/api/admin/invitations" })).data[0].expired, true);
+  const del = await call(env, "c@test.fr", adminInvitation.onRequestDelete, { method: "DELETE", path: `/api/admin/invitations/${id}`, params: { id } });
+  assert.equal(del.data.deleted, true);
+  assert.equal(env.DB.raw.prepare("SELECT COUNT(*) AS n FROM invitations").get().n, 0);
 });

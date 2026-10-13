@@ -103,8 +103,12 @@ il s'arrête aussitôt (c. 1 minute de GitHub Actions) et n'enregistre aucun tra
 
 ### Membres : invitation, arrivée, compte
 
-- **Admin** (onglet visible du seul admin) : inviter (e-mail, prénom ; l'adresse est ajoutée
-  à la liste Access des membres ; bouton « Envoyer par SMS », qui ouvre l'application Messages
+- **Admin** (onglet visible du seul admin) : inviter par un lien personnel (prénom seul : la
+  personne ouvre le lien, `/invitation/<jeton>`, et y saisit son adresse ; lien à usage unique,
+  valable 7 jours, « Nouveau lien » ou « Supprimer » tant qu'il n'a pas servi ; le chemin
+  `/invitation/` doit être ouvert à tous dans Cloudflare Access, comme `/partage/`), ou par
+  e-mail et prénom (l'adresse est ajoutée
+  à la liste Access des membres) ; bouton « Envoyer par SMS », qui ouvre l'application Messages
   avec le lien prérempli, et message complet à copier ; « Inviter par SMS » renvoie l'invitation
   d'un membre pas encore arrivé), suspendre
   (accès coupé aussitôt, données gardées), réactiver, supprimer (tout est effacé), relancer un

@@ -40,7 +40,7 @@ un petit groupe (moins de 10 membres en phase de test) :
 | Une source par membre | Deezer ou Spotify, modifiable depuis Mon compte. |
 | Moteur de découvertes | Graphe des artistes similaires Deezer pour tous les membres, y compris ceux sur Spotify (section 6.4). |
 | Connexion à l'application | Cloudflare Access, code à usage unique reçu par e-mail. |
-| Inscription | L'admin invite (e-mail, prénom) ; le membre choisit et relie sa source à sa première connexion. |
+| Inscription | L'admin invite par un lien personnel (prénom seul ; la personne y saisit son e-mail) ou par e-mail et prénom ; le membre choisit et relie sa source à sa première connexion. Ajout du 13 octobre 2026. |
 | Données personnelles | Hors de GitHub : Cloudflare D1 (base SQL) et R2 (fichiers). |
 | Données communes | Concerts collectés, caches Deezer, salles observées : dans le dépôt, comme aujourd'hui. |
 | Ce que voit l'admin | Statut, connexions, activité, nombre de concerts mis de côté (★), état de la synchronisation. Jamais le contenu (artistes, concerts choisis, préférences). |
@@ -343,6 +343,8 @@ d'artistes Spotify non rapprochés de Deezer.
 |---|---|
 | `GET /api/admin/members` | par membre : nom affiché, e-mail, statut, source (Deezer / Spotify), état de synchronisation, dernière connexion, connexions et activité sur 30 jours, nombre de ★ |
 | `POST /api/admin/members` | invitation `{ email, first_name }` ; ajout à la liste Access ; renvoie le lien à transmettre |
+| `GET` / `POST /api/admin/invitations` | liens d'invitation en attente ; nouveau lien `{ first_name }` (jeton aléatoire, empreinte seule gardée, usage unique, 7 jours) |
+| `POST /api/admin/invitations/:id/renew`, `DELETE /api/admin/invitations/:id` | nouveau lien (l'ancien ne marche plus), suppression |
 | `GET /api/admin/spotify` | places utilisées / `SPOTIFY_MAX_USERS` ; demandes à ajouter (nom et e-mail du compte Spotify) ; comptes à retirer après suppression |
 | `POST /api/admin/spotify/:user/allowlisted` | l'admin confirme l'ajout dans le tableau de bord Spotify : `ready_to_connect` |
 | `POST /api/admin/spotify/:user/removed` | l'admin confirme le retrait : place libérée, nom et e-mail Spotify effacés |
@@ -407,7 +409,10 @@ validation des salles et relance des calculs se font dans la console Concert.
 
 ## 11. Arrivée d'un membre : choix de la source
 
-1. L'admin invite (e-mail, prénom) ; il transmet lui-même le lien (WhatsApp, e-mail).
+1. L'admin invite : soit par un lien personnel créé pour un prénom, que la personne ouvre
+   (`/invitation/<jeton>`, chemin ouvert à tous dans Access, comme `/partage`) pour y saisir son
+   adresse, alors inscrite et ajoutée à la liste Access ; soit par e-mail et prénom. Il transmet
+   lui-même le lien (SMS prérempli, WhatsApp, e-mail).
 2. Le membre se connecte (code Access). Statut `onboarding`. Texte court sur les données
    conservées (e-mail, prénom ou pseudo, source musicale, préférences) et la suppression
    possible à tout moment.

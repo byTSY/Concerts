@@ -43,12 +43,26 @@ function invitationSms(member, link) {
 // Android, à confirmer sur les téléphones des membres.
 const smsHref = (text) => `sms:?&body=${encodeURIComponent(text)}`;
 
+// Invitation par lien (adresse inconnue) : la personne saisit elle-même son e-mail
+function linkInvitationText(first, link) {
+  return `Bonjour ${first},\n\nJe vous invite sur Concerts à Paris, qui repère les concerts de vos artistes à Paris à partir de votre bibliothèque Deezer ou Spotify.\n\n` +
+    `Ouvrez ce lien personnel, valable 7 jours, et indiquez votre adresse e-mail : ${link}\n\n` +
+    `Vous vous connecterez ensuite avec un code reçu par e-mail. Sur Deezer, il vous faudra le lien de votre profil, qui doit être public ; sur Spotify, l'adresse e-mail de votre compte Spotify.`;
+}
+
+function linkInvitationSms(first, link) {
+  return `Bonjour ${first}, je vous invite sur Concerts à Paris, qui repère les concerts de vos artistes à Paris. ` +
+    `Ouvrez ce lien personnel (valable 7 jours) et indiquez votre adresse e-mail : ${link}`;
+}
+
 // Message d'invitation : texte complet à copier, SMS prérempli, partage du téléphone. Un seul
 // message affiché à la fois ; les boutons sont cherchés dans leur propre bloc.
 function showInvitation(out, member, link, intro, notes = "") {
-  const text = invitationText(member, link);
-  const sms = invitationSms(member, link);
-  for (const other of document.querySelectorAll("#invite-result, #admin-action-result")) {
+  showMessage(out, intro, invitationSms(member, link), invitationText(member, link), notes);
+}
+
+function showMessage(out, intro, sms, text, notes = "") {
+  for (const other of document.querySelectorAll("#invite-result, #link-result, #admin-action-result")) {
     if (other !== out) other.innerHTML = "";
   }
   out.innerHTML = `<p>${intro}</p>
@@ -60,6 +74,38 @@ function showInvitation(out, member, link, intro, notes = "") {
   out.querySelector(".js-copy").addEventListener("click", (ev) => copyText(ev.target, text, out.querySelector(".js-text")));
   out.querySelector(".js-share")?.addEventListener("click", () => navigator.share({ text: sms }).catch(() => {}));
   out.querySelector(".js-sms").focus();
+}
+
+// Lien d'invitation créé ou renouvelé : SMS prérempli, message complet
+function showLink(out, r) {
+  const first = r.invitation.first_name;
+  showMessage(out, `Lien d'invitation pour <strong>${esc(first)}</strong>, valable jusqu'au ${esc(fmtDateTime(r.invitation.expires_at))}. Il ne sert qu'une fois :`,
+    linkInvitationSms(first, r.link), linkInvitationText(first, r.link));
+}
+
+// Liens en attente : nouveau lien (l'ancien ne marche plus) ou suppression
+function linksBlock(links) {
+  if (!links?.length) return "";
+  return `<h3>Liens envoyés, pas encore utilisés</h3><ul class="plain-list">${links.map((l) => `<li>${esc(l.first_name)}
+      <span class="cell-sub">${l.expired ? "expiré" : `valable jusqu'au ${esc(fmtDateTime(l.expires_at))}`}</span>
+      <button class="link-btn" data-link="renew" data-id="${esc(l.id)}">Nouveau lien</button>
+      <button class="link-btn" data-link="delete" data-id="${esc(l.id)}" data-name="${esc(l.first_name)}">Supprimer</button></li>`).join("")}</ul>`;
+}
+
+async function linkAction({ link: action, id, name }) {
+  try {
+    if (action === "delete") {
+      if (!confirm(`Supprimer le lien d'invitation de ${name} ? Il ne fonctionnera plus.`)) return;
+      await api(`admin/invitations/${encodeURIComponent(id)}`, { method: "DELETE" });
+      await renderAdmin();
+      toast("Lien supprimé");
+      return;
+    }
+    const r = await api(`admin/invitations/${encodeURIComponent(id)}/renew`, { method: "POST" });
+    await renderAdmin();
+    showLink($("#link-result") || $("#admin"), r);
+    toast("Nouveau lien : l'ancien ne fonctionne plus");
+  } catch (err) { toast(err.message); }
 }
 
 // Salles proposées par les membres (section 13.1) : correction éventuelle, puis décision
@@ -158,10 +204,11 @@ function spotifySection(sp) {
 async function renderAdmin() {
   const box = $("#admin");
   box.innerHTML = `<p class="cell-sub">Chargement…</p>`;
-  let list, runs, spotify, pendingVenues;
+  let list, runs, spotify, pendingVenues, links;
   try {
-    [list, runs, spotify, pendingVenues] = await Promise.all([api("admin/members"), api("admin/runs"),
-      api("admin/spotify").catch(() => null), api("admin/venues?status=pending").catch(() => null)]);
+    [list, runs, spotify, pendingVenues, links] = await Promise.all([api("admin/members"), api("admin/runs"),
+      api("admin/spotify").catch(() => null), api("admin/venues?status=pending").catch(() => null),
+      api("admin/invitations").catch(() => null)]);
   } catch (e) {
     box.innerHTML = `<p class="prefs-warning">Espace admin illisible : ${esc(e.message)}</p>`;
     return;
@@ -192,12 +239,22 @@ async function renderAdmin() {
   box.innerHTML = `
     <section class="account-block">
       <h2 class="month-title">Inviter</h2>
-      <form id="invite-form" class="account-form inline">
-        <label for="invite-email">E-mail</label><input id="invite-email" type="email" required autocomplete="off">
-        <label for="invite-name">Prénom</label><input id="invite-name" type="text" required maxlength="40" autocomplete="off">
-        <button class="btn" type="submit">Inviter</button>
+      <p class="cell-sub">Saisissez le prénom : vous obtenez un lien personnel à envoyer par SMS. La personne y indique elle-même son adresse e-mail.</p>
+      <form id="link-form" class="account-form inline">
+        <label for="link-name">Prénom</label><input id="link-name" type="text" required maxlength="40" autocomplete="off">
+        <button class="btn" type="submit">Créer le lien et préparer le SMS</button>
       </form>
-      <div id="invite-result" aria-live="polite"></div>
+      <div id="link-result" aria-live="polite"></div>
+      ${linksBlock(links)}
+      <details class="invite-email">
+        <summary>Vous connaissez déjà son adresse e-mail ?</summary>
+        <form id="invite-form" class="account-form inline">
+          <label for="invite-email">E-mail</label><input id="invite-email" type="email" required autocomplete="off">
+          <label for="invite-name">Prénom</label><input id="invite-name" type="text" required maxlength="40" autocomplete="off">
+          <button class="btn" type="submit">Inviter et préparer le SMS</button>
+        </form>
+        <div id="invite-result" aria-live="polite"></div>
+      </details>
     </section>
     <section class="account-block">
       <h2 class="month-title">Membres (${list.length})</h2>
@@ -213,6 +270,22 @@ async function renderAdmin() {
       ${runs.length ? `<div class="table-wrap"><table><thead><tr><th>Début</th><th>Type</th><th>Résultat</th></tr></thead><tbody>${runRows}</tbody></table></div>` : `<p class="cell-sub">Aucun traitement enregistré.</p>`}
     </section>`;
 
+  $("#link-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const submit = e.target.querySelector("button[type=submit]");
+    submit.disabled = true;
+    let r;
+    try {
+      r = await api("admin/invitations", { method: "POST", body: { first_name: $("#link-name").value } });
+    } catch (err) {
+      submit.disabled = false;
+      $("#link-result").innerHTML = `<p class="prefs-warning">${esc(err.message)}</p>`;
+      return;
+    }
+    await renderAdmin();
+    showLink($("#link-result") || $("#admin"), r);
+  });
+  box.querySelectorAll("[data-link]").forEach((b) => b.addEventListener("click", () => linkAction(b.dataset)));
   $("#invite-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const submit = e.target.querySelector("button[type=submit]");
@@ -228,6 +301,8 @@ async function renderAdmin() {
     // Invitation créée : tableau rechargé, puis message à transmettre (affiché même si le
     // rechargement échoue)
     await renderAdmin();
+    const details = $("details.invite-email");
+    if (details) details.open = true;
     const out = $("#invite-result") || $("#admin");
     showInvitation(out, r.member, r.link, `Invitation créée pour <strong>${esc(r.member.first_name)}</strong>. Transmettez-lui le lien :`,
       accessNote(r.access, "ajouter l'adresse à la liste des membres"));
