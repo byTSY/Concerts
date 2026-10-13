@@ -48,7 +48,7 @@ un petit groupe (moins de 10 membres en phase de test) :
 | Console admin | Toute la gestion des membres se fait depuis la console Concert. Seul geste hors de Concert : ajouter ou retirer un membre Spotify chez Spotify, par un lien direct et des informations copiables en un clic (section 10). |
 | Suppression par le membre | Possible depuis Mon compte, double confirmation. |
 | Nom affiché | Prénom saisi par l'admin ; le membre peut le remplacer par un pseudo. |
-| Communauté v1 | Catalogue des salles commun, ★ visibles des membres au choix du membre, statut « j'y vais ». |
+| Communauté v1 | Catalogue des salles commun, ★ visibles des membres au choix du membre, statut « Places prises » (ancien « Places prises »). |
 | Nouvelle salle | Proposée par un membre, publiée après validation de l'admin. |
 | Réglages communs | Zone (Paris, 12 km), horizon (12 mois), barème du score. |
 | Historique git | Les données personnelles de l'admin déjà présentes dans l'historique y restent ; purge facultative, hors périmètre. |
@@ -394,7 +394,7 @@ Salles), plus **Mon compte** : nom affiché et pseudo ; source (Deezer ou Spotif
 profil, dernière synchronisation, « Synchroniser maintenant », « Changer de source ») ;
 visibilité par défaut des ★ ; suppression du compte. Dans Salles : « Proposer une salle ».
 Fiche d'un concert : bloc « Membres », choix privé / visible lors de la mise de côté, statut
-« j'y vais ». Liens d'écoute : Spotify en premier pour un membre Spotify.
+« Places prises ». Liens d'écoute : Spotify en premier pour un membre Spotify.
 
 **Admin** (onglet visible du seul admin) : **Membres** (tableau et actions), **Spotify**
 (places, demandes à ajouter avec bouton copier, comptes à retirer), **Salles à valider**,
@@ -466,7 +466,7 @@ validation des salles et relance des calculs se font dans la console Concert.
 d'une action du membre et peut être retiré.
 
 - **★ partagés** : à la mise de côté, « privé » (défaut, réglable) ou « visible par les
-  membres ». Fiche du concert : « Intéressés : Marie, Paul » et « Y vont : Léa ». Filtre
+  membres ». Fiche du concert : « Intéressés : Marie, Paul » et « Ont leurs places : Léa ». Filtre
   « Avec les membres ».
 - **« Places prises »** (ancien « J'y vais », renommé en version 1.3.0) : second niveau du ★ (`going`),
   même règle de visibilité.
@@ -565,7 +565,7 @@ l'admin.
    Spotify de l'admin (ou d'un testeur) produit un univers cohérent, que la révocation chez
    Spotify passe la source en `revoked` sans bloquer les autres, et que la 6e demande est
    refusée.
-5. **Communauté v1** : ★ partagés, « j'y vais », propositions de salles.
+5. **Communauté v1** : ★ partagés, « Places prises », propositions de salles.
 6. **Phase de test** avec 2 ou 3 membres : mesures (section 8.3), réglage de Bandsintown et du
    poids `top_artist`.
 

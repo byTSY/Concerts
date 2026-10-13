@@ -22,7 +22,18 @@ Comprend les changements de 1.5.1 (non publiée seule).
 - Fiche /partage/ ouverte depuis la newsletter (?app=1) : boutons « Ouvrir dans l'app » et
   « ★ Ajouter à mes Intéressés ». L'application ouvre la fiche du concert (?concert=<id>) et,
   pour le second, l'ajoute aux Intéressés s'il n'y est pas ; l'adresse est ensuite nettoyée.
-  Une fiche partagée à quelqu'un d'autre (sans ?app=1) ne montre pas ces boutons.
+  Une fiche partagée à quelqu'un d'autre (sans ?app=1) ne montre pas ces boutons. L'ajout par
+  lien est toujours privé, avec « Annuler » (un lien venu d'ailleurs ne peut rien rendre visible).
+- Revue complète du code, corrections :
+  - workflow : relance de sécurité suspendue le lundi de 5 h à 9 h UTC (elle pouvait remplacer le
+    traitement du lundi en attente) ; newsletter dans une tâche à part, envoyée même si la tâche
+    membres échoue ou dépasse son délai (porté à 120 min) ; collecte publiée par la tâche membres
+    seulement si elle l'a refaite ;
+  - liens des sources (billetteries, écoute) limités à http(s) sur le site et la fiche /partage/ ;
+    photo de la fiche encodée ; en-têtes de sécurité sur la page de désabonnement ;
+  - newsletter : membre supprimé pendant l'envoi ignoré ; « Humour » écarté avec l'humour et le
+    théâtre ; grandes salles lues une fois par traitement ; fiches Reels vues conservées pendant
+    un envoi en cours ; textes « j'y vais » restants mis à jour.
 Aucune migration D1.
 
 ## 1.5.1 (13 octobre 2026)
@@ -41,7 +52,7 @@ Newsletter du lundi.
 - À la fin du traitement programmé du lundi, un e-mail HTML par membre actif abonné : concerts de
   ses artistes annoncés cette semaine, recommandations des 30 jours suivants (ses artistes puis
   découvertes, 15 au plus), ses prochains concerts (« Places prises ») ; liens vers les fiches
-  /partage/ et le site. Aucun envoi si les trois parties sont vides ; un envoi par jour au plus.
+  /partage/ et le site. Aucun envoi si les trois parties sont vides ; un envoi par semaine au plus.
 - Envoi SMTP (src/newsletter.py, étape « Newsletter du lundi » de weekly.yml) : compte Gmail dédié
   avec mot de passe d'application, ou relais Brevo. Secrets GitHub SMTP_HOST, SMTP_PORT,
   SMTP_USER, SMTP_PASSWORD, NEWSLETTER_FROM ; sans eux, aucun envoi et le traitement continue.

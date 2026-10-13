@@ -6,10 +6,10 @@ Contenu, à partir de la dernière collecte (R2 common/collected.json), des rés
 2. recommandations des 30 jours suivants (ses artistes et découvertes, 15 au plus) ;
 3. ses prochains concerts (« Places prises »).
 
-Envoi par SMTP (compte Gmail dédié avec mot de passe d'application, ou relais Brevo) :
+Envoi par SMTP (relais Brevo, ou compte Gmail avec mot de passe d'application) :
 SMTP_HOST, SMTP_PORT (587 STARTTLS, 465 SSL), SMTP_USER, SMTP_PASSWORD, NEWSLETTER_FROM
 (facultatif, SMTP_USER par défaut), SITE_URL (facultatif). Sans réglage SMTP : rien n'est envoyé,
-le traitement continue. Un membre reçoit au plus un envoi par jour (users.newsletter_sent_at),
+le traitement continue. Un membre reçoit au plus un envoi par semaine (6 jours, users.newsletter_sent_at),
 seulement s'il est actif, abonné (users.newsletter) et que l'e-mail a un contenu.
 """
 import os
@@ -197,12 +197,13 @@ def recipients(db, today, test_member=None):
 
 
 def token_for(db, member):
+    """Jeton du lien de désabonnement ; None si le membre a été supprimé entre-temps."""
     if member.get("newsletter_token"):
         return member["newsletter_token"]
     token = secrets.token_urlsafe(24)
     db.query("UPDATE users SET newsletter_token = ? WHERE id = ? AND newsletter_token IS NULL", [token, member["id"]])
     rows = db.query("SELECT newsletter_token FROM users WHERE id = ?", [member["id"]])
-    return rows[0]["newsletter_token"] if rows else token
+    return rows[0]["newsletter_token"] if rows and rows[0]["newsletter_token"] else None
 
 
 def message(cfg, to, subject, text, html, unsubscribe):
@@ -255,7 +256,11 @@ def send_all(db, store, collected, cfg=None, today=None, test_member=None):
                 going = [r["concert_id"] for r in db.query(
                     "SELECT concert_id FROM stars WHERE user_id = ? AND status = 'going'", [m["id"]])]
                 announced, recommended, going_rows = sections(events, overlay, going, today)
-                unsubscribe = f"{cfg['site']}/partage/desabonnement/{token_for(db, m)}"
+                token = token_for(db, m)
+                if not token:
+                    log(f"  Membre {m['id']} : supprimé entre-temps, rien envoyé")
+                    continue
+                unsubscribe = f"{cfg['site']}/partage/desabonnement/{token}"
                 built = build_email(m.get("pseudo") or m["first_name"], announced, recommended, going_rows,
                                     cfg["site"], unsubscribe)
                 if not built:

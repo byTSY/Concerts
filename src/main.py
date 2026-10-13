@@ -157,13 +157,23 @@ def collection_is_stale(db):
     return datetime.now(timezone.utc) - when > timedelta(days=STALE_DAYS)
 
 
+def mark_common_redone():
+    """Signale au workflow que la tâche membres a refait la collecte : seule cette situation
+    autorise sa publication en fin de tâche (sinon un fichier préparé par une tâche commune
+    dont l'envoi sur GitHub a échoué serait publié)."""
+    out = os.environ.get("GITHUB_OUTPUT")
+    if out:
+        with open(out, "a", encoding="utf-8") as f:
+            f.write("redid_common=true\n")
+
+
 class MemberGone(Exception):
     """Membre supprimé, suspendu ou passé à une autre source pendant son calcul."""
 
 
 # --- Tâche membres -----------------------------------------------------------------------
 
-def compute_member(m, collected, settings, db, store, budget):
+def compute_member(m, collected, settings, db, store, budget, excluded=None):
     """Calcule un membre : source, préférences, rapprochement, découvertes, historique, R2."""
     uid = m["id"]
     read_library = LIBRARIES.get(m["provider"])
@@ -178,7 +188,7 @@ def compute_member(m, collected, settings, db, store, budget):
     events = copy.deepcopy(collected["events"])
     events = match.mark_favorites(events, members.favorite_venues(db, uid))
     events = match.match_known(events, match.ArtistIndex(artists))
-    events = discover.score_events(events, artists, settings, hidden_keys, budget)
+    events = discover.score_events(events, artists, settings, hidden_keys, budget, excluded)
 
     member_history = members.read(store, uid, "history")
     new_history = history.update_member(events, member_history, set(collected["kept_ids"]))
@@ -200,6 +210,7 @@ def run_members(settings, db, store, selection, collected=None, kind="weekly"):
         raise SystemExit("Aucune collecte enregistrée (common/collected.json) : lancez d'abord la tâche commune.")
     run_id = members.start_run(db, kind)
     budget = {"left": settings["discovery"]["max_new_lookups"]}
+    excluded = discover.big_venues()  # grandes salles, lues une fois pour tous les membres
     failures = 0
     log(f"Tâche membres : {len(selection)} membre(s)")
     for m in selection:
@@ -207,7 +218,7 @@ def run_members(settings, db, store, selection, collected=None, kind="weekly"):
         log(f"Membre {uid} ({m['provider']})")
         code = None
         try:
-            compute_member(m, collected, settings, db, store, budget)
+            compute_member(m, collected, settings, db, store, budget, excluded)
         except MemberGone:
             log(f"  Membre {uid} : supprimé ou modifié pendant le calcul, résultats non enregistrés")
             continue
@@ -273,6 +284,7 @@ def main():
         if targeted and collection_is_stale(db):
             log(f"Collecte de plus de {STALE_DAYS} jours : traitement complet")
             collected = common(settings, db, store)
+            mark_common_redone()
             targeted = False
         if targeted:
             waiting = members.pending(db)

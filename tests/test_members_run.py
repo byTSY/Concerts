@@ -152,5 +152,14 @@ class MembersRun(unittest.TestCase):
         self.assertEqual([m["id"] for m in run.call_args.args[3]], ["u_aaaaaaaa"])
 
 
+    def test_redone_collection_reported_to_the_workflow(self):
+        import os
+        out = Path(self.tmp.name) / "github_output"
+        with mock.patch.dict(os.environ, {"GITHUB_OUTPUT": str(out)}):
+            main.mark_common_redone()
+        self.assertEqual(out.read_text(encoding="utf-8"), "redid_common=true\n")
+        with mock.patch.dict(os.environ, {}, clear=True):
+            main.mark_common_redone()  # hors GitHub : rien
+
 if __name__ == "__main__":
     unittest.main()

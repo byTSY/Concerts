@@ -137,6 +137,20 @@ class Sending(unittest.TestCase):
         failed = self.db.query("SELECT newsletter_sent_at FROM users WHERE id = 'u_aaaaaaaa'")[0]["newsletter_sent_at"]
         self.assertIsNone(failed)                                  # nouvel essai possible
 
+    def test_weekly_limit_boundary(self):
+        newsletter.send_all(self.db, self.store, {"events": EVENTS}, CFG, TODAY)
+        self.assertEqual(newsletter.send_all(self.db, self.store, {"events": EVENTS}, CFG, "2026-10-24"), 0)  # 5 jours
+        self.assertEqual(newsletter.send_all(self.db, self.store, {"events": EVENTS}, CFG, "2026-10-25"), 1)  # 6 jours
+
+    def test_member_deleted_during_the_send_gets_nothing(self):
+        real = newsletter.token_for
+        def vanish(db, member):
+            db.query("DELETE FROM users WHERE id = ?", [member["id"]])
+            return real(db, member)
+        with mock.patch.object(newsletter, "token_for", side_effect=vanish):
+            self.assertEqual(newsletter.send_all(self.db, self.store, {"events": EVENTS}, CFG, TODAY), 0)
+        self.smtp.send_message.assert_not_called()
+
     def test_rerun_the_next_day_sends_nothing(self):
         newsletter.send_all(self.db, self.store, {"events": EVENTS}, CFG, TODAY)
         self.assertEqual(newsletter.send_all(self.db, self.store, {"events": EVENTS}, CFG, "2026-10-20"), 0)

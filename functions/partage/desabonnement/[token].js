@@ -11,7 +11,10 @@ const page = (title, body, status = 200) => new Response(`<!doctype html><html l
 <title>${title}</title></head>
 <body style="font-family:system-ui,sans-serif;max-width:560px;margin:48px auto;padding:0 16px;line-height:1.5;color:#1e2350">
 <h1 style="color:#0078bf">${title}</h1>${body}</body></html>`,
-{ status, headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" } });
+{ status, headers: {
+  "content-type": "text/html; charset=utf-8", "cache-control": "no-store", "referrer-policy": "no-referrer",
+  "content-security-policy": "default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'",
+} });
 
 const invalid = () => page("Lien invalide",
   "<p>Ce lien de désabonnement n'est pas reconnu. Vous pouvez régler la newsletter dans « Mon compte » sur le site.</p>", 404);

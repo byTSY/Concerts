@@ -129,3 +129,20 @@ test("Lien de la newsletter (?app=1) : boutons vers l'application ; fiche partag
   assert.match(app, /\?concert=ab12cd34ef56&amp;star=interested">★ Ajouter à mes Intéressés/);
   assert.doesNotMatch(await pageFor(""), /Ouvrir dans l'app/);
 });
+
+test("Fiche /partage/ : liens d'une source hostile neutralisés, photo encodée", async () => {
+  const { page } = await import("../functions/partage/[[path]].js");
+  const html = page({
+    id: "ab12cd34ef56", artist: "A", title: "A", date: "2026-11-20", time: null, venue: "Salle", address: null,
+    price: null, style: null, genre: null, genres: [], description: "d", descriptionSource: "javascript:alert(1)",
+    picture: "https://img.test/a'b\");x:url(evil).jpg", organizer: null,
+    tickets: [{ source: "Billetterie", url: "javascript:alert(1)" }, { source: "Dice", url: "https://dice.fm/e/1" }],
+    fnac: "https://www.fnacspectacles.com/search/?searchterm=A",
+    listen: { deezer: "javascript:x", spotify: "https://open.spotify.com/search/A", youtube: "https://www.youtube.com/results?search_query=A" },
+  }, "https://site.test/partage/ab12cd34ef56");
+  assert.doesNotMatch(html, /javascript:/i);
+  assert.match(html, /href="https:\/\/dice\.fm\/e\/1"/);
+  const hero = html.match(/class="hero" style="([^"]*)"/)[1];  // seule la photo passe en CSS
+  assert.doesNotMatch(hero, /url\(evil\)/);
+  assert.match(hero, /%27b%22%29;x:url%28evil%29\.jpg/);
+});

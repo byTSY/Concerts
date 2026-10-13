@@ -115,9 +115,9 @@ class VenueMatcher:
 
 
 # Genres qui ne sont pas des concerts (Ticketmaster : « Comedy », « Theatre », « Children's
-# Theatre ») : écartés du catalogue (version 1.6.0). Mot entier, après normalisation (« Théâtre »
+# Theatre » ; ailleurs « Humour ») : écartés du catalogue (version 1.6.0). Mot entier, après normalisation (« Théâtre »
 # compris) ; un genre musical qui contiendrait l'un de ces mots serait aussi écarté.
-NOT_CONCERT_RE = re.compile(r"\b(comedy|theatre)\b")
+NOT_CONCERT_RE = re.compile(r"\b(comedy|theatre|humour)\b")
 
 
 def not_a_concert(ev):

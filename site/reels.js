@@ -21,7 +21,8 @@ const unseenEvents = () => freshEvents().filter((e) => !reels.seen.has(e.id));
 // ne s'ouvrent pas (elles réapparaîtraient alors qu'elles ont été vues)
 async function loadSeen() {
   try {
-    reels.seen = new Set([...(await api("me/seen")), ...reels.pending]);
+    // Union : une fiche vue ici dont l'envoi est en cours n'est pas oubliée
+    reels.seen = new Set([...(await api("me/seen")), ...reels.seen, ...reels.pending]);
     reels.loaded = true;
   } catch {
     /* liste gardée telle quelle ; openReels réessaie */
@@ -88,7 +89,7 @@ function onReelsClosed() {
   renderReelsRing();
 }
 
-const hideableNames = (ev) => (ev.kind === "known" ? ev.matched.map((m) => m.name)
+const hideableNames = (ev) => (ev.kind === "known" ? (ev.matched || []).map((m) => m.name)
   : ev.kind === "discovery" && ev.discovery ? [ev.discovery.artist] : []);
 
 // « Intéressé » comme l'étoile ; concert déjà en « Places prises » : le bouton le montre, un clic le retire

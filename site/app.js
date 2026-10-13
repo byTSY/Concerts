@@ -12,6 +12,8 @@ const state = {
 
 const $ = (sel) => document.querySelector(sel);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+// Lien externe venu des sources (billetteries, pages de salles) : http(s) seulement
+const safeUrl = (u) => (/^https?:\/\//i.test(String(u ?? "").trim()) ? String(u).trim() : "#");
 const fold = (s) => String(s ?? "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 const parseDay = (iso) => new Date(iso + "T12:00:00");
 const fmt = (opts) => new Intl.DateTimeFormat("fr-FR", opts);
@@ -245,7 +247,7 @@ function toggleStar(id) {
         : previous?.status === "going" ? "Places prises retirées de vos concerts" : "Retiré de vos concerts intéressés");
     } catch (e) {
       if (last()) star ? state.starred.delete(id) : state.starred.set(id, previous);
-      alert(`L'enregistrement a échoué : ${e.message}.\n\nCette fonction ne marche que sur le site publié.`);
+      alert(`L'enregistrement a échoué : ${e.message}.\n\nRéessayez dans un instant ; si le problème persiste, rechargez la page.`);
     }
     refreshStars(id);
   });
@@ -253,14 +255,15 @@ function toggleStar(id) {
 
 // Statut (« places prises ») ou visibilité d'un concert ; un concert pas encore mis de côté l'est.
 // Affichage mis à jour tout de suite, retour en arrière si l'enregistrement échoue.
-function setStarOption(id, field, value) {
+function setStarOption(id, field, value, onCreate = {}) {
   const ev = state.events.find((e) => e.id === id);
   const previous = state.starred.get(id);
   const created = !previous;
   const label = previous?.label || (ev ? starLabel(ev) : id);
-  state.starred.set(id, { label, status: "interested", visibility: state.me?.default_visibility || "private", ...previous, [field]: value });
+  state.starred.set(id, { label, status: "interested", visibility: state.me?.default_visibility || "private",
+    ...(created ? onCreate : {}), ...previous, [field]: value });
   refreshStars(id);
-  const body = { [field]: value, ...(created ? { label } : {}) };
+  const body = { [field]: value, ...(created ? { label, ...onCreate } : {}) };
   return queueStar(id, async (last) => {
     try {
       const list = await api(`me/stars/${encodeURIComponent(id)}`, { method: "PUT", body });
@@ -333,7 +336,7 @@ async function savePref(name, change, done) {
     setPrefs(await api(`me/artists/${encodeURIComponent(normName(name))}`, { method: "PUT", body: { name, ...change } }));
     state.apiError = null;
   } catch (e) {
-    alert(`L'enregistrement a échoué : ${e.message}.\n\nCette fonction ne marche que sur le site publié.`);
+    alert(`L'enregistrement a échoué : ${e.message}.\n\nRéessayez dans un instant ; si le problème persiste, rechargez la page.`);
     render();  // remet les menus dans leur état réel
     return;
   }
@@ -482,13 +485,13 @@ async function fillArtistSection(ev) {
   // Membre Spotify : lien Spotify en premier
   const order = state.me?.source?.provider === "spotify" ? ["spotify", "deezer", "youtube"] : ["deezer", "spotify", "youtube"];
   const listen = info.listen ? order.map((k) =>
-    `<a class="buy-link" href="${esc(info.listen[k])}" target="_blank" rel="noopener">${{ deezer: "Deezer", spotify: "Spotify", youtube: "YouTube" }[k]}</a>`).join(" ") : "";
+    `<a class="buy-link" href="${esc(safeUrl(info.listen[k]))}" target="_blank" rel="noopener">${{ deezer: "Deezer", spotify: "Spotify", youtube: "YouTube" }[k]}</a>`).join(" ") : "";
   box.innerHTML = `<h3>L'artiste</h3>
     ${tags ? `<p class="artist-genres">${tags}</p>` : ""}
     ${info.description ? `<p>${esc(info.description)}</p>` : ""}
     ${info.organizer ? `<details class="organizer"><summary>Présentation de l'organisateur (Dice)</summary><p>${esc(info.organizer).replace(/\n/g, "<br>")}</p></details>` : ""}
     ${listen ? `<p class="buy-links">${listen}</p>` : ""}
-    ${info.descriptionSource ? `<p class="cell-sub">Sources : Wikidata et Deezer · <a href="${esc(info.descriptionSource)}" target="_blank" rel="noopener">En savoir plus</a></p>` : ""}`;
+    ${info.descriptionSource ? `<p class="cell-sub">Sources : Wikidata et Deezer · <a href="${esc(safeUrl(info.descriptionSource))}" target="_blank" rel="noopener">En savoir plus</a></p>` : ""}`;
   box.classList.remove("loading");
 }
 
@@ -773,7 +776,7 @@ function renderStarred() {
     for (const { ev, star } of upcoming) {
       const sale = onSaleInfo(ev);
       const status = statusLabel(ev.status);
-      const links = (ev.links || []).map((l) => `<a class="buy-link" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.source)}</a>`).join(" ");
+      const links = (ev.links || []).map((l) => `<a class="buy-link" href="${esc(safeUrl(l.url))}" target="_blank" rel="noopener">${esc(l.source)}</a>`).join(" ");
       html += `<tr class="clickable" data-id="${ev.id}" tabindex="0">
         <td class="cell-date">${esc(fmtShort.format(parseDay(ev.date)))}${ev.time ? `<span class="cell-sub">${esc(ev.time)}</span>` : ""}</td>
         <td><span class="cell-name">${esc(headline(ev))}</span>${headline(ev) !== ev.title ? `<span class="cell-sub">${esc(ev.title)}</span>` : ""}
@@ -813,7 +816,7 @@ function renderArtists() {
     const detail = [s.favorite ? "favori" : "", s.albums ? `${s.albums} album${s.albums > 1 ? "s" : ""}` : "",
       s.tracks ? `${s.tracks} titre${s.tracks > 1 ? "s" : ""}` : "", s.playlists ? `${s.playlists} en playlist` : ""].filter(Boolean).join(", ");
     html += `<tr>
-      <td>${a.picture ? `<img class="artist-thumb" src="${esc(a.picture)}" alt="" loading="lazy">` : ""}<a href="${esc(a.link)}" target="_blank" rel="noopener" class="cell-name">${esc(a.name)}</a>${a.still_liked === false ? `<span class="cell-sub">Retiré de vos favoris</span>` : ""}${isHidden(a.name) ? `<span class="cell-sub">Masqué : concerts visibles seulement dans « Tous les concerts »</span>` : ""}
+      <td>${a.picture ? `<img class="artist-thumb" src="${esc(a.picture)}" alt="" loading="lazy">` : ""}<a href="${esc(safeUrl(a.link))}" target="_blank" rel="noopener" class="cell-name">${esc(a.name)}</a>${a.still_liked === false ? `<span class="cell-sub">Retiré de vos favoris</span>` : ""}${isHidden(a.name) ? `<span class="cell-sub">Masqué : concerts visibles seulement dans « Tous les concerts »</span>` : ""}
         <button type="button" class="link-btn" data-hide="${esc(a.name)}" data-hide-action="${isHidden(a.name) ? "unhide" : "hide"}">${isHidden(a.name) ? "Ne plus masquer" : "Masquer"}</button></td>
       <td><span class="tag tag-known tier-${a.tier}">Niveau ${a.tier}${state.levels.has(normName(a.name)) ? " · imposé" : ""}</span>
         <select class="tier-select" data-level="${esc(a.name)}" aria-label="Niveau de ${esc(a.name)}">
@@ -927,7 +930,7 @@ function openTicket(id) {
   let why = "";
   if (ev.kind === "known") {
     why = `<div class="ticket-section"><h3>Dans votre liste</h3><p>${ev.matched.map((m) =>
-      `${m.link ? `<a href="${esc(m.link)}" target="_blank" rel="noopener">${esc(m.name)}</a>` : esc(m.name)} (niveau ${m.tier}${m.via === "titre" ? ", repéré dans le titre, à vérifier" : ""})`).join("<br>")}</p></div>`;
+      `${m.link ? `<a href="${esc(safeUrl(m.link))}" target="_blank" rel="noopener">${esc(m.name)}</a>` : esc(m.name)} (niveau ${m.tier}${m.via === "titre" ? ", repéré dans le titre, à vérifier" : ""})`).join("<br>")}</p></div>`;
   } else if (ev.discovery) {
     const dc = ev.discovery;
     why = `<div class="ticket-section"><h3>Pourquoi cette découverte</h3>
@@ -936,11 +939,11 @@ function openTicket(id) {
   const others = (ev.artists || []).filter((a) => fold(a) !== fold(headline(ev)));
   const hideable = ev.kind === "known" ? ev.matched.map((m) => m.name) : ev.kind === "discovery" ? [ev.discovery.artist] : [];
   const hideButtons = hideable.map((n) => `<button type="button" class="btn btn-quiet" data-hide="${esc(n)}" data-hide-action="hide">Ne plus recommander ${esc(n)}</button>`).join("");
-  const links = (ev.links || []).map((l) => `<a class="btn" href="${esc(l.url)}" target="_blank" rel="noopener">Voir sur ${esc(l.source)}</a>`).join("")
+  const links = (ev.links || []).map((l) => `<a class="btn" href="${esc(safeUrl(l.url))}" target="_blank" rel="noopener">Voir sur ${esc(l.source)}</a>`).join("")
     // Fnac Spectacles bloque la lecture automatique : lien de recherche sur l'artiste
     + `<a class="btn btn-quiet" href="https://www.fnacspectacles.com/search/?searchterm=${encodeURIComponent(shareArtist(ev).name)}" target="_blank" rel="noopener">Chercher sur Fnac Spectacles</a>`;
   const listen = ev.kind === "discovery" && ev.discovery?.link
-    ? `<a class="btn btn-secondary" href="${esc(ev.discovery.link)}" target="_blank" rel="noopener">Écouter sur Deezer</a>` : "";
+    ? `<a class="btn btn-secondary" href="${esc(safeUrl(ev.discovery.link))}" target="_blank" rel="noopener">Écouter sur Deezer</a>` : "";
 
   $("#ticket-body").innerHTML = `
     ${kindTag(ev, true)} ${badgeTag(ev)}
@@ -1089,17 +1092,21 @@ function bind() {
 // Lien d'une fiche /partage/ ouverte depuis la newsletter : ?concert=<id> ouvre la fiche du
 // concert ; &star=interested l'ajoute aussi aux Intéressés (s'il n'y est pas déjà). L'adresse est
 // ensuite nettoyée : un rechargement ne refait rien.
-function openFromLink() {
+// Un lien venu d'ailleurs ne doit rien rendre visible aux membres : l'ajout est toujours privé, avec
+// « Annuler » dans le message.
+async function openFromLink({ onboarding = false } = {}) {
   const params = new URLSearchParams(location.search);
   const id = params.get("concert");
   if (!id) return;
   history.replaceState(null, "", location.pathname);
+  if (onboarding) { toast("Ce lien s'ouvrira une fois votre compte prêt"); return; }
+  if (state.loadFailed) { toast("Les concerts n'ont pas pu être chargés : rechargez la page"); return; }
   if (!state.events.some((e) => e.id === id)) { toast("Ce concert n'est plus à l'affiche"); return; }
-  if (params.get("star") === "interested") {
-    if (isStarred(id)) toast("Déjà dans vos concerts");
-    else setStarOption(id, "status", "interested");
-  }
   openTicket(id);
+  if (params.get("star") !== "interested") return;
+  if (isStarred(id)) { toast("Déjà dans vos concerts"); return; }
+  await setStarOption(id, "status", "interested", { visibility: "private" });
+  if (isStarred(id)) toast("Ajouté à vos concerts intéressés (visible par vous seul)", { label: "Annuler", run: () => toggleStar(id) });
 }
 
 (async function init() {
@@ -1130,6 +1137,7 @@ function openFromLink() {
   if (me && (["invited", "onboarding"].includes(me.status) || (spotifyPending && !state.artists.length)
       || (me.status === "computing" && !state.artists.length))) {
     showOnboarding(me);
+    openFromLink({ onboarding: true });
     return;
   }
   $("#tab-admin").hidden = me?.role !== "admin";
