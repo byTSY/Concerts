@@ -146,3 +146,16 @@ test("Fiche /partage/ : liens d'une source hostile neutralisés, photo encodée"
   assert.doesNotMatch(hero, /url\(evil\)/);
   assert.match(hero, /%27b%22%29;x:url%28evil%29\.jpg/);
 });
+
+test("Icônes servies sous /partage/ (chemin public), autres fichiers refusés", async () => {
+  const asked = [];
+  const env = { ASSETS: { fetch: async (u) => { asked.push(new URL(u).pathname); return new Response("PNG", { status: 200 }); } } };
+  const call = (path) => onRequestGet({ request: new Request(`https://x.test/partage/${path}`), env, params: { path: [path] }, waitUntil() {} });
+  const res = await call("apple-touch-icon.png");
+  assert.equal(res.status, 200);
+  assert.equal(res.headers.get("content-type"), "image/png");
+  assert.equal(await res.text(), "PNG");
+  assert.deepEqual(asked, ["/apple-touch-icon.png"]);
+  assert.equal((await call("index.html")).status, 404);
+  assert.deepEqual(asked, ["/apple-touch-icon.png"]);
+});
