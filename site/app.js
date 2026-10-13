@@ -39,11 +39,11 @@ class ApiError extends Error {
   constructor(message, status, code) { super(message); this.status = status; this.code = code; }
 }
 
-async function api(path, { method = "GET", body } = {}) {
+async function api(path, { method = "GET", body, keepalive = false } = {}) {
   let r;
   try {
     r = await fetch(`api/${path}`, {
-      method, cache: "no-store",
+      method, cache: "no-store", keepalive,
       headers: body ? { "content-type": "application/json" } : {},
       body: body ? JSON.stringify(body) : undefined,
     });
@@ -546,7 +546,7 @@ function renderMasthead() {
     const d = new Date(m.generated_at);
     $("#updated").textContent = `Mis à jour le ${fmt({ weekday: "long", day: "numeric", month: "long" }).format(d)} à ${fmt({ hour: "2-digit", minute: "2-digit" }).format(d)}, ${state.memberMeta.counts?.artists ?? state.artists.length} artistes suivis`;
   }
-  // Bandeau : nouveautés de votre liste (vos artistes et découvertes) uniquement
+  // Nouveautés de votre liste (vos artistes et découvertes) uniquement
   const fresh = state.events.filter((e) => e.badge && e.kind !== "other");
   const na = fresh.filter((e) => e.badge === "annonce").length;
   const nl = fresh.length - na;
@@ -557,19 +557,7 @@ function renderMasthead() {
     : m.initial ? `Base initiale : ${m.counts?.concerts ?? state.events.length} concerts enregistrés. Les nouveautés seront signalées à partir de la prochaine mise à jour.`
     : parts.length ? `${parts.join(" et ")} cette semaine`
     : "Aucune nouveauté cette semaine";
-  const rank = (e) => (e.badge === "annonce" ? 0 : 2) + (e.kind === "known" ? 0 : 1);
-  fresh.sort((a, b) => rank(a) - rank(b) || a.date.localeCompare(b.date));
-  $("#stubs").innerHTML = fresh.slice(0, 30).map((ev) => {
-    const d = parseDay(ev.date);
-    const sale = onSaleInfo(ev);
-    return `<button class="stub ${ev.kind} stub-${ev.badge}" data-id="${ev.id}">
-      <span class="stub-date"><span class="stub-day">${d.getDate()}</span><span class="stub-month">${esc(fmt({ month: "short" }).format(d))}</span></span>
-      <span class="stub-info"><span class="stub-name">${esc(headline(ev))}</span>
-        <span class="stub-venue">${esc(ev.venue)}</span>
-        <span class="stub-badge">${BADGES[ev.badge]}</span>
-        ${sale ? `<span class="stub-sale">${esc(sale.replace("Mise en vente le ", "En vente le "))}</span>` : ""}</span>
-    </button>`;
-  }).join("");
+  renderReelsRing();  // cercle « Reels » : fiches plein écran des nouveautés (site/reels.js)
 }
 
 /* Calendrier ----------------------------------------------------------------- */
@@ -1051,7 +1039,7 @@ function bind() {
     state.accessError = e;
     return [null, { overlay: {}, meta: null }, {}];
   });
-  const [[events, meta], [me, concerts, artists]] = await Promise.all([common, personal, loadPrefs()]);
+  const [[events, meta], [me, concerts, artists]] = await Promise.all([common, personal, loadPrefs(), loadSeen()]);
   Object.assign(state, {
     events: mergeOverlay(events || [], concerts.overlay || {}),
     meta: meta || {},
@@ -1077,6 +1065,7 @@ function bind() {
   fillStyles();
   updateStarCount();
   bind();
+  bindReels();
   renderMasthead();
   switchView("calendar");
   if (state.loadFailed) showAccessAlert(state.accessError);
