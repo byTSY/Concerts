@@ -337,6 +337,8 @@ d'artistes Spotify non rapprochés de Deezer.
 | `GET /api/me/stars` | ses ★ |
 | `PUT /api/me/stars/:concert` | `{ label, status, visibility }` |
 | `DELETE /api/me/stars/:concert` | retrait |
+| `GET /api/me/seen` | fiches Reels déjà vues (version 1.2.0) |
+| `POST /api/me/seen` | `{ ids }` (50 au plus) : fiches vues |
 | `DELETE /api/me` | suppression de son compte (double confirmation) |
 
 ### 9.2 Communauté

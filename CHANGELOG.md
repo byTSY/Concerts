@@ -21,10 +21,21 @@ Recherche sur tout le catalogue, statut « Places prises », section « Mes proc
   tenir compte des filtres, concerts non recommandés compris (étiquette « Non recommandé ») ;
   artiste, titre et salle, sans accents ni majuscules, plusieurs mots ; une ligne par date ;
   60 résultats affichés au plus. Exécutée dans le navigateur sur events.json.
-- Depuis un résultat : « Intéressé » ou « Places prises ».
+- Depuis un résultat : « Intéressé » ou « Places prises » ; un clic sur l'autre statut passe de l'un
+  à l'autre, un second clic sur le statut actif le retire (aussi sur la fiche concert).
 - « J'y vais » renommé « Places prises » (statut going existant) ; « Y vont » devient « Ont leurs places ».
 - « Mes prochains concerts » sous le cercle Reels : places prises à venir, du plus proche au plus lointain.
 - L'ancien champ de recherche des filtres est retiré ; « Mes artistes » garde un filtre à lui.
+Audit complet du code des versions 1.1.0 à 1.3.0, corrections :
+- Reels : un toucher sur la fiche n'ouvre plus en plus la fiche concert de la carte suivante ;
+  fiches vues relues au retour sur l'application et avant l'ouverture (liste illisible : pas
+  d'ouverture) ; focus et flèches du clavier conservés ; bouton « ✓ Places prises » sur une fiche
+  déjà en places prises ; « Annuler » proposé encore après la fermeture des fiches.
+- ★ : enregistrements d'un même concert envoyés l'un après l'autre (clics rapprochés), affichage
+  immédiat du statut avec retour en arrière en cas d'échec.
+- Dice : page /partage/ sans cache seulement si la page Dice n'a pas été lue ; nouvel essai de la
+  fiche concert si la présentation Dice manquait.
+- Accessibilité : nom « Reels » du cercle lu, position des fiches et nombre de résultats annoncés.
 Aucune migration D1.
 
 ## 1.2.0 (13 octobre 2026)

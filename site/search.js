@@ -56,19 +56,21 @@ function renderSearch() {
   const box = $("#search-results");
   if (!box) return;
   const q = state.q.trim();
-  if (!q) { box.hidden = true; box.innerHTML = ""; return; }
+  const count = $("#search-count"), list = $("#search-list");  // zone d'annonce gardée d'un rendu à l'autre
+  if (!q) { box.hidden = true; count.textContent = ""; list.innerHTML = ""; return; }
   const found = searchEvents(q);
   box.hidden = false;
   if (!found.length) {
-    box.innerHTML = `<p class="count-line" role="status">${q.length < 2 ? "Tapez au moins deux lettres." : `Aucun concert à venir ne correspond à « ${esc(q)} ».`}</p>`;
+    count.textContent = q.length < 2 ? "Tapez au moins deux lettres." : `Aucun concert à venir ne correspond à « ${q} ».`;
+    list.innerHTML = "";
     return;
   }
   const shown = found.slice(0, SEARCH_MAX);
   // Bouton touché avant le nouveau rendu : le focus y revient (changement de statut au clavier)
   const active = document.activeElement?.closest?.("#search-results [data-star-set]");
   const refocus = active && `[data-star-id="${CSS.escape(active.dataset.starId)}"][data-star-set="${active.dataset.starSet}"]`;
-  box.innerHTML = `<p class="count-line" role="status">${found.length} concert${found.length > 1 ? "s" : ""} à venir${found.length > SEARCH_MAX ? `, ${SEARCH_MAX} premiers affichés : précisez la recherche` : ""}.</p>
-    <ul class="search-list">${shown.map((ev) => `<li class="search-item">
+  count.textContent = `${found.length} concert${found.length > 1 ? "s" : ""} à venir${found.length > SEARCH_MAX ? `, ${SEARCH_MAX} premiers affichés : précisez la recherche` : ""}.`;
+  list.innerHTML = `${shown.map((ev) => `<li class="search-item">
       <button type="button" class="search-main" data-id="${esc(ev.id)}">
         <span class="search-date">${esc(fmtShort.format(parseDay(ev.date)))}${ev.time ? ` · ${esc(ev.time)}` : ""}</span>
         <span class="cell-name">${esc(nameOf(ev))}</span>
@@ -76,7 +78,7 @@ function renderSearch() {
         <span class="cell-sub">${esc(ev.venue)} ${searchTag(ev)}</span>
       </button>
       <span class="search-actions">${statusButtons(ev)}</span>
-    </li>`).join("")}</ul>`;
+    </li>`).join("")}`;
   if (refocus) box.querySelector(refocus)?.focus();
 }
 

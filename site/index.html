@@ -34,7 +34,10 @@
     <div class="global-search">
       <input type="search" id="search" placeholder="Rechercher un artiste, une salle… (tout le catalogue)" aria-label="Rechercher dans tous les concerts">
     </div>
-    <section class="search-results" id="search-results" hidden></section>
+    <section class="search-results" id="search-results" hidden>
+      <p class="count-line" id="search-count" role="status"></p>
+      <ul class="search-list" id="search-list"></ul>
+    </section>
   </header>
 
   <nav class="tabs" role="tablist" aria-label="Vues">
@@ -103,10 +106,10 @@
   <dialog id="reels" class="reels" aria-label="Nouveautés de la semaine">
     <div class="reels-top">
       <div class="reels-bar"><span id="reels-progress"></span></div>
-      <span class="reels-position" id="reels-position"></span>
+      <span class="reels-position" id="reels-position" aria-live="polite"></span>
       <button type="button" class="reels-close" id="reels-close" aria-label="Fermer">×</button>
     </div>
-    <article class="reel-card" id="reel-card"></article>
+    <article class="reel-card" id="reel-card" tabindex="-1"></article>
     <nav class="reels-nav" aria-label="Changer de fiche">
       <button type="button" class="btn btn-quiet" data-reel-nav="-1" aria-label="Fiche précédente">‹</button>
       <span class="reels-hint">Toucher la photo ou glisser : fiche suivante<br>Glisser vers le bas : pas pour moi</span>

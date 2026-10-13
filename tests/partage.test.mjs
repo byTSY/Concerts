@@ -92,6 +92,9 @@ test("Page Dice lue mais sans texte : résultat vide gardé un jour seulement", 
   const info = await callShare(() => new Response("<html></html>"));
   assert.equal(info.organizer, null);
   assert.match(store.get(diceKey).cc, /max-age=86400$/);
+  fakeCache();
+  const page = await callSharePage(() => new Response("<html></html>"));
+  assert.equal(page.headers.get("cache-control"), "public, max-age=3600");  // page lue, sans texte : cache normal
 });
 
 test("diceDescription : signale l'échec de lecture sans lever d'erreur", async () => {

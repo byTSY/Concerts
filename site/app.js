@@ -83,7 +83,7 @@ async function checkForUpdate() {
     if (meta.generated_at && meta.generated_at !== state.meta.generated_at) { location.reload(); return; }
     const me = await api("me");
     if ((me.source?.last_sync_at || null) !== (state.me?.source?.last_sync_at || null)) { location.reload(); return; }
-    await loadPrefs();
+    await Promise.all([loadPrefs(), loadSeen()]);  // fiches Reels vues sur un autre appareil comprises
     applyPrefs();
     renderMasthead();
     render();
@@ -212,40 +212,68 @@ function starButton(ev, long = false) {
   return `<button type="button" class="${long ? "btn btn-star" : "star-toggle"}${on ? " on" : ""}" data-star="${esc(ev.id)}" aria-pressed="${on}" title="${title}" aria-label="${title}">${text}</button>`;
 }
 
+// Enregistrements d'un même concert envoyés l'un après l'autre (clics rapprochés) ; la réponse
+// d'un envoi n'est appliquée que s'il est le dernier en attente, pour ne pas effacer un clic suivant
+const starQueue = new Map();  // concert → { tail: promesse, pending: nombre d'envois en attente }
+function queueStar(id, task) {
+  const q = starQueue.get(id) || { tail: Promise.resolve(), pending: 0 };
+  q.pending += 1;
+  starQueue.set(id, q);
+  const last = () => q.pending === 1;
+  q.tail = q.tail.then(() => task(last)).finally(() => {
+    q.pending -= 1;
+    if (!q.pending) starQueue.delete(id);
+  });
+  return q.tail;
+}
+
 // Mise à jour immédiate de l'affichage, puis enregistrement ; retour en arrière si l'enregistrement échoue
-async function toggleStar(id) {
+function toggleStar(id) {
   const ev = state.events.find((e) => e.id === id);
   const previous = state.starred.get(id);
   const label = ev ? starLabel(ev) : previous?.label || id;
   const star = !isStarred(id);
   star ? state.starred.set(id, { label, status: "interested", visibility: state.me?.default_visibility || "private" }) : state.starred.delete(id);
   refreshStars(id);
-  try {
-    const path = `me/stars/${encodeURIComponent(id)}`;
-    setStars(await (star ? api(path, { method: "PUT", body: { label } }) : api(path, { method: "DELETE" })));
-    state.apiError = null;
-    toast(star ? "Ajouté à vos concerts intéressés" : "Retiré de vos concerts intéressés");
-  } catch (e) {
-    star ? state.starred.delete(id) : state.starred.set(id, previous);
-    alert(`L'enregistrement a échoué : ${e.message}.\n\nCette fonction ne marche que sur le site publié.`);
-  }
-  refreshStars(id);
+  return queueStar(id, async (last) => {
+    try {
+      const path = `me/stars/${encodeURIComponent(id)}`;
+      const list = await (star ? api(path, { method: "PUT", body: { label } }) : api(path, { method: "DELETE" }));
+      if (last()) setStars(list);
+      state.apiError = null;
+      toast(star ? "Ajouté à vos concerts intéressés"
+        : previous?.status === "going" ? "Places prises retirées de vos concerts" : "Retiré de vos concerts intéressés");
+    } catch (e) {
+      if (last()) star ? state.starred.delete(id) : state.starred.set(id, previous);
+      alert(`L'enregistrement a échoué : ${e.message}.\n\nCette fonction ne marche que sur le site publié.`);
+    }
+    refreshStars(id);
+  });
 }
 
-// Statut (« places prises ») ou visibilité d'un concert ; un concert pas encore mis de côté l'est
-async function setStarOption(id, field, value) {
+// Statut (« places prises ») ou visibilité d'un concert ; un concert pas encore mis de côté l'est.
+// Affichage mis à jour tout de suite, retour en arrière si l'enregistrement échoue.
+function setStarOption(id, field, value) {
   const ev = state.events.find((e) => e.id === id);
-  const created = !isStarred(id);
-  const body = { [field]: value, ...(created ? { label: ev ? starLabel(ev) : id } : {}) };
-  try {
-    setStars(await api(`me/stars/${encodeURIComponent(id)}`, { method: "PUT", body }));
-    toast(field === "status"
-      ? (value === "going" ? "Noté : places prises" : created ? "Ajouté à vos concerts intéressés" : "Noté : intéressé")
-      : (value === "members" ? "Visible par les membres" : "Visible par vous seul"));
-  } catch (e) {
-    toast(`Enregistrement impossible : ${e.message}`);
-  }
+  const previous = state.starred.get(id);
+  const created = !previous;
+  const label = previous?.label || (ev ? starLabel(ev) : id);
+  state.starred.set(id, { label, status: "interested", visibility: state.me?.default_visibility || "private", ...previous, [field]: value });
   refreshStars(id);
+  const body = { [field]: value, ...(created ? { label } : {}) };
+  return queueStar(id, async (last) => {
+    try {
+      const list = await api(`me/stars/${encodeURIComponent(id)}`, { method: "PUT", body });
+      if (last()) setStars(list);
+      toast(field === "status"
+        ? (value === "going" ? "Noté : places prises" : created ? "Ajouté à vos concerts intéressés" : "Noté : intéressé")
+        : (value === "members" ? "Visible par les membres" : "Visible par vous seul"));
+    } catch (e) {
+      if (last()) previous ? state.starred.set(id, previous) : state.starred.delete(id);
+      toast(`Enregistrement impossible : ${e.message}`);
+    }
+    refreshStars(id);
+  });
 }
 
 // Fiche d'un concert : « Intéressé » ou « Places prises », partage avec les membres, retrait
@@ -435,7 +463,11 @@ function artistInfo(id, timeout = 8000) {
       .then((r) => (r.ok ? r.json() : null))
       .catch(() => null)
       .finally(() => clearTimeout(timer))
-      .then((info) => { if (!info) artistInfoCache.delete(id); return info; }));  // nouvel essai plus tard
+      // Nouvel essai plus tard : réponse absente, ou présentation Dice manquante (page Dice non lue)
+      .then((info) => {
+        if (!info || (!info.organizer && (ev?.links || []).some((l) => l.source === "Dice"))) artistInfoCache.delete(id);
+        return info;
+      }));
   }
   return artistInfoCache.get(id);
 }
@@ -468,9 +500,18 @@ async function shareMessage(id) {
   await shareOrCopy({ text: messageText(ev, info) }, "Message copié : collez-le dans WhatsApp ou Messages");
 }
 
-function toast(text) {
+// action : { label, run } facultatif, bouton dans le message (ex. Annuler)
+function toast(text, action) {
   const el = $("#toast");
   el.textContent = text;
+  if (action) {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "link-btn toast-action";
+    b.textContent = action.label;
+    b.addEventListener("click", () => { el.hidden = true; action.run(); }, { once: true });
+    el.append(" ", b);
+  }
   el.hidden = false;
   clearTimeout(toast.t);
   toast.t = setTimeout(() => { el.hidden = true; }, 6000);
@@ -932,7 +973,7 @@ function emptyMessage() {
     return `<div class="empty"><strong>Aucune donnée pour l'instant.</strong><br>
       Lancez le traitement depuis l'onglet Actions du dépôt GitHub (« Mise à jour hebdomadaire », puis « Run workflow »). La page se remplit à la fin du traitement.</div>`;
   }
-  return `<div class="empty">Aucun résultat avec les filtres actuels. Élargissez les filtres ou effacez la recherche.</div>`;
+  return `<div class="empty">Aucun résultat avec les filtres actuels. Élargissez les filtres.</div>`;
 }
 
 function render() {
@@ -1014,8 +1055,11 @@ function bind() {
     const status = e.target.closest("[data-star-set]");
     if (status) {
       e.stopPropagation();
+      // Autre statut : on passe de l'un à l'autre ; même statut, second clic : on décoche (retrait)
       if (state.starred.get(status.dataset.starId)?.status !== status.dataset.starSet) {
         setStarOption(status.dataset.starId, "status", status.dataset.starSet);
+      } else {
+        toggleStar(status.dataset.starId);
       }
       return;
     }
