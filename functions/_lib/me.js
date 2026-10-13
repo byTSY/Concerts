@@ -19,6 +19,8 @@ export async function identify(env, email) {
 const STAR_STATUS = new Set(["interested", "going"]);
 const VISIBILITY = new Set(["private", "members"]);
 const CONCERT_ID = /^[a-z0-9]{6,40}$/;
+const MAX_SEEN_PER_CALL = 50;
+const SEEN_KEEP_DAYS = 400;
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // --- Catalogue des salles (spécification, sections 12 et 13.1) ---------------------------
@@ -272,6 +274,29 @@ export function member(env, user) {
       if (!CONCERT_ID.test(concertId)) throw new HttpError(400, "identifiant de concert invalide");
       await db.prepare("DELETE FROM stars WHERE user_id = ? AND concert_id = ?").bind(id, concertId).run();
       return api.stars();
+    },
+
+    // Fiches Reels vues : une ligne par concert, gardée 400 jours (au-delà, le concert est passé)
+    async seenCards() {
+      const { results } = await db.prepare("SELECT concert_id FROM seen_cards WHERE user_id = ? ORDER BY seen_at")
+        .bind(id).all();
+      return results.map((r) => r.concert_id);
+    },
+
+    async markSeen(ids) {
+      if (!Array.isArray(ids) || !ids.length || ids.length > MAX_SEEN_PER_CALL) {
+        throw new HttpError(400, `ids : liste de 1 à ${MAX_SEEN_PER_CALL} identifiants`);
+      }
+      const clean = [...new Set(ids.map(String))];
+      if (!clean.every((c) => CONCERT_ID.test(c))) throw new HttpError(400, "identifiant de concert invalide");
+      const now = nowIso();
+      const limit = new Date(Date.now() - SEEN_KEEP_DAYS * 86400 * 1000).toISOString().replace(/\.\d{3}Z$/, "+00:00");  // format de nowIso
+      await db.batch([
+        ...clean.map((c) => db.prepare("INSERT OR IGNORE INTO seen_cards (user_id, concert_id, seen_at) VALUES (?, ?, ?)")
+          .bind(id, c, now)),
+        db.prepare("DELETE FROM seen_cards WHERE user_id = ? AND seen_at < ?").bind(id, limit),
+      ]);
+      return api.seenCards();
     },
 
     // Salles favorites : seulement des salles approuvées du catalogue commun

@@ -14,6 +14,21 @@ Revenir à une version antérieure :
 3. base D1 : les migrations ne s'annulent pas seules ; chaque entrée indique la commande inverse
    quand une migration est ajoutée.
 
+## 1.2.0 (13 octobre 2026)
+
+Fiches Reels des nouveautés de la semaine, à la place du bandeau de billets.
+- Cercle « Reels » dans l'en-tête (nombre de fiches à voir, anneau gris quand tout est vu) ;
+  les fiches ne s'ouvrent qu'en le touchant.
+- Fiche plein écran : photo Deezer, description Wikidata et artistes similaires (mêmes données que
+  /partage/), date, salle, badge, mise en vente. Boutons Intéressé (= ★), Pas pour moi, Voir la fiche.
+- Gestes : gauche, suivante ; droite, précédente ; bas, « Pas pour moi » (Ne plus recommander
+  l'artiste, barre Annuler 6 s) ; seuil 45 px ou geste rapide ; toucher la photo à droite ou à
+  gauche comme sur Instagram. Clavier : flèches. Couleurs propres aux fiches (lisibles en mode clair).
+- Fiche vue dès son affichage, jamais réaffichée, sur tous les appareils : table D1 `seen_cards`,
+  route GET/POST /api/me/seen (50 identifiants par appel, lignes de plus de 400 jours effacées).
+- Migration D1 : 0006_seen_cards.sql. Retour arrière :
+  `DROP TABLE seen_cards; DELETE FROM schema_migrations WHERE name = '0006_seen_cards.sql';`
+
 ## 1.1.0 (13 octobre 2026)
 
 Présentation de l'organisateur (Dice) : correctif sur la fiche concert et la page /partage/.

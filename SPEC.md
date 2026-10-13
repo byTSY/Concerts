@@ -255,6 +255,9 @@ valeur `iat` n'a jamais été vue pour ce membre.
 `visibility` (`private` / `members`), `created_at`, `updated_at`. Clé (`user_id`,
 `concert_id`).
 
+**seen_cards** (ajout de la version 1.2.0) : `user_id`, `concert_id`, `seen_at`. Fiches Reels déjà
+vues ; lignes de plus de 400 jours effacées à l'écriture.
+
 **venues** (catalogue commun) : `id`, `name`, `aliases` (JSON), `agenda_url`, `excluded`,
 `status` (`pending` / `approved` / `rejected`), `proposed_by` (nullable, remis à null à la
 suppression du membre), `proposed_at`, `reviewed_at`, `review_note`.

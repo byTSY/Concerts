@@ -47,6 +47,7 @@ import * as adminInvitations from "../functions/api/admin/invitations/index.js";
 import * as adminInvitation from "../functions/api/admin/invitations/[id]/index.js";
 import * as adminRenew from "../functions/api/admin/invitations/[id]/renew.js";
 import * as adminAccess from "../functions/api/admin/members/[id]/access.js";
+import * as seenRoute from "../functions/api/me/seen.js";
 
 // --- D1 et R2 simulés --------------------------------------------------------------
 
@@ -268,7 +269,7 @@ test("fiche de partage : artiste du lien retenu seulement s'il figure dans le co
 // --- Étape 3 : compte du membre, arrivée, espace admin ------------------------------------
 
 const ALL_TABLES = ["users", "music_sources", "oauth_states", "connections", "activity_daily", "artist_prefs",
-  "venue_favorites", "stars", "member_runs"];
+  "venue_favorites", "stars", "member_runs", "seen_cards"];
 
 test("admin : invitation, refus d'un doublon, liste sans artiste ni concert", async () => {
   const env = setup();
@@ -312,6 +313,7 @@ test("suppression par l'admin : plus aucune ligne D1 ni objet R2 du membre", asy
   env.DB.raw.exec(`INSERT INTO music_sources (user_id, provider, provider_user_id, status, refresh_token_enc)
     VALUES ('u_aaaaaaaa', 'deezer', '999', 'connected', 'chiffré')`);
   await call(env, "a@test.fr", getMe);  // crée connexions et activité
+  await call(env, "a@test.fr", seenRoute.onRequestPost, { method: "POST", body: { ids: ["aaaaaa111111"] } });
   const del = await call(env, "c@test.fr", adminMember.onRequestDelete, {
     method: "DELETE", path: "/api/admin/members/u_aaaaaaaa", params: { id: "u_aaaaaaaa" } });
   assert.equal(del.data.deleted, true);
@@ -826,4 +828,24 @@ test("lien d'invitation : expiration, nouveau lien (l'ancien ne marche plus), su
   const del = await call(env, "c@test.fr", adminInvitation.onRequestDelete, { method: "DELETE", path: `/api/admin/invitations/${id}`, params: { id } });
   assert.equal(del.data.deleted, true);
   assert.equal(env.DB.raw.prepare("SELECT COUNT(*) AS n FROM invitations").get().n, 0);
+});
+
+test("fiches Reels vues : par membre, sans doublon, contrôle des identifiants, vieilles lignes effacées", async () => {
+  const env = setup();
+  const post = (email, body) => call(env, email, seenRoute.onRequestPost, { method: "POST", path: "/api/me/seen", body });
+  let r = await post("a@test.fr", { ids: ["aaaaaa111111", "cccccc333333", "aaaaaa111111"], user_id: "u_bbbbbbbb" });
+  assert.equal(r.status, 200);
+  assert.deepEqual([...r.data].sort(), ["aaaaaa111111", "cccccc333333"]);
+  r = await post("a@test.fr", { ids: ["aaaaaa111111"] });  // déjà vue : aucune erreur, pas de doublon
+  assert.equal(r.data.length, 2);
+  assert.deepEqual((await call(env, "b@test.fr", seenRoute.onRequestGet, { path: "/api/me/seen" })).data, []);
+  assert.equal((await post("a@test.fr", {})).status, 400);
+  assert.equal((await post("a@test.fr", { ids: [{ id: "aaaaaa111111" }] })).status, 400);
+  assert.deepEqual((await call(env, "b@test.fr", seenRoute.onRequestPost, { method: "POST", body: { ids: ["ffffff666666"] } })).data, ["ffffff666666"]);
+  for (const ids of [[], ["../x"], "aaaaaa111111", Array.from({ length: 51 }, (_, i) => `aaaaaa${String(i).padStart(6, "0")}`)]) {
+    assert.equal((await post("a@test.fr", { ids })).status, 400);
+  }
+  env.DB.raw.exec("INSERT INTO seen_cards (user_id, concert_id, seen_at) VALUES ('u_aaaaaaaa', 'dddddd444444', '2024-01-01T00:00:00+00:00')");
+  r = await post("a@test.fr", { ids: ["eeeeee555555"] });
+  assert.deepEqual([...r.data].sort(), ["aaaaaa111111", "cccccc333333", "eeeeee555555"]);
 });
