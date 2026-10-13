@@ -14,6 +14,26 @@ Revenir à une version antérieure :
 3. base D1 : les migrations ne s'annulent pas seules ; chaque entrée indique la commande inverse
    quand une migration est ajoutée.
 
+## 1.8.0 (13 octobre 2026)
+
+Retirer un concert sans écarter l'artiste.
+- « Ne plus voir ce concert » sur la fiche d'un concert et sur les fiches Reels : le concert sort
+  du calendrier, des listes, des Reels et de la newsletter du membre. L'artiste reste recommandé
+  pour ses autres dates.
+- Reels : le geste vers le bas (et la flèche bas) retire désormais le concert, et non plus
+  l'artiste, avec « Annuler » pendant 6 secondes. « Ne plus recommander l'artiste » reste
+  disponible sous les boutons de la fiche.
+- Un concert retiré perd son statut « Intéressé » ou « Places prises » (confirmation demandée pour
+  « Places prises ») ; « Annuler » rétablit le statut.
+- Section « Concerts retirés (n) » sous « Mes prochains concerts », repliée par défaut : concerts
+  retirés à venir, avec « Remettre ». Un concert en sort le lendemain de sa date.
+- Recherche : un concert retiré reste trouvable, avec l'étiquette « Retiré » et « Remettre ».
+- Un concert dont l'identifiant change d'une semaine à l'autre reste reconnu par sa date et, soit
+  sa salle et son titre, soit un lien de billetterie en commun.
+- Migration D1 : 0010_removed_concerts.sql (table `removed_concerts`). Sans elle, le site
+  fonctionne comme avant et le retrait affiche « pas encore disponible ». Retour arrière : voir
+  l'en-tête du fichier.
+
 ## 1.7.0 (13 octobre 2026)
 
 ★ visibles par les autres membres par défaut.

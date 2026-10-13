@@ -130,6 +130,36 @@ class Sending(unittest.TestCase):
         newsletter.send_all(self.db, self.store, {"events": EVENTS}, CFG, "2026-10-26")
         self.assertEqual(self.db.query("SELECT newsletter_token FROM users WHERE id = 'u_aaaaaaaa'")[0]["newsletter_token"], token)
 
+    def test_removed_concerts_left_out(self):
+        """Concert retiré (« Ne plus voir ce concert ») : absent, y compris sous un nouvel identifiant
+        (même date, salle et titre) ; un autre membre le reçoit toujours."""
+        self.db.query("UPDATE users SET newsletter = 1 WHERE id = 'u_bbbbbbbb'")
+        events = EVENTS + [ev("a9", "2026-11-20", "Razorlight", badge="annonce", venue="Olympia")]
+        self.db.query("INSERT INTO removed_concerts (user_id, concert_id, concert_date, label, venue, title, urls, removed_at) "
+                      "VALUES ('u_aaaaaaaa', 'ancien', '2026-11-20', 'x', 'la cigale', 'RAZORLIGHT', '[]', ?), "
+                      "('u_aaaaaaaa', 'd1', '2026-10-28', 'x', NULL, NULL, '[]', ?)", [NOW, NOW])
+        newsletter.send_all(self.db, self.store, {"events": events}, CFG, TODAY)
+        mails = {m.args[0]["To"]: m.args[0].get_body(("plain",)).get_content() for m in self.smtp.send_message.call_args_list}
+        self.assertNotIn("/partage/a1?", mails["u_aaaaaaaa@test.fr"])   # nouvel identifiant reconnu
+        self.assertNotIn("/partage/d1?", mails["u_aaaaaaaa@test.fr"])
+        self.assertIn("/partage/a3?", mails["u_aaaaaaaa@test.fr"])
+        self.assertIn("/partage/a1?", mails["u_bbbbbbbb@test.fr"])
+
+    def test_removed_rule_keeps_other_shows_of_a_published_concert(self):
+        """Identifiant encore publié : seul ce concert est retiré, pas une autre séance du même soir."""
+        published = [ev("a1", "2026-11-20", "Razorlight"), ev("a2", "2026-11-20", "Razorlight")]
+        rule = newsletter.removed_rule([{"concert_id": "a1", "concert_date": "2026-11-20", "venue": "La Cigale",
+                                         "title": "Razorlight", "urls": []}], published)
+        self.assertTrue(rule(ev("a1", "2026-11-20", "Razorlight")))
+        self.assertFalse(rule(ev("a2", "2026-11-20", "Razorlight")))
+        a1 = {**ev("a1", "2026-11-20", "Autre"), "links": [{"url": "https://b.test/1"}]}
+        rows = [{"concert_id": "zz", "concert_date": "2026-11-20", "venue": None, "title": None,
+                 "urls": ["https://b.test/1"]}]
+        self.assertTrue(newsletter.removed_rule(rows, [a1])(a1))
+        # Lien porté par deux concerts du même jour (page programme d'un festival) : ignoré
+        a2 = {**ev("a2", "2026-11-20", "Autre encore"), "links": [{"url": "https://b.test/1"}]}
+        self.assertFalse(newsletter.removed_rule(rows, [a1, a2])(a1))
+
     def test_one_failure_does_not_stop_the_others(self):
         self.db.query("UPDATE users SET newsletter = 1 WHERE id = 'u_bbbbbbbb'")
         self.smtp.send_message.side_effect = [RuntimeError("refusé"), None]

@@ -5,6 +5,8 @@ Contenu, à partir de la dernière collecte (R2 common/collected.json), des rés
 1. concerts de ses artistes annoncés cette semaine (badge « annonce » ou « liste ») ;
 2. recommandations des 30 jours suivants (ses artistes et découvertes, 15 au plus) ;
 3. ses prochains concerts (« Places prises »).
+Les concerts qu'il a retirés (« Ne plus voir ce concert », table D1 removed_concerts, version 1.8.0)
+n'y figurent pas, retirés la veille compris.
 
 Envoi par SMTP (relais Brevo, ou compte Gmail avec mot de passe d'application) :
 SMTP_HOST, SMTP_PORT (587 STARTTLS, 465 SSL), SMTP_USER, SMTP_PASSWORD, NEWSLETTER_FROM
@@ -12,6 +14,7 @@ SMTP_HOST, SMTP_PORT (587 STARTTLS, 465 SSL), SMTP_USER, SMTP_PASSWORD, NEWSLETT
 le traitement continue. Un membre reçoit au plus un envoi par semaine (6 jours, users.newsletter_sent_at),
 seulement s'il est actif, abonné (users.newsletter) et que l'e-mail a un contenu.
 """
+import json
 import os
 import re
 import secrets
@@ -85,6 +88,53 @@ def headline(ev, item):
     if item.get("kind") == "discovery" and item.get("discovery"):
         return item["discovery"]["artist"]
     return ev.get("title") or "Concert"
+
+
+def removed_rule(rows, events):
+    """Concerts retirés par le membre : fonction qui dit si un concert en fait partie. Même règle
+    que le site (site/app.js, indexRemoved) : même identifiant ; si cet identifiant n'est plus publié
+    (events : concerts publiés), même date et, soit même salle et même titre, soit un lien
+    qu'aucun autre concert publié du même jour ne porte."""
+    published = {ev.get("id") for ev in events}
+    link_use = {}
+    for ev in events:
+        for link in ev.get("links") or []:
+            key = (ev.get("date"), link.get("url"))
+            link_use[key] = link_use.get(key, 0) + 1
+    ids, keys, links = set(), set(), set()
+    for r in rows:
+        ids.add(r["concert_id"])
+        if r["concert_id"] in published:
+            continue
+        if r.get("venue") and r.get("title"):
+            keys.add((r["concert_date"], norm(r["venue"]), norm(r["title"])))
+        for url in r.get("urls") or []:
+            if link_use.get((r["concert_date"], url), 0) <= 1:
+                links.add((r["concert_date"], url))
+    def removed(ev):
+        if ev.get("id") in ids:
+            return True
+        if (ev.get("date"), norm(ev.get("venue") or ""), norm(ev.get("title") or "")) in keys:
+            return True
+        return any((ev.get("date"), link.get("url")) in links for link in ev.get("links") or [])
+    return removed
+
+
+def removed_rows(db, member_id):
+    """Concerts retirés du membre ; liste vide si la table manque (migration 0010 non appliquée) ou
+    si la lecture échoue (signalé)."""
+    try:
+        rows = db.query("SELECT concert_id, concert_date, venue, title, urls FROM removed_concerts WHERE user_id = ?",
+                        [member_id])
+    except Exception as exc:  # noqa: BLE001
+        log(f"  Membre {member_id} : concerts retirés illisibles ({exc.__class__.__name__}), envoyés quand même")
+        return []
+    for r in rows:
+        try:
+            r["urls"] = json.loads(r.get("urls") or "[]")
+        except ValueError:
+            r["urls"] = []
+    return rows
 
 
 def sections(events, overlay, going_ids, today=None):
@@ -255,7 +305,9 @@ def send_all(db, store, collected, cfg=None, today=None, test_member=None):
                 overlay = members.read(store, m["id"], "overlay", {}) or {}
                 going = [r["concert_id"] for r in db.query(
                     "SELECT concert_id FROM stars WHERE user_id = ? AND status = 'going'", [m["id"]])]
-                announced, recommended, going_rows = sections(events, overlay, going, today)
+                removed = removed_rule(removed_rows(db, m["id"]), events)
+                announced, recommended, going_rows = sections([ev for ev in events if not removed(ev)],
+                                                              overlay, going, today)
                 token = token_for(db, m)
                 if not token:
                     log(f"  Membre {m['id']} : supprimé entre-temps, rien envoyé")

@@ -3,15 +3,16 @@
 // Fiches Reels : nouveautés de la semaine en plein écran, ouvertes seulement depuis le cercle
 // « Reels » de l'en-tête. Une fiche affichée est vue : elle ne réapparaît sur aucun appareil
 // (table D1 seen_cards, route /api/me/seen).
-// Gestes : vers la gauche, fiche suivante ; vers la droite, précédente ; vers le bas, « Pas pour
-// moi » (Ne plus recommander l'artiste, avec Annuler pendant 6 s). Utilise les fonctions de app.js.
+// Gestes : vers la gauche, fiche suivante ; vers la droite, précédente ; vers le bas, « Ne plus voir
+// ce concert » (l'artiste reste recommandé ; Annuler pendant 6 s). Bouton « Ne plus recommander
+// l'artiste » à part. Utilise les fonctions de app.js.
 
 const reels = { seen: new Set(), pending: new Set(), loaded: false, queue: [], index: 0, timer: null, undo: null, undoState: null, busy: false };
 
 // Nouveautés de la semaine dans votre liste (vos artistes et découvertes), annonces d'abord
 function freshEvents() {
   const rank = (e) => (e.badge === "annonce" ? 0 : 2) + (e.kind === "known" ? 0 : 1);
-  return state.events.filter((e) => e.badge && e.kind !== "other")
+  return state.events.filter((e) => e.badge && e.kind !== "other" && !isRemoved(e))
     .sort((a, b) => rank(a) - rank(b) || a.date.localeCompare(b.date));
 }
 
@@ -115,8 +116,9 @@ function cardHtml(ev) {
       <div class="reel-about loading" id="reel-about"><p class="cell-sub">Chargement de la présentation…</p></div>
       <div class="reel-actions">
         ${starReelButton(ev)}
-        ${hideableNames(ev).length ? `<button type="button" class="btn btn-quiet" data-reel="nope">Pas pour moi</button>` : ""}
+        <button type="button" class="btn btn-quiet" data-reel="remove">Ne plus voir ce concert</button>
         <button type="button" class="btn btn-quiet" data-reel="ticket">Voir la fiche</button>
+        ${hideableNames(ev).length ? `<button type="button" class="link-btn reel-nope" data-reel="nope">Ne plus recommander ${hideableNames(ev).length > 1 ? "les artistes" : "l'artiste"}</button>` : ""}
       </div>
     </div>`;
 }
@@ -183,7 +185,50 @@ function step(delta) {
   showCard();
 }
 
-// « Pas pour moi » : Ne plus recommander le ou les artistes de la fiche, sans fenêtre de
+// « Ne plus voir ce concert » (geste vers le bas, flèche bas, bouton) : ce concert seulement, sans
+// fenêtre de confirmation (sauf places prises) ; Annuler pendant 6 secondes
+async function removeCard() {
+  const ev = reels.queue[reels.index];
+  if (!ev || reels.busy) return;  // un seul envoi à la fois (touche maintenue, double geste)
+  reels.busy = true;
+  let undo;
+  try {
+    undo = await removeConcert(ev.id);
+  } catch (e) {
+    showUndo(`Enregistrement impossible : ${e.message}`);
+    return;
+  } finally {
+    reels.busy = false;
+  }
+  if (!undo) return;  // places prises : le membre a renoncé
+  dropCard(ev);
+  showUndo("Concert retiré", reelsUndo(ev, undo));
+}
+
+// Fiche retirée de la file (« précédente » ne la remontre pas) ; la fiche affichée reste la même,
+// sauf si c'était celle-ci (la suivante prend sa place)
+function dropCard(ev) {
+  const i = reels.queue.indexOf(ev);
+  if (i < 0) return;
+  reels.queue.splice(i, 1);
+  if (reels.index > i) reels.index -= 1;
+  if ($("#reels").open) showCard();
+}
+
+// Annuler un retrait fait dans les Reels : le concert revient, et sa fiche aussi, à la place de la
+// fiche affichée, si la fenêtre des fiches est encore ouverte
+function reelsUndo(ev, undo) {
+  return async () => {
+    await undo();
+    if (!ev || !$("#reels").open || reels.queue.includes(ev)) return;
+    const at = Math.min(reels.index, reels.queue.length);
+    reels.queue.splice(at, 0, ev);
+    reels.index = at;
+    showCard();
+  };
+}
+
+// « Ne plus recommander l'artiste » : le ou les artistes de la fiche, sans fenêtre de
 // confirmation ; Annuler pendant 6 secondes
 async function notForMe() {
   const ev = reels.queue[reels.index];
@@ -248,7 +293,7 @@ function hideUndo() {
 }
 
 // Gestes : la fiche suit le doigt. Glissement de 45 px, ou geste rapide de 20 px (30 px vers le
-// bas, qui masque l'artiste). Toucher la photo : à droite fiche suivante, à gauche précédente.
+// bas, qui retire le concert). Toucher la photo : à droite fiche suivante, à gauche précédente.
 function bindReelGestures(card) {
   let start = null;
   const reset = () => { start = null; card.classList.remove("dragging"); card.style.transform = ""; };
@@ -270,7 +315,7 @@ function bindReelGestures(card) {
     const { photo } = start;
     reset();
     if (Math.abs(dx) > Math.abs(dy) && (Math.abs(dx) > 45 || (quick && Math.abs(dx) > 20))) step(dx < 0 ? 1 : -1);
-    else if (dy > Math.abs(dx) && (dy > 60 || (quick && dy > 30))) notForMe();
+    else if (dy > Math.abs(dx) && (dy > 60 || (quick && dy > 30))) removeCard();
     else if (photo && Math.abs(dx) < 10 && Math.abs(dy) < 10) {
       const box = card.getBoundingClientRect();
       step(e.clientX - box.left < box.width / 3 ? -1 : 1);
@@ -303,7 +348,8 @@ function bindReels() {
       };
       toggleStar(ev.id).then(update);
       update();  // affichage immédiat, corrigé si l'enregistrement échoue
-    } else if (btn.dataset.reel === "nope") notForMe();
+    } else if (btn.dataset.reel === "remove") removeCard();
+    else if (btn.dataset.reel === "nope") notForMe();
     else if (btn.dataset.reel === "ticket") openTicket(ev.id);
   });
   // Clavier : écouté sur la page, pour garder les flèches après la fermeture d'une fiche concert
@@ -311,11 +357,17 @@ function bindReels() {
     if (!dlg.open || $("#ticket").open || e.target.closest?.("input, select, textarea")) return;
     if (e.key === "ArrowLeft") step(-1);
     else if (e.key === "ArrowRight") step(1);
-    else if (e.key === "ArrowDown") { e.preventDefault(); notForMe(); }
+    else if (e.key === "ArrowDown") { e.preventDefault(); removeCard(); }
   });
   bindReelGestures($("#reel-card"));
-  // Fiche du concert fermée (étoile, artiste masqué) : fiche Reels remise à jour
-  $("#ticket").addEventListener("close", () => { if (dlg.open) showCard(); });
+  // Fiche du concert fermée (étoile, artiste masqué, concert retiré) : fiche Reels remise à jour ;
+  // un concert retiré depuis sa fiche sort de la file
+  $("#ticket").addEventListener("close", () => {
+    if (!dlg.open) return;
+    const ev = reels.queue[reels.index];
+    if (ev && isRemoved(ev)) dropCard(ev);
+    else showCard();
+  });
   // Fiches vues envoyées avant de quitter l'application
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") flushSeen(true); });
 }

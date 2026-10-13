@@ -7,6 +7,8 @@ const state = {
   community: new Map(),  // concert → [{ name, status }] : ★ partagés par les autres membres
   view: "calendar", calendar: null,
   hidden: new Set(), levels: new Map(), starred: new Map(), profile: new Map(), apiError: null, loadFailed: false,
+  // Concerts retirés (« Ne plus voir ce concert ») : lignes de l'API et index de recherche
+  removed: [], removedIndex: { ids: new Map(), keys: new Map(), links: new Map() }, removedOpen: false,
   byArtistSort: (() => { try { return localStorage.getItem("byArtistSort") || "date"; } catch { return "date"; } })(),
 };
 
@@ -158,6 +160,88 @@ function applyPrefs() {
       ev.kind = "other";
     }
   }
+  indexRemoved();
+}
+
+/* Concerts retirés (« Ne plus voir ce concert ») ------------------------------------- */
+
+const removedKey = (date, venue, title) => `${date}|${normName(venue)}|${normName(title)}`;
+
+// Index des concerts retirés. Un concert se reconnaît à son identifiant ; si cet identifiant n'est
+// plus publié (salle ou artiste corrigés par une source, par exemple), à la même date et, soit à sa
+// salle et son titre, soit à un lien qu'aucun autre concert du même jour ne porte (page programme
+// d'une salle ou d'un festival écartée). Une date modifiée fait revenir le concert.
+// Même règle que la newsletter (src/newsletter.py, removed_rule).
+function indexRemoved() {
+  const ids = new Map(), keys = new Map(), links = new Map();
+  const published = new Set(state.events.map((e) => e.id));
+  const linkUse = new Map();  // « date|lien » → nombre de concerts publiés qui le portent
+  for (const e of state.events) {
+    for (const l of e.links || []) linkUse.set(`${e.date}|${l.url}`, (linkUse.get(`${e.date}|${l.url}`) || 0) + 1);
+  }
+  for (const r of state.removed) {
+    ids.set(r.concert_id, r);
+    if (published.has(r.concert_id)) continue;
+    if (r.venue && r.title) keys.set(removedKey(r.concert_date, r.venue, r.title), r);
+    for (const u of r.urls || []) {
+      if ((linkUse.get(`${r.concert_date}|${u}`) || 0) <= 1) links.set(`${r.concert_date}|${u}`, r);
+    }
+  }
+  state.removedIndex = { ids, keys, links };
+}
+
+function setRemoved(list) {
+  state.removed = Array.isArray(list) ? list : [];
+  indexRemoved();
+}
+
+// Ligne de retrait d'un concert, ou null
+function removalOf(ev) {
+  if (!ev) return null;
+  const { ids, keys, links } = state.removedIndex;
+  if (ids.has(ev.id)) return ids.get(ev.id);
+  if (!keys.size && !links.size) return null;
+  ev.removedKey ??= removedKey(ev.date, ev.venue, ev.title);
+  return keys.get(ev.removedKey) || (ev.links || []).map((l) => links.get(`${ev.date}|${l.url}`)).find(Boolean) || null;
+}
+const isRemoved = (ev) => Boolean(removalOf(ev));
+
+// « Ne plus voir ce concert » : il sort du calendrier, des listes et des Reels, sans toucher à
+// l'artiste ; sa ★ est effacée (confirmation pour « Places prises »). Renvoie la fonction
+// d'annulation, null si le membre renonce ; une erreur d'enregistrement est levée.
+async function removeConcert(id) {
+  const ev = state.events.find((e) => e.id === id);
+  if (!ev || isRemoved(ev)) return null;
+  const star = state.starred.get(id);
+  if (star?.status === "going" && !confirm("Vous avez noté des places prises pour ce concert.\n\nLe retirer quand même ? Le statut « Places prises » sera effacé.")) return null;
+  const body = { label: starLabel(ev), date: ev.date, venue: ev.venue, title: ev.title,
+    urls: (ev.links || []).map((l) => l.url).filter((u) => /^https?:\/\//i.test(u || "")).slice(0, 5) };
+  // ★ envoyée juste avant (clic sur « Intéressé » puis retrait) : attendue, sinon elle arriverait
+  // au serveur après le retrait et reviendrait sur un concert retiré
+  await starQueue.get(id)?.tail;
+  const r = await api(`me/removed/${encodeURIComponent(id)}`, { method: "PUT", body });
+  setRemoved(r.removed);
+  setStars(r.stars);
+  afterRemovedChange();
+  return () => restoreConcert(id, star);
+}
+
+// « Remettre » : le concert revient ; star : ★ effacée au retrait, rétablie par « Annuler »
+async function restoreConcert(id, star = null) {
+  setRemoved(await api(`me/removed/${encodeURIComponent(id)}`, { method: "DELETE" }));
+  if (star) {
+    setStars(await api(`me/stars/${encodeURIComponent(id)}`, { method: "PUT",
+      body: { label: star.label, status: star.status, visibility: star.visibility } }));
+  }
+  afterRemovedChange();
+  toast("Concert remis dans votre calendrier");
+}
+
+function afterRemovedChange() {
+  state.apiError = null;
+  updateStarCount();
+  renderMasthead();
+  render();
 }
 
 function setPrefs(data) {
@@ -282,6 +366,11 @@ function setStarOption(id, field, value, onCreate = {}) {
 
 // Fiche d'un concert : « Intéressé » ou « Places prises », partage avec les membres, retrait
 function starBlock(ev) {
+  const removal = removalOf(ev);
+  if (removal) {
+    return `<p class="cell-sub">Vous avez retiré ce concert de votre calendrier.</p>
+      <button type="button" class="btn" data-restore="${esc(removal.concert_id)}">Remettre dans le calendrier</button>`;
+  }
   const s = state.starred.get(ev.id);
   const choice = (status, off, on) => `<button type="button" class="btn btn-star${s?.status === status ? " on" : ""}"
     data-star-set="${status}" data-star-id="${esc(ev.id)}" aria-pressed="${s?.status === status}">${s?.status === status ? on : off}</button>`;
@@ -308,6 +397,7 @@ function refreshStars(id) {
   }
   updateStarCount();
   renderUpcoming();
+  renderRemoved();
   renderSearch();
   if (state.view !== "calendar") render();
   else if (state.calendar) renderCalendar();
@@ -320,9 +410,11 @@ function updateStarCount() {
 
 async function loadPrefs() {
   try {
-    const [prefs, stars, community] = await Promise.all([api("me/prefs"), api("me/stars"), api("community/stars").catch(() => [])]);
+    const [prefs, stars, community, removed] = await Promise.all([api("me/prefs"), api("me/stars"),
+      api("community/stars").catch(() => []), api("me/removed").catch(() => state.removed)]);
     setPrefs(prefs);
     setStars(stars);
+    setRemoved(removed);
     setCommunity(community);
     state.apiError = null;
   } catch (e) {
@@ -557,6 +649,7 @@ function fillStyles() {
 
 function filtered() {
   return state.events.filter((ev) => {
+    if (isRemoved(ev)) return false;
     if (state.withMembers) {
       if (!membersOf(ev).length) return false;
     } else if (!state.all && !state.kinds.has(ev.kind)) return false;
@@ -590,7 +683,7 @@ function renderMasthead() {
     $("#updated").textContent = `Mis à jour le ${fmt({ weekday: "long", day: "numeric", month: "long" }).format(d)} à ${fmt({ hour: "2-digit", minute: "2-digit" }).format(d)}, ${state.memberMeta.counts?.artists ?? state.artists.length} artistes suivis`;
   }
   // Nouveautés de votre liste (vos artistes et découvertes) uniquement
-  const fresh = state.events.filter((e) => e.badge && e.kind !== "other");
+  const fresh = state.events.filter((e) => e.badge && e.kind !== "other" && !isRemoved(e));
   const na = fresh.filter((e) => e.badge === "annonce").length;
   const nl = fresh.length - na;
   const parts = [];
@@ -601,7 +694,8 @@ function renderMasthead() {
     : parts.length ? `${parts.join(" et ")} cette semaine`
     : "Aucune nouveauté cette semaine";
   renderReelsRing();  // cercle « Reels » : fiches plein écran des nouveautés (site/reels.js)
-  renderUpcoming();   // Mes prochains concerts et résultats de recherche (site/search.js)
+  renderUpcoming();   // Mes prochains concerts, concerts retirés et recherche (site/search.js)
+  renderRemoved();
   renderSearch();
 }
 
@@ -713,7 +807,7 @@ function artistRows() {
   const profile = new Map(state.artists.map((a) => [normName(a.name), a]));
   const rows = new Map();
   for (const ev of state.events) {
-    if (ev.kind !== "known" || !styleOk(ev)) continue;
+    if (ev.kind !== "known" || !styleOk(ev) || isRemoved(ev)) continue;
     for (const m of ev.matched) {
       const key = normName(m.name);
       if (!rows.has(key)) {
@@ -920,6 +1014,7 @@ function openTicket(id) {
   const d = parseDay(ev.date);
   const dlg = $("#ticket");
   dlg.querySelector(".ticket").className = `ticket ${ev.kind}`;
+  dlg.dataset.id = ev.id;  // concert affiché (« Remettre » rouvre la fiche)
   $("#ticket-stub").innerHTML = `
     <div><div class="ticket-day">${d.getDate()}</div>
     <div class="ticket-month">${esc(fmt({ month: "long", year: "numeric" }).format(d))}</div>
@@ -939,7 +1034,8 @@ function openTicket(id) {
   }
   const others = (ev.artists || []).filter((a) => fold(a) !== fold(headline(ev)));
   const hideable = ev.kind === "known" ? ev.matched.map((m) => m.name) : ev.kind === "discovery" ? [ev.discovery.artist] : [];
-  const hideButtons = hideable.map((n) => `<button type="button" class="btn btn-quiet" data-hide="${esc(n)}" data-hide-action="hide">Ne plus recommander ${esc(n)}</button>`).join("");
+  const hideButtons = (isRemoved(ev) ? "" : `<button type="button" class="btn btn-quiet" data-remove="${esc(ev.id)}">Ne plus voir ce concert</button>`)
+    + hideable.map((n) => `<button type="button" class="btn btn-quiet" data-hide="${esc(n)}" data-hide-action="hide">Ne plus recommander ${esc(n)}</button>`).join("");
   const links = (ev.links || []).map((l) => `<a class="btn" href="${esc(safeUrl(l.url))}" target="_blank" rel="noopener">Voir sur ${esc(l.source)}</a>`).join("")
     // Fnac Spectacles bloque la lecture automatique : lien de recherche sur l'artiste
     + `<a class="btn btn-quiet" href="https://www.fnacspectacles.com/search/?searchterm=${encodeURIComponent(shareArtist(ev).name)}" target="_blank" rel="noopener">Chercher sur Fnac Spectacles</a>`;
@@ -966,7 +1062,7 @@ function openTicket(id) {
     <div class="ticket-share">
       <button type="button" class="btn btn-share" data-share="${esc(ev.id)}">Partager</button></div>
     ${hideButtons ? `<div class="ticket-hide">${hideButtons}</div>` : ""}`;
-  dlg.showModal();
+  if (!dlg.open) dlg.showModal();  // fiche rouverte après « Remettre »
   fillArtistSection(ev);
 }
 
@@ -1069,6 +1165,10 @@ function bind() {
     }
     const hide = e.target.closest("[data-hide]");
     if (hide) { e.stopPropagation(); setHidden(hide.dataset.hide, hide.dataset.hideAction !== "unhide"); return; }
+    const remove = e.target.closest("[data-remove]");
+    if (remove) { e.stopPropagation(); removeFromTicket(remove.dataset.remove); return; }
+    const restore = e.target.closest("[data-restore]");
+    if (restore) { e.stopPropagation(); restoreFromButton(restore.dataset.restore); return; }
     const row = e.target.closest("[data-id]");
     if (row && !e.target.closest("a")) { openTicket(row.dataset.id); return; }
     const propose = e.target.closest("[data-propose-venue]");
@@ -1085,9 +1185,48 @@ function bind() {
     const row = e.target.closest?.("tr[data-id]");
     if (row && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); openTicket(row.dataset.id); }
   });
+  // Section « Concerts retirés » : repliée ou dépliée, gardée d'un rendu à l'autre
+  $("#removed").addEventListener("toggle", (e) => { state.removedOpen = e.target.open; }, true);
   const dlg = $("#ticket");
   $("#ticket-close").addEventListener("click", () => dlg.close());
   dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close(); });
+}
+
+// « Ne plus voir ce concert » depuis la fiche : elle se ferme ; « Annuler » dans le message (ou dans
+// la barre des Reels, la fiche ayant été ouverte depuis une fiche Reels)
+let removing = false;  // un seul retrait à la fois (double clic)
+async function removeFromTicket(id) {
+  if (removing) return;
+  removing = true;
+  let undo;
+  try {
+    undo = await removeConcert(id);
+  } catch (e) {
+    toast(`Retrait impossible : ${e.message}`);
+    return;
+  } finally {
+    removing = false;
+  }
+  if (!undo) return;
+  const ev = state.events.find((e) => e.id === id);
+  if ($("#ticket").open) $("#ticket").close();
+  const text = "Concert retiré : retrouvez-le dans « Concerts retirés »";
+  if ($("#reels").open) {
+    dropCard(ev);  // sans attendre l'événement de fermeture de la fiche
+    showUndo("Concert retiré", reelsUndo(ev, undo));
+  }
+  else toast(text, { label: "Annuler", run: () => undo().catch((e) => toast(`Annulation impossible : ${e.message}`)) });
+}
+
+async function restoreFromButton(concertId) {
+  const shown = $("#ticket").open ? $("#ticket").dataset.id : null;
+  try {
+    await restoreConcert(concertId);
+  } catch (e) {
+    toast(`Enregistrement impossible : ${e.message}`);
+    return;
+  }
+  if (shown) openTicket(shown);  // fiche ouverte : « Ne plus voir ce concert » réapparaît
 }
 
 // Lien d'une fiche /partage/ ouverte depuis la newsletter : ?concert=<id> ouvre la fiche du
@@ -1105,6 +1244,7 @@ async function openFromLink({ onboarding = false } = {}) {
   if (!state.events.some((e) => e.id === id)) { toast("Ce concert n'est plus à l'affiche"); return; }
   openTicket(id);
   if (params.get("star") !== "interested") return;
+  if (isRemoved(state.events.find((e) => e.id === id))) { toast("Ce concert fait partie de vos concerts retirés"); return; }
   if (isStarred(id)) { toast("Déjà dans vos concerts"); return; }
   await setStarOption(id, "status", "interested");
   if (!isStarred(id)) return;
