@@ -21,6 +21,56 @@ const VISIBILITY = new Set(["private", "members"]);
 const CONCERT_ID = /^[a-z0-9]{6,40}$/;
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// --- Catalogue des salles (spécification, sections 12 et 13.1) ---------------------------
+// Identifiant d'une salle : nom normalisé sans article, mots reliés par des tirets (même règle
+// que src/catalog.py, venue_id)
+const normVenue = (text) => norm(text).replace(/^(le|la|les|l) /, "");
+export const venueId = (name) => normVenue(name).replace(/ /g, "-");
+const VENUE_ID = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+const MAX_PENDING_PROPOSALS = 5;
+
+function cleanName(value, max = 80) {
+  return String(value ?? "").replace(/\s+/g, " ").trim().slice(0, max);
+}
+
+// Alias : liste de noms (au plus 10), sans doublon ni nom vide
+function cleanAliases(value) {
+  if (value === undefined || value === null || value === "") return [];
+  const list = Array.isArray(value) ? value : String(value).split(/[,;\n]/);
+  if (list.length > 10) throw new HttpError(400, "10 autres noms au plus");
+  return [...new Set(list.map((a) => cleanName(a)).filter((a) => a.length >= 2))];
+}
+
+function cleanUrl(value) {
+  const text = String(value ?? "").trim();
+  if (!text) return null;
+  let url;
+  try { url = new URL(text); } catch { throw new HttpError(400, "adresse de la page programme invalide", "bad_url"); }
+  if (!/^https?:$/.test(url.protocol) || text.length > 300) throw new HttpError(400, "adresse de la page programme invalide", "bad_url");
+  return url.href;
+}
+
+// Salle déjà connue sous ce nom ou l'un de ses autres noms : { id, status } ou null
+async function knownVenue(db, name, excludeId = null) {
+  const key = normVenue(name);
+  const { results } = await db.prepare("SELECT id, name, aliases, status FROM venues").all();
+  for (const v of results) {
+    if (v.id === excludeId) continue;
+    const names = [v.name, ...JSON.parse(v.aliases || "[]")].map(normVenue);
+    if (v.id === venueId(name) || names.includes(key)) return v;
+  }
+  return null;
+}
+
+// ★ partagés (section 12) : visibilité « members », membres non suspendus, sans ceux du
+// membre qui consulte. Nom affiché et statut seulement : jamais d'identifiant de membre.
+export async function communityStars(env, viewerId) {
+  const { results } = await env.DB.prepare(
+    "SELECT s.concert_id, COALESCE(u.pseudo, u.first_name) AS name, s.status FROM stars s JOIN users u ON u.id = s.user_id " +
+    "WHERE s.visibility = 'members' AND u.status <> 'suspended' AND s.user_id <> ? ORDER BY s.created_at").bind(viewerId).all();
+  return results;
+}
+
 // --- Places Spotify (spécification, sections 6.3 et 10) ------------------------------------
 // Une place est prise par chaque source Spotify (demande en attente comprise) et par chaque
 // compte encore à retirer du tableau de bord Spotify.
@@ -200,6 +250,43 @@ export function member(env, user) {
       const { results } = await db.prepare("SELECT venue_id FROM venue_favorites WHERE user_id = ? ORDER BY added_at")
         .bind(id).all();
       return results.map((r) => r.venue_id);
+    },
+
+    // --- Propositions de salles (section 13.1) ------------------------------------------
+
+    // Nouvelle salle proposée au catalogue commun, publiée après validation de l'admin
+    async proposeVenue({ name, aliases, agenda_url }) {
+      const clean = cleanName(name);
+      const id = venueId(clean);
+      if (clean.length < 2 || !VENUE_ID.test(id)) throw new HttpError(400, "nom de salle : 2 à 80 caractères", "bad_name");
+      const list = cleanAliases(aliases);
+      const url = cleanUrl(agenda_url);
+      const known = await knownVenue(db, clean);
+      if (known) {
+        const message = { approved: "cette salle est déjà au catalogue", pending: "cette salle est déjà proposée, en attente de l'admin",
+          rejected: "cette salle a déjà été proposée et refusée" }[known.status];
+        throw new HttpError(409, message, "exists");
+      }
+      const pending = await db.prepare("SELECT COUNT(*) AS n FROM venues WHERE proposed_by = ? AND status = 'pending'").bind(user.id).first();
+      if (pending.n >= MAX_PENDING_PROPOSALS) {
+        throw new HttpError(429, `${MAX_PENDING_PROPOSALS} propositions en attente au plus : attendez la réponse de l'admin`, "too_many");
+      }
+      try {
+        await db.prepare("INSERT INTO venues (id, name, aliases, agenda_url, excluded, status, proposed_by, proposed_at) " +
+          "VALUES (?, ?, ?, ?, 0, 'pending', ?, ?)").bind(id, clean, JSON.stringify(list), url, user.id, nowIso()).run();
+      } catch (e) {
+        if (/UNIQUE|PRIMARY/i.test(String(e?.message))) throw new HttpError(409, "cette salle est déjà proposée", "exists");
+        throw e;
+      }
+      return api.venueProposals();
+    },
+
+    // Propositions du membre et réponse de l'admin
+    async venueProposals() {
+      const { results } = await db.prepare(
+        "SELECT id, name, status, review_note, proposed_at, reviewed_at FROM venues WHERE proposed_by = ? ORDER BY proposed_at DESC")
+        .bind(id).all();
+      return results;
     },
 
     // --- Compte du membre -------------------------------------------------------------
@@ -504,6 +591,54 @@ export function admin(env) {
         .bind(nowIso(), memberId).run();
       if (!updated.meta?.changes) throw new HttpError(409, "ce membre n'a pas de source reliée", "no_source");
       return row;
+    },
+
+    // --- Salles : propositions à valider, corrections du catalogue (section 9.3) ----------
+    async venues(status) {
+      if (!["pending", "approved", "rejected"].includes(status)) throw new HttpError(400, "statut : pending, approved ou rejected");
+      const { results } = await db.prepare(
+        "SELECT v.id, v.name, v.aliases, v.agenda_url, v.excluded, v.status, v.proposed_at, v.reviewed_at, v.review_note, " +
+        "COALESCE(u.pseudo, u.first_name) AS proposed_by_name FROM venues v LEFT JOIN users u ON u.id = v.proposed_by " +
+        "WHERE v.status = ? ORDER BY COALESCE(v.proposed_at, v.name)").bind(status).all();
+      return results.map((v) => ({ ...v, aliases: JSON.parse(v.aliases || "[]"), excluded: Boolean(v.excluded) }));
+    },
+
+    async venue(venueKey) {
+      if (!VENUE_ID.test(String(venueKey)) || String(venueKey).length > 80) throw new HttpError(400, "identifiant de salle invalide");
+      const row = await db.prepare("SELECT id, name, status FROM venues WHERE id = ?").bind(venueKey).first();
+      if (!row) throw new HttpError(404, "salle introuvable");
+      return row;
+    },
+
+    // Correction : nom affiché, autres noms, page programme, exclusion (l'identifiant ne change pas)
+    async updateVenue(venueKey, { name, aliases, agenda_url, excluded }) {
+      const row = await this.venue(venueKey);
+      const sets = [];
+      const values = [];
+      if (name !== undefined) {
+        const clean = cleanName(name);
+        if (clean.length < 2) throw new HttpError(400, "nom de salle : 2 à 80 caractères");
+        const known = await knownVenue(db, clean, row.id);
+        if (known) throw new HttpError(409, "ce nom correspond déjà à une autre salle du catalogue", "exists");
+        sets.push("name = ?"); values.push(clean);
+      }
+      if (aliases !== undefined) { sets.push("aliases = ?"); values.push(JSON.stringify(cleanAliases(aliases))); }
+      if (agenda_url !== undefined) { sets.push("agenda_url = ?"); values.push(cleanUrl(agenda_url)); }
+      if (excluded !== undefined) {
+        if (typeof excluded !== "boolean") throw new HttpError(400, "excluded : vrai ou faux");
+        sets.push("excluded = ?"); values.push(excluded ? 1 : 0);
+      }
+      if (sets.length) await db.prepare(`UPDATE venues SET ${sets.join(", ")} WHERE id = ?`).bind(...values, row.id).run();
+      return (await this.venues(row.status)).find((v) => v.id === row.id);
+    },
+
+    // Décision sur une proposition : approved (publiée au prochain traitement) ou rejected
+    async reviewVenue(venueKey, status, note) {
+      const row = await this.venue(venueKey);
+      const r = await db.prepare("UPDATE venues SET status = ?, reviewed_at = ?, review_note = ? WHERE id = ? AND status = 'pending'")
+        .bind(status, nowIso(), cleanName(note, 300) || null, row.id).run();
+      if (!r.meta?.changes) throw new HttpError(409, "cette salle n'est pas en attente de validation", "not_pending");
+      return { id: row.id, status };
     },
 
     // --- Spotify : places, demandes à ajouter, comptes à retirer (section 10) -------------

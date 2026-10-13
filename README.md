@@ -118,6 +118,21 @@ il s'arrête aussitôt (c. 1 minute de GitHub Actions) et n'enregistre aucun tra
   de source », qui remet les résultats à zéro en gardant préférences, salles et ★), salles
   favorites, visibilité par défaut des ★, suppression du compte (double confirmation).
 
+### Communauté
+
+Rien de personnel n'est visible par défaut ; chaque partage résulte d'un choix du membre.
+
+- **★ partagés** : sur la fiche d'un concert mis de côté, le membre choisit « Intéressé » ou
+  « J'y vais », et « Visible par moi seul » ou « Visible par les membres » (par défaut selon
+  « Mon compte »). La fiche montre « Intéressés : … » et « Y vont : … » pour les ★ visibles des
+  autres membres ; le filtre « Avec les membres » ne garde que ces concerts. Un membre suspendu
+  ou supprimé disparaît aussitôt (`GET /api/community/stars` : nom affiché et statut seulement).
+- **Salles** : un membre propose une salle (onglet Salles : formulaire, ou « Proposer au
+  catalogue » sur une salle observée hors catalogue) ; l'admin la corrige si besoin et
+  l'approuve ou la refuse (section « Salles à valider »). Approuvée, elle devient aussitôt
+  choisissable comme favorite, et ses concerts lui sont rattachés au traitement suivant. Les
+  membres ne voient pas qui l'a proposée ; l'auteur voit la réponse de l'admin.
+
 ### Spotify
 
 L'application Spotify « Concerts » est en mode développement : son propriétaire doit garder un
