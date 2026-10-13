@@ -155,10 +155,25 @@ dialog.reels::backdrop { background: #0f1230; }
 }
 .venue-filter[hidden] { display: none !important; }
 .venue-filter button { border: 0; background: none; color: inherit; cursor: pointer; padding: 0 6px; font-size: 1.1rem; line-height: 1; }
+/* Recherche sur tout le catalogue et « Mes prochains concerts » (site/search.js) */
+.global-search { margin-top: 18px; }
 #search {
-  margin-left: auto; min-width: 200px; padding: 6px 12px; border-radius: 99px;
-  border: 1.5px solid var(--rule); background: var(--paper-2);
+  width: 100%; max-width: 560px; padding: 9px 14px; border-radius: 99px; font: inherit;
+  border: 1.5px solid var(--rule); background: var(--paper-2); color: var(--ink);
 }
+.search-results { margin-top: 10px; max-width: 760px; }
+.search-list, .upcoming-list { list-style: none; margin: 0; padding: 0; }
+.search-item { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 12px; padding: 10px 0; border-bottom: 1px solid var(--rule); }
+.search-main, .upcoming-item { flex: 1 1 240px; display: grid; gap: 1px; text-align: left; background: none; border: 0; padding: 0; color: var(--ink); font: inherit; cursor: pointer; }
+.search-main:hover .cell-name, .upcoming-item:hover .cell-name { text-decoration: underline; }
+.search-date, .upcoming-date { font-size: .85rem; font-weight: 600; color: var(--ink-soft); }
+.search-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+.btn-small { padding: 4px 10px; font-size: .82rem; min-height: 36px; }
+.upcoming { margin-top: 18px; }
+.upcoming-title { margin: 0 0 8px; font-size: 1.05rem; font-weight: 700; }
+.upcoming-list { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; }
+.upcoming-item { flex: 0 0 auto; min-width: 180px; max-width: 240px; padding: 10px 12px; border-radius: 8px; background: var(--paper-2); border-left: 4px solid var(--yellow); }
+.artist-filter { margin: 0 0 12px; width: 100%; max-width: 320px; padding: 6px 12px; border-radius: 99px; border: 1.5px solid var(--rule); background: var(--paper-2); color: var(--ink); font: inherit; }
 
 main { padding: 0 clamp(16px, 4vw, 48px) 64px; }
 .view[hidden] { display: none; }
@@ -279,7 +294,6 @@ dialog::backdrop { background: rgba(20, 24, 56, .55); }
   .ticket-day { font-size: 2.8rem; }
   .ticket-time { margin: 0 0 0 auto; }
   .ticket-body { padding: 18px 20px 22px; }
-  #search { margin-left: 0; width: 100%; }
   .hide-mobile { display: none; }
 }
 @media (prefers-reduced-motion: no-preference) {
@@ -293,6 +307,7 @@ dialog::backdrop { background: rgba(20, 24, 56, .55); }
 .btn-quiet:hover { color: var(--ink); border-color: var(--ink); }
 .link-btn { display: block; margin-top: 2px; padding: 0; background: none; border: 0; color: var(--ink-soft); font: inherit; font-size: .8rem; text-decoration: underline; cursor: pointer; }
 .link-btn:hover { color: var(--ink); }
+.toast .toast-action { display: inline; margin: 0 0 0 10px; color: inherit; font-size: inherit; font-weight: 700; }
 .toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 50; max-width: calc(100vw - 32px);
   background: var(--ink); color: var(--paper); padding: 10px 16px; border-radius: 6px; font-size: .92rem; box-shadow: 0 4px 16px rgb(0 0 0 / .25); }
 
@@ -361,7 +376,7 @@ details.organizer summary { cursor: pointer; color: var(--ink-soft); font-weight
 details.organizer p { margin: 6px 0 0; }
 
 /* Arrivée d'un membre, Mon compte, Admin */
-.onboarding-mode .masthead .fresh, .onboarding-mode .tabs, .onboarding-mode .filters, .onboarding-mode main { display: none; }
+.onboarding-mode .masthead .fresh, .onboarding-mode .global-search, .onboarding-mode #search-results, .onboarding-mode #upcoming, .onboarding-mode .tabs, .onboarding-mode .filters, .onboarding-mode main { display: none; }
 .onboarding { max-width: 640px; padding: 8px 0 48px; }
 .onboarding h2 { font-size: 1.6rem; font-weight: 800; font-stretch: 85%; margin: 16px 0 8px; }
 .onboarding h3 { margin: 24px 0 8px; font-size: 1.05rem; }

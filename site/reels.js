@@ -6,7 +6,7 @@
 // Gestes : vers la gauche, fiche suivante ; vers la droite, précédente ; vers le bas, « Pas pour
 // moi » (Ne plus recommander l'artiste, avec Annuler pendant 6 s). Utilise les fonctions de app.js.
 
-const reels = { seen: new Set(), pending: new Set(), queue: [], index: 0, timer: null, undo: null, busy: false };
+const reels = { seen: new Set(), pending: new Set(), loaded: false, queue: [], index: 0, timer: null, undo: null, undoState: null, busy: false };
 
 // Nouveautés de la semaine dans votre liste (vos artistes et découvertes), annonces d'abord
 function freshEvents() {
@@ -17,11 +17,14 @@ function freshEvents() {
 
 const unseenEvents = () => freshEvents().filter((e) => !reels.seen.has(e.id));
 
+// Fiches vues lues sur le serveur, plus celles pas encore envoyées ; liste illisible : les fiches
+// ne s'ouvrent pas (elles réapparaîtraient alors qu'elles ont été vues)
 async function loadSeen() {
   try {
-    reels.seen = new Set(await api("me/seen"));
+    reels.seen = new Set([...(await api("me/seen")), ...reels.pending]);
+    reels.loaded = true;
   } catch {
-    reels.seen = new Set();  // liste illisible : les fiches restent proposées
+    /* liste gardée telle quelle ; openReels réessaie */
   }
 }
 
@@ -58,11 +61,13 @@ function renderReelsRing() {
   btn.classList.toggle("seen", !left);
   $("#reels-count").textContent = left ? String(left) : "✓";
   btn.setAttribute("aria-label", left
-    ? `Voir ${left} nouveauté${left > 1 ? "s" : ""} de la semaine`
-    : "Toutes les nouveautés de la semaine ont été vues");
+    ? `Reels : voir ${left} nouveauté${left > 1 ? "s" : ""} de la semaine`
+    : "Reels : toutes les nouveautés de la semaine ont été vues");
 }
 
-function openReels() {
+async function openReels() {
+  if (!reels.loaded) await loadSeen();
+  if (!reels.loaded) { toast("Les nouveautés déjà vues n'ont pas pu être lues : réessayez dans un instant"); return; }
   reels.queue = unseenEvents();
   if (!reels.queue.length) { toast("Toutes les nouveautés de la semaine ont été vues"); return; }
   reels.index = 0;
@@ -75,7 +80,10 @@ function closeReels() {
 }
 
 function onReelsClosed() {
+  // Annuler encore possible après la fermeture : proposé dans le message habituel
+  const pending = reels.undoState;
   hideUndo();
+  if (pending) toast(pending.text, { label: "Annuler", run: pending.run });
   flushSeen();
   renderReelsRing();
 }
@@ -83,10 +91,20 @@ function onReelsClosed() {
 const hideableNames = (ev) => (ev.kind === "known" ? ev.matched.map((m) => m.name)
   : ev.kind === "discovery" && ev.discovery ? [ev.discovery.artist] : []);
 
+// « Intéressé » comme l'étoile ; concert déjà en « Places prises » : le bouton le montre, un clic le retire
+function starReelLabel(ev) {
+  const status = state.starred.get(ev.id)?.status;
+  return { on: Boolean(status), text: status === "going" ? "✓ Places prises" : status ? "★ Intéressé" : "☆ Intéressé" };
+}
+
+function starReelButton(ev) {
+  const { on, text } = starReelLabel(ev);
+  return `<button type="button" class="btn btn-star${on ? " on" : ""}" data-reel="star" aria-pressed="${on}">${text}</button>`;
+}
+
 function cardHtml(ev) {
   const d = parseDay(ev.date);
   const sale = onSaleInfo(ev);
-  const on = isStarred(ev.id);
   return `<div class="reel-photo"></div>
     <div class="reel-body">
       <p class="reel-tags">${badgeTag(ev)} ${kindTag(ev, true)}</p>
@@ -95,7 +113,7 @@ function cardHtml(ev) {
       ${sale ? `<p class="reel-sale">${esc(sale)}</p>` : ""}
       <div class="reel-about loading" id="reel-about"><p class="cell-sub">Chargement de la présentation…</p></div>
       <div class="reel-actions">
-        <button type="button" class="btn btn-star${on ? " on" : ""}" data-reel="star" aria-pressed="${on}">${on ? "★ Intéressé" : "☆ Intéressé"}</button>
+        ${starReelButton(ev)}
         ${hideableNames(ev).length ? `<button type="button" class="btn btn-quiet" data-reel="nope">Pas pour moi</button>` : ""}
         <button type="button" class="btn btn-quiet" data-reel="ticket">Voir la fiche</button>
       </div>
@@ -116,7 +134,7 @@ function setPhoto(url) {
 async function fillAbout(ev) {
   const info = await artistInfo(ev.id);
   const box = $("#reel-about");
-  if (!box || $("#reel-card")?.dataset.id !== ev.id) return;  // fiche changée entre-temps
+  if (!box || $("#reel-card")?.dataset.reelId !== ev.id) return;  // fiche changée entre-temps
   if (info?.picture) setPhoto(info.picture);
   const tags = (info?.genres || []).slice(0, 3).map((g) => `<span class="tag tag-genre">${esc(g)}</span>`).join(" ");
   box.innerHTML = info && (info.description || tags)
@@ -130,16 +148,17 @@ function showCard() {
   const card = $("#reel-card");
   if (!ev) {
     // Fin de la file : écran de fin (la barre Annuler reste utilisable)
-    card.dataset.id = "";
+    card.dataset.reelId = "";
     card.className = "reel-card reel-end";
     card.innerHTML = `<div class="reel-body"><h2 class="reel-title">Vous avez vu toutes les nouveautés de la semaine</h2>
       <p class="reel-when">Les prochaines arriveront avec la mise à jour du lundi.</p>
       <div class="reel-actions"><button type="button" class="btn btn-quiet" data-reel="close">Fermer</button></div></div>`;
     $("#reels-progress").style.width = "100%";
     $("#reels-position").textContent = "";
+    focusCard();
     return;
   }
-  card.dataset.id = ev.id;
+  card.dataset.reelId = ev.id;
   card.className = `reel-card ${ev.kind}`;
   card.style.transform = "";
   card.innerHTML = cardHtml(ev);
@@ -148,6 +167,12 @@ function showCard() {
   $("#reels-position").textContent = `${reels.index + 1} / ${reels.queue.length}`;
   markSeen(ev.id);
   fillAbout(ev);
+  focusCard();
+}
+
+// Le focus reste dans la fenêtre des fiches (le bouton touché a disparu avec l'ancienne fiche)
+function focusCard() {
+  if ($("#reels").open && !$("#ticket").open) $("#reel-card").focus({ preventScroll: true });
 }
 
 function step(delta) {
@@ -201,6 +226,7 @@ function afterPrefsChange() {
 // Barre « Annuler » dans la fenêtre des fiches (le message habituel resterait derrière elle)
 function showUndo(text, action) {
   hideUndo();
+  reels.undoState = action ? { text, run: () => action().catch((e) => toast(`Annulation impossible : ${e.message}`)) } : null;
   const bar = $("#reels-undo");
   bar.innerHTML = `<span>${esc(text)}</span>${action ? `<button type="button" class="link-btn" id="reels-undo-btn">Annuler</button>` : ""}`;
   bar.hidden = false;
@@ -215,6 +241,7 @@ function showUndo(text, action) {
 
 function hideUndo() {
   clearTimeout(reels.undo);
+  reels.undoState = null;
   const bar = $("#reels-undo");
   if (bar) { bar.hidden = true; bar.innerHTML = ""; }
 }
@@ -227,7 +254,7 @@ function bindReelGestures(card) {
   card.addEventListener("pointerdown", (e) => {
     if (e.button !== 0 || e.target.closest("button, a")) return;
     start = { x: e.clientX, y: e.clientY, t: Date.now(), id: e.pointerId, photo: Boolean(e.target.closest(".reel-photo")) };
-    card.setPointerCapture(e.pointerId);
+    try { card.setPointerCapture(e.pointerId); } catch { /* pointeur déjà relâché */ }
     card.classList.add("dragging");
   });
   card.addEventListener("pointermove", (e) => {
@@ -257,27 +284,30 @@ function bindReels() {
   $("#reels-close").addEventListener("click", closeReels);
   dlg.addEventListener("close", onReelsClosed);
   dlg.addEventListener("click", (e) => {
+    e.stopPropagation();  // aucun clic des fiches ne doit ouvrir une fiche concert en dessous
     const nav = e.target.closest("[data-reel-nav]");
     if (nav) { step(Number(nav.dataset.reelNav)); return; }
     const btn = e.target.closest("[data-reel]");
     if (!btn) return;
-    e.stopPropagation();
     if (btn.dataset.reel === "close") { closeReels(); return; }
     const ev = reels.queue[reels.index];
     if (!ev) return;
     if (btn.dataset.reel === "star") {
-      toggleStar(ev.id).then(() => {
-        if ($("#reel-card").dataset.id !== ev.id) return;
-        const on = isStarred(ev.id);
+      const update = () => {
+        if ($("#reel-card").dataset.reelId !== ev.id) return;
+        const { on, text } = starReelLabel(ev);
         btn.classList.toggle("on", on);
         btn.setAttribute("aria-pressed", on);
-        btn.textContent = on ? "★ Intéressé" : "☆ Intéressé";
-      });
+        btn.textContent = text;
+      };
+      toggleStar(ev.id).then(update);
+      update();  // affichage immédiat, corrigé si l'enregistrement échoue
     } else if (btn.dataset.reel === "nope") notForMe();
     else if (btn.dataset.reel === "ticket") openTicket(ev.id);
   });
-  dlg.addEventListener("keydown", (e) => {
-    if ($("#ticket").open) return;
+  // Clavier : écouté sur la page, pour garder les flèches après la fermeture d'une fiche concert
+  document.addEventListener("keydown", (e) => {
+    if (!dlg.open || $("#ticket").open || e.target.closest?.("input, select, textarea")) return;
     if (e.key === "ArrowLeft") step(-1);
     else if (e.key === "ArrowRight") step(1);
     else if (e.key === "ArrowDown") { e.preventDefault(); notForMe(); }

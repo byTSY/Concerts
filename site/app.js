@@ -2,7 +2,8 @@
 
 const state = {
   events: [], artists: [], meta: {}, memberMeta: {}, me: null,
-  kinds: new Set(["known", "discovery"]), all: false, favOnly: false, withMembers: false, style: "", venue: null, q: "",
+  kinds: new Set(["known", "discovery"]), all: false, favOnly: false, withMembers: false, style: "", venue: null,
+  q: "", artistQ: "",  // q : recherche sur tout le catalogue (site/search.js) ; artistQ : filtre de « Mes artistes »
   community: new Map(),  // concert → [{ name, status }] : ★ partagés par les autres membres
   view: "calendar", calendar: null,
   hidden: new Set(), levels: new Map(), starred: new Map(), profile: new Map(), apiError: null, loadFailed: false,
@@ -82,7 +83,7 @@ async function checkForUpdate() {
     if (meta.generated_at && meta.generated_at !== state.meta.generated_at) { location.reload(); return; }
     const me = await api("me");
     if ((me.source?.last_sync_at || null) !== (state.me?.source?.last_sync_at || null)) { location.reload(); return; }
-    await loadPrefs();
+    await Promise.all([loadPrefs(), loadSeen()]);  // fiches Reels vues sur un autre appareil comprises
     applyPrefs();
     renderMasthead();
     render();
@@ -211,48 +212,76 @@ function starButton(ev, long = false) {
   return `<button type="button" class="${long ? "btn btn-star" : "star-toggle"}${on ? " on" : ""}" data-star="${esc(ev.id)}" aria-pressed="${on}" title="${title}" aria-label="${title}">${text}</button>`;
 }
 
+// Enregistrements d'un même concert envoyés l'un après l'autre (clics rapprochés) ; la réponse
+// d'un envoi n'est appliquée que s'il est le dernier en attente, pour ne pas effacer un clic suivant
+const starQueue = new Map();  // concert → { tail: promesse, pending: nombre d'envois en attente }
+function queueStar(id, task) {
+  const q = starQueue.get(id) || { tail: Promise.resolve(), pending: 0 };
+  q.pending += 1;
+  starQueue.set(id, q);
+  const last = () => q.pending === 1;
+  q.tail = q.tail.then(() => task(last)).finally(() => {
+    q.pending -= 1;
+    if (!q.pending) starQueue.delete(id);
+  });
+  return q.tail;
+}
+
 // Mise à jour immédiate de l'affichage, puis enregistrement ; retour en arrière si l'enregistrement échoue
-async function toggleStar(id) {
+function toggleStar(id) {
   const ev = state.events.find((e) => e.id === id);
   const previous = state.starred.get(id);
   const label = ev ? starLabel(ev) : previous?.label || id;
   const star = !isStarred(id);
   star ? state.starred.set(id, { label, status: "interested", visibility: state.me?.default_visibility || "private" }) : state.starred.delete(id);
   refreshStars(id);
-  try {
-    const path = `me/stars/${encodeURIComponent(id)}`;
-    setStars(await (star ? api(path, { method: "PUT", body: { label } }) : api(path, { method: "DELETE" })));
-    state.apiError = null;
-    toast(star ? "Ajouté à vos concerts intéressés" : "Retiré de vos concerts intéressés");
-  } catch (e) {
-    star ? state.starred.delete(id) : state.starred.set(id, previous);
-    alert(`L'enregistrement a échoué : ${e.message}.\n\nCette fonction ne marche que sur le site publié.`);
-  }
-  refreshStars(id);
+  return queueStar(id, async (last) => {
+    try {
+      const path = `me/stars/${encodeURIComponent(id)}`;
+      const list = await (star ? api(path, { method: "PUT", body: { label } }) : api(path, { method: "DELETE" }));
+      if (last()) setStars(list);
+      state.apiError = null;
+      toast(star ? "Ajouté à vos concerts intéressés"
+        : previous?.status === "going" ? "Places prises retirées de vos concerts" : "Retiré de vos concerts intéressés");
+    } catch (e) {
+      if (last()) star ? state.starred.delete(id) : state.starred.set(id, previous);
+      alert(`L'enregistrement a échoué : ${e.message}.\n\nCette fonction ne marche que sur le site publié.`);
+    }
+    refreshStars(id);
+  });
 }
 
-// Statut (« j'y vais ») ou visibilité d'un concert ; un concert pas encore mis de côté l'est
-async function setStarOption(id, field, value) {
+// Statut (« places prises ») ou visibilité d'un concert ; un concert pas encore mis de côté l'est.
+// Affichage mis à jour tout de suite, retour en arrière si l'enregistrement échoue.
+function setStarOption(id, field, value) {
   const ev = state.events.find((e) => e.id === id);
-  const created = !isStarred(id);
-  const body = { [field]: value, ...(created ? { label: ev ? starLabel(ev) : id } : {}) };
-  try {
-    setStars(await api(`me/stars/${encodeURIComponent(id)}`, { method: "PUT", body }));
-    toast(field === "status"
-      ? (value === "going" ? "Noté : vous y allez" : created ? "Ajouté à vos concerts intéressés" : "Noté : intéressé")
-      : (value === "members" ? "Visible par les membres" : "Visible par vous seul"));
-  } catch (e) {
-    toast(`Enregistrement impossible : ${e.message}`);
-  }
+  const previous = state.starred.get(id);
+  const created = !previous;
+  const label = previous?.label || (ev ? starLabel(ev) : id);
+  state.starred.set(id, { label, status: "interested", visibility: state.me?.default_visibility || "private", ...previous, [field]: value });
   refreshStars(id);
+  const body = { [field]: value, ...(created ? { label } : {}) };
+  return queueStar(id, async (last) => {
+    try {
+      const list = await api(`me/stars/${encodeURIComponent(id)}`, { method: "PUT", body });
+      if (last()) setStars(list);
+      toast(field === "status"
+        ? (value === "going" ? "Noté : places prises" : created ? "Ajouté à vos concerts intéressés" : "Noté : intéressé")
+        : (value === "members" ? "Visible par les membres" : "Visible par vous seul"));
+    } catch (e) {
+      if (last()) previous ? state.starred.set(id, previous) : state.starred.delete(id);
+      toast(`Enregistrement impossible : ${e.message}`);
+    }
+    refreshStars(id);
+  });
 }
 
-// Fiche d'un concert : « Intéressé » ou « J'y vais », partage avec les membres, retrait
+// Fiche d'un concert : « Intéressé » ou « Places prises », partage avec les membres, retrait
 function starBlock(ev) {
   const s = state.starred.get(ev.id);
   const choice = (status, off, on) => `<button type="button" class="btn btn-star${s?.status === status ? " on" : ""}"
     data-star-set="${status}" data-star-id="${esc(ev.id)}" aria-pressed="${s?.status === status}">${s?.status === status ? on : off}</button>`;
-  return `${choice("interested", "☆ Intéressé", "★ Intéressé")}${choice("going", "J'y vais", "✓ J'y vais")}
+  return `${choice("interested", "☆ Intéressé", "★ Intéressé")}${choice("going", "🎟 Places prises", "✓ Places prises")}
     ${s ? `<label class="chip star-share"><input type="checkbox" data-star-share data-star-id="${esc(ev.id)}"${s.visibility === "members" ? " checked" : ""}> Visible par les membres</label>
       <button type="button" class="link-btn" data-star="${esc(ev.id)}">Retirer de mes concerts</button>` : ""}`;
 }
@@ -264,7 +293,7 @@ function membersBlock(ev) {
   const names = (status) => list.filter((m) => m.status === status).map((m) => esc(m.name)).join(", ");
   const going = names("going");
   const interested = names("interested");
-  return `<div class="ticket-section"><h3>Membres</h3><p>${[interested ? `Intéressés : ${interested}` : "", going ? `Y vont : ${going}` : ""].filter(Boolean).join("<br>")}</p></div>`;
+  return `<div class="ticket-section"><h3>Membres</h3><p>${[interested ? `Intéressés : ${interested}` : "", going ? `Ont leurs places : ${going}` : ""].filter(Boolean).join("<br>")}</p></div>`;
 }
 
 function refreshStars(id) {
@@ -274,6 +303,8 @@ function refreshStars(id) {
     if (box) box.innerHTML = starBlock(ev);
   }
   updateStarCount();
+  renderUpcoming();
+  renderSearch();
   if (state.view !== "calendar") render();
   else if (state.calendar) renderCalendar();
 }
@@ -432,7 +463,11 @@ function artistInfo(id, timeout = 8000) {
       .then((r) => (r.ok ? r.json() : null))
       .catch(() => null)
       .finally(() => clearTimeout(timer))
-      .then((info) => { if (!info) artistInfoCache.delete(id); return info; }));  // nouvel essai plus tard
+      // Nouvel essai plus tard : réponse absente, ou présentation Dice manquante (page Dice non lue)
+      .then((info) => {
+        if (!info || (!info.organizer && (ev?.links || []).some((l) => l.source === "Dice"))) artistInfoCache.delete(id);
+        return info;
+      }));
   }
   return artistInfoCache.get(id);
 }
@@ -465,9 +500,18 @@ async function shareMessage(id) {
   await shareOrCopy({ text: messageText(ev, info) }, "Message copié : collez-le dans WhatsApp ou Messages");
 }
 
-function toast(text) {
+// action : { label, run } facultatif, bouton dans le message (ex. Annuler)
+function toast(text, action) {
   const el = $("#toast");
   el.textContent = text;
+  if (action) {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "link-btn toast-action";
+    b.textContent = action.label;
+    b.addEventListener("click", () => { el.hidden = true; action.run(); }, { once: true });
+    el.append(" ", b);
+  }
   el.hidden = false;
   clearTimeout(toast.t);
   toast.t = setTimeout(() => { el.hidden = true; }, 6000);
@@ -508,7 +552,6 @@ function fillStyles() {
 /* Filtres ------------------------------------------------------------------ */
 
 function filtered() {
-  const q = fold(state.q.trim());
   return state.events.filter((ev) => {
     if (state.withMembers) {
       if (!membersOf(ev).length) return false;
@@ -516,10 +559,6 @@ function filtered() {
     if (!styleOk(ev)) return false;
     if (state.favOnly && !ev.venue_favorite) return false;
     if (state.venue && ev.venue !== state.venue) return false;
-    if (q) {
-      const hay = fold([ev.title, ev.venue, headline(ev), (ev.artists || []).join(" ")].join(" "));
-      if (!hay.includes(q)) return false;
-    }
     return true;
   });
 }
@@ -558,6 +597,8 @@ function renderMasthead() {
     : parts.length ? `${parts.join(" et ")} cette semaine`
     : "Aucune nouveauté cette semaine";
   renderReelsRing();  // cercle « Reels » : fiches plein écran des nouveautés (site/reels.js)
+  renderUpcoming();   // Mes prochains concerts et résultats de recherche (site/search.js)
+  renderSearch();
 }
 
 /* Calendrier ----------------------------------------------------------------- */
@@ -678,9 +719,7 @@ function artistRows() {
       rows.get(key).events.push(ev);
     }
   }
-  const q = fold(state.q.trim());
   return [...rows.values()]
-    .filter((r) => !q || fold(r.name).includes(q))
     .map((r) => {
       r.events.sort((a, b) => a.date.localeCompare(b.date) || (a.time || "").localeCompare(b.time || ""));
       r.next = r.events[0];
@@ -693,7 +732,7 @@ function renderByArtist() {
   $("#byartist-sort").value = state.byArtistSort;
   const rows = artistRows();
   if (!state.events.length) { $("#byartist").innerHTML = emptyMessage(); return; }
-  if (!rows.length) { $("#byartist").innerHTML = `<div class="empty">Aucun de vos artistes ne correspond à la recherche.</div>`; return; }
+  if (!rows.length) { $("#byartist").innerHTML = `<div class="empty">Aucun de vos artistes n'a de concert à venir avec ce style.</div>`; return; }
   const fmtAdded = fmt({ day: "numeric", month: "short", year: "numeric" });
   let html = `<p class="count-line">${rows.length} de vos artistes ont au moins un concert à venir.</p>
     <div class="table-wrap"><table class="events"><thead><tr><th>Artiste</th><th>Prochain concert</th><th>Salle</th><th class="hide-mobile">Autres dates</th><th class="hide-mobile">Ajouté sur Deezer</th></tr></thead><tbody>`;
@@ -738,7 +777,7 @@ function renderStarred() {
       html += `<tr class="clickable" data-id="${ev.id}" tabindex="0">
         <td class="cell-date">${esc(fmtShort.format(parseDay(ev.date)))}${ev.time ? `<span class="cell-sub">${esc(ev.time)}</span>` : ""}</td>
         <td><span class="cell-name">${esc(headline(ev))}</span>${headline(ev) !== ev.title ? `<span class="cell-sub">${esc(ev.title)}</span>` : ""}
-          <span class="cell-sub">${star.status === "going" ? `<span class="tag tag-going">J'y vais</span> ` : ""}${star.visibility === "members" ? "visible par les membres" : "privé"} ${membersTag(ev)}</span></td>
+          <span class="cell-sub">${star.status === "going" ? `<span class="tag tag-going">Places prises</span> ` : ""}${star.visibility === "members" ? "visible par les membres" : "privé"} ${membersTag(ev)}</span></td>
         <td>${esc(ev.venue)}</td>
         <td class="hide-mobile">${esc(ev.price || "")}</td>
         <td>${status ? `<span class="cell-sub"><strong>${esc(status)}</strong></span>` : ""}${sale ? `<span class="stub-sale">${esc(sale.replace("Mise en vente le ", "En vente le "))}</span>` : ""}<span class="buy-links">${links}</span></td>
@@ -757,7 +796,7 @@ function renderStarred() {
 /* Mes artistes --------------------------------------------------------------- */
 
 function renderArtists() {
-  const q = fold(state.q.trim());
+  const q = fold(state.artistQ.trim());
   // Par niveau effectif (imposé ou calculé), puis par score : un artiste passé au niveau 3 descend
   const list = state.artists.filter((a) => !q || fold(a.name).includes(q))
     .sort((a, b) => a.tier - b.tier || b.score - a.score || a.name.localeCompare(b.name, "fr"));
@@ -767,6 +806,7 @@ function renderArtists() {
     ? `<p class="prefs-warning">Vos préférences (niveaux imposés, artistes masqués) n'ont pas pu être lues : ${esc(state.apiError)}. Les niveaux affichés sont ceux du dernier traitement. Rechargez la page ; si le message persiste, signalez-le à l'admin.</p>`
     : "";
   let html = `${sync}<p class="count-line">${state.artists.length} artistes : ${tiers[0]} en niveau 1, ${tiers[1]} en niveau 2, ${tiers[2]} en niveau 3. Classés par niveau, puis par score.</p>
+    <input type="search" id="artist-filter" class="artist-filter" placeholder="Filtrer vos artistes" aria-label="Filtrer vos artistes" value="${esc(state.artistQ)}">
     <div class="table-wrap"><table><thead><tr><th>Artiste</th><th>Niveau</th><th class="num">Score</th><th class="hide-mobile">Détail</th><th class="hide-mobile">Ajouté le</th></tr></thead><tbody>`;
   for (const a of list.slice(0, 1500)) {
     const s = a.sources || {};
@@ -933,7 +973,7 @@ function emptyMessage() {
     return `<div class="empty"><strong>Aucune donnée pour l'instant.</strong><br>
       Lancez le traitement depuis l'onglet Actions du dépôt GitHub (« Mise à jour hebdomadaire », puis « Run workflow »). La page se remplit à la fin du traitement.</div>`;
   }
-  return `<div class="empty">Aucun résultat avec les filtres actuels. Élargissez les filtres ou effacez la recherche.</div>`;
+  return `<div class="empty">Aucun résultat avec les filtres actuels. Élargissez les filtres.</div>`;
 }
 
 function render() {
@@ -954,7 +994,6 @@ function switchView(view) {
   const eventFilters = view === "calendar" || view === "list";
   document.querySelectorAll("#filters .chip, #venue-filter").forEach((el) => (el.style.display = eventFilters ? "" : "none"));
   $("#style-filter").style.display = eventFilters || view === "byartist" ? "" : "none";
-  $("#search").style.display = view === "account" || view === "admin" ? "none" : "";
   if (!state.venue) $("#venue-filter").hidden = true;
   render();
   if (view === "calendar" && state.calendar) state.calendar.updateSize();
@@ -991,8 +1030,22 @@ function bind() {
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") checkForUpdate(); });
   window.addEventListener("pageshow", (e) => { if (e.persisted) checkForUpdate(); });  // page restaurée depuis le cache (iOS)
   $("#style-filter").addEventListener("change", (e) => { state.style = e.target.value; render(); });
+  // Filtre de « Mes artistes » : tableau seul redessiné, le champ garde la saisie
   let t;
-  $("#search").addEventListener("input", (e) => { clearTimeout(t); t = setTimeout(() => { state.q = e.target.value; render(); }, 150); });
+  document.body.addEventListener("input", (e) => {
+    if (e.target.id !== "artist-filter") return;
+    clearTimeout(t);
+    t = setTimeout(() => {
+      state.artistQ = e.target.value;
+      const typing = document.activeElement === e.target;
+      const pos = e.target.selectionStart;
+      renderArtists();
+      if (!typing) return;  // focus parti ailleurs entre-temps : on ne le reprend pas
+      const input = $("#artist-filter");
+      input.focus();
+      input.setSelectionRange(pos, pos);
+    }, 150);
+  });
 
   document.body.addEventListener("click", (e) => {
     const share = e.target.closest("[data-share]");
@@ -1002,8 +1055,11 @@ function bind() {
     const status = e.target.closest("[data-star-set]");
     if (status) {
       e.stopPropagation();
+      // Autre statut : on passe de l'un à l'autre ; même statut, second clic : on décoche (retrait)
       if (state.starred.get(status.dataset.starId)?.status !== status.dataset.starSet) {
         setStarOption(status.dataset.starId, "status", status.dataset.starSet);
+      } else {
+        toggleStar(status.dataset.starId);
       }
       return;
     }
@@ -1066,6 +1122,7 @@ function bind() {
   updateStarCount();
   bind();
   bindReels();
+  bindSearch();
   renderMasthead();
   switchView("calendar");
   if (state.loadFailed) showAccessAlert(state.accessError);

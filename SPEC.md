@@ -344,6 +344,8 @@ d'artistes Spotify non rapprochés de Deezer.
 | `GET /api/me/stars` | ses ★ |
 | `PUT /api/me/stars/:concert` | `{ label, status, visibility }` |
 | `DELETE /api/me/stars/:concert` | retrait |
+| `GET /api/me/seen` | fiches Reels déjà vues (version 1.2.0) |
+| `POST /api/me/seen` | `{ ids }` (50 au plus) : fiches vues |
 | `DELETE /api/me` | suppression de son compte (double confirmation) |
 
 ### 9.2 Communauté
@@ -463,7 +465,8 @@ d'une action du membre et peut être retiré.
 - **★ partagés** : à la mise de côté, « privé » (défaut, réglable) ou « visible par les
   membres ». Fiche du concert : « Intéressés : Marie, Paul » et « Y vont : Léa ». Filtre
   « Avec les membres ».
-- **« J'y vais »** : second niveau du ★ (`going`), même règle de visibilité.
+- **« Places prises »** (ancien « J'y vais », renommé en version 1.3.0) : second niveau du ★ (`going`),
+  même règle de visibilité.
 - **Catalogue des salles** : proposition par un membre, validation par l'admin, salle utile à
   tous ; les membres ne voient pas qui l'a proposée.
 - Suspension ou suppression d'un membre : ses ★ partagés disparaissent aussitôt.

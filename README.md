@@ -2,7 +2,8 @@
 
 Chaque lundi matin, GitHub lit vos favoris Deezer, cherche les concerts à venir à Paris,
 repère vos artistes et propose des découvertes proches de vos goûts. Le résultat est publié
-sur un site privé : bandeau des nouveautés de la semaine, calendrier, liste, vos artistes, salles.
+sur un site privé : fiches « Reels » des nouveautés de la semaine, recherche sur tout le catalogue,
+vos prochains concerts, calendrier, liste, vos artistes, salles.
 
 ## Mise en place (c. 30 minutes, une seule fois)
 
@@ -127,8 +128,8 @@ il s'arrête aussitôt (c. 1 minute de GitHub Actions) et n'enregistre aucun tra
 Rien de personnel n'est visible par défaut ; chaque partage résulte d'un choix du membre.
 
 - **★ partagés** : sur la fiche d'un concert mis de côté, le membre choisit « Intéressé » ou
-  « J'y vais », et « Visible par moi seul » ou « Visible par les membres » (par défaut selon
-  « Mon compte »). La fiche montre « Intéressés : … » et « Y vont : … » pour les ★ visibles des
+  « Places prises », et « Visible par moi seul » ou « Visible par les membres » (par défaut selon
+  « Mon compte »). La fiche montre « Intéressés : … » et « Ont leurs places : … » pour les ★ visibles des
   autres membres ; le filtre « Avec les membres » ne garde que ces concerts. Un membre suspendu
   ou supprimé disparaît aussitôt (`GET /api/community/stars` : nom affiché et statut seulement).
 - **Salles** : un membre propose une salle (onglet Salles : formulaire, ou « Proposer au
@@ -240,8 +241,16 @@ Catalogue des salles : table `venues` de D1 (nom, alias selon les billetteries, 
 
 ## Le site
 
+- **Reels** (cercle en haut, version 1.2.0) : nouveautés de la semaine en fiches plein écran
+  (photo, description, artistes similaires). Glisser ou toucher la photo à droite : suivante ;
+  à gauche : précédente ; vers le bas : « Pas pour moi » (Ne plus recommander, Annuler 6 s).
+  Une fiche vue ne revient sur aucun appareil (table D1 `seen_cards`).
+- **Recherche** (barre en haut, version 1.3.0) : tous les concerts à venir publiés, sans tenir
+  compte des filtres, concerts non recommandés compris ; une ligne par date ; boutons
+  « Intéressé » et « Places prises » (second clic : retrait).
+- **Mes prochains concerts** : concerts avec places prises, du plus proche au plus lointain.
 - **Calendrier** et **Liste** : vos artistes et les découvertes, ou tous les concerts.
-  Filtres : vos salles, style, recherche.
+  Filtres : vos salles, style.
 - **Par artiste** : vos artistes qui ont au moins un concert à venir, avec la date et la salle
   du prochain et les dates suivantes. Tri par date du prochain concert, par nom, ou par date
   d'ajout sur Deezer (le like le plus récent : artiste, album, titre ou ajout en playlist).

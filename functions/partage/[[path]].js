@@ -318,6 +318,7 @@ async function organizerText(ev, ctx) {
   const hit = await caches.default.match(key);
   if (hit) return (await hit.json()).text;
   const { text, ok } = await diceDescription(dice.url);
+  if (!ok) ctx.diceFailed = true;  // page /partage/ alors non gardée en cache
   if (ok) {
     ctx.waitUntil(caches.default.put(key, new Response(JSON.stringify({ text }), {
       headers: { "content-type": "application/json", "cache-control": `max-age=${(text ? CACHE_DAYS : 1) * 86400}` },
@@ -494,12 +495,13 @@ export async function onRequestGet(context) {
   if (!found) return asJson ? new Response(JSON.stringify({ error: "concert introuvable" }), { status: 404 }) : notFound();
   const ev = withSharedArtist(found, new URL(request.url).searchParams);
 
-  const info = await concertInfo(ev, { waitUntil, env });
+  const ctx = { waitUntil, env };
+  const info = await concertInfo(ev, ctx);
   if (asJson) {
     return new Response(JSON.stringify(info), { headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" } });
   }
-  // Présentation Dice manquante (page Dice non lue) : page non gardée en cache, nouvel essai
-  const diceMissing = !info.organizer && (ev.links || []).some((l) => l.source === "Dice");
+  // Page Dice non lue : page non gardée en cache, nouvel essai (sans texte sur Dice : cache normal)
+  const diceMissing = Boolean(ctx.diceFailed);
   return new Response(page(info, request.url), {
     headers: { "content-type": "text/html; charset=utf-8", "cache-control": diceMissing ? "no-store" : "public, max-age=3600" },
   });
