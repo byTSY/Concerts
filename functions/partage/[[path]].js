@@ -388,6 +388,7 @@ export function page(c, url) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+${ICON_LINKS}
 <title>${esc(c.artist)} · ${esc(when)}</title>
 <meta name="description" content="${esc(desc)}">
 <meta property="og:type" content="website">
@@ -493,10 +494,21 @@ export async function findConcert(env, url, id) {
   return (await all.json()).find((e) => e.id === id) || null;
 }
 
+// Icônes du site servies sous /partage/, seul chemin ouvert à tous : l'iPhone télécharge l'icône
+// d'écran d'accueil sans la connexion Cloudflare Access (version 1.8.2).
+export const ICONS = ["apple-touch-icon.png", "icon-32.png", "icon-192.png"];
+const ICON_LINKS = `<link rel="icon" type="image/png" sizes="32x32" href="/partage/icon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/partage/apple-touch-icon.png">`;
+
 export async function onRequestGet(context) {
   const { request, env, params } = context;
   const waitUntil = (p) => context.waitUntil(p);
   const raw = (params.path || []).join("/");
+  if (ICONS.includes(raw)) {
+    const icon = await env.ASSETS.fetch(new URL(`/${raw}`, request.url));
+    if (!icon.ok) return notFound();
+    return new Response(icon.body, { headers: { "content-type": "image/png", "cache-control": "public, max-age=86400" } });
+  }
   const asJson = raw.endsWith(".json");
   const id = raw.replace(/\.json$/, "");
   if (!/^[a-z0-9]{6,40}$/.test(id)) return notFound();

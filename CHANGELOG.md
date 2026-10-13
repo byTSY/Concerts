@@ -14,6 +14,14 @@ Revenir à une version antérieure :
 3. base D1 : les migrations ne s'annulent pas seules ; chaque entrée indique la commande inverse
    quand une migration est ajoutée.
 
+## 1.8.2 (13 octobre 2026)
+
+Correction de l'icône d'écran d'accueil de l'iPhone, toujours affichée en « C ».
+- L'iPhone télécharge l'icône sans la connexion Cloudflare Access : l'image, protégée comme le
+  reste du site, lui était refusée. Les icônes sont désormais servies sous `/partage/`, seul
+  chemin ouvert à tous.
+- Les fiches de partage d'un concert affichent aussi l'icône.
+
 ## 1.8.1 (13 octobre 2026)
 
 Icônes du site.
