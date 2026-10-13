@@ -40,7 +40,7 @@ un petit groupe (moins de 10 membres en phase de test) :
 | Une source par membre | Deezer ou Spotify, modifiable depuis Mon compte. |
 | Moteur de découvertes | Graphe des artistes similaires Deezer pour tous les membres, y compris ceux sur Spotify (section 6.4). |
 | Connexion à l'application | Cloudflare Access, code à usage unique reçu par e-mail. |
-| Inscription | L'admin invite (e-mail, prénom) ; le membre choisit et relie sa source à sa première connexion. |
+| Inscription | L'admin invite par un lien personnel (prénom seul ; la personne y saisit son e-mail) ou par e-mail et prénom ; le membre choisit et relie sa source à sa première connexion. Ajout du 13 octobre 2026. |
 | Données personnelles | Hors de GitHub : Cloudflare D1 (base SQL) et R2 (fichiers). |
 | Données communes | Concerts collectés, caches Deezer, salles observées : dans le dépôt, comme aujourd'hui. |
 | Ce que voit l'admin | Statut, connexions, activité, nombre de concerts mis de côté (★), état de la synchronisation. Jamais le contenu (artistes, concerts choisis, préférences). |
@@ -94,7 +94,8 @@ GitHub (dépôt privé)                    Cloudflare
 ### 5.1 Deux barrières
 
 1. **Cloudflare Access** n'autorise que les e-mails de la liste « membres » (liste Zero Trust
-   tenue à jour par l'espace admin).
+   tenue à jour par l'espace admin, et par la page d'invitation quand une personne y saisit son
+   adresse).
 2. **L'application** vérifie le jeton `Cf-Access-Jwt-Assertion` (signature contre les
    certificats `https://<équipe>.cloudflareaccess.com/cdn-cgi/access/certs`, audience
    `ACCESS_AUD`), en extrait l'e-mail et cherche le membre dans `users`. E-mail absent, statut
@@ -234,6 +235,12 @@ de bord Spotify), `refresh_token_enc`, `scopes`, `connected_at`, `last_sync_at`,
 **oauth_states** : `state` (PK), `user_id`, `code_verifier`, `expires_at` (10 min), à usage
 unique.
 
+**invitations** (ajout du 13 octobre 2026) : `id` (`i_` + 8 caractères), `token_hash` (empreinte
+SHA-256 du jeton du lien, jamais le jeton), `first_name`, `created_at`, `expires_at` (7 jours).
+Ligne effacée quand le lien sert ; un lien expiré reste listé jusqu'à sa suppression par
+l'admin. `users` reçoit `invited_via` (`email` / `link`) et `access_pending` (ajout à la liste
+Access à refaire).
+
 **connections** : `user_id`, `session_started_at`. Une connexion = un jeton Access dont la
 valeur `iat` n'a jamais été vue pour ce membre.
 
@@ -343,6 +350,8 @@ d'artistes Spotify non rapprochés de Deezer.
 |---|---|
 | `GET /api/admin/members` | par membre : nom affiché, e-mail, statut, source (Deezer / Spotify), état de synchronisation, dernière connexion, connexions et activité sur 30 jours, nombre de ★ |
 | `POST /api/admin/members` | invitation `{ email, first_name }` ; ajout à la liste Access ; renvoie le lien à transmettre |
+| `GET` / `POST /api/admin/invitations` | liens d'invitation en attente ; nouveau lien `{ first_name }` (jeton aléatoire, empreinte seule gardée, usage unique, 7 jours) |
+| `POST /api/admin/invitations/:id/renew`, `DELETE /api/admin/invitations/:id` | nouveau lien (l'ancien ne marche plus), suppression |
 | `GET /api/admin/spotify` | places utilisées / `SPOTIFY_MAX_USERS` ; demandes à ajouter (nom et e-mail du compte Spotify) ; comptes à retirer après suppression |
 | `POST /api/admin/spotify/:user/allowlisted` | l'admin confirme l'ajout dans le tableau de bord Spotify : `ready_to_connect` |
 | `POST /api/admin/spotify/:user/removed` | l'admin confirme le retrait : place libérée, nom et e-mail Spotify effacés |
@@ -359,6 +368,9 @@ d'artistes Spotify non rapprochés de Deezer.
 ### 9.4 Public
 
 `/partage/*` : inchangé (application Access séparée, ouverte à tous).
+`/invitation/<jeton>` : page d'inscription par lien (même application Access ouverte à tous) ;
+formulaire de cette page seulement, en-têtes `no-store`, `referrer-policy: same-origin`, CSP
+sans script.
 
 ## 10. Écrans
 
@@ -407,7 +419,10 @@ validation des salles et relance des calculs se font dans la console Concert.
 
 ## 11. Arrivée d'un membre : choix de la source
 
-1. L'admin invite (e-mail, prénom) ; il transmet lui-même le lien (WhatsApp, e-mail).
+1. L'admin invite : soit par un lien personnel créé pour un prénom, que la personne ouvre
+   (`/invitation/<jeton>`, chemin ouvert à tous dans Access, comme `/partage`) pour y saisir son
+   adresse, alors inscrite et ajoutée à la liste Access ; soit par e-mail et prénom. Il transmet
+   lui-même le lien (SMS prérempli, WhatsApp, e-mail).
 2. Le membre se connecte (code Access). Statut `onboarding`. Texte court sur les données
    conservées (e-mail, prénom ou pseudo, source musicale, préférences) et la suppression
    possible à tout moment.
@@ -509,6 +524,8 @@ l'admin.
   liaisons au projet Pages, liste Zero Trust « membres » et règle Access qui l'utilise,
   jetons API aux droits limités, relevé de l'équipe Access et de l'audience.
 - GitHub : secrets Actions ; jeton limité aux Actions du dépôt.
+- Cloudflare Access : chemin `concerts-s2k.pages.dev/invitation` ouvert à tous, dans la même
+  application que `/partage` (ajout du 13 octobre 2026).
 - Spotify : l'application `Concerts` existe déjà (identifiants enregistrés dans Cloudflare,
   utilisés par la fiche de partage). Confirmer que le compte Spotify qui la possède a un
   abonnement **Premium** actif (page Compte de spotify.com) ; ajouter l'adresse de retour

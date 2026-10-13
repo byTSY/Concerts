@@ -557,10 +557,76 @@ export function member(env, user) {
 // Ce que voit l'admin : statut, connexions, activité, nombre de ★, état de la synchronisation.
 // Jamais le contenu (artistes, concerts choisis, préférences).
 
-function newMemberId() {
+function newMemberId(prefix = "u_") {
   const alphabet = "abcdefghijklmnopqrstuvwxyz0123456789";
   const bytes = crypto.getRandomValues(new Uint8Array(8));
-  return "u_" + Array.from(bytes, (b) => alphabet[b % alphabet.length]).join("");
+  return prefix + Array.from(bytes, (b) => alphabet[b % alphabet.length]).join("");
+}
+
+// --- Liens d'invitation (invitation sans adresse e-mail) ------------------------------------
+// Jeton aléatoire de 32 octets, transmis une seule fois à l'admin ; seule son empreinte est
+// gardée. Le lien sert une fois et expire au bout de INVITATION_DAYS jours.
+const INVITATION_DAYS = 7;
+const INVITATION_TOKEN = /^[A-Za-z0-9_-]{40,60}$/;
+
+function newToken() {
+  const bytes = crypto.getRandomValues(new Uint8Array(32));
+  return btoa(String.fromCharCode(...bytes)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+
+async function tokenHash(token) {
+  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(token));
+  return Array.from(new Uint8Array(digest), (b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+const cleanFirstName = (value) => {
+  const name = String(value || "").replace(/\s+/g, " ").trim();
+  if (name.length < 1 || name.length > 40) throw new HttpError(400, "prénom : 1 à 40 caractères");
+  return name;
+};
+
+// Invitation valide pour ce jeton : { id, first_name } ou null (inconnue, expirée, déjà utilisée)
+export async function findInvitation(env, token) {
+  if (!INVITATION_TOKEN.test(String(token || ""))) return null;
+  return env.DB.prepare("SELECT id, first_name FROM invitations WHERE token_hash = ? AND expires_at > ?")
+    .bind(await tokenHash(token), nowIso()).first();
+}
+
+// La personne invitée donne son adresse : elle devient membre (statut invited), le lien est
+// effacé (usage unique). Renvoie { email, first_name }.
+export async function claimInvitation(env, token, email) {
+  const db = env.DB;
+  const mail = String(email || "").trim().toLowerCase();
+  if (!EMAIL.test(mail) || mail.length > 200) throw new HttpError(400, "adresse e-mail invalide", "bad_email");
+  const invitation = await findInvitation(env, token);
+  if (!invitation) throw new HttpError(410, "lien expiré ou déjà utilisé", "expired");
+  if (await db.prepare("SELECT 1 FROM users WHERE email = ?").bind(mail).first()) {
+    throw new HttpError(409, "cette adresse est déjà inscrite : connectez-vous directement", "exists");
+  }
+  // Inscription et effacement du lien dans un même lot (transaction D1) : le lien n'est
+  // consommé que si le membre est créé, et deux envois simultanés ne créent qu'un membre
+  const hash = await tokenHash(token);
+  const now = nowIso();
+  let results;
+  try {
+    results = await db.batch([
+      db.prepare("INSERT INTO users (id, email, first_name, role, status, invited_at, invited_via) " +
+        "SELECT ?, ?, first_name, 'member', 'invited', ?, 'link' FROM invitations WHERE id = ? AND token_hash = ? AND expires_at > ?")
+        .bind(newMemberId(), mail, now, invitation.id, hash, now),
+      db.prepare("DELETE FROM invitations WHERE id = ? AND token_hash = ?").bind(invitation.id, hash),
+    ]);
+  } catch (e) {
+    if (/UNIQUE/i.test(String(e?.message))) throw new HttpError(409, "cette adresse est déjà inscrite : connectez-vous directement", "exists");
+    throw e;
+  }
+  if (!results[0].meta?.changes) throw new HttpError(410, "lien déjà utilisé", "expired");
+  console.log(`Invitation ${invitation.id} utilisée le ${now}`);
+  return { email: mail, first_name: invitation.first_name };
+}
+
+// Ajout à la liste Access : réussi ou non (un échec est montré à l'admin, qui peut relancer)
+export async function setAccessPending(env, email, pending) {
+  await env.DB.prepare("UPDATE users SET access_pending = ? WHERE email = ?").bind(pending ? 1 : 0, String(email).toLowerCase()).run();
 }
 
 export function admin(env) {
@@ -581,7 +647,7 @@ export function admin(env) {
       const day = since();
       const { results } = await db.prepare(
         "SELECT u.id, u.email, u.first_name, u.pseudo, u.role, u.status, u.error_message, u.invited_at, " +
-        "u.activated_at, u.suspended_at, u.last_seen_at, " +
+        "u.activated_at, u.suspended_at, u.last_seen_at, u.invited_via, u.access_pending, " +
         "s.provider, s.status AS source_status, s.last_sync_at, s.last_sync_status, s.sync_requested_at, " +
         "(SELECT COUNT(*) FROM connections c WHERE c.user_id = u.id AND c.session_started_at >= ?1) AS connections_30d, " +
         "(SELECT COALESCE(SUM(api_calls), 0) FROM activity_daily a WHERE a.user_id = u.id AND a.day >= ?1) AS api_calls_30d, " +
@@ -589,6 +655,41 @@ export function admin(env) {
         "(SELECT COUNT(*) FROM stars st WHERE st.user_id = u.id) AS stars " +
         "FROM users u LEFT JOIN music_sources s ON s.user_id = u.id ORDER BY u.invited_at").bind(day).all();
       return results.map((r) => ({ ...r, display_name: r.pseudo || r.first_name }));
+    },
+
+    // Lien d'invitation pour un prénom ; le jeton n'est renvoyé qu'ici (et au renouvellement)
+    async createInvitationLink({ first_name }) {
+      const name = cleanFirstName(first_name);
+      const token = newToken();
+      const id = newMemberId("i_");
+      const expires = new Date(Date.now() + INVITATION_DAYS * 86400 * 1000).toISOString().replace(/\.\d{3}Z$/, "+00:00");
+      await db.prepare("INSERT INTO invitations (id, token_hash, first_name, created_at, expires_at) VALUES (?, ?, ?, ?, ?)")
+        .bind(id, await tokenHash(token), name, nowIso(), expires).run();
+      return { invitation: { id, first_name: name, expires_at: expires }, token };
+    },
+
+    async invitations() {
+      const { results } = await db.prepare("SELECT id, first_name, created_at, expires_at FROM invitations ORDER BY created_at").all();
+      const now = nowIso();
+      return results.map((r) => ({ ...r, expired: r.expires_at <= now }));
+    },
+
+    // Nouveau lien pour la même invitation : l'ancien ne fonctionne plus
+    async renewInvitation(invitationId) {
+      if (!/^i_[a-z0-9]{8}$/.test(String(invitationId))) throw new HttpError(400, "identifiant d'invitation invalide");
+      const token = newToken();
+      const expires = new Date(Date.now() + INVITATION_DAYS * 86400 * 1000).toISOString().replace(/\.\d{3}Z$/, "+00:00");
+      const row = await db.prepare("UPDATE invitations SET token_hash = ?, expires_at = ? WHERE id = ? RETURNING id, first_name, expires_at")
+        .bind(await tokenHash(token), expires, invitationId).first();
+      if (!row) throw new HttpError(404, "invitation introuvable");
+      return { invitation: row, token };
+    },
+
+    async deleteInvitation(invitationId) {
+      if (!/^i_[a-z0-9]{8}$/.test(String(invitationId))) throw new HttpError(400, "identifiant d'invitation invalide");
+      const r = await db.prepare("DELETE FROM invitations WHERE id = ?").bind(invitationId).run();
+      if (!r.meta?.changes) throw new HttpError(404, "invitation introuvable");
+      return { deleted: true };
     },
 
     async invite({ email, first_name }) {
@@ -599,7 +700,7 @@ export function admin(env) {
       const exists = await db.prepare("SELECT id FROM users WHERE email = ?").bind(mail).first();
       if (exists) throw new HttpError(409, "cette adresse est déjà inscrite", "exists");
       const memberId = newMemberId();
-      await db.prepare("INSERT INTO users (id, email, first_name, role, status, invited_at) VALUES (?, ?, ?, 'member', 'invited', ?)")
+      await db.prepare("INSERT INTO users (id, email, first_name, role, status, invited_at, invited_via) VALUES (?, ?, ?, 'member', 'invited', ?, 'email')")
         .bind(memberId, mail, name, nowIso()).run();
       return { id: memberId, email: mail, first_name: name };
     },
