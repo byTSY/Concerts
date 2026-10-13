@@ -5,29 +5,29 @@
   "total": 155
  },
  {
+  "name": "Olympia",
+  "venue_id": "olympia",
+  "total": 126
+ },
+ {
   "name": "Maison de la Radio et de la Musique",
   "venue_id": null,
   "total": 125
  },
  {
-  "name": "Olympia",
-  "venue_id": "olympia",
-  "total": 125
- },
- {
   "name": "La Cigale",
   "venue_id": "cigale",
-  "total": 123
+  "total": 122
  },
  {
   "name": "La Maroquinerie",
   "venue_id": null,
-  "total": 116
+  "total": 115
  },
  {
   "name": "ZENITH PARIS - LA VILLETTE",
   "venue_id": null,
-  "total": 113
+  "total": 112
  },
  {
   "name": "Église Saint-Julien-le-Pauvre",
@@ -107,7 +107,7 @@
  {
   "name": "Le Bataclan",
   "venue_id": null,
-  "total": 54
+  "total": 53
  },
  {
   "name": "Église de la Madeleine",
@@ -172,7 +172,7 @@
  {
   "name": "POPUP!",
   "venue_id": null,
-  "total": 36
+  "total": 35
  },
  {
   "name": "La Bellevilloise",
@@ -255,6 +255,11 @@
   "total": 26
  },
  {
+  "name": "Salle Pleyel",
+  "venue_id": null,
+  "total": 26
+ },
+ {
   "name": "Le Cabaret Sauvage",
   "venue_id": null,
   "total": 25
@@ -290,6 +295,11 @@
   "total": 23
  },
  {
+  "name": "Hasard Ludique",
+  "venue_id": "hasard-ludique",
+  "total": 22
+ },
+ {
   "name": "Les Trois Baudets",
   "venue_id": null,
   "total": 22
@@ -301,16 +311,6 @@
  },
  {
   "name": "Café de la Danse",
-  "venue_id": null,
-  "total": 21
- },
- {
-  "name": "Hasard Ludique",
-  "venue_id": "hasard-ludique",
-  "total": 21
- },
- {
-  "name": "Salle Pleyel",
   "venue_id": null,
   "total": 21
  },
@@ -340,11 +340,6 @@
   "total": 18
  },
  {
-  "name": "CAFE DE LA DANSE",
-  "venue_id": null,
-  "total": 18
- },
- {
   "name": "Caveau de la Huchette",
   "venue_id": null,
   "total": 18
@@ -356,6 +351,11 @@
  },
  {
   "name": "Baiser salé",
+  "venue_id": null,
+  "total": 17
+ },
+ {
+  "name": "CAFE DE LA DANSE",
   "venue_id": null,
   "total": 17
  },
@@ -455,6 +455,11 @@
   "total": 12
  },
  {
+  "name": "EMB Sannois",
+  "venue_id": null,
+  "total": 12
+ },
+ {
   "name": "Espace Georges-Bernanos",
   "venue_id": null,
   "total": 12
@@ -515,6 +520,11 @@
   "total": 11
  },
  {
+  "name": "Le Trabendo",
+  "venue_id": null,
+  "total": 11
+ },
+ {
   "name": "Maison de la musique de Nanterre",
   "venue_id": null,
   "total": 11
@@ -546,11 +556,6 @@
  },
  {
   "name": "Le Studio - Philharmonie de Paris",
-  "venue_id": null,
-  "total": 10
- },
- {
-  "name": "Le Trabendo",
   "venue_id": null,
   "total": 10
  },
@@ -685,6 +690,11 @@
   "total": 8
  },
  {
+  "name": "Adidas Arena",
+  "venue_id": null,
+  "total": 7
+ },
+ {
   "name": "Atelier du Plateau",
   "venue_id": null,
   "total": 7
@@ -730,11 +740,6 @@
   "total": 7
  },
  {
-  "name": "Adidas Arena",
-  "venue_id": null,
-  "total": 6
- },
- {
   "name": "BOBINO",
   "venue_id": null,
   "total": 6
@@ -761,11 +766,6 @@
  },
  {
   "name": "La Place",
-  "venue_id": null,
-  "total": 6
- },
- {
-  "name": "Le Zebre de Belleville",
   "venue_id": null,
   "total": 6
  },
@@ -880,7 +880,17 @@
   "total": 5
  },
  {
+  "name": "Le Dôme de Paris - Palais des Sports",
+  "venue_id": null,
+  "total": 5
+ },
+ {
   "name": "Le POC",
+  "venue_id": null,
+  "total": 5
+ },
+ {
+  "name": "Le Zebre de Belleville",
   "venue_id": null,
   "total": 5
  },
@@ -1211,11 +1221,6 @@
  },
  {
   "name": "Le Chaplin - Saint-Lambert",
-  "venue_id": null,
-  "total": 3
- },
- {
-  "name": "Le Dôme de Paris - Palais des Sports",
   "venue_id": null,
   "total": 3
  },

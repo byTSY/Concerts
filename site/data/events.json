@@ -425,27 +425,52 @@
   "badge": null
  },
  {
-  "id": "cdcfbc93283d",
-  "title": "Les évènements du conservatoire Mozart",
+  "id": "927f133bd250",
+  "title": "Kiosque en fête sur la Promenade Pereire - Gilberte Brossolette",
   "date": "2026-10-13",
   "time": null,
-  "venue": "Conservatoire Municipal W. A. Mozart (Centre)",
+  "venue": "Promenade Pereire - Gilberte Brossolette",
   "venue_id": null,
-  "address": "7, passage de la Canopée",
+  "address": "Bd Pereire,  Paris",
   "city": "Paris",
   "price": "Gratuit",
   "on_sale": null,
   "status": null,
   "genre": null,
-  "image": "https://cdn.paris.fr/qfapv4/2025/09/16/huge-c3d2e7f08e26ab90c6bfb270b1c5ee57.png",
+  "image": "https://cdn.paris.fr/qfapv4/2025/06/04/huge-e77015cf365d7e3a3572f15a96718e74.jpg",
   "links": [
    {
     "source": "Que faire à Paris",
-    "url": "https://www.paris.fr/evenements/les-evenements-du-conservatoire-mozart-92788"
+    "url": "https://www.paris.fr/pages/appel-a-projets-kiosques-en-fete-25755"
    }
   ],
   "artists": [],
-  "description": "Retrouvez ici les temps forts du conservatoire Mozart",
+  "description": "Concerts et karaokés y sont programmés dans le cadre de la saison « Kiosques en fête ».",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "dde85804f970",
+  "title": "Kiosque en Fête à la promenade Pereire - Thérèse Pierre",
+  "date": "2026-10-13",
+  "time": null,
+  "venue": "Promenade Pereire",
+  "venue_id": null,
+  "address": "boulevard Pereire",
+  "city": "Paris",
+  "price": "Gratuit",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2025/05/28/huge-164f8aff042b5f1c1d80e4e2699be0ab.jpg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.paris.fr/pages/appel-a-projets-kiosques-en-fete-25755"
+   }
+  ],
+  "artists": [],
+  "description": "Concerts et musique sont programmés dans le cadre de la saison « Kiosques en fête ».",
   "first_seen": "2026-10-07",
   "badge": null
  },
@@ -500,77 +525,27 @@
   "badge": null
  },
  {
-  "id": "927f133bd250",
-  "title": "Kiosque en fête sur la Promenade Pereire - Gilberte Brossolette",
+  "id": "cdcfbc93283d",
+  "title": "Les évènements du conservatoire Mozart",
   "date": "2026-10-13",
   "time": null,
-  "venue": "Promenade Pereire - Gilberte Brossolette",
+  "venue": "Conservatoire Municipal W. A. Mozart (Centre)",
   "venue_id": null,
-  "address": "Bd Pereire,  Paris",
+  "address": "7, passage de la Canopée",
   "city": "Paris",
   "price": "Gratuit",
   "on_sale": null,
   "status": null,
   "genre": null,
-  "image": "https://cdn.paris.fr/qfapv4/2025/06/04/huge-e77015cf365d7e3a3572f15a96718e74.jpg",
+  "image": "https://cdn.paris.fr/qfapv4/2025/09/16/huge-c3d2e7f08e26ab90c6bfb270b1c5ee57.png",
   "links": [
    {
     "source": "Que faire à Paris",
-    "url": "https://www.paris.fr/pages/appel-a-projets-kiosques-en-fete-25755"
+    "url": "https://www.paris.fr/evenements/les-evenements-du-conservatoire-mozart-92788"
    }
   ],
   "artists": [],
-  "description": "Concerts et karaokés y sont programmés dans le cadre de la saison « Kiosques en fête ».",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "dde85804f970",
-  "title": "Kiosque en Fête à la promenade Pereire - Thérèse Pierre",
-  "date": "2026-10-13",
-  "time": null,
-  "venue": "Promenade Pereire",
-  "venue_id": null,
-  "address": "boulevard Pereire",
-  "city": "Paris",
-  "price": "Gratuit",
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": "https://cdn.paris.fr/qfapv4/2025/05/28/huge-164f8aff042b5f1c1d80e4e2699be0ab.jpg",
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://www.paris.fr/pages/appel-a-projets-kiosques-en-fete-25755"
-   }
-  ],
-  "artists": [],
-  "description": "Concerts et musique sont programmés dans le cadre de la saison « Kiosques en fête ».",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "f378532e2662",
-  "title": "L'agenda du Conservatoire Erik Satie",
-  "date": "2026-10-13",
-  "time": null,
-  "venue": "Conservatoire Municipal Erik Satie",
-  "venue_id": null,
-  "address": "135 Bis rue de l’Université",
-  "city": "Paris",
-  "price": "Gratuit",
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": "https://cdn.paris.fr/qfapv4/2025/10/16/huge-c5772e00feb1b60fb0dfb67fea995469.jpg",
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://www.paris.fr/evenements/l-agenda-du-conservatoire-erik-satie-99419"
-   }
-  ],
-  "artists": [],
-  "description": "Retrouvez tous les évènements, rendez-vous, temps forts du conservatoire du 7e arrondissement de Paris.",
+  "description": "Retrouvez ici les temps forts du conservatoire Mozart",
   "first_seen": "2026-10-07",
   "badge": null
  },
@@ -596,6 +571,31 @@
   ],
   "artists": [],
   "description": "Chaque saison, l'équipe du CRR de Paris propose une multitude de représentations publiques in situ ou hors les murs. Cette programmation culturelle constitue un moment d'apprentissage privilégié de la scène pour nos élèves et étudiant·es.",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "f378532e2662",
+  "title": "L'agenda du Conservatoire Erik Satie",
+  "date": "2026-10-13",
+  "time": null,
+  "venue": "Conservatoire Municipal Erik Satie",
+  "venue_id": null,
+  "address": "135 Bis rue de l’Université",
+  "city": "Paris",
+  "price": "Gratuit",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2025/10/16/huge-c5772e00feb1b60fb0dfb67fea995469.jpg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.paris.fr/evenements/l-agenda-du-conservatoire-erik-satie-99419"
+   }
+  ],
+  "artists": [],
+  "description": "Retrouvez tous les évènements, rendez-vous, temps forts du conservatoire du 7e arrondissement de Paris.",
   "first_seen": "2026-10-07",
   "badge": null
  },
@@ -875,33 +875,33 @@
   "badge": null
  },
  {
-  "id": "541a929f738a",
-  "title": "Les auditions du département musique",
+  "id": "603be398876f",
+  "title": "Kiosque en Fête au jardin des Champs-Élysées",
   "date": "2026-10-13",
   "time": null,
-  "venue": "Conservatoire Municipal W. A. Mozart (Centre)",
+  "venue": "Jardins des Champs-Élysées",
   "venue_id": null,
-  "address": "7, passage de la Canopée",
+  "address": "10 avenue des Champs-Élysées",
   "city": "Paris",
   "price": "Gratuit",
   "on_sale": null,
   "status": null,
   "genre": null,
-  "image": "https://cdn.paris.fr/qfapv4/2026/10/09/huge-30344daa367bf4b10c55722714425e85.jpg",
+  "image": "https://cdn.paris.fr/qfapv4/2025/01/14/huge-8c70e1d25d24703e6a361053c5d48cb9.jpg",
   "links": [
    {
     "source": "Que faire à Paris",
-    "url": "https://www.paris.fr/evenements/les-auditions-du-departement-musique-125602"
+    "url": "https://www.paris.fr/pages/appel-a-projets-kiosques-en-fete-25755"
    }
   ],
   "artists": [],
-  "description": "Un moment de partage autour du travail réalisé par les élèves d'une même classe",
-  "first_seen": "2026-10-08",
-  "badge": "annonce"
+  "description": "Concerts, danse et théâtre y sont programmés dans le cadre de la saison « Kiosques en fête ».",
+  "first_seen": "2026-10-07",
+  "badge": null
  },
  {
   "id": "c5f068fc0364",
-  "title": "Jam Session Jazz au 38Riv, animée par Solène Cairoli",
+  "title": "Jam Session Jazz au 38Riv, Les jeudis du CNSMDP",
   "date": "2026-10-13",
   "time": null,
   "venue": "38Riv",
@@ -912,15 +912,15 @@
   "on_sale": null,
   "status": null,
   "genre": null,
-  "image": "https://cdn.paris.fr/qfapv4/2025/07/28/huge-170e94e1803a307d66bb49d738eba190.jpg",
+  "image": "https://cdn.paris.fr/qfapv4/2026/08/04/huge-be1139df6f50580683d08095464c72a0.jpg",
   "links": [
    {
     "source": "Que faire à Paris",
-    "url": "https://38riv.com/concerts?search=solene%20Cairoli&category=All"
+    "url": "https://38riv.com/concerts?search=CNSMDP&category=All&easepick_start_date_max=&easepick_start_date_min=now%20-3%20hours&easepick_end_date_min=now%20-3%20hours"
    },
    {
     "source": "Que faire à Paris",
-    "url": "https://38riv.com/concerts?search=CNSMDP&category=All&easepick_start_date_max=&easepick_start_date_min=now%20-3%20hours&easepick_end_date_min=now%20-3%20hours"
+    "url": "https://38riv.com/concerts?search=solene%20Cairoli&category=All"
    }
   ],
   "artists": [],
@@ -954,29 +954,29 @@
   "badge": null
  },
  {
-  "id": "603be398876f",
-  "title": "Kiosque en Fête au jardin des Champs-Élysées",
+  "id": "541a929f738a",
+  "title": "Les auditions du département musique",
   "date": "2026-10-13",
   "time": null,
-  "venue": "Jardins des Champs-Élysées",
+  "venue": "Conservatoire Municipal W. A. Mozart (Centre)",
   "venue_id": null,
-  "address": "10 avenue des Champs-Élysées",
+  "address": "7, passage de la Canopée",
   "city": "Paris",
   "price": "Gratuit",
   "on_sale": null,
   "status": null,
   "genre": null,
-  "image": "https://cdn.paris.fr/qfapv4/2025/01/14/huge-8c70e1d25d24703e6a361053c5d48cb9.jpg",
+  "image": "https://cdn.paris.fr/qfapv4/2026/10/09/huge-30344daa367bf4b10c55722714425e85.jpg",
   "links": [
    {
     "source": "Que faire à Paris",
-    "url": "https://www.paris.fr/pages/appel-a-projets-kiosques-en-fete-25755"
+    "url": "https://www.paris.fr/evenements/les-auditions-du-departement-musique-125602"
    }
   ],
   "artists": [],
-  "description": "Concerts, danse et théâtre y sont programmés dans le cadre de la saison « Kiosques en fête ».",
-  "first_seen": "2026-10-07",
-  "badge": null
+  "description": "Un moment de partage autour du travail réalisé par les élèves d'une même classe",
+  "first_seen": "2026-10-08",
+  "badge": "annonce"
  },
  {
   "id": "9f9c9b747368",
@@ -1154,31 +1154,6 @@
   "badge": null
  },
  {
-  "id": "d7db0f26ae99",
-  "title": "Kiosque en Fête au parc de Choisy",
-  "date": "2026-10-13",
-  "time": null,
-  "venue": "Parc de Choisy",
-  "venue_id": null,
-  "address": "128, avenue de Choisy",
-  "city": "Paris",
-  "price": "Gratuit",
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": "https://cdn.paris.fr/qfapv4/2025/05/28/huge-164f8aff042b5f1c1d80e4e2699be0ab.jpg",
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://www.paris.fr/pages/appel-a-projets-kiosques-en-fete-25755"
-   }
-  ],
-  "artists": [],
-  "description": "Concerts, danse et théâtre y sont programmés dans le cadre de la saison « Kiosques en fête ».",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "cc7426d5d16a",
   "title": "#JamVocale / OpenMic de Valentin",
   "date": "2026-10-13",
@@ -1204,27 +1179,27 @@
   "badge": null
  },
  {
-  "id": "2db471ee0ee9",
-  "title": "Les P'tits Baudets, la prog famille des Trois Baudets !",
+  "id": "d7db0f26ae99",
+  "title": "Kiosque en Fête au parc de Choisy",
   "date": "2026-10-13",
   "time": null,
-  "venue": "Les Trois Baudets",
+  "venue": "Parc de Choisy",
   "venue_id": null,
-  "address": "64 Boulevard de Clichy",
+  "address": "128, avenue de Choisy",
   "city": "Paris",
-  "price": "7 euros.",
+  "price": "Gratuit",
   "on_sale": null,
   "status": null,
   "genre": null,
-  "image": "https://cdn.paris.fr/qfapv4/2024/12/20/huge-526c54bce4236a7e8b5c9039f40c9a7b.jpg",
+  "image": "https://cdn.paris.fr/qfapv4/2025/05/28/huge-164f8aff042b5f1c1d80e4e2699be0ab.jpg",
   "links": [
    {
     "source": "Que faire à Paris",
-    "url": "https://lestroisbaudets.com/l-agenda?filtre%5Bltb_liste_evenements%5D%5Btype%5D=161"
+    "url": "https://www.paris.fr/pages/appel-a-projets-kiosques-en-fete-25755"
    }
   ],
   "artists": [],
-  "description": "Les Trois Baudets propose, du 27 septembre au 06 décembre 2026, une programmation musicale familiale pour les enfants de 2 ans à 6 ans et +, selon les spectacles.",
+  "description": "Concerts, danse et théâtre y sont programmés dans le cadre de la saison « Kiosques en fête ».",
   "first_seen": "2026-10-07",
   "badge": null
  },
@@ -1250,6 +1225,31 @@
   ],
   "artists": [],
   "description": "Concerts et danse y sont programmés dans le cadre de la saison « Kiosques en fête ».",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "2db471ee0ee9",
+  "title": "Les P'tits Baudets, la prog famille des Trois Baudets !",
+  "date": "2026-10-13",
+  "time": null,
+  "venue": "Les Trois Baudets",
+  "venue_id": null,
+  "address": "64 Boulevard de Clichy",
+  "city": "Paris",
+  "price": "7 euros.",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2024/12/20/huge-526c54bce4236a7e8b5c9039f40c9a7b.jpg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://lestroisbaudets.com/l-agenda?filtre%5Bltb_liste_evenements%5D%5Btype%5D=161"
+   }
+  ],
+  "artists": [],
+  "description": "Les Trois Baudets propose, du 27 septembre au 06 décembre 2026, une programmation musicale familiale pour les enfants de 2 ans à 6 ans et +, selon les spectacles.",
   "first_seen": "2026-10-07",
   "badge": null
  },
@@ -1454,58 +1454,6 @@
   "badge": null
  },
  {
-  "id": "7b0ec3194ebd",
-  "title": "AMON AMARTH",
-  "date": "2026-10-13",
-  "time": "18:30",
-  "venue": "ZENITH PARIS - LA VILLETTE",
-  "venue_id": null,
-  "address": "211 AVENUE JEAN JAURÈS",
-  "city": "Paris",
-  "price": null,
-  "on_sale": "2025-11-28T09:00:00Z",
-  "status": "offsale",
-  "genre": "Metal",
-  "image": "https://s1.ticketm.net/dam/a/183/91b860f0-b14f-4a0c-9846-565b9d0d5183_RETINA_PORTRAIT_16_9.jpg",
-  "links": [
-   {
-    "source": "Ticketmaster",
-    "url": "https://www.ticketmaster.fr/fr/manifestation/amon-amarth-billet/idmanif/642468/idseance/4212822"
-   }
-  ],
-  "artists": [
-   "Amon Amarth"
-  ],
-  "description": null,
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "9267d22039e5",
-  "title": "JON ANDERSON AND THE BAND GEEKS",
-  "date": "2026-10-13",
-  "time": "19:00",
-  "venue": "Le Bataclan",
-  "venue_id": null,
-  "address": "50, BOULEVARD VOLTAIRE",
-  "city": "Paris",
-  "price": null,
-  "on_sale": "2026-03-27T11:00:00Z",
-  "status": "offsale",
-  "genre": "Rock",
-  "image": "https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_RETINA_PORTRAIT_16_9.jpg",
-  "links": [
-   {
-    "source": "Ticketmaster",
-    "url": "https://www.ticketmaster.fr/fr/manifestation/jon-anderson-and-the-band-geeks-billet/idmanif/654728/idtier/18864121"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "39c1a0999b84",
   "title": "Le cycle musical de Paul Serri au Théâtre de la Concorde !",
   "date": "2026-10-13",
@@ -1552,83 +1500,6 @@
   ],
   "artists": [],
   "description": "Le restaurant Marilou organise une jam session funk et néo-soul tous les jeudis. Venez découvrir de jeunes artistes qui viennent s’amuser sur des reprises ou faire de l’improvisation.",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "63e3a92d75e9",
-  "title": "Gizmo + D'Accord Simon + Eliah",
-  "date": "2026-10-13",
-  "time": "19:00",
-  "venue": "Supersonic",
-  "venue_id": null,
-  "address": "9 Rue Biscornet, 75012 Paris",
-  "city": "Paris",
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": null,
-  "links": [
-   {
-    "source": "Dice",
-    "url": "https://dice.fm/event/6abbf4a388dd550001136194"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "1fe5d7ccb8d9",
-  "title": "THE BROOKS",
-  "date": "2026-10-13",
-  "time": "19:30",
-  "venue": "CAFE DE LA DANSE",
-  "venue_id": null,
-  "address": "5, Passage Louis Philippe",
-  "city": "Paris",
-  "price": null,
-  "on_sale": "2026-03-11T09:00:00Z",
-  "status": "offsale",
-  "genre": "R&B",
-  "image": "https://s1.ticketm.net/dam/a/1cd/d3c812ae-77cc-4b1c-9040-ff358a0c11cd_1499741_RETINA_PORTRAIT_16_9.jpg",
-  "links": [
-   {
-    "source": "Ticketmaster",
-    "url": "https://www.ticketmaster.fr/fr/manifestation/the-brooks-billet/idmanif/652639/idtier/18864121"
-   }
-  ],
-  "artists": [
-   "The Brooks"
-  ],
-  "description": null,
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "9556e49210ea",
-  "title": "IL EST VILAINE",
-  "date": "2026-10-13",
-  "time": "19:30",
-  "venue": "La Maroquinerie",
-  "venue_id": null,
-  "address": "23, RUE BOYER",
-  "city": "Paris",
-  "price": null,
-  "on_sale": "2026-01-15T09:00:00Z",
-  "status": "offsale",
-  "genre": "Rock",
-  "image": "https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_RETINA_PORTRAIT_16_9.jpg",
-  "links": [
-   {
-    "source": "Ticketmaster",
-    "url": "https://www.ticketmaster.fr/fr/manifestation/il-est-vilaine-billet/idmanif/647035/idtier/18864121"
-   }
-  ],
-  "artists": [],
-  "description": null,
   "first_seen": "2026-10-07",
   "badge": null
  },
@@ -1683,81 +1554,6 @@
   "badge": null
  },
  {
-  "id": "0fa8d595d51f",
-  "title": "INVINCIBLES ENSEMBLE!",
-  "date": "2026-10-13",
-  "time": "20:00",
-  "venue": "Olympia",
-  "venue_id": "olympia",
-  "address": "28, BVD DES CAPUCINES",
-  "city": "Paris",
-  "price": null,
-  "on_sale": "2026-09-16T15:00:00Z",
-  "status": "offsale",
-  "genre": "Chanson Francaise",
-  "image": "https://s1.ticketm.net/dam/c/0d2/1201f713-3288-4790-854a-ae42895450d2_105931_RETINA_PORTRAIT_16_9.jpg",
-  "links": [
-   {
-    "source": "Ticketmaster",
-    "url": "https://www.ticketmaster.fr/fr/manifestation/invincibles-ensemble-billet/idmanif/672636/idseance/4422505"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "12d5dcac33c3",
-  "title": "JEAN FELZINE - Jean Felzine en Duo",
-  "date": "2026-10-13",
-  "time": "20:00",
-  "venue": "Le Zebre de Belleville",
-  "venue_id": null,
-  "address": "63, Boulevard de Belleville",
-  "city": "Paris",
-  "price": null,
-  "on_sale": "2026-07-15T09:00:00Z",
-  "status": "offsale",
-  "genre": "Rock",
-  "image": "https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_RETINA_PORTRAIT_16_9.jpg",
-  "links": [
-   {
-    "source": "Ticketmaster",
-    "url": "https://www.ticketmaster.fr/fr/manifestation/jean-felzine-billet/idmanif/667675/idseance/4384491"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "3e82e3bc90f3",
-  "title": "NOOR",
-  "date": "2026-10-13",
-  "time": "20:00",
-  "venue": "La Cigale",
-  "venue_id": "cigale",
-  "address": "120, BOULEVARD ROCHECHOUART",
-  "city": "Paris",
-  "price": null,
-  "on_sale": "2026-02-26T15:48:44Z",
-  "status": "offsale",
-  "genre": "Rock",
-  "image": "https://s1.ticketm.net/dam/c/fbc/b293c0ad-c904-4215-bc59-8d7f2414dfbc_106141_RETINA_PORTRAIT_16_9.jpg",
-  "links": [
-   {
-    "source": "Ticketmaster",
-    "url": "https://www.ticketmaster.fr/fr/manifestation/noor-billet/idmanif/651684/idtier/18864121"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "70addd7aa81a",
   "title": "Elastic Bird, The Green Album Show",
   "date": "2026-10-13",
@@ -1808,31 +1604,6 @@
   "badge": null
  },
  {
-  "id": "02d4c1c963ea",
-  "title": "D'Accord Simon • Gizmo • Eliah",
-  "date": "2026-10-13",
-  "time": "20:00",
-  "venue": "SUPERSONIC",
-  "venue_id": null,
-  "address": "9 Rue Biscornet",
-  "city": "Paris",
-  "price": "Gratuit",
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": "https://cdn.paris.fr/qfapv4/2026/09/30/huge-9fdda3aa26256a91555defc57c9f7794.jpeg",
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://www.paris.fr/evenements/d-accord-simon-gizmo-eliah-125158"
-   }
-  ],
-  "artists": [],
-  "description": "Il faut venir si vous aimez… Johnny Jane, Sam Sauvage & James Baker.",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "1c2b2e4a6fb5",
   "title": "Boléro de Ravel / 9ème Symphonie de Beethoven",
   "date": "2026-10-13",
@@ -1879,6 +1650,31 @@
   ],
   "artists": [],
   "description": "Vous cherchez un concert aux Batignolles, une sortie culturelle à Paris 17 ou simplement un lieu chaleureux pour écouter de la musique live ? Feuille Blanche Café Noir propose toute l’année une programmation culturelle intimiste au cœur du quartier des Batignolles.",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "02d4c1c963ea",
+  "title": "D'Accord Simon • Gizmo • Eliah",
+  "date": "2026-10-13",
+  "time": "20:00",
+  "venue": "SUPERSONIC",
+  "venue_id": null,
+  "address": "9 Rue Biscornet",
+  "city": "Paris",
+  "price": "Gratuit",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2026/09/30/huge-9fdda3aa26256a91555defc57c9f7794.jpeg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.paris.fr/evenements/d-accord-simon-gizmo-eliah-125158"
+   }
+  ],
+  "artists": [],
+  "description": "Il faut venir si vous aimez… Johnny Jane, Sam Sauvage & James Baker.",
   "first_seen": "2026-10-07",
   "badge": null
  },
@@ -1955,31 +1751,6 @@
   "artists": [],
   "description": "Pour le lancement de la saison culturelle 2026-2027, le conservatoire Erik Satie et ses professeurs ont le plaisir de vous convier à participer au concert \"Sonates\" de Francis Poulenc.",
   "first_seen": "2026-10-07",
-  "badge": null
- },
- {
-  "id": "0d0788ea11e8",
-  "title": "Mardi Jazz!",
-  "date": "2026-10-13",
-  "time": "20:00",
-  "venue": "POPUP!",
-  "venue_id": null,
-  "address": "14 Rue Abel, 75012 Paris",
-  "city": "Paris",
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": null,
-  "links": [
-   {
-    "source": "Dice",
-    "url": "https://dice.fm/event/6aa01b904709060001e0af7f"
-   }
-  ],
-  "artists": [],
-  "description": null,
-  "first_seen": "2026-10-12",
   "badge": null
  },
  {
@@ -8928,6 +8699,31 @@
   "artists": [],
   "description": null,
   "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "9437fdcc7e34",
+  "title": "WAMEN",
+  "date": "2026-10-16",
+  "time": "20:30",
+  "venue": "EMB Sannois",
+  "venue_id": null,
+  "address": "2 Rue du Président Georges Pompidou, 95110 Sannois",
+  "city": "Paris",
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": null,
+  "links": [
+   {
+    "source": "Dice",
+    "url": "https://dice.fm/event/69f8a6d65acc8a00019957b6"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-12",
   "badge": null
  },
  {
@@ -17422,23 +17218,19 @@
  },
  {
   "id": "acc8d8308d98",
-  "title": "Hyd",
+  "title": "HYD",
   "date": "2026-10-21",
   "time": "20:00",
   "venue": "Hasard Ludique",
   "venue_id": "hasard-ludique",
-  "address": "128 Avenue de Saint-Ouen, 75018 Paris",
-  "city": "Paris",
+  "address": null,
+  "city": null,
   "price": null,
   "on_sale": null,
   "status": null,
   "genre": "Électro pop, Pop / Rock",
   "image": null,
   "links": [
-   {
-    "source": "Dice",
-    "url": "https://dice.fm/event/69f35037ff1d7d0001b9584f"
-   },
    {
     "source": "Offi",
     "url": "https://www.offi.fr/concerts/le-hasard-ludique-6987/hyd-3358404.html"
@@ -17622,6 +17414,31 @@
   "artists": [],
   "description": null,
   "first_seen": "2026-10-12",
+  "badge": null
+ },
+ {
+  "id": "acc8d8308d98x",
+  "title": "Hyd + Kahi Baby",
+  "date": "2026-10-21",
+  "time": "20:00",
+  "venue": "Hasard Ludique",
+  "venue_id": "hasard-ludique",
+  "address": "128 Avenue de Saint-Ouen, 75018 Paris",
+  "city": "Paris",
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": null,
+  "links": [
+   {
+    "source": "Dice",
+    "url": "https://dice.fm/event/69f35037ff1d7d0001b9584f"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-07",
   "badge": null
  },
  {
@@ -19312,7 +19129,7 @@
   "badge": "annonce"
  },
  {
-  "id": "76d448955937",
+  "id": "76d448955937x",
   "title": "SMR - Lpee",
   "date": "2026-10-22",
   "time": "20:00",
@@ -19387,7 +19204,7 @@
   "badge": "annonce"
  },
  {
-  "id": "76d448955937x",
+  "id": "76d448955937",
   "title": "SMR + LPEE + TIRI",
   "date": "2026-10-22",
   "time": "20:00",
@@ -21067,31 +20884,6 @@
   "badge": null
  },
  {
-  "id": "e2a498ccd54b",
-  "title": "BJAM : jam baroque costumée",
-  "date": "2026-10-23",
-  "time": "20:00",
-  "venue": "L'Ours et la Vieille Grille",
-  "venue_id": null,
-  "address": "9, rue Larrey",
-  "city": "Paris",
-  "price": "Gratuit",
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": "https://cdn.paris.fr/qfapv4/2026/03/05/huge-9cfa8aa8587549dcbe6581f03c618be0.jpg",
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://docs.google.com/spreadsheets/d/1O9eZEKC86uSk0-x6dTl3CgP-71EAQ8NQ8J-En7TP-Y8/edit?usp=sharing"
-   }
-  ],
-  "artists": [],
-  "description": "BJAM, la scène ouverte parisienne des baroqueux (mais pas que) !",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "433a25e335f1",
   "title": "Makthaverskan",
   "date": "2026-10-23",
@@ -21113,6 +20905,31 @@
   ],
   "artists": [],
   "description": "Cette soirée plaira aux fans de… Alvvays, Fazerdaze & Beach Fossils.",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "e2a498ccd54b",
+  "title": "BJAM : jam baroque costumée",
+  "date": "2026-10-23",
+  "time": "20:00",
+  "venue": "L'Ours et la Vieille Grille",
+  "venue_id": null,
+  "address": "9, rue Larrey",
+  "city": "Paris",
+  "price": "Gratuit",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2026/03/05/huge-9cfa8aa8587549dcbe6581f03c618be0.jpg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://docs.google.com/spreadsheets/d/1O9eZEKC86uSk0-x6dTl3CgP-71EAQ8NQ8J-En7TP-Y8/edit?usp=sharing"
+   }
+  ],
+  "artists": [],
+  "description": "BJAM, la scène ouverte parisienne des baroqueux (mais pas que) !",
   "first_seen": "2026-10-07",
   "badge": null
  },
@@ -21600,31 +21417,6 @@
   "badge": null
  },
  {
-  "id": "ccd8eb8ed979",
-  "title": "EST GEE – BIGGER THAN THE DEVIL TOUR",
-  "date": "2026-10-23",
-  "time": "20:30",
-  "venue": "La Place",
-  "venue_id": null,
-  "address": "10 passage de la Canopée",
-  "city": "Paris",
-  "price": null,
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": "https://cdn.paris.fr/qfapv4/2026/09/08/huge-afef7f066fed2ba98f6d1cc7dd91c38b.png",
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://shotgun.live/fr/events/est-gee-bigger-than-the-devil-tour"
-   }
-  ],
-  "artists": [],
-  "description": "Retrouvez EST Gee en concert exceptionnel à La Place le vendredi 23 octobre 2026 !",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "4ed70c3acfd7",
   "title": "Take Me Out : Oh Hiroshima + Barrens en concert à Paris !",
   "date": "2026-10-23",
@@ -21646,6 +21438,31 @@
   ],
   "artists": [],
   "description": "Le post-rock suédois sera à l'honneur à Petit Bain, avec les très réputés Oh Hiroshima qui présenteront leur nouvel album accompagnés du trio Barrens !",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "ccd8eb8ed979",
+  "title": "EST GEE – BIGGER THAN THE DEVIL TOUR",
+  "date": "2026-10-23",
+  "time": "20:30",
+  "venue": "La Place",
+  "venue_id": null,
+  "address": "10 passage de la Canopée",
+  "city": "Paris",
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2026/09/08/huge-afef7f066fed2ba98f6d1cc7dd91c38b.png",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://shotgun.live/fr/events/est-gee-bigger-than-the-devil-tour"
+   }
+  ],
+  "artists": [],
+  "description": "Retrouvez EST Gee en concert exceptionnel à La Place le vendredi 23 octobre 2026 !",
   "first_seen": "2026-10-07",
   "badge": null
  },
@@ -29392,7 +29209,7 @@
   "badge": null
  },
  {
-  "id": "390f08ed6e57x",
+  "id": "390f08ed6e57",
   "title": "THE WATCH PLAYS GENESIS",
   "date": "2026-10-29",
   "time": "19:00",
@@ -30093,7 +29910,7 @@
   "badge": null
  },
  {
-  "id": "390f08ed6e57",
+  "id": "390f08ed6e57x",
   "title": "The Watch joue Genesis",
   "date": "2026-10-29",
   "time": "20:00",
@@ -38387,9 +38204,9 @@
   "title": "PASS 3 JOURS - Pitchfork Avant-Garde 2026",
   "date": "2026-11-05",
   "time": "18:30",
-  "venue": "POPUP!",
+  "venue": "Supersonic",
   "venue_id": null,
-  "address": "14 Rue Abel, 75012 Paris",
+  "address": "9 Rue Biscornet, 75012 Paris",
   "city": "Paris",
   "price": null,
   "on_sale": null,
@@ -41079,6 +40896,31 @@
   "badge": null
  },
  {
+  "id": "4129ce4fade7",
+  "title": "Colours In The Street",
+  "date": "2026-11-06",
+  "time": "20:30",
+  "venue": "EMB Sannois",
+  "venue_id": null,
+  "address": "2 Rue du Président Georges Pompidou, 95110 Sannois",
+  "city": "Paris",
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": null,
+  "links": [
+   {
+    "source": "Dice",
+    "url": "https://dice.fm/event/69bc06d13e4a420001265af1"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-12",
+  "badge": null
+ },
+ {
   "id": "18c0fd0b6480",
   "title": "Gospel Hélios",
   "date": "2026-11-06",
@@ -42678,6 +42520,31 @@
   "artists": [],
   "description": null,
   "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "7d6575c2d4ef",
+  "title": "Robert Finley",
+  "date": "2026-11-07",
+  "time": "20:30",
+  "venue": "EMB Sannois",
+  "venue_id": null,
+  "address": "2 Rue du Président Georges Pompidou, 95110 Sannois",
+  "city": "Paris",
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": null,
+  "links": [
+   {
+    "source": "Dice",
+    "url": "https://dice.fm/event/69ef5cf8d260e4000187e9e3"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-12",
   "badge": null
  },
  {
@@ -48388,6 +48255,31 @@
    {
     "source": "Dice",
     "url": "https://dice.fm/event/69c3b124bb32b30001301776"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-12",
+  "badge": null
+ },
+ {
+  "id": "5ea16a5870e3",
+  "title": "ZAOUI",
+  "date": "2026-11-13",
+  "time": "19:00",
+  "venue": "EMB Sannois",
+  "venue_id": null,
+  "address": "2 Rue du Président Georges Pompidou, 95110 Sannois",
+  "city": "Paris",
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": null,
+  "links": [
+   {
+    "source": "Dice",
+    "url": "https://dice.fm/event/69ef5af2801f2400013a5c99"
    }
   ],
   "artists": [],
@@ -57361,6 +57253,31 @@
   "badge": "annonce"
  },
  {
+  "id": "03eaddb11780",
+  "title": "Widowspeak",
+  "date": "2026-11-20",
+  "time": "20:00",
+  "venue": "POPUP!",
+  "venue_id": null,
+  "address": "14 Rue Abel, 75012 Paris",
+  "city": "Paris",
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": null,
+  "links": [
+   {
+    "source": "Dice",
+    "url": "https://dice.fm/event/6a28350cfe10c100018a5465"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-13",
+  "badge": "annonce"
+ },
+ {
   "id": "205847d433bc",
   "title": "MAGMA",
   "date": "2026-11-20",
@@ -58973,6 +58890,31 @@
   "artists": [],
   "description": "1ère Partie : PROPAGANDE FREESTYLE. Sur Place: Bar & Foodtruck.",
   "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "2298e04f5088",
+  "title": "Laura Cox",
+  "date": "2026-11-21",
+  "time": "20:30",
+  "venue": "EMB Sannois",
+  "venue_id": null,
+  "address": "2 Rue du Président Georges Pompidou, 95110 Sannois",
+  "city": "Paris",
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": null,
+  "links": [
+   {
+    "source": "Dice",
+    "url": "https://dice.fm/event/69fc97ecaa961b0001fd3e3d"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-12",
   "badge": null
  },
  {
@@ -62626,6 +62568,31 @@
   "badge": null
  },
  {
+  "id": "6e9aa95f9c65",
+  "title": "BALM - AFTERWORK",
+  "date": "2026-11-26",
+  "time": "19:00",
+  "venue": "EMB Sannois",
+  "venue_id": null,
+  "address": "2 Rue du Président Georges Pompidou, 95110 Sannois",
+  "city": "Paris",
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": null,
+  "links": [
+   {
+    "source": "Dice",
+    "url": "https://dice.fm/event/6ac627142348370001ed9fdc"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-12",
+  "badge": null
+ },
+ {
   "id": "02f76122e4d4",
   "title": "MAMMOTH",
   "date": "2026-11-26",
@@ -66011,6 +65978,31 @@
   "artists": [],
   "description": null,
   "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "5b543572254e",
+  "title": "LES WAMPAS",
+  "date": "2026-11-28",
+  "time": "20:30",
+  "venue": "EMB Sannois",
+  "venue_id": null,
+  "address": "2 Rue du Président Georges Pompidou, 95110 Sannois",
+  "city": "Paris",
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": null,
+  "links": [
+   {
+    "source": "Dice",
+    "url": "https://dice.fm/event/69b97ce6cffc900001abcec8"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-12",
   "badge": null
  },
  {
@@ -71150,31 +71142,6 @@
   "badge": null
  },
  {
-  "id": "00d9e86d19e0",
-  "title": "Visions d’avant-garde - les pionnières de l’expérimentation cinématographique. Ciné-concert d'Olivier Longre",
-  "date": "2026-12-05",
-  "time": "15:00",
-  "venue": "Bibliothèque Buffon",
-  "venue_id": null,
-  "address": "15 Bis rue Buffon",
-  "city": "Paris",
-  "price": "Gratuit",
-  "on_sale": null,
-  "status": null,
-  "genre": null,
-  "image": "https://cdn.paris.fr/qfapv4/2026/09/02/huge-aeba235570143000677271eb2a9625cc.jpg",
-  "links": [
-   {
-    "source": "Que faire à Paris",
-    "url": "https://www.paris.fr/evenements/visions-d-avant-garde-les-pionnieres-de-l-experimentation-cinematographique-cine-concert-d-olivier-longre-118503"
-   }
-  ],
-  "artists": [],
-  "description": "Alice Guy / Germaine Dulac / Maya Deren / Marie Menken : les pionnières de l’expérimentation cinématographique. \r\nCiné-concert pour un multi-instrumentiste, par Olivier Longre (composition et interprétation), dans le cadre du festival Monte le son 2026 'Ô féminins'.",
-  "first_seen": "2026-10-07",
-  "badge": null
- },
- {
   "id": "ce97e39e75c3",
   "title": "Concert Tourbillon - Orchestre Pasdeloup",
   "date": "2026-12-05",
@@ -71196,6 +71163,31 @@
   ],
   "artists": [],
   "description": "Concert symphonique de l'Orchestre Pasdeloup, le samedi 5 décembre 2026 à 15h à la Philharmonie de Paris.",
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "00d9e86d19e0",
+  "title": "Visions d’avant-garde - les pionnières de l’expérimentation cinématographique. Ciné-concert d'Olivier Longre",
+  "date": "2026-12-05",
+  "time": "15:00",
+  "venue": "Bibliothèque Buffon",
+  "venue_id": null,
+  "address": "15 Bis rue Buffon",
+  "city": "Paris",
+  "price": "Gratuit",
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": "https://cdn.paris.fr/qfapv4/2026/09/02/huge-aeba235570143000677271eb2a9625cc.jpg",
+  "links": [
+   {
+    "source": "Que faire à Paris",
+    "url": "https://www.paris.fr/evenements/visions-d-avant-garde-les-pionnieres-de-l-experimentation-cinematographique-cine-concert-d-olivier-longre-118503"
+   }
+  ],
+  "artists": [],
+  "description": "Alice Guy / Germaine Dulac / Maya Deren / Marie Menken : les pionnières de l’expérimentation cinématographique. \r\nCiné-concert pour un multi-instrumentiste, par Olivier Longre (composition et interprétation), dans le cadre du festival Monte le son 2026 'Ô féminins'.",
   "first_seen": "2026-10-07",
   "badge": null
  },
@@ -72328,6 +72320,31 @@
   "artists": [],
   "description": null,
   "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "11d599bc8e82",
+  "title": "FLORE BENGUIGUI & THE SENSIBLE NOTES",
+  "date": "2026-12-05",
+  "time": "20:30",
+  "venue": "EMB Sannois",
+  "venue_id": null,
+  "address": "2 Rue du Président Georges Pompidou, 95110 Sannois",
+  "city": "Paris",
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": null,
+  "links": [
+   {
+    "source": "Dice",
+    "url": "https://dice.fm/event/6a302a2a02d3c00001e797d2"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-12",
   "badge": null
  },
  {
@@ -75731,6 +75748,31 @@
   "artists": [],
   "description": null,
   "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "7b8a98fb14ea",
+  "title": "THE INSPECTOR CLUZO",
+  "date": "2026-12-10",
+  "time": "20:30",
+  "venue": "EMB Sannois",
+  "venue_id": null,
+  "address": "2 Rue du Président Georges Pompidou, 95110 Sannois",
+  "city": "Paris",
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": null,
+  "links": [
+   {
+    "source": "Dice",
+    "url": "https://dice.fm/event/69d62c7954e7d500016f756a"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-12",
   "badge": null
  },
  {
@@ -80936,6 +80978,31 @@
   "artists": [],
   "description": null,
   "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "74d5142dfd2e",
+  "title": "TÉTÉ",
+  "date": "2026-12-17",
+  "time": "20:30",
+  "venue": "EMB Sannois",
+  "venue_id": null,
+  "address": "2 Rue du Président Georges Pompidou, 95110 Sannois",
+  "city": "Paris",
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": null,
+  "links": [
+   {
+    "source": "Dice",
+    "url": "https://dice.fm/event/69ef5f636e431e000113fbc7"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-12",
   "badge": null
  },
  {
@@ -93904,6 +93971,31 @@
   "badge": null
  },
  {
+  "id": "4eefd26f6909",
+  "title": "ZED",
+  "date": "2027-01-30",
+  "time": "20:30",
+  "venue": "EMB Sannois",
+  "venue_id": null,
+  "address": "2 Rue du Président Georges Pompidou, 95110 Sannois",
+  "city": "Paris",
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": null,
+  "links": [
+   {
+    "source": "Dice",
+    "url": "https://dice.fm/event/6a3028df1b98d1000148f3c5"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-12",
+  "badge": null
+ },
+ {
   "id": "27a0f106daa0",
   "title": "La plus grosse soirée hip-hop, reggaeton de france",
   "date": "2027-01-30",
@@ -104345,6 +104437,31 @@
   "artists": [],
   "description": null,
   "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "5038d05a9e98",
+  "title": "YSÉ",
+  "date": "2027-03-06",
+  "time": "20:30",
+  "venue": "EMB Sannois",
+  "venue_id": null,
+  "address": "2 Rue du Président Georges Pompidou, 95110 Sannois",
+  "city": "Paris",
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": null,
+  "image": null,
+  "links": [
+   {
+    "source": "Dice",
+    "url": "https://dice.fm/event/6a317e9928d6130001ad81c9"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-12",
   "badge": null
  },
  {
@@ -130639,15 +130756,19 @@
   "venue_id": null,
   "address": "252 RUE FAUBOURG SAINT HONORE",
   "city": "Paris",
-  "price": null,
+  "price": "49-69 €",
   "on_sale": "2026-06-22T08:00:00Z",
   "status": "onsale",
-  "genre": "Chanson Francaise",
+  "genre": "Chanson française, Chanson",
   "image": "https://s1.ticketm.net/dam/c/0d2/1201f713-3288-4790-854a-ae42895450d2_105931_RETINA_PORTRAIT_16_9.jpg",
   "links": [
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/catherine-lara-billet/idmanif/664528/idseance/4365633"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/salle-pleyel-3159/catherine-lara-3307297.html"
    }
   ],
   "artists": [
@@ -130675,6 +130796,56 @@
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/dans-le-choeur-de-celine-billet/idmanif/665083/idtier/18864121"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "3bb41edbbb37",
+  "title": "Dans le chœur de Céline",
+  "date": "2027-09-23",
+  "time": "20:00",
+  "venue": "Salle Pleyel",
+  "venue_id": null,
+  "address": null,
+  "city": null,
+  "price": "49-69 €",
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop, Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/salle-pleyel-3159/dans-le-choeur-de-celine-3336723.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "28e3f5d75524",
+  "title": "Agnes Obel",
+  "date": "2027-09-23",
+  "time": "20:00",
+  "venue": "Olympia",
+  "venue_id": "olympia",
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop, Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/lolympia-2874/agnes-obel-3356844.html"
    }
   ],
   "artists": [],
@@ -130733,6 +130904,81 @@
   "badge": null
  },
  {
+  "id": "7c2240791eaf",
+  "title": "Dans le chœur de Céline",
+  "date": "2027-09-24",
+  "time": "20:00",
+  "venue": "Salle Pleyel",
+  "venue_id": null,
+  "address": null,
+  "city": null,
+  "price": "49-69 €",
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop, Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/salle-pleyel-3159/dans-le-choeur-de-celine-3336723.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "4bfcc88d14d4",
+  "title": "Agnes Obel",
+  "date": "2027-09-24",
+  "time": "20:00",
+  "venue": "Olympia",
+  "venue_id": "olympia",
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop, Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/lolympia-2874/agnes-obel-3356844.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "3e5b5370c048",
+  "title": "I Gotta Feeling, la tournée des années 2000",
+  "date": "2027-09-24",
+  "time": "20:00",
+  "venue": "Le Dôme de Paris - Palais des Sports",
+  "venue_id": null,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/palais-des-sports-2911/i-gotta-feeling-la-tournee-des-annees-2000-3254729.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
   "id": "883a66f06563",
   "title": "SALUT LES COPAINS",
   "date": "2027-09-25",
@@ -130744,12 +130990,16 @@
   "price": null,
   "on_sale": "2026-07-20T08:00:00Z",
   "status": "onsale",
-  "genre": "Chanson Francaise",
+  "genre": "Chanson",
   "image": "https://s1.ticketm.net/dam/c/0d2/1201f713-3288-4790-854a-ae42895450d2_105931_RETINA_PORTRAIT_16_9.jpg",
   "links": [
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/salut-les-copains-billet/idmanif/668123/idseance/4386680"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/palais-des-sports-2911/salut-les-copains-3363214.html"
    }
   ],
   "artists": [],
@@ -130783,6 +131033,31 @@
   "badge": null
  },
  {
+  "id": "6167cde329e0",
+  "title": "Dans le chœur de Céline",
+  "date": "2027-09-25",
+  "time": "15:00",
+  "venue": "Salle Pleyel",
+  "venue_id": null,
+  "address": null,
+  "city": null,
+  "price": "49-69 €",
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop, Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/salle-pleyel-3159/dans-le-choeur-de-celine-3336723.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
   "id": "ffa4d1c49215",
   "title": "YCARE",
   "date": "2027-09-25",
@@ -130794,12 +131069,16 @@
   "price": null,
   "on_sale": "2026-09-08T08:00:00Z",
   "status": "onsale",
-  "genre": "Pop",
+  "genre": "Chanson",
   "image": "https://s1.ticketm.net/dam/c/0d2/1201f713-3288-4790-854a-ae42895450d2_105931_RETINA_PORTRAIT_16_9.jpg",
   "links": [
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/ycare-billet/idmanif/671517/idseance/4405782"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/lolympia-2874/ycare-3361835.html"
    }
   ],
   "artists": [
@@ -130846,12 +131125,16 @@
   "price": null,
   "on_sale": "2026-06-08T08:00:00Z",
   "status": "onsale",
-  "genre": "Hip-Hop/Rap",
+  "genre": "Rap, Musiques urbaines",
   "image": "https://s1.ticketm.net/dam/c/80b/f3cd8d24-c3ae-4fa0-b4bc-1ba99f9b380b_106091_RETINA_PORTRAIT_16_9.jpg",
   "links": [
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/jok-air-billet/idmanif/662222/idseance/4355199"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/u-arena-6551/jokair-3305321.html"
    }
   ],
   "artists": [
@@ -130860,6 +131143,56 @@
   "description": null,
   "first_seen": "2026-10-07",
   "badge": null
+ },
+ {
+  "id": "bf7fb0a3e9b2",
+  "title": "I Gotta Feeling, la tournée des années 2000",
+  "date": "2027-09-25",
+  "time": "20:00",
+  "venue": "Le Dôme de Paris - Palais des Sports",
+  "venue_id": null,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/palais-des-sports-2911/i-gotta-feeling-la-tournee-des-annees-2000-3254729.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
+  "id": "8c97f1cbf5dd",
+  "title": "Archive",
+  "date": "2027-09-25",
+  "time": "20:00",
+  "venue": "Adidas Arena",
+  "venue_id": null,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/adidas-arena-7416/archive-3358252.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-12",
+  "badge": "annonce"
  },
  {
   "id": "2320e2aeaebe",
@@ -130887,6 +131220,31 @@
   "badge": null
  },
  {
+  "id": "43ae82918dc1",
+  "title": "Dans le chœur de Céline",
+  "date": "2027-09-26",
+  "time": "15:00",
+  "venue": "Salle Pleyel",
+  "venue_id": null,
+  "address": null,
+  "city": null,
+  "price": "49-69 €",
+  "on_sale": null,
+  "status": null,
+  "genre": "Pop, Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/salle-pleyel-3159/dans-le-choeur-de-celine-3336723.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-07",
+  "badge": null
+ },
+ {
   "id": "00b9f5b3c813",
   "title": "ZAZIE",
   "date": "2027-09-30",
@@ -130898,12 +131256,16 @@
   "price": null,
   "on_sale": "2026-09-30T08:00:00Z",
   "status": "onsale",
-  "genre": "Chanson Francaise",
+  "genre": "Pop, Pop / Rock",
   "image": "https://s1.ticketm.net/dam/a/dd9/c4790008-82ae-4342-a795-35fa5f609dd9_822081_RETINA_PORTRAIT_16_9.jpg",
   "links": [
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/zazie-billet/idmanif/673396/idseance/4427503"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-zenith-3401/zazie-3358275.html"
    }
   ],
   "artists": [
@@ -130912,6 +131274,31 @@
   "description": null,
   "first_seen": "2026-10-07",
   "badge": null
+ },
+ {
+  "id": "dda32bbede73",
+  "title": "La Rue Kétanou",
+  "date": "2027-10-07",
+  "time": "20:00",
+  "venue": "Salle Pleyel",
+  "venue_id": null,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Chanson française, Chanson",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/salle-pleyel-3159/la-rue-ketanou-3307299.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-12",
+  "badge": "annonce"
  },
  {
   "id": "81a4a66ff3d5",
@@ -130925,12 +131312,16 @@
   "price": null,
   "on_sale": "2026-09-18T08:00:00Z",
   "status": "onsale",
-  "genre": "Metal",
+  "genre": "Metal, Pop / Rock",
   "image": "https://s1.ticketm.net/dam/a/043/9e838abf-2b53-4f44-af43-fbb0c4b19043_42631_RETINA_PORTRAIT_16_9.jpg",
   "links": [
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/epica-billet/idmanif/672116/idseance/4412989"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-zenith-3401/epica-3358276.html"
    }
   ],
   "artists": [
@@ -130952,12 +131343,16 @@
   "price": null,
   "on_sale": "2025-03-27T09:00:00Z",
   "status": "onsale",
-  "genre": "Chanson Francaise",
+  "genre": "Chanson française, Chanson",
   "image": "https://s1.ticketm.net/dam/a/735/352559c8-44a2-4e8d-843d-4b9e3f694735_209501_RETINA_PORTRAIT_16_9.jpg",
   "links": [
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/julien-clerc-billet/idmanif/617117/idtier/18864121"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/palais-omnisports-de-paris-bercy-2913/julien-clerc-2953717.html"
    }
   ],
   "artists": [
@@ -130979,12 +131374,16 @@
   "price": null,
   "on_sale": "2026-09-23T09:03:07Z",
   "status": "onsale",
-  "genre": "Pop",
+  "genre": "Pop / Rock",
   "image": "https://s1.ticketm.net/dam/a/171/b9169b7f-161a-4414-baf0-0b19f5ff9171_RETINA_PORTRAIT_16_9.jpg",
   "links": [
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/mania-the-abba-tribute-billet/idmanif/673235/idseance/4426008"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/palais-des-sports-2911/mania-the-abba-tribute-3363215.html"
    }
   ],
   "artists": [
@@ -131006,12 +131405,16 @@
   "price": null,
   "on_sale": "2026-09-15T08:00:00Z",
   "status": "onsale",
-  "genre": "Chanson Francaise",
+  "genre": "Chanson française, Chanson",
   "image": "https://s1.ticketm.net/dam/a/ec1/0ddd7da7-60a9-4c60-af26-12374b77fec1_RETINA_PORTRAIT_16_9.jpg",
   "links": [
    {
     "source": "Ticketmaster",
     "url": "https://www.ticketmaster.fr/fr/manifestation/michele-torr-billet/idmanif/671979/idseance/4412791"
+   },
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/lolympia-2874/michele-torr-3361840.html"
    }
   ],
   "artists": [
@@ -131020,6 +131423,31 @@
   "description": null,
   "first_seen": "2026-10-07",
   "badge": null
+ },
+ {
+  "id": "a55c540c627e",
+  "title": "Mass of the Fermenting Dregs",
+  "date": "2027-10-11",
+  "time": "20:00",
+  "venue": "Le Trabendo",
+  "venue_id": null,
+  "address": null,
+  "city": null,
+  "price": null,
+  "on_sale": null,
+  "status": null,
+  "genre": "Rock, Pop / Rock",
+  "image": null,
+  "links": [
+   {
+    "source": "Offi",
+    "url": "https://www.offi.fr/concerts/le-trabendo-3288/mass-of-the-fermenting-dregs-3361965.html"
+   }
+  ],
+  "artists": [],
+  "description": null,
+  "first_seen": "2026-10-13",
+  "badge": "annonce"
  },
  {
   "id": "177e7051688c",

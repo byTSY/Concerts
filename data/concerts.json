@@ -885,7 +885,7 @@
   },
   {
    "id": "c5f068fc0364",
-   "title": "Jam Session Jazz au 38Riv, animée par Solène Cairoli",
+   "title": "Jam Session Jazz au 38Riv, Les jeudis du CNSMDP",
    "date": "2026-10-13",
    "time": null,
    "venue": "38Riv",
@@ -894,11 +894,11 @@
    "links": [
     {
      "source": "Que faire à Paris",
-     "url": "https://38riv.com/concerts?search=solene%20Cairoli&category=All"
+     "url": "https://38riv.com/concerts?search=CNSMDP&category=All&easepick_start_date_max=&easepick_start_date_min=now%20-3%20hours&easepick_end_date_min=now%20-3%20hours"
     },
     {
      "source": "Que faire à Paris",
-     "url": "https://38riv.com/concerts?search=CNSMDP&category=All&easepick_start_date_max=&easepick_start_date_min=now%20-3%20hours&easepick_end_date_min=now%20-3%20hours"
+     "url": "https://38riv.com/concerts?search=solene%20Cairoli&category=All"
     }
    ],
    "first_seen": "2026-10-07",
@@ -1308,28 +1308,6 @@
    "last_seen": "2026-10-13",
    "source_keys": [
     "Que faire à Paris:102547"
-   ]
-  },
-  {
-   "id": "63e3a92d75e9",
-   "title": "Gizmo + D'Accord Simon + Eliah",
-   "date": "2026-10-13",
-   "time": "19:00",
-   "venue": "Supersonic",
-   "genre": null,
-   "price": null,
-   "links": [
-    {
-     "source": "Dice",
-     "url": "https://dice.fm/event/6abbf4a388dd550001136194"
-    }
-   ],
-   "first_seen": "2026-10-07",
-   "baseline": true,
-   "last_seen": "2026-10-13",
-   "source_keys": [
-    "Dice:6abbf4a388dd550001136194",
-    "Que faire à Paris:125158"
    ]
   },
   {
@@ -15537,7 +15515,7 @@
   },
   {
    "id": "acc8d8308d98",
-   "title": "Hyd",
+   "title": "HYD",
    "date": "2026-10-21",
    "time": "20:00",
    "venue": "Hasard Ludique",
@@ -15545,12 +15523,30 @@
    "price": null,
    "links": [
     {
-     "source": "Dice",
-     "url": "https://dice.fm/event/69f35037ff1d7d0001b9584f"
-    },
-    {
      "source": "Offi",
      "url": "https://www.offi.fr/concerts/le-hasard-ludique-6987/hyd-3358404.html"
+    }
+   ],
+   "first_seen": "2026-10-07",
+   "baseline": true,
+   "last_seen": "2026-10-13",
+   "source_keys": [
+    "Dice:69f35037ff1d7d0001b9584f",
+    "Offi:3358404-2026-10-21T20:00"
+   ]
+  },
+  {
+   "id": "acc8d8308d98x",
+   "title": "Hyd + Kahi Baby",
+   "date": "2026-10-21",
+   "time": "20:00",
+   "venue": "Hasard Ludique",
+   "genre": null,
+   "price": null,
+   "links": [
+    {
+     "source": "Dice",
+     "url": "https://dice.fm/event/69f35037ff1d7d0001b9584f"
     }
    ],
    "first_seen": "2026-10-07",
@@ -17062,16 +17058,16 @@
   },
   {
    "id": "76d448955937",
-   "title": "SMR - Lpee",
+   "title": "SMR + LPEE + TIRI",
    "date": "2026-10-22",
    "time": "20:00",
-   "venue": "PopUp!",
-   "genre": "Rap, Musiques urbaines",
+   "venue": "POPUP!",
+   "genre": null,
    "price": null,
    "links": [
     {
-     "source": "Offi",
-     "url": "https://www.offi.fr/concerts/le-pop-up-du-label-5926/smr-lpee-3363396.html"
+     "source": "Dice",
+     "url": "https://dice.fm/event/6aa3cb4a8fd8d800016d5a02"
     }
    ],
    "first_seen": "2026-10-12",
@@ -17084,16 +17080,16 @@
   },
   {
    "id": "76d448955937x",
-   "title": "SMR + LPEE + TIRI",
+   "title": "SMR - Lpee",
    "date": "2026-10-22",
    "time": "20:00",
-   "venue": "POPUP!",
-   "genre": null,
+   "venue": "PopUp!",
+   "genre": "Rap, Musiques urbaines",
    "price": null,
    "links": [
     {
-     "source": "Dice",
-     "url": "https://dice.fm/event/6aa3cb4a8fd8d800016d5a02"
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/le-pop-up-du-label-5926/smr-lpee-3363396.html"
     }
    ],
    "first_seen": "2026-10-12",
@@ -25933,7 +25929,7 @@
    ]
   },
   {
-   "id": "390f08ed6e57x",
+   "id": "390f08ed6e57",
    "title": "THE WATCH PLAYS GENESIS",
    "date": "2026-10-29",
    "time": "19:00",
@@ -26390,7 +26386,7 @@
    ]
   },
   {
-   "id": "390f08ed6e57",
+   "id": "390f08ed6e57x",
    "title": "The Watch joue Genesis",
    "date": "2026-10-29",
    "time": "20:00",
@@ -33660,7 +33656,7 @@
    "title": "PASS 3 JOURS - Pitchfork Avant-Garde 2026",
    "date": "2026-11-05",
    "time": "18:30",
-   "venue": "POPUP!",
+   "venue": "Supersonic",
    "genre": null,
    "price": null,
    "links": [
@@ -49796,6 +49792,27 @@
    "last_seen": "2026-10-13",
    "source_keys": [
     "Offi:3363342-2026-11-20T19:45"
+   ]
+  },
+  {
+   "id": "03eaddb11780",
+   "title": "Widowspeak",
+   "date": "2026-11-20",
+   "time": "20:00",
+   "venue": "POPUP!",
+   "genre": null,
+   "price": null,
+   "links": [
+    {
+     "source": "Dice",
+     "url": "https://dice.fm/event/6a28350cfe10c100018a5465"
+    }
+   ],
+   "first_seen": "2026-10-13",
+   "baseline": false,
+   "last_seen": "2026-10-13",
+   "source_keys": [
+    "Dice:6a28350cfe10c100018a5465"
    ]
   },
   {
@@ -113421,12 +113438,16 @@
    "date": "2027-09-19",
    "time": "17:00",
    "venue": "SALLE PLEYEL",
-   "genre": "Chanson Francaise",
-   "price": null,
+   "genre": "Chanson française, Chanson",
+   "price": "49-69 €",
    "links": [
     {
      "source": "Ticketmaster",
      "url": "https://www.ticketmaster.fr/fr/manifestation/catherine-lara-billet/idmanif/664528/idseance/4365633"
+    },
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/salle-pleyel-3159/catherine-lara-3307297.html"
     }
    ],
    "first_seen": "2026-10-07",
@@ -113453,7 +113474,7 @@
    ],
    "first_seen": "2026-10-07",
    "baseline": true,
-   "last_seen": "2026-10-12",
+   "last_seen": "2026-10-13",
    "source_keys": [
     "Offi:3356844-2027-09-23T20:00"
    ]
@@ -113474,7 +113495,7 @@
    ],
    "first_seen": "2026-10-07",
    "baseline": true,
-   "last_seen": "2026-10-12",
+   "last_seen": "2026-10-13",
    "source_keys": [
     "Offi:3336723-2027-09-23T20:00"
    ]
@@ -113516,7 +113537,7 @@
    ],
    "first_seen": "2026-10-07",
    "baseline": true,
-   "last_seen": "2026-10-12",
+   "last_seen": "2026-10-13",
    "source_keys": [
     "Offi:3254729-2027-09-24T20:00"
    ]
@@ -113537,7 +113558,7 @@
    ],
    "first_seen": "2026-10-07",
    "baseline": true,
-   "last_seen": "2026-10-12",
+   "last_seen": "2026-10-13",
    "source_keys": [
     "Offi:3356844-2027-09-24T20:00"
    ]
@@ -113558,7 +113579,7 @@
    ],
    "first_seen": "2026-10-07",
    "baseline": true,
-   "last_seen": "2026-10-12",
+   "last_seen": "2026-10-13",
    "source_keys": [
     "Offi:3336723-2027-09-24T20:00"
    ]
@@ -113611,12 +113632,16 @@
    "date": "2027-09-25",
    "time": "14:30",
    "venue": "DOME DE PARIS",
-   "genre": "Chanson Francaise",
+   "genre": "Chanson",
    "price": null,
    "links": [
     {
      "source": "Ticketmaster",
      "url": "https://www.ticketmaster.fr/fr/manifestation/salut-les-copains-billet/idmanif/668123/idseance/4386680"
+    },
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/palais-des-sports-2911/salut-les-copains-3363214.html"
     }
    ],
    "first_seen": "2026-10-07",
@@ -113665,7 +113690,7 @@
    ],
    "first_seen": "2026-10-07",
    "baseline": true,
-   "last_seen": "2026-10-12",
+   "last_seen": "2026-10-13",
    "source_keys": [
     "Offi:3336723-2027-09-25T15:00"
    ]
@@ -113707,7 +113732,7 @@
    ],
    "first_seen": "2026-10-12",
    "baseline": false,
-   "last_seen": "2026-10-12",
+   "last_seen": "2026-10-13",
    "source_keys": [
     "Offi:3358252-2027-09-25T20:00"
    ]
@@ -113718,12 +113743,16 @@
    "date": "2027-09-25",
    "time": "20:00",
    "venue": "PLENITUDE ARENA",
-   "genre": "Hip-Hop/Rap",
+   "genre": "Rap, Musiques urbaines",
    "price": null,
    "links": [
     {
      "source": "Ticketmaster",
      "url": "https://www.ticketmaster.fr/fr/manifestation/jok-air-billet/idmanif/662222/idseance/4355199"
+    },
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/u-arena-6551/jokair-3305321.html"
     }
    ],
    "first_seen": "2026-10-07",
@@ -113750,7 +113779,7 @@
    ],
    "first_seen": "2026-10-07",
    "baseline": true,
-   "last_seen": "2026-10-12",
+   "last_seen": "2026-10-13",
    "source_keys": [
     "Offi:3254729-2027-09-25T20:00"
    ]
@@ -113761,12 +113790,16 @@
    "date": "2027-09-25",
    "time": "20:00",
    "venue": "Olympia",
-   "genre": "Pop",
+   "genre": "Chanson",
    "price": null,
    "links": [
     {
      "source": "Ticketmaster",
      "url": "https://www.ticketmaster.fr/fr/manifestation/ycare-billet/idmanif/671517/idseance/4405782"
+    },
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/lolympia-2874/ycare-3361835.html"
     }
    ],
    "first_seen": "2026-10-07",
@@ -113814,7 +113847,7 @@
    ],
    "first_seen": "2026-10-07",
    "baseline": true,
-   "last_seen": "2026-10-12",
+   "last_seen": "2026-10-13",
    "source_keys": [
     "Offi:3336723-2027-09-26T15:00"
    ]
@@ -113825,12 +113858,16 @@
    "date": "2027-09-30",
    "time": "20:00",
    "venue": "ZENITH PARIS - LA VILLETTE",
-   "genre": "Chanson Francaise",
+   "genre": "Pop, Pop / Rock",
    "price": null,
    "links": [
     {
      "source": "Ticketmaster",
      "url": "https://www.ticketmaster.fr/fr/manifestation/zazie-billet/idmanif/673396/idseance/4427503"
+    },
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/le-zenith-3401/zazie-3358275.html"
     }
    ],
    "first_seen": "2026-10-07",
@@ -113857,7 +113894,7 @@
    ],
    "first_seen": "2026-10-12",
    "baseline": false,
-   "last_seen": "2026-10-12",
+   "last_seen": "2026-10-13",
    "source_keys": [
     "Offi:3307299-2027-10-07T20:00"
    ]
@@ -113868,12 +113905,16 @@
    "date": "2027-10-08",
    "time": "20:00",
    "venue": "ZENITH PARIS - LA VILLETTE",
-   "genre": "Metal",
+   "genre": "Metal, Pop / Rock",
    "price": null,
    "links": [
     {
      "source": "Ticketmaster",
      "url": "https://www.ticketmaster.fr/fr/manifestation/epica-billet/idmanif/672116/idseance/4412989"
+    },
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/le-zenith-3401/epica-3358276.html"
     }
    ],
    "first_seen": "2026-10-07",
@@ -113890,12 +113931,16 @@
    "date": "2027-10-09",
    "time": "20:00",
    "venue": "ACCOR ARENA",
-   "genre": "Chanson Francaise",
+   "genre": "Chanson française, Chanson",
    "price": null,
    "links": [
     {
      "source": "Ticketmaster",
      "url": "https://www.ticketmaster.fr/fr/manifestation/julien-clerc-billet/idmanif/617117/idtier/18864121"
+    },
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/palais-omnisports-de-paris-bercy-2913/julien-clerc-2953717.html"
     }
    ],
    "first_seen": "2026-10-07",
@@ -113912,12 +113957,16 @@
    "date": "2027-10-09",
    "time": "20:30",
    "venue": "DOME DE PARIS",
-   "genre": "Pop",
+   "genre": "Pop / Rock",
    "price": null,
    "links": [
     {
      "source": "Ticketmaster",
      "url": "https://www.ticketmaster.fr/fr/manifestation/mania-the-abba-tribute-billet/idmanif/673235/idseance/4426008"
+    },
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/palais-des-sports-2911/mania-the-abba-tribute-3363215.html"
     }
    ],
    "first_seen": "2026-10-07",
@@ -113934,12 +113983,16 @@
    "date": "2027-10-10",
    "time": "18:00",
    "venue": "Olympia",
-   "genre": "Chanson Francaise",
+   "genre": "Chanson française, Chanson",
    "price": null,
    "links": [
     {
      "source": "Ticketmaster",
      "url": "https://www.ticketmaster.fr/fr/manifestation/michele-torr-billet/idmanif/671979/idseance/4412791"
+    },
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/lolympia-2874/michele-torr-3361840.html"
     }
    ],
    "first_seen": "2026-10-07",
@@ -113948,6 +114001,27 @@
    "source_keys": [
     "Offi:3361840-2027-10-10T18:00",
     "Ticketmaster:ZkyMmBwZ1A783ro"
+   ]
+  },
+  {
+   "id": "a55c540c627e",
+   "title": "Mass of the Fermenting Dregs",
+   "date": "2027-10-11",
+   "time": "20:00",
+   "venue": "Le Trabendo",
+   "genre": "Rock, Pop / Rock",
+   "price": null,
+   "links": [
+    {
+     "source": "Offi",
+     "url": "https://www.offi.fr/concerts/le-trabendo-3288/mass-of-the-fermenting-dregs-3361965.html"
+    }
+   ],
+   "first_seen": "2026-10-13",
+   "baseline": false,
+   "last_seen": "2026-10-13",
+   "source_keys": [
+    "Offi:3361965-2027-10-11T20:00"
    ]
   },
   {
