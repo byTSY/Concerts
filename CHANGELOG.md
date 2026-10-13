@@ -14,6 +14,19 @@ Revenir à une version antérieure :
 3. base D1 : les migrations ne s'annulent pas seules ; chaque entrée indique la commande inverse
    quand une migration est ajoutée.
 
+## 1.3.0 (13 octobre 2026)
+
+Recherche sur tout le catalogue, statut « Places prises », section « Mes prochains concerts ».
+- Barre de recherche en haut de l'app (site/search.js) : tous les concerts à venir publiés, sans
+  tenir compte des filtres, concerts non recommandés compris (étiquette « Non recommandé ») ;
+  artiste, titre et salle, sans accents ni majuscules, plusieurs mots ; une ligne par date ;
+  60 résultats affichés au plus. Exécutée dans le navigateur sur events.json.
+- Depuis un résultat : « Intéressé » ou « Places prises ».
+- « J'y vais » renommé « Places prises » (statut going existant) ; « Y vont » devient « Ont leurs places ».
+- « Mes prochains concerts » sous le cercle Reels : places prises à venir, du plus proche au plus lointain.
+- L'ancien champ de recherche des filtres est retiré ; « Mes artistes » garde un filtre à lui.
+Aucune migration D1.
+
 ## 1.2.0 (13 octobre 2026)
 
 Fiches Reels des nouveautés de la semaine, à la place du bandeau de billets.

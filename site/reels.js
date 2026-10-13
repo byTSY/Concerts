@@ -227,7 +227,7 @@ function bindReelGestures(card) {
   card.addEventListener("pointerdown", (e) => {
     if (e.button !== 0 || e.target.closest("button, a")) return;
     start = { x: e.clientX, y: e.clientY, t: Date.now(), id: e.pointerId, photo: Boolean(e.target.closest(".reel-photo")) };
-    card.setPointerCapture(e.pointerId);
+    try { card.setPointerCapture(e.pointerId); } catch { /* pointeur déjà relâché */ }
     card.classList.add("dragging");
   });
   card.addEventListener("pointermove", (e) => {

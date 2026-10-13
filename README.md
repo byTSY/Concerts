@@ -127,8 +127,8 @@ il s'arrête aussitôt (c. 1 minute de GitHub Actions) et n'enregistre aucun tra
 Rien de personnel n'est visible par défaut ; chaque partage résulte d'un choix du membre.
 
 - **★ partagés** : sur la fiche d'un concert mis de côté, le membre choisit « Intéressé » ou
-  « J'y vais », et « Visible par moi seul » ou « Visible par les membres » (par défaut selon
-  « Mon compte »). La fiche montre « Intéressés : … » et « Y vont : … » pour les ★ visibles des
+  « Places prises », et « Visible par moi seul » ou « Visible par les membres » (par défaut selon
+  « Mon compte »). La fiche montre « Intéressés : … » et « Ont leurs places : … » pour les ★ visibles des
   autres membres ; le filtre « Avec les membres » ne garde que ces concerts. Un membre suspendu
   ou supprimé disparaît aussitôt (`GET /api/community/stars` : nom affiché et statut seulement).
 - **Salles** : un membre propose une salle (onglet Salles : formulaire, ou « Proposer au

@@ -29,6 +29,12 @@
       </button>
       <h2 id="fresh-title" class="fresh-title"></h2>
     </section>
+    <!-- Concerts avec places prises, puis recherche sur tout le catalogue (site/search.js) -->
+    <section class="upcoming" id="upcoming" aria-label="Mes prochains concerts" hidden></section>
+    <div class="global-search">
+      <input type="search" id="search" placeholder="Rechercher un artiste, une salle… (tout le catalogue)" aria-label="Rechercher dans tous les concerts">
+    </div>
+    <section class="search-results" id="search-results" hidden></section>
   </header>
 
   <nav class="tabs" role="tablist" aria-label="Vues">
@@ -50,7 +56,6 @@
     <label class="chip"><input type="checkbox" id="with-members"> Avec les membres</label>
     <select id="style-filter" class="style-filter" aria-label="Style"></select>
     <span class="venue-filter" id="venue-filter" hidden></span>
-    <input type="search" id="search" placeholder="Artiste, salle…" aria-label="Rechercher">
   </div>
 
   <main>
@@ -81,7 +86,7 @@
     <section id="view-account" class="view" hidden><div id="account"></div></section>
     <section id="view-admin" class="view" hidden><div id="admin"></div></section>
   </main>
-  <footer class="app-version">Version <span id="app-version">1.2.0</span></footer>
+  <footer class="app-version">Version <span id="app-version">1.3.0</span></footer>
 
   <!-- Arrivée d'un membre : choix de la source, puis attente du premier calcul -->
   <section id="onboarding" class="onboarding" hidden></section>
@@ -117,6 +122,7 @@
   <script src="account.js"></script>
   <script src="admin.js"></script>
   <script src="reels.js"></script>
+  <script src="search.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
