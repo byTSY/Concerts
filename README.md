@@ -267,6 +267,9 @@ Liens d'écoute et d'achat :
   fiche web et dans la fiche du concert.
 
 Résultats mis en cache une semaine. Fonction : `functions/partage/[[path]].js`.
+La fonction lit le concert dans un petit fichier, `site/data/share/<xx>.json` (concerts
+répartis selon les deux premiers caractères de leur identifiant, c. 10 Ko chacun), et non dans
+tout `events.json` (c. 3,5 Mo), pour rester sous la limite de 10 ms de calcul par requête.
 
 **API Spotify (facultatif, liens exacts pour tous les artistes).** Sur
 https://developer.spotify.com/dashboard, créez une application (nom `Concerts`, Redirect URIs

@@ -4,7 +4,8 @@ Communs (site/data/, dans le dépôt) : tous les concerts sans aucun champ perso
 observées, état des sources. Personnels (users/<id>/ dans R2, servis par /api/me/*) : artistes
 du membre, concerts retenus pour lui (overlay), compteurs du bandeau.
 """
-from collections import Counter
+import json
+from collections import Counter, defaultdict
 from datetime import datetime, timezone
 
 from .history import kind_of
@@ -22,10 +23,30 @@ def _now():
     return datetime.now(timezone.utc).isoformat(timespec="minutes")
 
 
+SHARE = SITE_DATA / "share"
+
+
+def build_share(out):
+    """Concerts répartis en petits fichiers selon les deux premiers caractères de leur
+    identifiant (site/data/share/<xx>.json, c. 20 concerts chacun) : la fiche publique /partage
+    n'en lit qu'un, au lieu de tout events.json (limite de 10 ms de calcul par requête)."""
+    groups = defaultdict(list)
+    for e in out:
+        groups[e["id"][:2]].append(e)
+    SHARE.mkdir(parents=True, exist_ok=True)
+    for prefix, items in groups.items():
+        (SHARE / f"{prefix}.json").write_text(json.dumps(items, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    for path in SHARE.glob("*.json"):
+        if path.stem not in groups:
+            path.unlink()
+    return len(groups)
+
+
 def build_common(events, source_status, initial=False):
     """events : concerts passés par history.update_common (id stable, first_seen, badge « annonce »)."""
     out = sorted(({k: ev.get(k) for k in COMMON} for ev in events), key=lambda e: (e["date"], e.get("time") or ""))
     save_json(SITE_DATA / "events.json", out)
+    build_share(out)
 
     totals = Counter(e["venue"] for e in out)
     ids = {e["venue"]: e["venue_id"] for e in out if e.get("venue_id")}

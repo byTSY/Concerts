@@ -33,12 +33,12 @@ jobs:
   common:
     # Pas pour un calcul de membre ni pour la relance de sécurité des 2 heures
     if: ${{ !inputs.member && github.event.schedule != '30 */2 * * *' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04   # version fixée (ubuntu-latest passe à Ubuntu 26 le 19 octobre 2026)
     timeout-minutes: 60
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
           cache: pip
@@ -71,14 +71,14 @@ jobs:
   members:
     needs: common
     if: ${{ always() && (needs.common.result == 'success' || needs.common.result == 'skipped') }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04   # version fixée (ubuntu-latest passe à Ubuntu 26 le 19 octobre 2026)
     timeout-minutes: 60
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: main   # inclut le commit de la tâche commune (caches à jour)
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
           cache: pip
