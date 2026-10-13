@@ -39,21 +39,27 @@ function invitationSms(member, link) {
 }
 
 // Lien qui ouvre l'application Messages avec le texte prérempli (destinataire choisi dans
-// l'application ; aucun numéro n'est enregistré). « sms:?&body= » est compris par iPhone et Android.
+// l'application ; aucun numéro n'est enregistré). Forme « sms:?&body= » usuelle pour iPhone et
+// Android, à confirmer sur les téléphones des membres.
 const smsHref = (text) => `sms:?&body=${encodeURIComponent(text)}`;
 
-// Message d'invitation : texte complet à copier, SMS prérempli, partage du téléphone
+// Message d'invitation : texte complet à copier, SMS prérempli, partage du téléphone. Un seul
+// message affiché à la fois ; les boutons sont cherchés dans leur propre bloc.
 function showInvitation(out, member, link, intro, notes = "") {
   const text = invitationText(member, link);
   const sms = invitationSms(member, link);
+  for (const other of document.querySelectorAll("#invite-result, #admin-action-result")) {
+    if (other !== out) other.innerHTML = "";
+  }
   out.innerHTML = `<p>${intro}</p>
-    <p><a class="btn" href="${esc(smsHref(sms))}">Envoyer par SMS</a>
-      ${navigator.share ? `<button class="btn btn-quiet" type="button" id="share-invite">Partager…</button>` : ""}</p>
+    <p><a class="btn js-sms" href="${esc(smsHref(sms))}">Envoyer par SMS</a>
+      ${navigator.share ? `<button class="btn btn-quiet js-share" type="button">Partager…</button>` : ""}</p>
     <p class="cell-sub">Le SMS ouvre votre application Messages avec le texte prêt : choisissez le destinataire, puis envoyez. Sur ordinateur, le lien ne fonctionne que si une application de SMS est reliée (Mac avec iPhone, Lien avec le téléphone sous Windows) ; sinon, copiez le message ci-dessous.</p>
-    <textarea id="invite-text" class="copy-field" readonly rows="7">${esc(text)}</textarea>
-    <p><button class="btn btn-quiet" type="button" id="copy-invite">Copier le message complet</button></p>${notes}`;
-  $("#copy-invite").addEventListener("click", (ev) => copyText(ev.target, text, $("#invite-text")));
-  $("#share-invite")?.addEventListener("click", () => navigator.share({ text: sms }).catch(() => {}));
+    <textarea class="copy-field js-text" readonly rows="7" aria-label="Message d'invitation complet">${esc(text)}</textarea>
+    <p><button class="btn btn-quiet js-copy" type="button">Copier le message complet</button></p>${notes}`;
+  out.querySelector(".js-copy").addEventListener("click", (ev) => copyText(ev.target, text, out.querySelector(".js-text")));
+  out.querySelector(".js-share")?.addEventListener("click", () => navigator.share({ text: sms }).catch(() => {}));
+  out.querySelector(".js-sms").focus();
 }
 
 const SPOTIFY_SOURCE_STATUS = {
@@ -142,13 +148,13 @@ async function renderAdmin() {
         <label for="invite-name">Prénom</label><input id="invite-name" type="text" required maxlength="40" autocomplete="off">
         <button class="btn" type="submit">Inviter</button>
       </form>
-      <div id="invite-result"></div>
+      <div id="invite-result" aria-live="polite"></div>
     </section>
     <section class="account-block">
       <h2 class="month-title">Membres (${list.length})</h2>
       <div class="table-wrap"><table><thead><tr><th>Membre</th><th>Statut</th><th>Source</th><th class="hide-mobile">Dernière visite</th><th class="num">★</th><th></th></tr></thead>
       <tbody>${rows}</tbody></table></div>
-      <div id="admin-action-result"></div>
+      <div id="admin-action-result" aria-live="polite"></div>
     </section>
     ${spotifySection(spotify)}
     <section class="account-block">
@@ -159,16 +165,22 @@ async function renderAdmin() {
 
   $("#invite-form").addEventListener("submit", async (e) => {
     e.preventDefault();
-    const out = $("#invite-result");
+    const submit = e.target.querySelector("button[type=submit]");
+    submit.disabled = true;  // pas de double envoi
+    let r;
     try {
-      const r = await api("admin/members", { method: "POST", body: { email: $("#invite-email").value, first_name: $("#invite-name").value } });
-      $("#invite-form").reset();
-      await renderAdmin();
-      showInvitation($("#invite-result"), r.member, r.link, `Invitation créée pour <strong>${esc(r.member.first_name)}</strong>. Transmettez-lui le lien :`,
-        accessNote(r.access, "ajouter l'adresse à la liste des membres"));
+      r = await api("admin/members", { method: "POST", body: { email: $("#invite-email").value, first_name: $("#invite-name").value } });
     } catch (err) {
-      out.innerHTML = `<p class="prefs-warning">${esc(err.message)}</p>`;
+      submit.disabled = false;
+      $("#invite-result").innerHTML = `<p class="prefs-warning">${esc(err.message)}</p>`;
+      return;
     }
+    // Invitation créée : tableau rechargé, puis message à transmettre (affiché même si le
+    // rechargement échoue)
+    await renderAdmin();
+    const out = $("#invite-result") || $("#admin");
+    showInvitation(out, r.member, r.link, `Invitation créée pour <strong>${esc(r.member.first_name)}</strong>. Transmettez-lui le lien :`,
+      accessNote(r.access, "ajouter l'adresse à la liste des membres"));
   });
   $("#run-weekly").addEventListener("click", async () => {
     if (!confirm("Relancer le traitement complet (c. 20 minutes) ?")) return;
