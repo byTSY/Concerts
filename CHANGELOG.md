@@ -14,6 +14,16 @@ Revenir à une version antérieure :
 3. base D1 : les migrations ne s'annulent pas seules ; chaque entrée indique la commande inverse
    quand une migration est ajoutée.
 
+## 1.5.1 (13 octobre 2026)
+
+Newsletter : retours du premier essai.
+- Style musical à la place de « Vos artistes, niveau X » (même règle que la fiche /partage/ :
+  « Pop, Pop / Rock » donne « Pop », un lieu ou un instrument est sauté ; rien si la source n'en
+  donne pas). Les découvertes gardent « Découverte, proche de … ».
+- Secret SMTP_PORT : espaces tolérés ; valeur illisible : port 587, signalé dans le journal (le
+  premier essai s'était arrêté sur une valeur mal saisie).
+Aucune migration D1.
+
 ## 1.5.0 (13 octobre 2026)
 
 Newsletter du lundi.
