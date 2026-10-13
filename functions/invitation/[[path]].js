@@ -16,6 +16,8 @@ const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "
 function page(title, body, status = 200) {
   return new Response(`<!doctype html><html lang="fr"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex">
+<meta property="og:title" content="Invitation : Concerts à Paris"><meta property="og:type" content="website">
+<meta property="og:description" content="Les concerts de vos artistes à Paris, à partir de votre bibliothèque Deezer ou Spotify. Ouvrez le lien pour vous inscrire.">
 <title>${esc(title)}</title>
 <style>
   body { font-family: system-ui, sans-serif; max-width: 520px; margin: 40px auto; padding: 0 16px; line-height: 1.5; color: #1e2350; background: #f6f3ec; }

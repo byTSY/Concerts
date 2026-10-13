@@ -26,61 +26,47 @@ async function copyText(button, text, field) {
 const accessNote = (r, task) => (r && r.done === false
   ? `<p class="prefs-warning">À faire à la main dans Cloudflare Zero Trust : ${task} (${esc(r.reason)}).</p>` : "");
 
-function invitationText(member, link) {
-  return `Bonjour ${member.first_name},\n\nJe vous invite sur Concerts à Paris, qui repère les concerts de vos artistes à Paris à partir de votre bibliothèque Deezer ou Spotify.\n\n` +
-    `Ouvrez ${link} et connectez-vous avec cette adresse : ${member.email}. Un code de connexion vous sera envoyé par e-mail.\n\n` +
-    `Sur Deezer, il vous faudra le lien de votre profil, qui doit être public. Sur Spotify, il vous faudra l'adresse e-mail de votre compte Spotify ; je l'ajouterai à l'application avant que vous ne la reliiez.`;
-}
-
-// Version courte pour un SMS : lien et adresse de connexion seulement
-function invitationSms(member, link) {
+// Message à partager : lien et adresse de connexion
+function invitationMessage(member, link) {
   return `Bonjour ${member.first_name}, je vous invite sur Concerts à Paris, qui repère les concerts de vos artistes à Paris. ` +
     `Ouvrez ${link} et connectez-vous avec ${member.email} : un code de connexion vous sera envoyé par e-mail.`;
 }
 
-// Lien qui ouvre l'application Messages avec le texte prérempli (destinataire choisi dans
-// l'application ; aucun numéro n'est enregistré). Forme « sms:?&body= » usuelle pour iPhone et
-// Android, à confirmer sur les téléphones des membres.
-const smsHref = (text) => `sms:?&body=${encodeURIComponent(text)}`;
-
 // Invitation par lien (adresse inconnue) : la personne saisit elle-même son e-mail
-function linkInvitationText(first, link) {
-  return `Bonjour ${first},\n\nJe vous invite sur Concerts à Paris, qui repère les concerts de vos artistes à Paris à partir de votre bibliothèque Deezer ou Spotify.\n\n` +
-    `Ouvrez ce lien personnel, valable 7 jours, et indiquez votre adresse e-mail : ${link}\n\n` +
-    `Vous vous connecterez ensuite avec un code reçu par e-mail. Sur Deezer, il vous faudra le lien de votre profil, qui doit être public ; sur Spotify, l'adresse e-mail de votre compte Spotify.`;
-}
-
-function linkInvitationSms(first, link) {
+function linkInvitationMessage(first, link) {
   return `Bonjour ${first}, je vous invite sur Concerts à Paris, qui repère les concerts de vos artistes à Paris. ` +
     `Ouvrez ce lien personnel (valable 7 jours) et indiquez votre adresse e-mail : ${link}`;
 }
 
-// Message d'invitation : texte complet à copier, SMS prérempli, partage du téléphone. Un seul
-// message affiché à la fois ; les boutons sont cherchés dans leur propre bloc.
+// Invitation par e-mail : message à partager
 function showInvitation(out, member, link, intro, notes = "") {
-  showMessage(out, intro, invitationSms(member, link), invitationText(member, link), notes);
+  showMessage(out, intro, invitationMessage(member, link), notes);
 }
 
-function showMessage(out, intro, sms, text, notes = "") {
+// Partage comme pour une fiche concert (shareOrCopy, app.js) : menu de partage du téléphone
+// (WhatsApp, Messenger, Messages, e-mail…), ou copie du message sur ordinateur. Le lien est dans
+// le texte : certaines applications ignorent un lien passé à part. Un seul message affiché à la
+// fois ; les boutons sont cherchés dans leur propre bloc.
+function showMessage(out, intro, message, notes = "") {
   for (const other of document.querySelectorAll("#invite-result, #link-result, #admin-action-result")) {
     if (other !== out) other.innerHTML = "";
   }
   out.innerHTML = `<p>${intro}</p>
-    <p><a class="btn js-sms" href="${esc(smsHref(sms))}">Envoyer par SMS</a>
-      ${navigator.share ? `<button class="btn btn-quiet js-share" type="button">Partager…</button>` : ""}</p>
-    <p class="cell-sub">Le SMS ouvre votre application Messages avec le texte prêt : choisissez le destinataire, puis envoyez. Sur ordinateur, le lien ne fonctionne que si une application de SMS est reliée (Mac avec iPhone, Lien avec le téléphone sous Windows) ; sinon, copiez le message ci-dessous.</p>
-    <textarea class="copy-field js-text" readonly rows="7" aria-label="Message d'invitation complet">${esc(text)}</textarea>
-    <p><button class="btn btn-quiet js-copy" type="button">Copier le message complet</button></p>${notes}`;
-  out.querySelector(".js-copy").addEventListener("click", (ev) => copyText(ev.target, text, out.querySelector(".js-text")));
-  out.querySelector(".js-share")?.addEventListener("click", () => navigator.share({ text: sms }).catch(() => {}));
-  out.querySelector(".js-sms").focus();
+    <p><button class="btn btn-share js-share" type="button">Partager l'invitation</button></p>
+    <p class="cell-sub">Choisissez l'application (WhatsApp, Messenger, Messages…) puis le destinataire. Si aucun menu de partage ne s'ouvre, le message est copié : collez-le où vous voulez.</p>
+    <textarea class="copy-field js-text" readonly rows="5" aria-label="Message d'invitation">${esc(message)}</textarea>
+    <p><button class="btn btn-quiet js-copy" type="button">Copier le message</button></p>${notes}`;
+  out.querySelector(".js-copy").addEventListener("click", (ev) => copyText(ev.target, message, out.querySelector(".js-text")));
+  out.querySelector(".js-share").addEventListener("click", () =>
+    shareOrCopy({ text: message }, "Message copié : collez-le dans WhatsApp, Messenger ou Messages"));
+  out.querySelector(".js-share").focus();
 }
 
-// Lien d'invitation créé ou renouvelé : SMS prérempli, message complet
+// Lien d'invitation créé ou renouvelé : message à partager
 function showLink(out, r) {
   const first = r.invitation.first_name;
   showMessage(out, `Lien d'invitation pour <strong>${esc(first)}</strong>, valable jusqu'au ${esc(fmtDateTime(r.invitation.expires_at))}. Il ne sert qu'une fois :`,
-    linkInvitationSms(first, r.link), linkInvitationText(first, r.link));
+    linkInvitationMessage(first, r.link));
 }
 
 // Liens en attente : nouveau lien (l'ancien ne marche plus) ou suppression
@@ -222,7 +208,7 @@ async function renderAdmin() {
       <td class="num">${m.stars}</td>
       <td>${m.role === "admin" ? "" : `
         ${m.access_pending ? `<button class="link-btn" data-admin="access" data-id="${esc(m.id)}">Ouvrir l'accès</button>` : ""}
-        ${["invited", "onboarding"].includes(m.status) ? `<button class="link-btn" data-admin="invite" data-first="${esc(m.first_name)}" data-email="${esc(m.email)}">Inviter par SMS</button>` : ""}
+        ${["invited", "onboarding"].includes(m.status) ? `<button class="link-btn" data-admin="invite" data-first="${esc(m.first_name)}" data-email="${esc(m.email)}">Renvoyer l'invitation</button>` : ""}
         ${m.provider ? `<button class="link-btn" data-admin="recompute" data-id="${esc(m.id)}">Recalculer</button>` : ""}
         ${m.status === "suspended"
           ? `<button class="link-btn" data-admin="reactivate" data-id="${esc(m.id)}">Réactiver</button>`
@@ -241,10 +227,10 @@ async function renderAdmin() {
   box.innerHTML = `
     <section class="account-block">
       <h2 class="month-title">Inviter</h2>
-      <p class="cell-sub">Saisissez le prénom : vous obtenez un lien personnel à envoyer par SMS. La personne y indique elle-même son adresse e-mail.</p>
+      <p class="cell-sub">Saisissez le prénom : vous obtenez un lien personnel à partager (WhatsApp, Messenger, SMS…). La personne y indique elle-même son adresse e-mail.</p>
       <form id="link-form" class="account-form inline">
         <label for="link-name">Prénom</label><input id="link-name" type="text" required maxlength="40" autocomplete="off">
-        <button class="btn" type="submit">Créer le lien et préparer le SMS</button>
+        <button class="btn" type="submit">Créer le lien d'invitation</button>
       </form>
       <div id="link-result" aria-live="polite"></div>
       ${linksBlock(links)}
@@ -253,7 +239,7 @@ async function renderAdmin() {
         <form id="invite-form" class="account-form inline">
           <label for="invite-email">E-mail</label><input id="invite-email" type="email" required autocomplete="off">
           <label for="invite-name">Prénom</label><input id="invite-name" type="text" required maxlength="40" autocomplete="off">
-          <button class="btn" type="submit">Inviter et préparer le SMS</button>
+          <button class="btn" type="submit">Inviter et préparer le message</button>
         </form>
         <div id="invite-result" aria-live="polite"></div>
       </details>

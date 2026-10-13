@@ -1,5 +1,5 @@
 // GET /api/admin/invitations : liens d'invitation en attente (prénom, dates ; jamais le jeton).
-// POST /api/admin/invitations { first_name } : nouveau lien d'invitation, à transmettre par SMS ;
+// POST /api/admin/invitations { first_name } : nouveau lien d'invitation, à partager (WhatsApp, Messenger, Messages…) ;
 // la personne y saisit elle-même son adresse e-mail.
 
 import { handle, json, readJson } from "../../../_lib/http.js";

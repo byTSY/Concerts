@@ -107,10 +107,10 @@ il s'arrête aussitôt (c. 1 minute de GitHub Actions) et n'enregistre aucun tra
   personne ouvre le lien, `/invitation/<jeton>`, et y saisit son adresse ; lien à usage unique,
   valable 7 jours, « Nouveau lien » ou « Supprimer » tant qu'il n'a pas servi ; le chemin
   `/invitation/` doit être ouvert à tous dans Cloudflare Access, comme `/partage/`), ou par
-  e-mail et prénom (l'adresse est ajoutée
-  à la liste Access des membres) ; bouton « Envoyer par SMS », qui ouvre l'application Messages
-  avec le lien prérempli, et message complet à copier ; « Inviter par SMS » renvoie l'invitation
-  d'un membre pas encore arrivé), suspendre
+  e-mail et prénom (l'adresse est ajoutée à la liste Access des membres) ; bouton « Partager
+  l'invitation », comme pour une fiche concert (menu de partage du téléphone : WhatsApp,
+  Messenger, Messages… ; copie du message sur ordinateur) ; « Renvoyer l'invitation » pour un
+  membre pas encore arrivé), suspendre
   (accès coupé aussitôt, données gardées), réactiver, supprimer (tout est effacé), relancer un
   calcul, suivre les traitements. L'admin voit statut, connexions, activité et nombre de ★ ;
   jamais les artistes, concerts choisis ou préférences d'un membre.
