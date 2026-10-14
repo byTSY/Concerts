@@ -1,6 +1,6 @@
 // Services extérieurs appelés par les fonctions : liste Access des membres et révocation des
 // sessions (API Cloudflare), lancement d'un calcul (GitHub Actions), profil public Deezer,
-// autorisation Spotify d'un membre (OAuth).
+// autorisation Spotify d'un membre (OAuth), lancement des notifications (GitHub Actions).
 //
 // Variables : CF_ACCOUNT_ID, ACCESS_LIST_ID (liste Zero Trust « membres »), CF_ADMIN_API_TOKEN
 // (secret : Zero Trust Edit, Access Organizations Edit), GITHUB_ACTIONS_TOKEN (secret : droit
@@ -46,12 +46,11 @@ export async function revokeSessions(env, email) {
   return { done: true };
 }
 
-// Lance le calcul d'un membre (workflow « Mise à jour hebdomadaire », paramètre member) ;
-// sans membre : traitement complet
-export async function dispatchRun(env, memberId = "") {
+// Lance un workflow GitHub Actions du dépôt (fichier .github/workflows/<file>), avec ses paramètres
+export async function dispatchWorkflow(env, file, inputs = {}) {
   if (!env.GITHUB_ACTIONS_TOKEN) return { done: false, reason: "lancement GitHub non configuré" };
   const repo = env.GITHUB_REPO || "byTSY/Concerts";
-  const r = await fetch(`https://api.github.com/repos/${repo}/actions/workflows/weekly.yml/dispatches`, {
+  const r = await fetch(`https://api.github.com/repos/${repo}/actions/workflows/${file}/dispatches`, {
     method: "POST",
     headers: {
       authorization: `Bearer ${env.GITHUB_ACTIONS_TOKEN}`,
@@ -60,11 +59,15 @@ export async function dispatchRun(env, memberId = "") {
       "x-github-api-version": "2022-11-28",
       "content-type": "application/json",
     },
-    body: JSON.stringify({ ref: "main", inputs: { member: memberId } }),
+    body: JSON.stringify({ ref: "main", inputs }),
   });
   if (r.status !== 204) throw new Error(`GitHub : lancement refusé (HTTP ${r.status})`);
   return { done: true };
 }
+
+// Lance le calcul d'un membre (workflow « Mise à jour hebdomadaire », paramètre member) ;
+// sans membre : traitement complet
+export const dispatchRun = (env, memberId = "") => dispatchWorkflow(env, "weekly.yml", { member: memberId });
 
 // --- Deezer : profil public d'un membre -----------------------------------------------
 

@@ -148,7 +148,9 @@ class Client:
             except ValueError:
                 pass
             if wait > MAX_RETRY_AFTER:
-                raise SourceError("quota", f"Retry-After {wait} s")
+                # Quota du compte développeur dépassé (Retry-After parfois de plusieurs heures) : le
+                # traitement met Spotify en pause jusque-là (service_pauses) au lieu d'insister
+                raise SourceError("quota", f"Retry-After {wait} s", retry_after=wait)
             log(f"  Spotify : quota, pause de {wait} s")
         time.sleep(wait + 1)
 

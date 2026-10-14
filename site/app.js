@@ -1300,5 +1300,18 @@ async function openFromLink({ onboarding = false } = {}) {
   const revoked = me?.source?.provider === "spotify" && me.source.status === "revoked"
     ? `<p class="prefs-warning">L'accès de Concerts à votre compte Spotify a expiré ou a été retiré : vos concerts ne sont plus mis à jour. <a href="api/me/spotify/authorize">Reconnecter Spotify</a></p>`
     : spotifyPending ? `<p class="prefs-warning">Votre accès Spotify est à reconnecter : vos concerts ne sont plus mis à jour. Suite dans « Mon compte ».</p>` : "";
-  $("#filters").insertAdjacentHTML("beforebegin", spotifyNotice() + revoked);
+  // Dernier calcul en erreur (quota Spotify, profil devenu privé…) : explication et nouvel essai
+  // prévu, au lieu d'un site vide ou de résultats anciens sans mot (version 1.9.0)
+  const problem = !revoked && syncProblem(me);
+  const syncBanner = problem
+    ? `<p class="prefs-warning">${state.artists.length ? "Vos concerts n'ont pas pu être mis à jour" : "Vos concerts ne sont pas encore calculés"} : ${esc(problem)}.
+      ${me.source.retry_at ? "Rien à faire de votre côté : vous recevrez un e-mail quand ce sera fait." : ""}
+      <button type="button" class="link-btn inline-link" data-problem>J'ai un problème</button></p>` : "";
+  $("#filters").insertAdjacentHTML("beforebegin", spotifyNotice() + revoked + syncBanner);
+  // Lien d'un e-mail : ?vue=account (Mon compte) ou ?vue=admin
+  const vue = new URLSearchParams(location.search).get("vue");
+  if (vue && document.querySelector(`.tabs button[data-view="${CSS.escape(vue)}"]:not([hidden])`)) {
+    history.replaceState(null, "", location.pathname);
+    switchView(vue);
+  }
 })();

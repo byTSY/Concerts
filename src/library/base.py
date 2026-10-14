@@ -12,11 +12,13 @@ class SourceError(Exception):
     """Erreur propre à la source d'un membre ; le traitement passe au membre suivant.
 
     Codes : private_profile, not_found, revoked, not_allowlisted, quota, spotify_unavailable,
-    deezer_unavailable, token_key (clé de chiffrement absente ou changée), spotify_unconfigured."""
+    deezer_unavailable, token_key (clé de chiffrement absente ou changée), spotify_unconfigured.
+    retry_after : délai demandé par le service avant un nouvel appel, en secondes (quota)."""
 
-    def __init__(self, code, detail=""):
+    def __init__(self, code, detail="", retry_after=None):
         super().__init__(f"{code}{f' ({detail})' if detail else ''}")
         self.code = code
+        self.retry_after = retry_after
 
 
 def new_counts():

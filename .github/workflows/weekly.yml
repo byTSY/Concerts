@@ -4,8 +4,9 @@ on:
   schedule:
     - cron: "0 5 * * 1"     # lundi 5h UTC (6h ou 7h à Paris selon la saison) : traitement complet
     # Relance de sécurité toutes les 2 heures : membres en attente d'un calcul que le site n'a pas pu
-    # lancer. Pas le lundi de 5 h à 9 h UTC : GitHub ne garde qu'un lancement en attente par groupe,
-    # une relance remplacerait le traitement du lundi s'il attend la fin d'un calcul.
+    # lancer, nouveaux essais automatiques arrivés à échéance (quota Spotify), e-mails en attente.
+    # Pas le lundi de 5 h à 9 h UTC : GitHub ne garde qu'un lancement en attente par groupe, une
+    # relance remplacerait le traitement du lundi s'il attend la fin d'un calcul.
     - cron: "30 */2 * * 0,2-6"
     - cron: "30 0,2,4,10,12,14,16,18,20,22 * * 1"
   workflow_dispatch:       # bouton « Run workflow », ou lancement par le site (calcul d'un membre)
@@ -102,6 +103,12 @@ jobs:
           # Collecte de plus de 7 jours : la tâche membres refait d'abord la tâche commune
           TICKETMASTER_API_KEY: ${{ secrets.TICKETMASTER_API_KEY }}
           BANDSINTOWN_APP_ID: ${{ secrets.BANDSINTOWN_APP_ID }}
+          # Notifications par e-mail envoyées à la fin du calcul (version 1.9.0)
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          NEWSLETTER_FROM: ${{ secrets.NEWSLETTER_FROM }}
         run: |
           if [ -n "$MEMBER" ]; then
             python -m src.main members --member "$MEMBER" --pending

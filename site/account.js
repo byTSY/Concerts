@@ -12,13 +12,13 @@ const SYNC_STATUS = {
   ok: "réussie",
   private_profile: "profil Deezer devenu privé : rendez-le public dans les paramètres de confidentialité de Deezer",
   not_found: "profil Deezer introuvable",
-  deezer_unavailable: "Deezer n'a pas répondu, nouvel essai au prochain calcul",
+  deezer_unavailable: "Deezer n'a pas répondu",
   storage_quota: "stockage plein, l'admin est prévenu",
   internal: "erreur interne, l'admin est prévenu",
   revoked: "l'accès de Concerts à votre compte Spotify a expiré ou a été retiré : reconnectez Spotify",
   not_allowlisted: "Spotify refuse l'accès à votre compte : l'admin est prévenu",
-  spotify_unavailable: "Spotify n'a pas répondu, nouvel essai au prochain calcul",
-  quota: "Spotify limite temporairement les appels, nouvel essai au prochain calcul",
+  spotify_unavailable: "Spotify n'a pas répondu",
+  quota: "Spotify limite temporairement les appels de l'application (quota commun à tous les membres)",
   token_key: "erreur de configuration, l'admin est prévenu",
   spotify_unconfigured: "erreur de configuration, l'admin est prévenu",
 };
@@ -46,7 +46,107 @@ const spotifyNotice = () => (spotifyReturn && spotifyReturn !== "ok"
 // Statuts de la source qui permettent de (re)lancer l'autorisation chez Spotify
 const SPOTIFY_CONNECTABLE = ["ready_to_connect", "connected", "revoked", "error"];
 const connectSpotifyButton = (label) => `<a class="btn" href="api/me/spotify/authorize">${esc(label)}</a>`;
-const syncText = (code) => SYNC_STATUS[code] || (code ? `erreur (${code})` : "");
+// Code du dernier calcul, avec le nouvel essai automatique prévu (src : source du profil)
+const syncText = (code, src) => {
+  const text = SYNC_STATUS[code] || (code ? `erreur (${code})` : "");
+  if (!code || code === "ok") return text;
+  if (src?.retry_at) return `${text} : nouvel essai automatique ${fmtDateTime(src.retry_at)}`;
+  return ["quota", "spotify_unavailable", "deezer_unavailable"].includes(code) ? `${text} : nouvel essai au prochain traitement` : text;
+};
+
+// Message affiché quand le dernier calcul a échoué (site vide ou résultats anciens), ou null
+function syncProblem(me) {
+  const src = me?.source;
+  if (!src || src.status !== "connected" || !src.last_sync_status || src.last_sync_status === "ok") return null;
+  if (me.status !== "error") return null;
+  return syncText(src.last_sync_status, src);
+}
+
+/* Installer sur l'écran d'accueil (même texte que functions/_lib/install.js) --------------- */
+
+function installHelp() {
+  const ua = navigator.userAgent;
+  const ios = /iPhone|iPad|iPod/.test(ua);
+  const android = /Android/.test(ua);
+  const chrome = /CriOS|Chrome/.test(ua) && !/SamsungBrowser/.test(ua);
+  const samsung = /SamsungBrowser/.test(ua);
+  const open = (which) => ({ "ios-safari": ios && !chrome, "ios-chrome": ios && chrome, "android-chrome": android && chrome,
+    "android-samsung": samsung }[which] ? " open" : "");
+  const installed = window.matchMedia?.("(display-mode: standalone)").matches || navigator.standalone;
+  return `<div class="install-help">
+    ${installed ? `<p class="cell-sub">Le site est déjà installé sur cet appareil.</p>` : `<p class="cell-sub">Une icône sur l'écran d'accueil ouvre le site comme une application. À faire depuis cette page, sur votre téléphone.</p>`}
+    <details${open("ios-safari")}><summary>iPhone, avec Safari</summary><ol>
+      <li>Touchez le bouton Partager (carré avec une flèche vers le haut, en bas de l'écran).</li>
+      <li>Faites défiler, puis touchez « Sur l'écran d'accueil ».</li>
+      <li>Touchez « Ajouter ».</li></ol></details>
+    <details${open("ios-chrome")}><summary>iPhone, avec Chrome</summary><ol>
+      <li>Touchez le bouton Partager, à droite de la barre d'adresse.</li>
+      <li>Touchez « Ajouter à l'écran d'accueil », puis « Ajouter ».</li></ol></details>
+    <details${open("android-chrome")}><summary>Android, avec Chrome</summary><ol>
+      <li>Touchez le menu ⋮ en haut à droite.</li>
+      <li>Touchez « Ajouter à l'écran d'accueil » (ou « Installer l'application »).</li>
+      <li>Touchez « Ajouter ».</li></ol></details>
+    <details${open("android-samsung")}><summary>Android, avec Samsung Internet</summary><ol>
+      <li>Touchez le menu ☰ en bas à droite.</li>
+      <li>Touchez « Ajouter la page à », puis « Écran d'accueil ».</li></ol></details>
+  </div>`;
+}
+
+/* « J'ai un problème » ---------------------------------------------------------------------- */
+
+const problemButton = (label = "J'ai un problème") => `<button class="btn btn-quiet" type="button" data-problem>${esc(label)}</button>`;
+
+// Contexte joint au message : rien de personnel au-delà de ce que l'admin voit déjà
+function problemContext() {
+  const me = state.me || {};
+  const src = me.source || {};
+  const onboarding = !$("#onboarding").hidden;
+  return {
+    ecran: onboarding ? "accueil (arrivée)" : (state.view || ""),
+    source: src.provider || "aucune",
+    etat_source: src.status || "",
+    dernier_calcul: src.last_sync_at || "",
+    resultat_calcul: src.last_sync_status || "",
+    artistes: Array.isArray(state.artists) ? state.artists.length : "",
+    concerts_charges: Array.isArray(state.events) ? state.events.length : "",
+    chargement: state.loadFailed ? `échec (${state.apiError || ""})` : "ok",
+    version: $("#app-version")?.textContent || "",
+    installe: Boolean(window.matchMedia?.("(display-mode: standalone)").matches || navigator.standalone),
+    ecran_largeur: window.innerWidth,
+    navigateur: navigator.userAgent.slice(0, 180),
+  };
+}
+
+function openProblem() {
+  const dialog = $("#problem");
+  $("#problem-result").textContent = "";
+  $("#problem-send").disabled = false;
+  if (!dialog.open) dialog.showModal();
+  $("#problem-text").focus();
+}
+
+function bindProblem() {
+  document.addEventListener("click", (e) => {
+    if (e.target.closest("[data-problem]")) { e.preventDefault(); openProblem(); }
+  });
+  $("#problem-cancel").addEventListener("click", () => $("#problem").close());
+  $("#problem-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const send = $("#problem-send");
+    send.disabled = true;
+    $("#problem-result").textContent = "Envoi…";
+    try {
+      await api("me/problem", { method: "POST", body: { message: $("#problem-text").value, context: problemContext() } });
+      $("#problem-text").value = "";
+      $("#problem").close();
+      toast("Message envoyé à l'admin, qui vous répondra par e-mail");
+    } catch (err) {
+      send.disabled = false;
+      $("#problem-result").textContent = `Envoi impossible : ${err.message}`;
+    }
+  });
+}
+document.addEventListener("DOMContentLoaded", bindProblem);  // après app.js ($, api, toast)
 
 /* Arrivée ----------------------------------------------------------------------------- */
 
@@ -79,7 +179,10 @@ function showOnboarding(me) {
       <button class="btn" type="submit">Vérifier</button>
     </form>
     <div id="deezer-preview"></div>
-    ${spotifyOpen ? spotifyForm(me.display_name, "", false) : ""}`;
+    ${spotifyOpen ? spotifyForm(me.display_name, "", false) : ""}
+    <h3>Installer l'application sur votre téléphone</h3>
+    ${installHelp()}
+    <p>${problemButton()}</p>`;
   $("#deezer-form").addEventListener("submit", (e) => { e.preventDefault(); checkDeezer(); });
   if (spotifyOpen) {
     box.querySelectorAll("input[name=source]").forEach((r) => r.addEventListener("change", () => {
@@ -144,15 +247,17 @@ function renderSpotifyStep(box, me) {
       <p>L'admin a ouvert votre accès. Spotify va vous demander d'autoriser l'application Concerts à lire votre bibliothèque (artistes suivis, titres et albums sauvegardés, playlists, artistes les plus écoutés), puis vous ramènera ici.</p>
       <p class="cell-sub">Connectez-vous chez Spotify avec le compte ${esc(src.spotify_account_email || "")}. Aucun mot de passe n'est saisi sur Concerts ; vous pourrez retirer l'accès à tout moment depuis la page Gérer les applis de votre compte Spotify.</p>
       <p>${connectSpotifyButton("Connecter Spotify")}</p>
-      <p><button class="btn btn-quiet" type="button" id="spotify-cancel">Choisir Deezer à la place</button></p>`;
+      <p><button class="btn btn-quiet" type="button" id="spotify-cancel">Choisir Deezer à la place</button> ${problemButton()}</p>
+      <h3>Installer l'application sur votre téléphone</h3>
+      ${installHelp()}`;
   } else {
     box.innerHTML = `${spotifyNotice()}
       <h2>Autorisation en cours par l'admin</h2>
-      <p>Votre demande est envoyée : l'admin doit ajouter votre compte Spotify à l'application Concerts. Cette page affichera « Connecter Spotify » dès que ce sera fait.</p>
+      <p>Votre demande est envoyée par e-mail à l'admin, qui doit ajouter votre compte Spotify à l'application Concerts. Vous recevrez un e-mail dès que ce sera fait ; cette page affichera alors « Connecter Spotify ».</p>
       ${src.spotify_refused_at ? `<p class="prefs-warning">Spotify a refusé ce compte lors de votre dernière connexion : vérifiez l'adresse e-mail ci-dessous.</p>` : ""}
       <p class="cell-sub">Compte demandé : ${esc(src.spotify_account_name || "")}, ${esc(src.spotify_account_email || "")}.</p>
       <details${src.spotify_refused_at ? " open" : ""}><summary>Corriger l'adresse e-mail</summary>${spotifyForm(src.spotify_account_name, src.spotify_account_email, true)}</details>
-      <p><button class="btn btn-quiet" type="button" id="spotify-cancel">Choisir Deezer à la place</button></p>`;
+      <p><button class="btn btn-quiet" type="button" id="spotify-cancel">Choisir Deezer à la place</button> ${problemButton()}</p>`;
     bindSpotifyForm(box);
     // L'admin peut ouvrir l'accès pendant que la page est ouverte : vérification chaque minute
     renderSpotifyStep.timer = setInterval(async () => {
@@ -241,7 +346,10 @@ function renderWaiting(box, me) {
   box.innerHTML = `
     <h2>Calcul de vos concerts en cours</h2>
     <p>Lecture de votre bibliothèque, puis recherche de vos artistes et de découvertes parmi les concerts à venir. Comptez quelques minutes, parfois davantage si un autre calcul est en cours.</p>
-    <p class="cell-sub" id="waiting-state">Cette page se met à jour toute seule.</p>`;
+    <p class="cell-sub" id="waiting-state">Cette page se met à jour toute seule. Vous recevrez aussi un e-mail dès que vos concerts seront prêts : vous pouvez fermer cette page.</p>
+    <h3>En attendant : installer l'application sur votre téléphone</h3>
+    ${installHelp()}
+    <p>${problemButton()}</p>`;
   clearInterval(renderWaiting.timer);
   renderWaiting.timer = setInterval(async () => {
     try {
@@ -249,8 +357,12 @@ function renderWaiting(box, me) {
       if (now.status === "active") location.reload();
       if (now.status === "error") {
         clearInterval(renderWaiting.timer);
-        box.innerHTML = `<h2>Le calcul n'a pas abouti</h2><p class="prefs-warning">${esc(syncText(now.source?.last_sync_status))}</p>
-          <p>Corrigez si besoin, puis relancez depuis « Mon compte ».</p><button class="btn" type="button" onclick="location.reload()">Ouvrir le site</button>`;
+        state.me = now;
+        const auto = Boolean(now.source?.retry_at);
+        box.innerHTML = `<h2>Le calcul n'a pas encore abouti</h2><p class="prefs-warning">${esc(syncText(now.source?.last_sync_status, now.source))}.</p>
+          <p>${auto ? "Rien à faire de votre côté : vous recevrez un e-mail dès que vos concerts seront prêts."
+            : "Corrigez si besoin, puis relancez depuis « Mon compte »."}</p>
+          <p><button class="btn" type="button" onclick="location.reload()">Ouvrir le site</button> ${problemButton()}</p>`;
       }
     } catch { /* nouvel essai au tour suivant */ }
   }, 20000);
@@ -289,10 +401,19 @@ async function renderAccount() {
       ${reconnect ? `<p class="prefs-warning">L'accès de Concerts à votre compte Spotify a expiré ou a été retiré : vos concerts ne sont plus mis à jour.</p>
         <p>${connectSpotifyButton("Reconnecter Spotify")}</p>` : ""}
       ${spotifyStep ? `<div id="spotify-step"></div>` : ""}
-      ${src ? `<p class="cell-sub">Dernière synchronisation : ${esc(fmtDateTime(src.last_sync_at))}${src.last_sync_status ? `, ${esc(syncText(src.last_sync_status))}` : ""}.
+      ${src ? `<p class="cell-sub">Dernière synchronisation : ${esc(fmtDateTime(src.last_sync_at))}${src.last_sync_status ? `, ${esc(syncText(src.last_sync_status, src))}` : ""}.
         ${me.status === "computing" ? "<br><strong>Calcul en cours.</strong>" : ""}</p>
       <p>${reconnect || spotifyStep ? "" : `<button class="btn" type="button" id="sync-now"${me.status === "computing" ? " disabled" : ""}>Synchroniser maintenant</button>`}
         <button class="btn btn-quiet" type="button" id="change-source">Changer de source</button></p>` : ""}
+    </section>
+    <section class="account-block">
+      <h2 class="month-title">Installer l'application sur votre téléphone</h2>
+      ${installHelp()}
+    </section>
+    <section class="account-block">
+      <h2 class="month-title">Un souci ?</h2>
+      <p class="cell-sub">Votre message part à l'admin avec l'état de votre compte ; l'admin vous répond par e-mail.</p>
+      <p>${problemButton()}</p>
     </section>
     <section class="account-block">
       <h2 class="month-title">Salles favorites</h2>

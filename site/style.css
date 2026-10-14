@@ -407,3 +407,20 @@ details.organizer p { margin: 6px 0 0; }
 
 /* Numéro de version (VERSION, CHANGELOG.md) */
 .app-version { text-align: center; font-size: .75rem; color: var(--ink-soft); padding: 1.5rem 16px 1rem; }
+.app-version .link-btn { display: inline; font-size: .85rem; font-weight: 600; }
+
+/* « J'ai un problème » et installation sur l'écran d'accueil (version 1.9.0) */
+dialog.problem-dialog { max-width: min(520px, calc(100vw - 24px)); }
+.problem-dialog form { background: var(--paper-2); border-radius: 10px; padding: 18px 20px; display: grid; gap: 8px; }
+.problem-dialog h2 { margin: 0; font-size: 1.3rem; }
+.problem-dialog textarea { font: inherit; color: var(--ink); background: var(--paper); border: 1.5px solid var(--rule);
+  border-radius: 6px; padding: 8px 10px; width: 100%; resize: vertical; }
+.problem-dialog .btn { cursor: pointer; border: 0; font: inherit; font-weight: 600; }
+.problem-dialog .btn-quiet { border: 1.5px solid var(--rule); }
+.install-help details { margin: 6px 0; }
+.install-help summary { cursor: pointer; font-weight: 600; }
+.install-help ol { margin: 6px 0 0; padding-left: 20px; }
+.problem-card { margin: 12px 0; padding: 10px 14px; border: 1.5px solid var(--rule); border-radius: 8px; max-width: 760px; }
+.problem-card.resolved { opacity: .6; }
+.problem-card blockquote { margin: 6px 0; padding-left: 10px; border-left: 3px solid var(--pink); white-space: pre-wrap; }
+.inline-link { display: inline; font-size: inherit; color: inherit; }

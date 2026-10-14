@@ -14,6 +14,44 @@ Revenir à une version antérieure :
 3. base D1 : les migrations ne s'annulent pas seules ; chaque entrée indique la commande inverse
    quand une migration est ajoutée.
 
+## 1.9.0 (14 octobre 2026)
+
+Incident du 13 octobre : Spotify a bloqué les appels de l'application (quota du compte
+développeur, commun à tous les membres depuis juillet 2026) après plusieurs traitements complets
+dans la soirée. Les membres Spotify sont restés « en erreur » sans explication jusqu'au lundi.
+- Quota Spotify : Spotify est mis en pause jusqu'à l'heure qu'il indique ; aucun appel d'ici là,
+  puis le calcul reprend tout seul. L'admin est prévenu par e-mail.
+- Erreur passagère (quota, Spotify ou Deezer indisponible, erreur interne) : nouvel essai
+  automatique au bout de 1 h, 3 h, 8 h puis 24 h, sans attendre le lundi.
+- Moins d'appels à Spotify : un traitement complet relancé dans la journée réutilise une
+  bibliothèque lue depuis moins de 20 heures ; la fiche d'un artiste n'interroge plus Spotify
+  (lien Wikidata, ou recherche Spotify) ; « Synchroniser maintenant » limité à une demande toutes
+  les 10 minutes après une erreur, et sans effet pendant une pause Spotify.
+- Jeton Spotify renouvelé : écriture refaite en cas d'erreur réseau et vérifiée ; l'admin est
+  prévenu si elle échoue.
+- Site : bandeau qui explique un calcul en erreur et le prochain essai, au lieu d'un site vide.
+
+Inscription plus simple.
+- Spotify préparé dès l'invitation : l'admin saisit l'e-mail Spotify de la personne en créant le
+  lien et l'ajoute chez Spotify aussitôt. À son arrivée, la personne n'a plus qu'à cliquer sur
+  « Connecter Spotify » (plus de formulaire ni d'attente). La demande de place reste possible.
+- Page d'invitation : étapes suivantes numérotées et mode d'emploi pour installer le site sur
+  l'écran d'accueil (iPhone Safari et Chrome, Android Chrome et Samsung Internet), repris dans
+  l'accueil, l'attente du calcul et « Mon compte ».
+
+Notifications par e-mail (file D1, envoyée par GitHub Actions, workflow « Notifications »).
+- À l'admin : inscription, connexion d'un membre (une fois par jour au plus), source reliée,
+  demande de place Spotify, calcul en erreur à traiter, pause Spotify, signalement.
+- Au membre : concerts prêts (premier calcul), source à reconnecter ou profil Deezer devenu
+  privé, accès Spotify ouvert par l'admin.
+
+« J'ai un problème » : bouton en bas de chaque page, sur les écrans d'arrivée et dans « Mon
+compte ». Le message part à l'admin avec l'état du compte ; section « Signalements » dans
+l'onglet Admin (réponse par e-mail, « Résolu »).
+
+Migration `0011_notifications.sql` à appliquer avant la mise en production (commande inverse
+dans le fichier).
+
 ## 1.8.2 (13 octobre 2026)
 
 Correction de l'icône d'écran d'accueil de l'iPhone, toujours affichée en « C ».

@@ -62,18 +62,59 @@ function showMessage(out, intro, message, notes = "") {
   out.querySelector(".js-share").focus();
 }
 
-// Lien d'invitation créé ou renouvelé : message à partager
-function showLink(out, r) {
+// Lien d'invitation créé ou renouvelé : message à partager ; compte Spotify préparé : à ajouter
+// chez Spotify avant d'envoyer le lien
+function showLink(out, r, dashboard) {
   const first = r.invitation.first_name;
-  showMessage(out, `Lien d'invitation pour <strong>${esc(first)}</strong>, valable jusqu'au ${esc(fmtDateTime(r.invitation.expires_at))}. Il ne sert qu'une fois :`,
+  const sp = r.invitation.spotify_account_email;
+  showMessage(out, `Lien d'invitation pour <strong>${esc(first)}</strong>, valable jusqu'au ${esc(fmtDateTime(r.invitation.expires_at))}. Il ne sert qu'une fois${sp ? `. Spotify préparé : ${esc(sp)}` : ""} :`,
     linkInvitationMessage(first, r.link));
+  if (sp) out.insertAdjacentHTML("afterbegin", spotifyAddStep(r.invitation, r.spotify_dashboard_url || dashboard));
+  bindCopies(out);
+}
+
+// Étape à faire chez Spotify pour une invitation préparée (avant d'envoyer le lien)
+function spotifyAddStep(inv, dashboard) {
+  const key = `inv-${inv.id}`;
+  const field = (label, name, value) => `<label for="${key}-${name}">${label}</label>
+    <span class="copy-row"><input id="${key}-${name}" class="copy-field" type="text" readonly value="${esc(value || "")}">
+    <button class="btn btn-quiet" type="button" data-copy="${key}-${name}">Copier</button></span>`;
+  return `<div class="spotify-card">
+    <p><strong>1. Ajoutez ce compte chez Spotify</strong> (User Management : Full Name, puis Email, puis Add user).</p>
+    <div class="account-form inline">${field("Nom", "name", inv.spotify_account_name || inv.first_name)}${field("E-mail", "email", inv.spotify_account_email)}</div>
+    <p><a class="btn btn-quiet" href="${esc(dashboard || "https://developer.spotify.com/dashboard")}" target="_blank" rel="noopener">Ouvrir Spotify</a></p>
+    <p><strong>2. Puis envoyez le lien</strong> : à son arrivée, ${esc(inv.first_name)} n'aura qu'à cliquer sur « Connecter Spotify ».</p>
+  </div>`;
+}
+
+function bindCopies(box) {
+  box.querySelectorAll("[data-copy]").forEach((b) => {
+    if (b.dataset.bound) return;
+    b.dataset.bound = "1";
+    b.addEventListener("click", () => {
+      const field = document.getElementById(b.dataset.copy);
+      copyText(b, field.value, field);
+    });
+  });
+}
+
+// Champs Spotify facultatifs d'une invitation (prefix : link ou invite)
+function spotifyInviteFields(prefix) {
+  return `<details class="invite-email">
+    <summary>La personne utilise Spotify ? (facultatif, inscription plus simple)</summary>
+    <p class="cell-sub">Indiquez l'e-mail de son compte Spotify : vous l'ajoutez chez Spotify maintenant, et à son arrivée la personne n'a plus qu'à cliquer sur « Connecter Spotify ». Sans e-mail, la personne choisira sa source à son arrivée.</p>
+    <div class="account-form inline">
+      <label for="${prefix}-sp-email">E-mail Spotify</label><input id="${prefix}-sp-email" type="email" autocomplete="off" maxlength="200">
+      <label for="${prefix}-sp-name">Nom (facultatif)</label><input id="${prefix}-sp-name" type="text" autocomplete="off" maxlength="80" placeholder="Prénom et nom">
+    </div>
+  </details>`;
 }
 
 // Liens en attente : nouveau lien (l'ancien ne marche plus) ou suppression
 function linksBlock(links) {
   if (!links?.length) return "";
   return `<h3>Liens envoyés, pas encore utilisés</h3><ul class="plain-list">${links.map((l) => `<li>${esc(l.first_name)}
-      <span class="cell-sub">${l.expired ? "expiré" : `valable jusqu'au ${esc(fmtDateTime(l.expires_at))}`}</span>
+      <span class="cell-sub">${l.expired ? "expiré" : `valable jusqu'au ${esc(fmtDateTime(l.expires_at))}`}${l.spotify_account_email ? ` · Spotify préparé : ${esc(l.spotify_account_email)}` : ""}</span>
       <button class="link-btn" data-link="renew" data-id="${esc(l.id)}" data-name="${esc(l.first_name)}">Nouveau lien</button>
       <button class="link-btn" data-link="delete" data-id="${esc(l.id)}" data-name="${esc(l.first_name)}">Supprimer</button></li>`).join("")}</ul>`;
 }
@@ -83,9 +124,9 @@ async function linkAction({ link: action, id, name }) {
   try {
     if (action === "delete") {
       if (!confirm(`Supprimer le lien d'invitation de ${name} ? Il ne fonctionnera plus.`)) return;
-      await api(`admin/invitations/${encodeURIComponent(id)}`, { method: "DELETE" });
+      const r = await api(`admin/invitations/${encodeURIComponent(id)}`, { method: "DELETE" });
       await renderAdmin();
-      toast("Lien supprimé");
+      toast(r.spotify_removal ? "Lien supprimé : retirez aussi le compte chez Spotify (section Spotify)" : "Lien supprimé");
       return;
     }
     const r = await api(`admin/invitations/${encodeURIComponent(id)}/renew`, { method: "POST" });
@@ -157,7 +198,7 @@ function spotifyCard(kind, item, dashboard) {
   const head = kind === "request"
     ? `<p><strong>${esc(item.display_name)}</strong> <span class="cell-sub">demande du ${esc(fmtDateTime(item.spotify_requested_at))}</span></p>
        ${item.spotify_refused_at ? `<p class="prefs-warning">Spotify refuse encore ce compte : vérifier l'e-mail (refus du ${esc(fmtDateTime(item.spotify_refused_at))}).</p>` : ""}`
-    : `<p><strong>${esc(item.member_name || "membre")}</strong> <span class="cell-sub">${item.reason === "deleted" ? "compte supprimé" : "source changée"} le ${esc(fmtDateTime(item.created_at))}</span></p>`;
+    : `<p><strong>${esc(item.member_name || "membre")}</strong> <span class="cell-sub">${item.reason === "deleted" ? "compte ou lien supprimé" : "source changée"} le ${esc(fmtDateTime(item.created_at))}</span></p>`;
   const name = kind === "request" ? item.spotify_account_name : item.account_name;
   const email = kind === "request" ? item.spotify_account_email : item.account_email;
   return `<div class="spotify-card">
@@ -184,18 +225,43 @@ function spotifySection(sp) {
       <h3>Demandes à traiter (${sp.requests.length})</h3>
       ${sp.requests.length ? sp.requests.map((r) => spotifyCard("request", r, sp.dashboard_url)).join("") : `<p class="cell-sub">Aucune.</p>`}
       ${sp.removals.length ? `<h3>Retraits à faire (${sp.removals.length})</h3>${sp.removals.map((r) => spotifyCard("removal", r, sp.dashboard_url)).join("")}` : ""}
+      ${sp.invitations?.length ? `<h3>Invitations préparées pour Spotify</h3><ul class="plain-list">${sp.invitations.map((i) =>
+        `<li>${esc(i.first_name)} <span class="cell-sub">${esc(i.spotify_account_email)}, ${i.expired ? "lien expiré : « Nouveau lien », ou « Supprimer » pour libérer la place" : "lien pas encore utilisé"}</span></li>`).join("")}</ul>` : ""}
       ${members ? `<h3>Membres Spotify</h3><ul class="plain-list">${members}</ul>` : ""}
+      ${sp.paused_until ? `<p class="prefs-warning">Spotify limite les appels de l'application jusqu'au ${esc(fmtDateTime(sp.paused_until))} : les calculs Spotify reprendront tout seuls.</p>` : ""}
+    </section>`;
+}
+
+// Signalements « J'ai un problème » : ouverts d'abord ; réponse par e-mail au membre
+function problemsSection(list) {
+  if (list === null) return "";
+  const open = list.filter((p) => !p.resolved_at);
+  const card = (p) => {
+    const ctx = Object.entries(p.context || {}).filter(([, v]) => v !== "" && v !== null)
+      .map(([k, v]) => `${esc(k.replace(/_/g, " "))} : ${esc(v)}`).join(" · ");
+    return `<div class="problem-card${p.resolved_at ? " resolved" : ""}">
+      <p><strong>${esc(p.display_name)}</strong> <span class="cell-sub">${esc(p.email)}, le ${esc(fmtDateTime(p.created_at))}${p.resolved_at ? `, résolu le ${esc(fmtDateTime(p.resolved_at))}` : ""}</span></p>
+      ${p.message ? `<blockquote>${esc(p.message)}</blockquote>` : `<p class="cell-sub">Pas de message.</p>`}
+      <p class="cell-sub">${ctx}</p>
+      ${p.resolved_at ? "" : `<p><a class="btn btn-quiet" href="mailto:${esc(p.email)}?subject=${encodeURIComponent("Concerts à Paris : votre signalement")}">Répondre par e-mail</a>
+        <button class="btn" type="button" data-problem-resolve="${esc(p.id)}">Résolu</button></p>`}
+    </div>`;
+  };
+  return `<section class="account-block">
+      <h2 class="month-title">Signalements (${open.length} ouvert${open.length > 1 ? "s" : ""})</h2>
+      ${list.length ? list.map(card).join("") : `<p class="cell-sub">Aucun signalement.</p>`}
+      <p class="cell-sub">Chaque signalement vous est aussi envoyé par e-mail.</p>
     </section>`;
 }
 
 async function renderAdmin() {
   const box = $("#admin");
   box.innerHTML = `<p class="cell-sub">Chargement…</p>`;
-  let list, runs, spotify, pendingVenues, links;
+  let list, runs, spotify, pendingVenues, links, problems;
   try {
-    [list, runs, spotify, pendingVenues, links] = await Promise.all([api("admin/members"), api("admin/runs"),
+    [list, runs, spotify, pendingVenues, links, problems] = await Promise.all([api("admin/members"), api("admin/runs"),
       api("admin/spotify").catch(() => null), api("admin/venues?status=pending").catch(() => null),
-      api("admin/invitations").catch(() => null)]);
+      api("admin/invitations").catch(() => null), api("admin/problems").catch(() => null)]);
   } catch (e) {
     box.innerHTML = `<p class="prefs-warning">Espace admin illisible : ${esc(e.message)}</p>`;
     return;
@@ -228,17 +294,23 @@ async function renderAdmin() {
     <section class="account-block">
       <h2 class="month-title">Inviter</h2>
       <p class="cell-sub">Saisissez le prénom : vous obtenez un lien personnel à partager (WhatsApp, Messenger, SMS…). La personne y indique elle-même son adresse e-mail.</p>
-      <form id="link-form" class="account-form inline">
-        <label for="link-name">Prénom</label><input id="link-name" type="text" required maxlength="40" autocomplete="off">
+      <form id="link-form" class="account-form">
+        <div class="account-form inline">
+          <label for="link-name">Prénom</label><input id="link-name" type="text" required maxlength="40" autocomplete="off">
+        </div>
+        ${spotifyInviteFields("link")}
         <button class="btn" type="submit">Créer le lien d'invitation</button>
       </form>
       <div id="link-result" aria-live="polite"></div>
       ${linksBlock(links)}
       <details class="invite-email">
         <summary>Vous connaissez déjà son adresse e-mail ?</summary>
-        <form id="invite-form" class="account-form inline">
-          <label for="invite-email">E-mail</label><input id="invite-email" type="email" required autocomplete="off">
-          <label for="invite-name">Prénom</label><input id="invite-name" type="text" required maxlength="40" autocomplete="off">
+        <form id="invite-form" class="account-form">
+          <div class="account-form inline">
+            <label for="invite-email">E-mail</label><input id="invite-email" type="email" required autocomplete="off">
+            <label for="invite-name">Prénom</label><input id="invite-name" type="text" required maxlength="40" autocomplete="off">
+          </div>
+          ${spotifyInviteFields("invite")}
           <button class="btn" type="submit">Inviter et préparer le message</button>
         </form>
         <div id="invite-result" aria-live="polite"></div>
@@ -250,6 +322,7 @@ async function renderAdmin() {
       <tbody>${rows}</tbody></table></div>
       <div id="admin-action-result" aria-live="polite"></div>
     </section>
+    ${problemsSection(problems)}
     ${spotifySection(spotify)}
     ${venuesSection(pendingVenues)}
     <section class="account-block">
@@ -264,14 +337,15 @@ async function renderAdmin() {
     submit.disabled = true;
     let r;
     try {
-      r = await api("admin/invitations", { method: "POST", body: { first_name: $("#link-name").value } });
+      r = await api("admin/invitations", { method: "POST", body: { first_name: $("#link-name").value,
+        spotify_email: $("#link-sp-email").value, spotify_name: $("#link-sp-name").value } });
     } catch (err) {
       submit.disabled = false;
       $("#link-result").innerHTML = `<p class="prefs-warning">${esc(err.message)}</p>`;
       return;
     }
     await renderAdmin();
-    showLink($("#link-result") || $("#admin"), r);
+    showLink($("#link-result") || $("#admin"), r, spotify?.dashboard_url);
   });
   box.querySelectorAll("[data-link]").forEach((b) => b.addEventListener("click", () => linkAction(b.dataset)));
   $("#invite-form").addEventListener("submit", async (e) => {
@@ -280,7 +354,8 @@ async function renderAdmin() {
     submit.disabled = true;  // pas de double envoi
     let r;
     try {
-      r = await api("admin/members", { method: "POST", body: { email: $("#invite-email").value, first_name: $("#invite-name").value } });
+      r = await api("admin/members", { method: "POST", body: { email: $("#invite-email").value, first_name: $("#invite-name").value,
+        spotify_email: $("#invite-sp-email").value, spotify_name: $("#invite-sp-name").value } });
     } catch (err) {
       submit.disabled = false;
       $("#invite-result").innerHTML = `<p class="prefs-warning">${esc(err.message)}</p>`;
@@ -294,6 +369,11 @@ async function renderAdmin() {
     const out = $("#invite-result") || $("#admin");
     showInvitation(out, r.member, r.link, `Invitation créée pour <strong>${esc(r.member.first_name)}</strong>. Transmettez-lui le lien :`,
       accessNote(r.access, "ajouter l'adresse à la liste des membres"));
+    if (r.member.spotify_account_email) {
+      out.insertAdjacentHTML("afterbegin", spotifyAddStep({ id: r.member.id, first_name: r.member.first_name,
+        spotify_account_email: r.member.spotify_account_email, spotify_account_name: $("#invite-sp-name")?.value }, r.member.spotify_dashboard_url));
+      bindCopies(out);
+    }
   });
   $("#run-weekly").addEventListener("click", async () => {
     if (!confirm("Relancer le traitement complet (c. 20 minutes) ?")) return;
@@ -303,9 +383,13 @@ async function renderAdmin() {
     } catch (err) { toast(err.message); }
   });
   box.querySelectorAll("[data-admin]").forEach((b) => b.addEventListener("click", () => adminAction(b.dataset)));
-  box.querySelectorAll("[data-copy]").forEach((b) => b.addEventListener("click", () => {
-    const field = document.getElementById(b.dataset.copy);
-    copyText(b, field.value, field);
+  bindCopies(box);
+  box.querySelectorAll("[data-problem-resolve]").forEach((b) => b.addEventListener("click", async () => {
+    try {
+      await api(`admin/problems/${b.dataset.problemResolve}/resolved`, { method: "POST" });
+      await renderAdmin();
+      toast("Signalement marqué comme résolu");
+    } catch (err) { toast(err.message); }
   }));
   box.querySelectorAll("[data-venue-review]").forEach((b) => b.addEventListener("click", () => reviewVenue(b)));
   box.querySelectorAll("[data-spotify]").forEach((b) => b.addEventListener("click", async () => {
