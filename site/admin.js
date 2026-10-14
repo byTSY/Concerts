@@ -268,7 +268,7 @@ async function renderAdmin() {
   }
   const rows = list.map((m) => `<tr>
       <td><span class="cell-name">${esc(m.display_name)}</span><span class="cell-sub">${esc(m.email)}${m.role === "admin" ? " · admin" : ""}</span></td>
-      <td>${esc(MEMBER_STATUS[m.status] || m.status)}${m.error_message ? `<span class="cell-sub">${esc(m.error_message)}</span>` : ""}${m.invited_via === "link" ? `<span class="cell-sub">inscrit par lien le ${esc(fmtDateTime(m.invited_at))} : vérifiez que l'adresse est bien la sienne</span>` : ""}${m.access_pending ? `<span class="cell-sub"><strong>Accès Cloudflare non ouvert</strong></span>` : ""}</td>
+      <td>${esc(MEMBER_STATUS[m.status] || m.status)}${m.error_message ? `<span class="cell-sub">${esc(m.error_message)}</span>` : ""}${m.invited_via === "link" ? `<span class="cell-sub">inscrit par lien le ${esc(fmtDateTime(m.invited_at))}${m.last_seen_at ? "" : " : vérifiez que l'adresse est bien la sienne"}</span>` : ""}${m.access_pending ? `<span class="cell-sub"><strong>Accès Cloudflare non ouvert</strong></span>` : ""}</td>
       <td>${m.provider ? esc(m.provider === "deezer" ? "Deezer" : `Spotify${m.source_status !== "connected" ? ` (${SPOTIFY_SOURCE_STATUS[m.source_status] || m.source_status})` : ""}`) : "aucune"}<span class="cell-sub">${m.last_sync_at ? esc(fmtDateTime(m.last_sync_at)) : ""}${m.last_sync_status ? ` · ${esc(m.last_sync_status)}` : ""}</span></td>
       <td class="hide-mobile">${m.last_seen_at ? esc(fmtDateTime(m.last_seen_at)) : "jamais"}<span class="cell-sub">${m.connections_30d} connexion${m.connections_30d > 1 ? "s" : ""}, ${m.api_calls_30d} requêtes, ${m.changes_30d} modifications sur 30 jours</span></td>
       <td class="num">${m.stars}</td>

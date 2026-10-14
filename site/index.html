@@ -26,10 +26,21 @@
       </div>
     </div>
     <section class="fresh" aria-labelledby="fresh-title">
-      <button type="button" class="reels-ring" id="reels-open" hidden>
-        <span class="reels-circle"><span id="reels-count"></span></span>
-        <span class="reels-label">Reels</span>
-      </button>
+      <!-- Cercles Reels : nouveautés, mois en cours, mois suivant (site/reels.js) -->
+      <div class="reels-rings">
+        <button type="button" class="reels-ring" id="reels-open" data-reels-mode="new" hidden>
+          <span class="reels-circle"><span id="reels-count"></span></span>
+          <span class="reels-label">NEW</span>
+        </button>
+        <button type="button" class="reels-ring" id="reels-m0" data-reels-mode="m0" hidden>
+          <span class="reels-circle"><span class="reels-num"></span></span>
+          <span class="reels-label"></span>
+        </button>
+        <button type="button" class="reels-ring" id="reels-m1" data-reels-mode="m1" hidden>
+          <span class="reels-circle"><span class="reels-num"></span></span>
+          <span class="reels-label"></span>
+        </button>
+      </div>
       <h2 id="fresh-title" class="fresh-title"></h2>
     </section>
     <!-- Concerts avec places prises, puis recherche sur tout le catalogue (site/search.js) -->
@@ -98,7 +109,7 @@
 
   <footer class="app-version">
     <button type="button" class="link-btn" data-problem>J'ai un problème</button>
-    <span aria-hidden="true">·</span> Version <span id="app-version">1.10.0</span>
+    <span aria-hidden="true">·</span> Version <span id="app-version">1.11.0</span>
   </footer>
 
   <!-- « J'ai un problème » : message à l'admin, avec le contexte (site/account.js) -->

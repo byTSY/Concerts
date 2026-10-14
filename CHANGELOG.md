@@ -14,6 +14,19 @@ Revenir à une version antérieure :
 3. base D1 : les migrations ne s'annulent pas seules ; chaque entrée indique la commande inverse
    quand une migration est ajoutée.
 
+## 1.11.0 (14 octobre 2026)
+
+- Le cercle des nouveautés s'appelle désormais « NEW ».
+- Deux cercles à droite du cercle « NEW » : le mois en cours et le mois suivant, nommés en
+  français (« Octobre », « Novembre »). Même lecteur que les Reels : concerts à venir du mois dans
+  votre liste (vos artistes et découvertes), par date. Les fiches déjà vues y restent ; une fiche
+  vue depuis un cercle de mois sort aussi des nouveautés. Un concert retiré ou avec places prises
+  n'y figure pas. Un cercle sans concert reste visible, grisé, et affiche « Aucun concert ».
+- Admin : pour un membre inscrit par lien, « vérifiez que l'adresse est bien la sienne » ne
+  s'affiche plus dès sa première connexion (dernière visite renseignée). L'e-mail « Nouvelle
+  inscription » garde l'avertissement.
+  Aucune migration.
+
 ## 1.10.0 (14 octobre 2026)
 
 - Calendrier : un concert avec places prises s'affiche sur fond jaune, un concert « intéressé »

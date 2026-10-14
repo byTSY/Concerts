@@ -397,6 +397,7 @@ function refreshStars(id) {
   }
   updateStarCount();
   renderUpcoming();
+  renderReelsRing();  // places prises : le concert sort des cercles des mois
   renderRemoved();
   renderSearch();
   if (state.view !== "calendar") render();
