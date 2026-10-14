@@ -14,6 +14,9 @@
   python -m src.main newsletter            newsletter du lundi à chaque membre abonné (SMTP)
   python -m src.main newsletter --test-member <id>   essai pour ce seul membre
   python -m src.main notify                envoie les notifications en attente (e-mails, SMTP)
+  python -m src.main venue-check [--venue <id>]   vérifie les salles proposées (page programme lue
+                                           et contrôlée) : ajoutées au catalogue si la lecture
+                                           réussit, sinon laissées à l'admin (version 1.12.0)
 
 La dernière collecte (concerts dédoublonnés, sans champ personnel) est conservée dans R2
 (common/collected.json) : la tâche membres et le calcul d'un seul membre la relisent. La tâche
@@ -26,6 +29,8 @@ Une erreur chez un membre le passe en statut error et le traitement continue. Er
 quota Spotify : Spotify en pause jusqu'à l'heure indiquée par Spotify (aucun appel d'ici là).
 Traitement complet relancé dans la journée : la bibliothèque Spotify lue depuis moins de
 LIBRARY_REUSE_HOURS heures est réutilisée (quota Spotify commun à tous les membres).
+Salle ajoutée au catalogue (vérification automatique ou admin) : la relance de sécurité refait la
+collecte complète dès que la précédente a plus de 6 heures (src/venue_check.py, full_run_due).
 """
 import argparse
 import copy
@@ -34,7 +39,7 @@ import re
 import time
 from datetime import datetime, timedelta, timezone
 
-from . import catalog, cloud, discover, history, match, members, newsletter, notify, publish
+from . import catalog, cloud, discover, history, match, members, newsletter, notify, publish, venue_check
 from .library import deezer as deezer_library, spotify as spotify_library
 from .library.base import SourceError
 from .sources import bandsintown, dice, offi, qfap, ticketmaster, venues as venue_pages
@@ -127,7 +132,12 @@ def common(settings, db, store):
     events += run_source("Que faire à Paris", status, qfap.fetch, settings)
     events += run_source("Offi", status, offi.fetch, settings)
     events += run_source("Dice", status, dice.fetch, settings)
-    events += run_source("Sites des salles", status, venue_pages.fetch, venues_cfg)
+    # Sites des salles en dernier : leur lecture est contrôlée face aux concerts des billetteries
+    broken = []
+    events += run_source("Sites des salles", status, venue_pages.fetch, venues_cfg, events, broken)
+    week = "{}-W{:02d}".format(*datetime.now(timezone.utc).isocalendar()[:2])
+    for v in broken:
+        notify.queue(db, "venue_broken", to_admin=True, payload=v, dedupe=f"venue_broken:{v['id']}:{week}")
 
     events = match.prepare(events, match.VenueMatcher(venues_cfg))
     # Dédoublonnage : un même concert vu par plusieurs sources est reconnu grâce aux artistes
@@ -181,6 +191,16 @@ def mark_common_redone():
     if out:
         with open(out, "a", encoding="utf-8") as f:
             f.write("redid_common=true\n")
+
+
+def launch_full_run():
+    """Demande au workflow « Vérification des salles » de lancer un traitement complet (salle
+    ajoutée au catalogue) ; sans workflow, la relance de sécurité s'en chargera."""
+    out = os.environ.get("GITHUB_OUTPUT")
+    log("Salle ajoutée : traitement complet demandé" if out else "Salle ajoutée : traitement complet à lancer")
+    if out:
+        with open(out, "a", encoding="utf-8") as f:
+            f.write("launch_full=true\n")
 
 
 class MemberGone(Exception):
@@ -342,11 +362,12 @@ def run_members(settings, db, store, selection, collected=None, kind="weekly"):
 
 def main():
     parser = argparse.ArgumentParser(prog="python -m src.main", description="Traitement des concerts")
-    parser.add_argument("task", nargs="?", choices=("common", "members", "promote", "newsletter", "notify"),
+    parser.add_argument("task", nargs="?", choices=("common", "members", "promote", "newsletter", "notify", "venue-check"),
                         help="tâche seule (défaut : les deux, ou members avec --member / --pending)")
     parser.add_argument("--member", action="append", default=[], help="identifiant d'un membre à calculer")
     parser.add_argument("--pending", action="store_true", help="membres qui attendent un calcul")
     parser.add_argument("--test-member", default="", help="newsletter : essai pour ce seul membre")
+    parser.add_argument("--venue", action="append", default=[], help="venue-check : salle à vérifier (identifiant)")
     args = parser.parse_args()
     for uid in args.member + ([args.test_member] if args.test_member else []):
         if not re.fullmatch(members.MEMBER_ID, uid):
@@ -362,6 +383,11 @@ def main():
     if args.task == "notify":
         notify.send_pending(db)   # tâche à part : une erreur doit apparaître dans GitHub Actions
         return
+    if args.task == "venue-check":
+        if venue_check.run(db, store, COLLECTED, args.venue) and venue_check.full_run_due(db):
+            launch_full_run()
+        send_notifications(db)
+        return
     if args.task == "newsletter":
         newsletter.send_all(db, store, store.get_json(COLLECTED), test_member=args.test_member or None)
         return
@@ -374,14 +400,17 @@ def main():
         if task is None:
             promote(store)  # essai complet en local : pas d'envoi sur GitHub à attendre
     if task in (None, "members"):
-        # Relance de sécurité (toutes les 2 heures) : rien à faire si aucun membre n'attend, et
-        # aucun traitement enregistré
-        if targeted and args.pending and not members.pending(db):
+        # Relance de sécurité (toutes les 2 heures) : salle ajoutée au catalogue depuis la dernière
+        # collecte, traitement complet ; sinon rien à faire si aucun membre n'attend, et aucun
+        # traitement enregistré
+        new_venue = targeted and args.pending and not args.member and venue_check.full_run_due(db)
+        if targeted and args.pending and not new_venue and not members.pending(db):
             log("Aucun membre en attente de calcul")
             send_notifications(db)  # messages que le site n'a pas pu faire envoyer
             return
-        if targeted and collection_is_stale(db):
-            log(f"Collecte de plus de {STALE_DAYS} jours : traitement complet")
+        if targeted and (collection_is_stale(db) or new_venue):
+            log("Salle ajoutée au catalogue : traitement complet" if new_venue
+                else f"Collecte de plus de {STALE_DAYS} jours : traitement complet")
             collected = common(settings, db, store)
             mark_common_redone()
             targeted = False

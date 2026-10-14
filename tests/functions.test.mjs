@@ -42,6 +42,7 @@ import * as adminVenues from "../functions/api/admin/venues/index.js";
 import * as adminVenue from "../functions/api/admin/venues/[id]/index.js";
 import * as adminApprove from "../functions/api/admin/venues/[id]/approve.js";
 import * as adminReject from "../functions/api/admin/venues/[id]/reject.js";
+import * as adminCheck from "../functions/api/admin/venues/[id]/check.js";
 import * as invitationRoute from "../functions/invitation/[[path]].js";
 import * as adminInvitations from "../functions/api/admin/invitations/index.js";
 import * as adminInvitation from "../functions/api/admin/invitations/[id]/index.js";
@@ -1151,6 +1152,65 @@ test("quota Spotify : Synchroniser maintenant sans effet pendant la pause ; essa
     await call(env, "a@test.fr", getMe);
     await call(env, "a@test.fr", getMe);
     assert.deepEqual(dispatched, ["u_aaaaaaaa"]);
+  } finally {
+    globalThis.fetch = before;
+  }
+});
+
+test("salles (1.12.0) : vérification automatique lancée à la proposition avec page programme, relance et retrait par l'admin", async () => {
+  const env = setup();
+  const dispatched = [];
+  let refuse = false;
+  env.GITHUB_ACTIONS_TOKEN = "jeton-github";
+  const before = globalThis.fetch;
+  globalThis.fetch = async (url, init) => {
+    if (String(url).startsWith("https://api.github.com/")) {
+      if (String(url).includes("/venue-check.yml/")) dispatched.push(JSON.parse(init.body).inputs.venue);
+      return new Response(null, { status: refuse ? 403 : 204 });
+    }
+    return before(url, init);
+  };
+  const row = (id) => env.DB.raw.prepare("SELECT status, check_status, check_summary, auto_approved FROM venues WHERE id = ?").get(id);
+  const propose = (body) => call(env, "a@test.fr", proposalsRoute.onRequestPost, { method: "POST", path: "/api/venues/proposals", body });
+  const check = (id) => call(env, "c@test.fr", adminCheck.onRequestPost, { method: "POST", path: `/api/admin/venues/${id}/check`, params: { id } });
+  try {
+    // Avec page programme : vérification demandée et workflow lancé ; le membre voit « en cours »
+    const ok = await propose({ name: "Bal Chavaux", agenda_url: "https://balchavaux.fr/agenda" });
+    assert.equal(ok.status, 201);
+    assert.deepEqual(dispatched, ["bal-chavaux"]);
+    assert.equal(ok.data[0].check_status, "running");
+    // Sans page programme : rien de lancé, l'admin décide
+    await propose({ name: "Salle Sans Site" });
+    assert.deepEqual(dispatched, ["bal-chavaux"]);
+    assert.equal(row("salle-sans-site").check_status, null);
+    // Lancement refusé par GitHub : la salle reste à l'admin, avec la raison
+    refuse = true;
+    await propose({ name: "Bus Palladium", agenda_url: "https://www.buspalladium.club/" });
+    assert.equal(row("bus-palladium").check_status, "failed");
+    assert.match(JSON.parse(row("bus-palladium").check_summary).reasons[0], /non lancée/);
+    const pending = (await call(env, "c@test.fr", adminVenues.onRequestGet, { path: "/api/admin/venues?status=pending" })).data;
+    assert.match(pending.find((v) => v.id === "bus-palladium").check_summary.reasons[0], /non lancée/);
+    // Relance par l'admin : seulement pour une salle en attente avec page programme
+    refuse = false;
+    const again = await check("bus-palladium");
+    assert.deepEqual([again.data.check_status, again.data.run.done], ["running", true]);
+    assert.deepEqual(dispatched, ["bal-chavaux", "bus-palladium", "bus-palladium"]);   // essai refusé, puis relance
+    assert.equal((await check("salle-sans-site")).data.code, "not_checkable");
+    assert.equal((await call(env, "a@test.fr", adminCheck.onRequestPost, { method: "POST", path: "/api/admin/venues/bus-palladium/check", params: { id: "bus-palladium" } })).status, 403);
+    // Salle ajoutée automatiquement (tâche venue-check) : visible comme telle, retrait possible
+    env.DB.raw.exec("UPDATE venues SET status = 'approved', auto_approved = 1, check_status = 'ok' WHERE id = 'bal-chavaux'");
+    const mine = (await call(env, "a@test.fr", proposalsRoute.onRequestGet, { path: "/api/venues/proposals" })).data;
+    assert.equal(mine.find((v) => v.id === "bal-chavaux").auto_approved, 1);
+    const approved = (await call(env, "c@test.fr", adminVenues.onRequestGet, { path: "/api/admin/venues?status=approved" })).data;
+    assert.equal(approved.find((v) => v.id === "bal-chavaux").auto_approved, true);
+    assert.equal((await check("bal-chavaux")).data.code, "not_checkable");
+    const removed = await call(env, "c@test.fr", adminReject.onRequestPost, { method: "POST", path: "/api/admin/venues/bal-chavaux/reject", params: { id: "bal-chavaux" } });
+    assert.equal(removed.data.status, "rejected");
+    // Une salle approuvée par l'admin ne se retire pas par ce chemin ; réapprouvée, elle n'est plus « automatique »
+    env.DB.raw.exec("INSERT INTO venues (id, name, status) VALUES ('olympia', 'Olympia', 'approved')");
+    assert.equal((await call(env, "c@test.fr", adminReject.onRequestPost, { method: "POST", path: "/api/admin/venues/olympia/reject", params: { id: "olympia" } })).data.code, "not_pending");
+    await call(env, "c@test.fr", adminApprove.onRequestPost, { method: "POST", path: "/api/admin/venues/bal-chavaux/approve", params: { id: "bal-chavaux" } });
+    assert.deepEqual([row("bal-chavaux").status, row("bal-chavaux").auto_approved], ["approved", 0]);
   } finally {
     globalThis.fetch = before;
   }

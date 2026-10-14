@@ -14,6 +14,35 @@ Revenir à une version antérieure :
 3. base D1 : les migrations ne s'annulent pas seules ; chaque entrée indique la commande inverse
    quand une migration est ajoutée.
 
+## 1.12.0 (14 octobre 2026)
+
+Salles proposées : lecture universelle des pages programme et ajout automatique contrôlé.
+- Nouveau lecteur des sites de salles. Il essaie, dans l'ordre, les fiches schema.org de la page,
+  les cartes de concert de la page (date, heure et titre lus autour de chaque lien de concert),
+  l'agenda des sites WordPress « The Events Calendar », les fiches des pages de chaque concert,
+  puis les liens « agenda » ou « programmation » quand l'adresse donnée est la page d'accueil.
+  Essai sur 25 salles parisiennes : 19 lues (le lecteur précédent n'en lisait qu'une), avec 64 à
+  100 % de concerts communs avec les billetteries quand elles connaissent la salle.
+- Contrôle de la lecture : refusée s'il y a moins de 3 concerts à venir, trop de dates passées,
+  des titres manquants, répétés, génériques ou sans rapport avec leur lien, ou un désaccord
+  avec les billetteries.
+- Proposition d'une salle avec sa page programme : vérification lancée aussitôt (workflow
+  « Vérification des salles », 1 à 2 minutes). Lecture réussie : la salle entre au catalogue,
+  e-mail à l'admin avec 5 concerts lus, traitement complet lancé (au plus un toutes les 6 heures ;
+  sinon la relance de sécurité s'en charge). Lecture refusée : la salle reste dans « Salles à
+  valider » avec les raisons, e-mail à l'admin.
+- Admin : résultat de la vérification sur chaque salle à valider, bouton « Relancer la
+  vérification » (après correction de l'adresse), section « Salles ajoutées automatiquement »
+  avec « Retirer du catalogue ». Une salle approuvée par l'admin déclenche aussi la collecte
+  dans les heures qui suivent (au lieu du lundi suivant).
+- Traitement du lundi : même lecteur et même contrôle ; une page devenue illisible ne donne
+  aucun concert et l'admin est prévenu (une fois par semaine et par salle).
+- Politesse : robots.txt respecté, pause de 1,5 s entre deux pages d'un même site, 40 pages de
+  concert au plus par salle.
+
+Migration `0012_venue_check.sql` à appliquer (production et essai) avant la mise en production
+(commande inverse dans le fichier).
+
 ## 1.11.0 (14 octobre 2026)
 
 - Le cercle des nouveautés s'appelle désormais « NEW ».

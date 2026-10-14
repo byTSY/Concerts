@@ -1076,7 +1076,7 @@ function renderVenues() {
        <input id="proposal-name" type="text" maxlength="80" required>
        <label for="proposal-aliases">Autres noms utilisés par les billetteries (facultatif, séparés par des virgules)</label>
        <input id="proposal-aliases" type="text" maxlength="400">
-       <label for="proposal-url">Page programme de la salle (facultatif)</label>
+       <label for="proposal-url">Page programme de la salle (facultatif : avec elle, la salle est vérifiée et ajoutée en quelques minutes)</label>
        <input id="proposal-url" type="url" maxlength="300" placeholder="https://">
        <button class="btn" type="submit">Proposer</button>
      </form>
@@ -1087,13 +1087,22 @@ function renderVenues() {
 
 const PROPOSAL_STATUS = { pending: "en attente de l'admin", approved: "ajoutée au catalogue", rejected: "refusée" };
 
+// État affiché d'une proposition : vérification automatique de la page programme (version 1.12.0)
+function proposalStatus(p) {
+  if (p.status === "pending" && p.check_status === "running") return "vérification automatique en cours";
+  if (p.status === "pending" && p.check_status === "failed") return "page programme non lue automatiquement, transmise à l'admin";
+  if (p.status === "approved" && p.auto_approved) return "ajoutée au catalogue après vérification de sa page programme";
+  return PROPOSAL_STATUS[p.status] || p.status;
+}
+
 // Propositions du membre et réponse de l'admin
 async function renderProposals(list) {
   const box = $("#venue-proposals");
   if (!box) return;
   try { list = list || await api("venues/proposals"); } catch { return; }
+  const own = (p) => p.review_note && !(p.status === "approved" && p.auto_approved);
   box.innerHTML = list.length ? `<h3>Vos propositions</h3><ul class="plain-list">${list.map((p) =>
-    `<li>${esc(p.name)} : ${esc(PROPOSAL_STATUS[p.status] || p.status)}${p.review_note ? ` (${esc(p.review_note)})` : ""}</li>`).join("")}</ul>` : "";
+    `<li>${esc(p.name)} : ${esc(proposalStatus(p))}${own(p) ? ` (${esc(p.review_note)})` : ""}</li>`).join("")}</ul>` : "";
 }
 
 async function proposeVenue() {
@@ -1102,8 +1111,9 @@ async function proposeVenue() {
   try {
     const list = await api("venues/proposals", { method: "POST", body: {
       name: $("#proposal-name").value, aliases: $("#proposal-aliases").value, agenda_url: $("#proposal-url").value } });
+    const withPage = Boolean($("#proposal-url").value.trim());
     $("#venue-proposal").reset();
-    toast("Salle proposée : l'admin la validera");
+    toast(withPage ? "Salle proposée : vérification de sa page programme en cours (1 à 2 minutes)" : "Salle proposée : l'admin la validera");
     renderProposals(list);
   } catch (e) {
     toast(e.message);
