@@ -434,7 +434,7 @@ async function savePref(name, change, done) {
     return;
   }
   applyPrefs();
-  if ($("#ticket").open) $("#ticket").close();
+  closeTicket();
   renderMasthead();
   render();
   toast(done);
@@ -572,7 +572,7 @@ function artistInfo(id, timeout = 8000) {
 async function fillArtistSection(ev) {
   const info = await artistInfo(ev.id);
   const box = $("#ticket-artist");
-  if (!box || box.dataset.id !== ev.id || !$("#ticket").open) return;  // fiche fermée ou changée entre-temps
+  if (!box || box.dataset.artistOf !== ev.id || !$("#ticket").open) return;  // fiche fermée ou changée entre-temps
   if (!info || (!info.description && !info.genres?.length && !info.organizer)) { box.remove(); return; }
   const tags = (info.genres || []).map((g) => `<span class="tag tag-genre">${esc(g)}</span>`).join(" ");
   // Membre Spotify : lien Spotify en premier
@@ -1008,13 +1008,16 @@ async function proposeVenue() {
 
 /* Billet détaillé ------------------------------------------------------------- */
 
-function openTicket(id) {
+// entry : false pour une fiche ouverte par un lien (sans geste du membre), sans entrée d'historique
+function openTicket(id, { entry = true } = {}) {
   const ev = state.events.find((e) => e.id === id);
   if (!ev) return;
   const d = parseDay(ev.date);
   const dlg = $("#ticket");
   dlg.querySelector(".ticket").className = `ticket ${ev.kind}`;
-  dlg.dataset.id = ev.id;  // concert affiché (« Remettre » rouvre la fiche)
+  // Concert affiché (« Remettre » rouvre la fiche). Pas de data-id sur la fenêtre ni dans la fiche :
+  // un tap y remonterait jusqu'à « ouvrir la fiche » et la rouvrirait aussitôt fermée (version 1.9.1)
+  dlg.dataset.concert = ev.id;
   $("#ticket-stub").innerHTML = `
     <div><div class="ticket-day">${d.getDate()}</div>
     <div class="ticket-month">${esc(fmt({ month: "long", year: "numeric" }).format(d))}</div>
@@ -1052,7 +1055,7 @@ function openTicket(id) {
     ${status ? `<div class="ticket-section"><p><strong>${esc(status)}</strong></p></div>` : ""}
     ${why}
     ${membersBlock(ev)}
-    <div class="ticket-section loading" id="ticket-artist" data-id="${esc(ev.id)}"><h3>L'artiste</h3><p class="cell-sub">Chargement de la description…</p></div>
+    <div class="ticket-section loading" id="ticket-artist" data-artist-of="${esc(ev.id)}"><h3>L'artiste</h3><p class="cell-sub">Chargement de la description…</p></div>
     ${others.length ? `<div class="ticket-section"><h3>À l'affiche également</h3><p>${esc(others.join(", "))}</p></div>` : ""}
     ${ev.price || ev.genre ? `<div class="ticket-section"><h3>Informations</h3><p>${[ev.price ? `Prix : ${esc(ev.price)}` : "", ev.genre ? `Genre : ${esc(ev.genre)}` : ""].filter(Boolean).join("<br>")}</p></div>` : ""}
     ${ev.description ? `<div class="ticket-section"><p>${esc(ev.description)}</p></div>` : ""}
@@ -1062,7 +1065,11 @@ function openTicket(id) {
     <div class="ticket-share">
       <button type="button" class="btn btn-share" data-share="${esc(ev.id)}">Partager</button></div>
     ${hideButtons ? `<div class="ticket-hide">${hideButtons}</div>` : ""}`;
-  if (!dlg.open) dlg.showModal();  // fiche rouverte après « Remettre »
+  // Fiche fermée : ouverture et entrée d'historique (déjà ouverte, rouverte après « Remettre » : rien à ajouter)
+  if (!dlg.open) {
+    dlg.showModal();
+    if (entry) pushTicketEntry();
+  }
   fillArtistSection(ev);
 }
 
@@ -1170,7 +1177,7 @@ function bind() {
     const restore = e.target.closest("[data-restore]");
     if (restore) { e.stopPropagation(); restoreFromButton(restore.dataset.restore); return; }
     const row = e.target.closest("[data-id]");
-    if (row && !e.target.closest("a")) { openTicket(row.dataset.id); return; }
+    if (row && !e.target.closest("a, #ticket")) { openTicket(row.dataset.id); return; }
     const propose = e.target.closest("[data-propose-venue]");
     if (propose) {
       $("#proposal-name").value = propose.dataset.proposeVenue;
@@ -1188,8 +1195,55 @@ function bind() {
   // Section « Concerts retirés » : repliée ou dépliée, gardée d'un rendu à l'autre
   $("#removed").addEventListener("toggle", (e) => { state.removedOpen = e.target.open; }, true);
   const dlg = $("#ticket");
-  $("#ticket-close").addEventListener("click", () => dlg.close());
-  dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close(); });
+  $("#ticket-close").addEventListener("click", closeTicket);
+  dlg.addEventListener("click", (e) => { if (e.target === dlg) closeTicket(); });
+  bindTicketHistory(dlg);
+}
+
+// Bouton retour du téléphone (version 1.9.1) : la fiche ouverte ajoute une entrée à l'historique,
+// sans changer l'adresse ; « retour » ferme la fiche et laisse la page (liste, Reels) telle quelle.
+// Fermée autrement (×, fond, Échap, retrait), la fiche retire son entrée, pour qu'un « retour »
+// suivant ne tombe pas dans le vide.
+let ticketBackPending = false;  // retour demandé à la fermeture de la fiche, pas encore arrivé
+let ticketEntry = false;  // l'entrée en haut de l'historique est celle de la fiche ouverte
+function pushTicketEntry() {
+  // Retour en cours : l'entrée est remise à son arrivée (fiche rouverte entre-temps)
+  if (ticketBackPending || ticketEntry) return;
+  history.pushState({ ticket: true }, "");
+  ticketEntry = true;
+}
+// Fiche fermée : son entrée est retirée tout de suite (l'événement « close » peut arriver tard)
+function dropTicketEntry() {
+  if ($("#ticket").open || !ticketEntry || ticketBackPending) return;
+  ticketEntry = false;
+  ticketBackPending = true;
+  history.back();
+  // Retour jamais arrivé (second retour au même instant, page mise en cache) : pas de blocage
+  setTimeout(() => { ticketBackPending = false; }, 2000);
+}
+function closeTicket() {
+  const dlg = $("#ticket");
+  if (dlg.open) dlg.close();
+  dropTicketEntry();
+}
+function bindTicketHistory(dlg) {
+  // Échap, ou geste retour d'Android qui ferme la fenêtre lui-même : entrée retirée après la fermeture
+  dlg.addEventListener("cancel", () => setTimeout(dropTicketEntry, 0));
+  dlg.addEventListener("close", dropTicketEntry);  // toute autre fermeture
+  window.addEventListener("popstate", () => {
+    if (ticketBackPending) {
+      ticketBackPending = false;
+      if (dlg.open) pushTicketEntry();
+      return;
+    }
+    ticketEntry = dlg.open && Boolean(history.state?.ticket);
+    if (dlg.open && !history.state?.ticket) dlg.close();
+    // Bouton « suivant » du navigateur : entrée d'une fiche déjà fermée, redevenue ordinaire
+    else if (!dlg.open && history.state?.ticket) history.replaceState(null, "");
+  });
+  // Page rechargée fiche ouverte (mise à jour du site) : l'entrée laissée par la fiche redevient une
+  // entrée ordinaire, sans navigation (un retour vers l'ancienne page pourrait la recharger)
+  if (history.state?.ticket) history.replaceState(null, "");
 }
 
 // « Ne plus voir ce concert » depuis la fiche : elle se ferme ; « Annuler » dans le message (ou dans
@@ -1209,7 +1263,7 @@ async function removeFromTicket(id) {
   }
   if (!undo) return;
   const ev = state.events.find((e) => e.id === id);
-  if ($("#ticket").open) $("#ticket").close();
+  closeTicket();
   const text = "Concert retiré : retrouvez-le dans « Concerts retirés »";
   if ($("#reels").open) {
     dropCard(ev);  // sans attendre l'événement de fermeture de la fiche
@@ -1219,14 +1273,15 @@ async function removeFromTicket(id) {
 }
 
 async function restoreFromButton(concertId) {
-  const shown = $("#ticket").open ? $("#ticket").dataset.id : null;
+  const shown = $("#ticket").open ? $("#ticket").dataset.concert : null;
   try {
     await restoreConcert(concertId);
   } catch (e) {
     toast(`Enregistrement impossible : ${e.message}`);
     return;
   }
-  if (shown) openTicket(shown);  // fiche ouverte : « Ne plus voir ce concert » réapparaît
+  // Fiche toujours ouverte : « Ne plus voir ce concert » réapparaît (fermée entre-temps : laissée fermée)
+  if (shown && $("#ticket").open) openTicket(shown);
 }
 
 // Lien d'une fiche /partage/ ouverte depuis la newsletter : ?concert=<id> ouvre la fiche du
@@ -1242,7 +1297,7 @@ async function openFromLink({ onboarding = false } = {}) {
   if (onboarding) { toast("Ce lien s'ouvrira une fois votre compte prêt"); return; }
   if (state.loadFailed) { toast("Les concerts n'ont pas pu être chargés : rechargez la page"); return; }
   if (!state.events.some((e) => e.id === id)) { toast("Ce concert n'est plus à l'affiche"); return; }
-  openTicket(id);
+  openTicket(id, { entry: false });  // ouverte sans geste : « retour » quitte la page, comme avant
   if (params.get("star") !== "interested") return;
   if (isRemoved(state.events.find((e) => e.id === id))) { toast("Ce concert fait partie de vos concerts retirés"); return; }
   if (isStarred(id)) { toast("Déjà dans vos concerts"); return; }
