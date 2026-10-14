@@ -121,11 +121,10 @@ def render(row, user, site):
     if kind == "spotify_paused":
         return ("Spotify a suspendu les appels",
                 f"Spotify refuse les appels de l'application (quota du compte développeur) jusqu'au {when(p.get('until'))}.\n"
-                f"Les calculs Spotify en attente reprendront automatiquement ensuite ; rien à faire.\n"
-                f"Membres concernés pour l'instant : {p.get('count', 1)}.\n\n{admin_link}")
+                f"Les calculs Spotify en attente reprendront automatiquement ensuite ; rien à faire.\n\n{admin_link}")
     if kind == "results_ready":
         known, discovery = p.get("known", 0), p.get("discovery", 0)
-        return ("Vos concerts sont prêts",
+        return ("Vos concerts sont à jour" if (row.get("dedupe_key") or "").count(":") > 1 else "Vos concerts sont prêts",
                 f"Bonjour {name},\n\nLe calcul de vos concerts est terminé : {known} concert(s) de vos artistes "
                 f"et {discovery} découverte(s) à Paris.\n\nOuvrir Concerts à Paris : {site}/\n\n"
                 f"Un souci ? Bouton « J'ai un problème » en bas de chaque page.")
@@ -176,7 +175,7 @@ def send_pending(db, cfg=None):
         log("Notifications : SMTP non configuré, aucun envoi")
         return 0
     try:
-        rows = db.query("SELECT id, kind, user_id, to_admin, payload, attempts FROM notifications "
+        rows = db.query("SELECT id, kind, user_id, to_admin, payload, dedupe_key, attempts FROM notifications "
                         "WHERE sent_at IS NULL AND attempts < ? ORDER BY id LIMIT ?", [MAX_ATTEMPTS, BATCH])
     except Exception as exc:  # noqa: BLE001  table absente (migration 0011 non appliquée)
         log(f"Notifications : file illisible ({exc.__class__.__name__})")
@@ -196,17 +195,20 @@ def send_pending(db, cfg=None):
             continue
         subject, text = content
         reply_to = user["email"] if row["to_admin"] and row["kind"] == "problem_report" and user else None
+        # Réservation : une autre tâche qui lit la même ligne au même moment ne l'envoie pas
+        claimed = db.query("UPDATE notifications SET attempts = attempts + 1, last_error = 'en cours' "
+                           "WHERE id = ? AND sent_at IS NULL AND attempts = ? RETURNING id", [row["id"], row["attempts"]])
+        if not claimed:
+            continue
         try:
             smtp = smtp or connect(cfg)
             for address in to:
                 smtp.send_message(_message(cfg, address, subject, text, reply_to))
-            db.query("UPDATE notifications SET sent_at = ?, attempts = attempts + 1, last_error = NULL WHERE id = ?",
-                     [members.now_iso(), row["id"]])
+            db.query("UPDATE notifications SET sent_at = ?, last_error = NULL WHERE id = ?", [members.now_iso(), row["id"]])
             sent += 1
         except (smtplib.SMTPException, OSError) as exc:
             smtp = None
-            db.query("UPDATE notifications SET attempts = attempts + 1, last_error = ? WHERE id = ?",
-                     [exc.__class__.__name__, row["id"]])
+            db.query("UPDATE notifications SET last_error = ? WHERE id = ?", [exc.__class__.__name__, row["id"]])
             log(f"Notifications : envoi {row['id']} impossible ({exc.__class__.__name__})")
     if smtp:
         try:

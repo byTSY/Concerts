@@ -226,7 +226,7 @@ function spotifySection(sp) {
       ${sp.requests.length ? sp.requests.map((r) => spotifyCard("request", r, sp.dashboard_url)).join("") : `<p class="cell-sub">Aucune.</p>`}
       ${sp.removals.length ? `<h3>Retraits à faire (${sp.removals.length})</h3>${sp.removals.map((r) => spotifyCard("removal", r, sp.dashboard_url)).join("")}` : ""}
       ${sp.invitations?.length ? `<h3>Invitations préparées pour Spotify</h3><ul class="plain-list">${sp.invitations.map((i) =>
-        `<li>${esc(i.first_name)} <span class="cell-sub">${esc(i.spotify_account_email)}, lien pas encore utilisé</span></li>`).join("")}</ul>` : ""}
+        `<li>${esc(i.first_name)} <span class="cell-sub">${esc(i.spotify_account_email)}, ${i.expired ? "lien expiré : « Nouveau lien », ou « Supprimer » pour libérer la place" : "lien pas encore utilisé"}</span></li>`).join("")}</ul>` : ""}
       ${members ? `<h3>Membres Spotify</h3><ul class="plain-list">${members}</ul>` : ""}
       ${sp.paused_until ? `<p class="prefs-warning">Spotify limite les appels de l'application jusqu'au ${esc(fmtDateTime(sp.paused_until))} : les calculs Spotify reprendront tout seuls.</p>` : ""}
     </section>`;

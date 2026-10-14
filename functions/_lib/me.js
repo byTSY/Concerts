@@ -175,8 +175,8 @@ export async function communityStars(env, viewerId) {
 // Une place est prise par chaque source Spotify (demande en attente comprise), par chaque
 // compte encore à retirer du tableau de bord Spotify et par chaque invitation préparée pour
 // Spotify (compte déjà ajouté chez Spotify par l'admin, version 1.9.0).
-const SPOTIFY_USED = "(SELECT COUNT(*) FROM music_sources WHERE provider = 'spotify') + (SELECT COUNT(*) FROM spotify_removals) " +
-  "+ (SELECT COUNT(*) FROM invitations WHERE spotify_account_email IS NOT NULL)";
+const SPOTIFY_USED_BEFORE_0011 = "(SELECT COUNT(*) FROM music_sources WHERE provider = 'spotify') + (SELECT COUNT(*) FROM spotify_removals)";
+const SPOTIFY_USED = `${SPOTIFY_USED_BEFORE_0011} + (SELECT COUNT(*) FROM invitations WHERE spotify_account_email IS NOT NULL)`;
 export const spotifyMax = (env) => {
   const n = Number.parseInt(env.SPOTIFY_MAX_USERS ?? "", 10);
   return Number.isInteger(n) && n >= 0 ? n : 5;
@@ -193,7 +193,11 @@ async function spotifyUsed(db) {
   try {
     return (await db.prepare(`SELECT ${SPOTIFY_USED} AS used`).first()).used;
   } catch {
-    return null;
+    try {  // base sans la migration 0011 (invitations sans compte Spotify)
+      return (await db.prepare(`SELECT ${SPOTIFY_USED_BEFORE_0011} AS used`).first()).used;
+    } catch {
+      return null;
+    }
   }
 }
 
@@ -577,7 +581,8 @@ export function member(env, user) {
         throw new HttpError(409, "détachez d'abord la source actuelle (Changer de source)", "source_attached");
       }
       const taken = await db.prepare(
-        "SELECT 1 FROM music_sources WHERE provider = 'spotify' AND spotify_account_email = ? AND user_id <> ?").bind(mail, id).first();
+        "SELECT 1 FROM music_sources WHERE provider = 'spotify' AND spotify_account_email = ? AND user_id <> ?").bind(mail, id).first()
+        || await db.prepare("SELECT 1 AS ok FROM invitations WHERE spotify_account_email = ?").bind(mail).first().catch(() => null);
       if (taken) throw new HttpError(409, "ce compte Spotify est déjà demandé par un autre membre", "taken");
       const now = nowIso();
       // Compte encore présent chez Spotify (retrait en attente, après un changement de source) :
@@ -838,10 +843,15 @@ function cleanSpotifyAccount(email, name, firstName) {
 
 // Compte Spotify déjà pris (source d'un membre, autre invitation) ; place libre sinon refus
 async function checkSpotifyAccount(db, env, account, exceptInvitation = null) {
-  const taken = await db.prepare(
-    "SELECT 1 AS ok FROM music_sources WHERE provider = 'spotify' AND spotify_account_email = ? " +
-    "UNION ALL SELECT 1 FROM invitations WHERE spotify_account_email = ? AND id <> ?")
-    .bind(account.email, account.email, exceptInvitation || "").first();
+  let taken;
+  try {
+    taken = await db.prepare(
+      "SELECT 1 AS ok FROM music_sources WHERE provider = 'spotify' AND spotify_account_email = ? " +
+      "UNION ALL SELECT 1 FROM invitations WHERE spotify_account_email = ? AND id <> ?")
+      .bind(account.email, account.email, exceptInvitation || "").first();
+  } catch {
+    throw new HttpError(503, "Spotify pas encore disponible pour les invitations (migration 0011)", "spotify_unavailable");
+  }
   if (taken) throw new HttpError(409, "ce compte Spotify est déjà utilisé par un membre ou une autre invitation", "taken");
   const used = await spotifyUsed(db);
   if (used === null) throw new HttpError(503, "Spotify pas encore disponible pour les invitations (migration 0011)", "spotify_unavailable");
@@ -1106,8 +1116,10 @@ export function admin(env) {
         "SELECT id, account_name, account_email, member_name, reason, created_at FROM spotify_removals ORDER BY created_at").all();
       const list = sources.map(({ first_name, pseudo, ...r }) => ({ ...r, display_name: pseudo || first_name }));
       // Invitations préparées pour Spotify (version 1.9.0 ; colonne absente avant la migration 0011)
+      const now = nowIso();
       const invited = await db.prepare("SELECT id, first_name, spotify_account_email, expires_at FROM invitations " +
-        "WHERE spotify_account_email IS NOT NULL ORDER BY created_at").all().then((r) => r.results).catch(() => []);
+        "WHERE spotify_account_email IS NOT NULL ORDER BY created_at").all()
+        .then((r) => r.results.map((i) => ({ ...i, expired: i.expires_at <= now }))).catch(() => []);
       return {
         max: spotifyMax(env),
         used: list.length + removals.length + invited.length,
@@ -1140,7 +1152,7 @@ export function admin(env) {
     async problems() {
       try {
         const { results } = await db.prepare(
-          "SELECT p.id, p.user_id, COALESCE(u.pseudo, u.first_name) AS display_name, u.email, p.message, p.context, " +
+          "SELECT p.id, p.user_id, COALESCE(NULLIF(u.pseudo, ''), u.first_name) AS display_name, u.email, p.message, p.context, " +
           "p.created_at, p.resolved_at FROM problem_reports p JOIN users u ON u.id = p.user_id " +
           "WHERE p.resolved_at IS NULL OR p.id IN (SELECT id FROM problem_reports WHERE resolved_at IS NOT NULL ORDER BY resolved_at DESC LIMIT 20) " +
           "ORDER BY p.resolved_at IS NOT NULL, p.created_at DESC").all();

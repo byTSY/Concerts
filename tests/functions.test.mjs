@@ -1086,9 +1086,9 @@ test("notifications : connexion d'un membre une fois par jour, jamais l'admin ; 
   await call(env, "a@test.fr", getMe, { jwt: await token({ email: "a@test.fr", iat: 1791800500 }) });  // nouvelle session
   await call(env, "c@test.fr", getMe, { jwt: await token({ email: "c@test.fr", iat: 1791800000 }) });  // admin
   const logins = queued(env).filter((n) => n.kind === "member_login");
-  assert.deepEqual(logins.map((n) => [n.user_id, n.payload.first]), [["u_aaaaaaaa", true], ["u_aaaaaaaa", false]]);
+  assert.deepEqual(logins.map((n) => [n.user_id, n.payload.first]), [["u_aaaaaaaa", true]]);  // un message par jour
   await call(env, "a@test.fr", getMe, { jwt: await token({ email: "a@test.fr", iat: 1791801000 }) });  // même jour
-  assert.equal(queued(env).filter((n) => n.kind === "member_login").length, 2);
+  assert.equal(queued(env).filter((n) => n.kind === "member_login").length, 1);
   // Demande de place Spotify : l'admin est prévenu (sans jeton ni identifiant Spotify)
   env.DB.raw.exec("INSERT INTO users (id, email, first_name, status, invited_at) VALUES ('u_dddddddd', 'd@test.fr', 'Dora', 'onboarding', 'x')");
   await call(env, "d@test.fr", spotifyRequest.onRequestPost, { method: "POST", body: { account_email: "dora@spotify.fr", account_name: "Dora D." } });

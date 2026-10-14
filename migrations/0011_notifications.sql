@@ -54,3 +54,8 @@ CREATE TABLE IF NOT EXISTS problem_reports (
   resolved_at TEXT
 );
 CREATE INDEX IF NOT EXISTS problem_reports_user ON problem_reports (user_id, created_at);
+
+-- Membres restés en erreur passagère avant la version 1.9.0 (quota Spotify du 13 octobre 2026) :
+-- nouvel essai automatique dès la prochaine relance (2 heures au plus) ou ouverture du site
+UPDATE music_sources SET retry_at = strftime('%Y-%m-%dT%H:%M:%S+00:00', 'now')
+WHERE status = 'connected' AND last_sync_status IN ('quota', 'spotify_unavailable', 'deezer_unavailable', 'internal');

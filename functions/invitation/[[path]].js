@@ -106,7 +106,7 @@ export async function onRequest({ request, env, params, waitUntil }) {
   const home = new URL("/", request.url).href;
   return page("Inscription faite", `<h1>C'est fait, ${esc(member.first_name)}</h1>
     <p>Votre adresse <strong>${esc(member.email)}</strong> est inscrite.</p>
-    ${access?.done === false ? `<p class="warn">Votre accès doit encore être activé par l'admin : il vous préviendra.</p>` : ""}
+    ${access?.done === false ? `<p class="warn">Votre accès doit encore être activé par l'admin, qui vous préviendra.</p>` : ""}
     <h2>Étape suivante</h2>
     <ol>
       <li>Ouvrez le site avec le bouton ci-dessous et saisissez cette adresse : un code de connexion vous est envoyé par e-mail (il peut falloir attendre une minute avant que l'adresse soit reconnue).</li>

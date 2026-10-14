@@ -48,6 +48,15 @@ LIBRARY_REUSE_HOURS = 20
 QUOTA_PAUSE_DEFAULT_S = 3600   # quota sans Retry-After lisible
 
 
+def send_notifications(db):
+    """Envoie la file d'e-mails ; un incident d'envoi n'arrête jamais le traitement (les
+    résultats calculés doivent encore être enregistrés sur GitHub)."""
+    try:
+        notify.send_pending(db)
+    except Exception as exc:  # noqa: BLE001
+        log(f"Notifications : envoi interrompu ({exc.__class__.__name__}), nouvel essai au prochain passage")
+
+
 def run_source(label, status, fn, *args):
     try:
         events = fn(*args)
@@ -192,7 +201,7 @@ def library_is_fresh(m, kind):
     return datetime.now(timezone.utc) - read_at < timedelta(hours=LIBRARY_REUSE_HOURS)
 
 
-def compute_member(m, collected, settings, db, store, budget, excluded=None, reuse_library=False):
+def compute_member(m, collected, settings, db, store, budget, excluded=None, reuse_library=False, spotify_paused=False):
     """Calcule un membre : source, préférences, rapprochement, découvertes, historique, R2.
     reuse_library : liste d'artistes du calcul précédent, sans appel à la source.
     Renvoie {"library_read": bool, "counts": compteurs, "token_lost": bool}."""
@@ -205,6 +214,8 @@ def compute_member(m, collected, settings, db, store, budget, excluded=None, reu
     if reuse_library and previous:
         log("  Bibliothèque lue il y a moins de 20 heures : réutilisée")
         artists = copy.deepcopy(previous)
+    elif spotify_paused and m["provider"] == "spotify":
+        raise SourceError("quota", "Spotify en pause")
     else:
         # Deezer : n° du profil public ; Spotify : jeton du membre (chiffré en D1)
         source = members.SpotifyAccess(db, uid) if m["provider"] == "spotify" else m["provider_user_id"]
@@ -234,16 +245,18 @@ def compute_member(m, collected, settings, db, store, budget, excluded=None, reu
 
 
 def notify_result(db, m, code, info, today):
-    """Messages après le calcul d'un membre : premiers résultats (au membre), action attendue du
-    membre (source à reconnecter) ou de l'admin, au premier calcul qui trouve l'erreur."""
+    """Messages après le calcul d'un membre : résultats prêts (premier calcul, ou nouvel essai
+    réussi après une erreur passagère, annoncé sur le site), action attendue du membre (source à
+    reconnecter) ou de l'admin, au premier calcul qui trouve l'erreur."""
     uid = m["id"]
     try:
         if code is None:
-            if not m.get("activated_at"):
+            recovered = m.get("last_sync_status") in members.TRANSIENT
+            if not m.get("activated_at") or recovered:
                 counts = (info or {}).get("counts") or {}
                 notify.queue(db, "results_ready", uid, payload={"known": counts.get("known", 0),
                                                                  "discovery": counts.get("discovery", 0)},
-                             dedupe=f"ready:{uid}")
+                             dedupe=f"ready:{uid}" if not m.get("activated_at") else f"ready:{uid}:{today}")
             if (info or {}).get("token_lost"):
                 notify.queue(db, "calc_error", uid, to_admin=True, payload={"code": "token_lost"},
                              dedupe=f"calc:{uid}:token_lost:{today}")
@@ -281,9 +294,8 @@ def run_members(settings, db, store, selection, collected=None, kind="weekly"):
         code, info = None, None
         reuse = library_is_fresh(m, kind)
         try:
-            if m["provider"] == "spotify" and spotify_pause and not reuse:
-                raise SourceError("quota", "Spotify en pause")
-            info = compute_member(m, collected, settings, db, store, budget, excluded, reuse_library=reuse)
+            info = compute_member(m, collected, settings, db, store, budget, excluded, reuse_library=reuse,
+                                  spotify_paused=bool(spotify_pause))
         except MemberGone:
             log(f"  Membre {uid} : supprimé ou modifié pendant le calcul, résultats non enregistrés")
             continue
@@ -292,9 +304,9 @@ def run_members(settings, db, store, selection, collected=None, kind="weekly"):
                 log(f"  Membre {uid} : reconnecté pendant le calcul, résultats non enregistrés")
                 continue
             code = exc.code
-            if code == "quota" and m["provider"] == "spotify" and exc.retry_after is not None:
+            if code == "quota" and m["provider"] == "spotify" and not spotify_pause:
                 # Quota du compte développeur : plus aucun appel Spotify avant l'heure indiquée
-                spotify_pause = members.iso_in(max(int(exc.retry_after), 60) or QUOTA_PAUSE_DEFAULT_S)
+                spotify_pause = members.iso_in(max(int(exc.retry_after or QUOTA_PAUSE_DEFAULT_S), 60))
                 try:
                     if members.set_service_pause(db, "spotify", spotify_pause, "quota"):
                         notify.queue(db, "spotify_paused", to_admin=True, payload={"until": spotify_pause},
@@ -348,7 +360,7 @@ def main():
         promote(store)
         return
     if args.task == "notify":
-        notify.send_pending(db)
+        notify.send_pending(db)   # tâche à part : une erreur doit apparaître dans GitHub Actions
         return
     if args.task == "newsletter":
         newsletter.send_all(db, store, store.get_json(COLLECTED), test_member=args.test_member or None)
@@ -366,7 +378,7 @@ def main():
         # aucun traitement enregistré
         if targeted and args.pending and not members.pending(db):
             log("Aucun membre en attente de calcul")
-            notify.send_pending(db)  # messages que le site n'a pas pu faire envoyer
+            send_notifications(db)  # messages que le site n'a pas pu faire envoyer
             return
         if targeted and collection_is_stale(db):
             log(f"Collecte de plus de {STALE_DAYS} jours : traitement complet")
@@ -388,13 +400,13 @@ def main():
             selection += [m for m in waiting if m["id"] not in seen]
             if not selection:
                 log("Aucun membre en attente de calcul")
-                notify.send_pending(db)
+                send_notifications(db)
                 return
             kind = "member"
         else:
             selection, kind = members.active(db), "weekly"
         run_members(settings, db, store, selection, collected, kind)
-        notify.send_pending(db)
+        send_notifications(db)
 
 
 if __name__ == "__main__":

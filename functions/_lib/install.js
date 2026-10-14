@@ -11,7 +11,7 @@ export const INSTALL_STYLE = `
 
 export const INSTALL_HELP = `<section class="install">
   <h2 style="margin-top:0">Installer l'application sur votre téléphone</h2>
-  <p class="note">Une icône sur l'écran d'accueil ouvre le site comme une application. À faire <strong>une fois connecté, depuis la page du site</strong> (pas depuis cette page d'invitation, dont le lien ne sert qu'une fois).</p>
+  <p class="note">Une icône sur l'écran d'accueil ouvre le site comme une application. À faire <strong>après la connexion, depuis la page du site</strong> (pas depuis cette page d'invitation, dont le lien ne sert qu'une fois).</p>
   <details><summary>iPhone, avec Safari</summary><ol>
     <li>Touchez le bouton Partager (carré avec une flèche vers le haut, en bas de l'écran).</li>
     <li>Faites défiler, puis touchez « Sur l'écran d'accueil ».</li>

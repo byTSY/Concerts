@@ -139,7 +139,7 @@ function bindProblem() {
       await api("me/problem", { method: "POST", body: { message: $("#problem-text").value, context: problemContext() } });
       $("#problem-text").value = "";
       $("#problem").close();
-      toast("Message envoyé à l'admin : il vous répondra par e-mail");
+      toast("Message envoyé à l'admin, qui vous répondra par e-mail");
     } catch (err) {
       send.disabled = false;
       $("#problem-result").textContent = `Envoi impossible : ${err.message}`;
@@ -253,7 +253,7 @@ function renderSpotifyStep(box, me) {
   } else {
     box.innerHTML = `${spotifyNotice()}
       <h2>Autorisation en cours par l'admin</h2>
-      <p>Votre demande est envoyée : l'admin, prévenu par e-mail, doit ajouter votre compte Spotify à l'application Concerts. Vous recevrez un e-mail dès que ce sera fait ; cette page affichera alors « Connecter Spotify ».</p>
+      <p>Votre demande est envoyée par e-mail à l'admin, qui doit ajouter votre compte Spotify à l'application Concerts. Vous recevrez un e-mail dès que ce sera fait ; cette page affichera alors « Connecter Spotify ».</p>
       ${src.spotify_refused_at ? `<p class="prefs-warning">Spotify a refusé ce compte lors de votre dernière connexion : vérifiez l'adresse e-mail ci-dessous.</p>` : ""}
       <p class="cell-sub">Compte demandé : ${esc(src.spotify_account_name || "")}, ${esc(src.spotify_account_email || "")}.</p>
       <details${src.spotify_refused_at ? " open" : ""}><summary>Corriger l'adresse e-mail</summary>${spotifyForm(src.spotify_account_name, src.spotify_account_email, true)}</details>
@@ -412,7 +412,7 @@ async function renderAccount() {
     </section>
     <section class="account-block">
       <h2 class="month-title">Un souci ?</h2>
-      <p class="cell-sub">Votre message part à l'admin avec l'état de votre compte ; il vous répondra par e-mail.</p>
+      <p class="cell-sub">Votre message part à l'admin avec l'état de votre compte ; l'admin vous répond par e-mail.</p>
       <p>${problemButton()}</p>
     </section>
     <section class="account-block">

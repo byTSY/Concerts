@@ -31,7 +31,7 @@ export async function onRequest(context) {
     waitUntil(data.me.touch({ iat, write })
       .then(({ newSession, first } = {}) => (newSession && user.role !== "admin"
         ? notify(env, { kind: "member_login", userId: user.id, toAdmin: true, payload: { first },
-          dedupe: `login:${user.id}:${first ? "first" : new Date().toISOString().slice(0, 10)}` })
+          dedupe: `login:${user.id}:${new Date().toISOString().slice(0, 10)}` })
         : null))
       .catch((e) => console.error(`Activité non enregistrée : ${e?.message}`)));
     return next();

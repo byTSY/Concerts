@@ -145,6 +145,21 @@ class Resilience(unittest.TestCase):
                                 selection=members.active(self.db), kind="weekly")
         self.assertEqual(failures, 0)
 
+    def test_success_after_transient_error_mails_member_already_active(self):
+        self.compute(library("Alpha"))                    # premiers résultats
+        self.db.query("UPDATE music_sources SET last_sync_status = 'quota', retry_at = '2000-01-01T00:00:00+00:00'")
+        self.compute(library("Alpha"))                    # nouvel essai réussi : « à jour »
+        ready = self.db.query("SELECT dedupe_key FROM notifications WHERE kind = 'results_ready' AND user_id = 'u_aaaaaaaa'")
+        self.assertEqual(len(ready), 2)
+
+    def test_pause_without_previous_library_does_not_call_spotify(self):
+        self.db.query("UPDATE music_sources SET library_read_at = ?", [members.now_iso()])
+        members.set_service_pause(self.db, "spotify", "2099-01-01T00:00:00+00:00", "quota")
+        failures = self.compute(lambda *a: self.fail("appel Spotify pendant la pause"),
+                                selection=members.active(self.db), kind="weekly")
+        self.assertEqual(failures, 2)
+        self.assertEqual(self.source("u_aaaaaaaa")["retry_at"], "2099-01-01T00:00:00+00:00")
+
     def test_send_pending_renders_and_marks_sent(self):
         self.db.query("INSERT INTO problem_reports (user_id, message, context, created_at) VALUES ('u_aaaaaaaa', 'rien', '{}', ?)", [NOW])
         notify.queue(self.db, "problem_report", "u_aaaaaaaa", to_admin=True,
