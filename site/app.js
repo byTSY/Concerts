@@ -1220,13 +1220,21 @@ function dropLayer(id) {
   layerDeferred.delete(id);
   if ($(`#${id}`).open || layerBackPending || layerStack.at(-1) !== id) return;
   layerStack.pop();
-  const request = layerBackPending = Date.now();
-  history.back();
+  layerBack(1);
+}
+let layerBackRequests = 0;
+function layerBack(steps) {
+  const request = layerBackPending = ++layerBackRequests;
+  history.go(-steps);
   // Retour jamais arrivé (second retour au même instant, page mise en cache) : pas de blocage
   setTimeout(() => { if (layerBackPending === request) layerBackDone(); }, 2000);
 }
 function layerBackDone() {
   layerBackPending = 0;
+  // Fenêtres fermées pendant ce retour (deux « retour » rapprochés) : leurs entrées sont retirées à leur tour
+  let closed = 0;
+  while (layerStack.length && !$(`#${layerStack.at(-1)}`).open) { layerStack.pop(); closed += 1; }
+  if (closed) { layerBack(closed); return; }  // ouvertures en attente ajoutées à l'arrivée de ce retour
   for (const id of LAYERS) if (layerDeferred.has(id) && $(`#${id}`).open) pushLayer(id);
   layerDeferred.clear();
 }
