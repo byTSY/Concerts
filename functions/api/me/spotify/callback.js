@@ -7,6 +7,7 @@
 
 import { dispatchRun, spotifyExchange, spotifyMe, spotifyReady } from "../../../_lib/external.js";
 import { HttpError } from "../../../_lib/http.js";
+import { notify } from "../../../_lib/notify.js";
 import { attempt } from "../../../_lib/outside.js";
 import { encryptToken, tokenKeyReady } from "../../../_lib/tokens.js";
 import { callbackUrl } from "./authorize.js";
@@ -16,7 +17,7 @@ const back = (request, result) => new Response(null, {
   headers: { location: new URL(`/?spotify=${result}`, request.url).href, "cache-control": "no-store" },
 });
 
-export const onRequestGet = async ({ request, env, data }) => {
+export const onRequestGet = async ({ request, env, data, waitUntil }) => {
   const url = new URL(request.url);
   try {
     if (!spotifyReady(env) || !tokenKeyReady(env)) throw new HttpError(503, "Spotify non configuré", "spotify_unconfigured");
@@ -35,6 +36,8 @@ export const onRequestGet = async ({ request, env, data }) => {
       spotifyId: profile.id, name: profile.name, scopes: tokens.scopes,
       tokenEnc: await encryptToken(env, id, tokens.refresh),
     });
+    waitUntil?.(notify(env, { kind: "source_connected", userId: id, toAdmin: true, payload: { provider: "spotify" },
+      dedupe: `source:${id}:${new Date().toISOString().slice(0, 16)}` }));
     const run = await attempt(() => dispatchRun(env, id));
     return back(request, run?.done === false ? "ok_later" : "ok");
   } catch (e) {

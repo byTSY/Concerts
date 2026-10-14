@@ -5,6 +5,7 @@
 import { verifyAccess } from "../_lib/access.js";
 import { fail, handle, HttpError } from "../_lib/http.js";
 import { identify, member } from "../_lib/me.js";
+import { notify } from "../_lib/notify.js";
 
 export async function onRequest(context) {
   const { request, env, next, data, waitUntil } = context;
@@ -27,7 +28,12 @@ export async function onRequest(context) {
 
     data.me = member(env, user);
     const write = !["GET", "HEAD", "OPTIONS"].includes(request.method);
-    waitUntil(data.me.touch({ iat, write }).catch((e) => console.error(`Activité non enregistrée : ${e?.message}`)));
+    waitUntil(data.me.touch({ iat, write })
+      .then(({ newSession, first } = {}) => (newSession && user.role !== "admin"
+        ? notify(env, { kind: "member_login", userId: user.id, toAdmin: true, payload: { first },
+          dedupe: `login:${user.id}:${first ? "first" : new Date().toISOString().slice(0, 10)}` })
+        : null))
+      .catch((e) => console.error(`Activité non enregistrée : ${e?.message}`)));
     return next();
   });
 }

@@ -9,7 +9,9 @@
 import { accessListAdd } from "../_lib/external.js";
 import { HttpError } from "../_lib/http.js";
 import { claimInvitation, findInvitation, setAccessPending } from "../_lib/me.js";
+import { notify } from "../_lib/notify.js";
 import { attempt } from "../_lib/outside.js";
+import { INSTALL_HELP, INSTALL_STYLE } from "../_lib/install.js";
 
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
@@ -27,6 +29,9 @@ function page(title, body, status = 200) {
   button, .btn { display: inline-block; margin-top: 18px; padding: 10px 18px; border: 0; border-radius: 8px; font: inherit; font-weight: 600; background: #1e2350; color: #fff; text-decoration: none; cursor: pointer; }
   .note { font-size: .9rem; color: #555; }
   .warn { padding: 10px 14px; border-radius: 8px; background: #ffe45c; }
+  h2 { font-size: 1.15rem; margin-top: 1.6em; }
+  ol { padding-left: 1.3em; } li { margin: .3em 0; }
+${INSTALL_STYLE}
   @media (prefers-color-scheme: dark) {
     body { color: #ece9f6; background: #171a33; }
     input { background: #23274a; color: #ece9f6; border-color: #3b4070; }
@@ -65,7 +70,7 @@ function form(first, error = "", email = "") {
   <p class="note">Données conservées : votre adresse e-mail, votre prénom ou pseudo, votre source musicale, vos préférences et vos concerts mis de côté. Vous pourrez supprimer votre compte à tout moment.</p>`);
 }
 
-export async function onRequest({ request, env, params }) {
+export async function onRequest({ request, env, params, waitUntil }) {
   const token = (params.path || []).join("/");
   if (!["GET", "HEAD", "POST"].includes(request.method)) return new Response(null, { status: 405 });
   if (!env.DB) return page("Indisponible", "<h1>Service indisponible</h1><p>Réessayez dans quelques minutes.</p>", 503);
@@ -93,6 +98,8 @@ export async function onRequest({ request, env, params }) {
     console.error(`Invitation : ${e?.name || "Error"} ${String(e?.message || "").slice(0, 200)}`);
     return form(invitation.first_name, "Erreur inattendue : réessayez dans quelques minutes.", email);
   }
+  waitUntil?.(notify(env, { kind: "member_joined", userId: member.id, toAdmin: true, payload: { spotify: member.spotify },
+    dedupe: `joined:${member.id}` }));
   const access = await attempt(() => accessListAdd(env, member.email));
   // Échec : signalé à l'admin dans la liste des membres, avec un bouton pour relancer
   if (access?.done === false) await setAccessPending(env, member.email, true).catch(() => {});
@@ -100,7 +107,14 @@ export async function onRequest({ request, env, params }) {
   return page("Inscription faite", `<h1>C'est fait, ${esc(member.first_name)}</h1>
     <p>Votre adresse <strong>${esc(member.email)}</strong> est inscrite.</p>
     ${access?.done === false ? `<p class="warn">Votre accès doit encore être activé par l'admin : il vous préviendra.</p>` : ""}
-    <p>Ouvrez maintenant le site et saisissez cette adresse : un code de connexion vous sera envoyé par e-mail. Il peut falloir attendre une minute avant que l'adresse soit reconnue.</p>
+    <h2>Étape suivante</h2>
+    <ol>
+      <li>Ouvrez le site avec le bouton ci-dessous et saisissez cette adresse : un code de connexion vous est envoyé par e-mail (il peut falloir attendre une minute avant que l'adresse soit reconnue).</li>
+      <li>${member.spotify
+        ? "Cliquez sur « Connecter Spotify » : votre compte Spotify est déjà autorisé."
+        : "Choisissez votre source musicale (Deezer ou Spotify)."}</li>
+      <li>Vous recevez un e-mail dès que vos concerts sont prêts (quelques minutes).</li>
+    </ol>
     <p><a class="btn" href="${esc(home)}">Ouvrir Concerts à Paris</a></p>
-    <p class="note">Ensuite, vous choisirez votre source musicale (Deezer ou Spotify). Pensez à ajouter le site à l'écran d'accueil de votre téléphone.</p>`);
+    ${INSTALL_HELP}`);
 }

@@ -178,39 +178,9 @@ async function deezer(name, knownId) {
 }
 
 // --- Spotify ---------------------------------------------------------------------
-// Lien exact de l'artiste : identifiant Spotify de Wikidata ; à défaut, API Spotify si les clés
-// SPOTIFY_CLIENT_ID et SPOTIFY_CLIENT_SECRET sont renseignées dans Cloudflare ; sinon recherche.
-
-async function spotifyToken(env) {
-  const key = new Request("https://partage.cache/spotify/token");
-  const hit = await caches.default.match(key);
-  if (hit) return (await hit.json()).token;
-  const r = await fetch("https://accounts.spotify.com/api/token", {
-    method: "POST",
-    headers: {
-      authorization: "Basic " + btoa(`${env.SPOTIFY_CLIENT_ID}:${env.SPOTIFY_CLIENT_SECRET}`),
-      "content-type": "application/x-www-form-urlencoded",
-    },
-    body: "grant_type=client_credentials",
-  });
-  if (!r.ok) throw new Error(`Spotify HTTP ${r.status}`);
-  const data = await r.json();
-  await caches.default.put(key, new Response(JSON.stringify({ token: data.access_token }), {
-    headers: { "cache-control": `max-age=${Math.max(60, (data.expires_in || 3600) - 120)}` },
-  }));
-  return data.access_token;
-}
-
-async function spotifyArtist(name, env) {
-  if (!env?.SPOTIFY_CLIENT_ID || !env?.SPOTIFY_CLIENT_SECRET) return null;
-  const token = await spotifyToken(env);
-  const r = await fetch(`https://api.spotify.com/v1/search?type=artist&limit=10&q=${encodeURIComponent(name)}`,
-    { headers: { authorization: `Bearer ${token}` } });
-  if (!r.ok) throw new Error(`Spotify HTTP ${r.status}`);
-  const items = ((await r.json()).artists?.items || []).filter((a) => norm(a.name) === norm(name));
-  items.sort((a, b) => (b.followers?.total || 0) - (a.followers?.total || 0) || (b.popularity || 0) - (a.popularity || 0));
-  return items[0]?.id || null;
-}
+// Lien exact de l'artiste : identifiant Spotify de Wikidata ; à défaut, page de recherche
+// Spotify. Aucun appel à l'API Spotify (version 1.9.0) : son quota, commun à toute l'application,
+// est réservé à la lecture des bibliothèques des membres.
 
 // --- Dice : présentation rédigée par l'organisateur ------------------------------------
 
@@ -264,7 +234,7 @@ async function artistInfo(name, deezerLink, ctx) {
   const knownId = (String(deezerLink || "").match(/artist\/(\d+)/) || [])[1];
   const dz = await deezer(name, knownId).catch(() => null);
   const wd = await wikidata(name, dz?.id).catch(() => null);
-  const spotifyId = wd?.spotifyId || await spotifyArtist(name, ctx.env).catch(() => null);
+  const spotifyId = wd?.spotifyId || null;
   const who = cap(wd?.description || "");
   const similar = dz?.similar || [];
   // « Groupe de rock anglais, dans la veine de Tame Impala, Pond et Jacco Gardner. »

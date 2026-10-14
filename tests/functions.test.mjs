@@ -51,6 +51,9 @@ import * as seenRoute from "../functions/api/me/seen.js";
 import * as removedRoute from "../functions/api/me/removed/[concert].js";
 import { onRequestGet as getRemoved } from "../functions/api/me/removed/index.js";
 import * as unsubscribeRoute from "../functions/partage/desabonnement/[token].js";
+import * as problemRoute from "../functions/api/me/problem.js";
+import * as adminProblems from "../functions/api/admin/problems/index.js";
+import * as adminProblemResolved from "../functions/api/admin/problems/[id]/resolved.js";
 
 // --- D1 et R2 simulés --------------------------------------------------------------
 
@@ -378,8 +381,10 @@ test("compte : pseudo unique, une synchronisation par heure, changement de sourc
   assert.equal(vis.data.default_visibility, "members");
   assert.equal((await call(env, "a@test.fr", syncRoute.onRequestPost, { method: "POST" })).status, 200);
   assert.equal((await call(env, "a@test.fr", syncRoute.onRequestPost, { method: "POST" })).data.code, "too_soon");
-  // Après un calcul en erreur, un nouvel essai est permis aussitôt
+  // Après un calcul en erreur : un nouvel essai toutes les 10 minutes (version 1.9.0)
   assert.equal((await call(env, "b@test.fr", syncRoute.onRequestPost, { method: "POST" })).status, 200);
+  assert.equal((await call(env, "b@test.fr", syncRoute.onRequestPost, { method: "POST" })).data.code, "too_soon");
+  env.DB.raw.exec("UPDATE music_sources SET sync_requested_at = '2026-01-01T00:00:00+00:00' WHERE user_id = 'u_bbbbbbbb'");
   assert.equal((await call(env, "b@test.fr", syncRoute.onRequestPost, { method: "POST" })).status, 200);
   const detached = await call(env, "a@test.fr", sourceRoute.onRequestDelete, { method: "DELETE" });
   assert.equal(detached.data.status, "onboarding");
@@ -770,7 +775,10 @@ async function invitationPage(env, token, { method = "GET", form, headers = {} }
     init.body = new URLSearchParams(form).toString();
     init.headers["content-type"] = "application/x-www-form-urlencoded";
   }
-  const r = await invitationRoute.onRequest({ request: new Request(`https://concerts.test/invitation/${token}`, init), env, params: { path: [token] } });
+  const pending = [];
+  const r = await invitationRoute.onRequest({ request: new Request(`https://concerts.test/invitation/${token}`, init), env,
+    params: { path: [token] }, waitUntil: (p) => pending.push(p) });
+  await Promise.all(pending);
   return { status: r.status, html: await r.text(), headers: r.headers };
 }
 
@@ -841,7 +849,10 @@ test("relais du calcul : demande de plus de 15 min sans résultat, une fois par 
   env.GITHUB_ACTIONS_TOKEN = "jeton-github";
   const before = globalThis.fetch;
   globalThis.fetch = async (url, init) => {
-    if (String(url).startsWith("https://api.github.com/")) { dispatched.push(JSON.parse(init.body).inputs.member); return new Response(null, { status: 204 }); }
+    if (String(url).startsWith("https://api.github.com/")) {
+      if (String(url).includes("/weekly.yml/")) dispatched.push(JSON.parse(init.body).inputs.member);  // pas notify.yml
+      return new Response(null, { status: 204 });
+    }
     return before(url, init);
   };
   try {
@@ -1019,4 +1030,128 @@ test("concerts retirés : par membre, ★ effacée, remise, contrôles, lignes p
   r = await put("a@test.fr", "aaaaaa111111", body);
   assert.equal(r.status, 503);
   assert.equal(r.data.code, "removed_unavailable");
+});
+
+// --- Version 1.9.0 : Spotify préparé à l'invitation, notifications, signalements, quota ------
+
+const queued = (env) => env.DB.raw.prepare("SELECT kind, user_id, to_admin, payload FROM notifications ORDER BY id").all()
+  .map((r) => ({ ...r, payload: JSON.parse(r.payload) }));
+
+test("invitation avec compte Spotify : place prise, source prête à connecter, retrait si le lien est supprimé", async () => {
+  const env = spotifyEnv();
+  const post = (body) => call(env, "c@test.fr", adminInvitations.onRequestPost, { method: "POST", path: "/api/admin/invitations", body });
+  assert.equal((await post({ first_name: "Hugo", spotify_email: "pas-un-mail" })).data.code, "bad_email");
+  const created = await post({ first_name: "Hugo", spotify_email: " Hugo.S@Mail.fr " });
+  assert.equal(created.status, 201);
+  assert.equal(created.data.invitation.spotify_account_email, "hugo.s@mail.fr");
+  assert.equal(created.data.invitation.spotify_account_name, "Hugo");     // prénom à défaut de nom
+  assert.match(created.data.spotify_dashboard_url, /developer\.spotify\.com\/dashboard\/client-test\/users/);
+  assert.equal((await post({ first_name: "Autre", spotify_email: "hugo.s@mail.fr" })).data.code, "taken");
+  const sp = (await call(env, "c@test.fr", adminSpotify.onRequestGet, { path: "/api/admin/spotify" })).data;
+  assert.deepEqual([sp.used, sp.invitations.length], [1, 1]);
+  // Inscription : source Spotify prête, sans formulaire ni attente
+  const token = new URL(created.data.link).pathname.split("/").pop();
+  const done = await invitationPage(env, token, { method: "POST", form: { email: "hugo@mail.fr", email2: "hugo@mail.fr" } });
+  assert.match(done.html, /Connecter Spotify/);
+  assert.match(done.html, /écran d(&#39;|')accueil/);
+  const src = env.DB.raw.prepare("SELECT s.status, s.spotify_account_email, s.spotify_allowlisted_at FROM music_sources s JOIN users u ON u.id = s.user_id WHERE u.email = 'hugo@mail.fr'").get();
+  assert.deepEqual([src.status, src.spotify_account_email, Boolean(src.spotify_allowlisted_at)], ["ready_to_connect", "hugo.s@mail.fr", true]);
+  assert.equal((await call(env, "c@test.fr", adminSpotify.onRequestGet, { path: "/api/admin/spotify" })).data.used, 1);  // toujours une place
+  assert.ok(queued(env).some((n) => n.kind === "member_joined" && n.to_admin === 1 && n.payload.spotify === true));
+  const me = await call(env, "hugo@mail.fr", getMe);
+  assert.equal(me.data.source.status, "ready_to_connect");
+  // Lien préparé puis supprimé : compte à retirer chez Spotify
+  const other = await post({ first_name: "Inès", spotify_email: "ines@mail.fr" });
+  const del = await call(env, "c@test.fr", adminInvitation.onRequestDelete, { method: "DELETE", path: `/api/admin/invitations/${other.data.invitation.id}`, params: { id: other.data.invitation.id } });
+  assert.equal(del.data.spotify_removal, true);
+  const after = (await call(env, "c@test.fr", adminSpotify.onRequestGet, { path: "/api/admin/spotify" })).data;
+  assert.deepEqual([after.removals.length, after.removals[0].reason, after.invitations.length], [1, "deleted", 0]);
+});
+
+test("invitation par e-mail avec compte Spotify ; places Spotify pleines", async () => {
+  const env = { ...spotifyEnv(), SPOTIFY_MAX_USERS: "1" };
+  const invite = (email, sp) => call(env, "c@test.fr", adminMembers.onRequestPost, {
+    method: "POST", path: "/api/admin/members", body: { email, first_name: "Jo", spotify_email: sp } });
+  const r = await invite("jo@test.fr", "jo.spotify@test.fr");
+  assert.equal(r.status, 201);
+  assert.equal(env.DB.raw.prepare("SELECT status FROM music_sources WHERE spotify_account_email = 'jo.spotify@test.fr'").get().status, "ready_to_connect");
+  assert.equal((await invite("kim@test.fr", "kim.spotify@test.fr")).data.code, "spotify_full");
+  assert.equal(env.DB.raw.prepare("SELECT COUNT(*) AS n FROM users WHERE email = 'kim@test.fr'").get().n, 0);  // rien de créé
+});
+
+test("notifications : connexion d'un membre une fois par jour, jamais l'admin ; demande Spotify ; accès ouvert", async () => {
+  const env = spotifyEnv();
+  await call(env, "a@test.fr", getMe, { jwt: await token({ email: "a@test.fr", iat: 1791800000 }) });
+  await call(env, "a@test.fr", getMe, { jwt: await token({ email: "a@test.fr", iat: 1791800000 }) });  // même session
+  await call(env, "a@test.fr", getMe, { jwt: await token({ email: "a@test.fr", iat: 1791800500 }) });  // nouvelle session
+  await call(env, "c@test.fr", getMe, { jwt: await token({ email: "c@test.fr", iat: 1791800000 }) });  // admin
+  const logins = queued(env).filter((n) => n.kind === "member_login");
+  assert.deepEqual(logins.map((n) => [n.user_id, n.payload.first]), [["u_aaaaaaaa", true], ["u_aaaaaaaa", false]]);
+  await call(env, "a@test.fr", getMe, { jwt: await token({ email: "a@test.fr", iat: 1791801000 }) });  // même jour
+  assert.equal(queued(env).filter((n) => n.kind === "member_login").length, 2);
+  // Demande de place Spotify : l'admin est prévenu (sans jeton ni identifiant Spotify)
+  env.DB.raw.exec("INSERT INTO users (id, email, first_name, status, invited_at) VALUES ('u_dddddddd', 'd@test.fr', 'Dora', 'onboarding', 'x')");
+  await call(env, "d@test.fr", spotifyRequest.onRequestPost, { method: "POST", body: { account_email: "dora@spotify.fr", account_name: "Dora D." } });
+  const request = queued(env).find((n) => n.kind === "spotify_request");
+  assert.deepEqual([request.user_id, request.payload.account_email], ["u_dddddddd", "dora@spotify.fr"]);
+  await call(env, "c@test.fr", adminAllowlisted.onRequestPost, { method: "POST", path: "/api/admin/spotify/u_dddddddd/allowlisted", params: { user: "u_dddddddd" } });
+  assert.ok(queued(env).some((n) => n.kind === "spotify_ready" && n.user_id === "u_dddddddd" && n.to_admin === 0));
+});
+
+test("J'ai un problème : enregistré avec le contexte, 5 par jour, visible et résolu par l'admin seulement", async () => {
+  const env = setup();
+  const report = (body, email = "a@test.fr") => call(env, email, problemRoute.onRequestPost, { method: "POST", path: "/api/me/problem", body });
+  const r = await report({ message: "  Je ne vois aucun concert  ", context: { ecran: "calendar", artistes: 0, "<script>": "x", objet: { a: 1 } } });
+  assert.equal(r.status, 201);
+  const row = env.DB.raw.prepare("SELECT user_id, message, context FROM problem_reports").get();
+  assert.equal(row.message, "Je ne vois aucun concert");
+  assert.deepEqual(JSON.parse(row.context), { ecran: "calendar", artistes: "0" });   // clés et valeurs contrôlées
+  assert.ok(queued(env).some((n) => n.kind === "problem_report" && n.to_admin === 1 && n.payload.message === "Je ne vois aucun concert"));
+  for (let i = 0; i < 4; i++) assert.equal((await report({})).status, 201);
+  assert.equal((await report({})).data.code, "too_many");
+  assert.equal((await report({}, "b@test.fr")).status, 201);                            // autre membre : à part
+  assert.equal((await call(env, "a@test.fr", adminProblems.onRequestGet, { path: "/api/admin/problems" })).status, 403);
+  const list = (await call(env, "c@test.fr", adminProblems.onRequestGet, { path: "/api/admin/problems" })).data;
+  assert.equal(list.length, 6);
+  assert.equal(list.find((p) => p.message).display_name, "Alice");
+  const id = list[0].id;
+  const resolve = () => call(env, "c@test.fr", adminProblemResolved.onRequestPost, { method: "POST", path: `/api/admin/problems/${id}/resolved`, params: { id: String(id) } });
+  assert.equal((await resolve()).data.resolved, true);
+  assert.equal((await resolve()).status, 404);
+  const again = (await call(env, "c@test.fr", adminProblems.onRequestGet, { path: "/api/admin/problems" })).data;
+  assert.ok(again.at(-1).resolved_at);                                                     // résolus en dernier
+});
+
+test("quota Spotify : Synchroniser maintenant sans effet pendant la pause ; essai automatique visible et relayé", async () => {
+  const env = setup();
+  const ago = (min) => new Date(Date.now() - min * 60000).toISOString().replace(/\.\d{3}Z$/, "+00:00");
+  const later = new Date(Date.now() + 3600000).toISOString().replace(/\.\d{3}Z$/, "+00:00");
+  env.DB.raw.exec(`UPDATE users SET status = 'error' WHERE id = 'u_aaaaaaaa';
+    INSERT INTO music_sources (user_id, provider, provider_user_id, status, last_sync_status, last_sync_at, sync_requested_at, retry_at)
+      VALUES ('u_aaaaaaaa', 'spotify', 'sa', 'connected', 'quota', '${ago(60)}', '${ago(120)}', '${later}');
+    INSERT INTO service_pauses (service, until, reason, created_at) VALUES ('spotify', '${later}', 'quota', '${ago(60)}')`);
+  const sync = await call(env, "a@test.fr", syncRoute.onRequestPost, { method: "POST" });
+  assert.deepEqual([sync.status, sync.data.code], [409, "spotify_paused"]);
+  const me = (await call(env, "a@test.fr", getMe)).data;
+  assert.equal(me.source.retry_at, later);
+  assert.equal(me.spotify.paused_until, later);
+  // Essai arrivé à échéance : relancé à l'ouverture du site, une fois par 15 minutes
+  const dispatched = [];
+  env.GITHUB_ACTIONS_TOKEN = "jeton-github";
+  const before = globalThis.fetch;
+  globalThis.fetch = async (url, init) => {
+    if (String(url).startsWith("https://api.github.com/")) {
+      if (String(url).includes("/weekly.yml/")) dispatched.push(JSON.parse(init.body).inputs.member);
+      return new Response(null, { status: 204 });
+    }
+    return before(url, init);
+  };
+  try {
+    env.DB.raw.exec(`UPDATE music_sources SET retry_at = '${ago(5)}'`);
+    await call(env, "a@test.fr", getMe);
+    await call(env, "a@test.fr", getMe);
+    assert.deepEqual(dispatched, ["u_aaaaaaaa"]);
+  } finally {
+    globalThis.fetch = before;
+  }
 });

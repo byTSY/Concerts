@@ -119,9 +119,22 @@ il s'arrête aussitôt (c. 1 minute de GitHub Actions) et n'enregistre aucun tra
   source : lien de son profil Deezer (public, vérifié, pas déjà rattaché à un autre membre), ou
   demande de place Spotify (voir ci-dessous) ; salles favorites (facultatif), puis attente du
   premier calcul (quelques minutes).
-- **Mon compte** : pseudo, source (« Synchroniser maintenant », une fois par heure ; « Changer
-  de source », qui remet les résultats à zéro en gardant préférences, salles et ★), salles
-  favorites, visibilité par défaut des ★, suppression du compte (double confirmation).
+- **Mon compte** : pseudo, source (« Synchroniser maintenant », une fois par heure, ou toutes
+  les 10 minutes après une erreur ; « Changer de source », qui remet les résultats à zéro en
+  gardant préférences, salles et ★), installation sur l'écran d'accueil du téléphone, « J'ai un
+  problème », salles favorites, visibilité par défaut des ★, suppression du compte (double
+  confirmation).
+- **J'ai un problème** (version 1.9.0) : bouton en bas de chaque page, sur les écrans d'arrivée
+  et dans « Mon compte ». Le message part à l'admin par e-mail (réponse directe au membre) avec
+  l'état du compte (écran, source, dernier calcul, version, navigateur) ; section
+  « Signalements » de l'onglet Admin, bouton « Résolu ». 5 signalements par jour et par membre.
+- **Notifications par e-mail** (version 1.9.0) : file d'attente D1 (`notifications`), envoyée
+  par le workflow « Notifications » (`notify.yml`, lancé par le site) et à la fin de chaque
+  calcul de membre. À l'admin : inscription, connexion d'un membre (une fois par jour au plus,
+  jamais celles de l'admin), source reliée, demande de place Spotify, calcul en erreur à traiter,
+  pause Spotify, signalement. Au membre : concerts prêts (premier calcul), source à reconnecter
+  ou profil Deezer devenu privé, accès Spotify ouvert. Mêmes secrets SMTP que la newsletter ;
+  sans eux, rien n'est envoyé et la file attend.
 
 ### Communauté
 
@@ -145,10 +158,17 @@ L'application Spotify « Concerts » est en mode développement : son propriéta
 abonnement Premium, et elle n'accepte que 5 comptes, ajoutés à la main dans le tableau de bord
 Spotify (page User Management). D'où le parcours :
 
+0. Parcours le plus simple (version 1.9.0) : l'admin saisit l'e-mail Spotify de la personne en
+   créant son lien d'invitation (« La personne utilise Spotify ? »), ajoute ce compte chez Spotify
+   (bouton « Ouvrir Spotify », champs à copier), puis envoie le lien. À l'inscription, la source
+   Spotify est déjà prête : la personne n'a plus qu'à cliquer sur « Connecter Spotify ».
+   L'invitation prend une place ; un lien supprimé crée un « retrait à faire ». Sans e-mail
+   Spotify connu, le parcours ci-dessous reste disponible.
 1. Le membre choisit Spotify et indique le nom et l'e-mail de son compte Spotify (option grisée
    quand les 5 places sont prises ; plafond `SPOTIFY_MAX_USERS`, 5 par défaut).
-2. L'admin, dans l'onglet Admin, section Spotify : copie le nom et l'e-mail, ouvre la page User
-   Management par le bouton « Ouvrir Spotify », ajoute le compte, puis clique « Fait ».
+2. L'admin, prévenu par e-mail, dans l'onglet Admin, section Spotify : copie le nom et l'e-mail,
+   ouvre la page User Management par le bouton « Ouvrir Spotify », ajoute le compte, puis clique
+   « Fait » (le membre est prévenu par e-mail).
 3. Le membre voit « Connecter Spotify », autorise l'application chez Spotify (Authorization
    Code avec PKCE ; l'échange du code se fait côté serveur) et revient sur le site ; le calcul
    est lancé. Si Spotify refuse le compte (adresse erronée), la demande revient chez l'admin avec
@@ -165,6 +185,22 @@ sauvegardés, les titres des playlists du membre et ses artistes les plus écout
 similaires servent aux découvertes ; un artiste non rapproché (identifiant `sp:<id>`) sert au
 rapprochement des concerts par nom seulement. Le nombre d'appels Spotify et d'artistes non
 rapprochés figure dans le journal du traitement.
+
+Quota (version 1.9.0, incident du 13 octobre 2026) : depuis juillet 2026, Spotify compte les
+appels de toutes les applications en mode développement d'un même compte développeur ensemble.
+Au-delà, il refuse les appels pendant plusieurs heures (réponse 429 avec un long Retry-After).
+- Spotify est alors mis en pause jusqu'à l'heure indiquée (table `service_pauses`) : plus aucun
+  appel d'ici là, les membres Spotify passent « en erreur : quota » avec un nouvel essai
+  automatique à la fin de la pause ; l'admin est prévenu par e-mail.
+- Toute erreur passagère (quota, Spotify ou Deezer indisponible, erreur interne) donne un nouvel
+  essai automatique au bout de 1 h, 3 h, 8 h puis 24 h (`retry_at`), relancé par la relance des
+  2 heures ou à l'ouverture du site.
+- Un traitement complet relancé dans la journée (« Relancer le traitement complet ») réutilise
+  une bibliothèque Spotify lue depuis moins de 20 heures ; une demande du membre (« Synchroniser
+  maintenant ») ou de l'admin (« Recalculer ») relit toujours la bibliothèque.
+- La fiche d'un concert n'interroge plus Spotify : lien Wikidata, ou page de recherche Spotify.
+- La version d'essai utilise la même application Spotify, donc le même quota : éviter les
+  calculs Spotify répétés sur la version d'essai.
 
 Une place reste prise tant qu'un compte figure dans le tableau de bord Spotify : après la
 suppression d'un membre Spotify ou son passage à Deezer, la section Spotify affiche un
@@ -195,8 +231,8 @@ Réglages Cloudflare du projet Pages (Settings > Bindings, et Variables and Secr
 | `CF_ACCOUNT_ID` | variable | n° du compte Cloudflare |
 | `ACCESS_LIST_ID` | variable | identifiant de la liste Zero Trust « membres » (adresses autorisées) |
 | `CF_ADMIN_API_TOKEN` | secret | clé Cloudflare : liste Zero Trust (Zero Trust Edit), coupure des sessions (Access : Organizations, Identity Providers and Groups Edit) |
-| `GITHUB_ACTIONS_TOKEN` | secret | clé GitHub limitée au dépôt, droit « Actions : Read and write » (lancement d'un calcul) |
-| `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET` | secret | identifiants de l'application Spotify (fiche de partage, connexion des membres) |
+| `GITHUB_ACTIONS_TOKEN` | secret | clé GitHub limitée au dépôt, droit « Actions : Read and write » (lancement d'un calcul, envoi des notifications) |
+| `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET` | secret | identifiants de l'application Spotify (connexion des membres) |
 | `TOKEN_ENC_KEY` | secret | clé de chiffrement des jetons Spotify : 32 octets en base64, identique dans GitHub Actions |
 | `SPOTIFY_MAX_USERS` | variable (facultative) | places Spotify, 5 par défaut |
 
@@ -215,15 +251,16 @@ deux étapes et un mot de passe d'application (`SMTP_HOST` = `smtp.gmail.com`, p
 newsletter part à la fin du traitement programmé du lundi, une fois par semaine au plus, aux membres
 actifs abonnés (abonnés par défaut ; désabonnement dans « Mon compte » ou par le lien de l'e-mail,
 page publique `/partage/desabonnement/<jeton>`). Essai pour un seul membre : onglet Actions, « Newsletter (essai) »,
-« Run workflow », identifiant du membre (`u_xxxxxxxx`).
+« Run workflow », identifiant du membre (`u_xxxxxxxx`). Les mêmes secrets servent aux
+notifications (version 1.9.0, workflow « Notifications » et tâche membres).
 
 Versions : numéro dans `VERSION`, journal et retour arrière dans `CHANGELOG.md`.
 
 Tests (avant chaque mise en production) :
 
 ```powershell
-.venv\Scripts\python -m unittest discover -s tests -t .   # historique, membres, Spotify (simulé)
-node --test tests/functions.test.mjs                     # jeton Access, barrière, isolation, admin, arrivée, Spotify
+.venv\Scripts\python -m unittest discover -s tests -t .   # historique, membres, Spotify (simulé), quota, notifications
+node --test tests/functions.test.mjs                     # jeton Access, barrière, isolation, admin, arrivée, Spotify, signalements
 node --test tests/partage.test.mjs                       # fiche /partage : présentation Dice et cache
 ```
 

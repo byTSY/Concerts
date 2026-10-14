@@ -13,6 +13,7 @@
   python -m src.main promote               publie la collecte préparée (après l'envoi sur GitHub)
   python -m src.main newsletter            newsletter du lundi à chaque membre abonné (SMTP)
   python -m src.main newsletter --test-member <id>   essai pour ce seul membre
+  python -m src.main notify                envoie les notifications en attente (e-mails, SMTP)
 
 La dernière collecte (concerts dédoublonnés, sans champ personnel) est conservée dans R2
 (common/collected.json) : la tâche membres et le calcul d'un seul membre la relisent. La tâche
@@ -20,7 +21,11 @@ commune la prépare (collected.next.json) ; elle n'est publiée qu'une fois les 
 envoyées sur GitHub, pour que les identifiants des concerts concordent.
 Si un calcul de membre trouve une collecte de plus de 7 jours (traitement complet du lundi
 annulé, par exemple), il refait d'abord la tâche commune, puis calcule tous les membres.
-Une erreur chez un membre le passe en statut error et le traitement continue.
+Une erreur chez un membre le passe en statut error et le traitement continue. Erreur passagère
+(quota Spotify, service indisponible) : nouvel essai automatique espacé (members.next_retry) ;
+quota Spotify : Spotify en pause jusqu'à l'heure indiquée par Spotify (aucun appel d'ici là).
+Traitement complet relancé dans la journée : la bibliothèque Spotify lue depuis moins de
+LIBRARY_REUSE_HOURS heures est réutilisée (quota Spotify commun à tous les membres).
 """
 import argparse
 import copy
@@ -29,7 +34,7 @@ import re
 import time
 from datetime import datetime, timedelta, timezone
 
-from . import catalog, cloud, discover, history, match, members, newsletter, publish
+from . import catalog, cloud, discover, history, match, members, newsletter, notify, publish
 from .library import deezer as deezer_library, spotify as spotify_library
 from .library.base import SourceError
 from .sources import bandsintown, dice, offi, qfap, ticketmaster, venues as venue_pages
@@ -39,6 +44,8 @@ COLLECTED = "common/collected.json"
 COLLECTED_NEXT = "common/collected.next.json"
 STALE_DAYS = 7
 LIBRARIES = {"deezer": deezer_library.read, "spotify": spotify_library.read}
+LIBRARY_REUSE_HOURS = 20
+QUOTA_PAUSE_DEFAULT_S = 3600   # quota sans Retry-After lisible
 
 
 def run_source(label, status, fn, *args):
@@ -173,16 +180,35 @@ class MemberGone(Exception):
 
 # --- Tâche membres -----------------------------------------------------------------------
 
-def compute_member(m, collected, settings, db, store, budget, excluded=None):
-    """Calcule un membre : source, préférences, rapprochement, découvertes, historique, R2."""
+def library_is_fresh(m, kind):
+    """Traitement complet (pas une demande du membre) et bibliothèque Spotify lue depuis moins de
+    LIBRARY_REUSE_HOURS heures : la lecture précédente est réutilisée."""
+    if kind != "weekly" or m.get("provider") != "spotify" or members.explicit_request(m) or not m.get("library_read_at"):
+        return False
+    try:
+        read_at = datetime.fromisoformat(m["library_read_at"])
+    except ValueError:
+        return False
+    return datetime.now(timezone.utc) - read_at < timedelta(hours=LIBRARY_REUSE_HOURS)
+
+
+def compute_member(m, collected, settings, db, store, budget, excluded=None, reuse_library=False):
+    """Calcule un membre : source, préférences, rapprochement, découvertes, historique, R2.
+    reuse_library : liste d'artistes du calcul précédent, sans appel à la source.
+    Renvoie {"library_read": bool, "counts": compteurs, "token_lost": bool}."""
     uid = m["id"]
     read_library = LIBRARIES.get(m["provider"])
     if not read_library:
         raise SourceError("unsupported_provider", m["provider"])
     previous = members.read(store, uid, "artists", {})
-    # Deezer : n° du profil public ; Spotify : jeton du membre (chiffré en D1)
-    source = members.SpotifyAccess(db, uid) if m["provider"] == "spotify" else m["provider_user_id"]
-    artists = read_library(source, settings, previous)
+    source = None
+    if reuse_library and previous:
+        log("  Bibliothèque lue il y a moins de 20 heures : réutilisée")
+        artists = copy.deepcopy(previous)
+    else:
+        # Deezer : n° du profil public ; Spotify : jeton du membre (chiffré en D1)
+        source = members.SpotifyAccess(db, uid) if m["provider"] == "spotify" else m["provider_user_id"]
+        artists = read_library(source, settings, previous)
     artists, hidden, hidden_keys = apply_prefs(artists, members.prefs(db, uid))
 
     events = copy.deepcopy(collected["events"])
@@ -202,6 +228,34 @@ def compute_member(m, collected, settings, db, store, budget, excluded=None):
     for name, value in files.items():
         members.write(store, uid, name, value)
     log(f"  Stockage R2 : {total / 1048576:.1f} Mo sur {settings['r2_bucket_max_mb']} Mo autorisés")
+    return {"library_read": source is not None and m["provider"] == "spotify",
+            "counts": files["meta"]["counts"],
+            "token_lost": bool(getattr(source, "lost", False))}
+
+
+def notify_result(db, m, code, info, today):
+    """Messages après le calcul d'un membre : premiers résultats (au membre), action attendue du
+    membre (source à reconnecter) ou de l'admin, au premier calcul qui trouve l'erreur."""
+    uid = m["id"]
+    try:
+        if code is None:
+            if not m.get("activated_at"):
+                counts = (info or {}).get("counts") or {}
+                notify.queue(db, "results_ready", uid, payload={"known": counts.get("known", 0),
+                                                                 "discovery": counts.get("discovery", 0)},
+                             dedupe=f"ready:{uid}")
+            if (info or {}).get("token_lost"):
+                notify.queue(db, "calc_error", uid, to_admin=True, payload={"code": "token_lost"},
+                             dedupe=f"calc:{uid}:token_lost:{today}")
+            return
+        if code == m.get("last_sync_status"):
+            return  # déjà signalé au calcul précédent
+        if code in notify.MEMBER_ERRORS:
+            notify.queue(db, "source_action", uid, payload={"code": code}, dedupe=f"source:{uid}:{code}:{today}")
+        if code in notify.ADMIN_ERRORS:
+            notify.queue(db, "calc_error", uid, to_admin=True, payload={"code": code}, dedupe=f"calc:{uid}:{code}:{today}")
+    except Exception as exc:  # noqa: BLE001  une notification manquée n'arrête pas le traitement
+        log(f"  Notification non enregistrée ({exc.__class__.__name__})")
 
 
 def run_members(settings, db, store, selection, collected=None, kind="weekly"):
@@ -211,14 +265,25 @@ def run_members(settings, db, store, selection, collected=None, kind="weekly"):
     run_id = members.start_run(db, kind)
     budget = {"left": settings["discovery"]["max_new_lookups"]}
     excluded = discover.big_venues()  # grandes salles, lues une fois pour tous les membres
-    failures = 0
+    try:
+        spotify_pause = members.service_pause(db, "spotify")
+    except Exception as exc:  # noqa: BLE001  table absente (migration 0011 non appliquée)
+        log(f"Pause Spotify illisible ({exc.__class__.__name__})")
+        spotify_pause = None
+    if spotify_pause:
+        log(f"Spotify en pause (quota) jusqu'à {spotify_pause} : membres Spotify reportés")
+    today = members.now_iso()[:10]
+    failures, paused = 0, 0
     log(f"Tâche membres : {len(selection)} membre(s)")
     for m in selection:
         uid, started, started_at = m["id"], time.monotonic(), members.now_iso()
         log(f"Membre {uid} ({m['provider']})")
-        code = None
+        code, info = None, None
+        reuse = library_is_fresh(m, kind)
         try:
-            compute_member(m, collected, settings, db, store, budget, excluded)
+            if m["provider"] == "spotify" and spotify_pause and not reuse:
+                raise SourceError("quota", "Spotify en pause")
+            info = compute_member(m, collected, settings, db, store, budget, excluded, reuse_library=reuse)
         except MemberGone:
             log(f"  Membre {uid} : supprimé ou modifié pendant le calcul, résultats non enregistrés")
             continue
@@ -227,27 +292,45 @@ def run_members(settings, db, store, selection, collected=None, kind="weekly"):
                 log(f"  Membre {uid} : reconnecté pendant le calcul, résultats non enregistrés")
                 continue
             code = exc.code
+            if code == "quota" and m["provider"] == "spotify" and exc.retry_after is not None:
+                # Quota du compte développeur : plus aucun appel Spotify avant l'heure indiquée
+                spotify_pause = members.iso_in(max(int(exc.retry_after), 60) or QUOTA_PAUSE_DEFAULT_S)
+                try:
+                    if members.set_service_pause(db, "spotify", spotify_pause, "quota"):
+                        notify.queue(db, "spotify_paused", to_admin=True, payload={"until": spotify_pause},
+                                     dedupe=f"pause:spotify:{spotify_pause[:13]}")
+                except Exception as e:  # noqa: BLE001
+                    log(f"  Pause Spotify non enregistrée ({e.__class__.__name__})")
+                log(f"  Spotify en pause jusqu'à {spotify_pause}")
+            if code == "quota":
+                paused += 1
         except members.QuotaError as exc:
             log(f"  Stockage : {exc}")
             code = "storage_quota"
         except Exception as exc:  # noqa: BLE001  une erreur chez un membre n'arrête pas les autres
             log(f"  Erreur interne ({exc.__class__.__name__})")
             code = "internal"
+        retry = members.next_retry(code, m.get("retry_count") or 0,
+                                   spotify_pause if m["provider"] == "spotify" else None) if code else (None, 0)
         try:
-            members.record_sync(db, uid, ok=code is None, error_code=code, started_at=started_at)
+            members.record_sync(db, uid, ok=code is None, error_code=code, started_at=started_at, retry=retry,
+                                library_read=bool(info and info["library_read"]))
             members.record_member_run(db, run_id, uid, m["provider"], code is None, code, time.monotonic() - started)
         except Exception as exc:  # noqa: BLE001  membre supprimé entre-temps (clé étrangère)
             log(f"  Suivi du membre {uid} non enregistré ({exc.__class__.__name__})")
-        log(f"  Membre {uid} : {'calcul terminé' if code is None else f'erreur {code}'}")
+        notify_result(db, m, code, info, today)
+        log(f"  Membre {uid} : {'calcul terminé' if code is None else f'erreur {code}'}"
+            + (f", nouvel essai automatique vers {retry[0]}" if code and retry[0] else ""))
         failures += code is not None
     members.end_run(db, run_id, "ok" if not failures else f"{failures} erreur(s)")
-    log(f"Tâche membres terminée : {len(selection) - failures} calcul(s) réussi(s), {failures} en erreur")
+    log(f"Tâche membres terminée : {len(selection) - failures} calcul(s) réussi(s), {failures} en erreur"
+        + (f" (dont {paused} reporté(s) : quota Spotify)" if paused else ""))
     return failures
 
 
 def main():
     parser = argparse.ArgumentParser(prog="python -m src.main", description="Traitement des concerts")
-    parser.add_argument("task", nargs="?", choices=("common", "members", "promote", "newsletter"),
+    parser.add_argument("task", nargs="?", choices=("common", "members", "promote", "newsletter", "notify"),
                         help="tâche seule (défaut : les deux, ou members avec --member / --pending)")
     parser.add_argument("--member", action="append", default=[], help="identifiant d'un membre à calculer")
     parser.add_argument("--pending", action="store_true", help="membres qui attendent un calcul")
@@ -263,6 +346,9 @@ def main():
 
     if args.task == "promote":
         promote(store)
+        return
+    if args.task == "notify":
+        notify.send_pending(db)
         return
     if args.task == "newsletter":
         newsletter.send_all(db, store, store.get_json(COLLECTED), test_member=args.test_member or None)
@@ -280,6 +366,7 @@ def main():
         # aucun traitement enregistré
         if targeted and args.pending and not members.pending(db):
             log("Aucun membre en attente de calcul")
+            notify.send_pending(db)  # messages que le site n'a pas pu faire envoyer
             return
         if targeted and collection_is_stale(db):
             log(f"Collecte de plus de {STALE_DAYS} jours : traitement complet")
@@ -301,11 +388,13 @@ def main():
             selection += [m for m in waiting if m["id"] not in seen]
             if not selection:
                 log("Aucun membre en attente de calcul")
+                notify.send_pending(db)
                 return
             kind = "member"
         else:
             selection, kind = members.active(db), "weekly"
         run_members(settings, db, store, selection, collected, kind)
+        notify.send_pending(db)
 
 
 if __name__ == "__main__":

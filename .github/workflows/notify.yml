@@ -1,0 +1,46 @@
+name: Notifications
+
+# Envoi des e-mails en attente (table D1 notifications, version 1.9.0) : lancé par le site après
+# une inscription, une connexion, une demande Spotify ou un signalement « J'ai un problème ». Un
+# lancement manqué n'est pas grave : la tâche membres envoie aussi la file (fin de chaque calcul,
+# relance des 2 heures). Groupe à part : jamais en concurrence avec le traitement du lundi.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: notify
+  cancel-in-progress: false
+
+env:
+  CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+  D1_DATABASE_ID: ${{ secrets.D1_DATABASE_ID }}
+  CF_D1_API_TOKEN: ${{ secrets.CF_D1_API_TOKEN }}
+  R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+  R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+  R2_BUCKET: ${{ secrets.R2_BUCKET }}
+
+jobs:
+  notify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Envoi des notifications
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          NEWSLETTER_FROM: ${{ secrets.NEWSLETTER_FROM }}
+        run: python -m src.main notify

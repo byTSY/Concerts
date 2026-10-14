@@ -93,10 +93,26 @@
     <section id="view-account" class="view" hidden><div id="account"></div></section>
     <section id="view-admin" class="view" hidden><div id="admin"></div></section>
   </main>
-  <footer class="app-version">Version <span id="app-version">1.8.2</span></footer>
-
   <!-- Arrivée d'un membre : choix de la source, puis attente du premier calcul -->
   <section id="onboarding" class="onboarding" hidden></section>
+
+  <footer class="app-version">
+    <button type="button" class="link-btn" data-problem>J'ai un problème</button>
+    <span aria-hidden="true">·</span> Version <span id="app-version">1.9.0</span>
+  </footer>
+
+  <!-- « J'ai un problème » : message à l'admin, avec le contexte (site/account.js) -->
+  <dialog id="problem" class="problem-dialog" aria-labelledby="problem-title">
+    <form method="dialog" id="problem-form">
+      <h2 id="problem-title">J'ai un problème</h2>
+      <p class="cell-sub">Votre message part à l'admin, avec l'état de votre compte (écran affiché, source musicale, dernier calcul). Il vous répondra par e-mail.</p>
+      <label for="problem-text">Que se passe-t-il ? (facultatif)</label>
+      <textarea id="problem-text" rows="5" maxlength="2000" placeholder="Par exemple : je ne vois aucun concert, le bouton Connecter Spotify ne marche pas…"></textarea>
+      <p id="problem-result" role="status"></p>
+      <p><button class="btn" type="submit" value="send" id="problem-send">Envoyer</button>
+        <button class="btn btn-quiet" type="button" id="problem-cancel">Fermer</button></p>
+    </form>
+  </dialog>
 
   <dialog id="ticket" aria-labelledby="ticket-title">
     <div class="ticket">
