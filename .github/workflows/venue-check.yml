@@ -1,0 +1,67 @@
+name: Vérification des salles
+
+# Lecture et contrôle de la page programme des salles proposées (version 1.12.0) : lancé par le
+# site à chaque proposition avec page programme, et par « Relancer la vérification » dans l'Admin.
+# Toutes les salles en attente de vérification sont traitées : un lancement remplacé dans la file
+# (GitHub n'en garde qu'un en attente par groupe) ne perd aucune salle.
+# Salle ajoutée et dernière collecte de plus de 6 heures : traitement complet lancé aussitôt ;
+# sinon la relance de sécurité (toutes les 2 heures) le lancera.
+on:
+  workflow_dispatch:
+    inputs:
+      venue:
+        description: "Salle à vérifier (identifiant) ; vide : toutes les salles en attente de vérification"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+  actions: write   # lancement du traitement complet (gh workflow run)
+
+concurrency:
+  group: venue-check
+  cancel-in-progress: false
+
+env:
+  CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+  D1_DATABASE_ID: ${{ secrets.D1_DATABASE_ID }}
+  CF_D1_API_TOKEN: ${{ secrets.CF_D1_API_TOKEN }}
+  R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+  R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+  R2_BUCKET: ${{ secrets.R2_BUCKET }}
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Vérification
+        id: check
+        env:
+          VENUE: ${{ inputs.venue }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          NEWSLETTER_FROM: ${{ secrets.NEWSLETTER_FROM }}
+        run: |
+          if [ -n "$VENUE" ]; then
+            python -m src.main venue-check --venue "$VENUE"
+          else
+            python -m src.main venue-check
+          fi
+
+      - name: Traitement complet (salle ajoutée)
+        if: ${{ steps.check.outputs.launch_full == 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run weekly.yml --ref main -f member=

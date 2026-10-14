@@ -139,6 +139,11 @@ function cleanUrl(value) {
   return url.href;
 }
 
+// Résultat de la vérification automatique (JSON écrit par src/venue_check.py), ou null
+function checkSummary(text) {
+  try { return text ? JSON.parse(text) : null; } catch { return null; }
+}
+
 // Salle dont un nom contient un nom de la salle proposée, ou l'inverse (mot pour mot) : noms
 // des autres salles concernées, signalés à l'admin
 async function overlappingVenues(db, id, names) {
@@ -454,7 +459,9 @@ export function member(env, user) {
 
     // --- Propositions de salles (section 13.1) ------------------------------------------
 
-    // Nouvelle salle proposée au catalogue commun, publiée après validation de l'admin
+    // Nouvelle salle proposée au catalogue commun. Avec page programme : vérification automatique
+    // demandée (check_status running, workflow venue-check.yml lancé par la route) ; sans page
+    // programme : validation par l'admin. Renvoie { proposals, check: identifiant à vérifier ou null }.
     async proposeVenue({ name, aliases, agenda_url }) {
       const clean = cleanName(name);
       const id = venueId(clean);
@@ -472,9 +479,10 @@ export function member(env, user) {
         throw new HttpError(409, message, "exists");
       }
       try {
-        const r = await db.prepare("INSERT INTO venues (id, name, aliases, agenda_url, excluded, status, proposed_by, proposed_at) " +
-          "SELECT ?, ?, ?, ?, 0, 'pending', ?, ? WHERE (SELECT COUNT(*) FROM venues WHERE proposed_by = ? AND status = 'pending') < ?")
-          .bind(id, clean, JSON.stringify(list), url, user.id, nowIso(), user.id, MAX_PENDING_PROPOSALS).run();
+        const r = await db.prepare("INSERT INTO venues (id, name, aliases, agenda_url, excluded, status, proposed_by, proposed_at, check_status, checked_at) " +
+          "SELECT ?, ?, ?, ?, 0, 'pending', ?, ?, ?, ? WHERE (SELECT COUNT(*) FROM venues WHERE proposed_by = ? AND status = 'pending') < ?")
+          .bind(id, clean, JSON.stringify(list), url, user.id, nowIso(), url ? "running" : null, url ? nowIso() : null,
+            user.id, MAX_PENDING_PROPOSALS).run();
         if (!r.meta?.changes) {
           throw new HttpError(429, `${MAX_PENDING_PROPOSALS} propositions en attente au plus : attendez la réponse de l'admin`, "too_many");
         }
@@ -483,13 +491,13 @@ export function member(env, user) {
         if (/UNIQUE|PRIMARY/i.test(String(e?.message))) throw new HttpError(409, "cette salle est déjà proposée", "exists");
         throw e;
       }
-      return api.venueProposals();
+      return { proposals: await api.venueProposals(), check: url ? id : null };
     },
 
     // Propositions du membre et réponse de l'admin
     async venueProposals() {
       const { results } = await db.prepare(
-        "SELECT id, name, status, review_note, proposed_at, reviewed_at FROM venues WHERE proposed_by = ? ORDER BY proposed_at DESC")
+        "SELECT id, name, status, review_note, proposed_at, reviewed_at, check_status, auto_approved FROM venues WHERE proposed_by = ? ORDER BY proposed_at DESC")
         .bind(id).all();
       return results;
     },
@@ -1047,9 +1055,11 @@ export function admin(env) {
       if (!["pending", "approved", "rejected"].includes(status)) throw new HttpError(400, "statut : pending, approved ou rejected");
       const { results } = await db.prepare(
         "SELECT v.id, v.name, v.aliases, v.agenda_url, v.excluded, v.status, v.proposed_at, v.reviewed_at, v.review_note, " +
+        "v.check_status, v.check_summary, v.checked_at, v.auto_approved, " +
         "COALESCE(u.pseudo, u.first_name) AS proposed_by_name FROM venues v LEFT JOIN users u ON u.id = v.proposed_by " +
         "WHERE v.status = ? ORDER BY COALESCE(v.proposed_at, v.name)").bind(status).all();
-      const out = results.map((v) => ({ ...v, aliases: JSON.parse(v.aliases || "[]"), excluded: Boolean(v.excluded) }));
+      const out = results.map((v) => ({ ...v, aliases: JSON.parse(v.aliases || "[]"), excluded: Boolean(v.excluded),
+        auto_approved: Boolean(v.auto_approved), check_summary: checkSummary(v.check_summary) }));
       if (status !== "approved") {
         for (const v of out) v.overlaps = await overlappingVenues(db, v.id, [v.name, ...v.aliases]);
       }
@@ -1095,15 +1105,28 @@ export function admin(env) {
       return (await this.venues(row.status)).find((v) => v.id === row.id);
     },
 
-    // Décision sur une proposition : approved (publiée au prochain traitement) ou rejected
+    // Décision sur une proposition : approved (publiée au traitement complet suivant) ou rejected.
+    // Une salle ajoutée automatiquement (vérification de sa page programme) peut aussi être retirée.
     async reviewVenue(venueKey, status, note) {
       const row = await this.venue(venueKey);
       // En attente, ou refusée puis finalement approuvée (refus par erreur)
-      const from = status === "approved" ? ["pending", "rejected"] : ["pending"];
-      const r = await db.prepare(`UPDATE venues SET status = ?, reviewed_at = ?, review_note = ? WHERE id = ? AND status IN (${from.map(() => "?").join(", ")})`)
-        .bind(status, nowIso(), cleanName(note, 300) || null, row.id, ...from).run();
+      const allowed = status === "approved" ? "status IN ('pending', 'rejected')"
+        : "(status = 'pending' OR (status = 'approved' AND auto_approved = 1))";
+      // Approbation par l'admin : la salle n'est plus « ajoutée automatiquement »
+      const manual = status === "approved" ? ", auto_approved = 0" : "";
+      const r = await db.prepare(`UPDATE venues SET status = ?, reviewed_at = ?, review_note = ?${manual} WHERE id = ? AND ${allowed}`)
+        .bind(status, nowIso(), cleanName(note, 300) || null, row.id).run();
       if (!r.meta?.changes) throw new HttpError(409, "cette salle n'est pas en attente de validation", "not_pending");
       return { id: row.id, status };
+    },
+
+    // « Relancer la vérification » : salle en attente avec page programme (la route lance le workflow)
+    async requestVenueCheck(venueKey) {
+      const row = await this.venue(venueKey);
+      const r = await db.prepare("UPDATE venues SET check_status = 'running', checked_at = ? " +
+        "WHERE id = ? AND status = 'pending' AND agenda_url IS NOT NULL").bind(nowIso(), row.id).run();
+      if (!r.meta?.changes) throw new HttpError(409, "salle déjà traitée, ou sans page programme", "not_checkable");
+      return { id: row.id, check_status: "running" };
     },
 
     // --- Spotify : places, demandes à ajouter, comptes à retirer (section 10) -------------

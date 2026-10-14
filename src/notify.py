@@ -141,6 +141,37 @@ def render(row, user, site):
         return ("Action nécessaire sur Concerts à Paris",
                 f"Bonjour {name},\n\n{what}\n\nOuvrir Concerts à Paris : {site}/?vue=account\n\n"
                 f"Un souci ? Bouton « J'ai un problème » en bas de chaque page.")
+    if kind in ("venue_added", "venue_check_failed", "venue_needs_review", "venue_broken"):
+        venue = p.get("name", "")
+        by = f", proposée par {p['proposer']}" if p.get("proposer") else ""
+        reasons = "\n".join(f"- {r}" for r in p.get("reasons") or [])
+        sample = "\n".join(f"- {s.get('date', '')} {s.get('time') or ''} : {s.get('title') or '?'}".replace("  ", " ")
+                           for s in p.get("sample") or [])
+        stats = p.get("stats") or {}
+        if kind == "venue_added":
+            return (f"Salle ajoutée automatiquement : {venue}",
+                    f"La salle {venue}{by} a été ajoutée au catalogue : sa page programme a été lue et contrôlée "
+                    f"({stats.get('concerts', 0)} concerts à venir, méthode : {p.get('method', '')}).\n"
+                    f"Page lue : {p.get('url') or ''}\n\nPremiers concerts lus :\n{sample}\n\n"
+                    f"Ses concerts arrivent sur le site au prochain traitement complet (dans les heures qui suivent).\n"
+                    f"Une erreur ? « Retirer du catalogue » dans l'onglet Admin.\n\n{admin_link}")
+        if kind == "venue_needs_review":
+            near = ", ".join(p.get("review") or [])
+            return (f"Salle à valider : {venue}",
+                    f"La page programme de {venue}{by} a été lue ({stats.get('concerts', 0)} concerts à venir), mais son "
+                    f"nom est proche d'une salle du catalogue : {near}. Ses concerts pourraient être confondus : "
+                    f"la salle attend votre décision.\nPage lue : {p.get('url') or ''}\n\n"
+                    f"Premiers concerts lus :\n{sample}\n\n{admin_link}")
+        if kind == "venue_check_failed":
+            return (f"Salle à valider : {venue}",
+                    f"La salle {venue}{by} attend votre décision : la lecture automatique de sa page programme "
+                    f"n'a pas abouti.\nPage : {p.get('url') or ''}\nRaisons :\n{reasons}\n\n"
+                    f"Vous pouvez corriger l'adresse et relancer la vérification, ou approuver la salle quand même "
+                    f"(ses concerts viendront alors seulement des billetteries).\n\n{admin_link}")
+        return (f"Page programme illisible : {venue}",
+                f"Le traitement de la semaine n'a pas pu lire la page programme de {venue} : ses concerts ne "
+                f"viennent plus que des billetteries.\nPage : {p.get('url') or ''}\nRaisons :\n{reasons}\n\n"
+                f"Le site de la salle a peut-être changé d'adresse ou de présentation.\n\n{admin_link}")
     if kind == "spotify_ready":
         return ("Votre accès Spotify est ouvert",
                 f"Bonjour {name},\n\nVotre accès Spotify est ouvert. Ouvrez le site et cliquez sur « Connecter Spotify » : "

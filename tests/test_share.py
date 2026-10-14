@@ -56,6 +56,6 @@ class VenueMatching(unittest.TestCase):
             headers, encoding = {}, "utf-8"
             def __enter__(self): return self
             def __exit__(self, *a): return False
-            def iter_content(self, size): return iter([b"x" * size] * 200)  # 13 Mo
+            def iter_content(self, size): return iter([b"x" * 65536] * 200)  # 13 Mo
         with mock.patch.object(venues.SESSION, "get", lambda *a, **k: Big()):
             self.assertIsNone(venues._read("https://salle.fr/"))

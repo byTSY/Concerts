@@ -136,11 +136,52 @@ async function linkAction({ link: action, id, name }) {
   } catch (err) { toast(err.message); }
 }
 
+// Résultat de la vérification automatique de la page programme (version 1.12.0)
+const CHECK_STALE_MS = 30 * 60 * 1000;
+const checkRunning = (v) => v.check_status === "running"
+  && Date.now() - new Date(v.checked_at || v.proposed_at).getTime() <= CHECK_STALE_MS;
+
+function venueCheck(v) {
+  const s = v.check_summary || {};
+  if (v.check_status === "running") {
+    return checkRunning(v) ? `<p class="cell-sub">Vérification automatique de la page programme en cours (1 à 2 minutes)…</p>`
+      : `<p class="prefs-warning">Vérification automatique sans résultat depuis plus de 30 minutes : relancez-la.</p>`;
+  }
+  const sample = (s.sample || []).map((e) => `<li>${esc(e.date)}${e.time ? ` ${esc(e.time)}` : ""} : ${esc(e.title || "?")}</li>`).join("");
+  if (v.check_status === "ok" && s.review?.length) {
+    // Page lue, mais nom proche d'une salle du catalogue : pas d'ajout sans l'admin
+    return `<p class="prefs-warning">Page programme lue (${esc(String(s.stats?.concerts ?? "?"))} concerts, ${esc(s.method || "")}), mais nom proche de : ${esc(s.review.join(", "))}. Vérifiez qu'il s'agit bien d'une autre salle avant d'approuver.</p>
+      ${sample ? `<p class="cell-sub">Premiers concerts lus :</p><ul class="plain-list cell-sub">${sample}</ul>` : ""}`;
+  }
+  if (v.check_status !== "failed") return "";
+  return `<p class="prefs-warning">Lecture automatique de la page programme non concluante${v.checked_at ? ` (${esc(fmtDateTime(v.checked_at))})` : ""} :</p>
+      <ul class="plain-list cell-sub">${(s.reasons || []).map((r) => `<li>${esc(r)}</li>`).join("")}</ul>
+      ${s.method && s.method !== "aucune" ? `<p class="cell-sub">Méthode la plus proche : ${esc(s.method)}${s.url ? ` (${esc(s.url)})` : ""}</p>` : ""}
+      ${sample ? `<p class="cell-sub">Premiers événements lus :</p><ul class="plain-list cell-sub">${sample}</ul>` : ""}
+      <p class="cell-sub">Approuver quand même : ses concerts viendront seulement des billetteries.</p>`;
+}
+
+// Salles ajoutées automatiquement depuis 30 jours : retrait possible
+function autoVenuesSection(approved) {
+  const since = Date.now() - 30 * 86400 * 1000;
+  const recent = (approved || []).filter((v) => v.auto_approved && new Date(v.reviewed_at).getTime() > since);
+  if (!recent.length) return "";
+  return `<section class="account-block">
+      <h2 class="month-title">Salles ajoutées automatiquement (${recent.length})</h2>
+      <ul class="plain-list">${recent.map((v) => {
+        const st = v.check_summary?.stats || {};
+        return `<li><strong>${esc(v.name)}</strong> <span class="cell-sub">${v.proposed_by_name ? `proposée par ${esc(v.proposed_by_name)}, ` : ""}ajoutée le ${esc(fmtDateTime(v.reviewed_at))} : ${esc(String(st.concerts ?? "?"))} concerts lus (${esc(v.check_summary?.method || "")})</span>
+          <button class="link-btn" type="button" data-venue-remove="${esc(v.id)}" data-name="${esc(v.name)}">Retirer du catalogue</button></li>`;
+      }).join("")}</ul>
+    </section>`;
+}
+
 // Salles proposées par les membres (section 13.1) : correction éventuelle, puis décision
 function venuesSection(pending) {
   if (!pending) return `<section class="account-block"><h2 class="month-title">Salles à valider</h2><p class="prefs-warning">Propositions illisibles.</p></section>`;
   const cards = pending.map((v) => `<div class="spotify-card" data-venue-card="${esc(v.id)}">
       <p><strong>${esc(v.name)}</strong> <span class="cell-sub">proposée ${v.proposed_by_name ? `par ${esc(v.proposed_by_name)} ` : ""}le ${esc(fmtDateTime(v.proposed_at))}</span></p>
+      ${venueCheck(v)}
       <div class="account-form">
         <label for="venue-name-${esc(v.id)}">Nom affiché</label>
         <input id="venue-name-${esc(v.id)}" class="js-venue-name" type="text" maxlength="80" value="${esc(v.name)}">
@@ -152,12 +193,13 @@ function venuesSection(pending) {
       ${v.overlaps?.length ? `<p class="prefs-warning">Noms proches d'autres salles du catalogue : ${esc(v.overlaps.join(", "))}. Vérifiez que les concerts de ces salles ne lui seront pas rattachés par erreur.</p>` : ""}
       <p class="cell-sub">Vérifiez que la salle est dans la zone couverte et que ses autres noms correspondent à ceux des billetteries.</p>
       <p><button class="btn" type="button" data-venue-review="approve" data-id="${esc(v.id)}">Approuver</button>
-        <button class="btn btn-quiet" type="button" data-venue-review="reject" data-id="${esc(v.id)}">Refuser</button></p>
+        <button class="btn btn-quiet" type="button" data-venue-review="reject" data-id="${esc(v.id)}">Refuser</button>
+        ${checkRunning(v) ? "" : `<button class="btn btn-quiet" type="button" data-venue-review="check" data-id="${esc(v.id)}">Relancer la vérification</button>`}</p>
     </div>`).join("");
   return `<section class="account-block">
       <h2 class="month-title">Salles à valider (${pending.length})</h2>
       ${pending.length ? cards : `<p class="cell-sub">Aucune proposition en attente.</p>`}
-      <p class="cell-sub">Une salle approuvée est aussitôt proposée comme favorite ; ses concerts sont rattachés au catalogue au prochain traitement.</p>
+      <p class="cell-sub">Une salle approuvée est aussitôt proposée comme favorite ; ses concerts arrivent au traitement complet suivant (dans les heures qui suivent). Une salle proposée avec sa page programme est d'abord vérifiée automatiquement : si la lecture réussit, elle est ajoutée sans attendre (e-mail à l'admin) ; sinon elle reste ici avec les raisons.</p>
     </section>`;
 }
 
@@ -165,7 +207,16 @@ async function reviewVenue(button) {
   const id = button.dataset.id;
   const card = button.closest("[data-venue-card]");
   try {
-    if (button.dataset.venueReview === "approve") {
+    if (button.dataset.venueReview === "check") {
+      // Corrections saisies (page programme), puis nouvelle vérification
+      await api(`admin/venues/${encodeURIComponent(id)}`, { method: "PATCH", body: {
+        name: card.querySelector(".js-venue-name").value,
+        aliases: card.querySelector(".js-venue-aliases").value,
+        agenda_url: card.querySelector(".js-venue-url").value,
+      } });
+      const r = await api(`admin/venues/${encodeURIComponent(id)}/check`, { method: "POST" });
+      toast(r.run?.done === false ? `Vérification non lancée : ${r.run.reason}` : "Vérification lancée : résultat dans 1 à 2 minutes");
+    } else if (button.dataset.venueReview === "approve") {
       // Corrections saisies, puis validation
       await api(`admin/venues/${encodeURIComponent(id)}`, { method: "PATCH", body: {
         name: card.querySelector(".js-venue-name").value,
@@ -257,11 +308,12 @@ function problemsSection(list) {
 async function renderAdmin() {
   const box = $("#admin");
   box.innerHTML = `<p class="cell-sub">Chargement…</p>`;
-  let list, runs, spotify, pendingVenues, links, problems;
+  let list, runs, spotify, pendingVenues, links, problems, approvedVenues;
   try {
-    [list, runs, spotify, pendingVenues, links, problems] = await Promise.all([api("admin/members"), api("admin/runs"),
+    [list, runs, spotify, pendingVenues, links, problems, approvedVenues] = await Promise.all([api("admin/members"), api("admin/runs"),
       api("admin/spotify").catch(() => null), api("admin/venues?status=pending").catch(() => null),
-      api("admin/invitations").catch(() => null), api("admin/problems").catch(() => null)]);
+      api("admin/invitations").catch(() => null), api("admin/problems").catch(() => null),
+      api("admin/venues?status=approved").catch(() => null)]);
   } catch (e) {
     box.innerHTML = `<p class="prefs-warning">Espace admin illisible : ${esc(e.message)}</p>`;
     return;
@@ -325,6 +377,7 @@ async function renderAdmin() {
     ${problemsSection(problems)}
     ${spotifySection(spotify)}
     ${venuesSection(pendingVenues)}
+    ${autoVenuesSection(approvedVenues)}
     <section class="account-block">
       <h2 class="month-title">Traitements</h2>
       <p><button class="btn btn-quiet" type="button" id="run-weekly">Relancer le traitement complet</button></p>
@@ -392,6 +445,14 @@ async function renderAdmin() {
     } catch (err) { toast(err.message); }
   }));
   box.querySelectorAll("[data-venue-review]").forEach((b) => b.addEventListener("click", () => reviewVenue(b)));
+  box.querySelectorAll("[data-venue-remove]").forEach((b) => b.addEventListener("click", async () => {
+    if (!confirm(`Retirer ${b.dataset.name} du catalogue ?\n\nLes concerts lus sur son site disparaîtront au traitement complet suivant.`)) return;
+    try {
+      await api(`admin/venues/${encodeURIComponent(b.dataset.venueRemove)}/reject`, { method: "POST", body: { note: "retirée par l'admin après ajout automatique" } });
+      await renderAdmin();
+      toast("Salle retirée du catalogue");
+    } catch (err) { toast(err.message); }
+  }));
   box.querySelectorAll("[data-spotify]").forEach((b) => b.addEventListener("click", async () => {
     const done = b.dataset.spotify === "allowlisted";
     if (!done && !confirm("Confirmez-vous avoir retiré ce compte dans le tableau de bord Spotify ?\n\nLe nom et l'e-mail seront effacés et la place libérée.")) return;
