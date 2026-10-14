@@ -14,6 +14,16 @@ Revenir à une version antérieure :
 3. base D1 : les migrations ne s'annulent pas seules ; chaque entrée indique la commande inverse
    quand une migration est ajoutée.
 
+## 1.10.0 (14 octobre 2026)
+
+- Calendrier : un concert avec places prises s'affiche sur fond jaune, un concert « intéressé »
+  sur fond jaune foncé (vues Mois et Liste).
+- Un jour où vous avez des places prises n'affiche que ce ou ces concerts ; les autres concerts
+  du jour sont regroupés derrière un bouton « +N ». Un clic déroule la liste sous le jour, en
+  surimpression (la case ne s'agrandit pas, y compris sur téléphone) ; un second clic, un clic
+  ailleurs ou la touche Échap la referme. Les autres jours ne changent pas.
+  Aucune migration.
+
 ## 1.9.2 (14 octobre 2026)
 
 - Bouton retour du téléphone (et balayage retour sur iPhone) dans les Reels : il ferme les Reels

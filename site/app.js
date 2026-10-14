@@ -701,14 +701,43 @@ function renderMasthead() {
 
 /* Calendrier ----------------------------------------------------------------- */
 
+// Couleur selon le statut du membre : places prises (jaune), intéressé (jaune foncé)
+const starClass = (ev) => ({ going: "ev-going", interested: "ev-interested" })[state.starred.get(ev.id)?.status] || "";
+
+// Un jour où le membre a des places prises n'affiche que ces concerts ; les autres sont
+// regroupés derrière un « +N » qui ouvre la liste du jour en surimpression (dayMorePopover)
 function renderCalendar() {
-  const events = filtered().map((ev) => ({
-    id: ev.id,
-    title: `${isStarred(ev.id) ? "★ " : ""}${headline(ev)} (${ev.venue})`,
-    start: ev.time ? `${ev.date}T${ev.time}` : ev.date,
-    allDay: !ev.time,
-    classNames: [eventClass(ev)],
-  }));
+  closeDayMore();
+  const list = filtered();
+  const goingDays = new Set(list.filter((ev) => state.starred.get(ev.id)?.status === "going").map((ev) => ev.date));
+  const hidden = new Map();
+  const events = [];
+  for (const ev of list) {
+    if (goingDays.has(ev.date) && state.starred.get(ev.id)?.status !== "going") {
+      if (!hidden.has(ev.date)) hidden.set(ev.date, []);
+      hidden.get(ev.date).push(ev);
+      continue;
+    }
+    events.push({
+      id: ev.id,
+      title: `${isStarred(ev.id) ? "★ " : ""}${headline(ev)} (${ev.venue})`,
+      start: ev.time ? `${ev.date}T${ev.time}` : ev.date,
+      allDay: !ev.time,
+      classNames: [eventClass(ev), starClass(ev)].filter(Boolean),
+    });
+  }
+  for (const [date, evs] of hidden) {
+    events.push({
+      id: `more-${date}`,
+      title: `+${evs.length}`,
+      // Heure fictive (masquée) : le « +N » vient après les concerts du jour ; la fin explicite
+      // évite la durée d'une heure par défaut, qui le ferait déborder sur le lendemain
+      start: `${date}T23:59`,
+      end: `${date}T23:59:59`,
+      classNames: ["ev-more"],
+      extendedProps: { more: evs.map((ev) => ev.id) },
+    });
+  }
   if (!state.calendar) {
     state.calendar = new FullCalendar.Calendar($("#calendar"), {
       locale: "fr",
@@ -720,8 +749,25 @@ function renderCalendar() {
       dayMaxEventRows: 4,
       eventTimeFormat: { hour: "2-digit", minute: "2-digit", meridiem: false },
       noEventsContent: "Aucun concert sur cette période avec les filtres actuels",
-      eventClick: (info) => openTicket(info.event.id),
-      datesSet: (info) => { $("#cal-bottom-title").textContent = info.view.title; },
+      eventClick: (info) => {
+        const more = info.event.extendedProps.more;
+        if (more) {
+          info.jsEvent.preventDefault();
+          // Au clavier, FullCalendar transmet le lien du titre : on remonte à la ligne entière
+          toggleDayMore(info.el.closest(".fc-event") || info.el, info.event.id, more, info.jsEvent.detail === 0);
+        }
+        else openTicket(info.event.id);
+      },
+      eventDidMount: (info) => {
+        const n = info.event.extendedProps.more?.length;
+        if (!n) return;
+        const label = `${n} autre${n > 1 ? "s" : ""} concert${n > 1 ? "s" : ""}`;
+        info.el.setAttribute("aria-label", `${label} ce jour`);
+        // Vue Liste : la place permet un libellé complet
+        const link = info.el.querySelector(".fc-list-event-title a");
+        if (link) link.textContent = `+${label}`;
+      },
+      datesSet: (info) => { closeDayMore(); $("#cal-bottom-title").textContent = info.view.title; },
       events: [],
     });
     state.calendar.render();
@@ -729,6 +775,64 @@ function renderCalendar() {
   state.calendar.removeAllEvents();
   state.calendar.addEventSource(events);
 }
+
+// Liste déroulée sous le « +N » : surimpression posée dans la page (la cellule ne s'agrandit pas)
+let dayMore = null;  // { key, box, anchor }
+
+// refocus : fermeture au clavier (Échap, second appui), le focus revient au « +N »
+function closeDayMore(refocus = false) {
+  if (!dayMore) return;
+  const { box, anchor } = dayMore;
+  box.remove();
+  dayMore = null;
+  if (refocus && anchor.isConnected) (anchor.matches("a, [tabindex]") ? anchor : anchor.querySelector("a, [tabindex]"))?.focus();
+}
+
+// keyboard : ouverture au clavier, le focus passe au premier concert de la liste
+function toggleDayMore(anchor, key, ids, keyboard = false) {
+  if (dayMore?.key === key) { closeDayMore(keyboard); return; }
+  closeDayMore();
+  const byId = new Map(state.events.map((ev) => [ev.id, ev]));
+  const evs = ids.map((id) => byId.get(id)).filter(Boolean);
+  const box = document.createElement("div");
+  box.className = "day-more";
+  box.setAttribute("role", "dialog");
+  box.setAttribute("aria-label", "Autres concerts du jour");
+  box.innerHTML = evs.map((ev) => `<button type="button" class="day-more-item ${eventClass(ev)} ${starClass(ev)}" data-id="${esc(ev.id)}">
+      ${ev.time ? `<span class="day-more-time">${esc(ev.time)}</span>` : ""}
+      <span>${isStarred(ev.id) ? "★ " : ""}${esc(headline(ev))} (${esc(ev.venue)})</span></button>`).join("");
+  box.addEventListener("click", (e) => {
+    const item = e.target.closest(".day-more-item");
+    if (!item) return;
+    closeDayMore();
+    openTicket(item.dataset.id);
+  });
+  document.body.append(box);
+  // Sous la cellule du jour (grille) ou sous la ligne « +N » (liste), sans sortir de l'écran
+  const cell = anchor.closest(".fc-daygrid-day") || anchor;
+  const r = cell.getBoundingClientRect();
+  const width = Math.min(Math.max(r.width, 240), document.documentElement.clientWidth - 16);
+  const left = Math.min(Math.max(8, r.left), document.documentElement.clientWidth - width - 8);
+  box.style.width = `${width}px`;
+  box.style.left = `${left + scrollX}px`;
+  box.style.top = `${r.bottom + scrollY + 2}px`;
+  dayMore = { key, box, anchor };
+  if (keyboard) box.querySelector("button")?.focus({ preventScroll: true });
+}
+
+// Un clic hors de la liste (et hors du « +N », qui gère lui-même le second clic) la referme
+document.addEventListener("pointerdown", (e) => {
+  if (!dayMore || dayMore.box.contains(e.target) || dayMore.anchor.contains(e.target)) return;
+  closeDayMore();
+}, true);
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeDayMore(true); });
+// Rotation du téléphone ou fenêtre redimensionnée : la grille bouge, la liste se referme
+// (seulement si la largeur change : la barre d'adresse iOS qui se replie change la hauteur)
+let dayMoreWidth = innerWidth;
+addEventListener("resize", () => {
+  if (innerWidth !== dayMoreWidth) closeDayMore();
+  dayMoreWidth = innerWidth;
+});
 
 // Changement de mois depuis le bas de page ou par balayage : on revient en haut du calendrier
 function moveMonth(step) {
@@ -1095,6 +1199,7 @@ function render() {
 }
 
 function switchView(view) {
+  closeDayMore();
   state.view = view;
   document.querySelectorAll(".tabs button").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.view === view)));
   document.querySelectorAll(".view").forEach((s) => (s.hidden = s.id !== `view-${view}`));
