@@ -199,6 +199,7 @@ main { padding: 0 clamp(16px, 4vw, 48px) 64px; }
   --fc-button-active-border-color: var(--ink);
   --fc-list-event-hover-bg-color: var(--paper-2);
   background: var(--paper);
+  isolation: isolate;  /* les couches internes de FullCalendar restent sous la liste « +N » */
 }
 #calendar .fc-button-active { color: var(--paper); }
 #calendar .fc-toolbar-title { font-size: 1.6rem; font-weight: 800; font-stretch: 80%; text-transform: capitalize; }
@@ -214,6 +215,27 @@ main { padding: 0 clamp(16px, 4vw, 48px) 64px; }
 .fc-list-event.ev-known-1, .fc-list-event.ev-known-2, .fc-list-event.ev-known-3, .fc-list-event.ev-discovery {
   background: transparent !important; color: var(--ink) !important;
 }
+/* Concerts suivis : places prises en jaune, intéressé en jaune foncé (texte sombre, quel que soit le thème) */
+.ev-going, .fc-list-event.ev-going { background: var(--yellow) !important; color: #1e2350 !important; }
+.ev-interested, .fc-list-event.ev-interested { background: #f2b600 !important; color: #1e2350 !important; }
+.fc-list-event.ev-going:hover td, .fc-list-event.ev-interested:hover td { background: transparent !important; }
+/* « +N » d'un jour avec places prises, et liste déroulée en surimpression */
+.ev-more { background: transparent !important; color: var(--ink) !important; font-weight: 700; text-align: center; box-shadow: inset 0 0 0 1px var(--rule); }
+.ev-more:hover { background: var(--paper-2) !important; }
+#calendar .fc-daygrid-event.ev-more { min-height: 24px; display: flex; align-items: center; justify-content: center; }
+#calendar .ev-more .fc-event-time, #calendar .ev-more .fc-daygrid-event-dot { display: none; }
+.fc-list-event.ev-more .fc-list-event-time,.fc-list-event.ev-more .fc-list-event-graphic { visibility: hidden; }
+.day-more {
+  position: absolute; z-index: 4;  /* sous la barre d'onglets fixe (z-index 5) */ max-height: 60vh; overflow-y: auto;
+  display: flex; flex-direction: column; gap: 3px; padding: 6px;
+  background: var(--paper); border: 1px solid var(--rule); border-radius: 6px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .25);
+}
+.day-more-item {
+  display: flex; gap: 6px; align-items: baseline; width: 100%; text-align: left;
+  border: 0; border-radius: 3px; padding: 6px 8px; font: inherit; font-size: .85rem; cursor: pointer;
+}
+.day-more-time { flex-shrink: 0; font-variant-numeric: tabular-nums; }
 .fc-event-main, .fc-event-title { color: inherit !important; }
 .fc-list-event.ev-known-1 .fc-list-event-dot { border-color: var(--blue) !important; }
 .fc-list-event.ev-known-2 .fc-list-event-dot, .fc-list-event.ev-known-3 .fc-list-event-dot { border-color: var(--blue-light) !important; }
