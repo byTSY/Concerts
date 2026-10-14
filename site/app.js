@@ -1068,7 +1068,7 @@ function openTicket(id, { entry = true } = {}) {
   // Fiche fermée : ouverture et entrée d'historique (déjà ouverte, rouverte après « Remettre » : rien à ajouter)
   if (!dlg.open) {
     dlg.showModal();
-    if (entry) pushTicketEntry();
+    if (entry) pushLayer("ticket");
   }
   fillArtistSection(ev);
 }
@@ -1197,53 +1197,65 @@ function bind() {
   const dlg = $("#ticket");
   $("#ticket-close").addEventListener("click", closeTicket);
   dlg.addEventListener("click", (e) => { if (e.target === dlg) closeTicket(); });
-  bindTicketHistory(dlg);
+  bindLayerHistory();
 }
 
-// Bouton retour du téléphone (version 1.9.1) : la fiche ouverte ajoute une entrée à l'historique,
-// sans changer l'adresse ; « retour » ferme la fiche et laisse la page (liste, Reels) telle quelle.
-// Fermée autrement (×, fond, Échap, retrait), la fiche retire son entrée, pour qu'un « retour »
-// suivant ne tombe pas dans le vide.
-let ticketBackPending = false;  // retour demandé à la fermeture de la fiche, pas encore arrivé
-let ticketEntry = false;  // l'entrée en haut de l'historique est celle de la fiche ouverte
-function pushTicketEntry() {
-  // Retour en cours : l'entrée est remise à son arrivée (fiche rouverte entre-temps)
-  if (ticketBackPending || ticketEntry) return;
-  history.pushState({ ticket: true }, "");
-  ticketEntry = true;
+// Bouton retour du téléphone (fiche : version 1.9.1 ; Reels : version 1.9.2). La fiche d'un concert
+// et la fenêtre des Reels, à leur ouverture, ajoutent chacune une entrée à l'historique, sans
+// changer l'adresse : « retour » ferme la fenêtre du dessus et laisse le reste tel quel (fiche
+// fermée : même Reel, même position). Fermée autrement (×, fond, Échap, retrait), une fenêtre
+// retire son entrée, pour qu'un « retour » suivant ne tombe pas dans le vide.
+const LAYERS = ["reels", "ticket"];  // ordre d'empilement (fiche ouverte par-dessus les Reels)
+const layerStack = [];  // fenêtres ouvertes avec leur entrée, de bas en haut
+const layerDeferred = new Set();  // ouvertes pendant un retour en cours : entrée ajoutée à son arrivée
+let layerBackPending = 0;  // retour demandé à une fermeture, pas encore arrivé (numéro de la demande)
+function pushLayer(id) {
+  if (layerBackPending) { layerDeferred.add(id); return; }
+  if (layerStack.includes(id)) return;
+  layerStack.push(id);
+  history.pushState({ layer: layerStack.length }, "");
 }
-// Fiche fermée : son entrée est retirée tout de suite (l'événement « close » peut arriver tard)
-function dropTicketEntry() {
-  if ($("#ticket").open || !ticketEntry || ticketBackPending) return;
-  ticketEntry = false;
-  ticketBackPending = true;
+// Fenêtre fermée : son entrée est retirée tout de suite (l'événement « close » peut arriver tard)
+function dropLayer(id) {
+  layerDeferred.delete(id);
+  if ($(`#${id}`).open || layerBackPending || layerStack.at(-1) !== id) return;
+  layerStack.pop();
+  const request = layerBackPending = Date.now();
   history.back();
   // Retour jamais arrivé (second retour au même instant, page mise en cache) : pas de blocage
-  setTimeout(() => { ticketBackPending = false; }, 2000);
+  setTimeout(() => { if (layerBackPending === request) layerBackDone(); }, 2000);
+}
+function layerBackDone() {
+  layerBackPending = 0;
+  for (const id of LAYERS) if (layerDeferred.has(id) && $(`#${id}`).open) pushLayer(id);
+  layerDeferred.clear();
 }
 function closeTicket() {
   const dlg = $("#ticket");
   if (dlg.open) dlg.close();
-  dropTicketEntry();
+  dropLayer("ticket");
 }
-function bindTicketHistory(dlg) {
-  // Échap, ou geste retour d'Android qui ferme la fenêtre lui-même : entrée retirée après la fermeture
-  dlg.addEventListener("cancel", () => setTimeout(dropTicketEntry, 0));
-  dlg.addEventListener("close", dropTicketEntry);  // toute autre fermeture
+function bindLayerHistory() {
+  for (const id of LAYERS) {
+    const dlg = $(`#${id}`);
+    // Échap, ou geste retour d'Android qui ferme la fenêtre lui-même : entrée retirée après la fermeture
+    dlg.addEventListener("cancel", () => setTimeout(() => dropLayer(id), 0));
+    dlg.addEventListener("close", () => dropLayer(id));  // toute autre fermeture
+  }
   window.addEventListener("popstate", () => {
-    if (ticketBackPending) {
-      ticketBackPending = false;
-      if (dlg.open) pushTicketEntry();
-      return;
+    if (layerBackPending) { layerBackDone(); return; }
+    // « Retour » : les fenêtres au-dessus de l'entrée atteinte se ferment
+    const depth = history.state?.layer || 0;
+    while (layerStack.length > depth) {
+      const dlg = $(`#${layerStack.pop()}`);
+      if (dlg.open) dlg.close();
     }
-    ticketEntry = dlg.open && Boolean(history.state?.ticket);
-    if (dlg.open && !history.state?.ticket) dlg.close();
-    // Bouton « suivant » du navigateur : entrée d'une fiche déjà fermée, redevenue ordinaire
-    else if (!dlg.open && history.state?.ticket) history.replaceState(null, "");
+    // Bouton « suivant » du navigateur : entrée d'une fenêtre déjà fermée, redevenue ordinaire
+    if (depth > layerStack.length) history.replaceState(layerStack.length ? { layer: layerStack.length } : null, "");
   });
-  // Page rechargée fiche ouverte (mise à jour du site) : l'entrée laissée par la fiche redevient une
-  // entrée ordinaire, sans navigation (un retour vers l'ancienne page pourrait la recharger)
-  if (history.state?.ticket) history.replaceState(null, "");
+  // Page rechargée fenêtre ouverte (mise à jour du site) : l'entrée laissée redevient une entrée
+  // ordinaire, sans navigation (un retour vers l'ancienne page pourrait la recharger)
+  if (history.state?.layer || history.state?.ticket) history.replaceState(null, "");
 }
 
 // « Ne plus voir ce concert » depuis la fiche : elle se ferme ; « Annuler » dans le message (ou dans

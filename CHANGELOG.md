@@ -14,6 +14,13 @@ Revenir à une version antérieure :
 3. base D1 : les migrations ne s'annulent pas seules ; chaque entrée indique la commande inverse
    quand une migration est ajoutée.
 
+## 1.9.2 (14 octobre 2026)
+
+- Bouton retour du téléphone (et balayage retour sur iPhone) dans les Reels : il ferme les Reels
+  et ramène à la page d'où vous les avez ouverts, au lieu de quitter l'application. Fiche ouverte
+  par-dessus un Reel : un premier « retour » ferme la fiche, un second ferme les Reels.
+  Aucune migration.
+
 ## 1.9.1 (14 octobre 2026)
 
 Correction : la fiche d'un concert ne se fermait plus (depuis la version 1.8.0).

@@ -74,11 +74,13 @@ async function openReels() {
   if (!reels.queue.length) { toast("Toutes les nouveautés de la semaine ont été vues"); return; }
   reels.index = 0;
   $("#reels").showModal();
+  pushLayer("reels");  // « retour » du téléphone ferme les Reels (version 1.9.2)
   showCard();
 }
 
 function closeReels() {
   if ($("#reels").open) $("#reels").close();
+  dropLayer("reels");
 }
 
 function onReelsClosed() {
