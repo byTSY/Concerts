@@ -59,8 +59,8 @@ h1 {
 }
 .updated { margin: 0; color: var(--ink-soft); font-size: .9rem; }
 
-.fresh { margin-top: 22px; display: flex; align-items: center; gap: 14px; }
-.fresh-title { margin: 0; font-size: 1.05rem; font-weight: 600; }
+.fresh { margin-top: 22px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+.fresh-title { margin: 0; font-size: 1.05rem; font-weight: 600; flex: 1 1 200px; }
 
 /* Cercle « Reels » (fiches des nouveautés, site/reels.js) */
 .reels-ring { flex: 0 0 auto; display: grid; justify-items: center; gap: 4px; background: none; border: 0; padding: 0; cursor: pointer; color: var(--ink); font: inherit; }
@@ -70,6 +70,11 @@ h1 {
   box-shadow: 0 0 0 3px var(--paper), 0 0 0 6px var(--pink), 0 0 0 7px var(--yellow);
 }
 .reels-ring.seen .reels-circle { box-shadow: 0 0 0 3px var(--paper), 0 0 0 5px var(--rule); color: var(--ink-soft); }
+/* Cercles des mois : grisés quand aucun concert n'est prévu */
+.reels-rings { flex: 0 0 auto; display: flex; align-items: flex-start; gap: 16px; }
+.reels-rings .reels-ring { align-content: start; }
+.reels-ring.is-empty .reels-circle { box-shadow: 0 0 0 3px var(--paper), 0 0 0 5px var(--rule); color: var(--ink-soft); background: var(--paper); }
+.reels-ring.is-empty .reels-label { color: var(--ink-soft); }
 .reels-label { font-size: .78rem; font-weight: 600; }
 .reels-ring:focus-visible { outline: 2px solid var(--blue); outline-offset: 6px; border-radius: 8px; }
 

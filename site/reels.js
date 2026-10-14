@@ -1,13 +1,18 @@
 "use strict";
 
-// Fiches Reels : nouveautés de la semaine en plein écran, ouvertes seulement depuis le cercle
-// « Reels » de l'en-tête. Une fiche affichée est vue : elle ne réapparaît sur aucun appareil
-// (table D1 seen_cards, route /api/me/seen).
+// Fiches Reels en plein écran, ouvertes depuis les cercles de l'en-tête :
+// - « Reels » : nouveautés de la semaine. Une fiche affichée est vue : elle ne réapparaît sur aucun
+//   appareil (table D1 seen_cards, route /api/me/seen).
+// - mois en cours et mois suivant (version 1.11.0) : concerts à venir de votre liste dans le mois,
+//   par date, fiches vues comprises ; un concert avec places prises n'y figure pas. Une fiche
+//   affichée ici compte aussi comme vue (elle sort des nouveautés).
 // Gestes : vers la gauche, fiche suivante ; vers la droite, précédente ; vers le bas, « Ne plus voir
 // ce concert » (l'artiste reste recommandé ; Annuler pendant 6 s). Bouton « Ne plus recommander
 // l'artiste » à part. Utilise les fonctions de app.js.
 
-const reels = { seen: new Set(), pending: new Set(), loaded: false, queue: [], index: 0, timer: null, undo: null, undoState: null, busy: false };
+const reels = { seen: new Set(), pending: new Set(), loaded: false, queue: [], index: 0, timer: null, undo: null, undoState: null, busy: false,
+  mode: "new", initial: 0 };  // cercle ouvert : "new" (nouveautés), "m0" (mois en cours), "m1" (mois suivant)
+const MONTH_OFFSET = { m0: 0, m1: 1 };
 
 // Nouveautés de la semaine dans votre liste (vos artistes et découvertes), annonces d'abord
 function freshEvents() {
@@ -17,6 +22,40 @@ function freshEvents() {
 }
 
 const unseenEvents = () => freshEvents().filter((e) => !reels.seen.has(e.id));
+
+// Mois calendaire à Paris, décalé de offset mois : { key: "AAAA-MM", name: "Octobre" }
+function monthOf(offset) {
+  const [y, m] = todayIso().split("-").map(Number);
+  const d = new Date(Date.UTC(y, m - 1 + offset, 15));
+  const name = new Intl.DateTimeFormat("fr-FR", { month: "long", timeZone: "UTC" }).format(d);
+  return { key: d.toISOString().slice(0, 7), name: name.charAt(0).toUpperCase() + name.slice(1) };
+}
+
+// « d'octobre », « de novembre »
+const ofMonth = (name) => (/^[aeiouy]/i.test(fold(name)) ? "d'" : "de ") + name.toLowerCase();
+
+// Concerts du mois dans votre liste (vos artistes et découvertes), à venir, sans places prises ni
+// concerts retirés, par date et heure
+function monthEvents(offset) {
+  const { key } = monthOf(offset);
+  const today = todayIso();
+  return state.events.filter((e) => e.date.startsWith(key) && e.date >= today && e.kind !== "other"
+      && !isRemoved(e) && state.starred.get(e.id)?.status !== "going")
+    .sort((a, b) => a.date.localeCompare(b.date) || (a.time || "99:99").localeCompare(b.time || "99:99"));  // heure inconnue : en fin de journée
+}
+
+// Concerts qui ne sont plus à leur place dans la file : artiste masqué (« other »), concert retiré,
+// et, dans un cercle de mois, places prises
+const outOfQueue = (e) => e.kind === "other" || isRemoved(e) || (reels.mode !== "new" && state.starred.get(e.id)?.status === "going");
+
+// File nettoyée, fiches précédentes comprises ; la fiche affichée, si elle part, est remplacée par
+// la suivante (ou l'écran de fin)
+function pruneQueue() {
+  const keep = (e) => !outOfQueue(e);
+  const before = reels.queue.slice(0, reels.index).filter(keep).length;
+  reels.queue = reels.queue.filter(keep);
+  reels.index = Math.min(before, reels.queue.length);
+}
 
 // Fiches vues lues sur le serveur, plus celles pas encore envoyées ; liste illisible : les fiches
 // ne s'ouvrent pas (elles réapparaîtraient alors qu'elles ont été vues)
@@ -63,17 +102,47 @@ function renderReelsRing() {
   btn.classList.toggle("seen", !left);
   $("#reels-count").textContent = left ? String(left) : "✓";
   btn.setAttribute("aria-label", left
-    ? `Reels : voir ${left} nouveauté${left > 1 ? "s" : ""} de la semaine`
-    : "Reels : toutes les nouveautés de la semaine ont été vues");
+    ? `NEW : voir ${left} nouveauté${left > 1 ? "s" : ""} de la semaine`
+    : "NEW : toutes les nouveautés de la semaine ont été vues");
+  renderMonthRings();
 }
 
-async function openReels() {
-  if (!reels.loaded) await loadSeen();
-  if (!reels.loaded) { toast("Les nouveautés déjà vues n'ont pas pu être lues : réessayez dans un instant"); return; }
-  reels.queue = unseenEvents();
-  if (!reels.queue.length) { toast("Toutes les nouveautés de la semaine ont été vues"); return; }
+// Cercles des mois : nom du mois et nombre de concerts ; grisés (mais visibles) sans concert.
+// Masqués si les concerts n'ont pas pu être chargés.
+function renderMonthRings() {
+  for (const [mode, offset] of Object.entries(MONTH_OFFSET)) {
+    const btn = $(`#reels-${mode}`);
+    if (!btn) continue;
+    const { name } = monthOf(offset);
+    const n = monthEvents(offset).length;
+    btn.hidden = state.loadFailed;
+    btn.classList.toggle("is-empty", !n);
+    btn.querySelector(".reels-num").textContent = String(n);
+    btn.querySelector(".reels-label").textContent = name;
+    btn.setAttribute("aria-label", n ? `${name} : voir ${n} concert${n > 1 ? "s" : ""} à venir`
+      : `${name} : aucun concert à venir dans votre liste`);
+  }
+}
+
+async function openReels(mode = "new") {
+  if ($("#reels").open) return;
+  let queue;
+  if (mode === "new") {
+    if (!reels.loaded) await loadSeen();
+    if (!reels.loaded) { toast("Les nouveautés déjà vues n'ont pas pu être lues : réessayez dans un instant"); return; }
+    queue = unseenEvents();
+    if (!queue.length) { toast("Toutes les nouveautés de la semaine ont été vues"); return; }
+  } else {
+    queue = monthEvents(MONTH_OFFSET[mode]);  // vide : écran « Aucun concert »
+  }
+  // Fiche concert ou autre cercle ouverts pendant la lecture des fiches vues : ils restent devant,
+  // la file en cours n'est pas touchée
+  if ($("#ticket").open || $("#reels").open) return;
+  reels.queue = queue;
+  reels.initial = queue.length;  // écran de fin : « Aucun concert » seulement si la file était vide
+  reels.mode = mode;
   reels.index = 0;
-  if ($("#ticket").open) return;  // fiche ouverte pendant la lecture des fiches vues : elle reste devant
+  $("#reels").setAttribute("aria-label", mode === "new" ? "Nouveautés de la semaine" : `Concerts ${ofMonth(monthOf(MONTH_OFFSET[mode]).name)}`);
   $("#reels").showModal();
   pushLayer("reels");  // « retour » du téléphone ferme les Reels (version 1.9.2)
   showCard();
@@ -156,10 +225,14 @@ function showCard() {
     // Fin de la file : écran de fin (la barre Annuler reste utilisable)
     card.dataset.reelId = "";
     card.className = "reel-card reel-end";
-    card.innerHTML = `<div class="reel-body"><h2 class="reel-title">Vous avez vu toutes les nouveautés de la semaine</h2>
-      <p class="reel-when">Les prochaines arriveront avec la mise à jour du lundi.</p>
+    const name = reels.mode === "new" ? null : monthOf(MONTH_OFFSET[reels.mode]).name;
+    const [title, sub] = !name ? ["Vous avez vu toutes les nouveautés de la semaine", "Les prochaines arriveront avec la mise à jour du lundi."]
+      : reels.initial ? [`Vous avez vu tous les concerts ${ofMonth(name)}`, "Fermez pour revenir au calendrier."]
+      : ["Aucun concert", `Aucun concert à venir en ${name.toLowerCase()} dans votre liste.`];
+    card.innerHTML = `<div class="reel-body"><h2 class="reel-title">${esc(title)}</h2>
+      <p class="reel-when">${esc(sub)}</p>
       <div class="reel-actions"><button type="button" class="btn btn-quiet" data-reel="close">Fermer</button></div></div>`;
-    $("#reels-progress").style.width = "100%";
+    $("#reels-progress").style.width = reels.initial ? "100%" : "0";
     $("#reels-position").textContent = "";
     focusCard();
     return;
@@ -223,7 +296,7 @@ function dropCard(ev) {
 function reelsUndo(ev, undo) {
   return async () => {
     await undo();
-    if (!ev || !$("#reels").open || reels.queue.includes(ev)) return;
+    if (!ev || !$("#reels").open || reels.queue.includes(ev) || outOfQueue(ev)) return;  // ★ « places prises » rétablie : hors des mois
     const at = Math.min(reels.index, reels.queue.length);
     reels.queue.splice(at, 0, ev);
     reels.index = at;
@@ -250,10 +323,11 @@ async function notForMe() {
     afterPrefsChange();  // affiche aussi un premier artiste masqué si le second échoue
     reels.busy = false;
   }
-  // Fiche retrouvée après l'envoi (l'index a pu changer) ; les fiches suivantes des mêmes
-  // artistes sortent de la file (applyPrefs les a passées en « other »)
-  const i = Math.max(0, reels.queue.indexOf(ev));
-  reels.queue = reels.queue.filter((e, j) => j <= i || e.kind !== "other");
+  // Fiche retrouvée après l'envoi (l'index a pu changer) ; toutes les fiches des mêmes artistes,
+  // précédentes comprises, sortent de la file (applyPrefs les a passées en « other »)
+  reels.index = Math.max(0, reels.queue.indexOf(ev));
+  pruneQueue();
+  if (reels.queue[reels.index] === ev) reels.index += 1;  // fiche restée (cas imprévu) : la suivante
   showUndo(`${names.join(", ")} ne ${names.length > 1 ? "seront" : "sera"} plus recommandé${names.length > 1 ? "s" : ""}`, async () => {
     for (const name of names) {
       setPrefs(await api(`me/artists/${encodeURIComponent(normName(name))}`, { method: "PUT", body: { name, hidden: false } }));
@@ -261,8 +335,7 @@ async function notForMe() {
     afterPrefsChange();
     toast(`${names.join(", ")} de nouveau recommandé${names.length > 1 ? "s" : ""}`);
   });
-  reels.index = i;
-  step(1);
+  showCard();
 }
 
 function afterPrefsChange() {
@@ -329,7 +402,9 @@ function bindReelGestures(card) {
 
 function bindReels() {
   const dlg = $("#reels");
-  $("#reels-open").addEventListener("click", openReels);
+  for (const btn of document.querySelectorAll("[data-reels-mode]")) {
+    btn.addEventListener("click", () => openReels(btn.dataset.reelsMode));
+  }
   $("#reels-close").addEventListener("click", closeReels);
   dlg.addEventListener("close", onReelsClosed);
   dlg.addEventListener("click", (e) => {
@@ -368,8 +443,8 @@ function bindReels() {
   $("#ticket").addEventListener("close", () => {
     if (!dlg.open) return;
     const ev = reels.queue[reels.index];
-    if (ev && isRemoved(ev)) dropCard(ev);
-    else showCard();
+    pruneQueue();  // concert retiré, artiste masqué, places prises (mois) : fiches sorties de la file
+    showCard();
   });
   // Fiches vues envoyées avant de quitter l'application
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") flushSeen(true); });
