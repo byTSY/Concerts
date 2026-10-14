@@ -147,8 +147,13 @@ function venueCheck(v) {
     return checkRunning(v) ? `<p class="cell-sub">Vérification automatique de la page programme en cours (1 à 2 minutes)…</p>`
       : `<p class="prefs-warning">Vérification automatique sans résultat depuis plus de 30 minutes : relancez-la.</p>`;
   }
-  if (v.check_status !== "failed") return "";
   const sample = (s.sample || []).map((e) => `<li>${esc(e.date)}${e.time ? ` ${esc(e.time)}` : ""} : ${esc(e.title || "?")}</li>`).join("");
+  if (v.check_status === "ok" && s.review?.length) {
+    // Page lue, mais nom proche d'une salle du catalogue : pas d'ajout sans l'admin
+    return `<p class="prefs-warning">Page programme lue (${esc(String(s.stats?.concerts ?? "?"))} concerts, ${esc(s.method || "")}), mais nom proche de : ${esc(s.review.join(", "))}. Vérifiez qu'il s'agit bien d'une autre salle avant d'approuver.</p>
+      ${sample ? `<p class="cell-sub">Premiers concerts lus :</p><ul class="plain-list cell-sub">${sample}</ul>` : ""}`;
+  }
+  if (v.check_status !== "failed") return "";
   return `<p class="prefs-warning">Lecture automatique de la page programme non concluante${v.checked_at ? ` (${esc(fmtDateTime(v.checked_at))})` : ""} :</p>
       <ul class="plain-list cell-sub">${(s.reasons || []).map((r) => `<li>${esc(r)}</li>`).join("")}</ul>
       ${s.method && s.method !== "aucune" ? `<p class="cell-sub">Méthode la plus proche : ${esc(s.method)}${s.url ? ` (${esc(s.url)})` : ""}</p>` : ""}

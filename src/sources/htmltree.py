@@ -72,12 +72,15 @@ class _Builder(HTMLParser):
         if not rule:
             return
         closes, stops = rule
-        node = self.cur
+        # Le plus haut élément de la famille avant la limite : « <tr><td>A<td>B<tr> » ferme la
+        # cellule ET la ligne précédente
+        node, outer = self.cur, None
         while node is not None and node.tag != "root" and node.tag not in stops:
             if node.tag in closes:
-                self.cur = node.parent
-                return
+                outer = node
             node = node.parent
+        if outer is not None:
+            self.cur = outer.parent
 
     def handle_starttag(self, tag, attrs):
         self._close_implied(tag)

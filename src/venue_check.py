@@ -26,7 +26,7 @@ from datetime import date, datetime, timedelta, timezone
 from urllib.parse import urlparse
 
 from . import members, notify
-from .util import log
+from .util import log, norm_venue
 
 MIN_UPCOMING = 3
 MAX_PAST_SHARE = 0.3
@@ -119,6 +119,22 @@ def examine(venue, collected):
                 "stats": {"upcoming": 0, "concerts": 0, "past": 0, "agreement": None}, "sample": []}
 
 
+def overlaps(db, venue):
+    """Salles du catalogue dont un nom contient un nom de la salle proposée, ou l'inverse (mot
+    pour mot), comme overlappingVenues côté site : le rapprochement des billetteries par nom
+    pourrait leur prendre leurs concerts. Une telle salle n'est jamais ajoutée sans l'admin."""
+    aliases = venue.get("aliases") or []
+    if isinstance(aliases, str):
+        aliases = json.loads(aliases or "[]")
+    keys = [k for k in (norm_venue(n) for n in [venue["name"], *aliases]) if k]
+    out = []
+    for other in db.query("SELECT id, name, aliases FROM venues WHERE status = 'approved' AND id <> ?", [venue["id"]]):
+        names = [norm_venue(n) for n in [other["name"], *json.loads(other["aliases"] or "[]")]]
+        if any(f" {a} " in f" {b} " or f" {b} " in f" {a} " for a in keys for b in names if b):
+            out.append(other["name"])
+    return out
+
+
 def run(db, store, collected_key, venue_ids=()):
     """Vérifie les salles en attente dont la vérification est demandée (check_status running),
     plus celles de venue_ids encore en attente. Renvoie le nombre de salles ajoutées."""
@@ -138,7 +154,17 @@ def run(db, store, collected_key, venue_ids=()):
         stamp = members.now_iso()
         info = json.dumps(summary(got), ensure_ascii=False)
         payload = {"venue": v["id"], "name": v["name"], "url": v["agenda_url"], "proposer": v.get("proposer"), **summary(got)}
-        if got["ok"]:
+        near = overlaps(db, v) if got["ok"] else []
+        if near:
+            # Lecture réussie, mais nom proche d'une salle du catalogue : l'admin décide
+            info = json.dumps({**summary(got), "review": near}, ensure_ascii=False)
+            changed = db.query("UPDATE venues SET check_status = 'ok', check_summary = ?, checked_at = ? "
+                               "WHERE id = ? AND status = 'pending' RETURNING id", [info, stamp, v["id"]])
+            if changed:
+                notify.queue(db, "venue_needs_review", to_admin=True, payload={**payload, "review": near},
+                             dedupe=f"venue_needs_review:{v['id']}:{stamp}")
+                log(f"{v['name']} : page lue, mais nom proche de {', '.join(near)} : transmise à l'admin")
+        elif got["ok"]:
             changed = db.query(
                 "UPDATE venues SET status = 'approved', auto_approved = 1, reviewed_at = ?, review_note = ?, "
                 "check_status = 'ok', check_summary = ?, checked_at = ? WHERE id = ? AND status = 'pending' RETURNING id",
@@ -158,14 +184,17 @@ def run(db, store, collected_key, venue_ids=()):
 
 
 def monday_window(now=None):
-    """Lundi de 5 h à 9 h UTC : traitement complet du lundi en cours, rien à lancer."""
+    """Du dimanche 20 h au lundi 9 h UTC : traitement du lundi imminent ou en cours, rien à
+    lancer (un traitement lancé juste avant 5 h ferait attendre celui du lundi, qu'un calcul de
+    membre pourrait alors remplacer dans la file : newsletter perdue)."""
     now = now or datetime.now(timezone.utc)
-    return now.weekday() == 0 and 5 <= now.hour < 9
+    return (now.weekday() == 6 and now.hour >= 20) or (now.weekday() == 0 and now.hour < 9)
 
 
 def full_run_due(db, now=None):
-    """Une salle a été ajoutée au catalogue depuis le début de la dernière collecte, et cette
-    collecte date de plus de FULL_RUN_GAP_HOURS heures (hors lundi matin)."""
+    """Une salle a été ajoutée au catalogue (ou une salle ajoutée automatiquement en a été
+    retirée) depuis le début de la dernière collecte, et aucun traitement n'a été lancé depuis
+    FULL_RUN_GAP_HOURS heures (hors dimanche soir et lundi matin)."""
     now = now or datetime.now(timezone.utc)
     if monday_window(now):
         return False
@@ -178,7 +207,8 @@ def full_run_due(db, now=None):
     rows = db.query("SELECT started_at FROM runs WHERE kind = 'weekly' AND status = 'ok' AND sources IS NOT NULL "
                     "ORDER BY ended_at DESC LIMIT 1")
     started = rows[0]["started_at"] if rows else ""
-    return bool(db.query("SELECT 1 FROM venues WHERE status = 'approved' AND reviewed_at > ? LIMIT 1", [started or ""]))
+    return bool(db.query("SELECT 1 FROM venues WHERE (status = 'approved' OR (status = 'rejected' AND auto_approved = 1)) "
+                         "AND reviewed_at > ? LIMIT 1", [started or ""]))
 
 
 def main(argv):

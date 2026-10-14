@@ -34,6 +34,7 @@ collecte complète dès que la précédente a plus de 6 heures (src/venue_check.
 """
 import argparse
 import copy
+import json
 import os
 import re
 import time
@@ -133,11 +134,9 @@ def common(settings, db, store):
     events += run_source("Offi", status, offi.fetch, settings)
     events += run_source("Dice", status, dice.fetch, settings)
     # Sites des salles en dernier : leur lecture est contrôlée face aux concerts des billetteries
-    broken = []
-    events += run_source("Sites des salles", status, venue_pages.fetch, venues_cfg, events, broken)
-    week = "{}-W{:02d}".format(*datetime.now(timezone.utc).isocalendar()[:2])
-    for v in broken:
-        notify.queue(db, "venue_broken", to_admin=True, payload=v, dedupe=f"venue_broken:{v['id']}:{week}")
+    broken, readable = [], []
+    events += run_source("Sites des salles", status, venue_pages.fetch, venues_cfg, events, broken, readable)
+    record_venue_reads(db, broken, readable)
 
     events = match.prepare(events, match.VenueMatcher(venues_cfg))
     # Dédoublonnage : un même concert vu par plusieurs sources est reconnu grâce aux artistes
@@ -191,6 +190,25 @@ def mark_common_redone():
     if out:
         with open(out, "a", encoding="utf-8") as f:
             f.write("redid_common=true\n")
+
+
+def record_venue_reads(db, broken, readable):
+    """État de lecture des pages programme (venues.check_status) ; message à l'admin seulement
+    quand une page lisible devient illisible (pas chaque semaine pour une page jamais lue). Un
+    incident ici n'arrête pas la collecte."""
+    try:
+        stamp = members.now_iso()
+        for vid in readable:
+            db.query("UPDATE venues SET check_status = 'ok', checked_at = ? WHERE id = ? AND status = 'approved'", [stamp, vid])
+        for v in broken:
+            summary = json.dumps({"method": None, "url": v["url"], "reasons": v["reasons"], "stats": {}, "sample": []},
+                                 ensure_ascii=False)
+            db.query("UPDATE venues SET check_status = 'failed', check_summary = ?, checked_at = ? "
+                     "WHERE id = ? AND status = 'approved'", [summary, stamp, v["id"]])
+            if v.get("was") != "failed":
+                notify.queue(db, "venue_broken", to_admin=True, payload=v, dedupe=f"venue_broken:{v['id']}:{stamp}")
+    except Exception as exc:  # noqa: BLE001
+        log(f"Salles : état de lecture non enregistré ({exc.__class__.__name__})")
 
 
 def launch_full_run():

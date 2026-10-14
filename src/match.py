@@ -261,6 +261,22 @@ def _minutes(group):
     return out
 
 
+def _site_covers(site, other):
+    """Concert lu sur le site d'une salle (titre seul, « Alex Cameron + Josh Da Costa ») et même
+    concert d'une billetterie le même jour dans la même salle (« Alex Cameron ») : le titre du
+    site contient tous les mots du premier artiste (ou du titre) de l'autre (version 1.12.0)."""
+    if not site or not all(str(ev.get("source", "")).startswith("Site ") and ev.get("title_only") for ev in site):
+        return False
+    if any(str(ev.get("source", "")).startswith("Site ") for ev in other):
+        return False
+    title = set(norm(site[0].get("title") or "").split())
+    for ev in other:
+        name = set(norm((ev.get("artists") or [ev.get("title") or ""])[0]).split())
+        if name and len("".join(name)) >= 3 and name <= title:
+            return True
+    return False
+
+
 def _close_times(a, b):
     ta, tb = _minutes(a), _minutes(b)
     return not ta or not tb or any(abs(x - y) <= 60 for x in ta for y in tb)
@@ -295,6 +311,9 @@ def dedupe(events):
             for kb, idb in items[i + 1:]:
                 if (ka[1] != kb[1] and ida & idb and _same_venue(ka[1], kb[1])
                         and _close_times(groups[ka], groups[kb])):
+                    parent[find(kb)] = find(ka)
+                elif (ka[1] == kb[1] and _close_times(groups[ka], groups[kb])
+                      and (_site_covers(groups[ka], groups[kb]) or _site_covers(groups[kb], groups[ka]))):
                     parent[find(kb)] = find(ka)
 
     clusters = defaultdict(list)

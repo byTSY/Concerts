@@ -1091,6 +1091,7 @@ const PROPOSAL_STATUS = { pending: "en attente de l'admin", approved: "ajoutée 
 function proposalStatus(p) {
   if (p.status === "pending" && p.check_status === "running") return "vérification automatique en cours";
   if (p.status === "pending" && p.check_status === "failed") return "page programme non lue automatiquement, transmise à l'admin";
+  if (p.status === "pending" && p.check_status === "ok") return "page programme lue, transmise à l'admin pour validation";
   if (p.status === "approved" && p.auto_approved) return "ajoutée au catalogue après vérification de sa page programme";
   return PROPOSAL_STATUS[p.status] || p.status;
 }

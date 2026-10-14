@@ -21,11 +21,14 @@ import html as htmllib
 import ipaddress
 import json
 import re
+import signal
 import socket
+import threading
 import time
 import unicodedata
 from collections import defaultdict
 from datetime import date, timedelta
+from contextlib import contextmanager
 from urllib.parse import urljoin, urlparse, urlunparse
 from urllib.robotparser import RobotFileParser
 
@@ -47,6 +50,10 @@ READ_SECONDS = 40          # durée de lecture d'une page au plus
 VENUE_SECONDS = 180        # durée de lecture d'une salle au plus (toutes méthodes)
 MAX_CARD_TEXT = 3000       # texte d'une carte au plus (caractères) : au-delà, bloc trop large
 MAX_GROUPS = 12            # groupes de liens examinés au plus par page
+MAX_LINKS = 3000           # liens internes examinés au plus par page
+MAX_CLIMB = 40             # niveaux de blocs remontés au plus autour d'un lien
+SOURCE_SECONDS = 15 * 60   # durée totale de la source « Sites des salles » (traitement du lundi)
+SAFE_HOST = re.compile(r"^[a-z0-9.-]+(:\d+)?$")  # hôte sans caractère ambigu (barre oblique inverse, espace, « @ »)
 STRUCTURED = {"fiches de la page", "pages de concert", "agenda WordPress"}   # données publiées par le site
 
 LD_RE = re.compile(r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>(.*?)</script>', re.S | re.I)
@@ -113,6 +120,37 @@ class PageError(Exception):
         self.status = status
 
 
+class _Timeout(BaseException):
+    """Durée de lecture de la salle dépassée (alarme) ; BaseException : jamais confondue avec
+    une page en erreur par les « except Exception » de la lecture."""
+
+
+@contextmanager
+def _time_limit(seconds):
+    """Interrompt le bloc après seconds secondes (lecture réseau ou calcul compris), là où une
+    alarme est possible (Linux, fil principal : GitHub Actions) ; ailleurs, seuls les contrôles
+    entre deux pages et pendant la lecture s'appliquent."""
+    usable = hasattr(signal, "setitimer") and threading.current_thread() is threading.main_thread()
+    if not usable:
+        yield
+        return
+
+    def ring(_signum, _frame):
+        raise _Timeout()
+    previous = signal.signal(signal.SIGALRM, ring)
+    signal.setitimer(signal.ITIMER_REAL, seconds)
+    try:
+        yield
+    finally:
+        signal.setitimer(signal.ITIMER_REAL, 0)
+        signal.signal(signal.SIGALRM, previous)
+
+
+class Page(str):
+    """Texte d'une page, avec l'adresse finale après redirections (base des liens relatifs)."""
+    url = None
+
+
 class _Redirect(Exception):
     def __init__(self, location):
         super().__init__(location)
@@ -152,8 +190,9 @@ def _origin(url):
 def _public(url):
     """Vrai si l'hôte de l'adresse ne désigne que des adresses publiques (pas de réseau interne,
     ni par son nom, ni après une redirection)."""
+    netloc = urlparse(url).netloc.lower()
     host = (urlparse(url).hostname or "").lower()
-    if not host:
+    if not host or not SAFE_HOST.match(netloc):
         return False
     if host not in _public_hosts:
         try:
@@ -190,7 +229,7 @@ def _read(url, limit=MAX_PAGE, content_type=None):
         if int(r.headers.get("content-length") or 0) > limit:
             return None
         chunks, size = [], 0
-        for chunk in r.iter_content(65536):
+        for chunk in r.iter_content(8192):
             size += len(chunk)
             if size > limit or time.monotonic() - started > READ_SECONDS:
                 return None
@@ -225,7 +264,9 @@ def _get(url, limit=MAX_PAGE, robots=True, content_type=None):
             raise PageError(f"page inaccessible ({exc.__class__.__name__})") from exc
         if text is None:
             raise PageError("page trop lourde ou trop lente")
-        return text
+        page = Page(text)
+        page.url = url
+        return page
     raise PageError("trop de redirections")
 
 
@@ -463,6 +504,8 @@ def _clean(parts):
 def from_cards(page, base, root=None):
     root = root or htmltree.parse(page)
     groups, anchors = link_groups(root, base)
+    if sum(len(v) for v in anchors.values()) > MAX_LINKS:
+        return []
     sizes = htmltree.text_sizes(root)
     today = date.today()
     best = []
@@ -472,10 +515,10 @@ def from_cards(page, base, root=None):
         inside = defaultdict(set)
         for url in urls:
             for a in anchors[url]:
-                node = a
-                while node is not None:
+                node, level = a, 0
+                while node is not None and level <= MAX_CLIMB:
                     inside[id(node)].add(url)
-                    node = node.parent
+                    node, level = node.parent, level + 1
         found, seen = [], set()
         for url in urls:
             card = anchors[url][0]
@@ -577,20 +620,28 @@ def agenda_links(root, base):
     return out[:MAX_AGENDA_LINKS]
 
 
-def read_venue(url, reference=None):
+def read_venue(url, reference=None, quick=False):
     """Concerts de la page programme d'une salle, en VENUE_SECONDS secondes au plus.
 
     reference : concerts de la salle déjà connus par les billetteries [(date ISO, titre)], pour le
-    contrôle. Renvoie {"ok", "method", "url", "events" (lus, concerts et autres), "reasons", "stats"}.
+    contrôle. quick : salle déjà illisible la semaine précédente, méthodes rapides seulement (ni
+    pages de concert, ni recherche de la page programme). Renvoie {"ok", "method", "url", "events"
+    (lus, concerts et autres), "structured" (concerts des données publiées par le site), "reasons",
+    "stats", "sample"}.
     """
     _deadline[0] = time.monotonic() + VENUE_SECONDS
     try:
-        return _read_venue(url, reference, follow=True)
+        with _time_limit(VENUE_SECONDS + 20):
+            return _read_venue(url, reference, follow=True, quick=quick)
+    except _Timeout:
+        return {"ok": False, "method": "aucune", "url": url, "events": [], "structured": [],
+                "reasons": ["lecture trop longue, interrompue"],
+                "stats": {"upcoming": 0, "concerts": 0, "past": 0, "agreement": None}, "sample": []}
     finally:
         _deadline[0] = None
 
 
-def _read_venue(url, reference, follow):
+def _read_venue(url, reference, follow, quick):
     from ..venue_check import check   # import local : venue_check importe ce module
 
     def result(method, events, page_url):
@@ -600,12 +651,17 @@ def _read_venue(url, reference, follow):
     try:
         page = fetch_page(url)
     except PageError as exc:
-        return {**result("aucune", [], url), "ok": False, "reasons": [str(exc)]}
+        return {**result("aucune", [], url), "ok": False, "reasons": [str(exc)], "structured": []}
+    url = getattr(page, "url", None) or url    # adresse finale (redirections)
     root = htmltree.parse(page)
 
     best = result("aucune", [], url)
+    structured = []   # concerts des données publiées par le site (salle déjà au catalogue)
 
     def better(candidate):
+        nonlocal structured
+        if candidate["method"] in STRUCTURED and len(candidate["events"]) > len(structured):
+            structured = candidate["events"]
         return (candidate["ok"], candidate["stats"]["upcoming"]) > (best["ok"], best["stats"]["upcoming"])
 
     for method, run in (("fiches de la page", lambda: from_json_ld(page, url)),
@@ -615,19 +671,21 @@ def _read_venue(url, reference, follow):
         if better(candidate):
             best = candidate
         if best["ok"] and best["stats"]["upcoming"] >= 5:
-            return best
-    if not best["ok"]:
+            return {**best, "structured": structured}
+    if not best["ok"] and not quick:
         candidate = result("pages de concert", from_detail_pages(root, url), url)
         if better(candidate):
             best = candidate
-    if not best["ok"] and follow:
+    if not best["ok"] and follow and not quick:
         for link in agenda_links(root, url):
-            candidate = _read_venue(link, reference, follow=False)
+            candidate = _read_venue(link, reference, follow=False, quick=False)
+            if len(candidate.get("structured") or []) > len(structured):
+                structured = candidate["structured"]
             if better(candidate):
                 best = candidate
             if best["ok"]:
                 break
-    return best
+    return {**best, "structured": structured}
 
 
 def to_events(venue_name, events):
@@ -670,28 +728,41 @@ def reference_for(venue, events):
             if e.get("date") and not str(e.get("source", "")).startswith("Site ") and matcher.canonical(e.get("venue") or "")]
 
 
-def fetch(venues_cfg, others=None, failures=None):
+def fetch(venues_cfg, others=None, failures=None, readable=None):
     """venues_cfg : catalogue commun des salles (catalog.load). others : concerts déjà lus par les
-    autres sources (contrôle). failures : liste complétée des salles dont la lecture a échoué."""
+    autres sources (contrôle). failures : liste complétée des salles dont la lecture a échoué.
+    readable : liste complétée des salles lues (état enregistré par la tâche commune).
+    Une salle déjà illisible la semaine précédente (check_status failed) est lue par les méthodes
+    rapides seulement ; la source entière dure SOURCE_SECONDS au plus."""
     events = []
+    started = time.monotonic()
     for v in venues_cfg.get("venues", []):
         url = (v.get("agenda_url") or "").strip()
         if not url:
             continue
+        if time.monotonic() - started > SOURCE_SECONDS:
+            log(f"  {v['name']} : non lue (durée de la source dépassée)")
+            continue
         try:
-            got = read_venue(url, reference_for(v, others))
+            got = read_venue(url, reference_for(v, others), quick=v.get("check_status") == "failed")
         except Exception as exc:  # noqa: BLE001  une salle en panne n'arrête pas les autres
-            got = {"ok": False, "reasons": [f"erreur de lecture ({exc.__class__.__name__})"], "events": [], "method": "aucune"}
-        # Salle déjà au catalogue : ses fiches schema.org restent prises même si le contrôle (fait
-        # pour l'ajout d'une salle) échoue, par exemple avec une ou deux dates seulement
-        if not got["ok"] and got.get("method") in STRUCTURED and to_events(v["name"], got["events"]):
-            got = {**got, "ok": True}
-        if not got["ok"]:
+            got = {"ok": False, "reasons": [f"erreur de lecture ({exc.__class__.__name__})"], "events": [],
+                   "method": "aucune", "structured": []}
+        found = to_events(v["name"], got["events"]) if got["ok"] else []
+        method = got.get("method")
+        # Salle déjà au catalogue : les concerts de ses données publiées (schema.org, WordPress)
+        # restent pris même si le contrôle, fait pour l'ajout d'une salle, échoue (une ou deux
+        # dates seulement, ou cartes « club » plus nombreuses)
+        if not got["ok"] and to_events(v["name"], got.get("structured") or []):
+            found, method = to_events(v["name"], got["structured"]), "données publiées par le site"
+        if not found and not got["ok"]:
             log(f"  {v['name']} : lecture refusée ({'; '.join(got['reasons'])})")
             if failures is not None:
-                failures.append({"id": v.get("id"), "name": v["name"], "url": url, "reasons": got["reasons"]})
+                failures.append({"id": v.get("id"), "name": v["name"], "url": url, "reasons": got["reasons"],
+                                 "was": v.get("check_status")})
             continue
-        found = to_events(v["name"], got["events"])
-        log(f"  {v['name']} : {len(found)} concerts ({got['method']})")
+        if readable is not None:
+            readable.append(v.get("id"))
+        log(f"  {v['name']} : {len(found)} concerts ({method})")
         events += found
     return events

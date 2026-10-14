@@ -39,6 +39,12 @@ Salles proposées : lecture universelle des pages programme et ajout automatique
   aucun concert et l'admin est prévenu (une fois par semaine et par salle).
 - Politesse : robots.txt respecté, pause de 1,5 s entre deux pages d'un même site, 40 pages de
   concert au plus par salle.
+- Garde-fous (audits) : salle dont le nom est proche d'une salle du catalogue jamais ajoutée sans
+  l'admin ; aucun traitement complet lancé du dimanche 20 h au lundi 9 h UTC ; lecture d'une salle
+  limitée à 3 minutes et source « Sites des salles » à 15 minutes ; adresses internes refusées,
+  y compris après redirection ; message « page illisible » envoyé une seule fois, quand une page
+  lisible devient illisible ; concert lu sur le site d'une salle fusionné avec le même concert
+  d'une billetterie (« Alex Cameron + Josh Da Costa » et « Alex Cameron »).
 
 Migration `0012_venue_check.sql` à appliquer (production et essai) avant la mise en production
 (commande inverse dans le fichier).

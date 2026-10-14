@@ -13,12 +13,14 @@ def venue_id(name):
 
 def load(db):
     """Salles approuvées, au format de match.VenueMatcher et de sources.venues :
-    {"venues": [{id, name, aliases, agenda_url}], "excluded": [{id, name, aliases}]}."""
-    rows = db.query("SELECT id, name, aliases, agenda_url, excluded FROM venues WHERE status = 'approved' ORDER BY name")
+    {"venues": [{id, name, aliases, agenda_url, check_status}], "excluded": [...]}
+    (check_status : dernier état de lecture de la page programme, migration 0012)."""
+    rows = db.query("SELECT id, name, aliases, agenda_url, excluded, check_status FROM venues "
+                    "WHERE status = 'approved' ORDER BY name")
     out = {"venues": [], "excluded": []}
     for r in rows:
         item = {"id": r["id"], "name": r["name"], "aliases": json.loads(r["aliases"] or "[]"),
-                "agenda_url": r["agenda_url"] or ""}
+                "agenda_url": r["agenda_url"] or "", "check_status": r["check_status"]}
         out["excluded" if r["excluded"] else "venues"].append(item)
     log(f"Catalogue des salles : {len(out['venues'])} salles, {len(out['excluded'])} exclues")
     return out
