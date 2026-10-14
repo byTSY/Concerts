@@ -14,6 +14,14 @@ Revenir à une version antérieure :
 3. base D1 : les migrations ne s'annulent pas seules ; chaque entrée indique la commande inverse
    quand une migration est ajoutée.
 
+## 1.9.1 (14 octobre 2026)
+
+Correction : la fiche d'un concert ne se fermait plus (depuis la version 1.8.0).
+- « × » et le tap autour de la fiche la ferment de nouveau : le tap remontait jusqu'à « ouvrir la
+  fiche » et la rouvrait aussitôt. Toucher la description de l'artiste ne recharge plus la fiche.
+- Bouton retour du téléphone (et balayage retour sur iPhone) : il ferme la fiche et ramène à la
+  liste ou au même Reel, à la même position, sans rechargement. Aucune migration.
+
 ## 1.9.0 (14 octobre 2026)
 
 Incident du 13 octobre : Spotify a bloqué les appels de l'application (quota du compte
