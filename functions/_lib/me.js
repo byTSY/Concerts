@@ -581,9 +581,10 @@ export function member(env, user) {
     // bord Spotify. Le membre peut corriger sa demande tant qu'elle est en attente.
     async requestSpotify({ account_email, account_name }) {
       const mail = String(account_email || "").trim().toLowerCase();
-      const name = String(account_name || "").replace(/\s+/g, " ").trim();
+      // Nom facultatif depuis la version 1.13.0 : prénom du membre à défaut
+      const name = String(account_name || "").replace(/\s+/g, " ").trim() || user.first_name;
       if (!EMAIL.test(mail) || mail.length > 200) throw new HttpError(400, "adresse e-mail du compte Spotify invalide", "bad_email");
-      if (name.length < 2 || name.length > 80) throw new HttpError(400, "nom : 2 à 80 caractères", "bad_name");
+      if (name.length < 1 || name.length > 80) throw new HttpError(400, "nom : 1 à 80 caractères", "bad_name");
       const current = await db.prepare(SOURCE_FOR_REMOVAL.replace("SELECT ", "SELECT status, ")).bind(id).first();
       if (current && !(current.provider === "spotify" && current.status === "pending_allowlist")) {
         throw new HttpError(409, "détachez d'abord la source actuelle (Changer de source)", "source_attached");
@@ -832,11 +833,31 @@ const cleanFirstName = (value) => {
   return name;
 };
 
-// Invitation valide pour ce jeton : { id, first_name } ou null (inconnue, expirée, déjà utilisée)
+// Invitation valide pour ce jeton : { id, first_name, spotify_account_email } ou null (inconnue,
+// expirée, déjà utilisée)
 export async function findInvitation(env, token) {
   if (!INVITATION_TOKEN.test(String(token || ""))) return null;
-  return env.DB.prepare("SELECT id, first_name FROM invitations WHERE token_hash = ? AND expires_at > ?")
-    .bind(await tokenHash(token), nowIso()).first();
+  return env.DB.prepare("SELECT id, first_name, spotify_account_email FROM invitations " +
+    "WHERE token_hash = ? AND expires_at > ? AND claimed_by IS NULL").bind(await tokenHash(token), nowIso()).first();
+}
+
+// Lien déjà utilisé, dans les 24 heures qui suivent (version 1.13.0) : { invitation_id, id, email,
+// first_name, status } du membre créé, ou null. L'adresse n'est corrigeable que si status = invited.
+// Seul le navigateur qui a fait l'inscription la retrouve : secret déposé en cookie à
+// l'inscription (claimInvitation), dont l'empreinte est gardée sur le lien. Un lien transféré
+// ou retrouvé dans un historique ne montre ni ne modifie l'adresse.
+export async function findClaimedInvitation(env, token, secret) {
+  if (!INVITATION_TOKEN.test(String(token || "")) || !INVITATION_TOKEN.test(String(secret || ""))) return null;
+  return env.DB.prepare("SELECT i.id AS invitation_id, i.corrections, u.id, u.email, u.first_name, u.status FROM invitations i " +
+    "JOIN users u ON u.id = i.claimed_by WHERE i.token_hash = ? AND i.claim_secret_hash = ? AND i.expires_at > ?")
+    .bind(await tokenHash(token), await tokenHash(secret), nowIso()).first();
+}
+
+// Choix de Spotify proposé sur la page d'invitation : application configurée et place libre
+export async function spotifyOpenForInvitation(env) {
+  if (!spotifyEnabled(env)) return false;
+  const used = await spotifyUsed(env.DB);
+  return used !== null && used < spotifyMax(env);
 }
 
 // Compte Spotify saisi par l'admin avec l'invitation (facultatif) : { email, name } ou null
@@ -870,44 +891,145 @@ async function checkSpotifyAccount(db, env, account, exceptInvitation = null) {
 const READY_SPOTIFY_SOURCE = "INSERT INTO music_sources (user_id, provider, status, spotify_account_email, spotify_account_name, " +
   "spotify_requested_at, spotify_allowlisted_at) VALUES (?, 'spotify', 'ready_to_connect', ?, ?, ?, ?)";
 
-// La personne invitée donne son adresse : elle devient membre (statut invited), le lien est
-// effacé (usage unique). Renvoie { email, first_name }.
-export async function claimInvitation(env, token, email) {
+const CORRECTION_HOURS = 24;
+const MAX_CORRECTIONS = 3;
+const cleanMail = (value) => String(value || "").trim().toLowerCase();
+
+// Compte Spotify déjà pris par un membre ou une invitation (condition SQL, un paramètre : l'adresse)
+const SPOTIFY_ACCOUNT_TAKEN = "EXISTS (SELECT 1 FROM music_sources WHERE provider = 'spotify' AND spotify_account_email = ?1) " +
+  "OR EXISTS (SELECT 1 FROM invitations WHERE spotify_account_email = ?1)";
+async function checkSpotifyFree(db, mail, message) {
+  const taken = await db.prepare(`SELECT ${SPOTIFY_ACCOUNT_TAKEN} AS taken`).bind(mail).first();
+  if (taken?.taken) throw new HttpError(409, message, "taken");
+}
+
+// La personne invitée donne son adresse et, depuis la version 1.13.0, sa source musicale : elle
+// devient membre (statut invited). Spotify choisi : la demande de place part tout de suite à
+// l'admin, qui peut ajouter le compte chez Spotify avant même la première connexion. Le lien ne
+// crée plus de membre, mais reste 24 heures pour corriger l'adresse, depuis le navigateur qui a
+// reçu le secret renvoyé ici (cookie). Renvoie { id, email, first_name, secret, spotify (compte
+// préparé par l'admin, ou encore présent chez Spotify), spotify_request ({ account_email,
+// account_name, requested_at } ou null), spotify_full }.
+export async function claimInvitation(env, token, email, { source = "deezer", spotifyEmail = "" } = {}) {
   const db = env.DB;
-  const mail = String(email || "").trim().toLowerCase();
+  const mail = cleanMail(email);
   if (!EMAIL.test(mail) || mail.length > 200) throw new HttpError(400, "adresse e-mail invalide", "bad_email");
   const invitation = await findInvitation(env, token);
   if (!invitation) throw new HttpError(410, "lien expiré ou déjà utilisé", "expired");
   if (await db.prepare("SELECT 1 FROM users WHERE email = ?").bind(mail).first()) {
     throw new HttpError(409, "cette adresse est déjà inscrite : connectez-vous directement", "exists");
   }
-  // Inscription et effacement du lien dans un même lot (transaction D1) : le lien n'est
-  // consommé que si le membre est créé, et deux envois simultanés ne créent qu'un membre
-  const hash = await tokenHash(token);
-  const now = nowIso();
-  const memberId = newMemberId();
   // Compte Spotify préparé par l'admin (colonnes absentes avant la migration 0011 : aucun)
   const prepared = await db.prepare("SELECT spotify_account_email, spotify_account_name, created_at FROM invitations WHERE id = ?")
     .bind(invitation.id).first().catch(() => null);
   const spotify = prepared?.spotify_account_email ? prepared : null;
+  // Spotify choisi sur la page (sans compte préparé) : adresse du compte, celle de connexion à défaut
+  let request = null;
+  let kept = null;
+  if (!spotify && source === "spotify") {
+    const account = cleanMail(spotifyEmail) || mail;
+    if (!EMAIL.test(account) || account.length > 200) throw new HttpError(400, "adresse e-mail du compte Spotify invalide", "bad_email");
+    if (!spotifyEnabled(env)) throw new HttpError(409, "Spotify n'est pas disponible : choisissez Deezer", "spotify_unavailable");
+    await checkSpotifyFree(db, account, "ce compte Spotify est déjà utilisé par un autre membre : vérifiez l'adresse, ou choisissez Deezer");
+    // Compte encore présent chez Spotify (retrait en attente, ancien membre) : pas de retrait ni
+    // de nouvel ajout, l'accès est rouvert aussitôt (même règle que requestSpotify)
+    kept = await db.prepare("SELECT id FROM spotify_removals WHERE account_email = ? ORDER BY id LIMIT 1").bind(account).first();
+    if (!kept && !(await spotifyOpenForInvitation(env))) {
+      throw new HttpError(409, "toutes les places Spotify sont prises : choisissez Deezer, ou parlez-en à la personne qui vous a invité", "spotify_full");
+    }
+    request = { account_email: account, account_name: invitation.first_name };
+  }
+  const secret = newToken();
+  // Inscription et marquage du lien dans un même lot (transaction D1) : le lien n'est utilisé
+  // que si le membre est créé, et deux envois simultanés ne créent qu'un membre
+  const hash = await tokenHash(token);
+  const now = nowIso();
+  const memberId = newMemberId();
+  const correctionUntil = new Date(Date.now() + CORRECTION_HOURS * 3600 * 1000).toISOString().replace(/\.\d{3}Z$/, "+00:00");
+  const ifMember = "WHERE EXISTS (SELECT 1 FROM users WHERE id = ?)";
   let results;
   try {
     results = await db.batch([
       db.prepare("INSERT INTO users (id, email, first_name, role, status, invited_at, invited_via, default_visibility) " +
-        "SELECT ?, ?, first_name, 'member', 'invited', ?, 'link', 'members' FROM invitations WHERE id = ? AND token_hash = ? AND expires_at > ?")
+        "SELECT ?, ?, first_name, 'member', 'invited', ?, 'link', 'members' FROM invitations " +
+        "WHERE id = ? AND token_hash = ? AND expires_at > ? AND claimed_by IS NULL")
         .bind(memberId, mail, now, invitation.id, hash, now),
       spotify ? db.prepare(READY_SPOTIFY_SOURCE.replace("VALUES (?, 'spotify', 'ready_to_connect', ?, ?, ?, ?)",
-        "SELECT ?, 'spotify', 'ready_to_connect', ?, ?, ?, ? WHERE EXISTS (SELECT 1 FROM users WHERE id = ?)"))
+        `SELECT ?, 'spotify', 'ready_to_connect', ?, ?, ?, ? ${ifMember}`))
         .bind(memberId, spotify.spotify_account_email, spotify.spotify_account_name, now, spotify.created_at, memberId) : null,
-      db.prepare("DELETE FROM invitations WHERE id = ? AND token_hash = ?").bind(invitation.id, hash),
+      // Demande de place : plafond et compte libre vérifiés dans la même instruction (deux
+      // inscriptions simultanées) ; compte encore présent chez Spotify : accès rouvert
+      request && !kept ? db.prepare("INSERT INTO music_sources (user_id, provider, status, spotify_account_email, spotify_account_name, spotify_requested_at) " +
+        `SELECT ?, 'spotify', 'pending_allowlist', ?, ?, ? ${ifMember} AND ${SPOTIFY_USED} < ? ` +
+        "AND NOT EXISTS (SELECT 1 FROM music_sources WHERE provider = 'spotify' AND spotify_account_email = ?) " +
+        "AND NOT EXISTS (SELECT 1 FROM invitations WHERE spotify_account_email = ?)")
+        .bind(memberId, request.account_email, request.account_name, now, memberId, spotifyMax(env), request.account_email, request.account_email) : null,
+      kept ? db.prepare(READY_SPOTIFY_SOURCE.replace("VALUES (?, 'spotify', 'ready_to_connect', ?, ?, ?, ?)",
+        `SELECT ?, 'spotify', 'ready_to_connect', ?, ?, ?, ? ${ifMember} AND EXISTS (SELECT 1 FROM spotify_removals WHERE id = ?)`))
+        .bind(memberId, request.account_email, request.account_name, now, now, memberId, kept.id) : null,
+      kept ? db.prepare(`DELETE FROM spotify_removals WHERE id = ? AND EXISTS (SELECT 1 FROM music_sources WHERE user_id = ?)`)
+        .bind(kept.id, memberId) : null,
+      // Compte préparé désormais porté par la source du membre : il ne compte plus sur le lien
+      db.prepare("UPDATE invitations SET claimed_by = ?, claim_secret_hash = ?, expires_at = ?, spotify_account_email = NULL, spotify_account_name = NULL " +
+        `WHERE id = ? AND token_hash = ? AND claimed_by IS NULL AND EXISTS (SELECT 1 FROM users WHERE id = ?)`)
+        .bind(memberId, await tokenHash(secret), correctionUntil, invitation.id, hash, memberId),
     ].filter(Boolean));
   } catch (e) {
     if (/UNIQUE/i.test(String(e?.message))) throw new HttpError(409, "cette adresse est déjà inscrite : connectez-vous directement", "exists");
     throw e;
   }
   if (!results[0].meta?.changes) throw new HttpError(410, "lien déjà utilisé", "expired");
+  // Place ou compte pris entre la vérification et l'inscription : membre inscrit sans source
+  // (Deezer ou Spotify au choix sur le site)
+  const linked = request && results[1].meta?.changes;
+  const requested = linked && !kept ? { ...request, requested_at: now } : null;
   console.log(`Invitation ${invitation.id} utilisée le ${now}`);
-  return { id: memberId, email: mail, first_name: invitation.first_name, spotify: Boolean(spotify) };
+  return { id: memberId, email: mail, first_name: invitation.first_name, secret, spotify: Boolean(spotify || (kept && linked)),
+    spotify_request: requested, spotify_full: Boolean(request && !linked) };
+}
+
+// Correction de l'adresse par le lien déjà utilisé, depuis le navigateur de l'inscription (secret
+// du cookie), tant que le membre ne s'est pas connecté ; MAX_CORRECTIONS au plus.
+// Renvoie { id, old_email, email, first_name, spotify_request } (demande Spotify suivie si elle
+// portait l'ancienne adresse et attend encore l'admin).
+export async function correctInvitationEmail(env, token, secret, email) {
+  const db = env.DB;
+  const mail = cleanMail(email);
+  const claimed = await findClaimedInvitation(env, token, secret);
+  if (!claimed) throw new HttpError(410, "lien expiré", "expired");
+  if (claimed.status !== "invited") throw new HttpError(409, "vous êtes déjà connecté : changez d'adresse avec l'admin", "active");
+  if (!EMAIL.test(mail) || mail.length > 200) throw new HttpError(400, "adresse e-mail invalide", "bad_email");
+  if (mail === claimed.email) return { id: claimed.id, old_email: claimed.email, email: mail, first_name: claimed.first_name, spotify_request: null };
+  if (claimed.corrections >= MAX_CORRECTIONS) {
+    throw new HttpError(429, `${MAX_CORRECTIONS} corrections au plus : demandez à la personne qui vous a invité de corriger l'adresse`, "too_many");
+  }
+  if (await db.prepare("SELECT 1 FROM users WHERE email = ?").bind(mail).first()) {
+    throw new HttpError(409, "cette adresse est déjà inscrite : connectez-vous directement", "exists");
+  }
+  const src = await db.prepare("SELECT status, spotify_account_email, spotify_account_name FROM music_sources WHERE user_id = ? AND provider = 'spotify'")
+    .bind(claimed.id).first();
+  const follow = src?.status === "pending_allowlist" && src.spotify_account_email === claimed.email;
+  if (follow) await checkSpotifyFree(db, mail, "cette adresse est déjà le compte Spotify d'un autre membre : choisissez-en une autre");
+  const now = nowIso();
+  let results;
+  try {
+    results = await db.batch([
+      db.prepare("UPDATE users SET email = ? WHERE id = ? AND email = ? AND status = 'invited' " +
+        "AND EXISTS (SELECT 1 FROM invitations WHERE id = ? AND claimed_by = ? AND corrections < ?)")
+        .bind(mail, claimed.id, claimed.email, claimed.invitation_id, claimed.id, MAX_CORRECTIONS),
+      db.prepare("UPDATE invitations SET corrections = corrections + 1 WHERE id = ? AND EXISTS (SELECT 1 FROM users WHERE id = ? AND email = ?)")
+        .bind(claimed.invitation_id, claimed.id, mail),
+      follow ? db.prepare("UPDATE music_sources SET spotify_account_email = ?, spotify_requested_at = ? " +
+        "WHERE user_id = ? AND status = 'pending_allowlist' AND spotify_account_email = ? AND EXISTS (SELECT 1 FROM users WHERE id = ? AND email = ?)")
+        .bind(mail, now, claimed.id, claimed.email, claimed.id, mail) : null,
+    ].filter(Boolean));
+  } catch (e) {
+    if (/UNIQUE/i.test(String(e?.message))) throw new HttpError(409, "cette adresse est déjà inscrite : connectez-vous directement", "exists");
+    throw e;
+  }
+  if (!results[0].meta?.changes) throw new HttpError(409, "adresse modifiée entre-temps : rouvrez le lien", "changed");
+  return { id: claimed.id, old_email: claimed.email, email: mail, first_name: claimed.first_name,
+    spotify_request: follow && results[2].meta?.changes ? { account_email: mail, account_name: src.spotify_account_name, requested_at: now } : null };
 }
 
 // Ajout à la liste Access : réussi ou non (un échec est montré à l'admin, qui peut relancer)
@@ -964,9 +1086,11 @@ export function admin(env) {
       };
     },
 
+    // Liens pas encore utilisés ; les liens utilisés dont le délai de correction est passé sont effacés
     async invitations() {
-      const { results } = await db.prepare("SELECT * FROM invitations ORDER BY created_at").all();
       const now = nowIso();
+      await db.prepare("DELETE FROM invitations WHERE claimed_by IS NOT NULL AND expires_at <= ?").bind(now).run();
+      const { results } = await db.prepare("SELECT * FROM invitations WHERE claimed_by IS NULL ORDER BY created_at").all();
       return results.map((r) => ({ id: r.id, first_name: r.first_name, created_at: r.created_at, expires_at: r.expires_at,
         spotify_account_email: r.spotify_account_email || null, expired: r.expires_at <= now }));
     },
@@ -976,7 +1100,7 @@ export function admin(env) {
       if (!/^i_[a-z0-9]{8}$/.test(String(invitationId))) throw new HttpError(400, "identifiant d'invitation invalide");
       const token = newToken();
       const expires = new Date(Date.now() + INVITATION_DAYS * 86400 * 1000).toISOString().replace(/\.\d{3}Z$/, "+00:00");
-      const row = await db.prepare("UPDATE invitations SET token_hash = ?, expires_at = ? WHERE id = ? RETURNING *")
+      const row = await db.prepare("UPDATE invitations SET token_hash = ?, expires_at = ? WHERE id = ? AND claimed_by IS NULL RETURNING *")
         .bind(await tokenHash(token), expires, invitationId).first();
       if (!row) throw new HttpError(404, "invitation introuvable");
       return { invitation: { id: row.id, first_name: row.first_name, expires_at: row.expires_at,
@@ -986,7 +1110,7 @@ export function admin(env) {
     // Lien supprimé : un compte Spotify préparé est à retirer du tableau de bord Spotify
     async deleteInvitation(invitationId) {
       if (!/^i_[a-z0-9]{8}$/.test(String(invitationId))) throw new HttpError(400, "identifiant d'invitation invalide");
-      const row = await db.prepare("SELECT * FROM invitations WHERE id = ?").bind(invitationId).first();
+      const row = await db.prepare("SELECT * FROM invitations WHERE id = ? AND claimed_by IS NULL").bind(invitationId).first();
       if (!row) throw new HttpError(404, "invitation introuvable");
       await db.batch([
         row.spotify_account_email ? db.prepare("INSERT INTO spotify_removals (account_name, account_email, member_name, reason, created_at) " +

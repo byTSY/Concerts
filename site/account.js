@@ -62,7 +62,7 @@ function syncProblem(me) {
   return syncText(src.last_sync_status, src);
 }
 
-/* Installer sur l'écran d'accueil (même texte que functions/_lib/install.js) --------------- */
+/* Installer sur l'écran d'accueil (pendant le premier calcul et dans « Mon compte ») ------- */
 
 function installHelp() {
   const ua = navigator.userAgent;
@@ -156,8 +156,7 @@ function showOnboarding(me) {
   const box = $("#onboarding");
   box.hidden = false;
   if (me.status === "computing") {
-    if (!["ok", "ok_later"].includes(spotifyReturn)) return renderWaiting(box, me);
-    return renderVenueChoice(box, me).then(() => box.insertAdjacentHTML("afterbegin", spotifyNotice()));
+    return renderWaiting(box, me, spotifyReturn === "ok_later" ? SPOTIFY_RETURN.ok_later : "");
   }
   if (me.source?.provider === "spotify") return renderSpotifyStep(box, me);
   const spotifyOpen = me.spotify?.enabled && !me.spotify?.full;
@@ -165,9 +164,7 @@ function showOnboarding(me) {
   box.innerHTML = `
     ${spotifyNotice()}
     <h2>Bienvenue, ${esc(me.display_name)}</h2>
-    <p>Concerts à Paris repère les concerts de vos artistes et vous propose des découvertes proches de vos goûts, à partir de votre bibliothèque musicale.</p>
-    <p class="cell-sub">Données conservées : votre adresse e-mail, votre prénom ou pseudo, votre source musicale, vos préférences et vos concerts mis de côté. Vous pouvez supprimer votre compte à tout moment depuis « Mon compte » ; tout est alors effacé.</p>
-    <h3>1. Votre source musicale</h3>
+    <p>Concerts à Paris repère les concerts de vos artistes à partir de votre bibliothèque musicale. Dernière étape : indiquez où elle se trouve.</p>
     <div class="source-choice">
       <label class="source-option"><input type="radio" name="source" value="deezer" checked> <strong>Deezer</strong></label>
       <label class="source-option${spotifyOpen ? "" : " disabled"}"><input type="radio" name="source" value="spotify"${spotifyOpen ? "" : " disabled"}> <strong>Spotify</strong>${spotifyNote ? ` <span class="cell-sub">${esc(spotifyNote)}</span>` : ""}</label>
@@ -179,9 +176,7 @@ function showOnboarding(me) {
       <button class="btn" type="submit">Vérifier</button>
     </form>
     <div id="deezer-preview"></div>
-    ${spotifyOpen ? spotifyForm(me.display_name, "", false) : ""}
-    <h3>Installer l'application sur votre téléphone</h3>
-    ${installHelp()}
+    ${spotifyOpen ? spotifyForm(me.email, false) : ""}
     <p>${problemButton()}</p>`;
   $("#deezer-form").addEventListener("submit", (e) => { e.preventDefault(); checkDeezer(); });
   if (spotifyOpen) {
@@ -197,18 +192,14 @@ function showOnboarding(me) {
 
 /* Spotify : demande de place, attente de l'admin, connexion ------------------------------ */
 
-// Formulaire de demande (section 11) : nom et e-mail du compte Spotify, saisi deux fois
-function spotifyForm(name, email, visible) {
+// Formulaire de demande (section 11) : e-mail du compte Spotify, prérempli (adresse de connexion
+// à l'arrivée) ; le nom transmis à l'admin est le prénom du membre (version 1.13.0)
+function spotifyForm(email, visible) {
   return `<form id="spotify-form" class="account-form"${visible ? "" : " hidden"}>
-      <p class="cell-sub">Spotify limite l'application à 5 comptes, que l'admin ajoute à la main chez Spotify. Remplissez ce formulaire : l'admin n'aura rien à vous redemander.</p>
-      <label for="spotify-name">Nom (prénom et nom)</label>
-      <input id="spotify-name" type="text" maxlength="80" autocomplete="name" value="${esc(name || "")}" required>
       <label for="spotify-email">E-mail de votre compte Spotify</label>
       <input id="spotify-email" type="email" maxlength="200" autocomplete="off" value="${esc(email || "")}" required>
-      <p class="cell-sub">Celui de la page Compte &gt; Modifier le profil sur spotify.com (<a href="https://www.spotify.com/account/profile/" target="_blank" rel="noopener">ouvrir cette page</a>) ; il peut différer de votre e-mail de connexion à Concerts.</p>
-      <label for="spotify-email-2">Le même e-mail, une seconde fois</label>
-      <input id="spotify-email-2" type="email" maxlength="200" autocomplete="off" value="${esc(email || "")}" required>
-      <label class="chip"><input type="checkbox" id="spotify-consent" required> J'accepte que l'admin ajoute ce compte à l'application Concerts chez Spotify</label>
+      <p class="cell-sub">Souvent votre adresse de connexion ; sinon, celle de la page <a href="https://www.spotify.com/account/profile/" target="_blank" rel="noopener">Modifier le profil</a> sur spotify.com.</p>
+      <p class="cell-sub">Spotify n'ouvre l'application qu'aux comptes ajoutés un par un. En envoyant, vous acceptez que l'admin ajoute ce compte à l'application Concerts chez Spotify.</p>
       <button class="btn" type="submit">Envoyer la demande</button>
       <div id="spotify-result"></div>
     </form>`;
@@ -219,16 +210,8 @@ function bindSpotifyForm(box) {
     e.preventDefault();
     const out = $("#spotify-result");
     const email = $("#spotify-email").value.trim();
-    if (email.toLowerCase() !== $("#spotify-email-2").value.trim().toLowerCase()) {
-      out.innerHTML = `<p class="prefs-warning">Les deux adresses e-mail diffèrent.</p>`;
-      return;
-    }
-    if (!$("#spotify-consent").checked) {
-      out.innerHTML = `<p class="prefs-warning">Cochez la case d'accord pour continuer.</p>`;
-      return;
-    }
     try {
-      const me = await api("me/source/spotify/request", { method: "POST", body: { account_email: email, account_name: $("#spotify-name").value } });
+      const me = await api("me/source/spotify/request", { method: "POST", body: { account_email: email } });
       spotifyReturn = null;  // message du retour précédent, devenu sans objet
       renderSpotifyStep(box, me);
     } catch (err) {
@@ -247,16 +230,14 @@ function renderSpotifyStep(box, me) {
       <p>L'admin a ouvert votre accès. Spotify va vous demander d'autoriser l'application Concerts à lire votre bibliothèque (artistes suivis, titres et albums sauvegardés, playlists, artistes les plus écoutés), puis vous ramènera ici.</p>
       <p class="cell-sub">Connectez-vous chez Spotify avec le compte ${esc(src.spotify_account_email || "")}. Aucun mot de passe n'est saisi sur Concerts ; vous pourrez retirer l'accès à tout moment depuis la page Gérer les applis de votre compte Spotify.</p>
       <p>${connectSpotifyButton("Connecter Spotify")}</p>
-      <p><button class="btn btn-quiet" type="button" id="spotify-cancel">Choisir Deezer à la place</button> ${problemButton()}</p>
-      <h3>Installer l'application sur votre téléphone</h3>
-      ${installHelp()}`;
+      <p><button class="btn btn-quiet" type="button" id="spotify-cancel">Choisir Deezer à la place</button> ${problemButton()}</p>`;
   } else {
     box.innerHTML = `${spotifyNotice()}
       <h2>Autorisation en cours par l'admin</h2>
       <p>Votre demande est envoyée par e-mail à l'admin, qui doit ajouter votre compte Spotify à l'application Concerts. Vous recevrez un e-mail dès que ce sera fait ; cette page affichera alors « Connecter Spotify ».</p>
       ${src.spotify_refused_at ? `<p class="prefs-warning">Spotify a refusé ce compte lors de votre dernière connexion : vérifiez l'adresse e-mail ci-dessous.</p>` : ""}
       <p class="cell-sub">Compte demandé : ${esc(src.spotify_account_name || "")}, ${esc(src.spotify_account_email || "")}.</p>
-      <details${src.spotify_refused_at ? " open" : ""}><summary>Corriger l'adresse e-mail</summary>${spotifyForm(src.spotify_account_name, src.spotify_account_email, true)}</details>
+      <details${src.spotify_refused_at ? " open" : ""}><summary>Corriger l'adresse e-mail</summary>${spotifyForm(src.spotify_account_email, true)}</details>
       <p><button class="btn btn-quiet" type="button" id="spotify-cancel">Choisir Deezer à la place</button> ${problemButton()}</p>`;
     bindSpotifyForm(box);
     // L'admin peut ouvrir l'accès pendant que la page est ouverte : vérification chaque minute
@@ -300,29 +281,12 @@ async function confirmDeezer(profile) {
   btn.disabled = true;
   try {
     const me = await api("me/source/deezer/confirm", { method: "POST", body: { profile } });
-    await renderVenueChoice($("#onboarding"), me);
-    if (me.run?.done === false) {
-      $("#onboarding").insertAdjacentHTML("afterbegin", `<p class="prefs-warning">Le calcul n'a pas pu être lancé tout de suite ; il aura lieu au prochain traitement, au plus tard lundi matin.</p>`);
-    }
+    await renderWaiting($("#onboarding"), me, me.run?.done === false
+      ? "Le calcul n'a pas pu être lancé tout de suite ; il aura lieu au prochain traitement, au plus tard lundi matin." : "");
   } catch (e) {
     btn.disabled = false;
     $("#deezer-preview").insertAdjacentHTML("beforeend", `<p class="prefs-warning">${esc(e.message)}</p>`);
   }
-}
-
-// Étape facultative pendant le calcul : salles favorites
-async function renderVenueChoice(box, me) {
-  const venues = await api("venues").catch(() => []);
-  const chosen = new Set(me.favorite_venues || []);
-  box.innerHTML = `
-    <h2>Votre profil est relié</h2>
-    <p>Le calcul de vos concerts est lancé ; il prend quelques minutes.</p>
-    <h3>2. Vos salles favorites (facultatif)</h3>
-    <p class="cell-sub">Leurs concerts sont signalés et un peu favorisés dans les découvertes. Modifiable plus tard dans « Mon compte ».</p>
-    <div class="venue-checks">${venueChecks(venues, chosen)}</div>
-    <button class="btn" type="button" id="venues-done">Continuer</button>`;
-  bindVenueChecks(box);
-  $("#venues-done").addEventListener("click", () => renderWaiting(box, me));
 }
 
 function venueChecks(venues, chosen) {
@@ -341,15 +305,24 @@ function bindVenueChecks(box) {
   }));
 }
 
-// Attente du calcul : vérification toutes les 20 secondes, puis ouverture du site
-function renderWaiting(box, me) {
+// Attente du calcul, sur un seul écran depuis la version 1.13.0 : installation et salles
+// favorites en option ; vérification toutes les 20 secondes, puis ouverture du site.
+// notice : avertissement en tête (calcul différé) ; retour réussi de Spotify : message simple.
+async function renderWaiting(box, me, notice = "") {
+  const venues = await api("venues").catch(() => []);
+  const checks = venueChecks(venues, new Set(me.favorite_venues || []));
   box.innerHTML = `
+    ${notice ? `<p class="prefs-warning">${esc(notice)}</p>` : ""}
+    ${spotifyReturn === "ok" ? `<p><strong>${esc(SPOTIFY_RETURN.ok)}</strong></p>` : ""}
     <h2>Calcul de vos concerts en cours</h2>
-    <p>Lecture de votre bibliothèque, puis recherche de vos artistes et de découvertes parmi les concerts à venir. Comptez quelques minutes, parfois davantage si un autre calcul est en cours.</p>
-    <p class="cell-sub" id="waiting-state">Cette page se met à jour toute seule. Vous recevrez aussi un e-mail dès que vos concerts seront prêts : vous pouvez fermer cette page.</p>
+    <p>Comptez quelques minutes. Cette page s'ouvre toute seule sur vos concerts dès qu'ils sont prêts ; vous recevrez aussi un e-mail, vous pouvez donc la fermer.</p>
     <h3>En attendant : installer l'application sur votre téléphone</h3>
     ${installHelp()}
+    ${checks ? `<h3>Vos salles favorites (facultatif)</h3>
+    <p class="cell-sub">Leurs concerts sont signalés et un peu favorisés dans les découvertes. Modifiable plus tard dans « Mon compte ».</p>
+    <div class="venue-checks">${checks}</div>` : ""}
     <p>${problemButton()}</p>`;
+  bindVenueChecks(box);
   clearInterval(renderWaiting.timer);
   renderWaiting.timer = setInterval(async () => {
     try {
