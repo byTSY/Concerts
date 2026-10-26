@@ -87,7 +87,14 @@ def render(row, user, site):
     status = STATUS_LABELS.get((user or {}).get("status"), (user or {}).get("status") or "")
 
     if kind == "member_joined":
-        spotify = "\nSource Spotify préparée : il lui reste à cliquer sur « Connecter Spotify »." if p.get("spotify") else ""
+        spotify = ("\nSource Spotify préparée : il lui reste à cliquer sur « Connecter Spotify »." if p.get("spotify")
+                   else "\nSpotify choisi : la demande de place vous arrive dans un message séparé." if p.get("spotify_requested")
+                   else "")
+        if p.get("corrected"):
+            return (f"Adresse corrigée : {name}",
+                    f"{name} a corrigé l'adresse saisie sur son lien d'invitation. Nouvelle adresse : {email}."
+                    f"{chr(10) + 'Sa demande Spotify suit la nouvelle adresse : ignorez la précédente (si vous aviez déjà ajouté l’ancienne chez Spotify, retirez-la).' if p.get('spotify') else ''}\n\n"
+                    f"Vérifiez que cette adresse est bien la sienne.\n\n{admin_link}")
         return (f"Nouvelle inscription : {name}",
                 f"{name} a utilisé son lien d'invitation avec l'adresse {email}.{spotify}\n\n"
                 f"Vérifiez que cette adresse est bien la sienne.\n\n{admin_link}")

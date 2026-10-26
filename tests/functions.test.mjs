@@ -770,8 +770,11 @@ test("salles : autres noms trop généraux refusés, https exigé, recoupements 
 // --- Liens d'invitation -------------------------------------------------------------------
 
 // Page publique /invitation/<jeton> (hors /api : pas de jeton Access)
-async function invitationPage(env, token, { method = "GET", form, headers = {} } = {}) {
+// Navigateur simulé : le cookie déposé à l'inscription est renvoyé ensuite (env.cookie) ;
+// otherBrowser : autre navigateur, sans ce cookie
+async function invitationPage(env, token, { method = "GET", form, headers = {}, otherBrowser = false } = {}) {
   const init = { method, headers: { ...headers } };
+  if (env.cookie && !otherBrowser) init.headers.cookie = env.cookie;
   if (form) {
     init.body = new URLSearchParams(form).toString();
     init.headers["content-type"] = "application/x-www-form-urlencoded";
@@ -780,6 +783,8 @@ async function invitationPage(env, token, { method = "GET", form, headers = {} }
   const r = await invitationRoute.onRequest({ request: new Request(`https://concerts.test/invitation/${token}`, init), env,
     params: { path: [token] }, waitUntil: (p) => pending.push(p) });
   await Promise.all(pending);
+  const set = r.headers.get("set-cookie");
+  if (set && !otherBrowser) env.cookie = set.split(";")[0];
   return { status: r.status, html: await r.text(), headers: r.headers };
 }
 
@@ -804,12 +809,14 @@ test("lien d'invitation : créé par l'admin, jeton jamais gardé en clair, usag
   // Envoi depuis un autre site : refusé ; adresses différentes : formulaire à nouveau
   assert.equal((await invitationPage(env, token, { method: "POST", form: { email: "h@x.fr", email2: "h@x.fr" }, headers: { origin: "https://pirate.example" } })).status, 403);
   assert.equal((await invitationPage(env, token, { method: "POST", form: { email: "h@x.fr", email2: "h@x.fr" }, headers: { "sec-fetch-site": "cross-site", origin: "null" } })).status, 403);
-  // Formulaire de la page elle-même, origine masquée par le navigateur : accepté (adresses différentes ici)
-  assert.match((await invitationPage(env, token, { method: "POST", form: { email: "h@x.fr", email2: "z@x.fr" }, headers: { "sec-fetch-site": "same-origin", origin: "null" } })).html, /diffèrent/);
-  assert.match((await invitationPage(env, token, { method: "POST", form: { email: "h@x.fr", email2: "autre@x.fr" } })).html, /diffèrent/);
-  assert.match((await invitationPage(env, token, { method: "POST", form: { email: "A@test.fr", email2: "a@test.fr" } })).html, /déjà inscrite/);
-  const done = await invitationPage(env, token, { method: "POST", form: { email: "Hugo@Mail.FR", email2: "hugo@mail.fr" } });
+  // Formulaire de la page elle-même, origine masquée par le navigateur : accepté (adresse invalide ici)
+  assert.match((await invitationPage(env, token, { method: "POST", form: { email: "pas-un-mail" }, headers: { "sec-fetch-site": "same-origin", origin: "null" } })).html, /adresse e-mail invalide/);
+  assert.match((await invitationPage(env, token, { method: "POST", form: { email: "A@test.fr" } })).html, /déjà inscrite/);
+  // Une seule saisie de l'adresse (version 1.13.0) ; Spotify non configuré : pas de choix proposé
+  assert.doesNotMatch(page.html, /email2|value="spotify"/);
+  const done = await invitationPage(env, token, { method: "POST", form: { email: "Hugo@Mail.FR" } });
   assert.match(done.html, /C&#39;est fait|C'est fait/);
+  assert.match(done.html, /class="address">hugo@mail\.fr</);
   const user = env.DB.raw.prepare("SELECT id, first_name, status, role, invited_via, access_pending, default_visibility FROM users WHERE email = 'hugo@mail.fr'").get();
   assert.deepEqual([user.first_name, user.status, user.role, user.invited_via, user.default_visibility], ["Hugo", "invited", "member", "link", "members"]);
   // Liste Access non configurée dans les tests : échec signalé à l'admin, qui peut relancer
@@ -819,11 +826,113 @@ test("lien d'invitation : créé par l'admin, jeton jamais gardé en clair, usag
   const retry = await call(env, "c@test.fr", adminAccess.onRequestPost, { method: "POST", path: `/api/admin/members/${user.id}/access`, params: { id: user.id } });
   assert.equal(retry.data.access.done, false);
   assert.equal((await call(env, "a@test.fr", adminAccess.onRequestPost, { method: "POST", path: `/api/admin/members/${user.id}/access`, params: { id: user.id } })).status, 403);
-  assert.equal(env.DB.raw.prepare("SELECT COUNT(*) AS n FROM invitations").get().n, 0);
-  // Deuxième usage : refusé
-  assert.equal((await invitationPage(env, token, { method: "POST", form: { email: "autre@mail.fr", email2: "autre@mail.fr" } })).status, 410);
-  // La personne inscrite se connecte ensuite normalement
+  // Lien utilisé : gardé 24 heures pour la correction, absent de la liste des liens, plus de second membre
+  assert.equal(env.DB.raw.prepare("SELECT COUNT(*) AS n FROM invitations WHERE claimed_by = ?").get(user.id).n, 1);
+  assert.equal((await call(env, "c@test.fr", adminInvitations.onRequestGet, { path: "/api/admin/invitations" })).data.length, 0);
+  assert.equal((await invitationPage(env, token)).status, 200);
+  assert.match((await invitationPage(env, token)).html, /class="address">hugo@mail\.fr</);
+  // La personne inscrite se connecte ensuite normalement ; le lien ne sert plus
   assert.equal((await call(env, "hugo@mail.fr", getMe)).data.first_name, "Hugo");
+  assert.equal((await invitationPage(env, token)).status, 410);
+  assert.equal((await invitationPage(env, token, { method: "POST", form: { action: "correct", email: "autre@mail.fr" } })).status, 410);
+  assert.equal(env.DB.raw.prepare("SELECT COUNT(*) AS n FROM users WHERE email = 'autre@mail.fr'").get().n, 0);
+});
+
+// Notifications en file (même lecture que queued, plus bas)
+const notes = (env) => env.DB.raw.prepare("SELECT kind, user_id, to_admin, payload FROM notifications ORDER BY id").all()
+  .map((r) => ({ ...r, payload: JSON.parse(r.payload) }));
+
+test("lien d'invitation : adresse corrigée dans les 24 heures, avant la première connexion", async () => {
+  const env = setup();
+  const created = await call(env, "c@test.fr", adminInvitations.onRequestPost, { method: "POST", path: "/api/admin/invitations", body: { first_name: "Léa" } });
+  const token = new URL(created.data.link).pathname.split("/").pop();
+  await invitationPage(env, token, { method: "POST", form: { email: "lea@gmial.com" } });
+  const id = env.DB.raw.prepare("SELECT id FROM users WHERE email = 'lea@gmial.com'").get().id;
+  // Cookie de l'inscription : HttpOnly, limité à /invitation/, secret gardé en empreinte seulement
+  const secret = env.cookie.split("=")[1];
+  assert.ok(secret.length >= 40);
+  assert.ok(!JSON.stringify(env.DB.raw.prepare("SELECT * FROM invitations").all()).includes(secret), "secret gardé en clair");
+  // Lien transféré ou retrouvé ailleurs : ni adresse affichée, ni correction possible
+  const elsewhere = await invitationPage(env, token, { otherBrowser: true });
+  assert.equal(elsewhere.status, 410);
+  assert.doesNotMatch(elsewhere.html, /gmial/);
+  assert.equal((await invitationPage(env, token, { method: "POST", form: { action: "correct", email: "pirate@x.fr" }, otherBrowser: true })).status, 410);
+  assert.equal(env.DB.raw.prepare("SELECT email FROM users WHERE id = ?").get(id).email, "lea@gmial.com");
+  // Formulaire d'inscription renvoyé (second onglet) : pas pris pour une correction
+  assert.match((await invitationPage(env, token, { method: "POST", form: { email: "autre@x.fr" } })).html, /class="address">lea@gmial\.com</);
+  assert.equal(env.DB.raw.prepare("SELECT email FROM users WHERE id = ?").get(id).email, "lea@gmial.com");
+  // Envoi depuis un autre site : refusé
+  assert.equal((await invitationPage(env, token, { method: "POST", form: { action: "correct", email: "x@x.fr" }, headers: { origin: "https://pirate.example" } })).status, 403);
+  // Adresse d'un autre membre ou invalide : refus, l'adresse reste
+  assert.match((await invitationPage(env, token, { method: "POST", form: { action: "correct", email: "a@test.fr" } })).html, /déjà inscrite/);
+  assert.match((await invitationPage(env, token, { method: "POST", form: { action: "correct", email: "nope" } })).html, /invalide/);
+  const fixed = await invitationPage(env, token, { method: "POST", form: { action: "correct", email: " Lea@Gmail.com " } });
+  assert.match(fixed.html, /Adresse corrigée/);
+  assert.match(fixed.html, /class="address">lea@gmail\.com</);
+  assert.equal(env.DB.raw.prepare("SELECT email FROM users WHERE id = ?").get(id).email, "lea@gmail.com");
+  assert.ok(notes(env).some((n) => n.kind === "member_joined" && n.payload.corrected === true));
+  // Même membre (pas de doublon) ; l'ancienne adresse n'ouvre plus rien
+  assert.equal(env.DB.raw.prepare("SELECT COUNT(*) AS n FROM users WHERE first_name = 'Léa'").get().n, 1);
+  assert.equal((await call(env, "lea@gmial.com", getMe)).status, 403);
+  // Trois corrections au plus
+  await invitationPage(env, token, { method: "POST", form: { action: "correct", email: "lea2@gmail.com" } });
+  await invitationPage(env, token, { method: "POST", form: { action: "correct", email: "lea3@gmail.com" } });
+  assert.match((await invitationPage(env, token, { method: "POST", form: { action: "correct", email: "lea4@gmail.com" } })).html, /3 corrections au plus/);
+  assert.equal(env.DB.raw.prepare("SELECT email FROM users WHERE id = ?").get(id).email, "lea3@gmail.com");
+  assert.equal((await call(env, "lea3@gmail.com", getMe)).data.first_name, "Léa");
+  // Délai passé : lien expiré, effacé à la lecture de la liste des liens
+  env.DB.raw.exec("UPDATE invitations SET expires_at = '2020-01-01T00:00:00+00:00'");
+  assert.equal((await invitationPage(env, token)).status, 410);
+  await call(env, "c@test.fr", adminInvitations.onRequestGet, { path: "/api/admin/invitations" });
+  assert.equal(env.DB.raw.prepare("SELECT COUNT(*) AS n FROM invitations").get().n, 0);
+});
+
+test("lien d'invitation : Spotify choisi sur la page, demande envoyée à l'admin avant la connexion", async () => {
+  const env = { ...spotifyEnv(), SPOTIFY_MAX_USERS: "1" };
+  const link = async (first_name) => new URL((await call(env, "c@test.fr", adminInvitations.onRequestPost,
+    { method: "POST", path: "/api/admin/invitations", body: { first_name } })).data.link).pathname.split("/").pop();
+  const token = await link("Tom");
+  const page = await invitationPage(env, token);
+  assert.match(page.html, /value="spotify"/);
+  // Adresse Spotify vide : celle de connexion
+  const done = await invitationPage(env, token, { method: "POST", form: { email: "tom@mail.fr", source: "spotify", spotify_email: "" } });
+  assert.match(done.html, /demande Spotify est envoyée/);
+  const tom = env.DB.raw.prepare("SELECT u.id, s.status, s.spotify_account_email, s.spotify_account_name FROM users u JOIN music_sources s ON s.user_id = u.id WHERE u.email = 'tom@mail.fr'").get();
+  assert.deepEqual([tom.status, tom.spotify_account_email, tom.spotify_account_name], ["pending_allowlist", "tom@mail.fr", "Tom"]);
+  assert.ok(notes(env).some((n) => n.kind === "spotify_request" && n.user_id === tom.id && n.payload.account_email === "tom@mail.fr"));
+  assert.ok(notes(env).some((n) => n.kind === "member_joined" && n.payload.spotify_requested === true));
+  const sp = (await call(env, "c@test.fr", adminSpotify.onRequestGet, { path: "/api/admin/spotify" })).data;
+  assert.deepEqual([sp.used, sp.requests.length], [1, 1]);
+  // Correction de l'adresse de connexion : la demande Spotify qui la reprenait suit
+  await invitationPage(env, token, { method: "POST", form: { action: "correct", email: "tom@gmail.com" } });
+  assert.equal(env.DB.raw.prepare("SELECT spotify_account_email FROM music_sources WHERE user_id = ?").get(tom.id).spotify_account_email, "tom@gmail.com");
+  assert.ok(notes(env).some((n) => n.kind === "spotify_request" && n.payload.account_email === "tom@gmail.com"));
+  // Places pleines : plus de choix Spotify ; Spotify envoyé quand même (page ouverte avant) : message, rien de créé
+  const token2 = await link("Zoé");
+  assert.doesNotMatch((await invitationPage(env, token2)).html, /value="spotify"/);
+  assert.match((await invitationPage(env, token2, { method: "POST", form: { email: "zoe@mail.fr", source: "spotify" } })).html, /places Spotify sont prises/);
+  assert.equal(env.DB.raw.prepare("SELECT COUNT(*) AS n FROM users WHERE email = 'zoe@mail.fr'").get().n, 0);
+  // Ancien membre Spotify dont le compte attend d'être retiré chez Spotify : accès rouvert, sans
+  // retrait ni nouvel ajout, même quand les places sont pleines
+  env.DB.raw.exec("INSERT INTO spotify_removals (account_name, account_email, member_name, reason, created_at) VALUES ('Zoé', 'zoe.s@mail.fr', 'Zoé', 'deleted', '2026-10-20T00:00:00+00:00')");
+  env.SPOTIFY_MAX_USERS = "2";
+  const back = await invitationPage(env, token2, { method: "POST", form: { email: "zoe@mail.fr", source: "spotify", spotify_email: "zoe.s@mail.fr" } });
+  assert.match(back.html, /Connecter Spotify/);
+  const zoe = env.DB.raw.prepare("SELECT u.id, s.status FROM users u JOIN music_sources s ON s.user_id = u.id WHERE u.email = 'zoe@mail.fr'").get();
+  assert.equal(zoe.status, "ready_to_connect");
+  assert.equal(env.DB.raw.prepare("SELECT COUNT(*) AS n FROM spotify_removals").get().n, 0);
+  // Compte Spotify déjà pris : formulaire à nouveau (choix gardé), rien de créé
+  env.SPOTIFY_MAX_USERS = "5";
+  const token3 = await link("Max");
+  const refused = await invitationPage(env, token3, { method: "POST", form: { email: "max@mail.fr", source: "spotify", spotify_email: "Tom@Gmail.com" } });
+  assert.match(refused.html, /déjà utilisé/);
+  assert.match(refused.html, /value="spotify" id="src-spotify" checked/);
+  assert.equal(env.DB.raw.prepare("SELECT COUNT(*) AS n FROM users WHERE email = 'max@mail.fr'").get().n, 0);
+  // Nom facultatif dans la demande faite depuis le site : prénom à défaut
+  const deezerOnly = await invitationPage(env, token3, { method: "POST", form: { email: "max@mail.fr" } });
+  assert.match(deezerOnly.html, /C&#39;est fait|C'est fait/);
+  const r = await call(env, "max@mail.fr", spotifyRequest.onRequestPost, { method: "POST", path: "/api/me/source/spotify/request", body: { account_email: "max.s@mail.fr" } });
+  assert.equal(r.data.source.spotify_account_name, "Max");
 });
 
 test("lien d'invitation : expiration, nouveau lien (l'ancien ne marche plus), suppression", async () => {
@@ -1052,9 +1161,10 @@ test("invitation avec compte Spotify : place prise, source prête à connecter, 
   assert.deepEqual([sp.used, sp.invitations.length], [1, 1]);
   // Inscription : source Spotify prête, sans formulaire ni attente
   const token = new URL(created.data.link).pathname.split("/").pop();
-  const done = await invitationPage(env, token, { method: "POST", form: { email: "hugo@mail.fr", email2: "hugo@mail.fr" } });
+  // Compte préparé : pas de choix de source sur la page
+  assert.doesNotMatch((await invitationPage(env, token)).html, /value="spotify"/);
+  const done = await invitationPage(env, token, { method: "POST", form: { email: "hugo@mail.fr", source: "deezer" } });
   assert.match(done.html, /Connecter Spotify/);
-  assert.match(done.html, /écran d(&#39;|')accueil/);
   const src = env.DB.raw.prepare("SELECT s.status, s.spotify_account_email, s.spotify_allowlisted_at FROM music_sources s JOIN users u ON u.id = s.user_id WHERE u.email = 'hugo@mail.fr'").get();
   assert.deepEqual([src.status, src.spotify_account_email, Boolean(src.spotify_allowlisted_at)], ["ready_to_connect", "hugo.s@mail.fr", true]);
   assert.equal((await call(env, "c@test.fr", adminSpotify.onRequestGet, { path: "/api/admin/spotify" })).data.used, 1);  // toujours une place

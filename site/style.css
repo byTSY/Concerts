@@ -415,9 +415,10 @@ details.organizer p { margin: 6px 0 0; }
 .source-option { padding: 10px 14px; border: 1.5px solid var(--rule); border-radius: 8px; cursor: pointer; }
 .source-option.disabled { opacity: .55; cursor: not-allowed; }
 .account-form { display: grid; gap: 6px; max-width: 520px; margin: 8px 0; }
+.account-form[hidden] { display: none; }
 .account-form.inline { grid-template-columns: auto 1fr; align-items: center; column-gap: 10px; }
 .account-form.inline .btn { grid-column: 1 / -1; justify-self: start; }
-.account-form input, .copy-field { font: inherit; color: var(--ink); background: var(--paper-2); border: 1.5px solid var(--rule);
+.account-form input:not([type=checkbox]):not([type=radio]), .copy-field { font: inherit; color: var(--ink); background: var(--paper-2); border: 1.5px solid var(--rule);
   border-radius: 6px; padding: 8px 10px; width: 100%; box-sizing: border-box; }
 .account-form .btn, .account-block .btn, .onboarding .btn { cursor: pointer; border: 0; font: inherit; font-weight: 600; }
 .account-form .btn-quiet, .account-block .btn-quiet { border: 1.5px solid var(--rule); }

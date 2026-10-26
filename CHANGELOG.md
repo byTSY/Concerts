@@ -14,6 +14,33 @@ Revenir à une version antérieure :
 3. base D1 : les migrations ne s'annulent pas seules ; chaque entrée indique la commande inverse
    quand une migration est ajoutée.
 
+## 1.13.0 (26 octobre 2026)
+
+Inscription simplifiée : moins d'écrans et moins de saisies pour un nouveau membre.
+- Page d'invitation : l'adresse e-mail n'est plus saisie qu'une fois. Le choix Deezer ou Spotify
+  se fait sur cette page ; avec Spotify, la demande de place part tout de suite à l'admin, qui
+  peut ajouter le compte chez Spotify avant même la première connexion. Adresse Spotify
+  facultative : celle de connexion à défaut. Compte Spotify préparé par l'admin : pas de choix.
+- Page « C'est fait » : l'adresse inscrite en gros, un bouton vers le site, et « Ce n'est pas la
+  bonne adresse ? ». Le lien reste utilisable 24 heures pour corriger l'adresse, tant que la
+  personne ne s'est pas connectée, et seulement depuis le navigateur qui a fait l'inscription
+  (cookie dédié ; un lien transféré affiche « lien expiré »). 3 corrections au plus. La liste
+  Access suit, la demande Spotify aussi si elle reprenait l'adresse de connexion ; l'admin
+  reçoit un e-mail.
+- Ancien membre Spotify réinvité avec le même compte, encore présent chez Spotify : accès rouvert
+  aussitôt (ni retrait ni nouvel ajout), comme depuis le site.
+- Demande Spotify depuis le site : un seul champ (adresse prérempli), plus de nom ni de case à
+  cocher (une phrase d'accord au-dessus du bouton).
+- Corrections d'affichage : la case d'accord Spotify était déformée (mise en forme des champs de
+  texte appliquée à la case) ; le formulaire Spotify restait visible sous le formulaire Deezer.
+- Écran d'accueil allégé (texte sur les données déjà donné sur la page d'invitation). Salles
+  favorites et installation sur le téléphone regroupées sur l'écran d'attente du premier calcul ;
+  le mode d'emploi d'installation n'apparaît plus qu'à cet endroit (et dans « Mon compte »).
+- Migration `0013_invitation_correction.sql` (colonnes `invitations.claimed_by`,
+  `claim_secret_hash`, `corrections`), OBLIGATOIRE en preview avant l'essai et en production
+  AVANT la fusion : sans elle, les liens d'invitation répondent par une erreur. Retour arrière :
+  `ALTER TABLE invitations DROP COLUMN corrections; ALTER TABLE invitations DROP COLUMN claim_secret_hash; ALTER TABLE invitations DROP COLUMN claimed_by; DELETE FROM schema_migrations WHERE name = '0013_invitation_correction.sql';`
+
 ## 1.12.0 (14 octobre 2026)
 
 Salles proposées : lecture universelle des pages programme et ajout automatique contrôlé.
