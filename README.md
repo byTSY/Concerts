@@ -296,6 +296,18 @@ La Défense Arena, Stade de France) ; les concerts de vos artistes y restent aff
   à gauche : précédente ; vers le bas : « Ne plus voir ce concert » (version 1.8.0, Annuler 6 s ;
   l'artiste reste recommandé). « Ne plus recommander l'artiste » reste en lien sous les boutons.
   Une fiche vue ne revient sur aucun appareil (table D1 `seen_cards`).
+- **Cercles des mois** (mois en cours et mois suivant, version 1.11.0) : concerts à venir de votre
+  liste dans le mois, par date, sans les concerts « places prises » ni les concerts retirés.
+  Version 1.14.0 : un concert compte comme vu quand vous passez à la fiche suivante (glisser à
+  gauche, toucher à droite, flèche droite). Ouvrir le cercle, afficher une fiche, revenir en
+  arrière ou fermer sur une fiche ne comptent pas. Un concert vu ne revient plus dans le cercle
+  de son mois, sur aucun appareil (table D1 `month_seen`, propre à chaque membre). Il reste dans
+  le calendrier, la recherche et « Intéressés ». Le cercle affiche le nombre de concerts restant
+  à voir, puis « ✓ » ; ouvert, il indique « Tout est vu pour octobre », avec « Tout revoir » pour
+  remettre le mois à zéro. Un concert ajouté par la mise à jour du lundi apparaît comme non vu.
+  Statuts distincts de « NEW » : une fiche affichée dans un mois sort des nouveautés (comme
+  avant), une fiche vue dans « NEW » reste dans son mois, et « Tout revoir » ne touche pas aux
+  nouveautés.
 - **Recherche** (barre en haut, version 1.3.0) : tous les concerts à venir publiés, sans tenir
   compte des filtres, concerts non recommandés compris ; une ligne par date ; boutons
   « Intéressé » et « Places prises » (second clic : retrait).

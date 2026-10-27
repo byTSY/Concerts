@@ -14,6 +14,24 @@ Revenir à une version antérieure :
 3. base D1 : les migrations ne s'annulent pas seules ; chaque entrée indique la commande inverse
    quand une migration est ajoutée.
 
+## 1.14.0 (27 octobre 2026)
+
+Cercles des mois : reprise là où vous vous êtes arrêté.
+- Un concert compte comme vu quand vous passez à la fiche suivante (glisser à gauche, toucher à
+  droite, flèche droite). Ouvrir le cercle, afficher une fiche, revenir en arrière ou fermer sur
+  une fiche ne comptent pas.
+- Un concert vu ne revient plus dans le cercle de son mois, sur aucun appareil ; statut propre à
+  chaque membre. Il reste dans le calendrier, la recherche et « Intéressés ». Exclusions
+  inchangées (places prises, concerts retirés). Un concert ajouté le lundi est non vu.
+- Le cercle affiche le nombre de concerts restant à voir, puis « ✓ ». Ouvert, il indique « Tout
+  est vu pour <mois> » avec « Tout revoir », qui remet ce mois à zéro.
+- Statut distinct de « NEW » : une fiche affichée dans un mois sort des nouveautés (comme avant),
+  une fiche vue dans « NEW » reste dans son mois ; « Tout revoir » ne touche pas aux nouveautés.
+- Base D1 : migration `0014_month_seen.sql` (table `month_seen`), à appliquer en preview puis en
+  production AVANT la fusion. Sans elle, les cercles des mois s'ouvrent avec tous les concerts et
+  les passages ne s'enregistrent pas. Retour arrière :
+  `DROP TABLE month_seen; DELETE FROM schema_migrations WHERE name = '0014_month_seen.sql';`
+
 ## 1.13.0 (26 octobre 2026)
 
 Inscription simplifiée : moins d'écrans et moins de saisies pour un nouveau membre.

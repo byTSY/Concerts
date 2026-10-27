@@ -87,7 +87,7 @@ async function checkForUpdate() {
     if (meta.generated_at && meta.generated_at !== state.meta.generated_at) { location.reload(); return; }
     const me = await api("me");
     if ((me.source?.last_sync_at || null) !== (state.me?.source?.last_sync_at || null)) { location.reload(); return; }
-    await Promise.all([loadPrefs(), loadSeen()]);  // fiches Reels vues sur un autre appareil comprises
+    await Promise.all([loadPrefs(), loadSeen(), loadMonthSeen()]);  // fiches Reels et concerts des mois vus sur un autre appareil compris
     applyPrefs();
     renderMasthead();
     render();
@@ -1454,7 +1454,7 @@ async function openFromLink({ onboarding = false } = {}) {
     state.accessError = e;
     return [null, { overlay: {}, meta: null }, {}];
   });
-  const [[events, meta], [me, concerts, artists]] = await Promise.all([common, personal, loadPrefs(), loadSeen()]);
+  const [[events, meta], [me, concerts, artists]] = await Promise.all([common, personal, loadPrefs(), loadSeen(), loadMonthSeen()]);
   Object.assign(state, {
     events: mergeOverlay(events || [], concerts.overlay || {}),
     meta: meta || {},

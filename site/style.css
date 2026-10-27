@@ -124,7 +124,7 @@ dialog.reels::backdrop { background: #0f1230; }
   background: #fff; color: #1e2350; padding: 10px 14px; border-radius: 8px; font-size: .9rem;
 }
 .reels-undo[hidden] { display: none; }
-.reel-nope { flex-basis: 100%; margin-top: 0; text-align: left; }
+.reel-nope, .reel-reset { flex-basis: 100%; margin-top: 0; text-align: left; }
 .reels-undo .link-btn { font-weight: 700; color: var(--blue); }
 @media (prefers-reduced-motion: reduce) { .reel-card, .reels-bar span { transition: none; } }
 

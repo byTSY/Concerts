@@ -4,13 +4,21 @@
 // - « Reels » : nouveautés de la semaine. Une fiche affichée est vue : elle ne réapparaît sur aucun
 //   appareil (table D1 seen_cards, route /api/me/seen).
 // - mois en cours et mois suivant (version 1.11.0) : concerts à venir de votre liste dans le mois,
-//   par date, fiches vues comprises ; un concert avec places prises n'y figure pas. Une fiche
-//   affichée ici compte aussi comme vue (elle sort des nouveautés).
+//   par date ; un concert avec places prises n'y figure pas. Une fiche affichée ici compte aussi
+//   comme vue pour les nouveautés (elle en sort).
+//   Version 1.14.0 : un concert dépassé dans un mois (passage à la fiche suivante) n'y revient plus,
+//   sur aucun appareil (table D1 month_seen, route /api/me/month-seen), distinct des nouveautés :
+//   une fiche vue dans « NEW » reste dans son mois. « Tout revoir » sur l'écran de fin.
 // Gestes : vers la gauche, fiche suivante ; vers la droite, précédente ; vers le bas, « Ne plus voir
 // ce concert » (l'artiste reste recommandé ; Annuler pendant 6 s). Bouton « Ne plus recommander
 // l'artiste » à part. Utilise les fonctions de app.js.
 
-const reels = { seen: new Set(), pending: new Set(), loaded: false, queue: [], index: 0, timer: null, undo: null, undoState: null, busy: false,
+const reels = { seen: new Set(), pending: new Set(), loaded: false,
+  queue: [], index: 0, timer: null, undo: null, undoState: null, busy: false,
+  // Cercles des mois (version 1.14.0) : concert -> mois (AAAA-MM) ; envois en attente, en cours ;
+  // monthGen change à chaque « Tout revoir » (une lecture partie avant est ignorée)
+  monthSeen: new Map(), monthPending: new Map(), monthSending: new Map(), monthFlight: null, monthGen: 0,
+  monthLoaded: false, monthTimer: null,
   mode: "new", initial: 0 };  // cercle ouvert : "new" (nouveautés), "m0" (mois en cours), "m1" (mois suivant)
 const MONTH_OFFSET = { m0: 0, m1: 1 };
 
@@ -35,14 +43,17 @@ function monthOf(offset) {
 const ofMonth = (name) => (/^[aeiouy]/i.test(fold(name)) ? "d'" : "de ") + name.toLowerCase();
 
 // Concerts du mois dans votre liste (vos artistes et découvertes), à venir, sans places prises ni
-// concerts retirés, par date et heure
-function monthEvents(offset) {
+// concerts retirés, par date et heure, déjà parcourus compris
+function monthAll(offset) {
   const { key } = monthOf(offset);
   const today = todayIso();
   return state.events.filter((e) => e.date.startsWith(key) && e.date >= today && e.kind !== "other"
       && !isRemoved(e) && state.starred.get(e.id)?.status !== "going")
     .sort((a, b) => a.date.localeCompare(b.date) || (a.time || "99:99").localeCompare(b.time || "99:99"));  // heure inconnue : en fin de journée
 }
+
+// Concerts du mois pas encore parcourus
+const monthEvents = (offset) => monthAll(offset).filter((e) => !reels.monthSeen.has(e.id));
 
 // Concerts qui ne sont plus à leur place dans la file : artiste masqué (« other »), concert retiré,
 // et, dans un cercle de mois, places prises
@@ -69,8 +80,93 @@ async function loadSeen() {
   }
 }
 
+// Concerts parcourus dans les mois, lus sur le serveur, plus ceux pas encore envoyés ; liste
+// illisible : les cercles des mois ne s'ouvrent pas (les concerts parcourus reviendraient)
+// (lecture serveur seule, plus les envois locaux : un « Tout revoir » fait sur un autre appareil
+// est bien repris)
+async function loadMonthSeen() {
+  const gen = reels.monthGen;
+  try {
+    const rows = await api("me/month-seen");
+    if (gen !== reels.monthGen) return;  // « Tout revoir » pendant la lecture : liste déjà à jour
+    reels.monthSeen = new Map([...rows.map((r) => [r.id, r.month]), ...reels.monthSending, ...reels.monthPending]);
+    reels.monthLoaded = true;
+  } catch {
+    /* liste gardée telle quelle ; openReels réessaie */
+  }
+}
+
+// Un seul envoi à la fois (reels.monthFlight), que « Tout revoir » attend avant d'effacer
+function flushMonthSeen(keepalive = false) {
+  clearTimeout(reels.monthTimer);
+  if (reels.monthFlight || !reels.monthPending.size) return reels.monthFlight;
+  reels.monthFlight = sendMonthSeen(keepalive).finally(() => { reels.monthFlight = null; });
+  return reels.monthFlight;
+}
+
+async function sendMonthSeen(keepalive) {
+  while (reels.monthPending.size) {
+    const items = [...reels.monthPending].slice(0, 50).map(([id, month]) => ({ id, month }));
+    items.forEach((it) => { reels.monthPending.delete(it.id); reels.monthSending.set(it.id, it.month); });
+    try {
+      await api("me/month-seen", { method: "POST", body: { items }, keepalive });
+    } catch (e) {
+      // Nouvel essai au prochain envoi, sauf requête refusée (elle le serait encore)
+      if (e?.status !== 400) items.forEach((it) => { if (!reels.monthPending.has(it.id)) reels.monthPending.set(it.id, it.month); });
+      return;
+    } finally {
+      items.forEach((it) => reels.monthSending.delete(it.id));
+    }
+  }
+}
+
+// Concert dépassé dans un cercle de mois : il n'y reviendra plus (il reste dans la file en cours,
+// pour « précédente »)
+function markMonthSeen(ev) {
+  if (reels.monthSeen.has(ev.id)) return;
+  const month = ev.date.slice(0, 7);
+  reels.monthSeen.set(ev.id, month);
+  reels.monthPending.set(ev.id, month);
+  clearTimeout(reels.monthTimer);
+  reels.monthTimer = setTimeout(flushMonthSeen, 800);
+}
+
+// « Tout revoir » : les concerts du mois reviennent dans son cercle, la file repart du début
+async function resetMonth() {
+  if (reels.mode === "new" || reels.busy) return;
+  const offset = MONTH_OFFSET[reels.mode];
+  const { key, name } = monthOf(offset);
+  const ids = monthAll(offset).map((e) => e.id).filter((id) => reels.monthSeen.has(id)).slice(0, 500);
+  reels.busy = true;
+  reels.monthGen += 1;
+  // Envoi en cours terminé d'abord, puis envois en attente de ce mois retirés : arrivés après la
+  // remise à zéro, ils la déferaient
+  clearTimeout(reels.monthTimer);
+  await reels.monthFlight?.catch(() => {});
+  const dropped = [...reels.monthPending].filter(([id, month]) => month === key || ids.includes(id));
+  dropped.forEach(([id]) => reels.monthPending.delete(id));
+  try {
+    const rows = await api("me/month-seen", { method: "DELETE", body: { month: key, ids } });
+    reels.monthSeen = new Map([...rows.map((r) => [r.id, r.month]), ...reels.monthPending]);
+    reels.monthGen += 1;  // lecture partie pendant l'effacement : ignorée aussi
+  } catch (e) {
+    dropped.forEach(([id, month]) => reels.monthPending.set(id, month));
+    showUndo(`Enregistrement impossible : ${e.message}`);
+    return;
+  } finally {
+    reels.busy = false;
+  }
+  reels.queue = monthEvents(offset);
+  reels.initial = reels.queue.length;
+  reels.index = 0;
+  renderReelsRing();
+  showCard();
+  showUndo(`Les concerts ${ofMonth(name)} sont de nouveau à voir`);
+}
+
 // Envoi groupé des fiches vues ; en cas d'échec, nouvel essai au prochain envoi
 async function flushSeen(keepalive = false) {
+  flushMonthSeen(keepalive);
   clearTimeout(reels.timer);
   if (!reels.pending.size) return;
   const ids = [...reels.pending].slice(0, 50);
@@ -107,19 +203,22 @@ function renderReelsRing() {
   renderMonthRings();
 }
 
-// Cercles des mois : nom du mois et nombre de concerts ; grisés (mais visibles) sans concert.
-// Masqués si les concerts n'ont pas pu être chargés.
+// Cercles des mois : nom du mois et nombre de concerts restant à voir ; « ✓ » quand tout a été
+// parcouru ; grisés (mais visibles) sans concert. Masqués si les concerts n'ont pas pu être chargés.
 function renderMonthRings() {
   for (const [mode, offset] of Object.entries(MONTH_OFFSET)) {
     const btn = $(`#reels-${mode}`);
     if (!btn) continue;
     const { name } = monthOf(offset);
+    const total = monthAll(offset).length;
     const n = monthEvents(offset).length;
     btn.hidden = state.loadFailed;
-    btn.classList.toggle("is-empty", !n);
-    btn.querySelector(".reels-num").textContent = String(n);
+    btn.classList.toggle("is-empty", !total);
+    btn.classList.toggle("seen", Boolean(total) && !n);
+    btn.querySelector(".reels-num").textContent = total && !n ? "✓" : String(n);
     btn.querySelector(".reels-label").textContent = name;
     btn.setAttribute("aria-label", n ? `${name} : voir ${n} concert${n > 1 ? "s" : ""} à venir`
+      : total ? `${name} : tous les concerts ont été vus`
       : `${name} : aucun concert à venir dans votre liste`);
   }
 }
@@ -133,7 +232,9 @@ async function openReels(mode = "new") {
     queue = unseenEvents();
     if (!queue.length) { toast("Toutes les nouveautés de la semaine ont été vues"); return; }
   } else {
-    queue = monthEvents(MONTH_OFFSET[mode]);  // vide : écran « Aucun concert »
+    if (!reels.monthLoaded) await loadMonthSeen();
+    if (!reels.monthLoaded) { toast("Les concerts déjà vus n'ont pas pu être lus : réessayez dans un instant"); return; }
+    queue = monthEvents(MONTH_OFFSET[mode]);  // vide : écran « Tout est vu » ou « Aucun concert »
   }
   // Fiche concert ou autre cercle ouverts pendant la lecture des fiches vues : ils restent devant,
   // la file en cours n'est pas touchée
@@ -225,14 +326,22 @@ function showCard() {
     // Fin de la file : écran de fin (la barre Annuler reste utilisable)
     card.dataset.reelId = "";
     card.className = "reel-card reel-end";
-    const name = reels.mode === "new" ? null : monthOf(MONTH_OFFSET[reels.mode]).name;
+    const offset = MONTH_OFFSET[reels.mode];
+    const name = reels.mode === "new" ? null : monthOf(offset).name;
+    // Mois : « Tout est vu » s'il reste des concerts, tous parcourus ; « Aucun concert » sans
+    // concert ; sinon (concert revenu pendant la lecture : places prises ou retrait annulés),
+    // message neutre
+    const total = name ? monthAll(offset).length : 0;
+    const allSeen = total > 0 && !monthEvents(offset).length;
     const [title, sub] = !name ? ["Vous avez vu toutes les nouveautés de la semaine", "Les prochaines arriveront avec la mise à jour du lundi."]
-      : reels.initial ? [`Vous avez vu tous les concerts ${ofMonth(name)}`, "Fermez pour revenir au calendrier."]
+      : allSeen ? [`Tout est vu pour ${name.toLowerCase()}`, "Les concerts ajoutés le lundi apparaîtront ici. Tous restent dans le calendrier."]
+      : total ? [`Fin des concerts ${ofMonth(name)}`, "Rouvrez le cercle pour voir ceux qui restent."]
       : ["Aucun concert", `Aucun concert à venir en ${name.toLowerCase()} dans votre liste.`];
     card.innerHTML = `<div class="reel-body"><h2 class="reel-title">${esc(title)}</h2>
       <p class="reel-when">${esc(sub)}</p>
-      <div class="reel-actions"><button type="button" class="btn btn-quiet" data-reel="close">Fermer</button></div></div>`;
-    $("#reels-progress").style.width = reels.initial ? "100%" : "0";
+      <div class="reel-actions"><button type="button" class="btn btn-quiet" data-reel="close">Fermer</button>
+        ${allSeen ? `<button type="button" class="link-btn reel-reset" data-reel="reset">Tout revoir</button>` : ""}</div></div>`;
+    $("#reels-progress").style.width = reels.initial || allSeen ? "100%" : "0";
     $("#reels-position").textContent = "";
     focusCard();
     return;
@@ -257,6 +366,8 @@ function focusCard() {
 function step(delta) {
   const next = reels.index + delta;
   if (next < 0 || next > reels.queue.length) return;
+  // Mois : la fiche quittée vers la suivante est vue (pas en revenant en arrière)
+  if (delta > 0 && reels.mode !== "new" && reels.queue[reels.index]) markMonthSeen(reels.queue[reels.index]);
   reels.index = next;
   showCard();
 }
@@ -414,6 +525,7 @@ function bindReels() {
     const btn = e.target.closest("[data-reel]");
     if (!btn) return;
     if (btn.dataset.reel === "close") { closeReels(); return; }
+    if (btn.dataset.reel === "reset") { resetMonth(); return; }
     const ev = reels.queue[reels.index];
     if (!ev) return;
     if (btn.dataset.reel === "star") {
