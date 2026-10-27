@@ -54,6 +54,8 @@ const VISIBILITY = new Set(["private", "members"]);
 const CONCERT_ID = /^[a-z0-9]{6,40}$/;
 const MAX_SEEN_PER_CALL = 50;
 const SEEN_KEEP_DAYS = 400;
+const MONTH = /^\d{4}-(0[1-9]|1[0-2])$/;
+const MAX_RESET_IDS = 500;  // concerts d'un mois envoyés avec « Tout revoir »
 const SYNC_RELAY_MINUTES = 15;
 const SYNC_RELAY_MAX = 3;  // relais par demande de calcul
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -381,6 +383,51 @@ export function member(env, user) {
         db.prepare("DELETE FROM seen_cards WHERE user_id = ? AND seen_at < ?").bind(id, limit),
       ]);
       return api.seenCards();
+    },
+
+    // Concerts parcourus dans les cercles des mois (version 1.14.0) ; liste vide si la table manque
+    // (fonctions déployées avant la migration 0014)
+    async monthSeen() {
+      try {
+        const { results } = await db.prepare("SELECT concert_id, month FROM month_seen WHERE user_id = ? ORDER BY seen_at")
+          .bind(id).all();
+        return results.map((r) => ({ id: r.concert_id, month: r.month }));
+      } catch (e) {
+        if (/no such table/i.test(String(e?.message))) return [];
+        throw e;
+      }
+    },
+
+    async markMonthSeen(items) {
+      if (!Array.isArray(items) || !items.length || items.length > MAX_SEEN_PER_CALL) {
+        throw new HttpError(400, `items : liste de 1 à ${MAX_SEEN_PER_CALL} concerts`);
+      }
+      const clean = new Map();
+      for (const it of items) {
+        const c = String(it?.id || ""), m = String(it?.month || "");
+        if (!CONCERT_ID.test(c) || !MONTH.test(m)) throw new HttpError(400, "concert ou mois invalide");
+        clean.set(c, m);
+      }
+      const now = nowIso();
+      const limit = new Date(Date.now() - SEEN_KEEP_DAYS * 86400 * 1000).toISOString().replace(/\.\d{3}Z$/, "+00:00");  // format de nowIso
+      await db.batch([
+        // Déjà vu : mois remis à jour (concert déplacé d'un mois à l'autre)
+        ...[...clean].map(([c, m]) => db.prepare("INSERT INTO month_seen (user_id, concert_id, month, seen_at) VALUES (?, ?, ?, ?) " +
+          "ON CONFLICT (user_id, concert_id) DO UPDATE SET month = excluded.month").bind(id, c, m, now)),
+        db.prepare("DELETE FROM month_seen WHERE user_id = ? AND seen_at < ?").bind(id, limit),
+      ]);
+      return api.monthSeen();
+    },
+
+    async resetMonthSeen(month, ids = []) {
+      if (!MONTH.test(String(month || ""))) throw new HttpError(400, "mois invalide (AAAA-MM)");
+      if (!Array.isArray(ids) || ids.length > MAX_RESET_IDS) throw new HttpError(400, `ids : ${MAX_RESET_IDS} identifiants au plus`);
+      const clean = [...new Set(ids.map(String))];
+      if (!clean.every((c) => CONCERT_ID.test(c))) throw new HttpError(400, "identifiant de concert invalide");
+      // Une seule requête : mois du passage, ou concert affiché dans ce mois (date changée depuis)
+      await db.prepare("DELETE FROM month_seen WHERE user_id = ? AND (month = ? OR concert_id IN (SELECT value FROM json_each(?)))")
+        .bind(id, month, JSON.stringify(clean)).run();
+      return api.monthSeen();
     },
 
     // Concerts retirés (« Ne plus voir ce concert ») : liste vide si la table manque (fonctions
