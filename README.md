@@ -136,6 +136,45 @@ il s'arrête aussitôt (c. 1 minute de GitHub Actions) et n'enregistre aucun tra
   ou profil Deezer devenu privé, accès Spotify ouvert. Mêmes secrets SMTP que la newsletter ;
   sans eux, rien n'est envoyé et la file attend.
 
+### Lien d'invité (version 1.15.0)
+
+Pour montrer l'application à quelqu'un qui n'a pas de compte, sans lui prêter votre accès.
+- **Obtenir le lien** : onglet Admin, section « Lien d'invité », « Créer le lien d'invité »,
+  puis « Copier ». Le lien (`/visite/<jeton>/`) reste affiché et se recopie à tout moment.
+  « Nouveau lien » le remplace (l'ancien affiche « Lien plus valable ») ; « Retirer le lien »
+  le désactive. Un seul lien à la fois, sans date d'expiration.
+- **Ce que voit l'invité** : l'application complète, sans connexion, sur votre univers : vos
+  artistes, vos concerts retenus (connus et découvertes), vos artistes masqués ou à niveau
+  imposé, vos salles favorites, sur le catalogue de la semaine. Jamais vos ★, vos places
+  prises, vos concerts retirés, vos fiches vues, votre adresse e-mail ni votre identifiant ;
+  jamais les données d'un autre membre.
+- **Ce qu'il peut faire** : tout essayer (★ Intéressé, Places prises, « Ne plus voir ce
+  concert », cercles NEW et des mois avec glisser, calendrier, recherche, masquer un artiste,
+  cocher des salles). Ces actions restent dans la mémoire de la page (`site/guest.js`) : aucune
+  n'est envoyée au serveur, et un rechargement efface tout. La page ne fait que des lectures :
+  catalogue commun, fiche publique `/partage/<concert>.json` à l'ouverture d'une fiche, polices.
+- **Exclu** : onglet Admin, newsletter, connexion Deezer ou Spotify, « J'ai un problème »,
+  propositions de salles, ★ des autres membres. Un bandeau en haut de l'écran indique « Mode
+  démo, vos actions ne sont pas enregistrées », avec un lien vers la connexion.
+- **Côté serveur** : `functions/visite/[[path]].js` sert, pour un jeton valide seulement, la
+  page du site (en mode invité), ses scripts et le catalogue commun (`events.json`,
+  `meta.json`, `venues.json`), et une seule route de données, `api/guest`, en lecture
+  (`guestUniverse` dans `functions/_lib/me.js`). Aucune route `/api/me/*`, aucune écriture
+  (méthodes autres que GET refusées). Jeton inconnu, remplacé, ou admin suspendu : page « Lien
+  plus valable ». Les pages invité ne transmettent pas leur adresse aux billetteries
+  (`Referrer-Policy: no-referrer`) et les fiches partagées depuis le mode invité pointent vers
+  `/partage/…`, sans le jeton.
+- **Jeton** : gardé tel quel dans D1 (table `guest_links`, migration 0015) pour pouvoir être
+  recopié depuis l'Admin. Il ne donne accès qu'à cette vue en lecture seule.
+- **À faire une fois dans Cloudflare** : ouvrir le chemin `/visite/` à tous, comme `/partage/` :
+  Zero Trust > Access > Applications > l'application publique existante (`Concerts partage`) >
+  *Edit* > ajouter la destination `concerts-s2k.pages.dev/visite`. Risque associé : toute
+  personne qui a le lien voit vos artistes et vos salles ; le catalogue commun des concerts
+  devient lisible par elle (aucune donnée personnelle). Le reste du site reste protégé et les
+  routes `/api/*` refusent toute requête sans connexion (test « sans session » de
+  `tests/functions.test.mjs`). Les versions d'essai `*.concerts-s2k.pages.dev` restent
+  entièrement protégées : le lien ne s'y ouvre qu'une fois connecté.
+
 ### Communauté
 
 Les ★ sont visibles par les membres par défaut (version 1.7.0), chacun peut les masquer ; tout
@@ -260,7 +299,7 @@ Tests (avant chaque mise en production) :
 
 ```powershell
 .venv\Scripts\python -m unittest discover -s tests -t .   # historique, membres, Spotify (simulé), quota, notifications
-node --test tests/functions.test.mjs                     # jeton Access, barrière, isolation, admin, arrivée, Spotify, signalements
+node --test tests/functions.test.mjs                     # jeton Access, barrière, isolation, admin, arrivée, Spotify, signalements, lien d'invité
 node --test tests/partage.test.mjs                       # fiche /partage : présentation Dice et cache
 ```
 

@@ -55,6 +55,9 @@ import * as unsubscribeRoute from "../functions/partage/desabonnement/[token].js
 import * as problemRoute from "../functions/api/me/problem.js";
 import * as adminProblems from "../functions/api/admin/problems/index.js";
 import * as adminProblemResolved from "../functions/api/admin/problems/[id]/resolved.js";
+import * as monthSeenRoute from "../functions/api/me/month-seen.js";
+import * as guestLinkRoute from "../functions/api/admin/guest-link.js";
+import * as visiteRoute from "../functions/visite/[[path]].js";
 
 // --- D1 et R2 simulés --------------------------------------------------------------
 
@@ -1324,4 +1327,145 @@ test("salles (1.12.0) : vérification automatique lancée à la proposition avec
   } finally {
     globalThis.fetch = before;
   }
+});
+
+// --- Lien d'invité (version 1.15.0) -------------------------------------------------------
+
+// Toutes les routes de lecture /api : sans jeton Access, 401 sans que la route soit appelée et
+// sans aucune donnée de membre dans la réponse
+test("sans session : aucune route /api ne renvoie une donnée de membre", async () => {
+  const env = setup();
+  env.BUCKET.objects["users/u_aaaaaaaa/meta.json"] = '{"counts":{"known":1}}';
+  const routes = {
+    "/api/me": getMe, "/api/me/stars": getStars, "/api/me/prefs": getPrefs, "/api/me/artists": getArtists,
+    "/api/me/concerts": getConcerts, "/api/me/removed": getRemoved, "/api/me/seen": seenRoute.onRequestGet,
+    "/api/me/month-seen": monthSeenRoute.onRequestGet, "/api/community/stars": communityRoute.onRequestGet,
+    "/api/venues": venuesRoute.onRequestGet, "/api/venues/proposals": proposalsRoute.onRequestGet,
+    "/api/admin/members": adminMembers.onRequestGet, "/api/admin/guest-link": guestLinkRoute.onRequestGet,
+    "/api/admin/invitations": adminInvitations.onRequestGet, "/api/admin/problems": adminProblems.onRequestGet,
+  };
+  const secrets = ["a@test.fr", "b@test.fr", "c@test.fr", "u_aaaaaaaa", "Artiste A", "Artiste B", "aaaaaa111111", "Concert de A"];
+  for (const [path, route] of Object.entries(routes)) {
+    let reached = false;
+    for (const jwt of ["", "abc.def.ghi"]) {
+      const r = await call(env, "a@test.fr", (ctx) => { reached = true; return route(ctx); }, { path, jwt });
+      assert.equal(r.status, 401, path);
+      const text = JSON.stringify(r.data);
+      for (const s of secrets) assert.ok(!text.includes(s), `${path} : ${s}`);
+    }
+    assert.equal(reached, false, path);
+  }
+});
+
+// Site statique simulé (env.ASSETS) : page d'accueil, catalogue commun, scripts
+function withAssets(env) {
+  const files = {
+    "/": '<!doctype html><html><head><title>Concerts</title></head><body><script src="app.js"></script></body></html>',
+    "/data/events.json": '[{"id":"cccccc333333"}]', "/data/meta.json": "{}", "/app.js": "/* app */",
+    "/data/share/aa.json": "[]",
+  };
+  env.ASSETS = { fetch: async (url) => {
+    const p = new URL(url).pathname;
+    const type = { js: "text/javascript", json: "application/json", css: "text/css" }[p.split(".").pop()] || "text/html";
+    // Comme Pages sans 404.html : fichier absent, page d'accueil avec 200
+    return p in files ? new Response(files[p], { headers: { "content-type": type } })
+      : new Response(files["/"], { headers: { "content-type": "text/html" } });
+  } };
+  return env;
+}
+
+function guestSetup() {
+  const env = withAssets(setup());
+  const now = "2026-10-12T00:00:00+00:00";
+  env.DB.raw.exec(`
+    INSERT INTO stars (user_id, concert_id, label, created_at, updated_at) VALUES ('u_cccccccc', 'cccccc999999', 'Secret de C', '${now}', '${now}');
+    INSERT INTO artist_prefs (user_id, artist_key, artist_name, hidden, updated_at) VALUES ('u_cccccccc', 'artiste masque', 'Artiste masqué', 1, '${now}');
+    INSERT INTO venues (id, name, status) VALUES ('petit-bain', 'Petit Bain', 'approved');
+    INSERT INTO venue_favorites (user_id, venue_id, added_at) VALUES ('u_cccccccc', 'petit-bain', '${now}');
+  `);
+  Object.assign(env.BUCKET.objects, {
+    "users/u_cccccccc/artists.json": '{"9":{"name":"Artiste C"}}',
+    "users/u_cccccccc/overlay.json": '{"cccccc333333":{"kind":"known"}}',
+    "users/u_cccccccc/meta.json": '{"counts":{"known":1}}',
+  });
+  return env;
+}
+
+// Requête sur /visite/... : params.path comme Cloudflare Pages ([[path]] : segments non vides)
+async function visit(env, path, method = "GET") {
+  const request = new Request(`https://concerts.test${path}`, { method });
+  const parts = path.replace(/^\/visite\/?/, "").split("/").filter(Boolean);
+  const r = await visiteRoute.onRequest({ request, env, params: { path: parts } });
+  return { status: r.status, text: await r.text(), headers: r.headers };
+}
+
+const createLink = async (env) =>
+  (await call(env, "c@test.fr", guestLinkRoute.onRequestPost, { method: "POST", path: "/api/admin/guest-link" })).data.link;
+
+test("lien d'invité : créé par l'admin seulement, nouveau lien remplace l'ancien", async () => {
+  const env = guestSetup();
+  const member = await call(env, "a@test.fr", guestLinkRoute.onRequestPost, { method: "POST", path: "/api/admin/guest-link" });
+  assert.deepEqual([member.status, member.data.code], [403, "not_admin"]);
+  assert.equal((await call(env, "c@test.fr", guestLinkRoute.onRequestGet, { path: "/api/admin/guest-link" })).data.link, null);
+  const first = await createLink(env);
+  assert.match(first, /^https:\/\/concerts\.test\/visite\/[A-Za-z0-9_-]{40,60}\/$/);
+  assert.equal((await call(env, "c@test.fr", guestLinkRoute.onRequestGet, { path: "/api/admin/guest-link" })).data.link, first);
+  const path = new URL(first).pathname;
+  assert.equal((await visit(env, `${path}api/guest`)).status, 200);
+  const second = await createLink(env);
+  assert.notEqual(second, first);
+  assert.equal((await visit(env, `${path}api/guest`)).status, 404);
+  assert.equal((await visit(env, `${new URL(second).pathname}api/guest`)).status, 200);
+  await call(env, "c@test.fr", guestLinkRoute.onRequestDelete, { method: "DELETE", path: "/api/admin/guest-link" });
+  assert.equal((await visit(env, `${new URL(second).pathname}api/guest`)).status, 404);
+});
+
+test("lien d'invité : univers de l'admin en lecture seule, sans ★, e-mail ni identifiant", async () => {
+  const env = guestSetup();
+  const base = new URL(await createLink(env)).pathname;
+  const g = await visit(env, `${base}api/guest`);
+  assert.equal(g.status, 200);
+  assert.equal(g.headers.get("referrer-policy"), "no-referrer");
+  const data = JSON.parse(g.text);
+  assert.deepEqual(Object.keys(data.artists), ["9"]);
+  assert.deepEqual(Object.keys(data.concerts.overlay), ["cccccc333333"]);
+  assert.deepEqual(data.prefs.hidden, ["Artiste masqué"]);
+  assert.deepEqual(data.profile.favorite_venues, ["petit-bain"]);
+  assert.deepEqual([data.profile.owner_name, data.profile.role, data.profile.email], ["Chloé", "guest", null]);
+  for (const s of ["c@test.fr", "a@test.fr", "u_cccccccc", "u_aaaaaaaa", "cccccc999999", "Secret de C", "Artiste A", "aaaaaa111111"]) {
+    assert.ok(!g.text.includes(s), s);
+  }
+  // Page d'accueil en mode invité ; catalogue commun et scripts du site
+  assert.equal((await visit(env, base.replace(/\/$/, ""))).status, 302);
+  const page = await visit(env, base);
+  assert.ok(page.text.includes("window.GUEST_MODE = true") && page.text.includes('content="no-referrer"'));
+  assert.equal((await visit(env, `${base}data/events.json`)).status, 200);
+  assert.equal((await visit(env, `${base}app.js`)).status, 200);
+  // Rien d'autre : routes membres, fichiers hors liste
+  for (const p of ["api/me", "api/me/stars", "api/admin/members", "api/guest/x", "data/share/aa.json", "data/../app.js", "inconnu.js", "vendor/absent.css"]) {
+    assert.equal((await visit(env, `${base}${p}`)).status, 404, p);
+  }
+  // Aucune écriture : 405 et base inchangée
+  const count = () => env.DB.raw.prepare("SELECT (SELECT COUNT(*) FROM stars) + (SELECT COUNT(*) FROM artist_prefs) + " +
+    "(SELECT COUNT(*) FROM venue_favorites) + (SELECT COUNT(*) FROM seen_cards) AS n").get().n;
+  const before = count();
+  for (const method of ["POST", "PUT", "PATCH", "DELETE"]) {
+    assert.equal((await visit(env, `${base}api/guest`, method)).status, 405, method);
+  }
+  assert.equal(count(), before);
+});
+
+test("lien d'invité : jeton inconnu, lien d'un membre non admin ou d'un admin suspendu refusés", async () => {
+  const env = guestSetup();
+  const forged = "x".repeat(43);
+  for (const p of [`/visite/${forged}/api/guest`, `/visite/${forged}/`, "/visite/court/api/guest", "/visite/"]) {
+    const r = await visit(env, p);
+    assert.equal(r.status, 404, p);
+    assert.ok(!r.text.includes("Artiste") && !r.text.includes("GUEST_MODE"), p);
+  }
+  env.DB.raw.exec(`INSERT INTO guest_links (token, user_id, created_at) VALUES ('${"a".repeat(43)}', 'u_aaaaaaaa', '2026-10-12T00:00:00+00:00')`);
+  assert.equal((await visit(env, `/visite/${"a".repeat(43)}/api/guest`)).status, 404);
+  const link = await createLink(env);
+  env.DB.raw.exec("UPDATE users SET status = 'suspended' WHERE id = 'u_cccccccc'");
+  assert.equal((await visit(env, `${new URL(link).pathname}api/guest`)).status, 404);
 });
