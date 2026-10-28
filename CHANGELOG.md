@@ -14,6 +14,27 @@ Revenir à une version antérieure :
 3. base D1 : les migrations ne s'annulent pas seules ; chaque entrée indique la commande inverse
    quand une migration est ajoutée.
 
+## 1.15.0 (28 octobre 2026)
+
+Lien d'invité : montrer l'application à quelqu'un sans compte.
+- Onglet Admin, section « Lien d'invité » : créer, copier, remplacer (l'ancien lien cesse de
+  marcher) ou retirer le lien `/visite/<jeton>/`.
+- L'invité voit l'application sans connexion, sur l'univers de l'admin (artistes, concerts
+  retenus, préférences d'artistes, salles favorites) et peut tout essayer. Ses actions restent
+  dans la page : rien n'est écrit côté serveur, un rechargement efface tout. Bandeau « Mode
+  démo, vos actions ne sont pas enregistrées » avec lien vers la connexion.
+- Exclus en mode invité : Admin, newsletter, Deezer et Spotify, « J'ai un problème »,
+  propositions de salles, ★ des autres membres ; jamais de ★, adresse e-mail ou identifiant.
+- Fiches partagées : lien `/partage/…` en chemin absolu (inchangé pour les membres).
+- Tests : aucune route `/api` ne renvoie de donnée sans connexion ; lien d'invité en lecture
+  seule, remplacé, refusé pour un jeton inconnu ou un admin suspendu.
+- Base D1 : migration `0015_guest_link.sql` (table `guest_links`), à appliquer en preview puis
+  en production avant la fusion (sans elle, la section reste vide et tout lien est refusé ; le
+  reste du site fonctionne). Retour arrière :
+  `DROP TABLE guest_links; DELETE FROM schema_migrations WHERE name = '0015_guest_link.sql';`
+- Cloudflare Access : ajouter la destination `concerts-s2k.pages.dev/visite` à l'application
+  publique (voir README, « Lien d'invité »).
+
 ## 1.14.0 (27 octobre 2026)
 
 Cercles des mois : reprise là où vous vous êtes arrêté.

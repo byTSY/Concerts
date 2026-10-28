@@ -1364,6 +1364,40 @@ export function admin(env) {
       return { resolved: true };
     },
 
+    // Lien d'invité de l'admin connecté (version 1.15.0) : { token, created_at } ou null ; null
+    // aussi tant que la migration 0015 n'est pas appliquée
+    async guestLink(ownerId) {
+      try {
+        return await db.prepare("SELECT token, created_at FROM guest_links WHERE user_id = ?").bind(ownerId).first();
+      } catch (e) {
+        if (/no such table/i.test(String(e?.message))) return null;
+        throw e;
+      }
+    },
+
+    // Nouveau lien : remplace l'ancien, qui cesse aussitôt de marcher
+    async createGuestLink(ownerId) {
+      const row = { token: newToken(), created_at: nowIso() };
+      try {
+        await db.prepare("INSERT INTO guest_links (token, user_id, created_at) VALUES (?, ?, ?) " +
+          "ON CONFLICT (user_id) DO UPDATE SET token = excluded.token, created_at = excluded.created_at")
+          .bind(row.token, ownerId, row.created_at).run();
+      } catch (e) {
+        if (/no such table/i.test(String(e?.message))) throw new HttpError(503, "lien d'invité pas encore disponible (migration 0015)", "guest_unavailable");
+        throw e;
+      }
+      return row;
+    },
+
+    async deleteGuestLink(ownerId) {
+      try {
+        await db.prepare("DELETE FROM guest_links WHERE user_id = ?").bind(ownerId).run();
+      } catch (e) {
+        if (!/no such table/i.test(String(e?.message))) throw e;
+      }
+      return null;
+    },
+
     // Traitements : dates, statuts, codes d'erreur par membre (identifiants seulement)
     async runs() {
       const { results: runs } = await db.prepare(
@@ -1376,4 +1410,62 @@ export function admin(env) {
         members: details.filter((d) => d.run_id === r.id) }));
     },
   };
+}
+
+// --- Lien d'invité (version 1.15.0) ----------------------------------------------------------
+// Page publique /visite/<jeton>/ (functions/visite/[[path]].js), sans connexion. Le jeton désigne
+// l'admin qui l'a créé ; l'invité reçoit en lecture seule ses artistes, ses concerts retenus, ses
+// préférences d'artistes et ses salles favorites. Jamais : adresse e-mail, identifiant de membre,
+// ★, concerts retirés, fiches vues, ni aucune écriture. null si le lien est inconnu, remplacé,
+// ou si son auteur n'est plus admin actif.
+export const GUEST_TOKEN = /^[A-Za-z0-9_-]{40,60}$/;
+
+export async function guestOwner(env, token) {
+  if (!GUEST_TOKEN.test(String(token || ""))) return null;
+  try {
+    return await env.DB.prepare(
+      "SELECT u.id, u.first_name, u.pseudo FROM guest_links g JOIN users u ON u.id = g.user_id " +
+      "WHERE g.token = ? AND u.role = 'admin' AND u.status = 'active'").bind(String(token)).first();
+  } catch {
+    return null;  // migration 0015 non appliquée : lien inconnu
+  }
+}
+
+export async function guestUniverse(env, owner) {
+  const db = env.DB;
+  const id = owner.id;
+  const text = async (name, fallback) => {
+    const obj = await env.BUCKET.get(`users/${id}/${name}.json`);
+    return obj ? obj.text() : fallback;
+  };
+  const [artists, overlay, meta, prefs, favorites, source, venues] = await Promise.all([
+    text("artists", "{}"), text("overlay", "{}"), text("meta", "null"),
+    db.prepare("SELECT artist_name, hidden, level FROM artist_prefs WHERE user_id = ? ORDER BY artist_key").bind(id).all(),
+    db.prepare("SELECT venue_id FROM venue_favorites WHERE user_id = ? ORDER BY added_at").bind(id).all(),
+    db.prepare("SELECT provider, last_sync_at FROM music_sources WHERE user_id = ?").bind(id).first(),
+    db.prepare("SELECT id, name, aliases, agenda_url, excluded FROM venues WHERE status = 'approved' ORDER BY name").all(),
+  ]);
+  const profile = {
+    guest: true,
+    owner_name: owner.pseudo || owner.first_name,
+    display_name: "Invité",
+    first_name: "Invité",
+    pseudo: null,
+    email: null,
+    role: "guest",
+    status: "active",
+    default_visibility: "private",
+    source: source ? { provider: source.provider, status: "connected", last_sync_at: source.last_sync_at, last_sync_status: "ok" } : null,
+    spotify: { enabled: false, full: true, paused_until: null },
+    favorite_venues: favorites.results.map((r) => r.venue_id),
+    newsletter: null,
+  };
+  const prefsBody = {
+    hidden: prefs.results.filter((r) => r.hidden).map((r) => r.artist_name),
+    levels: Object.fromEntries(prefs.results.filter((r) => r.level).map((r) => [r.artist_name, r.level])),
+  };
+  const venuesBody = venues.results.map((v) => ({ ...v, aliases: JSON.parse(v.aliases || "[]"), excluded: Boolean(v.excluded) }));
+  // Fichiers R2 recopiés tels quels (sans les relire : limite de temps de calcul)
+  return `{"profile":${JSON.stringify(profile)},"artists":${artists},"concerts":{"overlay":${overlay},"meta":${meta}},` +
+    `"prefs":${JSON.stringify(prefsBody)},"venues":${JSON.stringify(venuesBody)}}`;
 }

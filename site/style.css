@@ -452,3 +452,8 @@ dialog.problem-dialog { max-width: min(520px, calc(100vw - 24px)); }
 .problem-card.resolved { opacity: .6; }
 .problem-card blockquote { margin: 6px 0; padding-left: 10px; border-left: 3px solid var(--pink); white-space: pre-wrap; }
 .inline-link { display: inline; font-size: inherit; color: inherit; }
+
+/* Mode invité (version 1.15.0) : bandeau discret en haut de l'écran */
+.guest-banner { margin: -16px 0 14px; padding: 6px 12px; border-radius: 6px; background: var(--paper-2, rgba(0, 0, 0, .05));
+  color: var(--ink-soft); font-size: .82rem; }
+.guest-banner a { color: inherit; font-weight: 600; margin-left: 6px; }

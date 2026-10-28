@@ -305,15 +305,44 @@ function problemsSection(list) {
     </section>`;
 }
 
+// Lien d'invité (version 1.15.0) : l'application sans connexion, sur vos artistes et vos salles ;
+// les actions de l'invité restent dans son navigateur. Le lien se recopie à tout moment.
+function guestSection(g) {
+  if (g === null) return "";
+  const body = g.link
+    ? `<div class="account-form inline">
+        <input id="guest-link" type="text" readonly value="${esc(g.link)}" aria-label="Lien d'invité">
+        <button class="btn" type="button" data-copy="guest-link">Copier</button>
+      </div>
+      <p class="cell-sub">Créé le ${esc(fmtDateTime(g.created_at))}.
+        <button class="link-btn" type="button" data-guest="renew">Nouveau lien</button> (l'ancien cesse de marcher)
+        <button class="link-btn" type="button" data-guest="delete">Retirer le lien</button></p>`
+    : `<p><button class="btn" type="button" data-guest="renew">Créer le lien d'invité</button></p>`;
+  return `<section class="account-block">
+      <h2 class="month-title">Lien d'invité</h2>
+      <p class="cell-sub">Pour montrer l'application à quelqu'un sans compte : la personne voit vos artistes, vos concerts et vos salles favorites, peut tout essayer, mais rien n'est enregistré. Ni vos ★, ni votre adresse e-mail ne sont montrés.</p>
+      <div id="guest-box">${body}</div>
+    </section>`;
+}
+
+async function guestAction(action) {
+  if (action === "renew" && $("#guest-link") && !confirm("Créer un nouveau lien ? L'ancien cessera de marcher.")) return;
+  if (action === "delete" && !confirm("Retirer le lien d'invité ? Il cessera de marcher.")) return;
+  try {
+    await api("admin/guest-link", { method: action === "delete" ? "DELETE" : "POST" });
+    renderAdmin();
+  } catch (err) { toast(err.message); }
+}
+
 async function renderAdmin() {
   const box = $("#admin");
   box.innerHTML = `<p class="cell-sub">Chargement…</p>`;
-  let list, runs, spotify, pendingVenues, links, problems, approvedVenues;
+  let list, runs, spotify, pendingVenues, links, problems, approvedVenues, guest;
   try {
-    [list, runs, spotify, pendingVenues, links, problems, approvedVenues] = await Promise.all([api("admin/members"), api("admin/runs"),
+    [list, runs, spotify, pendingVenues, links, problems, approvedVenues, guest] = await Promise.all([api("admin/members"), api("admin/runs"),
       api("admin/spotify").catch(() => null), api("admin/venues?status=pending").catch(() => null),
       api("admin/invitations").catch(() => null), api("admin/problems").catch(() => null),
-      api("admin/venues?status=approved").catch(() => null)]);
+      api("admin/venues?status=approved").catch(() => null), api("admin/guest-link").catch(() => null)]);
   } catch (e) {
     box.innerHTML = `<p class="prefs-warning">Espace admin illisible : ${esc(e.message)}</p>`;
     return;
@@ -368,6 +397,7 @@ async function renderAdmin() {
         <div id="invite-result" aria-live="polite"></div>
       </details>
     </section>
+    ${guestSection(guest)}
     <section class="account-block">
       <h2 class="month-title">Membres (${list.length})</h2>
       <div class="table-wrap"><table><thead><tr><th>Membre</th><th>Statut</th><th>Source</th><th class="hide-mobile">Dernière visite</th><th class="num">★</th><th></th></tr></thead>
@@ -436,6 +466,7 @@ async function renderAdmin() {
     } catch (err) { toast(err.message); }
   });
   box.querySelectorAll("[data-admin]").forEach((b) => b.addEventListener("click", () => adminAction(b.dataset)));
+  box.querySelectorAll("[data-guest]").forEach((b) => b.addEventListener("click", () => guestAction(b.dataset.guest)));
   bindCopies(box);
   box.querySelectorAll("[data-problem-resolve]").forEach((b) => b.addEventListener("click", async () => {
     try {

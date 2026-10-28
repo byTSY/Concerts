@@ -45,6 +45,7 @@ class ApiError extends Error {
 }
 
 async function api(path, { method = "GET", body, keepalive = false } = {}) {
+  if (GUEST) return guestApi(path, { method, body });  // mode invité : rien n'est envoyé (site/guest.js)
   let r;
   try {
     r = await fetch(`api/${path}`, {
@@ -64,6 +65,7 @@ async function api(path, { method = "GET", body, keepalive = false } = {}) {
 const ACCESS_MESSAGES = {
   not_member: "Votre adresse n'est pas inscrite sur ce site. Demandez une invitation à l'admin.",
   suspended: "Votre accès est suspendu. Contactez l'admin.",
+  guest_link: "Ce lien d'invité n'est plus valable. Demandez un nouveau lien à la personne qui vous l'a envoyé.",
 };
 
 // Bandeau d'alerte : connexion expirée (avec bouton de reconnexion) ou accès refusé
@@ -82,6 +84,8 @@ function showAccessAlert(e) {
 async function checkForUpdate() {
   try {
     const r = await fetch("data/meta.json", { cache: "no-store" });
+    // Mode invité : lien remplacé ou retiré depuis l'ouverture de la page
+    if (GUEST && r.status === 404) throw new ApiError("lien d'invité plus valable", 404, "guest_link");
     if (r.redirected || !r.ok) throw new Error();
     const meta = await r.json();
     if (meta.generated_at && meta.generated_at !== state.meta.generated_at) { location.reload(); return; }
@@ -375,7 +379,7 @@ function starBlock(ev) {
   const choice = (status, off, on) => `<button type="button" class="btn btn-star${s?.status === status ? " on" : ""}"
     data-star-set="${status}" data-star-id="${esc(ev.id)}" aria-pressed="${s?.status === status}">${s?.status === status ? on : off}</button>`;
   return `${choice("interested", "☆ Intéressé", "★ Intéressé")}${choice("going", "🎟 Places prises", "✓ Places prises")}
-    ${s ? `<label class="chip star-share"><input type="checkbox" data-star-share data-star-id="${esc(ev.id)}"${s.visibility === "members" ? " checked" : ""}> Visible par les membres</label>
+    ${s ? `${GUEST ? "" : `<label class="chip star-share"><input type="checkbox" data-star-share data-star-id="${esc(ev.id)}"${s.visibility === "members" ? " checked" : ""}> Visible par les membres</label>`}
       <button type="button" class="link-btn" data-star="${esc(ev.id)}">Retirer de mes concerts</button>` : ""}`;
 }
 
@@ -530,7 +534,7 @@ function messageText(ev, info) {
     "On prend des places ?",
     "",
     // Lien vers la fiche web du concert (photo, infos, billets, écoute)
-    new URL(`partage/${ev.id}${shareQuery(ev)}`, location.href).href,
+    new URL(`/partage/${ev.id}${shareQuery(ev)}`, location.href).href,
   ];
   return lines.filter((l, i) => l || i === 3).join("\n");
 }
@@ -556,7 +560,7 @@ function artistInfo(id, timeout = 8000) {
     const ctrl = new AbortController();
     const timer = setTimeout(() => ctrl.abort(), timeout);
     const ev = state.events.find((e) => e.id === id);
-    artistInfoCache.set(id, fetch(`partage/${id}.json${ev ? shareQuery(ev) : ""}`, { signal: ctrl.signal })
+    artistInfoCache.set(id, fetch(`/partage/${id}.json${ev ? shareQuery(ev) : ""}`, { signal: ctrl.signal })
       .then((r) => (r.ok ? r.json() : null))
       .catch(() => null)
       .finally(() => clearTimeout(timer))
@@ -980,7 +984,7 @@ function renderStarred() {
       html += `<tr class="clickable" data-id="${ev.id}" tabindex="0">
         <td class="cell-date">${esc(fmtShort.format(parseDay(ev.date)))}${ev.time ? `<span class="cell-sub">${esc(ev.time)}</span>` : ""}</td>
         <td><span class="cell-name">${esc(headline(ev))}</span>${headline(ev) !== ev.title ? `<span class="cell-sub">${esc(ev.title)}</span>` : ""}
-          <span class="cell-sub">${star.status === "going" ? `<span class="tag tag-going">Places prises</span> ` : ""}${star.visibility === "members" ? "visible par les membres" : "masqué"} ${membersTag(ev)}</span></td>
+          <span class="cell-sub">${star.status === "going" ? `<span class="tag tag-going">Places prises</span> ` : ""}${GUEST ? "" : star.visibility === "members" ? "visible par les membres" : "masqué"} ${membersTag(ev)}</span></td>
         <td>${esc(ev.venue)}</td>
         <td class="hide-mobile">${esc(ev.price || "")}</td>
         <td>${status ? `<span class="cell-sub"><strong>${esc(status)}</strong></span>` : ""}${sale ? `<span class="stub-sale">${esc(sale.replace("Mise en vente le ", "En vente le "))}</span>` : ""}<span class="buy-links">${links}</span></td>
@@ -1068,9 +1072,9 @@ function renderVenues() {
   $("#venues").innerHTML =
     `<h2 class="month-title">Vos salles</h2>${venueTable(favs)}
      <h2 class="month-title">D'autres salles où passent des artistes pour vous</h2>
-     <p class="count-line">Classées par nombre de concerts retenus. Cliquez sur une salle pour voir sa programmation. Une salle absente du catalogue peut y être proposée : après validation par l'admin, chaque membre pourra la choisir comme favorite.</p>
-     ${others.length ? venueTable(others, true) : `<p class="empty">Aucune autre salle pour l'instant.</p>`}
-     <h2 class="month-title">Proposer une salle</h2>
+     <p class="count-line">Classées par nombre de concerts retenus. Cliquez sur une salle pour voir sa programmation.${GUEST ? "" : " Une salle absente du catalogue peut y être proposée : après validation par l'admin, chaque membre pourra la choisir comme favorite."}</p>
+     ${others.length ? venueTable(others, !GUEST) : `<p class="empty">Aucune autre salle pour l'instant.</p>`}
+     ${GUEST ? "" : `<h2 class="month-title">Proposer une salle</h2>
      <form id="venue-proposal" class="account-form">
        <label for="proposal-name">Nom de la salle</label>
        <input id="proposal-name" type="text" maxlength="80" required>
@@ -1080,7 +1084,8 @@ function renderVenues() {
        <input id="proposal-url" type="url" maxlength="300" placeholder="https://">
        <button class="btn" type="submit">Proposer</button>
      </form>
-     <div id="venue-proposals"></div>`;
+     <div id="venue-proposals"></div>`}`;
+  if (GUEST) return;
   $("#venue-proposal").addEventListener("submit", (e) => { e.preventDefault(); proposeVenue(); });
   renderProposals();
 }
@@ -1206,7 +1211,7 @@ function render() {
   if (state.view === "starred") renderStarred();
   if (state.view === "artists") renderArtists();
   if (state.view === "venues") renderVenues();
-  if (state.view === "account") renderAccount();
+  if (state.view === "account") GUEST ? renderGuestAccount() : renderAccount();
   if (state.view === "admin") renderAdmin();
 }
 
@@ -1248,7 +1253,7 @@ function bind() {
     if (share) setStarOption(share.dataset.starId, "visibility", share.checked ? "members" : "private");
   });
   $("#fav-only").addEventListener("change", (e) => { state.favOnly = e.target.checked; render(); });
-  $("#with-members").addEventListener("change", (e) => { state.withMembers = e.target.checked; render(); });
+  $("#with-members")?.addEventListener("change", (e) => { state.withMembers = e.target.checked; render(); });
   $("#refresh").addEventListener("click", () => location.reload());
   $("#relogin").addEventListener("click", () => location.reload());
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") checkForUpdate(); });
@@ -1477,6 +1482,7 @@ async function openFromLink({ onboarding = false } = {}) {
     return;
   }
   $("#tab-admin").hidden = me?.role !== "admin";
+  if (GUEST) setupGuest(me);
   applyPrefs();
   fillStyles();
   updateStarCount();
