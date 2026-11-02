@@ -1,91 +1,101 @@
 [
  {
+  "name": "La Maroquinerie",
+  "venue_id": null,
+  "total": 149
+ },
+ {
   "name": "Grande salle Pierre Boulez - Philharmonie de Paris",
   "venue_id": null,
-  "total": 147
+  "total": 146
  },
  {
   "name": "Olympia",
   "venue_id": "olympia",
-  "total": 126
+  "total": 132
  },
  {
   "name": "La Cigale",
   "venue_id": "cigale",
-  "total": 121
- },
- {
-  "name": "La Maroquinerie",
-  "venue_id": null,
-  "total": 121
+  "total": 122
  },
  {
   "name": "Maison de la Radio et de la Musique",
   "venue_id": null,
-  "total": 118
+  "total": 114
  },
  {
   "name": "ZENITH PARIS - LA VILLETTE",
   "venue_id": null,
-  "total": 107
+  "total": 109
  },
  {
   "name": "Théâtre des Champs-Élysées",
   "venue_id": null,
-  "total": 94
- },
- {
-  "name": "Église Saint-Julien-le-Pauvre",
-  "venue_id": null,
-  "total": 92
+  "total": 93
  },
  {
   "name": "ACCOR ARENA",
   "venue_id": null,
-  "total": 90
+  "total": 86
+ },
+ {
+  "name": "Église Saint-Julien-le-Pauvre",
+  "venue_id": null,
+  "total": 83
+ },
+ {
+  "name": "New Morning",
+  "venue_id": "new-morning",
+  "total": 72
  },
  {
   "name": "Élysée Montmartre",
   "venue_id": "elysee-montmartre",
-  "total": 75
+  "total": 72
  },
  {
   "name": "Le Trianon",
   "venue_id": "trianon",
+  "total": 69
+ },
+ {
+  "name": "Église de la Madeleine",
+  "venue_id": null,
   "total": 68
  },
  {
   "name": "SALLE PLEYEL",
+  "venue_id": null,
+  "total": 66
+ },
+ {
+  "name": "Salle Gaveau",
   "venue_id": null,
   "total": 65
  },
  {
   "name": "Le Baiser Salé",
   "venue_id": null,
-  "total": 64
- },
- {
-  "name": "Salle Gaveau",
-  "venue_id": null,
   "total": 62
  },
  {
-  "name": "Salle des concerts - Cité de la Musique-Philharmonie",
-  "venue_id": null,
-  "total": 58
- },
- {
-  "name": "Sunside",
+  "name": "Le Son de la Terre",
   "venue_id": null,
   "total": 57
  },
  {
-  "name": "Salle Cortot",
+  "name": "Salle des concerts - Cité de la Musique-Philharmonie",
+  "venue_id": null,
+  "total": 56
+ },
+ {
+  "name": "Le Grand Rex",
   "venue_id": null,
   "total": 54
  },
  {
-  "name": "Église Saint-Éphrem",
+  "name": "Salle Cortot",
   "venue_id": null,
   "total": 54
  },
@@ -97,7 +107,7 @@
  {
   "name": "La Boule Noire",
   "venue_id": "boule-noire",
-  "total": 52
+  "total": 51
  },
  {
   "name": "Le Bataclan",
@@ -105,97 +115,82 @@
   "total": 51
  },
  {
-  "name": "Le Grand Rex",
-  "venue_id": null,
-  "total": 51
- },
- {
-  "name": "38Riv Jazz Club",
+  "name": "Petit Bain",
   "venue_id": null,
   "total": 50
  },
  {
-  "name": "New Morning",
-  "venue_id": "new-morning",
+  "name": "Église Saint-Germain-des-Prés",
+  "venue_id": null,
   "total": 49
  },
  {
-  "name": "38 RIV - Jazz Club & Bar",
+  "name": "Église Saint-Éphrem",
   "venue_id": null,
-  "total": 46
+  "total": 48
  },
  {
-  "name": "ALHAMBRA",
-  "venue_id": null,
-  "total": 45
- },
- {
-  "name": "Église de la Madeleine",
+  "name": "Sunside",
   "venue_id": null,
   "total": 45
  },
  {
   "name": "LE TRABENDO (Parc de la Villette)",
   "venue_id": null,
-  "total": 44
+  "total": 42
  },
  {
-  "name": "Baiser salé",
+  "name": "ALHAMBRA",
   "venue_id": null,
   "total": 40
  },
  {
-  "name": "Église Saint-Germain-des-Prés",
-  "venue_id": null,
-  "total": 40
- },
- {
-  "name": "SUPERSONIC",
+  "name": "38Riv Jazz Club",
   "venue_id": null,
   "total": 38
  },
  {
-  "name": "Café Laurent",
+  "name": "38 RIV - Jazz Club & Bar",
   "venue_id": null,
-  "total": 36
- },
- {
-  "name": "Petit Bain",
-  "venue_id": null,
-  "total": 36
- },
- {
-  "name": "Caveau de la Huchette",
-  "venue_id": null,
-  "total": 35
- },
- {
-  "name": "Le Son de la Terre",
-  "venue_id": null,
-  "total": 35
+  "total": 37
  },
  {
   "name": "LE BACKSTAGE BY THE MILL",
   "venue_id": null,
-  "total": 34
+  "total": 33
  },
  {
-  "name": "Philharmonie de Paris",
+  "name": "Café Laurent",
   "venue_id": null,
   "total": 32
  },
  {
-  "name": "Jass Club Paris",
+  "name": "SUPERSONIC",
+  "venue_id": null,
+  "total": 32
+ },
+ {
+  "name": "Baiser salé",
   "venue_id": null,
   "total": 31
+ },
+ {
+  "name": "CASINO DE PARIS",
+  "venue_id": null,
+  "total": 30
+ },
+ {
+  "name": "Le Chinois",
+  "venue_id": null,
+  "total": 30
  },
  {
   "name": "POPUP!",
   "venue_id": null,
-  "total": 31
+  "total": 30
  },
  {
-  "name": "Le Chinois",
+  "name": "Philharmonie de Paris",
   "venue_id": null,
   "total": 30
  },
@@ -205,7 +200,7 @@
   "total": 30
  },
  {
-  "name": "CASINO DE PARIS",
+  "name": "Café de la Danse",
   "venue_id": null,
   "total": 29
  },
@@ -215,14 +210,19 @@
   "total": 29
  },
  {
-  "name": "Point Ephémère",
+  "name": "Caveau de la Huchette",
   "venue_id": null,
   "total": 28
  },
  {
-  "name": "Cathédrale Notre-Dame de Paris",
+  "name": "Le Melville",
   "venue_id": null,
-  "total": 27
+  "total": 28
+ },
+ {
+  "name": "Salle Pleyel",
+  "venue_id": null,
+  "total": 28
  },
  {
   "name": "Chapelle royale - Château de Versailles",
@@ -230,12 +230,12 @@
   "total": 27
  },
  {
-  "name": "LA MACHINE DU MOULIN ROUGE",
-  "venue_id": null,
+  "name": "La Bellevilloise",
+  "venue_id": "bellevilloise",
   "total": 27
  },
  {
-  "name": "LES ETOILES",
+  "name": "Point Ephémère",
   "venue_id": null,
   "total": 27
  },
@@ -245,32 +245,27 @@
   "total": 26
  },
  {
-  "name": "La Bellevilloise",
-  "venue_id": "bellevilloise",
-  "total": 25
+  "name": "Cathédrale Notre-Dame de Paris",
+  "venue_id": null,
+  "total": 26
  },
  {
-  "name": "Salle Pleyel",
+  "name": "LES ETOILES",
+  "venue_id": null,
+  "total": 26
+ },
+ {
+  "name": "Jass Club Paris",
   "venue_id": null,
   "total": 25
  },
  {
-  "name": "Sunset",
+  "name": "LA MACHINE DU MOULIN ROUGE",
   "venue_id": null,
-  "total": 25
+  "total": 23
  },
  {
-  "name": "DOME DE PARIS",
-  "venue_id": null,
-  "total": 24
- },
- {
-  "name": "Le Cabaret Sauvage",
-  "venue_id": null,
-  "total": 24
- },
- {
-  "name": "Le Melville",
+  "name": "LA SEINE MUSICALE - GRANDE SEINE",
   "venue_id": null,
   "total": 23
  },
@@ -285,27 +280,37 @@
   "total": 22
  },
  {
-  "name": "Badaboum",
+  "name": "DOME DE PARIS",
   "venue_id": null,
   "total": 22
  },
  {
-  "name": "Les Trois Baudets",
+  "name": "Duc des Lombards",
+  "venue_id": null,
+  "total": 22
+ },
+ {
+  "name": "Le Cabaret Sauvage",
   "venue_id": null,
   "total": 22
  },
  {
   "name": "Bal chavaux",
   "venue_id": "bal-chavaux",
-  "total": 20
+  "total": 21
  },
  {
-  "name": "Le Mazette",
+  "name": "Les Trois Baudets",
   "venue_id": null,
+  "total": 21
+ },
+ {
+  "name": "Hasard Ludique",
+  "venue_id": "hasard-ludique",
   "total": 20
  },
  {
-  "name": "Palais des Congrès de Paris",
+  "name": "Sunset",
   "venue_id": null,
   "total": 20
  },
@@ -313,16 +318,6 @@
   "name": "Trabendo",
   "venue_id": null,
   "total": 20
- },
- {
-  "name": "Bridge Club",
-  "venue_id": null,
-  "total": 19
- },
- {
-  "name": "LA SEINE MUSICALE - GRANDE SEINE",
-  "venue_id": null,
-  "total": 19
  },
  {
   "name": "Le Bal Blomet",
@@ -335,7 +330,12 @@
   "total": 18
  },
  {
-  "name": "Sainte-Chapelle - Palais de la Cité",
+  "name": "Le Mazette",
+  "venue_id": null,
+  "total": 18
+ },
+ {
+  "name": "Palais des Congrès de Paris",
   "venue_id": null,
   "total": 18
  },
@@ -345,17 +345,12 @@
   "total": 18
  },
  {
+  "name": "Bridge Club",
+  "venue_id": null,
+  "total": 17
+ },
+ {
   "name": "Conservatoire à rayonnement régional de Paris - Ida Rubinstein",
-  "venue_id": null,
-  "total": 17
- },
- {
-  "name": "L'Accord Parfait",
-  "venue_id": null,
-  "total": 17
- },
- {
-  "name": "La Gaité Lyrique",
   "venue_id": null,
   "total": 17
  },
@@ -365,14 +360,24 @@
   "total": 17
  },
  {
-  "name": "Studio de l'Ermitage",
+  "name": "Badaboum",
   "venue_id": null,
-  "total": 17
+  "total": 16
  },
  {
-  "name": "Théâtre des Bouffes du Nord",
+  "name": "Le Zénith Paris – La Villette",
   "venue_id": null,
-  "total": 17
+  "total": 16
+ },
+ {
+  "name": "Studio de l'Ermitage",
+  "venue_id": null,
+  "total": 16
+ },
+ {
+  "name": "Théâtre de la Ville – Les Abbesses",
+  "venue_id": null,
+  "total": 16
  },
  {
   "name": "CAFE DE LA DANSE",
@@ -380,38 +385,13 @@
   "total": 15
  },
  {
-  "name": "Café de la Danse",
-  "venue_id": null,
-  "total": 15
- },
- {
-  "name": "La Casbah",
-  "venue_id": null,
-  "total": 15
- },
- {
-  "name": "Le Zénith Paris – La Villette",
-  "venue_id": null,
-  "total": 15
- },
- {
-  "name": "PALAIS DES CONGRES DE PARIS",
-  "venue_id": null,
-  "total": 15
- },
- {
-  "name": "Théâtre de la Ville – Les Abbesses",
-  "venue_id": null,
-  "total": 15
- },
- {
-  "name": "FGO-Barbara",
+  "name": "Cathédrale Saint-Louis-des-Invalides - Hôtel national des Invalides",
   "venue_id": null,
   "total": 14
  },
  {
-  "name": "Hasard Ludique",
-  "venue_id": "hasard-ludique",
+  "name": "FGO-Barbara",
+  "venue_id": null,
   "total": 14
  },
  {
@@ -420,32 +400,32 @@
   "total": 14
  },
  {
-  "name": "Église Saint-Louis-en-l'Île",
+  "name": "La Gaité Lyrique",
   "venue_id": null,
   "total": 14
  },
  {
-  "name": "Cathédrale Saint-Louis-des-Invalides - Hôtel national des Invalides",
+  "name": "Le Solo",
+  "venue_id": null,
+  "total": 14
+ },
+ {
+  "name": "Théâtre des Bouffes du Nord",
+  "venue_id": null,
+  "total": 14
+ },
+ {
+  "name": "Eglise de la Madeleine",
   "venue_id": null,
   "total": 13
  },
  {
-  "name": "Glazart",
+  "name": "L'Accord Parfait",
   "venue_id": null,
   "total": 13
  },
  {
   "name": "Le Plan",
-  "venue_id": null,
-  "total": 13
- },
- {
-  "name": "Le Trabendo",
-  "venue_id": null,
-  "total": 13
- },
- {
-  "name": "Louloute",
   "venue_id": null,
   "total": 13
  },
@@ -460,7 +440,7 @@
   "total": 13
  },
  {
-  "name": "Péniche Antipode",
+  "name": "PALAIS DES CONGRES DE PARIS",
   "venue_id": null,
   "total": 13
  },
@@ -470,7 +450,27 @@
   "total": 13
  },
  {
-  "name": "Le Solo",
+  "name": "Sainte-Chapelle - Palais de la Cité",
+  "venue_id": null,
+  "total": 13
+ },
+ {
+  "name": "Église Saint-Louis-en-l'Île",
+  "venue_id": null,
+  "total": 13
+ },
+ {
+  "name": "JASS CLUB PARIS",
+  "venue_id": null,
+  "total": 12
+ },
+ {
+  "name": "LA GAITE LYRIQUE",
+  "venue_id": null,
+  "total": 12
+ },
+ {
+  "name": "La Casbah",
   "venue_id": null,
   "total": 12
  },
@@ -490,12 +490,17 @@
   "total": 12
  },
  {
-  "name": "Théâtre de l'Île Saint-Louis",
+  "name": "CABARET SAUVAGE",
   "venue_id": null,
-  "total": 12
+  "total": 11
  },
  {
-  "name": "CABARET SAUVAGE",
+  "name": "Communale Saint-Ouen",
+  "venue_id": null,
+  "total": 11
+ },
+ {
+  "name": "Conservatoire Municipal Nadia et Lili Boulanger",
   "venue_id": null,
   "total": 11
  },
@@ -505,7 +510,22 @@
   "total": 11
  },
  {
-  "name": "Église Saint-Merry",
+  "name": "Glazart",
+  "venue_id": null,
+  "total": 11
+ },
+ {
+  "name": "La Java",
+  "venue_id": null,
+  "total": 11
+ },
+ {
+  "name": "Louloute",
+  "venue_id": null,
+  "total": 11
+ },
+ {
+  "name": "Théâtre de l'Île Saint-Louis",
   "venue_id": null,
   "total": 11
  },
@@ -520,32 +540,17 @@
   "total": 10
  },
  {
-  "name": "Communale Saint-Ouen",
-  "venue_id": null,
-  "total": 10
- },
- {
-  "name": "Espace Georges-Bernanos",
-  "venue_id": null,
-  "total": 10
- },
- {
   "name": "L'Archipel",
   "venue_id": null,
   "total": 10
  },
  {
-  "name": "LA GAITE LYRIQUE",
-  "venue_id": null,
-  "total": 10
- },
- {
-  "name": "La Java",
-  "venue_id": null,
-  "total": 10
- },
- {
   "name": "Le Studio - Philharmonie de Paris",
+  "venue_id": null,
+  "total": 10
+ },
+ {
+  "name": "Le Trabendo",
   "venue_id": null,
   "total": 10
  },
@@ -560,11 +565,6 @@
   "total": 10
  },
  {
-  "name": "SAINTE-CHAPELLE",
-  "venue_id": null,
-  "total": 10
- },
- {
   "name": "Théâtre de Saint-Quentin-en-Yvelines",
   "venue_id": null,
   "total": 10
@@ -575,7 +575,17 @@
   "total": 10
  },
  {
-  "name": "Eglise de la Madeleine",
+  "name": "Accor Arena",
+  "venue_id": null,
+  "total": 9
+ },
+ {
+  "name": "EGLISE SAINT GERMAIN DES PRES",
+  "venue_id": null,
+  "total": 9
+ },
+ {
+  "name": "Espace Georges-Bernanos",
   "venue_id": null,
   "total": 9
  },
@@ -585,37 +595,37 @@
   "total": 9
  },
  {
+  "name": "Ground Control Gare de Lyon",
+  "venue_id": null,
+  "total": 9
+ },
+ {
   "name": "L'ARCHIPEL",
   "venue_id": null,
   "total": 9
  },
  {
-  "name": "LE 13E ART",
+  "name": "Théâtre du Casino",
   "venue_id": null,
   "total": 9
+ },
+ {
+  "name": "Église Saint-Merry",
+  "venue_id": null,
+  "total": 9
+ },
+ {
+  "name": "211",
+  "venue_id": null,
+  "total": 8
+ },
+ {
+  "name": "LE 13E ART",
+  "venue_id": null,
+  "total": 8
  },
  {
   "name": "LES FOLIES BERGERE",
-  "venue_id": null,
-  "total": 9
- },
- {
-  "name": "Main Room",
-  "venue_id": null,
-  "total": 9
- },
- {
-  "name": "Péniche Marcounet",
-  "venue_id": null,
-  "total": 9
- },
- {
-  "name": "Église Saint-Philippe-du-Roule",
-  "venue_id": null,
-  "total": 9
- },
- {
-  "name": "Accor Arena",
   "venue_id": null,
   "total": 8
  },
@@ -630,6 +640,26 @@
   "total": 8
  },
  {
+  "name": "Main Room",
+  "venue_id": null,
+  "total": 8
+ },
+ {
+  "name": "Manufacture Chanson",
+  "venue_id": null,
+  "total": 8
+ },
+ {
+  "name": "Péniche Antipode",
+  "venue_id": null,
+  "total": 8
+ },
+ {
+  "name": "SAINTE-CHAPELLE",
+  "venue_id": null,
+  "total": 8
+ },
+ {
   "name": "Studio Raspail",
   "venue_id": null,
   "total": 8
@@ -640,17 +670,12 @@
   "total": 8
  },
  {
-  "name": "Théâtre du Casino",
+  "name": "Église Saint-Philippe-du-Roule",
   "venue_id": null,
   "total": 8
  },
  {
   "name": "Atelier du Plateau",
-  "venue_id": null,
-  "total": 7
- },
- {
-  "name": "CATHEDRALE AMERICAINE",
   "venue_id": null,
   "total": 7
  },
@@ -665,12 +690,12 @@
   "total": 7
  },
  {
-  "name": "Ground Control Gare de Lyon",
+  "name": "La Dame de Canton",
   "venue_id": null,
   "total": 7
  },
  {
-  "name": "La Felicità",
+  "name": "La Machine du Moulin Rouge",
   "venue_id": null,
   "total": 7
  },
@@ -695,27 +720,12 @@
   "total": 7
  },
  {
-  "name": "Supersonic Club",
-  "venue_id": null,
-  "total": 7
- },
- {
-  "name": "THEATRE DES BOUFFES DU NORD",
-  "venue_id": null,
-  "total": 7
- },
- {
   "name": "Théâtre Silvia Monfort",
   "venue_id": null,
   "total": 7
  },
  {
   "name": "Théâtre des Champs-Elysées",
-  "venue_id": null,
-  "total": 7
- },
- {
-  "name": "Église Saint-Eustache",
   "venue_id": null,
   "total": 7
  },
@@ -730,22 +740,22 @@
   "total": 6
  },
  {
+  "name": "CATHEDRALE AMERICAINE",
+  "venue_id": null,
+  "total": 6
+ },
+ {
   "name": "Cabaret Sauvage",
   "venue_id": null,
   "total": 6
  },
  {
-  "name": "Duc des Lombards",
+  "name": "Centre Mandapa",
   "venue_id": null,
   "total": 6
  },
  {
-  "name": "EGLISE SAINT GERMAIN DES PRES",
-  "venue_id": null,
-  "total": 6
- },
- {
-  "name": "JASS CLUB PARIS",
+  "name": "Espace Carpeaux",
   "venue_id": null,
   "total": 6
  },
@@ -755,12 +765,12 @@
   "total": 6
  },
  {
-  "name": "La Dame de Canton",
+  "name": "La Petite Halle",
   "venue_id": null,
   "total": 6
  },
  {
-  "name": "La Mécanique Ondulatoire",
+  "name": "Le 360 Paris Music Factory",
   "venue_id": null,
   "total": 6
  },
@@ -770,27 +780,7 @@
   "total": 6
  },
  {
-  "name": "Les Étoiles",
-  "venue_id": null,
-  "total": 6
- },
- {
-  "name": "Musée de la Musique - Cité de la Musique-Philharmonie",
-  "venue_id": null,
-  "total": 6
- },
- {
-  "name": "Médiathèque Marguerite Yourcenar",
-  "venue_id": null,
-  "total": 6
- },
- {
   "name": "Opéra Garnier",
-  "venue_id": null,
-  "total": 6
- },
- {
-  "name": "PopUp!",
   "venue_id": null,
   "total": 6
  },
@@ -810,7 +800,7 @@
   "total": 6
  },
  {
-  "name": "Théâtre de la Ville – Sarah Bernhardt",
+  "name": "Église Saint-Eustache",
   "venue_id": null,
   "total": 6
  },
@@ -825,7 +815,17 @@
   "total": 5
  },
  {
+  "name": "Cirque électrique",
+  "venue_id": null,
+  "total": 5
+ },
+ {
   "name": "Conservatoire Municipal Charles Munch",
+  "venue_id": null,
+  "total": 5
+ },
+ {
+  "name": "Eglise Saint Germain des Prés",
   "venue_id": null,
   "total": 5
  },
@@ -855,7 +855,7 @@
   "total": 5
  },
  {
-  "name": "LE BADABOUM",
+  "name": "La Felicità",
   "venue_id": null,
   "total": 5
  },
@@ -865,17 +865,7 @@
   "total": 5
  },
  {
-  "name": "Le POC",
-  "venue_id": null,
-  "total": 5
- },
- {
-  "name": "Le Point Éphémère",
-  "venue_id": null,
-  "total": 5
- },
- {
-  "name": "Les Folies Bergère",
+  "name": "La Mécanique Ondulatoire",
   "venue_id": null,
   "total": 5
  },
@@ -885,12 +875,27 @@
   "total": 5
  },
  {
-  "name": "Mains d'Œuvres",
+  "name": "Musée de la Musique - Cité de la Musique-Philharmonie",
   "venue_id": null,
   "total": 5
  },
  {
   "name": "Médiathèque Marguerite Duras",
+  "venue_id": null,
+  "total": 5
+ },
+ {
+  "name": "Médiathèque Marguerite Yourcenar",
+  "venue_id": null,
+  "total": 5
+ },
+ {
+  "name": "PopUp!",
+  "venue_id": null,
+  "total": 5
+ },
+ {
+  "name": "Péniche Marcounet",
   "venue_id": null,
   "total": 5
  },
@@ -905,6 +910,11 @@
   "total": 5
  },
  {
+  "name": "Supersonic Records",
+  "venue_id": null,
+  "total": 5
+ },
+ {
   "name": "Théâtre 71",
   "venue_id": null,
   "total": 5
@@ -915,7 +925,7 @@
   "total": 5
  },
  {
-  "name": "Virage",
+  "name": "Théâtre de la Ville – Sarah Bernhardt",
   "venue_id": null,
   "total": 5
  },
@@ -930,6 +940,21 @@
   "total": 5
  },
  {
+  "name": "Archives nationales",
+  "venue_id": null,
+  "total": 4
+ },
+ {
+  "name": "Bibliothèque Valeyre",
+  "venue_id": null,
+  "total": 4
+ },
+ {
+  "name": "Bibliothèque musicale La Grange-Fleuret",
+  "venue_id": null,
+  "total": 4
+ },
+ {
   "name": "Central Chapelle",
   "venue_id": null,
   "total": 4
@@ -940,7 +965,7 @@
   "total": 4
  },
  {
-  "name": "Centre culturel tchèque",
+  "name": "Conservatoire Municipal Claude Debussy - site Courcelles",
   "venue_id": null,
   "total": 4
  },
@@ -975,7 +1000,7 @@
   "total": 4
  },
  {
-  "name": "L'Archipel - Salle Bleue",
+  "name": "LA SCENE PARISIENNE - SALLE 2",
   "venue_id": null,
   "total": 4
  },
@@ -995,12 +1020,17 @@
   "total": 4
  },
  {
-  "name": "Le Zebre de Belleville",
+  "name": "Le POC",
   "venue_id": null,
   "total": 4
  },
  {
-  "name": "Manufacture Chanson",
+  "name": "Le Point Éphémère",
+  "venue_id": null,
+  "total": 4
+ },
+ {
+  "name": "Les Étoiles",
   "venue_id": null,
   "total": 4
  },
@@ -1010,22 +1040,17 @@
   "total": 4
  },
  {
-  "name": "Médiathèque Hélène Berr",
-  "venue_id": null,
-  "total": 4
- },
- {
   "name": "Médiathèque musicale de Paris – Christiane Eda-Pierre",
   "venue_id": null,
   "total": 4
  },
  {
-  "name": "PALAIS DES GLACES",
+  "name": "NOUVEAU CASINO",
   "venue_id": null,
   "total": 4
  },
  {
-  "name": "Péniche Anako",
+  "name": "PALAIS DES GLACES",
   "venue_id": null,
   "total": 4
  },
@@ -1040,12 +1065,12 @@
   "total": 4
  },
  {
-  "name": "THEATRE LE RANELAGH",
+  "name": "THEATRE DES BOUFFES DU NORD",
   "venue_id": null,
   "total": 4
  },
  {
-  "name": "Théâtre Le Ranelagh",
+  "name": "Théâtre Antoine Watteau",
   "venue_id": null,
   "total": 4
  },
@@ -1070,24 +1095,14 @@
   "total": 4
  },
  {
+  "name": "Église Saint-Séverin",
+  "venue_id": null,
+  "total": 4
+ },
+ {
   "name": "Église Sainte-Marie-des-Batignolles",
   "venue_id": null,
   "total": 4
- },
- {
-  "name": "Église de La Madeleine",
-  "venue_id": null,
-  "total": 4
- },
- {
-  "name": "église St Philippe du Roule",
-  "venue_id": null,
-  "total": 4
- },
- {
-  "name": "211",
-  "venue_id": null,
-  "total": 3
  },
  {
   "name": "Atelier du Verbe",
@@ -1096,11 +1111,6 @@
  },
  {
   "name": "Bibliothèque Robert Sabatier",
-  "venue_id": null,
-  "total": 3
- },
- {
-  "name": "Bibliothèque des Batignolles",
   "venue_id": null,
   "total": 3
  },
@@ -1130,22 +1140,12 @@
   "total": 3
  },
  {
-  "name": "Cathédrale américaine",
+  "name": "Centre Paris Anim' Bessie Smith( ex Reuilly)",
   "venue_id": null,
   "total": 3
  },
  {
-  "name": "Centre Evénementiel et Culturel",
-  "venue_id": null,
-  "total": 3
- },
- {
-  "name": "Cirque électrique",
-  "venue_id": null,
-  "total": 3
- },
- {
-  "name": "Conservatoire Municipal Claude Debussy - site Courcelles",
+  "name": "Centre culturel tchèque",
   "venue_id": null,
   "total": 3
  },
@@ -1165,12 +1165,17 @@
   "total": 3
  },
  {
-  "name": "Eglise Saint Germain des Prés",
+  "name": "Eglise Saint-Vincent de Paul",
   "venue_id": null,
   "total": 3
  },
  {
-  "name": "Eglise Saint-Vincent de Paul",
+  "name": "FGO Barbara",
+  "venue_id": null,
+  "total": 3
+ },
+ {
+  "name": "Fontaine Culture",
   "venue_id": null,
   "total": 3
  },
@@ -1190,17 +1195,12 @@
   "total": 3
  },
  {
-  "name": "La Machine du Moulin Rouge",
+  "name": "LE BADABOUM",
   "venue_id": null,
   "total": 3
  },
  {
-  "name": "La Place",
-  "venue_id": null,
-  "total": 3
- },
- {
-  "name": "Le Consulat Voltaire",
+  "name": "Le Café de la Danse",
   "venue_id": null,
   "total": 3
  },
@@ -1215,7 +1215,17 @@
   "total": 3
  },
  {
-  "name": "Les Disquaires",
+  "name": "Le Zebre de Belleville",
+  "venue_id": null,
+  "total": 3
+ },
+ {
+  "name": "Le Zèbre de Belleville",
+  "venue_id": null,
+  "total": 3
+ },
+ {
+  "name": "Les Folies Bergère",
   "venue_id": null,
   "total": 3
  },
@@ -1225,7 +1235,12 @@
   "total": 3
  },
  {
-  "name": "NOUVEAU CASINO",
+  "name": "Mairie du 9e arrondissement",
+  "venue_id": null,
+  "total": 3
+ },
+ {
+  "name": "Médiathèque Hélène Berr",
   "venue_id": null,
   "total": 3
  },
@@ -1235,17 +1250,22 @@
   "total": 3
  },
  {
+  "name": "Nouveau Casino",
+  "venue_id": null,
+  "total": 3
+ },
+ {
   "name": "Piano Académie",
   "venue_id": null,
   "total": 3
  },
  {
-  "name": "Supersonic Records",
+  "name": "Péniche Anako",
   "venue_id": null,
   "total": 3
  },
  {
-  "name": "THEATRE MOGADOR",
+  "name": "THEATRE LE RANELAGH",
   "venue_id": null,
   "total": 3
  },
@@ -1255,12 +1275,12 @@
   "total": 3
  },
  {
-  "name": "Théâtre Antoine Watteau",
+  "name": "Théâtre Jacques Carat",
   "venue_id": null,
   "total": 3
  },
  {
-  "name": "Théâtre Jacques Carat",
+  "name": "Théâtre Le Ranelagh",
   "venue_id": null,
   "total": 3
  },
@@ -1280,7 +1300,12 @@
   "total": 3
  },
  {
-  "name": "Théâtre du Temps",
+  "name": "Village by CA",
+  "venue_id": null,
+  "total": 3
+ },
+ {
+  "name": "Virage",
   "venue_id": null,
   "total": 3
  },
@@ -1290,7 +1315,7 @@
   "total": 3
  },
  {
-  "name": "Église Saint-Pierre de Montmartre",
+  "name": "Église Notre-Dame-des-Blancs-Manteaux",
   "venue_id": null,
   "total": 3
  },
@@ -1300,9 +1325,14 @@
   "total": 3
  },
  {
-  "name": "360 Paris Music Factory",
+  "name": "Église réformée de Port-Royal",
   "venue_id": null,
-  "total": 2
+  "total": 3
+ },
+ {
+  "name": "église St Philippe du Roule",
+  "venue_id": null,
+  "total": 3
  },
  {
   "name": "Apollo Théâtre",
@@ -1310,12 +1340,12 @@
   "total": 2
  },
  {
-  "name": "Archives nationales",
+  "name": "Auditorium du Campus Clignancourt de Sorbonne Université",
   "venue_id": null,
   "total": 2
  },
  {
-  "name": "Auditorium du Campus Clignancourt de Sorbonne Université",
+  "name": "Bibliothèque Drouot",
   "venue_id": null,
   "total": 2
  },
@@ -1335,7 +1365,12 @@
   "total": 2
  },
  {
-  "name": "Bibliothèque musicale La Grange-Fleuret",
+  "name": "Bibliothèque des Batignolles",
+  "venue_id": null,
+  "total": 2
+ },
+ {
+  "name": "Bizz'Art",
   "venue_id": null,
   "total": 2
  },
@@ -1350,32 +1385,12 @@
   "total": 2
  },
  {
-  "name": "Centre Mandapa",
-  "venue_id": null,
-  "total": 2
- },
- {
-  "name": "Centre Paris Anim' Bessie Smith( ex Reuilly)",
-  "venue_id": null,
-  "total": 2
- },
- {
   "name": "Centre culturel irlandais",
   "venue_id": null,
   "total": 2
  },
  {
-  "name": "Chalet du Lac",
-  "venue_id": null,
-  "total": 2
- },
- {
-  "name": "Cirque Electrique",
-  "venue_id": null,
-  "total": 2
- },
- {
-  "name": "Conservatoire Municipal Nadia et Lili Boulanger",
+  "name": "Conservatoire Darius-Milhaud",
   "venue_id": null,
   "total": 2
  },
@@ -1400,7 +1415,17 @@
   "total": 2
  },
  {
-  "name": "Fontaine Culture",
+  "name": "Eglise de la Trinité",
+  "venue_id": null,
+  "total": 2
+ },
+ {
+  "name": "Espace Bernanos",
+  "venue_id": null,
+  "total": 2
+ },
+ {
+  "name": "Fondation des États-Unis",
   "venue_id": null,
   "total": 2
  },
@@ -1430,17 +1455,22 @@
   "total": 2
  },
  {
+  "name": "Jardin Cromot du Bourg  Cour Cadet",
+  "venue_id": null,
+  "total": 2
+ },
+ {
   "name": "L'Alhambra",
   "venue_id": null,
   "total": 2
  },
  {
-  "name": "L'Auguste Théâtre",
+  "name": "L'Archipel - Salle Bleue",
   "venue_id": null,
   "total": 2
  },
  {
-  "name": "L'Institut du Monde Arabe",
+  "name": "L'Auguste Théâtre",
   "venue_id": null,
   "total": 2
  },
@@ -1455,17 +1485,12 @@
   "total": 2
  },
  {
-  "name": "Le 360 Paris Music Factory",
+  "name": "La Place",
   "venue_id": null,
   "total": 2
  },
  {
-  "name": "Le Café de la Danse",
-  "venue_id": null,
-  "total": 2
- },
- {
-  "name": "Le Klub",
+  "name": "Le Consulat Voltaire",
   "venue_id": null,
   "total": 2
  },
@@ -1480,12 +1505,12 @@
   "total": 2
  },
  {
-  "name": "Le Zèbre de Belleville",
+  "name": "Ligne 13 - Maison de la Jeunesse",
   "venue_id": null,
   "total": 2
  },
  {
-  "name": "Ligne 13 - Maison de la Jeunesse",
+  "name": "Mairie de Paris Centre",
   "venue_id": null,
   "total": 2
  },
@@ -1505,6 +1530,11 @@
   "total": 2
  },
  {
+  "name": "Musée de la Vie romantique, Hôtel Scheffer-Renan",
+  "venue_id": null,
+  "total": 2
+ },
+ {
   "name": "Médiathèque Edmond Rostand",
   "venue_id": null,
   "total": 2
@@ -1520,12 +1550,12 @@
   "total": 2
  },
  {
-  "name": "Nouveau Casino",
+  "name": "PALAIS GARNIER / OPERA GARNIER",
   "venue_id": null,
   "total": 2
  },
  {
-  "name": "PALAIS GARNIER / OPERA GARNIER",
+  "name": "PLAINE DE LA BELLE ETOILE",
   "venue_id": null,
   "total": 2
  },
@@ -1560,12 +1590,12 @@
   "total": 2
  },
  {
-  "name": "Sunset Sunside",
+  "name": "Supersonic Club",
   "venue_id": null,
   "total": 2
  },
  {
-  "name": "THEATRE DES DEUX ANES",
+  "name": "THEATRE MOGADOR",
   "venue_id": null,
   "total": 2
  },
@@ -1576,6 +1606,11 @@
  },
  {
   "name": "Théâtre Jean Vilar",
+  "venue_id": null,
+  "total": 2
+ },
+ {
+  "name": "Théâtre Juliette Récamier",
   "venue_id": null,
   "total": 2
  },
@@ -1620,27 +1655,32 @@
   "total": 2
  },
  {
-  "name": "Tout Le Monde en Parle",
-  "venue_id": null,
-  "total": 2
- },
- {
-  "name": "Village by CA",
-  "venue_id": null,
-  "total": 2
- },
- {
   "name": "Virtuoz Club",
   "venue_id": null,
   "total": 2
  },
  {
-  "name": "Église Saint-Antoine-des-Quinze-Vingts",
+  "name": "Yamaha Artist Services Paris",
+  "venue_id": null,
+  "total": 2
+ },
+ {
+  "name": "Église Saint Philippe du Roule",
   "venue_id": null,
   "total": 2
  },
  {
   "name": "Église Saint-Jean-Baptiste de Belleville",
+  "venue_id": null,
+  "total": 2
+ },
+ {
+  "name": "Église Saint-Jean-Bosco",
+  "venue_id": null,
+  "total": 2
+ },
+ {
+  "name": "Église Saint-Jean-de-Montmartre",
   "venue_id": null,
   "total": 2
  },
@@ -1655,12 +1695,12 @@
   "total": 2
  },
  {
-  "name": "Église Saint-Paul-Saint-Louis",
+  "name": "Église Saint-Pierre de Montmartre",
   "venue_id": null,
   "total": 2
  },
  {
-  "name": "Église Saint-Séverin",
+  "name": "Église de La Madeleine",
   "venue_id": null,
   "total": 2
  },
@@ -1670,12 +1710,12 @@
   "total": 2
  },
  {
-  "name": "Église luthérienne Saint-Marcel",
+  "name": "Église protestante unie du Saint-Esprit",
   "venue_id": null,
   "total": 2
  },
  {
-  "name": "Église réformée de Port-Royal",
+  "name": "Église réformée de la Bastille - Temple du Foyer de l'Âme",
   "venue_id": null,
   "total": 2
  },
@@ -1685,12 +1725,17 @@
   "total": 2
  },
  {
-  "name": "ATHENEE THEATRE LOUIS-JOUVET - Gde Salle",
+  "name": "360 Paris Music Factory",
   "venue_id": null,
   "total": 1
  },
  {
-  "name": "Amphithéâtre Olivier Messiaen - Opéra Bastille",
+  "name": "AGECA",
+  "venue_id": null,
+  "total": 1
+ },
+ {
+  "name": "ATHENEE THEATRE LOUIS-JOUVET - Gde Salle",
   "venue_id": null,
   "total": 1
  },
@@ -1715,11 +1760,6 @@
   "total": 1
  },
  {
-  "name": "Bagatelle Club",
-  "venue_id": null,
-  "total": 1
- },
- {
   "name": "Bataclan",
   "venue_id": null,
   "total": 1
@@ -1736,11 +1776,6 @@
  },
  {
   "name": "Bibliothèque Buffon",
-  "venue_id": null,
-  "total": 1
- },
- {
-  "name": "Bibliothèque Drouot",
   "venue_id": null,
   "total": 1
  },
@@ -1766,6 +1801,11 @@
  },
  {
   "name": "Bibliothèque La Grange-Fleuret",
+  "venue_id": null,
+  "total": 1
+ },
+ {
+  "name": "Bibliothèque Louise Walser-Gaillard",
   "venue_id": null,
   "total": 1
  },
@@ -1800,17 +1840,7 @@
   "total": 1
  },
  {
-  "name": "Bibliothèque Valeyre",
-  "venue_id": null,
-  "total": 1
- },
- {
   "name": "Bibliothèque du Campus Clignancourt de Sorbonne Université",
-  "venue_id": null,
-  "total": 1
- },
- {
-  "name": "Bizz'Art",
   "venue_id": null,
   "total": 1
  },
@@ -1825,7 +1855,7 @@
   "total": 1
  },
  {
-  "name": "Canal 93",
+  "name": "Campus d'Orsay - Amphithéâtre Henri Cartan",
   "venue_id": null,
   "total": 1
  },
@@ -1835,12 +1865,22 @@
   "total": 1
  },
  {
+  "name": "Cathédrale Sainte-croix des arméniens",
+  "venue_id": null,
+  "total": 1
+ },
+ {
+  "name": "Cathédrale américaine",
+  "venue_id": null,
+  "total": 1
+ },
+ {
   "name": "Centre Culturel Arménien Alex Manoogian",
   "venue_id": null,
   "total": 1
  },
  {
-  "name": "Centre Culturel Coréen",
+  "name": "Centre Evénementiel et Culturel",
   "venue_id": null,
   "total": 1
  },
@@ -1851,6 +1891,11 @@
  },
  {
   "name": "Centre Paris Anim' Maurice Ravel",
+  "venue_id": null,
+  "total": 1
+ },
+ {
+  "name": "Centre Paris Anim' René Goscinny",
   "venue_id": null,
   "total": 1
  },
@@ -1870,7 +1915,17 @@
   "total": 1
  },
  {
+  "name": "Chalet du Lac",
+  "venue_id": null,
+  "total": 1
+ },
+ {
   "name": "Chapelle de l'Hôpital Lariboisière",
+  "venue_id": null,
+  "total": 1
+ },
+ {
+  "name": "Cirque Electrique",
   "venue_id": null,
   "total": 1
  },
@@ -1885,17 +1940,22 @@
   "total": 1
  },
  {
+  "name": "Club La Nuit",
+  "venue_id": null,
+  "total": 1
+ },
+ {
   "name": "Collège des Bernardins",
   "venue_id": null,
   "total": 1
  },
  {
-  "name": "Conservatoire",
+  "name": "Collège néerlandais - Cité Internationale Universitaire de Paris",
   "venue_id": null,
   "total": 1
  },
  {
-  "name": "Conservatoire Darius-Milhaud",
+  "name": "Conservatoire",
   "venue_id": null,
   "total": 1
  },
@@ -1920,7 +1980,22 @@
   "total": 1
  },
  {
+  "name": "Conservatoire Municipal Jacques Ibert",
+  "venue_id": null,
+  "total": 1
+ },
+ {
+  "name": "Conservatoire Municipal Jean-Philippe Rameau",
+  "venue_id": null,
+  "total": 1
+ },
+ {
   "name": "Conservatoire Municipal Maurice Ravel",
+  "venue_id": null,
+  "total": 1
+ },
+ {
+  "name": "Conservatoire municipal Claude Debussy - La Jonquière",
   "venue_id": null,
   "total": 1
  },
@@ -1931,11 +2006,6 @@
  },
  {
   "name": "Conservatoire à rayonnement régional de Paris - Ida Rubinstein, site Italie",
-  "venue_id": null,
-  "total": 1
- },
- {
-  "name": "DOVER STREET MARKET PARIS",
   "venue_id": null,
   "total": 1
  },
@@ -1960,11 +2030,6 @@
   "total": 1
  },
  {
-  "name": "Eglise de la Trinité",
-  "venue_id": null,
-  "total": 1
- },
- {
   "name": "Enseigne des Oudin",
   "venue_id": null,
   "total": 1
@@ -1975,7 +2040,12 @@
   "total": 1
  },
  {
-  "name": "Espace Carpeaux",
+  "name": "Espace Daniel-Sorano",
+  "venue_id": null,
+  "total": 1
+ },
+ {
+  "name": "Espace Rachi",
   "venue_id": null,
   "total": 1
  },
@@ -1985,12 +2055,12 @@
   "total": 1
  },
  {
-  "name": "Fondation des États-Unis",
+  "name": "Fondation des États-Unis - Cité Internationale Universitaire de Paris",
   "venue_id": null,
   "total": 1
  },
  {
-  "name": "Fondation des États-Unis - Cité Internationale Universitaire de Paris",
+  "name": "Forum des images",
   "venue_id": null,
   "total": 1
  },
@@ -2000,12 +2070,27 @@
   "total": 1
  },
  {
-  "name": "Grand Halle de la Villette",
+  "name": "HIPPODROME PARISLONGCHAMP",
   "venue_id": null,
   "total": 1
  },
  {
-  "name": "HIPPODROME PARISLONGCHAMP",
+  "name": "Hôpital Bichat - Claude-Bernard",
+  "venue_id": null,
+  "total": 1
+ },
+ {
+  "name": "Hôpital Bretonneau",
+  "venue_id": null,
+  "total": 1
+ },
+ {
+  "name": "Hôtel Wendel",
+  "venue_id": null,
+  "total": 1
+ },
+ {
+  "name": "Hôtel national des Invalides",
   "venue_id": null,
   "total": 1
  },
@@ -2020,22 +2105,7 @@
   "total": 1
  },
  {
-  "name": "Institut du monde arabe (IMA)",
-  "venue_id": null,
-  "total": 1
- },
- {
   "name": "Institut finlandais",
-  "venue_id": null,
-  "total": 1
- },
- {
-  "name": "Jo&Joe Paris",
-  "venue_id": null,
-  "total": 1
- },
- {
-  "name": "Kolo Community Space",
   "venue_id": null,
   "total": 1
  },
@@ -2050,17 +2120,22 @@
   "total": 1
  },
  {
+  "name": "L'Institut du Monde Arabe",
+  "venue_id": null,
+  "total": 1
+ },
+ {
   "name": "L'Onde",
   "venue_id": null,
   "total": 1
  },
  {
-  "name": "LA CHAUFFERIE - Machine du Moulin Rouge",
+  "name": "L'Ours et la Vieille Grille",
   "venue_id": null,
   "total": 1
  },
  {
-  "name": "LA DIVINE COMEDIE - SALLE 1",
+  "name": "LA CHAUFFERIE - Machine du Moulin Rouge",
   "venue_id": null,
   "total": 1
  },
@@ -2100,11 +2175,6 @@
   "total": 1
  },
  {
-  "name": "La Petite Halle",
-  "venue_id": null,
-  "total": 1
- },
- {
   "name": "La Pop",
   "venue_id": null,
   "total": 1
@@ -2120,17 +2190,7 @@
   "total": 1
  },
  {
-  "name": "La Seine Café",
-  "venue_id": null,
-  "total": 1
- },
- {
   "name": "La Trockette",
-  "venue_id": null,
-  "total": 1
- },
- {
-  "name": "Le CENTQUATRE-PARIS (104)",
   "venue_id": null,
   "total": 1
  },
@@ -2145,11 +2205,6 @@
   "total": 1
  },
  {
-  "name": "Le Duplex",
-  "venue_id": null,
-  "total": 1
- },
- {
   "name": "Le Dôme de Paris",
   "venue_id": null,
   "total": 1
@@ -2160,7 +2215,7 @@
   "total": 1
  },
  {
-  "name": "Le Palais des Congrés",
+  "name": "Le Klub",
   "venue_id": null,
   "total": 1
  },
@@ -2185,7 +2240,22 @@
   "total": 1
  },
  {
+  "name": "Les Disquaires",
+  "venue_id": null,
+  "total": 1
+ },
+ {
+  "name": "Les Voûtes de l'Orucq",
+  "venue_id": null,
+  "total": 1
+ },
+ {
   "name": "MAISON DE LA MUTUALITE / THEATRE",
+  "venue_id": null,
+  "total": 1
+ },
+ {
+  "name": "MPAA Saint-Germain",
   "venue_id": null,
   "total": 1
  },
@@ -2200,7 +2270,32 @@
   "total": 1
  },
  {
+  "name": "Mains d'Œuvres",
+  "venue_id": null,
+  "total": 1
+ },
+ {
   "name": "Mairie du 10e arrondissement",
+  "venue_id": null,
+  "total": 1
+ },
+ {
+  "name": "Maison Heinrich Heine",
+  "venue_id": null,
+  "total": 1
+ },
+ {
+  "name": "Maison Populaire l'Argo'notes",
+  "venue_id": null,
+  "total": 1
+ },
+ {
+  "name": "Maison de Victor Hugo",
+  "venue_id": null,
+  "total": 1
+ },
+ {
+  "name": "Maison de la Poésie",
   "venue_id": null,
   "total": 1
  },
@@ -2220,17 +2315,12 @@
   "total": 1
  },
  {
-  "name": "Maison internationale - Espace Adenauer",
+  "name": "Mission Bretonne",
   "venue_id": null,
   "total": 1
  },
  {
-  "name": "Matchplay Society",
-  "venue_id": null,
-  "total": 1
- },
- {
-  "name": "Movida Club",
+  "name": "Musée d'art et d'histoire du Judaïsme",
   "venue_id": null,
   "total": 1
  },
@@ -2255,11 +2345,6 @@
   "total": 1
  },
  {
-  "name": "Palais de Tokyo",
-  "venue_id": null,
-  "total": 1
- },
- {
   "name": "Palais des Congrès - Issy Les Moulineaux",
   "venue_id": null,
   "total": 1
@@ -2275,11 +2360,6 @@
   "total": 1
  },
  {
-  "name": "Parc des expo Paris Nord Villepinte",
-  "venue_id": null,
-  "total": 1
- },
- {
   "name": "Peniche Marcounet",
   "venue_id": null,
   "total": 1
@@ -2290,12 +2370,22 @@
   "total": 1
  },
  {
+  "name": "Petit bain",
+  "venue_id": null,
+  "total": 1
+ },
+ {
   "name": "Plenitude Arena",
   "venue_id": null,
   "total": 1
  },
  {
   "name": "Péniche Adelaïde",
+  "venue_id": null,
+  "total": 1
+ },
+ {
+  "name": "Péniche El Alamein",
   "venue_id": null,
   "total": 1
  },
@@ -2321,6 +2411,11 @@
  },
  {
   "name": "STUDIO RASPAIL",
+  "venue_id": null,
+  "total": 1
+ },
+ {
+  "name": "Salle Olympe de Gouges",
   "venue_id": null,
   "total": 1
  },
@@ -2351,6 +2446,16 @@
  },
  {
   "name": "Studio Bastille",
+  "venue_id": null,
+  "total": 1
+ },
+ {
+  "name": "Sunset Sunside",
+  "venue_id": null,
+  "total": 1
+ },
+ {
+  "name": "Synagogue Copernic",
   "venue_id": null,
   "total": 1
  },
@@ -2390,17 +2495,32 @@
   "total": 1
  },
  {
+  "name": "Théâtre Claude Lévi-Strauss - Musée du Quai Branly – Jacques Chirac",
+  "venue_id": null,
+  "total": 1
+ },
+ {
   "name": "Théâtre Comédie Bastille",
   "venue_id": null,
   "total": 1
  },
  {
-  "name": "Théâtre Juliette Récamier",
+  "name": "Théâtre La Boussole",
+  "venue_id": null,
+  "total": 1
+ },
+ {
+  "name": "Théâtre Le Passage vers les Étoiles",
   "venue_id": null,
   "total": 1
  },
  {
   "name": "Théâtre Le République",
+  "venue_id": null,
+  "total": 1
+ },
+ {
+  "name": "Théâtre Louis-Aragon",
   "venue_id": null,
   "total": 1
  },
@@ -2445,7 +2565,22 @@
   "total": 1
  },
  {
-  "name": "Yamaha Artist Services Paris",
+  "name": "Théâtre du Gouvernail",
+  "venue_id": null,
+  "total": 1
+ },
+ {
+  "name": "Théâtre du Temps",
+  "venue_id": null,
+  "total": 1
+ },
+ {
+  "name": "Wat Pho Paris",
+  "venue_id": null,
+  "total": 1
+ },
+ {
+  "name": "YOYO - PALAIS DE TOKYO",
   "venue_id": null,
   "total": 1
  },
@@ -2460,22 +2595,17 @@
   "total": 1
  },
  {
+  "name": "Église Evangélique Allemande",
+  "venue_id": null,
+  "total": 1
+ },
+ {
   "name": "Église Notre-Dame de Saint-Mandé",
   "venue_id": null,
   "total": 1
  },
  {
-  "name": "Église Notre-Dame-de-Lorette",
-  "venue_id": null,
-  "total": 1
- },
- {
   "name": "Église Notre-Dame-de-la-Salette",
-  "venue_id": null,
-  "total": 1
- },
- {
-  "name": "Église Notre-Dame-des-Blancs-Manteaux",
   "venue_id": null,
   "total": 1
  },
@@ -2490,7 +2620,12 @@
   "total": 1
  },
  {
-  "name": "Église Saint Philippe du Roule",
+  "name": "Église Notre-Dame-du-Travail",
+  "venue_id": null,
+  "total": 1
+ },
+ {
+  "name": "Église Saint-Antoine-des-Quinze-Vingts",
   "venue_id": null,
   "total": 1
  },
@@ -2510,12 +2645,12 @@
   "total": 1
  },
  {
-  "name": "Église Saint-Gervais",
+  "name": "Église Saint-Germain-l'Auxerrois",
   "venue_id": null,
   "total": 1
  },
  {
-  "name": "Église Saint-Jean-Bosco",
+  "name": "Église Saint-Gervais",
   "venue_id": null,
   "total": 1
  },
@@ -2570,7 +2705,12 @@
   "total": 1
  },
  {
-  "name": "Église luthérienne Saint-Pierre",
+  "name": "Église Ste Marie des Batignolles",
+  "venue_id": null,
+  "total": 1
+ },
+ {
+  "name": "Église luthérienne Saint-Jean",
   "venue_id": null,
   "total": 1
  },
@@ -2590,7 +2730,7 @@
   "total": 1
  },
  {
-  "name": "Église réformée de la Bastille - Temple du Foyer de l'Âme",
+  "name": "Église réformée de l'Étoile",
   "venue_id": null,
   "total": 1
  },
