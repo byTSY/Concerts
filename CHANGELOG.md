@@ -14,6 +14,25 @@ Revenir à une version antérieure :
 3. base D1 : les migrations ne s'annulent pas seules ; chaque entrée indique la commande inverse
    quand une migration est ajoutée.
 
+## 1.16.0 (29 octobre 2026)
+
+Ajouter un concert à son agenda.
+- Fiche d'un concert (Reels, cercles des mois, calendrier, liste, recherche, Intéressés, Mes
+  prochains concerts, mode invité) et page publique `/partage/<id>` : bouton « Ajouter au
+  calendrier », trois choix : Apple (iCal), Google Agenda, Outlook.
+- Apple et Outlook : fichier iCalendar `/partage/<id>.ics` (RFC 5545, UTF-8, fuseau
+  Europe/Paris, identifiant stable par concert). Google : `/partage/<id>.google`, redirection
+  vers Google Agenda prérempli (`ctz=Europe/Paris`). Règles dans `functions/_lib/calendar.js`.
+- Titre « Concert | Artiste - Salle » ; lieu : salle et adresse ; description : horaires (source
+  citée), affiche Dice, description de l'artiste, liens de billetterie et de la fiche.
+- Horaires : 19h30-23h30 sans heure connue ; sinon fin à 23h30, ou début + 3h avant 18h et à
+  partir de 23h ; Dice : ouverture des portes et fin lues sur la page du concert (fin 23h59
+  ignorée, valeur par défaut).
+- Traitement : source de l'horaire gardée à la fusion (`time_source`) ; adresse manquante reprise
+  d'une autre source de la même salle (même identifiant ou même libellé), effet au traitement
+  suivant. Adresse affichée sans virgule vide ni ville répétée.
+- Pas de migration. Retour arrière : Cloudflare Pages, « Rollback », ou `git revert`.
+
 ## 1.15.0 (28 octobre 2026)
 
 Lien d'invité : montrer l'application à quelqu'un sans compte.

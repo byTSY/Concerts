@@ -394,6 +394,14 @@ dialog::backdrop { background: rgba(20, 24, 56, .55); }
 .share-preview { display: inline; margin: 0 0 0 4px; }
 .btn-share { border: 0; cursor: pointer; font: inherit; font-weight: 600; background: var(--pink); color: #fff; }
 .btn-share::before { content: "↗ "; }
+/* Ajouter au calendrier (version 1.16.0) : trois choix sous le bouton */
+.cal-menu { display: block; }
+.cal-menu[open] { flex-basis: 100%; }
+.btn-cal { display: inline-block; list-style: none; cursor: pointer; font-weight: 600; background: none; color: var(--ink); border: 1.5px solid var(--rule); }
+.btn-cal::-webkit-details-marker { display: none; }
+.btn-cal::before { content: "+ "; }
+.cal-menu[open] .btn-cal { border-color: var(--ink); }
+.cal-options { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 8px; }
 
 /* Section « L'artiste » de la fiche d'un concert */
 #ticket-artist.loading p { font-style: italic; }

@@ -301,6 +301,7 @@ Tests (avant chaque mise en production) :
 .venv\Scripts\python -m unittest discover -s tests -t .   # historique, membres, Spotify (simulé), quota, notifications
 node --test tests/functions.test.mjs                     # jeton Access, barrière, isolation, admin, arrivée, Spotify, signalements, lien d'invité
 node --test tests/partage.test.mjs                       # fiche /partage : présentation Dice et cache
+node --test tests/calendar.test.mjs                      # ajout au calendrier : horaires, .ics, lien Google
 ```
 
 Limites des offres gratuites (documentation Cloudflare, 12 octobre 2026) : D1, 5 millions de
@@ -404,6 +405,24 @@ Liens d'écoute et d'achat :
   concert y est en vente.
 - **Présentation** : pour un concert vendu sur Dice, le texte de l'organisateur est repris sur la
   fiche web et dans la fiche du concert.
+
+**Ajouter au calendrier** (version 1.16.0) : bouton sur la fiche d'un concert et sur la page
+`/partage/<concert>`, trois choix.
+- **Apple (iCal)** et **Outlook** : fichier `/partage/<concert>.ics` (iCalendar, RFC 5545). Sur
+  iPhone, Safari propose aussitôt « Ajouter au calendrier » ; sur ordinateur, le fichier s'ouvre
+  dans l'agenda par défaut. Un même concert garde le même identifiant (`UID`) : Outlook propose
+  de mettre à jour l'événement déjà ajouté.
+- **Google Agenda** : `/partage/<concert>.google` renvoie vers Google Agenda prérempli. Google
+  crée un nouvel événement à chaque ajout.
+- **Contenu** : titre « Concert | Artiste - Salle » ; lieu : salle et adresse ; description :
+  horaires et leur source, affiche (Dice), description de l'artiste, liens de billetterie et de
+  la fiche. Un champ inconnu n'apparaît pas.
+- **Horaires** (fuseau Europe/Paris) : sans heure connue, 19h30-23h30 « Horaires indicatifs » ;
+  avec une heure, « Début annoncé : 20h (source : Ticketmaster) » et fin indicative à 23h30, ou
+  début + 3h pour un concert qui commence avant 18h ou à partir de 23h. Dice publie l'heure
+  d'ouverture des portes et souvent l'heure de fin, lues sur la page du concert (une fin à 23h59,
+  valeur par défaut de Dice, n'est pas reprise). Aucune source ne donne de timetable.
+- Règles : `functions/_lib/calendar.js` ; tests : `tests/calendar.test.mjs`.
 
 Résultats mis en cache une semaine. Fonction : `functions/partage/[[path]].js`.
 La fonction lit le concert dans un petit fichier, `site/data/share/<xx>.json` (concerts

@@ -328,7 +328,11 @@ def dedupe(events):
         base = dict(group[0])
         links, artists, seen_urls = [], [], set()
         matched = {m["id"]: m for m in base.get("matched", [])}
+        # Source de l'horaire, citée dans l'événement de calendrier (version 1.16.0)
+        base["time_source"] = base["source"] if base.get("time") else None
         for ev in group:
+            if not base.get("time") and ev.get("time"):
+                base["time_source"] = ev["source"]
             for field in ("time", "address", "price", "on_sale", "image", "genre", "status", "description"):
                 if not base.get(field) and ev.get(field):
                     base[field] = ev[field]

@@ -3,11 +3,15 @@
 //
 // GET /partage/<id>       -> page web du concert (avec aperçu pour WhatsApp, iMessage…)
 // GET /partage/<id>.json  -> informations pour le message : artiste, description, liens
+// GET /partage/<id>.ics   -> événement de calendrier (Apple, Outlook), version 1.16.0
+// GET /partage/<id>.google -> redirection vers Google Agenda prérempli (functions/_lib/calendar.js)
 //
 // La page ne montre que le concert partagé : rien sur votre liste, vos niveaux ou vos goûts.
 // Description de l'artiste, toujours en français et centrée sur la musique :
 // - Wikidata : description courte (« groupe de rock anglais ») et genres musicaux ;
 // - Deezer : photo, lien et artistes similaires (« dans la veine de… »).
+
+import { eventText, fileName, googleUrl, ics } from "../_lib/calendar.js";
 
 const UA = "concerts-paris (https://github.com/byTSY/Concerts)";
 const WIKIDATA = "https://www.wikidata.org/w/api.php";
@@ -195,15 +199,31 @@ const unescapeHtml = (s) => s.replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (m, e) =>
 });
 const isEvent = (d) => [].concat(d?.["@type"] || []).some((t) => /Event/.test(t));
 
-export function diceText(html) {
-  let text = null;
+function diceEvents(html) {
+  const out = [];
   for (const m of html.matchAll(/<script[^>]+application\/ld\+json[^>]*>([\s\S]*?)<\/script>/gi)) {
     let data;
     try { data = JSON.parse(m[1]); } catch { continue; }  // bloc illisible
     const nodes = [].concat(data || []).flatMap((d) => [d, ...[].concat(d?.["@graph"] || [])]);
-    const ev = nodes.find((d) => isEvent(d) && typeof d.description === "string" && d.description.trim());
-    if (ev) { text = ev.description; break; }
+    out.push(...nodes.filter(isEvent));
   }
+  return out;
+}
+
+// Horaires et affiche publiés par Dice sur la page du concert (version 1.16.0) :
+// { start, doors, end } en heure de Paris (« 2026-11-05T19:00:00+01:00 »), performers : noms
+export function diceDetails(html) {
+  const ev = diceEvents(html).find((d) => d.startDate);
+  if (!ev) return null;
+  const iso = (v) => (typeof v === "string" && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(v) ? v : null);
+  const performers = [].concat(ev.performer || []).map((p) => (typeof p === "string" ? p : p?.name))
+    .filter((n) => typeof n === "string" && n.trim()).map((n) => unescapeHtml(n).trim()).slice(0, 12);
+  return { start: iso(ev.startDate), doors: iso(ev.doorTime), end: iso(ev.endDate), performers };
+}
+
+export function diceText(html) {
+  const ev = diceEvents(html).find((d) => typeof d.description === "string" && d.description.trim());
+  let text = ev ? ev.description : null;
   if (!text) {
     const meta = html.match(/<meta[^>]+property=["']og:description["'][^>]*>/i)?.[0];
     text = meta?.match(/content=(["'])([\s\S]*?)\1/i)?.[2] || null;
@@ -218,10 +238,11 @@ export function diceText(html) {
 export async function diceDescription(url) {
   try {
     const r = await fetch(url, { headers: { "user-agent": UA }, signal: AbortSignal.timeout(DICE_TIMEOUT_MS) });
-    if (!r.ok) { await r.body?.cancel(); return { text: null, ok: false }; }
-    return { text: diceText(await r.text()), ok: true };
+    if (!r.ok) { await r.body?.cancel(); return { text: null, details: null, ok: false }; }
+    const html = await r.text();
+    return { text: diceText(html), details: diceDetails(html), ok: true };
   } catch {
-    return { text: null, ok: false };
+    return { text: null, details: null, ok: false };
   }
 }
 
@@ -283,26 +304,38 @@ export function styleOf(ev) {
 
 // Présentation Dice d'un concert : une semaine en cache si elle existe, un jour si la page n'en a
 // pas (structure changée, texte ajouté plus tard), pas de cache si la page n'a pas pu être lue.
-// Clé « dice2 » : abandonne les résultats vides gardés une semaine par l'ancienne version.
-async function organizerText(ev, ctx) {
+// Clé « dice3 » (version 1.16.0) : texte, horaires et affiche ; les entrées « dice2 », sans
+// horaires, sont abandonnées.
+async function diceInfo(ev, ctx) {
   const dice = (ev.links || []).find((l) => l.source === "Dice");
-  if (!dice) return null;
-  const key = new Request(`https://partage.cache/dice2/${encodeURIComponent(dice.url)}`);
+  if (!dice) return { text: null, details: null };
+  const key = new Request(`https://partage.cache/dice3/${encodeURIComponent(dice.url)}`);
   const hit = await caches.default.match(key);
-  if (hit) return (await hit.json()).text;
-  const { text, ok } = await diceDescription(dice.url);
+  if (hit) return hit.json();
+  const { text, details, ok } = await diceDescription(dice.url);
   if (!ok) ctx.diceFailed = true;  // page /partage/ alors non gardée en cache
   if (ok) {
-    ctx.waitUntil(caches.default.put(key, new Response(JSON.stringify({ text }), {
+    ctx.waitUntil(caches.default.put(key, new Response(JSON.stringify({ text, details }), {
       headers: { "content-type": "application/json", "cache-control": `max-age=${(text ? CACHE_DAYS : 1) * 86400}` },
     })));
   }
-  return text;
+  return { text, details };
+}
+
+// Adresse et ville en une ligne, sans virgule vide ni ville répétée :
+// « 2B Rue des Taillandiers, 75011 Paris » + « Paris » -> « 2B Rue des Taillandiers, 75011 Paris »
+export function fullAddress(address, city) {
+  const parts = [];
+  for (const p of `${address || ""},${city || ""}`.split(",").map((s) => s.trim()).filter(Boolean)) {
+    if (!parts.some((q) => ` ${norm(q)}`.endsWith(` ${norm(p)}`))) parts.push(p);
+  }
+  return parts.join(", ") || null;
 }
 
 export async function concertInfo(ev, ctx) {
   const artist = artistOf(ev);
-  const [info, organizer] = await Promise.all([artistInfo(artist.name, artist.deezer, ctx), organizerText(ev, ctx)]);
+  const [info, dice] = await Promise.all([artistInfo(artist.name, artist.deezer, ctx), diceInfo(ev, ctx)]);
+  const organizer = dice.text;
   const q = encodeURIComponent(artist.name);
   return {
     id: ev.id,
@@ -311,7 +344,7 @@ export async function concertInfo(ev, ctx) {
     date: ev.date,
     time: ev.time || null,
     venue: tidy(ev.venue),
-    address: [ev.address, ev.city].filter(Boolean).join(", ") || null,
+    address: fullAddress(ev.address, ev.city),
     price: ev.price || null,
     onSale: ev.on_sale || null,
     status: ev.status || null,
@@ -323,6 +356,7 @@ export async function concertInfo(ev, ctx) {
     descriptionSource: info.source,
     picture: artist.picture || info.picture || ev.image || null,
     organizer,  // présentation rédigée par l'organisateur sur Dice
+    dice: dice.details,  // horaires et affiche publiés par Dice (agenda, version 1.16.0)
     tickets: (ev.links || []).map((l) => ({ source: l.source, url: l.url })),
     // Fnac Spectacles bloque la lecture automatique : simple lien de recherche sur l'artiste
     fnac: `https://www.fnacspectacles.com/search/?searchterm=${q}`,
@@ -347,6 +381,16 @@ function appButtons(c, url) {
   return `<div class="row app">
         <a class="btn" href="${esc(open)}">Ouvrir dans l'app</a>
         <a class="btn out" href="${esc(open)}&amp;star=interested">★ Ajouter à mes Intéressés</a></div>`;
+}
+
+// Apple et Outlook : même fichier .ics ; Google : redirection préparée par la fonction. Pas
+// d'attribut download : sur iPhone, il enverrait le fichier dans Fichiers au lieu de l'agenda.
+function calendarLinks(id, url, cls) {
+  const base = new URL(sharePageUrl(id, url));
+  const at = (ext) => esc(`${base.pathname}.${ext}${base.search}`);
+  return `<a class="${cls}" href="${at("ics")}">Apple (iCal)</a>
+        <a class="${cls}" href="${at("google")}" target="_blank" rel="noopener">Google Agenda</a>
+        <a class="${cls}" href="${at("ics")}">Outlook</a>`;
 }
 
 export function page(c, url) {
@@ -424,6 +468,8 @@ ${c.picture ? `<meta property="og:image" content="${esc(c.picture)}">` : ""}
       ${c.organizer ? `<h2>Présentation</h2><p class="organizer">${esc(c.organizer).replace(/\n/g, "<br>")}</p><p class="source">Texte de l'organisateur, publié sur Dice</p>` : ""}
       <h2>Places</h2><div class="row">${tickets}
         <a class="btn out" href="${esc(c.fnac)}" target="_blank" rel="noopener">Chercher sur Fnac Spectacles</a></div>
+      <h2>Ajouter au calendrier</h2>
+      <div class="row">${calendarLinks(c.id, url, "btn out")}</div>
       <h2>Écouter</h2>
       <div class="row">
         <a class="btn out" href="${esc(safeUrl(c.listen.deezer))}" target="_blank" rel="noopener">Deezer</a>
@@ -470,6 +516,33 @@ export const ICONS = ["apple-touch-icon.png", "icon-32.png", "icon-192.png"];
 const ICON_LINKS = `<link rel="icon" type="image/png" sizes="32x32" href="/partage/icon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/partage/apple-touch-icon.png">`;
 
+// Adresse publique de la fiche, avec l'artiste précisé dans le lien (?a=, ?dz=)
+function sharePageUrl(id, url) {
+  const u = new URL(url);
+  const keep = new URLSearchParams([...u.searchParams].filter(([k]) => k === "a" || k === "dz"));
+  return `${u.origin}/partage/${id}${keep.size ? `?${keep}` : ""}`;
+}
+
+// .ics : fichier iCalendar (Apple Calendar, Outlook) ; .google : redirection vers Google Agenda
+// prérempli (le lien se calcule ici : le site n'a qu'à pointer vers cette adresse)
+export function calendarResponse(ext, ev, info, url, now = new Date()) {
+  const share = sharePageUrl(ev.id, url);
+  if (ext === "google") {
+    const text = eventText(ev, info, share, info.dice, { summaryMax: 600 });
+    return new Response(null, { status: 302, headers: { location: googleUrl(text), "cache-control": "no-store" } });
+  }
+  const text = eventText(ev, info, share, info.dice);
+  return new Response(ics(ev, text, share, now), {
+    headers: {
+      "content-type": "text/calendar; charset=utf-8",
+      // inline : Safari sur iPhone propose aussitôt « Ajouter au calendrier » ; un ordinateur
+      // télécharge le fichier, qui s'ouvre dans l'agenda par défaut (Outlook, Calendrier)
+      "content-disposition": `inline; filename="${fileName(ev, info.artist)}"`,
+      "cache-control": "no-store",
+    },
+  });
+}
+
 export async function onRequestGet(context) {
   const { request, env, params } = context;
   const waitUntil = (p) => context.waitUntil(p);
@@ -479,8 +552,9 @@ export async function onRequestGet(context) {
     if (!icon.ok) return notFound();
     return new Response(icon.body, { headers: { "content-type": "image/png", "cache-control": "public, max-age=86400" } });
   }
-  const asJson = raw.endsWith(".json");
-  const id = raw.replace(/\.json$/, "");
+  const ext = raw.match(/\.(json|ics|google)$/)?.[1] || null;
+  const asJson = ext === "json";
+  const id = raw.replace(/\.(json|ics|google)$/, "");
   if (!/^[a-z0-9]{6,40}$/.test(id)) return notFound();
 
   let found;
@@ -500,6 +574,7 @@ export async function onRequestGet(context) {
   if (asJson) {
     return new Response(JSON.stringify(info), { headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" } });
   }
+  if (ext === "ics" || ext === "google") return calendarResponse(ext, ev, info, request.url);
   // Page Dice non lue : page non gardée en cache, nouvel essai (sans texte sur Dice : cache normal)
   const diceMissing = Boolean(ctx.diceFailed);
   return new Response(page(info, request.url), {
