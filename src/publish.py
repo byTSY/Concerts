@@ -11,8 +11,8 @@ from datetime import datetime, timezone
 from .history import kind_of
 from .util import SITE_DATA, log, save_json, today_iso
 
-COMMON = ("id", "title", "date", "time", "venue", "venue_id", "address", "city", "price", "on_sale",
-          "status", "genre", "image", "links", "artists", "description", "first_seen", "badge")
+COMMON = ("id", "title", "date", "time", "time_source", "venue", "venue_id", "address", "city", "price",
+          "on_sale", "status", "genre", "image", "links", "artists", "description", "first_seen", "badge")
 # Champs propres à un membre, jamais dans les fichiers communs ni dans la collecte (R2 common/)
 PERSONAL = ("matched", "discovery", "venue_favorite", "kind", "list_since", "list_badge")
 ARTIST_FIELDS = ("id", "name", "key", "link", "picture", "score", "tier", "sources", "first_seen", "added",
@@ -42,9 +42,46 @@ def build_share(out):
     return len(groups)
 
 
+def fill_addresses(out):
+    """Adresse absente (fiches de L'Officiel des spectacles surtout) : celle qu'une autre source
+    donne pour la même salle (même venue_id, sinon même libellé), la plus fréquente. Aucune
+    adresse n'est déduite d'un libellé seulement proche. Sur le seul libellé, la ville doit
+    concorder (« Salle des fêtes » existe dans plusieurs villes) ; sans ville connue, toutes les
+    adresses trouvées doivent être dans une même ville. Renvoie le nombre de concerts complétés."""
+    by_id, by_name = defaultdict(Counter), defaultdict(Counter)
+    for e in out:
+        if e.get("address"):
+            if e.get("venue_id"):
+                by_id[e["venue_id"]][(e["address"], e.get("city"))] += 1
+            name = (e.get("venue") or "").strip().lower()
+            if name:
+                by_name[name][(e["address"], e.get("city"))] += 1
+    filled = 0
+    for e in out:
+        if e.get("address"):
+            continue
+        found = by_id.get(e.get("venue_id"))
+        if not found:
+            found = by_name.get((e.get("venue") or "").strip().lower()) or Counter()
+            city = (e.get("city") or "").strip().lower()
+            cities = {(c or "").strip().lower() for _, c in found}
+            if city:
+                found = Counter({k: n for k, n in found.items() if (k[1] or "").strip().lower() == city})
+            elif len(cities) != 1:
+                found = None
+        if found:
+            e["address"], city = found.most_common(1)[0][0]
+            e["city"] = e.get("city") or city
+            filled += 1
+    return filled
+
+
 def build_common(events, source_status, initial=False):
     """events : concerts passés par history.update_common (id stable, first_seen, badge « annonce »)."""
     out = sorted(({k: ev.get(k) for k in COMMON} for ev in events), key=lambda e: (e["date"], e.get("time") or ""))
+    filled = fill_addresses(out)
+    if filled:
+        log(f"Site : adresse reprise d'une autre source de la même salle pour {filled} concerts")
     save_json(SITE_DATA / "events.json", out)
     build_share(out)
 

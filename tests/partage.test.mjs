@@ -65,7 +65,7 @@ async function callSharePage(diceReply, ext = "") {
   }
 }
 
-const diceKey = "https://partage.cache/dice2/" + encodeURIComponent("https://dice.fm/event/x1");
+const diceKey = "https://partage.cache/dice3/" + encodeURIComponent("https://dice.fm/event/x1");
 
 test("Concert fusionné (Ticketmaster + Dice) : la présentation Dice arrive et reste une semaine en cache", async () => {
   const store = fakeCache();
@@ -101,7 +101,7 @@ test("diceDescription : signale l'échec de lecture sans lever d'erreur", async 
   const realFetch = globalThis.fetch;
   globalThis.fetch = async () => { throw new Error("réseau"); };
   try {
-    assert.deepEqual(await diceDescription("https://dice.fm/event/x"), { text: null, ok: false });
+    assert.deepEqual(await diceDescription("https://dice.fm/event/x"), { text: null, details: null, ok: false });
   } finally {
     globalThis.fetch = realFetch;
   }

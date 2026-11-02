@@ -519,6 +519,22 @@ function shareQuery(ev) {
   return `?a=${encodeURIComponent(name)}${dz ? `&dz=${dz}` : ""}`;
 }
 
+// « Ajouter au calendrier » (version 1.16.0) : fichier .ics (Apple, Outlook) et lien Google
+// Agenda, préparés par la fiche publique (/partage/<id>.ics, /partage/<id>.google). Pas
+// d'attribut download : sur iPhone, il enverrait le fichier dans Fichiers au lieu de l'agenda.
+function calendarMenu(ev) {
+  const at = (ext) => esc(`/partage/${ev.id}.${ext}${shareQuery(ev)}`);
+  // Application installée sur l'écran d'accueil de l'iPhone : pas de bouton retour, le fichier
+  // s'ouvre dans une fenêtre à part pour ne pas quitter l'application
+  const out = navigator.standalone ? ` target="_blank" rel="noopener"` : "";
+  return `<details class="cal-menu"><summary class="btn btn-cal">Ajouter au calendrier</summary>
+      <div class="cal-options">
+        <a class="btn btn-quiet" href="${at("ics")}"${out}>Apple (iCal)</a>
+        <a class="btn btn-quiet" href="${at("google")}" target="_blank" rel="noopener">Google Agenda</a>
+        <a class="btn btn-quiet" href="${at("ics")}"${out}>Outlook</a>
+      </div></details>`;
+}
+
 function messageText(ev, info) {
   const artist = shareArtist(ev);
   const name = info?.artist || artist.name;
@@ -1184,7 +1200,8 @@ function openTicket(id, { entry = true } = {}) {
     <div class="ticket-star" id="ticket-star">${starBlock(ev)}</div>
     <div class="ticket-links">${links}${listen}</div>
     <div class="ticket-share">
-      <button type="button" class="btn btn-share" data-share="${esc(ev.id)}">Partager</button></div>
+      <button type="button" class="btn btn-share" data-share="${esc(ev.id)}">Partager</button>
+      ${calendarMenu(ev)}</div>
     ${hideButtons ? `<div class="ticket-hide">${hideButtons}</div>` : ""}`;
   // Fiche fermée : ouverture et entrée d'historique (déjà ouverte, rouverte après « Remettre » : rien à ajouter)
   if (!dlg.open) {
