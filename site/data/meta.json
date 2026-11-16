@@ -1,16 +1,16 @@
 {
- "generated_at": "2026-11-09T13:47+00:00",
+ "generated_at": "2026-11-16T13:34+00:00",
  "sources": {
-  "Ticketmaster": "1558 événements",
+  "Ticketmaster": "1512 événements",
   "Bandsintown": "ignorée (identifiant absent)",
-  "Que faire à Paris": "721 événements",
-  "Offi": "2973 événements",
-  "Dice": "675 événements",
+  "Que faire à Paris": "725 événements",
+  "Offi": "2898 événements",
+  "Dice": "625 événements",
   "Sites des salles": "19 événements"
  },
  "counts": {
-  "concerts": 4625,
-  "new_announcements": 313
+  "concerts": 4515,
+  "new_announcements": 432
  },
  "initial": false
 }
